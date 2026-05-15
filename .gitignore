@@ -1,0 +1,16 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Tooling caches.
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+
+# Local fetch scratch space.
+.claude-code-docs-cache/
