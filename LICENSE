@@ -24,5 +24,5 @@ SOFTWARE.
 
 Note: This license applies to the mirroring tool, scripts, skill metadata, and
 repository-specific code in this repository. The mirrored documentation content
-under references/ belongs to Anthropic and is subject to Anthropic's applicable
-terms and policies.
+under skills/claude-code-docs/references/ belongs to Anthropic and is subject
+to Anthropic's applicable terms and policies.

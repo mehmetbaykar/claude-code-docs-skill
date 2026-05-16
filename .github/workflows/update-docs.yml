@@ -38,7 +38,7 @@ jobs:
 
       - name: Stage and commit if anything changed
         run: |
-          git add -A references/
+          git add -A skills/claude-code-docs/references/
           if git diff --cached --quiet; then
             echo "No documentation changes to commit."
             exit 0
