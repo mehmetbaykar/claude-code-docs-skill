@@ -20,7 +20,8 @@ import requests
 
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
-REFERENCES_DIR = ROOT_DIR / "references"
+SKILL_DIR = ROOT_DIR / "skills" / "claude-code-docs"
+REFERENCES_DIR = SKILL_DIR / "references"
 RAW_DIR = REFERENCES_DIR / "_raw"
 MANIFEST_FILE = "docs_manifest.json"
 
@@ -957,8 +958,8 @@ def _manifest_projection(manifest: dict) -> dict:
 
 def main() -> int:
     start = time.monotonic()
-    REFERENCES_DIR.mkdir(exist_ok=True)
-    RAW_DIR.mkdir(exist_ok=True)
+    REFERENCES_DIR.mkdir(parents=True, exist_ok=True)
+    RAW_DIR.mkdir(parents=True, exist_ok=True)
 
     manifest = load_manifest()
     with requests.Session() as session:
