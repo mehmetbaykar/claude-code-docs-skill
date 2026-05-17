@@ -699,16 +699,16 @@
       "title": "How Claude remembers your project"
     },
     "microsoft-foundry.md": {
-      "hash": "fab3c4d965f5daea2ff0009da6d2e58edc74422ad67275856d1552498702bd64",
-      "last_updated": "2026-05-15T23:05:58+00:00",
+      "hash": "e377ca7ca2d2897b12e97fb1bc00e4aa2a102a17cfbea5eadf3f5419370c594c",
+      "last_updated": "2026-05-17T03:49:37+00:00",
       "original_url": "https://code.claude.com/docs/en/microsoft-foundry",
       "path": "/docs/en/microsoft-foundry",
       "source_url": "https://code.claude.com/docs/en/microsoft-foundry.md",
       "title": "Claude Code on Microsoft Foundry"
     },
     "model-config.md": {
-      "hash": "c0200b6c53172e0569b7dcfdb0e8532adb69a3a8fade6ceddff6961195591012",
-      "last_updated": "2026-05-15T23:05:58+00:00",
+      "hash": "39d1d8fe6f0df0fde405288b37526cdd2feffb35640dbfde8d0b54a2ccc2e9f4",
+      "last_updated": "2026-05-17T03:49:37+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -875,8 +875,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "61a868a9e71e7832d65e8a2dd979725f2eb39ea07b0522de03f33cb3bdbfab2e",
-      "last_updated": "2026-05-15T23:34:09+00:00",
+      "hash": "3b8b109d47e2134eead14d8834508ac1226640de671e1eb6107cf3b95ba51c74",
+      "last_updated": "2026-05-17T03:49:43+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1081,7 +1081,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-15T23:34:15+00:00",
+  "last_updated": "2026-05-17T03:49:49+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
