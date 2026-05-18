@@ -1615,9 +1615,11 @@ type CallToolResult = {
 };
 ```
 ```typescript
+type ThinkingDisplay = "summarized" | "omitted";
+
 type ThinkingConfig =
-  | { type: "adaptive" } // The model determines when and how much to reason (Opus 4.6+)
-  | { type: "enabled"; budgetTokens?: number } // Fixed thinking token budget
+  | { type: "adaptive"; display?: ThinkingDisplay } // The model determines when and how much to reason (Opus 4.6+)
+  | { type: "enabled"; budgetTokens?: number; display?: ThinkingDisplay } // Fixed thinking token budget
   | { type: "disabled" }; // No extended thinking
 ```
 ```typescript
