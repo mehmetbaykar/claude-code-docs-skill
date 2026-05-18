@@ -131,8 +131,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "ebd21b3b6629980edd595124a2c31b92d97117443acea35f0fc70c9b62d34833",
-      "last_updated": "2026-05-15T23:05:39+00:00",
+      "hash": "3c2c54768bc7c83312b278f1a3aebf88f0438bd294fc36eb5e2bbc5d67551435",
+      "last_updated": "2026-05-18T19:48:33+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -459,8 +459,8 @@
       "title": "Data usage"
     },
     "debug-your-config.md": {
-      "hash": "4159dba767f067e795de53823c3fdcb78074a3c88402b3de611fe164993138ef",
-      "last_updated": "2026-05-15T23:05:50+00:00",
+      "hash": "da69a250476e08b18c8b41f26e1fac55ec56d72614dca11e4ced659c04af5851",
+      "last_updated": "2026-05-18T19:48:44+00:00",
       "original_url": "https://code.claude.com/docs/en/debug-your-config",
       "path": "/docs/en/debug-your-config",
       "source_url": "https://code.claude.com/docs/en/debug-your-config.md",
@@ -499,8 +499,8 @@
       "title": "Schedule recurring tasks in Claude Code Desktop"
     },
     "desktop.md": {
-      "hash": "3fe8013bd8c9cdfcd0511e9307ad41cbff54850ca49de3348228d7be3296bd9f",
-      "last_updated": "2026-05-15T23:33:56+00:00",
+      "hash": "b331db3318857d27fc348a973df139cc9cfaff25064b1fccd109f214b9451160",
+      "last_updated": "2026-05-18T19:48:45+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -547,8 +547,8 @@
       "title": "Speed up responses with fast mode"
     },
     "features-overview.md": {
-      "hash": "1b02871472d8f3b0764fecee2a52ef5a01ad86eea71707458cfe6bacb0b6e1c7",
-      "last_updated": "2026-05-15T23:33:58+00:00",
+      "hash": "66a7bd606fb8d232c967243ed01d84592872e540cbfd0662e7f070207ceb02a4",
+      "last_updated": "2026-05-18T19:48:47+00:00",
       "original_url": "https://code.claude.com/docs/en/features-overview",
       "path": "/docs/en/features-overview",
       "source_url": "https://code.claude.com/docs/en/features-overview.md",
@@ -875,8 +875,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "3b8b109d47e2134eead14d8834508ac1226640de671e1eb6107cf3b95ba51c74",
-      "last_updated": "2026-05-17T03:49:43+00:00",
+      "hash": "2171e10fa8cf339b7d79365edb0e5da1704b30649566a0ca620348bbec2a0127",
+      "last_updated": "2026-05-18T19:48:58+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -891,16 +891,16 @@
       "title": "Claude Code in Slack"
     },
     "statusline.md": {
-      "hash": "9a746291eb84a5b14c9bbaf2d0c00d90970ca60dc3d0052aa8427457562b1aba",
-      "last_updated": "2026-05-15T23:34:10+00:00",
+      "hash": "a2e615834a2d77fa499ecaa126c6d9725f61d961a0a2358a1f77f39830fd6134",
+      "last_updated": "2026-05-18T19:48:59+00:00",
       "original_url": "https://code.claude.com/docs/en/statusline",
       "path": "/docs/en/statusline",
       "source_url": "https://code.claude.com/docs/en/statusline.md",
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "262cc2919020ec5de6147fa412465a793ffd2ac22d1c70f1a2d64b65e4f29d7c",
-      "last_updated": "2026-05-15T23:34:10+00:00",
+      "hash": "2ec2af60136ea5f7c213734f08c70760fde90051bc5e2e0dadc6bacecdf3aa4b",
+      "last_updated": "2026-05-18T19:48:59+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1081,7 +1081,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-17T03:49:49+00:00",
+  "last_updated": "2026-05-18T19:49:04+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
