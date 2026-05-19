@@ -10,6 +10,12 @@ path: /docs/en/whats-new
 
 The weekly dev digest highlights the features most likely to change how you work. Each entry includes runnable code, a short demo, and a link to the full docs. For every bug fix and minor improvement, see the [changelog](/en/changelog).
 
+  **Agent view**: `claude agents` opens one screen for every Claude Code session, showing what's running, what's blocked on you, and what's done.
+
+Also this week: **`/goal`** keeps Claude working across turns until a completion condition holds; **fast mode** now runs on Opus 4.7 by default; and the **Rewind menu** can compress earlier context with "Summarize up to here".
+
+[Read the Week 20 digest →](/en/whats-new/2026-w20)
+
   **Plugins load from `.zip` archives and URLs**: `--plugin-dir` now accepts `.zip` files, and `--plugin-url` fetches a plugin archive for the current session.
 
 Also this week: **`worktree.baseRef`** chooses whether new worktrees branch from the remote default or local `HEAD`; **auto mode hard deny rules** block actions unconditionally regardless of allow exceptions; and **hooks see the active effort level** via `effort.level` and `$CLAUDE_EFFORT`.

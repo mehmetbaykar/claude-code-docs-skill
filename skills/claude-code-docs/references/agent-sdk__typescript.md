@@ -462,6 +462,7 @@ type SDKResultMessage =
       duration_ms: number;
       duration_api_ms: number;
       is_error: boolean;
+      api_error_status?: number | null;
       num_turns: number;
       result: string;
       stop_reason: string | null;
