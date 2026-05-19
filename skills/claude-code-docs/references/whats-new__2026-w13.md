@@ -24,7 +24,7 @@ Auto mode hands your permission prompts to a classifier. Safe edits and commands
 
 
 Cycle to auto with Shift+Tab, or set it as your default:
-```json .claude/settings.json {3}
+```json ~/.claude/settings.json {3}
   {
     "permissions": {
       "defaultMode": "auto"
