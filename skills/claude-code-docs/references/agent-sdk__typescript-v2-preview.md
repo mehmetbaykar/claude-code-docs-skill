@@ -1,14 +1,16 @@
 ---
-title: TypeScript SDK V2 session API (deprecated)
+title: TypeScript SDK V2 session API (removed)
 source: https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview
 path: /docs/en/agent-sdk/typescript-v2-preview
 ---
 
-# TypeScript SDK V2 session API (deprecated)
+# TypeScript SDK V2 session API (removed)
 
-> Reference for the deprecated V2 TypeScript Agent SDK session API, with session-based send/stream patterns for multi-turn conversations.
+> Reference for the removed V2 TypeScript Agent SDK session API, with session-based send/stream patterns for multi-turn conversations.
 
-The V2 session API functions `unstable_v2_createSession`, `unstable_v2_resumeSession`, and `unstable_v2_prompt` are deprecated and will be removed in a future release. Use the [V1 `query()` API](/en/agent-sdk/typescript) instead.
+The V2 session API is no longer supported. TypeScript Agent SDK 0.3.142 removes `unstable_v2_createSession`, `unstable_v2_resumeSession`, `unstable_v2_prompt`, and the `SDKSession` and `SDKSessionOptions` types.
+
+To migrate, use the [`query()` API](/en/agent-sdk/typescript) and the [session options](/en/agent-sdk/sessions) it accepts. Pass an `AsyncIterable` for multi-turn conversations, or `options.resume` to continue a saved session. This page is kept for reference if you maintain code on Agent SDK 0.2.x or earlier.
 
 V2 was an experimental session API that removed the need for async generators and yield coordination. Instead of managing generator state across turns, each turn was a separate `send()`/`stream()` cycle. The API surface reduced to three concepts:
 
@@ -18,9 +20,9 @@ V2 was an experimental session API that removed the need for async generators an
 
 ## Installation
 
-The V2 interface is included in the existing SDK package:
+Agent SDK 0.2.x is the last version that includes the V2 interface. The package version jumped from 0.2.x directly to 0.3.142, so the removal version above and the install pin below describe the same boundary. To install the last V2-compatible release, pin the major and minor version:
 ```bash
-npm install @anthropic-ai/claude-agent-sdk
+npm install @anthropic-ai/claude-agent-sdk@0.2
 ```
 
 The SDK bundles a native Claude Code binary for your platform as an optional dependency, so you don't need to install Claude Code separately.
