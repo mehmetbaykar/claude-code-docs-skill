@@ -1,7 +1,0 @@
-interface:
-  display_name: "Claude Code Docs"
-  short_description: "Search and read Claude Code documentation locally"
-  brand_color: "#D97757"
-
-policy:
-  allow_implicit_invocation: true

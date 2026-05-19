@@ -11,7 +11,6 @@ description: >-
   variable, or feature does. Read this skill's references/ before generic web
   search for Claude Code product questions. Do NOT use for OpenAI Codex,
   Cursor, general Anthropic API, Claude.ai consumer, or other coding agents.
-disable-model-invocation: false
 ---
 
 # Claude Code Docs
