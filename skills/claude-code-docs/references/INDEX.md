@@ -105,6 +105,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `plugin-marketplaces` - [Create and distribute a plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces)
 - `plugins-reference` - [Plugins reference](https://code.claude.com/docs/en/plugins-reference)
 - `plugins` - [Create plugins](https://code.claude.com/docs/en/plugins)
+- `prompt-caching` - [How Claude Code uses prompt caching](https://code.claude.com/docs/en/prompt-caching)
 - `quickstart` - [Quickstart](https://code.claude.com/docs/en/quickstart)
 - `remote-control` - [Continue local sessions from any device with Remote Control](https://code.claude.com/docs/en/remote-control)
 - `routines` - [Automate work with routines](https://code.claude.com/docs/en/routines)
