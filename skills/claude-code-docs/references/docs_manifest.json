@@ -115,8 +115,8 @@
       "title": "Agent SDK overview"
     },
     "agent-sdk__permissions.md": {
-      "hash": "093ff19181584b7c7359d411879288e9194445df2e5c134f9d45dadaefa7fcb4",
-      "last_updated": "2026-05-19T19:56:04+00:00",
+      "hash": "4d69916aa1a0857008a1302eac99459d8299a9bced3088730d433a56f10c134e",
+      "last_updated": "2026-05-19T22:18:55+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/permissions",
       "path": "/docs/en/agent-sdk/permissions",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/permissions.md",
@@ -323,8 +323,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "00490feee946523fbeb25792ae77ca00a29cb4e7cfb3335ec59ac1bb698e3536",
-      "last_updated": "2026-05-19T03:55:20+00:00",
+      "hash": "d88bf9b997ca8ab5b5cfff426fe18b48681ca6fea4f9ea6c3351d7c41dfbc2da",
+      "last_updated": "2026-05-19T22:19:02+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -755,8 +755,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "1cf0a6ee314bcf4ef2366dca55492ee9f87446b69abff33a3616c0bbbe6eca2b",
-      "last_updated": "2026-05-18T22:06:12+00:00",
+      "hash": "dc6959eff4dbd13715ea3e5fb4fecd0b3f6539d27b714e0d354d561494d23976",
+      "last_updated": "2026-05-19T22:19:16+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -803,8 +803,8 @@
       "title": "Create plugins"
     },
     "prompt-caching.md": {
-      "hash": "37b01c83bc0a290281a6002d4c0a8c68e9eb489314df985e52ed9bb687195644",
-      "last_updated": "2026-05-19T19:56:29+00:00",
+      "hash": "8c3be507d97995070d500b09a927f5dee4ad25f6a8ed9c35343d19309d41db5c",
+      "last_updated": "2026-05-19T22:19:18+00:00",
       "original_url": "https://code.claude.com/docs/en/prompt-caching",
       "path": "/docs/en/prompt-caching",
       "source_url": "https://code.claude.com/docs/en/prompt-caching.md",
@@ -827,8 +827,8 @@
       "title": "Continue local sessions from any device with Remote Control"
     },
     "routines.md": {
-      "hash": "9364cf6c42aeb57f7e357cec3f11fdd28222810f3c219f94d63fcf202ee5c525",
-      "last_updated": "2026-05-19T15:33:05+00:00",
+      "hash": "afb1e9cf4f575c0a09db258c5c91f7177b763baa373ea5c5f8d0dae1f3412ea1",
+      "last_updated": "2026-05-19T22:19:18+00:00",
       "original_url": "https://code.claude.com/docs/en/routines",
       "path": "/docs/en/routines",
       "source_url": "https://code.claude.com/docs/en/routines.md",
@@ -867,8 +867,8 @@
       "title": "Configure server-managed settings"
     },
     "settings.md": {
-      "hash": "e674030a2c1b0c56cb4b180560ea327c843e8c3bc16bfd0973745adc194e3bf6",
-      "last_updated": "2026-05-19T15:33:07+00:00",
+      "hash": "aab78bacd37b78813c87aadb1eda8f5337ce9d61b138764b91d46ca600a1ab72",
+      "last_updated": "2026-05-19T22:19:20+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1097,7 +1097,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-19T19:56:39+00:00",
+  "last_updated": "2026-05-19T22:19:27+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
