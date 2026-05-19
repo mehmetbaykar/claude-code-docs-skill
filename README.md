@@ -15,8 +15,9 @@ npx skills add mehmetbaykar/claude-code-docs-skill
 ```
 
 The `npx skills` CLI discovers the nested skill automatically. Installing the
-repo exposes only the skill directory (`SKILL.md` plus `references/`) to the
-target agent while repository maintenance files stay at the repo root.
+repo exposes only the skill directory (`SKILL.md`, provider metadata in
+`agents/`, and `references/`) to the target agent while repository maintenance
+files stay at the repo root.
 
 ## Usage
 
@@ -70,9 +71,10 @@ hash is unchanged are not rewritten.
 
 ```text
 .
-├── agents/anthropic.yaml            # Agent UI metadata + invocation policy
 ├── skills/
 │   └── claude-code-docs/
+│       ├── agents/
+│       │   └── openai.yaml          # Agent UI metadata + invocation policy
 │       ├── SKILL.md                 # installed skill instructions and routing
 │       └── references/              # mirrored docs + INDEX + manifest
 ├── scripts/
