@@ -33,6 +33,7 @@ Match the message you see in your terminal to a section below.
 | `Not logged in · Please run /login`                                                           | [Authentication](#not-logged-in)                                                                                              |
 | `Invalid API key`                                                                             | [Authentication](#invalid-api-key)                                                                                            |
 | `This organization has been disabled`                                                         | [Authentication](#this-organization-has-been-disabled)                                                                        |
+| `Your organization has disabled Claude subscription access`                                   | [Authentication](#your-organization-has-disabled-claude-subscription-access)                                                  |
 | `Routines are disabled by your organization's policy`                                         | [Authentication](#routines-are-disabled-by-your-organizations-policy)                                                         |
 | `OAuth token revoked` / `OAuth token has expired`                                             | [Authentication](#oauth-token-revoked-or-expired)                                                                             |
 | `does not meet scope requirement user:profile`                                                | [Authentication](#oauth-scope-requirement)                                                                                    |
@@ -270,6 +271,21 @@ Environment variables take precedence over `/login`, so a key exported in your s
 * Unset `ANTHROPIC_API_KEY` in the current shell and remove it from your shell profile, then relaunch `claude`
 * Run `/status` afterward to confirm the active credential is your subscription
 * If no environment variable is set and the error persists, the disabled organization is the one tied to your `/login`. Contact support or sign in with a different account.
+
+### Your organization has disabled Claude subscription access
+
+Your Claude organization does not allow signing in to Claude Code with a subscription login. Running `/login` again with the same account returns the same error.
+```text
+Your organization has disabled Claude subscription access for Claude Code · Use an Anthropic API key instead, or ask your admin to enable access
+```
+
+This is a server-side organization setting, so it cannot be overridden from local settings, environment variables, or CLI flags. The Agent SDK and `-p` non-interactive mode surface this as the `oauth_org_not_allowed` error code.
+
+**What to do:**
+
+* Ask your admin to enable Claude Code access for your organization
+* Authenticate with a Console API key instead of your subscription. See [Claude Console authentication](/en/authentication#claude-console-authentication) for setup.
+* If you are the admin and do not see an option to enable access, contact [Anthropic support](https://support.claude.com)
 
 ### Routines are disabled by your organization's policy
 
