@@ -410,11 +410,17 @@ type SDKMessage =
   | SDKTaskStartedMessage
   | SDKTaskProgressMessage
   | SDKTaskUpdatedMessage
+  | SDKSessionStateChangedMessage
+  | SDKNotificationMessage
   | SDKFilesPersistedEvent
   | SDKToolUseSummaryMessage
+  | SDKMemoryRecallMessage
   | SDKRateLimitEvent
+  | SDKElicitationCompleteMessage
   | SDKPermissionDeniedMessage
-  | SDKPromptSuggestionMessage;
+  | SDKPromptSuggestionMessage
+  | SDKAPIRetryMessage
+  | SDKMirrorErrorMessage;
 ```
 ```typescript
 type SDKAssistantMessage = {
@@ -466,12 +472,15 @@ type SDKResultMessage =
       num_turns: number;
       result: string;
       stop_reason: string | null;
+      ttft_ms?: number;
       total_cost_usd: number;
       usage: NonNullableUsage;
       modelUsage: { [modelName: string]: ModelUsage };
       permission_denials: SDKPermissionDenial[];
       structured_output?: unknown;
       deferred_tool_use?: { id: string; name: string; input: Record<string, unknown> };
+      terminal_reason?: TerminalReason;
+      fast_mode_state?: FastModeState;
       origin?: SDKMessageOrigin;
     }
   | {
@@ -493,6 +502,8 @@ type SDKResultMessage =
       modelUsage: { [modelName: string]: ModelUsage };
       permission_denials: SDKPermissionDenial[];
       errors: string[];
+      terminal_reason?: TerminalReason;
+      fast_mode_state?: FastModeState;
       origin?: SDKMessageOrigin;
     };
 ```
@@ -1599,10 +1610,19 @@ type NonNullableUsage = {
 ```
 ```typescript
 type Usage = {
-  input_tokens: number | null;
-  output_tokens: number | null;
-  cache_creation_input_tokens?: number | null;
-  cache_read_input_tokens?: number | null;
+  input_tokens: number;
+  output_tokens: number;
+  cache_creation_input_tokens: number | null;
+  cache_read_input_tokens: number | null;
+  cache_creation: {
+    ephemeral_5m_input_tokens: number;
+    ephemeral_1h_input_tokens: number;
+  } | null;
+  server_tool_use: BetaServerToolUsage | null;
+  service_tier: "standard" | "priority" | "batch" | null;
+  speed: "standard" | "fast" | null;
+  inference_geo: string | null;
+  iterations: BetaIterationsUsage | null;
 };
 ```
 ```typescript
@@ -1791,12 +1811,14 @@ type SDKTaskProgressMessage = {
   task_id: string;
   tool_use_id?: string;
   description: string;
+  subagent_type?: string;
   usage: {
     total_tokens: number;
     tool_uses: number;
     duration_ms: number;
   };
   last_tool_name?: string;
+  summary?: string;
   uuid: UUID;
   session_id: string;
 };
