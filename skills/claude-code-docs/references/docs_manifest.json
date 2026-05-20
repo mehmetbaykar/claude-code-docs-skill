@@ -4,10 +4,10 @@
     "failed_pages": [],
     "fetch_tool_version": "1.0",
     "pages_failed": 0,
-    "pages_fetched_successfully": 134,
+    "pages_fetched_successfully": 138,
     "pages_skipped": 0,
     "raw_fallback_pages": 0,
-    "total_pages_discovered": 134
+    "total_pages_discovered": 138
   },
   "files": {
     "admin-setup.md": {
@@ -153,6 +153,14 @@
       "path": "/docs/en/agent-sdk/secure-deployment",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/secure-deployment.md",
       "title": "Securely deploying AI agents"
+    },
+    "agent-sdk__session-storage.md": {
+      "hash": "d29f2b455740f35be4b4c3f18a7469c2beaaab3a170d492b93b27e6712d2c4ce",
+      "last_updated": "2026-05-20T20:23:00+00:00",
+      "original_url": "https://code.claude.com/docs/en/agent-sdk/session-storage",
+      "path": "/docs/en/agent-sdk/session-storage",
+      "source_url": "https://code.claude.com/docs/en/agent-sdk/session-storage.md",
+      "title": "Persist sessions to external storage"
     },
     "agent-sdk__sessions.md": {
       "hash": "293302f2f78cfee696663d8c60b90a0aa16cca769ae039449e4d1e688c57e5d9",
@@ -778,6 +786,14 @@
       "source_url": "https://code.claude.com/docs/en/plugin-dependencies.md",
       "title": "Constrain plugin dependency versions"
     },
+    "plugin-hints.md": {
+      "hash": "2e7a1033ef86cb7f8c72034b74cd20eb9fc1db82e5302c3e6fd581dd8b61887d",
+      "last_updated": "2026-05-20T20:23:19+00:00",
+      "original_url": "https://code.claude.com/docs/en/plugin-hints",
+      "path": "/docs/en/plugin-hints",
+      "source_url": "https://code.claude.com/docs/en/plugin-hints.md",
+      "title": "Recommend your plugin from your CLI"
+    },
     "plugin-marketplaces.md": {
       "hash": "9c05cc06eb212823eb86982506d40ef573f9263b3fd1da6ecfe0691ea3d40c17",
       "last_updated": "2026-05-20T15:31:15+00:00",
@@ -809,6 +825,14 @@
       "path": "/docs/en/prompt-caching",
       "source_url": "https://code.claude.com/docs/en/prompt-caching.md",
       "title": "How Claude Code uses prompt caching"
+    },
+    "prompt-library.md": {
+      "hash": "fbd74cc32969d9c8cbfe1c276617c83713f6284e62cfa077008772f2e39f13c3",
+      "last_updated": "2026-05-20T20:23:20+00:00",
+      "original_url": "https://code.claude.com/docs/en/prompt-library",
+      "path": "/docs/en/prompt-library",
+      "source_url": "https://code.claude.com/docs/en/prompt-library.md",
+      "title": "Prompt library"
     },
     "quickstart.md": {
       "hash": "ea934d702a04b9bc998f59b385e3da9d7a09d0ab9024f1e3ad8ee3e7d3dea347",
@@ -865,6 +889,14 @@
       "path": "/docs/en/server-managed-settings",
       "source_url": "https://code.claude.com/docs/en/server-managed-settings.md",
       "title": "Configure server-managed settings"
+    },
+    "sessions.md": {
+      "hash": "9e7dd6a0c09c72b74e7b3495fcbc34b7d376d7ecff4dedfb20e6e60f16cfc476",
+      "last_updated": "2026-05-20T20:23:22+00:00",
+      "original_url": "https://code.claude.com/docs/en/sessions",
+      "path": "/docs/en/sessions",
+      "source_url": "https://code.claude.com/docs/en/sessions.md",
+      "title": "Manage sessions"
     },
     "settings.md": {
       "hash": "aab78bacd37b78813c87aadb1eda8f5337ce9d61b138764b91d46ca600a1ab72",
@@ -1097,7 +1129,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-20T15:31:28+00:00",
+  "last_updated": "2026-05-20T20:23:29+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
