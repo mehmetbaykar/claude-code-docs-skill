@@ -347,8 +347,8 @@
       "title": "Push events into a running session with channels"
     },
     "checkpointing.md": {
-      "hash": "e7300dc38b74a40baf1458df5a016e586883c065586df6baf43b02e6a7ba34f1",
-      "last_updated": "2026-05-15T23:05:46+00:00",
+      "hash": "27aea8aa1cf252f46326434cc2684856a8a370b93dfdca73d75e2e04781ed703",
+      "last_updated": "2026-05-20T15:30:59+00:00",
       "original_url": "https://code.claude.com/docs/en/checkpointing",
       "path": "/docs/en/checkpointing",
       "source_url": "https://code.claude.com/docs/en/checkpointing.md",
@@ -643,8 +643,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "49afa276e012f9aeed8d4b442bbed65b34da3c403aa4fdb07c3f5e831ebed5ae",
-      "last_updated": "2026-05-20T09:41:33+00:00",
+      "hash": "9a9c48317de00b38d5c9061eb734b10094abf76a87acaaf2c28612f02a34d803",
+      "last_updated": "2026-05-20T15:31:10+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -779,8 +779,8 @@
       "title": "Constrain plugin dependency versions"
     },
     "plugin-marketplaces.md": {
-      "hash": "d256dc0b08687bcdf663cc59d6cf52cd6673a0f063b9e51b54c5dea37ce8dcfa",
-      "last_updated": "2026-05-19T03:55:40+00:00",
+      "hash": "9c05cc06eb212823eb86982506d40ef573f9263b3fd1da6ecfe0691ea3d40c17",
+      "last_updated": "2026-05-20T15:31:15+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-marketplaces",
       "path": "/docs/en/plugin-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugin-marketplaces.md",
@@ -1097,7 +1097,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-20T09:41:46+00:00",
+  "last_updated": "2026-05-20T15:31:28+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
