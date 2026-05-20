@@ -166,7 +166,7 @@ Auto mode requires Claude Code v2.1.83 or later.
 
 Auto mode lets Claude execute without permission prompts. A separate classifier model reviews actions before they run, blocking anything that escalates beyond your request, targets unrecognized infrastructure, or appears driven by hostile content Claude read.
 
-Auto mode also instructs Claude to execute immediately and minimize clarifying questions. To get that behavior while keeping permission prompts, set the [Proactive output style](/en/output-styles) instead.
+Auto mode also nudges Claude to keep working without stopping for clarifying questions. For stronger autonomous behavior while keeping permission prompts, set the [Proactive output style](/en/output-styles) instead.
 
 Auto mode is a research preview. It reduces prompts but does not guarantee safety. Use it for tasks where you trust the general direction, not as a replacement for review on sensitive operations.
 
