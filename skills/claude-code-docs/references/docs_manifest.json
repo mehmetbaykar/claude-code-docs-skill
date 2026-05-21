@@ -331,8 +331,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "d88bf9b997ca8ab5b5cfff426fe18b48681ca6fea4f9ea6c3351d7c41dfbc2da",
-      "last_updated": "2026-05-19T22:19:02+00:00",
+      "hash": "7fd3da7ff891c611765c375fb16aeb06ac87b590f59d74010cceb0b80a6a0208",
+      "last_updated": "2026-05-21T04:04:38+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -411,8 +411,8 @@
       "title": "Code Review"
     },
     "commands.md": {
-      "hash": "3b0310693d74ce6182f6ed3a0fa5a698939b6076b7b84f576cddc4bd3cc51326",
-      "last_updated": "2026-05-20T09:41:26+00:00",
+      "hash": "7c49973d45e161bfc149eb966195e59dfb123d411b77b192749703de434f0059",
+      "last_updated": "2026-05-21T04:04:41+00:00",
       "original_url": "https://code.claude.com/docs/en/commands",
       "path": "/docs/en/commands",
       "source_url": "https://code.claude.com/docs/en/commands.md",
@@ -491,8 +491,8 @@
       "title": "Desktop changelog"
     },
     "desktop-quickstart.md": {
-      "hash": "794a38cdd022070dcf3ed0d978cfa38c692d13051c99139da2b3246eea07a215",
-      "last_updated": "2026-05-15T23:33:56+00:00",
+      "hash": "b637f45a060bb75cbdc4281b5d0c68ed2ef22176b88da1dbd54d8295ea6f7cb3",
+      "last_updated": "2026-05-21T04:04:44+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-quickstart",
       "path": "/docs/en/desktop-quickstart",
       "source_url": "https://code.claude.com/docs/en/desktop-quickstart.md",
@@ -507,8 +507,8 @@
       "title": "Schedule recurring tasks in Claude Code Desktop"
     },
     "desktop.md": {
-      "hash": "f2b5a51d192cfc2ffa49d03fd722251c9f9835e0d8cb5ed2629fb2a54bbd2682",
-      "last_updated": "2026-05-18T22:06:03+00:00",
+      "hash": "c727eddc4b76f91158c368f18e58686e07548d2e203b7d6773e18c560614fee5",
+      "last_updated": "2026-05-21T04:04:44+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -627,24 +627,24 @@
       "title": "Run Claude Code programmatically"
     },
     "hooks-guide.md": {
-      "hash": "05ed56342794c302649375ab5987d92147bebe5c42fafb935b29a3328a49df67",
-      "last_updated": "2026-05-19T15:32:59+00:00",
+      "hash": "43e4265a3f8d4c465c55b6f367a872f0d4eb6addb9656f5472b5168567920284",
+      "last_updated": "2026-05-21T04:04:49+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks-guide",
       "path": "/docs/en/hooks-guide",
       "source_url": "https://code.claude.com/docs/en/hooks-guide.md",
       "title": "Automate workflows with hooks"
     },
     "hooks.md": {
-      "hash": "16315d28a25ac13290dbe2ecae7c5f42c75cbded0760c8fc70438dcfbce1415d",
-      "last_updated": "2026-05-20T09:41:32+00:00",
+      "hash": "4186de8354a723ce0362dc40c98874991847c06d4cd4f67fd2d2379d6d3255d8",
+      "last_updated": "2026-05-21T04:04:49+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
       "title": "Hooks reference"
     },
     "how-claude-code-works.md": {
-      "hash": "535cb24c6f3957f91c1e984d044fef5ff661aa4f3618082458151f75fa3c9577",
-      "last_updated": "2026-05-15T23:34:01+00:00",
+      "hash": "2d1bbdaef4fb93748352bb78a2911559f1fd5e54e78cf2ccf92d5d305bd8e099",
+      "last_updated": "2026-05-21T04:04:49+00:00",
       "original_url": "https://code.claude.com/docs/en/how-claude-code-works",
       "path": "/docs/en/how-claude-code-works",
       "source_url": "https://code.claude.com/docs/en/how-claude-code-works.md",
@@ -867,8 +867,8 @@
       "title": "Sandboxing"
     },
     "scheduled-tasks.md": {
-      "hash": "7fbcd52ca2bffcf3a3e09726e388d38fa2ec02b2ad29f2e9501bf6ed841702b8",
-      "last_updated": "2026-05-18T22:06:14+00:00",
+      "hash": "f52a4553ce7b965184594cecde9cca447029c6dd8147eb6aff56c6e0fc1dd084",
+      "last_updated": "2026-05-21T04:04:57+00:00",
       "original_url": "https://code.claude.com/docs/en/scheduled-tasks",
       "path": "/docs/en/scheduled-tasks",
       "source_url": "https://code.claude.com/docs/en/scheduled-tasks.md",
@@ -963,8 +963,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "592d9cf7fa514d8ab43246bbf35959b23628bfff35a548c716fec69f22f4780d",
-      "last_updated": "2026-05-20T09:41:42+00:00",
+      "hash": "94221b6795e5e78361d1eb6fd80bb4edc06bc49921c660561598479ab9980c92",
+      "last_updated": "2026-05-21T04:05:00+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1129,7 +1129,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-20T20:23:29+00:00",
+  "last_updated": "2026-05-21T04:05:05+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
