@@ -11,8 +11,8 @@
   },
   "files": {
     "admin-setup.md": {
-      "hash": "bf569ada2794d29fb31c76e64c4fd1886c987cebc543f6f347adf14a52087813",
-      "last_updated": "2026-05-15T23:03:51+00:00",
+      "hash": "b041fefa355ab35ef1069eacd4edb356ea03f8fe403e01d24dc0d68a4f05cd4f",
+      "last_updated": "2026-05-21T09:49:27+00:00",
       "original_url": "https://code.claude.com/docs/en/admin-setup",
       "path": "/docs/en/admin-setup",
       "source_url": "https://code.claude.com/docs/en/admin-setup.md",
@@ -763,8 +763,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "dc6959eff4dbd13715ea3e5fb4fecd0b3f6539d27b714e0d354d561494d23976",
-      "last_updated": "2026-05-19T22:19:16+00:00",
+      "hash": "65c60854bb68d3d64db1b65586c1667890dd089e9dce3ab568c9e9bf0c9c5486",
+      "last_updated": "2026-05-21T09:49:50+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -899,8 +899,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "aab78bacd37b78813c87aadb1eda8f5337ce9d61b138764b91d46ca600a1ab72",
-      "last_updated": "2026-05-19T22:19:20+00:00",
+      "hash": "32e302641a63acb082db12ed90760b711a59966b740209d4a0bba963e92b8e99",
+      "last_updated": "2026-05-21T09:49:54+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1129,7 +1129,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-21T04:05:05+00:00",
+  "last_updated": "2026-05-21T09:50:00+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
