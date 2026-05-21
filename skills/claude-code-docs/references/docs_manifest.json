@@ -539,8 +539,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "558e04ec6747bfa85a4e07dc87531d9f435e58ae734256d3a47f207d494b990e",
-      "last_updated": "2026-05-19T09:53:21+00:00",
+      "hash": "85735debbc73b762493ee611af6c75ca420351451424577bb60a5a4cceea9edb",
+      "last_updated": "2026-05-21T19:58:31+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -867,8 +867,8 @@
       "title": "Sandboxing"
     },
     "scheduled-tasks.md": {
-      "hash": "f52a4553ce7b965184594cecde9cca447029c6dd8147eb6aff56c6e0fc1dd084",
-      "last_updated": "2026-05-21T04:04:57+00:00",
+      "hash": "0dfc7754762e43fbcf8eac371ca493ee3f18c0c34061f27e714ed8bcf61fe889",
+      "last_updated": "2026-05-21T19:58:41+00:00",
       "original_url": "https://code.claude.com/docs/en/scheduled-tasks",
       "path": "/docs/en/scheduled-tasks",
       "source_url": "https://code.claude.com/docs/en/scheduled-tasks.md",
@@ -1129,7 +1129,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-21T09:50:00+00:00",
+  "last_updated": "2026-05-21T19:58:48+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
