@@ -91,6 +91,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `keybindings` - [Customize keyboard shortcuts](https://code.claude.com/docs/en/keybindings)
 - `legal-and-compliance` - [Legal and compliance](https://code.claude.com/docs/en/legal-and-compliance)
 - `llm-gateway` - [LLM gateway configuration](https://code.claude.com/docs/en/llm-gateway)
+- `managed-mcp` - [Control MCP server access for your organization](https://code.claude.com/docs/en/managed-mcp)
 - `mcp` - [Connect Claude Code to tools via MCP](https://code.claude.com/docs/en/mcp)
 - `memory` - [How Claude remembers your project](https://code.claude.com/docs/en/memory)
 - `microsoft-foundry` - [Claude Code on Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry)

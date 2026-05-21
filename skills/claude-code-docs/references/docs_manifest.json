@@ -4,15 +4,15 @@
     "failed_pages": [],
     "fetch_tool_version": "1.0",
     "pages_failed": 0,
-    "pages_fetched_successfully": 138,
+    "pages_fetched_successfully": 139,
     "pages_skipped": 0,
     "raw_fallback_pages": 0,
-    "total_pages_discovered": 138
+    "total_pages_discovered": 139
   },
   "files": {
     "admin-setup.md": {
-      "hash": "b041fefa355ab35ef1069eacd4edb356ea03f8fe403e01d24dc0d68a4f05cd4f",
-      "last_updated": "2026-05-21T09:49:27+00:00",
+      "hash": "740d7290f202a150822a28ffd5aa551045fb4b3150513783902c15226d1cbee4",
+      "last_updated": "2026-05-21T22:22:15+00:00",
       "original_url": "https://code.claude.com/docs/en/admin-setup",
       "path": "/docs/en/admin-setup",
       "source_url": "https://code.claude.com/docs/en/admin-setup.md",
@@ -307,8 +307,8 @@
       "title": "Authentication"
     },
     "auto-mode-config.md": {
-      "hash": "d1d153d4bce2bde106bd16d78f4ee2ffaa8932e88152791cecdf62e467eb845c",
-      "last_updated": "2026-05-15T23:05:45+00:00",
+      "hash": "94336c0c089a48f7818b0f9baf9e697e645d59fd7169cc3e506f865dba731eb9",
+      "last_updated": "2026-05-21T22:22:24+00:00",
       "original_url": "https://code.claude.com/docs/en/auto-mode-config",
       "path": "/docs/en/auto-mode-config",
       "source_url": "https://code.claude.com/docs/en/auto-mode-config.md",
@@ -331,8 +331,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "7fd3da7ff891c611765c375fb16aeb06ac87b590f59d74010cceb0b80a6a0208",
-      "last_updated": "2026-05-21T04:04:38+00:00",
+      "hash": "66efd38aed53aac7736b526b229a01e8c01aa994c425c7908e5c13b32c9bd416",
+      "last_updated": "2026-05-21T22:22:25+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -507,8 +507,8 @@
       "title": "Schedule recurring tasks in Claude Code Desktop"
     },
     "desktop.md": {
-      "hash": "c727eddc4b76f91158c368f18e58686e07548d2e203b7d6773e18c560614fee5",
-      "last_updated": "2026-05-21T04:04:44+00:00",
+      "hash": "f0d446bc0a8cc833751a2caaff071e5768c91e985b15697002f101bd46314f45",
+      "last_updated": "2026-05-21T22:22:30+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -595,8 +595,8 @@
       "title": "Claude Code GitLab CI/CD"
     },
     "glossary.md": {
-      "hash": "c4aa1f603d02d84f5a4e3712f1c03464cf7f5871f45bc3a76a6fbe0eb241bfe5",
-      "last_updated": "2026-05-19T03:55:29+00:00",
+      "hash": "f6b87112ee23f5e9e7c53a4f7c973c56610fa17d4f1e3ed7918be52e3e0f6f08",
+      "last_updated": "2026-05-21T22:22:33+00:00",
       "original_url": "https://code.claude.com/docs/en/glossary",
       "path": "/docs/en/glossary",
       "source_url": "https://code.claude.com/docs/en/glossary.md",
@@ -690,9 +690,17 @@
       "source_url": "https://code.claude.com/docs/en/llm-gateway.md",
       "title": "LLM gateway configuration"
     },
+    "managed-mcp.md": {
+      "hash": "c682fa1c202dcd6a6773f5d559c0bc9af8cd7a765a511d257d08ea7f6f751193",
+      "last_updated": "2026-05-21T22:22:36+00:00",
+      "original_url": "https://code.claude.com/docs/en/managed-mcp",
+      "path": "/docs/en/managed-mcp",
+      "source_url": "https://code.claude.com/docs/en/managed-mcp.md",
+      "title": "Control MCP server access for your organization"
+    },
     "mcp.md": {
-      "hash": "f779c02268deee642d7047e52f60064855acdca52c2fb78fb52f610f70136c23",
-      "last_updated": "2026-05-19T19:56:24+00:00",
+      "hash": "afca5049b319f15192c8231b56ae09cbbef139d621f0038859f9bbfbaf1d237d",
+      "last_updated": "2026-05-21T22:22:36+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -755,16 +763,16 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "73d55776aaabeaee35e7f5283c73dbe4ac7691bdcf3c5da27aef08b9f0dd2c6f",
-      "last_updated": "2026-05-20T09:41:36+00:00",
+      "hash": "97aa00ed3c75f9fcbd3cfec2a9e9bf2133506aaad26f7f2f16792b33ba5df89a",
+      "last_updated": "2026-05-21T22:22:38+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "source_url": "https://code.claude.com/docs/en/permission-modes.md",
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "65c60854bb68d3d64db1b65586c1667890dd089e9dce3ab568c9e9bf0c9c5486",
-      "last_updated": "2026-05-21T09:49:50+00:00",
+      "hash": "6ab6fdac6162fb10f11e706b197375d9cf6a8e032dd8cbf30cd31165bf29d276",
+      "last_updated": "2026-05-21T22:22:38+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -883,8 +891,8 @@
       "title": "Security"
     },
     "server-managed-settings.md": {
-      "hash": "dadfc9a1e74f3a0829634bcc4dd3bc863ed9396d7f05b7b8faa3cbdbdda4f85c",
-      "last_updated": "2026-05-15T23:06:03+00:00",
+      "hash": "18e41e5cb33ac92735c70178318ba337cb1e69fae7346cc2bb47b3fff2785683",
+      "last_updated": "2026-05-21T22:22:42+00:00",
       "original_url": "https://code.claude.com/docs/en/server-managed-settings",
       "path": "/docs/en/server-managed-settings",
       "source_url": "https://code.claude.com/docs/en/server-managed-settings.md",
@@ -899,8 +907,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "32e302641a63acb082db12ed90760b711a59966b740209d4a0bba963e92b8e99",
-      "last_updated": "2026-05-21T09:49:54+00:00",
+      "hash": "c7ed23d37dd266c4065cea0612b44bc9a6ee1a35d3ec235594d9e0cc48669475",
+      "last_updated": "2026-05-21T22:22:42+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1129,7 +1137,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-21T19:58:48+00:00",
+  "last_updated": "2026-05-21T22:22:49+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
