@@ -12,6 +12,10 @@ This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anth
 
 Run `claude --version` to check your installed version.
 
+### 2.1.150 (May 23, 2026)
+
+* Internal infrastructure improvements (no user-facing changes)
+
 ### 2.1.149 (May 22, 2026)
 
 * `/usage` now shows a per-category breakdown of what's driving your limits usage — skills, subagents, plugins, and per-MCP-server cost
