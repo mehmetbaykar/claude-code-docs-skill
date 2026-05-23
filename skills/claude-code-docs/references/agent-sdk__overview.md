@@ -248,7 +248,7 @@ This example logs all file changes to an audit file:
 
 Spawn specialized agents to handle focused subtasks. Your main agent delegates work, and subagents report back with results.
 
-Define custom agents with specialized instructions. Include `Agent` in `allowedTools` since subagents are invoked via the Agent tool:
+Define custom agents with specialized instructions. Subagents are invoked via the Agent tool, so include `Agent` in `allowedTools` to auto-approve those invocations:
 ```python Python
       import asyncio
       from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition

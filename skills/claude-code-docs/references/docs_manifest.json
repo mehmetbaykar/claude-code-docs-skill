@@ -75,8 +75,8 @@
       "title": "Hosting the Agent SDK"
     },
     "agent-sdk__mcp.md": {
-      "hash": "76242992d48d3edf6bb994b3d0f7e221709093e53f9bfb4c8a2344f204a5adc0",
-      "last_updated": "2026-05-15T23:33:43+00:00",
+      "hash": "865821276fd39dd2f523e62d7a18a498f600dc17c51a15f20bdae5bb3c35b7cf",
+      "last_updated": "2026-05-23T03:36:34+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/mcp",
       "path": "/docs/en/agent-sdk/mcp",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/mcp.md",
@@ -107,8 +107,8 @@
       "title": "Observability with OpenTelemetry"
     },
     "agent-sdk__overview.md": {
-      "hash": "b594e144e9ce7b3f292c028050ad036d9ed90b28fc5475591dc23733e5d4e907",
-      "last_updated": "2026-05-15T23:33:44+00:00",
+      "hash": "04857faaf55f06c76bd1662abf42e32d90dc181dba73b5c55e274e926857e0fd",
+      "last_updated": "2026-05-23T03:36:35+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/overview",
       "path": "/docs/en/agent-sdk/overview",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/overview.md",
@@ -123,8 +123,8 @@
       "title": "Configure permissions"
     },
     "agent-sdk__plugins.md": {
-      "hash": "d54a25cdcde047da92a1b44b88b7bf2af9e2197cbb54ec95ee26df6e2bf6ce8c",
-      "last_updated": "2026-05-15T23:05:39+00:00",
+      "hash": "eb5556e76811377cf481874e5f29d6b14d0396f4f1626bc76bdf0c9d6effa096",
+      "last_updated": "2026-05-23T03:36:35+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/plugins",
       "path": "/docs/en/agent-sdk/plugins",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/plugins.md",
@@ -139,8 +139,8 @@
       "title": "Agent SDK reference - Python"
     },
     "agent-sdk__quickstart.md": {
-      "hash": "2833ad8b1f0056ce76271e064b43b75dbec1bca766efc4798255af32493142ee",
-      "last_updated": "2026-05-15T23:33:45+00:00",
+      "hash": "099923f1f1ccbdc5258d7de419a35cd472d6440efc6d15cd5a945ea82ada87b6",
+      "last_updated": "2026-05-23T03:36:36+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/quickstart",
       "path": "/docs/en/agent-sdk/quickstart",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/quickstart.md",
@@ -179,8 +179,8 @@
       "title": "Agent Skills in the SDK"
     },
     "agent-sdk__slash-commands.md": {
-      "hash": "b1a48201805d5c3e5d5d02652a15db3c4f91324ba786a3f2a89c4754f3a1a28c",
-      "last_updated": "2026-05-15T23:05:40+00:00",
+      "hash": "888204d308ea6995b5de9c0b4afec51b0aa800b61bff32d34ef5a16adedcc07b",
+      "last_updated": "2026-05-23T03:36:37+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/slash-commands",
       "path": "/docs/en/agent-sdk/slash-commands",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/slash-commands.md",
@@ -211,8 +211,8 @@
       "title": "Get structured output from agents"
     },
     "agent-sdk__subagents.md": {
-      "hash": "0dcf0b915e40c612abc8a8b189b0cd8eb074d550acd3dbbccf6506440ce42573",
-      "last_updated": "2026-05-15T23:05:41+00:00",
+      "hash": "f0bd6931dda23eddb41ac646148641e570bb90220c8176db2271232e484a6cbe",
+      "last_updated": "2026-05-23T03:36:38+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/subagents",
       "path": "/docs/en/agent-sdk/subagents",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/subagents.md",
@@ -331,8 +331,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "1a8d6812c25731e1ee196fb122b0b20203cafefdb0c88f466121443d7b1491f8",
-      "last_updated": "2026-05-22T03:59:27+00:00",
+      "hash": "8c75c7ee4aae0961479362812ca77ddb3feed873e6b84774a0ea51829b922ba4",
+      "last_updated": "2026-05-23T03:36:42+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -955,8 +955,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "3c3fd2f457fd89e21faededafb5dfb8e8d02f0219453c89ce1e57a5e59525c65",
-      "last_updated": "2026-05-19T19:56:33+00:00",
+      "hash": "8b113f9f07aea3b6572a8c8fc2ded64fb2f2d9eb5c554edc3f4e1ecda36dc834",
+      "last_updated": "2026-05-23T03:37:02+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1115,8 +1115,8 @@
       "title": "Week 20 \u00b7 May 11\u201315, 2026"
     },
     "worktrees.md": {
-      "hash": "fe85b43d50af473fe9dcb104b2d84682dc12fe9a13051291c312808bd1c49e16",
-      "last_updated": "2026-05-15T23:06:09+00:00",
+      "hash": "4561104452d86b96ab0d99fb8b1af9101f4ca4966d066b3c0bf06f0784de8578",
+      "last_updated": "2026-05-23T03:37:07+00:00",
       "original_url": "https://code.claude.com/docs/en/worktrees",
       "path": "/docs/en/worktrees",
       "source_url": "https://code.claude.com/docs/en/worktrees.md",
@@ -1145,7 +1145,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-22T03:59:51+00:00",
+  "last_updated": "2026-05-23T03:37:07+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",

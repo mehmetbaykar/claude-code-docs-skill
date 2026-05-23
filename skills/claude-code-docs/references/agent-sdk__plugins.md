@@ -89,7 +89,7 @@ When plugins load successfully, they appear in the system initialization message
 
       // Check available commands from plugins
       console.log("Commands:", message.slash_commands);
-      // Example: ["/help", "/compact", "my-plugin:custom-command"]
+      // Example: ["compact", "context", "my-plugin:custom-command"]
     }
   }
 ```
@@ -111,7 +111,7 @@ When plugins load successfully, they appear in the system initialization message
 
               # Check available commands from plugins
               print("Commands:", message.data.get("slash_commands"))
-              # Example: ["/help", "/compact", "my-plugin:custom-command"]
+              # Example: ["compact", "context", "my-plugin:custom-command"]
 
   asyncio.run(main())
 ```
