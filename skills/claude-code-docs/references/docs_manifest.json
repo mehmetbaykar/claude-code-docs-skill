@@ -403,8 +403,8 @@
       "title": "CLI reference"
     },
     "code-review.md": {
-      "hash": "dee3cac8f1f0f328e26287c9d7ce0f7e683dca3c57d50c51f4bcd2830db52746",
-      "last_updated": "2026-05-18T22:06:00+00:00",
+      "hash": "f3206ef648e6dd6e272c2a016e96814c6d1a8d59f5a7f4f3a4d954d1e9dcd087",
+      "last_updated": "2026-05-24T08:34:00+00:00",
       "original_url": "https://code.claude.com/docs/en/code-review",
       "path": "/docs/en/code-review",
       "source_url": "https://code.claude.com/docs/en/code-review.md",
@@ -843,8 +843,8 @@
       "title": "Prompt library"
     },
     "quickstart.md": {
-      "hash": "ea934d702a04b9bc998f59b385e3da9d7a09d0ab9024f1e3ad8ee3e7d3dea347",
-      "last_updated": "2026-05-15T23:34:07+00:00",
+      "hash": "7af05708109e1e0ef51d3a89c1863e7effaf7c1ae0013487ecfddf66841d223c",
+      "last_updated": "2026-05-24T08:34:14+00:00",
       "original_url": "https://code.claude.com/docs/en/quickstart",
       "path": "/docs/en/quickstart",
       "source_url": "https://code.claude.com/docs/en/quickstart.md",
@@ -875,8 +875,8 @@
       "title": "Choose a sandbox environment"
     },
     "sandboxing.md": {
-      "hash": "e267ea0aa755dbb87544a562fbcfd55bd076d98e61880e2585568b974293ed3e",
-      "last_updated": "2026-05-22T03:59:43+00:00",
+      "hash": "e7a672d4d4feeab2654dd219cd45740ca8baffedcd6df9e1eb4f2087190555a3",
+      "last_updated": "2026-05-24T08:34:15+00:00",
       "original_url": "https://code.claude.com/docs/en/sandboxing",
       "path": "/docs/en/sandboxing",
       "source_url": "https://code.claude.com/docs/en/sandboxing.md",
@@ -979,8 +979,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "5c97a02fad39a46a03989d87f518730a6daba098d832303b6c7d500b49b7f060",
-      "last_updated": "2026-05-22T03:59:46+00:00",
+      "hash": "110bc180a8cb659832fcccedcf676473db4718fc3cb0fa1cbb9e3604a95b1ec4",
+      "last_updated": "2026-05-24T08:34:19+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1145,7 +1145,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-23T08:24:43+00:00",
+  "last_updated": "2026-05-24T08:34:23+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
