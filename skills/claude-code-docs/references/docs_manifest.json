@@ -731,8 +731,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "7b7312d59c3c3740fdc87f56f575d21cf5a26d0846ab46647582590fc0c6073b",
-      "last_updated": "2026-05-25T19:46:30+00:00",
+      "hash": "ee0ca23c25eaafba60a13f821becfce4769547d360a8f120791abd0676c3819c",
+      "last_updated": "2026-05-25T22:11:21+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -747,8 +747,8 @@
       "title": "Enterprise network configuration"
     },
     "output-styles.md": {
-      "hash": "b32b63c3c3c96102857c21fbe0092d7cad9b4b58c87eccc54a650d51bf978f7f",
-      "last_updated": "2026-05-20T09:41:36+00:00",
+      "hash": "5299bdcfe0eb8e485bad555dd3ba888aaf3aba644402a26799573d50548cf939",
+      "last_updated": "2026-05-25T22:11:21+00:00",
       "original_url": "https://code.claude.com/docs/en/output-styles",
       "path": "/docs/en/output-styles",
       "source_url": "https://code.claude.com/docs/en/output-styles.md",
@@ -827,8 +827,8 @@
       "title": "Create plugins"
     },
     "prompt-caching.md": {
-      "hash": "8c3be507d97995070d500b09a927f5dee4ad25f6a8ed9c35343d19309d41db5c",
-      "last_updated": "2026-05-19T22:19:18+00:00",
+      "hash": "dfa545a1b7d466e8048a569c911d9186c68ae747c77247afb38bce244a626b08",
+      "last_updated": "2026-05-25T22:11:24+00:00",
       "original_url": "https://code.claude.com/docs/en/prompt-caching",
       "path": "/docs/en/prompt-caching",
       "source_url": "https://code.claude.com/docs/en/prompt-caching.md",
@@ -851,8 +851,8 @@
       "title": "Quickstart"
     },
     "remote-control.md": {
-      "hash": "8019b1e3028dcf58649b2e9ab62757f215c419dc8ac0fb6be2ec094eb0dbdd61",
-      "last_updated": "2026-05-18T22:06:13+00:00",
+      "hash": "f566c0efe3d549418fe0dfceeb298d4fd45372a2733458bfbf59867013af5d8a",
+      "last_updated": "2026-05-25T22:11:25+00:00",
       "original_url": "https://code.claude.com/docs/en/remote-control",
       "path": "/docs/en/remote-control",
       "source_url": "https://code.claude.com/docs/en/remote-control.md",
@@ -1145,7 +1145,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-25T19:46:42+00:00",
+  "last_updated": "2026-05-25T22:11:34+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
