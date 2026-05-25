@@ -379,8 +379,8 @@
       "title": "Use Claude Code on the web"
     },
     "claude-directory.md": {
-      "hash": "6a48b7b3a31b8ab7be6b9b9217c840e14c268782b83d1c643ada79bc5575e1e4",
-      "last_updated": "2026-05-15T23:05:47+00:00",
+      "hash": "582e1c564a4fe69735435a8c84311f740620438ce2e3e6be057124f87108c8fb",
+      "last_updated": "2026-05-25T19:46:19+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-directory",
       "path": "/docs/en/claude-directory",
       "source_url": "https://code.claude.com/docs/en/claude-directory.md",
@@ -411,8 +411,8 @@
       "title": "Code Review"
     },
     "commands.md": {
-      "hash": "6f3a234001c6eb2392827a099a0b83a661ad2ba2ce0a12ecbfe26527da13bc33",
-      "last_updated": "2026-05-22T03:59:29+00:00",
+      "hash": "7bf8acb078f30e7b8e4178816268e518006efbd8a5c13ffc5f7ec03c4a57a2bb",
+      "last_updated": "2026-05-25T19:46:20+00:00",
       "original_url": "https://code.claude.com/docs/en/commands",
       "path": "/docs/en/commands",
       "source_url": "https://code.claude.com/docs/en/commands.md",
@@ -451,8 +451,8 @@
       "title": "Explore the context window"
     },
     "costs.md": {
-      "hash": "f05c1fb7b816eae250a2c2e9a90e8feb1dc1eaebeb1c0e59f476caa9a864082e",
-      "last_updated": "2026-05-19T19:56:16+00:00",
+      "hash": "ebb39a0c6c3dc72c370eadc5f0b9904534ac0c8a64ee38d681c07880da52b032",
+      "last_updated": "2026-05-25T19:46:21+00:00",
       "original_url": "https://code.claude.com/docs/en/costs",
       "path": "/docs/en/costs",
       "source_url": "https://code.claude.com/docs/en/costs.md",
@@ -531,8 +531,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "11713bfdf6d45c727134bb4386946fa2c9eee4fa0d1bfb6cc1b3534de1ee2f91",
-      "last_updated": "2026-05-22T03:59:33+00:00",
+      "hash": "9d9e31d9322fc9b9d4adcc6ecd1b6c1878ba42bf55fb74755b68558fa36c3609",
+      "last_updated": "2026-05-25T19:46:24+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -547,8 +547,8 @@
       "title": "Error reference"
     },
     "fast-mode.md": {
-      "hash": "3f18964b525ff9ca3cd07387e65caf7bc73279cb54e459347496671c15f31d98",
-      "last_updated": "2026-05-19T03:55:27+00:00",
+      "hash": "c0c7d7dc6945e8d362ad0268d4f050c9940308acb70a43e1c6c8165e26283757",
+      "last_updated": "2026-05-25T19:46:24+00:00",
       "original_url": "https://code.claude.com/docs/en/fast-mode",
       "path": "/docs/en/fast-mode",
       "source_url": "https://code.claude.com/docs/en/fast-mode.md",
@@ -667,8 +667,8 @@
       "title": "JetBrains IDEs"
     },
     "keybindings.md": {
-      "hash": "8f47b2592ef9bb62113ee2a4578b26e45f3992f8171b6e5f4867211aba390480",
-      "last_updated": "2026-05-22T03:59:37+00:00",
+      "hash": "a5f283dd8f6ea4b301b6fe0d2a91fdf7c0678bd19b830d62c8f7e3ef9b07e2ee",
+      "last_updated": "2026-05-25T19:46:28+00:00",
       "original_url": "https://code.claude.com/docs/en/keybindings",
       "path": "/docs/en/keybindings",
       "source_url": "https://code.claude.com/docs/en/keybindings.md",
@@ -691,8 +691,8 @@
       "title": "LLM gateway configuration"
     },
     "managed-mcp.md": {
-      "hash": "c682fa1c202dcd6a6773f5d559c0bc9af8cd7a765a511d257d08ea7f6f751193",
-      "last_updated": "2026-05-21T22:22:36+00:00",
+      "hash": "af29defe4c20673e59ac88b5692954e91a8cef54be44a88f2c10d2161bb83b63",
+      "last_updated": "2026-05-25T19:46:29+00:00",
       "original_url": "https://code.claude.com/docs/en/managed-mcp",
       "path": "/docs/en/managed-mcp",
       "source_url": "https://code.claude.com/docs/en/managed-mcp.md",
@@ -731,8 +731,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "f4ea0b066c60cbc413aa205b1b24a4eb6038d47ade497f313529b9b3fa0e6344",
-      "last_updated": "2026-05-20T09:41:35+00:00",
+      "hash": "7b7312d59c3c3740fdc87f56f575d21cf5a26d0846ab46647582590fc0c6073b",
+      "last_updated": "2026-05-25T19:46:30+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -771,8 +771,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "6ab6fdac6162fb10f11e706b197375d9cf6a8e032dd8cbf30cd31165bf29d276",
-      "last_updated": "2026-05-21T22:22:38+00:00",
+      "hash": "43187c089071ff5c951cf41cd491d642a206088facc15ce9a6ed8f2a3c91b1bd",
+      "last_updated": "2026-05-25T19:46:31+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -915,8 +915,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "eb3a0fec947018c8c59185ac6517a2123d9e3c9a7caa5095f5ebbbacbb6c395f",
-      "last_updated": "2026-05-22T03:59:45+00:00",
+      "hash": "341a0c8a74a1ff1e4137d5ab526a3391bc117d5aa3ab6ba1b1e5a7b2d9d62b50",
+      "last_updated": "2026-05-25T19:46:35+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -931,8 +931,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "2af78b8b83de01b901bb2f8f26a152cf07077b20627f4c0ed08afc71792560e3",
-      "last_updated": "2026-05-22T03:59:45+00:00",
+      "hash": "97e8f241cac74884558448af18fcaaffb0656b8f6a2a4a586336e298b3c59566",
+      "last_updated": "2026-05-25T19:46:36+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1145,7 +1145,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-24T08:34:23+00:00",
+  "last_updated": "2026-05-25T19:46:42+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
