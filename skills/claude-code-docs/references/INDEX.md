@@ -115,6 +115,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `sandbox-environments` - [Choose a sandbox environment](https://code.claude.com/docs/en/sandbox-environments)
 - `sandboxing` - [Configure the sandboxed Bash tool](https://code.claude.com/docs/en/sandboxing)
 - `scheduled-tasks` - [Run prompts on a schedule](https://code.claude.com/docs/en/scheduled-tasks)
+- `security-guidance` - [Catch security issues as Claude writes code](https://code.claude.com/docs/en/security-guidance)
 - `security` - [Security](https://code.claude.com/docs/en/security)
 - `server-managed-settings` - [Configure server-managed settings](https://code.claude.com/docs/en/server-managed-settings)
 - `sessions` - [Manage sessions](https://code.claude.com/docs/en/sessions)
