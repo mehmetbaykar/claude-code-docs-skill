@@ -166,7 +166,7 @@ For example, select **commit-commands** (a plugin that adds git workflow skills)
 
 You can also install directly from the command line:
 ```shell
-    /plugin install commit-commands@anthropics-claude-code
+    /plugin install commit-commands@claude-code-plugins
 ```
 
 See [Configuration scopes](/en/settings#configuration-scopes) to learn more about scopes.

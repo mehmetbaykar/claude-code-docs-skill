@@ -41,7 +41,7 @@ In a Claude Code session, run:
     /plugin install mcp-server-dev@claude-plugins-official
 ```
 
-Then run `/reload-plugins` to activate it in the current session.
+If Claude Code reports that the marketplace is not found, run `/plugin marketplace add anthropics/claude-plugins-official` first, then retry the install. Once installed, run `/reload-plugins` to activate it in the current session.
 
 
 
