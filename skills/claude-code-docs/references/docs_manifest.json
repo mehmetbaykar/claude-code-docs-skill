@@ -4,10 +4,10 @@
     "failed_pages": [],
     "fetch_tool_version": "1.0",
     "pages_failed": 0,
-    "pages_fetched_successfully": 139,
+    "pages_fetched_successfully": 140,
     "pages_skipped": 0,
     "raw_fallback_pages": 0,
-    "total_pages_discovered": 139
+    "total_pages_discovered": 140
   },
   "files": {
     "admin-setup.md": {
@@ -515,8 +515,8 @@
       "title": "Development containers"
     },
     "discover-plugins.md": {
-      "hash": "cd7c444bdb18849998ea76ced74c595ebe856b4efd6ded8443e68e96233ab9c6",
-      "last_updated": "2026-05-26T03:55:39+00:00",
+      "hash": "80adfd9bb11dc1f2e0c5ce923d2dba7213fe876c4d78d8c4f705ee732e5508f2",
+      "last_updated": "2026-05-26T22:22:55+00:00",
       "original_url": "https://code.claude.com/docs/en/discover-plugins",
       "path": "/docs/en/discover-plugins",
       "source_url": "https://code.claude.com/docs/en/discover-plugins.md",
@@ -619,8 +619,8 @@
       "title": "Run Claude Code programmatically"
     },
     "hooks-guide.md": {
-      "hash": "43e4265a3f8d4c465c55b6f367a872f0d4eb6addb9656f5472b5168567920284",
-      "last_updated": "2026-05-21T04:04:49+00:00",
+      "hash": "9db6cc52d834b6c6d0f445d16a190defdcc3f6b9cdb038cced76464eee48822f",
+      "last_updated": "2026-05-26T22:22:59+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks-guide",
       "path": "/docs/en/hooks-guide",
       "source_url": "https://code.claude.com/docs/en/hooks-guide.md",
@@ -803,8 +803,8 @@
       "title": "Create and distribute a plugin marketplace"
     },
     "plugins-reference.md": {
-      "hash": "85260077d783889b7134040b73ba260181ce9be3240bc0339262cebc4267405e",
-      "last_updated": "2026-05-20T09:41:37+00:00",
+      "hash": "7f37f5152ed06acff69efdefcd6e59220c35db2f6ede68fb453a3a35a47cf285",
+      "last_updated": "2026-05-26T22:23:04+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins-reference",
       "path": "/docs/en/plugins-reference",
       "source_url": "https://code.claude.com/docs/en/plugins-reference.md",
@@ -882,9 +882,17 @@
       "source_url": "https://code.claude.com/docs/en/scheduled-tasks.md",
       "title": "Run prompts on a schedule"
     },
+    "security-guidance.md": {
+      "hash": "f06ac03796f53d213e07b2bf5f38f1e7b0bc614b19c79aea062803b84385281e",
+      "last_updated": "2026-05-26T22:23:07+00:00",
+      "original_url": "https://code.claude.com/docs/en/security-guidance",
+      "path": "/docs/en/security-guidance",
+      "source_url": "https://code.claude.com/docs/en/security-guidance.md",
+      "title": "Catch security issues as Claude writes code"
+    },
     "security.md": {
-      "hash": "1f77c445403426eba5bca3c2bff0958b15c1c42e40e6d700d4d93b8b98089b9b",
-      "last_updated": "2026-05-22T03:59:44+00:00",
+      "hash": "a7b09807d2ccc5762acd3d525099afe8c985403c9f61109c54f94778d838c232",
+      "last_updated": "2026-05-26T22:23:06+00:00",
       "original_url": "https://code.claude.com/docs/en/security",
       "path": "/docs/en/security",
       "source_url": "https://code.claude.com/docs/en/security.md",
@@ -1137,7 +1145,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-26T20:13:44+00:00",
+  "last_updated": "2026-05-26T22:23:14+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
