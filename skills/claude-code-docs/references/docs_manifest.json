@@ -267,8 +267,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "9ece41693b229e5d3bc040fa1ca718c3d8062fe3ecabbd317fa9afac6bf3cb2f",
-      "last_updated": "2026-05-22T03:59:25+00:00",
+      "hash": "0b93667567ccf0e35b7f64cf554303f41b6e42ea8db840201ea9a831f9c49529",
+      "last_updated": "2026-05-26T03:55:31+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "source_url": "https://code.claude.com/docs/en/agent-view.md",
@@ -523,8 +523,8 @@
       "title": "Development containers"
     },
     "discover-plugins.md": {
-      "hash": "1bfb825005367494b65c64d3070abfffe537eadfeb65afc1c61ee6b0b07ce3d7",
-      "last_updated": "2026-05-20T09:41:29+00:00",
+      "hash": "cd7c444bdb18849998ea76ced74c595ebe856b4efd6ded8443e68e96233ab9c6",
+      "last_updated": "2026-05-26T03:55:39+00:00",
       "original_url": "https://code.claude.com/docs/en/discover-plugins",
       "path": "/docs/en/discover-plugins",
       "source_url": "https://code.claude.com/docs/en/discover-plugins.md",
@@ -555,8 +555,8 @@
       "title": "Speed up responses with fast mode"
     },
     "features-overview.md": {
-      "hash": "2a69260be7985dd96263ba205701a16470bc411514c671f258821810c6ea9131",
-      "last_updated": "2026-05-22T03:59:34+00:00",
+      "hash": "1f3fae8814eb7e18344ce49a886ba47b8cd69a7954deeb06671d1ca5aadff230",
+      "last_updated": "2026-05-26T03:55:40+00:00",
       "original_url": "https://code.claude.com/docs/en/features-overview",
       "path": "/docs/en/features-overview",
       "source_url": "https://code.claude.com/docs/en/features-overview.md",
@@ -579,8 +579,8 @@
       "title": "Claude Code GitHub Actions"
     },
     "github-enterprise-server.md": {
-      "hash": "354cf80110b6b05f08491848220a9c0b54ab72d0157169b6725e3ae1cc30449d",
-      "last_updated": "2026-05-15T23:05:53+00:00",
+      "hash": "6515588b5ed66b3c2ce60f31d7e02d05be18255b3db90985312ed7ac9a98bdb4",
+      "last_updated": "2026-05-26T03:55:41+00:00",
       "original_url": "https://code.claude.com/docs/en/github-enterprise-server",
       "path": "/docs/en/github-enterprise-server",
       "source_url": "https://code.claude.com/docs/en/github-enterprise-server.md",
@@ -699,8 +699,8 @@
       "title": "Control MCP server access for your organization"
     },
     "mcp.md": {
-      "hash": "bd27220a54401e17bbfad201aff8a4baf754d1aa3f51d2dc085fd0496b169b07",
-      "last_updated": "2026-05-22T03:59:38+00:00",
+      "hash": "b176ff1b69515534be7bbaa17e4c929475199fd8701aa5784481a1be2a6a4e0a",
+      "last_updated": "2026-05-26T03:55:45+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -771,8 +771,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "43187c089071ff5c951cf41cd491d642a206088facc15ce9a6ed8f2a3c91b1bd",
-      "last_updated": "2026-05-25T19:46:31+00:00",
+      "hash": "fda32a4bf23ea4ed312f6feb4eefdd5876a2be59ba52e5faad16da92b1f4d2ce",
+      "last_updated": "2026-05-26T03:55:47+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -931,8 +931,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "97e8f241cac74884558448af18fcaaffb0656b8f6a2a4a586336e298b3c59566",
-      "last_updated": "2026-05-25T19:46:36+00:00",
+      "hash": "a8a14b450cd0426a99ab288e7bb71d5e02801ad649d65c3b4bf1288daa197620",
+      "last_updated": "2026-05-26T03:55:53+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -955,8 +955,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "8b113f9f07aea3b6572a8c8fc2ded64fb2f2d9eb5c554edc3f4e1ecda36dc834",
-      "last_updated": "2026-05-23T03:37:02+00:00",
+      "hash": "10dee87268ac26c8b2ce2f7c98c6e44a09b1b5d2de9b455e511ad43be3046474",
+      "last_updated": "2026-05-26T03:55:53+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -979,8 +979,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "110bc180a8cb659832fcccedcf676473db4718fc3cb0fa1cbb9e3604a95b1ec4",
-      "last_updated": "2026-05-24T08:34:19+00:00",
+      "hash": "ec0082a90104b2b6a6f5af8e1f2c9dfd3fb4863e6f5b04188cca28d439bcf5bc",
+      "last_updated": "2026-05-26T03:55:54+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1145,7 +1145,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-25T22:11:34+00:00",
+  "last_updated": "2026-05-26T03:55:59+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
