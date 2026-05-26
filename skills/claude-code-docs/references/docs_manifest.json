@@ -4,10 +4,10 @@
     "failed_pages": [],
     "fetch_tool_version": "1.0",
     "pages_failed": 0,
-    "pages_fetched_successfully": 140,
+    "pages_fetched_successfully": 139,
     "pages_skipped": 0,
     "raw_fallback_pages": 0,
-    "total_pages_discovered": 140
+    "total_pages_discovered": 139
   },
   "files": {
     "admin-setup.md": {
@@ -315,8 +315,8 @@
       "title": "Configure auto mode"
     },
     "best-practices.md": {
-      "hash": "f3c2522ba5f7750a4f73378cdf1c2828732770a91a9273ecd10da7154a03b04d",
-      "last_updated": "2026-05-15T23:05:45+00:00",
+      "hash": "be3b95aea936d8622ba59b9e554bb4029f52c80fc84115bd889e8c5f2bfd4471",
+      "last_updated": "2026-05-26T20:13:19+00:00",
       "original_url": "https://code.claude.com/docs/en/best-practices",
       "path": "/docs/en/best-practices",
       "source_url": "https://code.claude.com/docs/en/best-practices.md",
@@ -395,8 +395,8 @@
       "title": "Claude Code on Claude Platform on AWS"
     },
     "cli-reference.md": {
-      "hash": "3614bd4ebc05b25dce5d3ee74eaece573c2884da8496a46c62bf103e60e85c8e",
-      "last_updated": "2026-05-20T09:41:25+00:00",
+      "hash": "81eaf43b9a0c4d730eb8b387ce7fe63ad4fa703f40172a68fd173d3d6db2d8a8",
+      "last_updated": "2026-05-26T20:13:22+00:00",
       "original_url": "https://code.claude.com/docs/en/cli-reference",
       "path": "/docs/en/cli-reference",
       "source_url": "https://code.claude.com/docs/en/cli-reference.md",
@@ -481,14 +481,6 @@
       "path": "/docs/en/deep-links",
       "source_url": "https://code.claude.com/docs/en/deep-links.md",
       "title": "Launch sessions from links"
-    },
-    "desktop-changelog.md": {
-      "hash": "0e8aa26669970f12ffe726ab6b67f3e79d112f994e9b29dff4ed935a69475a7a",
-      "last_updated": "2026-05-15T23:04:06+00:00",
-      "original_url": "https://code.claude.com/docs/en/desktop-changelog",
-      "path": "/docs/en/desktop-changelog",
-      "source_url": "https://code.claude.com/docs/en/desktop-changelog.md",
-      "title": "Desktop changelog"
     },
     "desktop-quickstart.md": {
       "hash": "b637f45a060bb75cbdc4281b5d0c68ed2ef22176b88da1dbd54d8295ea6f7cb3",
@@ -707,8 +699,8 @@
       "title": "Connect Claude Code to tools via MCP"
     },
     "memory.md": {
-      "hash": "82e62109a8b59746fd4553b213a22e339b7192664317df4dccaf22a316132e89",
-      "last_updated": "2026-05-15T23:05:57+00:00",
+      "hash": "37dfe771ca8bd26b07a314ba43803c0953ec3e75b40336784a7ae0c870a84b52",
+      "last_updated": "2026-05-26T20:13:31+00:00",
       "original_url": "https://code.claude.com/docs/en/memory",
       "path": "/docs/en/memory",
       "source_url": "https://code.claude.com/docs/en/memory.md",
@@ -1145,7 +1137,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-26T03:55:59+00:00",
+  "last_updated": "2026-05-26T20:13:44+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
