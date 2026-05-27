@@ -626,7 +626,8 @@ type HookEvent =
   | "TaskCompleted"
   | "ConfigChange"
   | "WorktreeCreate"
-  | "WorktreeRemove";
+  | "WorktreeRemove"
+  | "MessageDisplay";
 ```
 ```typescript
 type HookCallback = (
@@ -662,7 +663,8 @@ type HookInput =
   | TaskCompletedHookInput
   | ConfigChangeHookInput
   | WorktreeCreateHookInput
-  | WorktreeRemoveHookInput;
+  | WorktreeRemoveHookInput
+  | MessageDisplayHookInput;
 ```
 ```typescript
 type BaseHookInput = {
@@ -852,6 +854,16 @@ type WorktreeCreateHookInput = BaseHookInput & {
 type WorktreeRemoveHookInput = BaseHookInput & {
   hook_event_name: "WorktreeRemove";
   worktree_path: string;
+};
+```
+```typescript
+type MessageDisplayHookInput = BaseHookInput & {
+  hook_event_name: "MessageDisplay";
+  turn_id: string;
+  message_id: string;
+  index: number;
+  final: boolean;
+  delta: string;
 };
 ```
 ```typescript
@@ -1923,6 +1935,7 @@ class AbortError extends Error {}
 ```typescript
 type SandboxSettings = {
   enabled?: boolean;
+  failIfUnavailable?: boolean;
   autoAllowBashIfSandboxed?: boolean;
   excludedCommands?: string[];
   allowUnsandboxedCommands?: boolean;
