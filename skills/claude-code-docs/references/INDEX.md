@@ -88,6 +88,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `interactive-mode` - [Interactive mode](https://code.claude.com/docs/en/interactive-mode)
 - `jetbrains` - [JetBrains IDEs](https://code.claude.com/docs/en/jetbrains)
 - `keybindings` - [Customize keyboard shortcuts](https://code.claude.com/docs/en/keybindings)
+- `large-codebases` - [Set up Claude Code in a monorepo or large codebase](https://code.claude.com/docs/en/large-codebases)
 - `legal-and-compliance` - [Legal and compliance](https://code.claude.com/docs/en/legal-and-compliance)
 - `llm-gateway` - [LLM gateway configuration](https://code.claude.com/docs/en/llm-gateway)
 - `managed-mcp` - [Control MCP server access for your organization](https://code.claude.com/docs/en/managed-mcp)
