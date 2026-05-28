@@ -331,8 +331,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "483c7f4a71695a22ecfcfb52bb4d7aa97b625b758d636a3ae8ef865656c075af",
-      "last_updated": "2026-05-27T04:09:21+00:00",
+      "hash": "903b29b29bc8720eb69ec7809d9d07e7ef046de35252a94baf0a98326539d3df",
+      "last_updated": "2026-05-28T03:57:48+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -523,8 +523,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "d877ee388207d94c9b37064fb38c00a9e3fa82a1dd10daf517d1a21f6eb518f9",
-      "last_updated": "2026-05-27T20:24:09+00:00",
+      "hash": "c86b078100b6963412ec653c20a1b9c81929646d6181c761bd725a8d8dedfe72",
+      "last_updated": "2026-05-28T03:58:03+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -1153,7 +1153,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-27T20:25:06+00:00",
+  "last_updated": "2026-05-28T03:58:48+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
