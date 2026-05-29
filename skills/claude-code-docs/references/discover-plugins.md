@@ -148,7 +148,7 @@ Run `/plugin` to open the plugin manager. This opens a tabbed interface with fou
 * **Marketplaces**: add, remove, or update your added marketplaces
 * **Errors**: view any plugin loading errors
 
-Go to the **Discover** tab to see plugins from the marketplace you just added.
+Go to the **Discover** tab to see plugins from the marketplace you just added. {/* min-version: 2.1.154 */}Plugins marked as relevant to your current working directory are pinned at the top with a **suggested for this directory** label.
 
 
 
