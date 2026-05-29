@@ -211,8 +211,8 @@
       "title": "Get structured output from agents"
     },
     "agent-sdk__subagents.md": {
-      "hash": "f0bd6931dda23eddb41ac646148641e570bb90220c8176db2271232e484a6cbe",
-      "last_updated": "2026-05-23T03:36:38+00:00",
+      "hash": "0ad48b4d17bc982f42a3b364e74322a88209506519ff6a67823ac74cb3e6f678",
+      "last_updated": "2026-05-29T22:39:10+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/subagents",
       "path": "/docs/en/agent-sdk/subagents",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/subagents.md",
@@ -243,8 +243,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "86cf53a57311561db22e158a50c86f9d5d2280dd9ad847cafb583774f0fc1b06",
-      "last_updated": "2026-05-27T20:23:43+00:00",
+      "hash": "60872542fa7c7aa869969083dcb3923c43a374bc132c5f54a5a457e3824fe71d",
+      "last_updated": "2026-05-29T22:39:12+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/typescript.md",
@@ -499,8 +499,8 @@
       "title": "Schedule recurring tasks in Claude Code Desktop"
     },
     "desktop.md": {
-      "hash": "5a36fd259926bf9e59d31298cdd94d1bbb237c12bf09d28b03f80b3a95199faf",
-      "last_updated": "2026-05-28T17:34:41+00:00",
+      "hash": "adb1f0d2f2d4fe40c95d24db308b13638e5930d880e532785e82cd1933db8768",
+      "last_updated": "2026-05-29T22:39:32+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -523,8 +523,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "900f060c605e5259645a822a24e9b066a56600083ded9020afde8de08e3a83db",
-      "last_updated": "2026-05-29T03:59:47+00:00",
+      "hash": "51b5947acc85f4ade3d8c6243e5b281d2552c3342c9e5685111e37f28db232a0",
+      "last_updated": "2026-05-29T22:39:35+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -627,8 +627,8 @@
       "title": "Automate workflows with hooks"
     },
     "hooks.md": {
-      "hash": "f3ad02d91239809b7d061ea91851b495f90404156467111d0f5a5a6b7d65a342",
-      "last_updated": "2026-05-29T03:59:58+00:00",
+      "hash": "e2fa532b99ac0512e81221989a8a9a1797027b7c73d7447fd37f42c29a50765c",
+      "last_updated": "2026-05-29T22:39:45+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -939,8 +939,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "b49833dd97c8d7949ef0648ce8bbc1c2819cda6a9e77ca2f327629f9c576bffa",
-      "last_updated": "2026-05-28T17:35:16+00:00",
+      "hash": "295f30d2464bca4447ebffe2de10657dae2bdd78fc0348917ebf5cc9434e733d",
+      "last_updated": "2026-05-29T22:40:13+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -955,8 +955,8 @@
       "title": "Claude Code in Slack"
     },
     "statusline.md": {
-      "hash": "e9d6af3738179c893ddf251307c1e7842a46a3340d69e735c12b4691311544d2",
-      "last_updated": "2026-05-28T17:35:18+00:00",
+      "hash": "a8b5152f7cd0f701633bcc43c3ea686e959667b37893b0ae18cf4ec5c80c925f",
+      "last_updated": "2026-05-29T22:40:14+00:00",
       "original_url": "https://code.claude.com/docs/en/statusline",
       "path": "/docs/en/statusline",
       "source_url": "https://code.claude.com/docs/en/statusline.md",
@@ -987,8 +987,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "ec0082a90104b2b6a6f5af8e1f2c9dfd3fb4863e6f5b04188cca28d439bcf5bc",
-      "last_updated": "2026-05-26T03:55:54+00:00",
+      "hash": "0b83964deff709c3759e27bd9ff1f3a05989ef1631ab43d598867326f05e9ae9",
+      "last_updated": "2026-05-29T22:40:17+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1161,7 +1161,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-29T20:32:18+00:00",
+  "last_updated": "2026-05-29T22:40:31+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",

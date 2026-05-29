@@ -971,7 +971,8 @@ type ToolInputSchemas =
   | UnsubscribeMcpResourceInput
   | UnsubscribePollingInput
   | WebFetchInput
-  | WebSearchInput;
+  | WebSearchInput
+  | WorkflowInput;
 ```
 ```typescript
 type AgentInput = {
@@ -1097,6 +1098,15 @@ type WebSearchInput = {
 };
 ```
 ```typescript
+type WorkflowInput = {
+  script?: string;
+  name?: string;
+  scriptPath?: string;
+  args?: unknown;
+  resumeFromRunId?: string;
+};
+```
+```typescript
 type TodoWriteInput = {
   todos: Array<{
     content: string;
@@ -1182,7 +1192,8 @@ type ToolOutputSchemas =
   | TaskUpdateOutput
   | TodoWriteOutput
   | WebFetchOutput
-  | WebSearchOutput;
+  | WebSearchOutput
+  | WorkflowOutput;
 ```
 ```typescript
 type AgentOutput =
@@ -1419,6 +1430,17 @@ type WebSearchOutput = {
     | string
   >;
   durationSeconds: number;
+};
+```
+```typescript
+type WorkflowOutput = {
+  status: "async_launched";
+  taskId: string;
+  runId?: string;
+  summary?: string;
+  transcriptDir?: string;
+  scriptPath?: string;
+  error?: string;
 };
 ```
 ```typescript
