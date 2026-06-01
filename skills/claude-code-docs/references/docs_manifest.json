@@ -27,8 +27,8 @@
       "title": "How the agent loop works"
     },
     "agent-sdk__claude-code-features.md": {
-      "hash": "bbdd49e51da12c5a126cb0c1a51048ea41ada29aea26db8f546a559e7ebf1e15",
-      "last_updated": "2026-05-15T23:05:36+00:00",
+      "hash": "a2a4178c0e4c5f46c6c2f2b2df02a66d83a850a50bf066d696b37ebcaea0a8a3",
+      "last_updated": "2026-06-01T21:37:15+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/claude-code-features",
       "path": "/docs/en/agent-sdk/claude-code-features",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/claude-code-features.md",
@@ -131,8 +131,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "193e3a329e2a9acc6d1b89d9d4f990caf483c759c861fafde446cad282158d33",
-      "last_updated": "2026-05-27T20:23:32+00:00",
+      "hash": "9be5b18aa79ad8bb26a1f1bea64c760013a5f9cff7e1da0248f2b18f05418acc",
+      "last_updated": "2026-06-01T21:37:22+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -499,8 +499,8 @@
       "title": "Schedule recurring tasks in Claude Code Desktop"
     },
     "desktop.md": {
-      "hash": "adb1f0d2f2d4fe40c95d24db308b13638e5930d880e532785e82cd1933db8768",
-      "last_updated": "2026-05-29T22:39:32+00:00",
+      "hash": "7d8af367c6f5c74f1e52019c53e978b2648306ef98c6ddf13b7845f54e1612ff",
+      "last_updated": "2026-06-01T21:37:52+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -515,8 +515,8 @@
       "title": "Development containers"
     },
     "discover-plugins.md": {
-      "hash": "427127417ec0170d5399f697427aaf1b928d6536a2bb4f2bacbc305fae3d23c5",
-      "last_updated": "2026-05-29T03:59:46+00:00",
+      "hash": "1a01b5aa997e1df6899368a0477b9b2595e617cf4d6ce9d416fa493df0621d38",
+      "last_updated": "2026-06-01T21:37:54+00:00",
       "original_url": "https://code.claude.com/docs/en/discover-plugins",
       "path": "/docs/en/discover-plugins",
       "source_url": "https://code.claude.com/docs/en/discover-plugins.md",
@@ -587,8 +587,8 @@
       "title": "Claude Code GitLab CI/CD"
     },
     "glossary.md": {
-      "hash": "7ab988a837200dc8e3cffdc8ad1b53e1b45a9a7d6db06577f376cc086ca3b416",
-      "last_updated": "2026-05-28T17:34:50+00:00",
+      "hash": "307efd66ac2b11a9166ab909f032c219fb22933bb3c71851301759e6d48b31d9",
+      "last_updated": "2026-06-01T21:37:59+00:00",
       "original_url": "https://code.claude.com/docs/en/glossary",
       "path": "/docs/en/glossary",
       "source_url": "https://code.claude.com/docs/en/glossary.md",
@@ -619,16 +619,16 @@
       "title": "Run Claude Code programmatically"
     },
     "hooks-guide.md": {
-      "hash": "09b8839bf40619e8262cce6a5dd4fa7d5ab62bd71e077508813bf42374538c01",
-      "last_updated": "2026-05-27T20:24:20+00:00",
+      "hash": "907fc84c7a1467bcb300a978afe2de2eb7aae4a5712eaa8f330974223cf9695e",
+      "last_updated": "2026-06-01T21:38:01+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks-guide",
       "path": "/docs/en/hooks-guide",
       "source_url": "https://code.claude.com/docs/en/hooks-guide.md",
       "title": "Automate workflows with hooks"
     },
     "hooks.md": {
-      "hash": "e2fa532b99ac0512e81221989a8a9a1797027b7c73d7447fd37f42c29a50765c",
-      "last_updated": "2026-05-29T22:39:45+00:00",
+      "hash": "87e25b3747f90eff0ce2027ca27027f883100547c92b2f9b8435772e151ffa6e",
+      "last_updated": "2026-06-01T21:38:00+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -723,8 +723,8 @@
       "title": "Claude Code on Microsoft Foundry"
     },
     "model-config.md": {
-      "hash": "bd1ebf84e1f8fd496e8af92753d51156408f1e7706ab770e56532f13d96e4718",
-      "last_updated": "2026-05-28T17:34:59+00:00",
+      "hash": "2c9d36dac11cbb5767643ad81ba890a9c1e520a7af86af12be05bbad2bbeacb0",
+      "last_updated": "2026-06-01T21:38:06+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -827,8 +827,8 @@
       "title": "Create plugins"
     },
     "prompt-caching.md": {
-      "hash": "dfa545a1b7d466e8048a569c911d9186c68ae747c77247afb38bce244a626b08",
-      "last_updated": "2026-05-25T22:11:24+00:00",
+      "hash": "818166d01af71c57dc23aaae1ae5312945d2b04cb81b55f8d4934fb7780e9df9",
+      "last_updated": "2026-06-01T21:38:14+00:00",
       "original_url": "https://code.claude.com/docs/en/prompt-caching",
       "path": "/docs/en/prompt-caching",
       "source_url": "https://code.claude.com/docs/en/prompt-caching.md",
@@ -1177,7 +1177,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-05-31T22:04:35+00:00",
+  "last_updated": "2026-06-01T21:38:44+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
