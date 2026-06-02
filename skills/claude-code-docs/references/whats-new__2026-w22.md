@@ -42,7 +42,7 @@ A workflow is an orchestration script Claude writes for your task and runs acros
 
 
 
-Describe the task and include the word workflow:
+Describe the task and ask for a workflow:
 ```text Claude Code
   > create a workflow that migrates every internal fetch() call to the new HttpClient wrapper
 ```
