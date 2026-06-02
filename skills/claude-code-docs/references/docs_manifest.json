@@ -59,8 +59,8 @@
       "title": "Rewind file changes with checkpointing"
     },
     "agent-sdk__hooks.md": {
-      "hash": "bafa7fe309436f2924b32449361ee5df772b4e45f701100045f736ed6962b345",
-      "last_updated": "2026-06-02T04:18:41+00:00",
+      "hash": "1282ebb9231d59cfb60dec799628ad99cf8e91adc633feaf4c8b8273da857f7a",
+      "last_updated": "2026-06-02T16:40:09+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/hooks",
       "path": "/docs/en/agent-sdk/hooks",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/hooks.md",
@@ -1185,7 +1185,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-02T10:44:26+00:00",
+  "last_updated": "2026-06-02T16:41:48+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
