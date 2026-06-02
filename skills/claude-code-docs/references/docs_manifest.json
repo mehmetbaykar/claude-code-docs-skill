@@ -531,8 +531,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "bf20e7917afa7cd7bb1301679a29ad1c69ef44fb44dbc5f2d0c89a39ea9c269b",
-      "last_updated": "2026-05-30T03:45:43+00:00",
+      "hash": "a72b600de53a3118145000bc939c25d1a91f6a4c7c8cd549fca18cf05dbb0db8",
+      "last_updated": "2026-06-02T10:43:39+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -931,8 +931,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "bd30779aef2207f51846bdd28a43e4d0801877b9f1e4d57115ca4a45bf3fdfdd",
-      "last_updated": "2026-05-30T03:46:09+00:00",
+      "hash": "ee799dd4ea1528d5486560cfa0a67586a07152cc39e054a9831d41be13fddf0d",
+      "last_updated": "2026-06-02T10:44:09+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1011,8 +1011,8 @@
       "title": "Troubleshoot installation and login"
     },
     "troubleshooting.md": {
-      "hash": "401d8a672fd1b8a6ea20be1759d4e21e2f4edb9e5032b57ad1b0220012684d7a",
-      "last_updated": "2026-05-15T23:34:11+00:00",
+      "hash": "722ca02d75f4bc85cf4148f7992ced404bba5b0d20deb99992b2f8818eeb7df1",
+      "last_updated": "2026-06-02T10:44:15+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshooting",
       "path": "/docs/en/troubleshooting",
       "source_url": "https://code.claude.com/docs/en/troubleshooting.md",
@@ -1185,7 +1185,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-02T04:20:00+00:00",
+  "last_updated": "2026-06-02T10:44:26+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
