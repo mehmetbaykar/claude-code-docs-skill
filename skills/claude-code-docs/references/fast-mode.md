@@ -21,7 +21,7 @@ Fast mode requires Claude Code v2.1.36 or later. Check your version with `claude
 What to know:
 
 * Use `/fast` to toggle on fast mode in the Claude Code CLI. Fast mode is not supported in the VS Code extension.
-* Fast mode pricing is \$10/\$50 MTok on Opus 4.8 and \$30/\$150 MTok on Opus 4.7 and Opus 4.6.
+* Fast mode pricing per MTok input/output is \$10/\$50 on Opus 4.8 and \$30/\$150 on Opus 4.7 and Opus 4.6.
 * Available to all Claude Code users on subscription plans (Pro/Max/Team/Enterprise) and Claude Console.
 * For Claude Code users on subscription plans (Pro/Max/Team/Enterprise), fast mode is available via usage credits only and not included in the subscription rate limits.
 
