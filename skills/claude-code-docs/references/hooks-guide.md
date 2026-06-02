@@ -1,10 +1,10 @@
 ---
-title: Automate workflows with hooks
+title: Automate actions with hooks
 source: https://code.claude.com/docs/en/hooks-guide
 path: /docs/en/hooks-guide
 ---
 
-# Automate workflows with hooks
+# Automate actions with hooks
 
 > Run shell commands automatically when Claude Code edits files, finishes tasks, or needs input. Format code, send notifications, validate commands, and enforce project rules.
 
