@@ -371,8 +371,8 @@
       "title": "Use Claude Code with Chrome (beta)"
     },
     "claude-code-on-the-web.md": {
-      "hash": "72eee78e01405be2cdedb214ba53b8c177fb54d864b97f9a0a919575f598abc7",
-      "last_updated": "2026-05-15T23:33:52+00:00",
+      "hash": "1c72020181e50bb74346bb97ad7c273b8cd89124498162244e39b10ec78757e7",
+      "last_updated": "2026-06-02T20:54:09+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-code-on-the-web",
       "path": "/docs/en/claude-code-on-the-web",
       "source_url": "https://code.claude.com/docs/en/claude-code-on-the-web.md",
@@ -411,8 +411,8 @@
       "title": "Code Review"
     },
     "commands.md": {
-      "hash": "6490444acab82d1d0c23dbb58b9720fb19702cabe10bf015c0d46d75dba80f5d",
-      "last_updated": "2026-05-29T03:59:39+00:00",
+      "hash": "8a94354349b2ae98f55b0a4d9453a684574f1e3bfafaeeca86251fd7ff143075",
+      "last_updated": "2026-06-02T20:54:12+00:00",
       "original_url": "https://code.claude.com/docs/en/commands",
       "path": "/docs/en/commands",
       "source_url": "https://code.claude.com/docs/en/commands.md",
@@ -531,16 +531,16 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "a72b600de53a3118145000bc939c25d1a91f6a4c7c8cd549fca18cf05dbb0db8",
-      "last_updated": "2026-06-02T10:43:39+00:00",
+      "hash": "f587737f3ad4c9de510d10d51d8e4056eb03a73cec29909c3764243fbb0b09e8",
+      "last_updated": "2026-06-02T20:54:21+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
       "title": "Error reference"
     },
     "fast-mode.md": {
-      "hash": "1a5d8dc72fd34a8f73846ac6363d723a98fbccf5cade6cfcec56cc517fccd7ec",
-      "last_updated": "2026-05-29T03:59:50+00:00",
+      "hash": "1852a8a4e84509856e676dfeacea7c62a9acce7fd22732c10934428d3cfd8410",
+      "last_updated": "2026-06-02T20:54:22+00:00",
       "original_url": "https://code.claude.com/docs/en/fast-mode",
       "path": "/docs/en/fast-mode",
       "source_url": "https://code.claude.com/docs/en/fast-mode.md",
@@ -643,8 +643,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "d840671783171850264e30dc16132a5c7a43a44173fe6b47869a43c27ba012f2",
-      "last_updated": "2026-05-30T03:45:50+00:00",
+      "hash": "c9d7194126a894c52192a6ad13b9bc68c5d18d2418a1d66791f3acd5c126f967",
+      "last_updated": "2026-06-02T20:54:29+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -979,8 +979,8 @@
       "title": "Create custom subagents"
     },
     "terminal-config.md": {
-      "hash": "313739b30699d18f958bae3372e2d4e83d323559929388787d7f2d7720d3c4dc",
-      "last_updated": "2026-05-30T03:46:12+00:00",
+      "hash": "ec0af58866b11a6f7d6cd7b270c6a15659e883e47b6b04e22ba749be1492c557",
+      "last_updated": "2026-06-02T20:54:51+00:00",
       "original_url": "https://code.claude.com/docs/en/terminal-config",
       "path": "/docs/en/terminal-config",
       "source_url": "https://code.claude.com/docs/en/terminal-config.md",
@@ -1043,8 +1043,8 @@
       "title": "Voice dictation"
     },
     "vs-code.md": {
-      "hash": "11b75d84275070d02d44cda76d2381029a097b309a0351d36a32acfd7a656ea0",
-      "last_updated": "2026-05-29T04:00:26+00:00",
+      "hash": "8b70eccdcc664c5c3c49d3782c357131eab4e0e33da2a9b7bc2057150a2db953",
+      "last_updated": "2026-06-02T20:54:56+00:00",
       "original_url": "https://code.claude.com/docs/en/vs-code",
       "path": "/docs/en/vs-code",
       "source_url": "https://code.claude.com/docs/en/vs-code.md",
@@ -1185,7 +1185,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-02T16:41:48+00:00",
+  "last_updated": "2026-06-02T20:55:03+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
