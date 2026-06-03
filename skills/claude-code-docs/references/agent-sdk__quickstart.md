@@ -200,16 +200,25 @@ This example uses streaming to show progress in real-time. If you don't need liv
 Your agent is ready. Run it with the following command:
 
 
-**Python**
+**TypeScript**
 ```bash
-    python3 agent.py
+    npx tsx agent.ts
 ```
 
 
 
-**TypeScript**
+**Python (uv)**
 ```bash
-    npx tsx agent.ts
+    uv run agent.py
+```
+
+
+
+**Python (pip)**
+
+With your virtual environment still activated:
+```bash
+    python agent.py
 ```
 
 

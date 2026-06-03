@@ -425,6 +425,7 @@ type SDKMessage =
   | SDKTaskProgressMessage
   | SDKTaskUpdatedMessage
   | SDKSessionStateChangedMessage
+  | SDKCommandsChangedMessage
   | SDKNotificationMessage
   | SDKFilesPersistedEvent
   | SDKToolUseSummaryMessage
@@ -1940,6 +1941,15 @@ type SDKLocalCommandOutputMessage = {
   type: "system";
   subtype: "local_command_output";
   content: string;
+  uuid: UUID;
+  session_id: string;
+};
+```
+```typescript
+type SDKCommandsChangedMessage = {
+  type: "system";
+  subtype: "commands_changed";
+  commands: SlashCommand[];
   uuid: UUID;
   session_id: string;
 };

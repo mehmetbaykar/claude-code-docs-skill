@@ -25,7 +25,7 @@ Sign in, then paste the code from the browser:
 [CLI reference](https://code.claude.com/docs/en/cli-reference#cli-commands)
 
 claude project purge
-v2.1.126
+v2.1.124
 
 
 Delete all Claude Code state for a project: transcripts, tasks, file history, and the project's config entry. Supports `--dry-run` to preview, `-y`/`--yes` to skip confirmation, `-i`/`--interactive` to choose, and `--all` to clear every project.

@@ -8,7 +8,7 @@ path: /docs/en/whats-new/2026-w21
 
 > Use auto mode on the Pro plan and with Sonnet 4.6, see which skills, subagents, and MCP servers drive your plan limits in /usage, and review diffs with the new /code-review command.
 
-Releases [v2.1.143 → v2.1.149](https://code.claude.com/en/changelog#2-1-143)
+Releases [v2.1.143 → v2.1.149](https://code.claude.com/docs/en/changelog#2-1-143)
 1 feature · May 18–22
 
 Auto mode on the Pro plan
@@ -22,13 +22,13 @@ Update Claude Code, then cycle modes with Shift+Tab; auto mode appears once your
   claude update
 ```
 
-[Auto mode](https://code.claude.com/en/permission-modes#eliminate-prompts-with-auto-mode)
+[Auto mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode)
 
 Other wins
 
-[/usage](https://code.claude.com/en/costs#track-your-costs) now shows a per-category breakdown of what's driving your plan limits, attributing recent usage to skills, subagents, plugins, and individual MCP servers
+[/usage](https://code.claude.com/docs/en/costs#track-your-costs) now shows a per-category breakdown of what's driving your plan limits, attributing recent usage to skills, subagents, plugins, and individual MCP servers
     "Extra usage" is renamed to "usage credits" across the CLI, and `/extra-usage` is now `/usage-credits`. The old name still works.
-New [/code-review](https://code.claude.com/en/code-review) command reports correctness bugs at a chosen effort level such as `/code-review high`, and `--comment` posts findings as inline GitHub PR comments. `/simplify` remains as a separate cleanup-only review.
+New [/code-review](https://code.claude.com/docs/en/code-review) command reports correctness bugs at a chosen effort level such as `/code-review high`, and `--comment` posts findings as inline GitHub PR comments. `/simplify` remains as a separate cleanup-only review.
 Background sessions now appear in `/resume` alongside interactive ones, marked with `bg`, and sessions pinned with `Ctrl+T` in `claude agents` stay alive when idle
 `claude agents --json` lists live sessions as JSON for scripting, such as status bars and session pickers
 The PowerShell tool is now enabled by default on Windows for Bedrock, Vertex, and Foundry users; opt out with `CLAUDE\_CODE\_USE\_POWERSHELL\_TOOL=0`
