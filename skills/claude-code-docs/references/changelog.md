@@ -1,10 +1,10 @@
 ---
-title: Changelog
+title: Claude Code changelog
 source: https://code.claude.com/docs/en/changelog
 path: /docs/en/changelog
 ---
 
-# Changelog
+# Claude Code changelog
 
 > Release notes for Claude Code, including new features, improvements, and bug fixes by version.
 

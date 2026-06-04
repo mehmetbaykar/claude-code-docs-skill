@@ -131,8 +131,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "2a1383d345f8bec685e0d850e1c543cbebf7c51e6a2fa9f8a90e5250df1a005c",
-      "last_updated": "2026-06-02T04:18:46+00:00",
+      "hash": "bbcc701edd843c53f7f7fbec134c5183d9c9da51ea3033478c17621f6d70689f",
+      "last_updated": "2026-06-04T20:09:55+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -331,12 +331,12 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "34e5148a23000207f8645730f1bd865e4fd5975a06f6ad334a304787bae0d108",
-      "last_updated": "2026-06-04T04:23:21+00:00",
+      "hash": "cda2320c9fc9e5a38d601ccc05d4c31c2d7fca6c14ba5846c87dee1b4cec5119",
+      "last_updated": "2026-06-04T20:10:17+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
-      "title": "Changelog"
+      "title": "Claude Code changelog"
     },
     "channels-reference.md": {
       "hash": "6c1c0cf37901e34e34c13c280ee1dab0a059e1d072e6fe5c19e6fe421c5495e5",
@@ -707,8 +707,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "34e6c75adc28173dc529383dc3dec77ad28ce9f40d5b90a5af090560ebe4bd66",
-      "last_updated": "2026-06-03T21:20:37+00:00",
+      "hash": "9acdf2c58fc73c4d3de1c33d9eac5f0d61ac42f0951db76bb36366aa8ed98a93",
+      "last_updated": "2026-06-04T20:10:52+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -1003,8 +1003,8 @@
       "title": "Tools reference"
     },
     "troubleshoot-install.md": {
-      "hash": "1defde98b65e786cc9dcdd429cb7263cdd1860db0a551bb534e9a86cecfb66f0",
-      "last_updated": "2026-05-22T03:59:47+00:00",
+      "hash": "439e105ce70ac3203ee90a7d001915b7a86dd2df67fe2942a07ef9ed770007a4",
+      "last_updated": "2026-06-04T20:11:20+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshoot-install",
       "path": "/docs/en/troubleshoot-install",
       "source_url": "https://code.claude.com/docs/en/troubleshoot-install.md",
@@ -1043,8 +1043,8 @@
       "title": "Voice dictation"
     },
     "vs-code.md": {
-      "hash": "8b70eccdcc664c5c3c49d3782c357131eab4e0e33da2a9b7bc2057150a2db953",
-      "last_updated": "2026-06-02T20:54:56+00:00",
+      "hash": "eb6110064ab3400b0cd127baa009acef6c362cff5bcb25cc6d1a7b1ca2fd89b4",
+      "last_updated": "2026-06-04T20:11:24+00:00",
       "original_url": "https://code.claude.com/docs/en/vs-code",
       "path": "/docs/en/vs-code",
       "source_url": "https://code.claude.com/docs/en/vs-code.md",
@@ -1185,7 +1185,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-04T04:24:24+00:00",
+  "last_updated": "2026-06-04T20:11:37+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",

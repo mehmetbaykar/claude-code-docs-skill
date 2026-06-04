@@ -46,7 +46,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `auto-mode-config` - [Configure auto mode](https://code.claude.com/docs/en/auto-mode-config)
 - `best-practices` - [Best practices for Claude Code](https://code.claude.com/docs/en/best-practices)
 - `champion-kit` - [Champion kit](https://code.claude.com/docs/en/champion-kit)
-- `changelog` - [Changelog](https://code.claude.com/docs/en/changelog)
+- `changelog` - [Claude Code changelog](https://code.claude.com/docs/en/changelog)
 - `channels-reference` - [Channels reference](https://code.claude.com/docs/en/channels-reference)
 - `channels` - [Push events into a running session with channels](https://code.claude.com/docs/en/channels)
 - `checkpointing` - [Checkpointing](https://code.claude.com/docs/en/checkpointing)
