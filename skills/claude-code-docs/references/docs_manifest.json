@@ -211,8 +211,8 @@
       "title": "Get structured output from agents"
     },
     "agent-sdk__subagents.md": {
-      "hash": "0ad48b4d17bc982f42a3b364e74322a88209506519ff6a67823ac74cb3e6f678",
-      "last_updated": "2026-05-29T22:39:10+00:00",
+      "hash": "df84cabb22339339f82403fd0944486bbf24d0071ce8266ab0248c697bac66fb",
+      "last_updated": "2026-06-05T20:00:03+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/subagents",
       "path": "/docs/en/agent-sdk/subagents",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/subagents.md",
@@ -851,8 +851,8 @@
       "title": "Prompt library"
     },
     "quickstart.md": {
-      "hash": "7af05708109e1e0ef51d3a89c1863e7effaf7c1ae0013487ecfddf66841d223c",
-      "last_updated": "2026-05-24T08:34:14+00:00",
+      "hash": "75317fa8a97959baf9e755abec6c4dc198fec195b63c1959821808ecd330f661",
+      "last_updated": "2026-06-05T20:00:54+00:00",
       "original_url": "https://code.claude.com/docs/en/quickstart",
       "path": "/docs/en/quickstart",
       "source_url": "https://code.claude.com/docs/en/quickstart.md",
@@ -931,8 +931,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "ec61d652aa99dd37259879fd207095f3ce8f8b23d9a2edc9f28fa9f4ca0dbb1a",
-      "last_updated": "2026-06-03T21:20:55+00:00",
+      "hash": "e8c0c519b947b766ff40af9cae4d728b2a7fa9caaf0d0a6c1428a8b26a0e9757",
+      "last_updated": "2026-06-05T20:01:01+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1185,7 +1185,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-05T09:59:31+00:00",
+  "last_updated": "2026-06-05T20:01:19+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
