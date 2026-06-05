@@ -267,8 +267,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "517feb1d4c5e015928b77a35b8a146a11f953f589b72e5e4df612b9375dd18e6",
-      "last_updated": "2026-06-03T21:19:55+00:00",
+      "hash": "a44fe2790c527dae993fe9a3752c37bc7098aa29e2a809152ab21ce075d8cf0e",
+      "last_updated": "2026-06-05T04:06:40+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "source_url": "https://code.claude.com/docs/en/agent-view.md",
@@ -475,8 +475,8 @@
       "title": "Debug your configuration"
     },
     "deep-links.md": {
-      "hash": "ab9d04cb51572d5910254550e8f10983ace9d68e389b18a7ce90009a66786e1a",
-      "last_updated": "2026-05-15T23:33:55+00:00",
+      "hash": "1929271bad1584e1fdc2a515cb3fc2eeb9478a4696e2c25c93df78325917a2d4",
+      "last_updated": "2026-06-05T04:07:00+00:00",
       "original_url": "https://code.claude.com/docs/en/deep-links",
       "path": "/docs/en/deep-links",
       "source_url": "https://code.claude.com/docs/en/deep-links.md",
@@ -523,8 +523,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "c3484af06bdc336da0118c59a0f265039a86bd3462493cf633123bd966c8fc86",
-      "last_updated": "2026-06-03T21:20:23+00:00",
+      "hash": "430e41300fb9c9eb9f1e4536571c4db0056a47359c87ddb0e10355cc11e9c97d",
+      "last_updated": "2026-06-05T04:07:03+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -707,16 +707,16 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "9acdf2c58fc73c4d3de1c33d9eac5f0d61ac42f0951db76bb36366aa8ed98a93",
-      "last_updated": "2026-06-04T20:10:52+00:00",
+      "hash": "dec926fdcce57acf839133c336e40f0e3d8a3a58bea756d3f91a00003841998a",
+      "last_updated": "2026-06-05T04:07:16+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
       "title": "Connect Claude Code to tools via MCP"
     },
     "memory.md": {
-      "hash": "306c43610fd7c02bb6c6c972f0738dfb6a42a452cb67a5d8f11c70c0bf82e93e",
-      "last_updated": "2026-05-30T03:45:55+00:00",
+      "hash": "58d8f5a5092af1f71d56da10b6575c2e79328783251d70cb7638e3937bb04b8c",
+      "last_updated": "2026-06-05T04:07:17+00:00",
       "original_url": "https://code.claude.com/docs/en/memory",
       "path": "/docs/en/memory",
       "source_url": "https://code.claude.com/docs/en/memory.md",
@@ -739,8 +739,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "f31b23c82e1ceca653f0486a8f6c1f1599f6c428c3d90c6a808ef94ea0060052",
-      "last_updated": "2026-06-03T21:20:40+00:00",
+      "hash": "699df7a645eeaa992945ff7847904b64bf46005f5c9b352ac5d4c10e6936be96",
+      "last_updated": "2026-06-05T04:07:19+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -995,8 +995,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "51a381fe9ecdf0d2f792a8068bf5a5ca4e92b7f58e70277bb663011b62acfadd",
-      "last_updated": "2026-06-02T23:05:18+00:00",
+      "hash": "c36431097234ef04aa223f5a641cc58c3e6f2827ea75f24591fae175c62acfa2",
+      "last_updated": "2026-06-05T04:07:35+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1185,7 +1185,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-04T22:24:59+00:00",
+  "last_updated": "2026-06-05T04:07:47+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
