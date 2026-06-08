@@ -11,8 +11,8 @@
   },
   "files": {
     "admin-setup.md": {
-      "hash": "9a87648bca5c4d4fa03d472d7e07d364865bea806e8b8b75a62ea950b5fb2571",
-      "last_updated": "2026-06-05T22:17:32+00:00",
+      "hash": "ac62137278e0ecf6916900752976caef823e20e9f425b0ef43f30c866aa1a87a",
+      "last_updated": "2026-06-08T22:41:56+00:00",
       "original_url": "https://code.claude.com/docs/en/admin-setup",
       "path": "/docs/en/admin-setup",
       "source_url": "https://code.claude.com/docs/en/admin-setup.md",
@@ -331,8 +331,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "4204e84ef278deecd718812dc7076850343fa992f1fb5c4bac5cb7d5df3fb120",
-      "last_updated": "2026-06-07T04:16:44+00:00",
+      "hash": "492d2c7134482745750bc0be47ee17e9abde35e5474fc95078098b15d72cae25",
+      "last_updated": "2026-06-08T22:42:21+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -459,8 +459,8 @@
       "title": "Manage costs effectively"
     },
     "data-usage.md": {
-      "hash": "e0efd75288b80c27be026623a75416b99fd7ef1ef86831960b7b8b2bd98108e1",
-      "last_updated": "2026-05-15T23:00:18+00:00",
+      "hash": "32213b3955474ec3f64dfead0966da5f5a626ea40ad8e8d285680ec18a8b26ea",
+      "last_updated": "2026-06-08T22:42:31+00:00",
       "original_url": "https://code.claude.com/docs/en/data-usage",
       "path": "/docs/en/data-usage",
       "source_url": "https://code.claude.com/docs/en/data-usage.md",
@@ -1163,8 +1163,8 @@
       "title": "Run parallel sessions with worktrees"
     },
     "zero-data-retention.md": {
-      "hash": "808acbb877336cc7407988924bc1253f2bca005745be32682c1be3872d8b094c",
-      "last_updated": "2026-05-15T23:06:09+00:00",
+      "hash": "ec0c40568f6887a167f7a8f1229cec2193d3c9614d3b7b77bc15102c3159a2ec",
+      "last_updated": "2026-06-08T22:43:29+00:00",
       "original_url": "https://code.claude.com/docs/en/zero-data-retention",
       "path": "/docs/en/zero-data-retention",
       "source_url": "https://code.claude.com/docs/en/zero-data-retention.md",
@@ -1185,7 +1185,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-08T20:24:43+00:00",
+  "last_updated": "2026-06-08T22:43:29+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
