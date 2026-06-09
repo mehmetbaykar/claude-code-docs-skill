@@ -526,12 +526,12 @@ For multi-select questions, pass an array of labels or join them with `", "`. If
 
 The input contains Claude's generated questions in a `questions` array. Each question has these fields:
 
-| Field         | Description                                                                                                                             |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `question`    | The full question text to display                                                                                                       |
-| `header`      | Short label for the question (max 12 characters)                                                                                        |
-| `options`     | Array of 2-4 choices, each with `label` and `description`. TypeScript: optionally `preview` (see [below](#option-previews-type-script)) |
-| `multiSelect` | If `true`, users can select multiple options                                                                                            |
+| Field         | Description                                                                                                                            |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `question`    | The full question text to display                                                                                                      |
+| `header`      | Short label for the question (max 12 characters)                                                                                       |
+| `options`     | Array of 2-4 choices, each with `label` and `description`. TypeScript: optionally `preview` (see [below](#option-previews-typescript)) |
+| `multiSelect` | If `true`, users can select multiple options                                                                                           |
 
 The structure your callback receives:
 ```json
