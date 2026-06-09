@@ -449,7 +449,7 @@ Test each component: run your commands, check agents appear in `/agents`, and ve
 | Hooks in `settings.json`      | Hooks in `hooks/hooks.json`      |
 | Must manually copy to share   | Install with `/plugin install`   |
 
-After migrating, you can remove the original files from `.claude/` to avoid duplicates. The plugin version will take precedence when loaded.
+After migrating, remove the original files from `.claude/` to avoid duplicates. Project and user `.claude/agents/` definitions override same-named plugin agents, so the plugin version only takes effect once the originals are removed.
 
 ## Next steps
 

@@ -211,6 +211,10 @@ Maintain conversation context across multiple turns naturally
   asyncio.run(streaming_analysis())
 ```
 
+In the TypeScript SDK, if your message generator throws, for example when a file it reads is missing, the stream ends with an error that reads `Claude Code process aborted by user` instead of the original error, so check the code inside your generator first when you see that message. The error may also be preceded by a long minified line of bundled SDK source, so read to the end of the output for the error text.
+
+In the Python SDK, a generator exception is logged at debug level and the session stalls without raising, so if a streaming session hangs with no output, enable debug logging and check your generator.
+
 ## Single Message Input
 
 Single message input is simpler but more limited.
@@ -231,6 +235,8 @@ Single message input mode does **not** support:
 * Dynamic message queueing
 * Real-time interruption
 * Natural multi-turn conversations
+
+If a query ends with an error result, such as `error_max_turns`, a single message `query()` call raises an error that includes the failure text after yielding the final result message, so wrap the loop in a try block if your code needs to continue. See [Handle the result](/en/agent-sdk/agent-loop#handle-the-result) for the result subtypes.
 
 ### Implementation Example
 ```typescript TypeScript
