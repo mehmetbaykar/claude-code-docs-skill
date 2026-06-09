@@ -275,8 +275,8 @@
       "title": "Manage multiple agents with agent view"
     },
     "agents.md": {
-      "hash": "a9c6981ccfb9b7b8ce327a84783cfcd0115dcf8e9854513c33e93b168fbe7f55",
-      "last_updated": "2026-05-28T17:34:23+00:00",
+      "hash": "7d98f9645a21f9fc09df3bcd8c9ae08d7a4c5f6af569f815b13fe8c80b2d123f",
+      "last_updated": "2026-06-09T03:52:45+00:00",
       "original_url": "https://code.claude.com/docs/en/agents",
       "path": "/docs/en/agents",
       "source_url": "https://code.claude.com/docs/en/agents.md",
@@ -1147,8 +1147,8 @@
       "title": "Week 22 \u00b7 May 25\u201329, 2026"
     },
     "workflows.md": {
-      "hash": "5d58acaea020ab3c17364e670fa80254114932575a78b46394e699f3affdb131",
-      "last_updated": "2026-06-02T23:05:29+00:00",
+      "hash": "f6dd33522112b31000fee347d44233d35983110e23eb0d593ad8f0eae9b9bc32",
+      "last_updated": "2026-06-09T03:54:02+00:00",
       "original_url": "https://code.claude.com/docs/en/workflows",
       "path": "/docs/en/workflows",
       "source_url": "https://code.claude.com/docs/en/workflows.md",
@@ -1185,7 +1185,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-08T22:43:29+00:00",
+  "last_updated": "2026-06-09T03:54:03+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
