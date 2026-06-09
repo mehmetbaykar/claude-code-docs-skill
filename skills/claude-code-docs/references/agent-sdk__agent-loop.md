@@ -159,15 +159,15 @@ When either limit is hit, the SDK returns a `ResultMessage` with a corresponding
 
 The `effort` option controls how much reasoning Claude applies. Lower effort levels use fewer tokens per turn and reduce cost. Not all models support the effort parameter. See [Effort](https://platform.claude.com/docs/en/build-with-claude/effort) for which models support it.
 
-| Level      | Behavior                          | Good for                                          |
-| :--------- | :-------------------------------- | :------------------------------------------------ |
-| `"low"`    | Minimal reasoning, fast responses | File lookups, listing directories                 |
-| `"medium"` | Balanced reasoning                | Routine edits, standard tasks                     |
-| `"high"`   | Thorough analysis                 | Refactors, debugging                              |
-| `"xhigh"`  | Extended reasoning depth          | Coding and agentic tasks; recommended on Opus 4.7 |
-| `"max"`    | Maximum reasoning depth           | Multi-step problems requiring deep analysis       |
+| Level      | Behavior                          | Good for                                                       |
+| :--------- | :-------------------------------- | :------------------------------------------------------------- |
+| `"low"`    | Minimal reasoning, fast responses | File lookups, listing directories                              |
+| `"medium"` | Balanced reasoning                | Routine edits, standard tasks                                  |
+| `"high"`   | Thorough analysis                 | Refactors, debugging                                           |
+| `"xhigh"`  | Extended reasoning depth          | Coding and agentic tasks; recommended on Opus 4.8 and Opus 4.7 |
+| `"max"`    | Maximum reasoning depth           | Multi-step problems requiring deep analysis                    |
 
-If you don't set `effort`, the Python SDK leaves the parameter unset and defers to the model's default behavior. The TypeScript SDK defaults to `"high"`.
+If you don't set `effort`, both SDKs leave the parameter unset and defer to the model's default behavior.
 
 `effort` trades latency and token cost for reasoning depth within each response. [Extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) is a separate feature that produces visible chain-of-thought blocks in the output. They are independent: you can set `effort: "low"` with extended thinking enabled, or `effort: "max"` without it.
 
@@ -181,7 +181,7 @@ The permission mode option (`permission_mode` in Python, `permissionMode` in Typ
 | :------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `"default"`                | Tools not covered by allow rules trigger your approval callback; no callback means deny                                                                                                                                                                                                                                                                                                                       |
 | `"acceptEdits"`            | Auto-approves file edits and common filesystem commands (`mkdir`, `touch`, `mv`, `cp`, etc.); other Bash commands follow default rules                                                                                                                                                                                                                                                                        |
-| `"plan"`                   | Read-only tools run; Claude explores and produces a plan without editing your source files                                                                                                                                                                                                                                                                                                                    |
+| `"plan"`                   | Claude explores and plans without editing your source files; file edits are never auto-approved and prompt through your `canUseTool` callback                                                                                                                                                                                                                                                                 |
 | `"dontAsk"`                | Never prompts. Tools pre-approved by [permission rules](/en/settings#permission-settings) run, everything else is denied                                                                                                                                                                                                                                                                                      |
 | `"auto"` (TypeScript only) | Uses a model classifier to approve or deny each tool call. See [Auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode) for availability and behavior                                                                                                                                                                                                                                               |
 | `"bypassPermissions"`      | Runs all allowed tools without asking, unless an explicit [`ask` rule](/en/settings#permission-settings) matches; see [How permissions are evaluated](/en/agent-sdk/permissions#how-permissions-are-evaluated) for where ask rules sit in the precedence order. Cannot be used when running as root on Unix. Use only in isolated environments where the agent's actions cannot affect systems you care about |

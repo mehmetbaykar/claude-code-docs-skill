@@ -219,14 +219,25 @@ To request a 1-hour TTL on cache writes, set the [`ENABLE_PROMPT_CACHING_1H`](/e
 
 The following example enables 1-hour TTL for an agent running on Bedrock:
 ```python Python
-  options = ClaudeAgentOptions(
-      env={
-          "CLAUDE_CODE_USE_BEDROCK": "1",
-          "ENABLE_PROMPT_CACHING_1H": "1",
-      },
-  )
+  from claude_agent_sdk import ClaudeAgentOptions, query
+  import asyncio
+
+  async def main():
+      options = ClaudeAgentOptions(
+          env={
+              "CLAUDE_CODE_USE_BEDROCK": "1",
+              "ENABLE_PROMPT_CACHING_1H": "1",
+          },
+      )
+
+      async for message in query(prompt="Summarize this project", options=options):
+          print(message)
+
+  asyncio.run(main())
 ```
 ```typescript TypeScript
+  import { query } from "@anthropic-ai/claude-agent-sdk";
+
   const options = {
     env: {
       ...process.env,
@@ -234,6 +245,10 @@ The following example enables 1-hour TTL for an agent running on Bedrock:
       ENABLE_PROMPT_CACHING_1H: "1",
     },
   };
+
+  for await (const message of query({ prompt: "Summarize this project", options })) {
+    console.log(message);
+  }
 ```
 
 Cache writes with a 1-hour TTL are billed at a higher rate than 5-minute writes, so enabling this trades higher write cost for more cache reads. See [prompt caching pricing](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) for details. Claude subscription users already receive 1-hour TTL automatically and do not need to set this variable.

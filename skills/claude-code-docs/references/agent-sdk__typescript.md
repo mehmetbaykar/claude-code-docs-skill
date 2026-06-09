@@ -308,7 +308,7 @@ type PermissionMode =
   | "default" // Standard permission behavior
   | "acceptEdits" // Auto-accept file edits
   | "bypassPermissions" // Bypass permission checks; explicit ask rules still prompt
-  | "plan" // Planning mode - read-only tools only
+  | "plan" // Planning mode - explore without editing
   | "dontAsk" // Don't prompt for permissions, deny if not pre-approved
   | "auto"; // Use a model classifier to approve or deny each tool call
 ```
@@ -554,6 +554,7 @@ type SDKPartialAssistantMessage = {
   parent_tool_use_id: string | null;
   uuid: UUID;
   session_id: string;
+  ttft_ms?: number; // Time to first token in ms, present only on message_start events
 };
 ```
 ```typescript
@@ -981,7 +982,7 @@ type AgentInput = {
   description: string;
   prompt: string;
   subagent_type: string;
-  model?: "sonnet" | "opus" | "haiku";
+  model?: "sonnet" | "opus" | "haiku" | "fable";
   resume?: string;
   run_in_background?: boolean;
   max_turns?: number;
@@ -1581,7 +1582,7 @@ type PermissionBehavior = "allow" | "deny" | "ask";
 type PermissionUpdateDestination =
   | "userSettings" // Global user settings
   | "projectSettings" // Per-directory project settings
-  | "localSettings" // Gitignored local settings
+  | "localSettings" // Local project settings
   | "session" // Current session only
   | "cliArg"; // CLI argument
 ```
