@@ -331,8 +331,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "689aa2bac6267741a6d3d57170b809db5414c0bc1673c9765156f1974161f45e",
-      "last_updated": "2026-06-09T20:11:51+00:00",
+      "hash": "bd125a521a6b5d15980decd1184290a1c793da5dc2cda7c0384c862135563690",
+      "last_updated": "2026-06-09T22:26:29+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -931,8 +931,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "74b1efd2f8f9e3728b36a2203e1a31486cece531d88600ae91f1531671345acd",
-      "last_updated": "2026-06-09T20:14:24+00:00",
+      "hash": "247377f9fd46b7e491c27a3d1c02a1ee9f0d7ffba484d929950431293ab1faca",
+      "last_updated": "2026-06-09T22:27:10+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1185,7 +1185,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-09T20:14:48+00:00",
+  "last_updated": "2026-06-09T22:27:24+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
