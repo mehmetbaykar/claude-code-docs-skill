@@ -7,6 +7,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 ## Topics
 
 - `admin-setup` - [Set up Claude Code for your organization](https://code.claude.com/docs/en/admin-setup)
+- `advisor` - [Escalate hard decisions with the advisor tool](https://code.claude.com/docs/en/advisor)
 - `agent-sdk__agent-loop` - [How the agent loop works](https://code.claude.com/docs/en/agent-sdk/agent-loop)
 - `agent-sdk__claude-code-features` - [Use Claude Code features in the SDK](https://code.claude.com/docs/en/agent-sdk/claude-code-features)
 - `agent-sdk__cost-tracking` - [Track cost and usage](https://code.claude.com/docs/en/agent-sdk/cost-tracking)
