@@ -835,8 +835,8 @@
       "title": "Plugins reference"
     },
     "plugins.md": {
-      "hash": "88a1ef6e868b494b0f1cb2a80adad360199cfd6ca700ea3959a8cd1e8cf191c5",
-      "last_updated": "2026-06-09T20:14:17+00:00",
+      "hash": "b4e81b399bbeb604caf4820a2bdca535a120093c6faa7cac6569525ad636758f",
+      "last_updated": "2026-06-10T20:37:01+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins",
       "path": "/docs/en/plugins",
       "source_url": "https://code.claude.com/docs/en/plugins.md",
@@ -1193,7 +1193,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-10T04:05:11+00:00",
+  "last_updated": "2026-06-10T20:37:29+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
