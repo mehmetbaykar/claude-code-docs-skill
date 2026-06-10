@@ -52,7 +52,7 @@ Check `allow` rules (from `allowed_tools` and settings.json). If a rule matches,
 If not resolved by any of the above, call your [`canUseTool` callback](/en/agent-sdk/user-input) for a decision. In `dontAsk` mode, this step is skipped and the tool is denied.
 
 
-![](https://mintcdn.com/claude-code/FEspvVUyRuaWjm0s/images/agent-sdk/permissions-flow.svg?fit=max&auto=format&n=FEspvVUyRuaWjm0s&q=85&s=a1759b0cf4541281a9fdd8f5348228e8)
+![](https://mintcdn.com/claude-code/ikqp3_70mqIahteV/images/agent-sdk/permissions-flow.svg?fit=max&auto=format&n=ikqp3_70mqIahteV&q=85&s=cc94220087262cd48c9b64a14c4e1c2c)
 
 This page focuses on **allow and deny rules** and **permission modes**. For the other steps:
 
