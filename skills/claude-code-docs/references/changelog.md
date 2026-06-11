@@ -12,6 +12,11 @@ This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anth
 
 Run `claude --version` to check your installed version.
 
+### 2.1.173 (June 11, 2026)
+
+* Fixed Fable 5 model names with a `[1m]` suffix not being normalized — Fable 5 includes 1M context by default, so the suffix is now stripped automatically
+* Fixed a spurious "sandbox dependencies missing" startup warning on Windows when sandbox was enabled in settings
+
 ### 2.1.172 (June 10, 2026)
 
 * Sub-agents can now spawn their own sub-agents (up to 5 levels deep)
