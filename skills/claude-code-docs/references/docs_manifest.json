@@ -339,8 +339,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "bd125a521a6b5d15980decd1184290a1c793da5dc2cda7c0384c862135563690",
-      "last_updated": "2026-06-09T22:26:29+00:00",
+      "hash": "263d8ef7b7914d8383050288f37f87c75b4b67c5fe3d7c1e423f47968d0e7d79",
+      "last_updated": "2026-06-11T04:17:39+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -739,8 +739,8 @@
       "title": "Claude Code on Microsoft Foundry"
     },
     "model-config.md": {
-      "hash": "f552375597fa1983958b132e667905e2a34d1149fbdb044524e1b8927a2ce251",
-      "last_updated": "2026-06-10T04:04:32+00:00",
+      "hash": "5dc4c8558230ac5796fa943cbd0cf2dea6e1f9d6f6147c3fb7dc738ef8a8d9a7",
+      "last_updated": "2026-06-11T04:18:10+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -835,8 +835,8 @@
       "title": "Plugins reference"
     },
     "plugins.md": {
-      "hash": "b4e81b399bbeb604caf4820a2bdca535a120093c6faa7cac6569525ad636758f",
-      "last_updated": "2026-06-10T20:37:01+00:00",
+      "hash": "38c1f72fab6181ee59c62af72d30f89ccb42d9608a6d81796f1a348bd1383410",
+      "last_updated": "2026-06-11T04:18:14+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins",
       "path": "/docs/en/plugins",
       "source_url": "https://code.claude.com/docs/en/plugins.md",
@@ -1193,7 +1193,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-10T20:37:29+00:00",
+  "last_updated": "2026-06-11T04:18:37+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
