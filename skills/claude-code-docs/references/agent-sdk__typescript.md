@@ -395,6 +395,7 @@ type McpClaudeAIProxyServerConfig = {
 type SdkPluginConfig = {
   type: "local";
   path: string;
+  skipMcpDiscovery?: boolean;
 };
 ```
 ```typescript
@@ -607,7 +608,8 @@ type SDKMessageOrigin =
   | { kind: "channel"; server: string }
   | { kind: "peer"; from: string; name?: string }
   | { kind: "task-notification" }
-  | { kind: "coordinator" };
+  | { kind: "coordinator" }
+  | { kind: "auto-continuation" };
 ```
 ```typescript
 type HookEvent =
@@ -1204,6 +1206,7 @@ type AgentOutput =
       status: "completed";
       agentId: string;
       content: Array<{ type: "text"; text: string }>;
+      resolvedModel?: string;
       totalToolUseCount: number;
       totalDurationMs: number;
       totalTokens: number;
@@ -1228,6 +1231,7 @@ type AgentOutput =
       status: "async_launched";
       agentId: string;
       description: string;
+      resolvedModel?: string;
       prompt: string;
       outputFile: string;
       canReadOutputFile?: boolean;
