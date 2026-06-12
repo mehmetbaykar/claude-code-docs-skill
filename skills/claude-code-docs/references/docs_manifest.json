@@ -403,16 +403,16 @@
       "title": "Claude Code on Claude Platform on AWS"
     },
     "cli-reference.md": {
-      "hash": "2a7648a01e0fe989cb7b9d2df0a00369c871303726698f337c6a67dbf9507fb1",
-      "last_updated": "2026-06-10T04:03:59+00:00",
+      "hash": "e1fc9bf70ada30efbc810fe34a20e2e87eb001e8e523e0cb5889b6969ba262fd",
+      "last_updated": "2026-06-12T04:19:57+00:00",
       "original_url": "https://code.claude.com/docs/en/cli-reference",
       "path": "/docs/en/cli-reference",
       "source_url": "https://code.claude.com/docs/en/cli-reference.md",
       "title": "CLI reference"
     },
     "code-review.md": {
-      "hash": "79fa5bdd05ddaad12d43288afd1227025ff0055deb19e0ee866ba83a6a992e96",
-      "last_updated": "2026-05-29T03:59:38+00:00",
+      "hash": "a5faa053602995c5239b72f0d1c795fac4be97c966e999e3cdc6580089b81f89",
+      "last_updated": "2026-06-12T04:19:58+00:00",
       "original_url": "https://code.claude.com/docs/en/code-review",
       "path": "/docs/en/code-review",
       "source_url": "https://code.claude.com/docs/en/code-review.md",
@@ -619,8 +619,8 @@
       "title": "Claude Code on Google Vertex AI"
     },
     "headless.md": {
-      "hash": "850acca72b34e0eb6504bac6f2819036ee888f9a7725764624e59c3c4260bdb6",
-      "last_updated": "2026-06-09T20:12:37+00:00",
+      "hash": "dc9cf98029b4270efa1da28e1d939866690db00d23b629a88f834ec61a10e497",
+      "last_updated": "2026-06-12T04:20:18+00:00",
       "original_url": "https://code.claude.com/docs/en/headless",
       "path": "/docs/en/headless",
       "source_url": "https://code.claude.com/docs/en/headless.md",
@@ -659,8 +659,8 @@
       "title": "Interactive mode"
     },
     "jetbrains.md": {
-      "hash": "1e4b4b77105189d6598b96e0c0bf1575a1c8877fd1d8ea0bd216cf7bd72b7556",
-      "last_updated": "2026-05-18T22:06:08+00:00",
+      "hash": "e382fb48d5a6f1b4b719118f279dab99435fc5863b043ad6beb96228eb7fbc96",
+      "last_updated": "2026-06-12T04:20:21+00:00",
       "original_url": "https://code.claude.com/docs/en/jetbrains",
       "path": "/docs/en/jetbrains",
       "source_url": "https://code.claude.com/docs/en/jetbrains.md",
@@ -715,8 +715,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "c0ad4fb5496ecb0d993ff4f216e2ab31719c59a5b55acad7aabbc2bfe0083b92",
-      "last_updated": "2026-06-10T04:04:29+00:00",
+      "hash": "e3a331d82719d80d7f5464241efe6d3e85286b7897e97314a470a6d87dbffc05",
+      "last_updated": "2026-06-12T04:20:25+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -859,8 +859,8 @@
       "title": "Prompt library"
     },
     "quickstart.md": {
-      "hash": "75317fa8a97959baf9e755abec6c4dc198fec195b63c1959821808ecd330f661",
-      "last_updated": "2026-06-05T20:00:54+00:00",
+      "hash": "b8911ff4f985967c140560220259180c6cb58f81e3ebc1fbbc057744a7d1902a",
+      "last_updated": "2026-06-12T04:20:38+00:00",
       "original_url": "https://code.claude.com/docs/en/quickstart",
       "path": "/docs/en/quickstart",
       "source_url": "https://code.claude.com/docs/en/quickstart.md",
@@ -931,8 +931,8 @@
       "title": "Configure server-managed settings"
     },
     "sessions.md": {
-      "hash": "8a98508a2a39a7e58126eabed159a8bcbd04fafe4e749c080cf1cb85de86861f",
-      "last_updated": "2026-06-09T15:16:13+00:00",
+      "hash": "78226e914e01a1c3a06d452cafa717bc3c9cb5c9a59dcaaed01aac9d9de2e231",
+      "last_updated": "2026-06-12T04:20:43+00:00",
       "original_url": "https://code.claude.com/docs/en/sessions",
       "path": "/docs/en/sessions",
       "source_url": "https://code.claude.com/docs/en/sessions.md",
@@ -1011,8 +1011,8 @@
       "title": "Tools reference"
     },
     "troubleshoot-install.md": {
-      "hash": "4f387b720f70e778139b80d5633ecda3827effe5c2bc2c440dd9e5f7da7e27bb",
-      "last_updated": "2026-06-09T20:14:28+00:00",
+      "hash": "41c23bd455fa4f141f13a69b9a1daa8b34459a0332bca169688fa12a17601175",
+      "last_updated": "2026-06-12T04:20:50+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshoot-install",
       "path": "/docs/en/troubleshoot-install",
       "source_url": "https://code.claude.com/docs/en/troubleshoot-install.md",
@@ -1051,8 +1051,8 @@
       "title": "Voice dictation"
     },
     "vs-code.md": {
-      "hash": "81d4216e43635dad3d0affa3becb3e74e2d8dc1fb631454403f8cc3b91daa7c2",
-      "last_updated": "2026-06-09T15:16:22+00:00",
+      "hash": "a1b1e8714b2e73c5173c828bee71a0471551f905b16b791e8b8389ab36bad720",
+      "last_updated": "2026-06-12T04:20:53+00:00",
       "original_url": "https://code.claude.com/docs/en/vs-code",
       "path": "/docs/en/vs-code",
       "source_url": "https://code.claude.com/docs/en/vs-code.md",
@@ -1193,7 +1193,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-11T22:52:12+00:00",
+  "last_updated": "2026-06-12T04:21:05+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
