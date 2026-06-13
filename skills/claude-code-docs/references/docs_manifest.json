@@ -339,8 +339,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "f52a1570bb04111372d7162f7d8d93c489daf9317002ee9a3ccda79ee6f88c92",
-      "last_updated": "2026-06-12T10:19:52+00:00",
+      "hash": "d5ecb0071db90a57c6b55a3127fe0f4f9de5f8c6d162d7a114b1ece7c5f70379",
+      "last_updated": "2026-06-13T04:08:08+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -659,8 +659,8 @@
       "title": "Interactive mode"
     },
     "jetbrains.md": {
-      "hash": "e382fb48d5a6f1b4b719118f279dab99435fc5863b043ad6beb96228eb7fbc96",
-      "last_updated": "2026-06-12T04:20:21+00:00",
+      "hash": "e1f54851159df43021d898276a9421fcd165dfbbe86e14279871c00e0abd7f20",
+      "last_updated": "2026-06-13T04:08:32+00:00",
       "original_url": "https://code.claude.com/docs/en/jetbrains",
       "path": "/docs/en/jetbrains",
       "source_url": "https://code.claude.com/docs/en/jetbrains.md",
@@ -771,8 +771,8 @@
       "title": "Output styles"
     },
     "overview.md": {
-      "hash": "7c05a706b776cf3f974bb479f9780619a6c8902af04f9e1cbbce9430966aae3b",
-      "last_updated": "2026-06-09T20:14:13+00:00",
+      "hash": "b32b46b8d05c45b0f5c252d4b1878f3469cdca26a366dc3f55b5647497feb908",
+      "last_updated": "2026-06-13T04:08:41+00:00",
       "original_url": "https://code.claude.com/docs/en/overview",
       "path": "/docs/en/overview",
       "source_url": "https://code.claude.com/docs/en/overview.md",
@@ -1193,7 +1193,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-12T22:28:15+00:00",
+  "last_updated": "2026-06-13T04:09:11+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
