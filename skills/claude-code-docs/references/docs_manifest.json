@@ -11,8 +11,8 @@
   },
   "files": {
     "admin-setup.md": {
-      "hash": "78c9c1d248a25e851fc985aba65e87721dfb930cd7bd0e25102b74514f64f3fa",
-      "last_updated": "2026-06-09T20:10:49+00:00",
+      "hash": "77ca82b8f2a90773871955b1a861a87d887113fabb9042988e98194c92f36db9",
+      "last_updated": "2026-06-13T19:41:47+00:00",
       "original_url": "https://code.claude.com/docs/en/admin-setup",
       "path": "/docs/en/admin-setup",
       "source_url": "https://code.claude.com/docs/en/admin-setup.md",
@@ -939,8 +939,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "670efb066f81140b1829f4dd0d044ff3e61c0d6420a0ecb3a3843f1b675637a8",
-      "last_updated": "2026-06-12T22:27:56+00:00",
+      "hash": "0a1a82e8522443c0d503a570e21d9bcaaf19047d3ddd5203337fc82c82d10246",
+      "last_updated": "2026-06-13T19:43:05+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1193,7 +1193,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-13T09:22:46+00:00",
+  "last_updated": "2026-06-13T19:43:23+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
