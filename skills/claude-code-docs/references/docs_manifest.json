@@ -715,8 +715,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "e3a331d82719d80d7f5464241efe6d3e85286b7897e97314a470a6d87dbffc05",
-      "last_updated": "2026-06-12T04:20:25+00:00",
+      "hash": "cfb79cbfce847f33ae91e48389179462b30ff09f548340997af8954f92abe6ee",
+      "last_updated": "2026-06-13T09:22:12+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -1193,7 +1193,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-13T04:09:11+00:00",
+  "last_updated": "2026-06-13T09:22:46+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
