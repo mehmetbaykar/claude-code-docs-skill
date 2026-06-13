@@ -739,8 +739,8 @@
       "title": "Claude Code on Microsoft Foundry"
     },
     "model-config.md": {
-      "hash": "3a64ad161396f7ccd93ad961a6c4eb28a9c02d4d36a8af5c265cedc4829db868",
-      "last_updated": "2026-06-12T22:27:38+00:00",
+      "hash": "f55bbb65602e1d1bc05642c76d49e4c0d000e068be966fc3ac43cca9d273933f",
+      "last_updated": "2026-06-13T22:08:13+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -939,8 +939,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "0a1a82e8522443c0d503a570e21d9bcaaf19047d3ddd5203337fc82c82d10246",
-      "last_updated": "2026-06-13T19:43:05+00:00",
+      "hash": "1ae06a3e8cced1bedccb1da4e71fc829d41d4fa5099d1a00dfa43c82c71b0de0",
+      "last_updated": "2026-06-13T22:08:26+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1193,7 +1193,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-13T19:43:23+00:00",
+  "last_updated": "2026-06-13T22:08:40+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
