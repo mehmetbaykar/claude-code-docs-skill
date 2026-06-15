@@ -37,7 +37,7 @@ Cost tracking depends on understanding how the SDK scopes usage data:
 
 The following diagram shows the message stream from a single `query()` call, with token usage reported at each step and the cumulative estimate at the end:
 
-![](https://mintcdn.com/claude-code/Dujg43sxTkuhSELI/images/agent-sdk/message-usage-flow.svg?fit=max&auto=format&n=Dujg43sxTkuhSELI&q=85&s=c542f51ff58547ef9c0e57b16d03f33c)
+![](https://mintcdn.com/claude-code/ikqp3_70mqIahteV/images/agent-sdk/message-usage-flow.svg?fit=max&auto=format&n=ikqp3_70mqIahteV&q=85&s=68497aee338e01cc745323af7aea378e)
 
 
 **Each step produces assistant messages**

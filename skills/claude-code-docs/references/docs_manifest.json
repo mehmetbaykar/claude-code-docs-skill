@@ -43,8 +43,8 @@
       "title": "Use Claude Code features in the SDK"
     },
     "agent-sdk__cost-tracking.md": {
-      "hash": "4d6c6ff523fdb63e033a945e2276e46a76d3ba3cf61d93d8bf631cddadb32e62",
-      "last_updated": "2026-06-09T20:10:51+00:00",
+      "hash": "7e0cce90c309e41f90bad259d3f40d78e8385eabc7d736bc5e2a5810256b370c",
+      "last_updated": "2026-06-15T23:04:28+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/cost-tracking",
       "path": "/docs/en/agent-sdk/cost-tracking",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/cost-tracking.md",
@@ -75,8 +75,8 @@
       "title": "Intercept and control agent behavior with hooks"
     },
     "agent-sdk__hosting.md": {
-      "hash": "378f5ed3743cb3ebef80a1f571d893e86170ef41ab43efd7d27f6429ccae5873",
-      "last_updated": "2026-05-30T03:45:07+00:00",
+      "hash": "a2f9f949f1cd152fa1faa209e6f6c7ba111dd69fec461a3908ce3dffe58bfb73",
+      "last_updated": "2026-06-15T23:04:30+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/hosting",
       "path": "/docs/en/agent-sdk/hosting",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/hosting.md",
@@ -115,8 +115,8 @@
       "title": "Observability with OpenTelemetry"
     },
     "agent-sdk__overview.md": {
-      "hash": "3afaacf5d6908c26f58308669e4be9a9cb9ca7e3ba1f66ce2e79fb12d001afa8",
-      "last_updated": "2026-05-29T20:30:44+00:00",
+      "hash": "17f860d397225c3e61cd961358bd94c81a27b5f9f87e986f79512aee403e37f4",
+      "last_updated": "2026-06-15T23:04:34+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/overview",
       "path": "/docs/en/agent-sdk/overview",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/overview.md",
@@ -307,8 +307,8 @@
       "title": "Track team usage with analytics"
     },
     "authentication.md": {
-      "hash": "cc8a86545081ea396bb4b0220e339be5c52f221af5e122be3a77ccaf7190a175",
-      "last_updated": "2026-06-09T15:15:24+00:00",
+      "hash": "01cca6f35c6aced15b9d9732091c5bfe6a2cf30639b95176b6d990441c6e257a",
+      "last_updated": "2026-06-15T23:04:48+00:00",
       "original_url": "https://code.claude.com/docs/en/authentication",
       "path": "/docs/en/authentication",
       "source_url": "https://code.claude.com/docs/en/authentication.md",
@@ -339,8 +339,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "d5ecb0071db90a57c6b55a3127fe0f4f9de5f8c6d162d7a114b1ece7c5f70379",
-      "last_updated": "2026-06-14T14:10:56+00:00",
+      "hash": "14729389224e4989d85b97e3851fbd4abdc4a94c8d4b38caed567c2a01185820",
+      "last_updated": "2026-06-15T23:04:53+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -507,8 +507,8 @@
       "title": "Schedule recurring tasks in Claude Code Desktop"
     },
     "desktop.md": {
-      "hash": "bc970f512699ab8786a73831d4be7903046b4bd964a62a28f596b5bdd8934afb",
-      "last_updated": "2026-06-10T04:04:07+00:00",
+      "hash": "532eb5f8b6f1575715f8386e011f68e719bc3ec001046ffb496a17a3baab2168",
+      "last_updated": "2026-06-15T23:05:03+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -555,8 +555,8 @@
       "title": "Speed up responses with fast mode"
     },
     "features-overview.md": {
-      "hash": "82f2b19eef9e17bc4bba057bb95794bac2724c18ce63fbf70a08c9f1da149fa1",
-      "last_updated": "2026-06-02T04:19:14+00:00",
+      "hash": "c69e586fb0125288523066a1ac8e775cd0ac8b9bff2abd30e9cf5edd0018c151",
+      "last_updated": "2026-06-15T23:05:06+00:00",
       "original_url": "https://code.claude.com/docs/en/features-overview",
       "path": "/docs/en/features-overview",
       "source_url": "https://code.claude.com/docs/en/features-overview.md",
@@ -619,8 +619,8 @@
       "title": "Claude Code on Google Vertex AI"
     },
     "headless.md": {
-      "hash": "dc9cf98029b4270efa1da28e1d939866690db00d23b629a88f834ec61a10e497",
-      "last_updated": "2026-06-12T04:20:18+00:00",
+      "hash": "0152abaedeaca13e719b94ed3a20477b35ee54dc5bf992ea5bbd1e2f6703a655",
+      "last_updated": "2026-06-15T23:05:11+00:00",
       "original_url": "https://code.claude.com/docs/en/headless",
       "path": "/docs/en/headless",
       "source_url": "https://code.claude.com/docs/en/headless.md",
@@ -683,8 +683,8 @@
       "title": "Set up Claude Code in a monorepo or large codebase"
     },
     "legal-and-compliance.md": {
-      "hash": "7229a5a1baefb8c96236b158ed138cb90d8fe33e307c3bd84689bb3ce97b1cb6",
-      "last_updated": "2026-05-15T23:04:12+00:00",
+      "hash": "a8fd86a280fb77b4f8adfd1f9af98cb9a0d273489c579401d95290f350d4766c",
+      "last_updated": "2026-06-15T23:05:17+00:00",
       "original_url": "https://code.claude.com/docs/en/legal-and-compliance",
       "path": "/docs/en/legal-and-compliance",
       "source_url": "https://code.claude.com/docs/en/legal-and-compliance.md",
@@ -787,8 +787,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "469a4a9a4ffd3d175e57aa27904c9d8ba4d70692006fc7ce98b92c1229202a56",
-      "last_updated": "2026-06-12T22:27:42+00:00",
+      "hash": "e4a68eb641e0dda9ad218969bdba64258016b86424c5fb71d806bdf736314145",
+      "last_updated": "2026-06-15T23:05:24+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -1011,8 +1011,8 @@
       "title": "Tools reference"
     },
     "troubleshoot-install.md": {
-      "hash": "41c23bd455fa4f141f13a69b9a1daa8b34459a0332bca169688fa12a17601175",
-      "last_updated": "2026-06-12T04:20:50+00:00",
+      "hash": "4e79116213ba57a0e409dee29a2ffcf05eb8a0dcb8b549c3966c3b3237ec2c31",
+      "last_updated": "2026-06-15T23:05:41+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshoot-install",
       "path": "/docs/en/troubleshoot-install",
       "source_url": "https://code.claude.com/docs/en/troubleshoot-install.md",
@@ -1193,7 +1193,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-14T14:12:04+00:00",
+  "last_updated": "2026-06-15T23:05:56+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
