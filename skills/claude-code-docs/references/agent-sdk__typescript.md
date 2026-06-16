@@ -426,6 +426,7 @@ type SDKMessage =
   | SDKTaskProgressMessage
   | SDKTaskUpdatedMessage
   | SDKSessionStateChangedMessage
+  | SDKWorkerShuttingDownMessage
   | SDKCommandsChangedMessage
   | SDKNotificationMessage
   | SDKFilesPersistedEvent
@@ -436,7 +437,8 @@ type SDKMessage =
   | SDKPermissionDeniedMessage
   | SDKPromptSuggestionMessage
   | SDKAPIRetryMessage
-  | SDKMirrorErrorMessage;
+  | SDKMirrorErrorMessage
+  | SDKInformationalMessage;
 ```
 ```typescript
 type SDKAssistantMessage = {
@@ -571,6 +573,27 @@ type SDKCompactBoundaryMessage = {
 };
 ```
 ```typescript
+type SDKInformationalMessage = {
+  type: "system";
+  subtype: "informational";
+  content: string;
+  level: "info" | "notice" | "suggestion" | "warning";
+  tool_use_id?: string;
+  prevent_continuation?: boolean;
+  uuid: UUID;
+  session_id: string;
+};
+```
+```typescript
+type SDKWorkerShuttingDownMessage = {
+  type: "system";
+  subtype: "worker_shutting_down";
+  reason: string;
+  uuid: UUID;
+  session_id: string;
+};
+```
+```typescript
 type SDKPluginInstallMessage = {
   type: "system";
   subtype: "plugin_install";
@@ -606,7 +629,7 @@ type SDKPermissionDenial = {
 type SDKMessageOrigin =
   | { kind: "human" }
   | { kind: "channel"; server: string }
-  | { kind: "peer"; from: string; name?: string }
+  | { kind: "peer"; from: string; name?: string; senderTaskId?: string }
   | { kind: "task-notification" }
   | { kind: "coordinator" }
   | { kind: "auto-continuation" };
@@ -824,6 +847,7 @@ type SetupHookInput = BaseHookInput & {
 type TeammateIdleHookInput = BaseHookInput & {
   hook_event_name: "TeammateIdle";
   teammate_name: string;
+  /** @deprecated since v2.1.178. Carries the session-derived team name; will be removed. */
   team_name: string;
 };
 ```
@@ -834,6 +858,7 @@ type TaskCompletedHookInput = BaseHookInput & {
   task_subject: string;
   task_description?: string;
   teammate_name?: string;
+  /** @deprecated since v2.1.178. Carries the session-derived team name; will be removed. */
   team_name?: string;
 };
 ```
@@ -989,7 +1014,6 @@ type AgentInput = {
   run_in_background?: boolean;
   max_turns?: number;
   name?: string;
-  team_name?: string;
   mode?: "acceptEdits" | "bypassPermissions" | "default" | "dontAsk" | "plan";
   isolation?: "worktree";
 };

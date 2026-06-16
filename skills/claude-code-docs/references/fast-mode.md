@@ -98,7 +98,7 @@ Fast mode usage draws directly from usage credits, even if you have remaining us
 
 * **Admin enablement for Team and Enterprise**: fast mode is disabled by default for Team and Enterprise organizations. An admin must explicitly [enable fast mode](#enable-fast-mode-for-your-organization) before users can access it.
 
-If your admin has not enabled fast mode for your organization, the `/fast` command will show "Fast mode has been disabled by your organization."
+If your admin has not enabled fast mode for your organization, the `/fast` command will show "Fast mode has been disabled by your organization." If your organization's [`availableModels`](/en/model-config#restrict-model-selection) allowlist excludes the fast-mode Opus model, `/fast` is refused with "is not in your organization's allowed models".
 
 ### Enable fast mode for your organization
 
