@@ -4,10 +4,10 @@
     "failed_pages": [],
     "fetch_tool_version": "1.0",
     "pages_failed": 0,
-    "pages_fetched_successfully": 146,
+    "pages_fetched_successfully": 148,
     "pages_skipped": 0,
     "raw_fallback_pages": 0,
-    "total_pages_discovered": 146
+    "total_pages_discovered": 148
   },
   "files": {
     "admin-setup.md": {
@@ -275,8 +275,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "5da10701b93060e145f25db518524bbdd9e874e3332a0d617d30c0bf66cbba5d",
-      "last_updated": "2026-06-09T20:11:36+00:00",
+      "hash": "957e934f17d65cb08c81753ac103b91078016de24a92b3e027df9f45555765be",
+      "last_updated": "2026-06-16T04:46:03+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "source_url": "https://code.claude.com/docs/en/agent-view.md",
@@ -867,8 +867,8 @@
       "title": "Quickstart"
     },
     "remote-control.md": {
-      "hash": "65dae709432c946d3627594f2870ef1c01bfbfedb9a4362fc1fbd0d935733be1",
-      "last_updated": "2026-06-12T22:27:50+00:00",
+      "hash": "a055aed72ca391f4b3762a401cad3aa2233e173fea520d3732e0878b03993eb5",
+      "last_updated": "2026-06-16T04:46:54+00:00",
       "original_url": "https://code.claude.com/docs/en/remote-control",
       "path": "/docs/en/remote-control",
       "source_url": "https://code.claude.com/docs/en/remote-control.md",
@@ -939,8 +939,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "1ae06a3e8cced1bedccb1da4e71fc829d41d4fa5099d1a00dfa43c82c71b0de0",
-      "last_updated": "2026-06-13T22:08:26+00:00",
+      "hash": "e8cc3a22448884082e6af0d0c3f8860debe2779a71408e34f0c94a0fd75fc0db",
+      "last_updated": "2026-06-16T04:46:58+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1067,8 +1067,8 @@
       "title": "Get started with Claude Code on the web"
     },
     "whats-new.md": {
-      "hash": "2261fae106c30582f61bbdefcea7a7f01bd744fca48a60efb958b39fdafa273c",
-      "last_updated": "2026-05-30T19:24:04+00:00",
+      "hash": "2ee52756c4a1ca5bc657a160fc22211e6f1bbb75b833fc6b901f6ddb1a1fec6b",
+      "last_updated": "2026-06-16T04:47:09+00:00",
       "original_url": "https://code.claude.com/docs/en/whats-new",
       "path": "/docs/en/whats-new",
       "source_url": "https://code.claude.com/docs/en/whats-new.md",
@@ -1154,6 +1154,22 @@
       "source_url": "https://code.claude.com/docs/en/whats-new/2026-w22.md",
       "title": "Week 22 \u00b7 May 25\u201329, 2026"
     },
+    "whats-new__2026-w23.md": {
+      "hash": "54dd25d5685bb3060587447b7a773da71df3d0f7f0e5d8107286bf7d88b4c34d",
+      "last_updated": "2026-06-16T04:47:15+00:00",
+      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w23",
+      "path": "/docs/en/whats-new/2026-w23",
+      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w23.md",
+      "title": "Week 23 \u00b7 June 1\u20135, 2026"
+    },
+    "whats-new__2026-w24.md": {
+      "hash": "eefd1bdec9a192a9f6df748b153d014da4a30e06b2184c6ecb31691894fca0c9",
+      "last_updated": "2026-06-16T04:47:15+00:00",
+      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w24",
+      "path": "/docs/en/whats-new/2026-w24",
+      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w24.md",
+      "title": "Week 24 \u00b7 June 8\u201312, 2026"
+    },
     "workflows.md": {
       "hash": "f6dd33522112b31000fee347d44233d35983110e23eb0d593ad8f0eae9b9bc32",
       "last_updated": "2026-06-09T03:54:02+00:00",
@@ -1193,7 +1209,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-15T23:05:56+00:00",
+  "last_updated": "2026-06-16T04:47:17+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",

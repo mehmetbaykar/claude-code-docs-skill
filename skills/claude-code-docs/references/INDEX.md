@@ -149,6 +149,8 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `whats-new__2026-w20` - [Week 20 · May 11–15, 2026](https://code.claude.com/docs/en/whats-new/2026-w20)
 - `whats-new__2026-w21` - [Week 21 · May 18–22, 2026](https://code.claude.com/docs/en/whats-new/2026-w21)
 - `whats-new__2026-w22` - [Week 22 · May 25–29, 2026](https://code.claude.com/docs/en/whats-new/2026-w22)
+- `whats-new__2026-w23` - [Week 23 · June 1–5, 2026](https://code.claude.com/docs/en/whats-new/2026-w23)
+- `whats-new__2026-w24` - [Week 24 · June 8–12, 2026](https://code.claude.com/docs/en/whats-new/2026-w24)
 - `workflows` - [Orchestrate subagents at scale with dynamic workflows](https://code.claude.com/docs/en/workflows)
 - `worktrees` - [Run parallel sessions with worktrees](https://code.claude.com/docs/en/worktrees)
 - `zero-data-retention` - [Zero data retention](https://code.claude.com/docs/en/zero-data-retention)
