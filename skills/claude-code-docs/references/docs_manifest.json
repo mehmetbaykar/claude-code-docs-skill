@@ -955,8 +955,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "806cf822e22cb2aec198356789ef151bfb06f6375aa6ef255d76204f1377dacf",
-      "last_updated": "2026-06-16T22:56:08+00:00",
+      "hash": "9491992d9ed39240869c115730893007821485df02ae58b617c455dedcd527bc",
+      "last_updated": "2026-06-17T15:43:35+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -979,8 +979,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "a6f1157744a2496237f22cf2d4ce32a1d43cf47e50357bdb61b2eb99f21296f8",
-      "last_updated": "2026-06-16T22:56:09+00:00",
+      "hash": "1dd1d536175bdcfdf0d6a6a66f689a03b0e8911017e71e73eaf1c531a3e87eaa",
+      "last_updated": "2026-06-17T15:43:38+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1209,7 +1209,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-17T11:04:27+00:00",
+  "last_updated": "2026-06-17T15:43:58+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
