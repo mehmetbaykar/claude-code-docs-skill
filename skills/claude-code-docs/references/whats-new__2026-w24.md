@@ -6,7 +6,7 @@ path: /docs/en/whats-new/2026-w24
 
 # Week 24 · June 8–12, 2026
 
-> Move a session to a new directory with /cd, let sub-agents spawn their own sub-agents, and troubleshoot a broken configuration with safe mode.
+> Move a session to a new directory with /cd, let subagents spawn their own subagents, and troubleshoot a broken configuration with safe mode.
 
 Releases [v2.1.166 → v2.1.176](https://code.claude.com/docs/en/changelog#2-1-166)
 3 features · June 8–12
@@ -24,11 +24,11 @@ Move the session into another project without restarting:
 
 [Commands reference](https://code.claude.com/docs/en/commands#all-commands)
 
-Sub-agents can spawn sub-agents
+Subagents can spawn subagents
 v2.1.172
 
 
-Sub-agents can now spawn their own sub-agents. The subagent panel below the prompt shows the full tree: each row carries a count of its descendants and a path back to `main`. Background sub-agents are capped at five levels deep to prevent runaway concurrent trees; foreground chains can spawn at any depth and are self-limiting.
+Subagents can now spawn their own subagents. The subagent panel below the prompt shows the full tree: each row carries a count of its descendants and a path back to `main`. Subagent chains are capped at five levels deep to prevent runaway concurrent trees.
 
 Open the agents view to watch the nested tree as work fans out:
 ```text Claude Code

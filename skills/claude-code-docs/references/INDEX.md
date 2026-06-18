@@ -43,6 +43,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `agents` - [Run agents in parallel](https://code.claude.com/docs/en/agents)
 - `amazon-bedrock` - [Claude Code on Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock)
 - `analytics` - [Track team usage with analytics](https://code.claude.com/docs/en/analytics)
+- `artifacts` - [Share session output as artifacts](https://code.claude.com/docs/en/artifacts)
 - `authentication` - [Authentication](https://code.claude.com/docs/en/authentication)
 - `auto-mode-config` - [Configure auto mode](https://code.claude.com/docs/en/auto-mode-config)
 - `best-practices` - [Best practices for Claude Code](https://code.claude.com/docs/en/best-practices)
