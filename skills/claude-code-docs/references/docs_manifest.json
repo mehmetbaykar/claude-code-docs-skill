@@ -963,8 +963,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "fcaeaa99cfcf6d6a8acf4fb9a6f22303b1959e0d7c2b58f9350efd8166fcb4c2",
-      "last_updated": "2026-06-18T20:31:04+00:00",
+      "hash": "27460bb742dfc87788fac879565a3485fd28298eb1f8f6791292f542cac208b9",
+      "last_updated": "2026-06-18T22:58:38+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1217,7 +1217,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-18T20:31:21+00:00",
+  "last_updated": "2026-06-18T22:58:54+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
