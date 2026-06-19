@@ -1961,6 +1961,9 @@ type SDKRateLimitEvent = {
     status: "allowed" | "allowed_warning" | "rejected";
     resetsAt?: number;
     utilization?: number;
+    errorCode?: "credits_required";
+    canUserPurchaseCredits?: boolean;
+    hasChargeableSavedPaymentMethod?: boolean;
   };
   uuid: UUID;
   session_id: string;
