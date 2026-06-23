@@ -275,8 +275,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "957e934f17d65cb08c81753ac103b91078016de24a92b3e027df9f45555765be",
-      "last_updated": "2026-06-16T04:46:03+00:00",
+      "hash": "cebcabe8e724d3c7e4629e7ef9186d3783e7c3c9036e34ce6cac2f14b3368197",
+      "last_updated": "2026-06-23T22:17:42+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "source_url": "https://code.claude.com/docs/en/agent-view.md",
@@ -1225,7 +1225,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-23T20:12:36+00:00",
+  "last_updated": "2026-06-23T22:18:56+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
