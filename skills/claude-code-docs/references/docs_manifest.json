@@ -387,8 +387,8 @@
       "title": "Use Claude Code with Chrome (beta)"
     },
     "claude-code-on-the-web.md": {
-      "hash": "d964779f4bb1f7362d4d3dee4d6b44f39a313ae79808c3bdaee31f0dcf8bd295",
-      "last_updated": "2026-06-19T22:08:04+00:00",
+      "hash": "71421ff139c741ec1ba43c1f2a77e54212e1fad3714b917c15d6ebd159d39743",
+      "last_updated": "2026-06-23T20:11:02+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-code-on-the-web",
       "path": "/docs/en/claude-code-on-the-web",
       "source_url": "https://code.claude.com/docs/en/claude-code-on-the-web.md",
@@ -971,16 +971,16 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "36d094cfa41240d3147ce1de6eb189e5df0574bd2bf95b65a7c49da289a8ca6a",
-      "last_updated": "2026-06-23T03:54:37+00:00",
+      "hash": "79ec23f4d16ad99c334b378ff81958757b17b05354e3269f7341c91c89ab7745",
+      "last_updated": "2026-06-23T20:12:08+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
       "title": "Extend Claude with skills"
     },
     "slack.md": {
-      "hash": "be819dc545989cb0bf4e67692430c4d68fb1c9f10addda8308243f3323f67014",
-      "last_updated": "2026-05-15T23:34:09+00:00",
+      "hash": "bc2210f620a90bbc0ca8207ddf1216e7311ffbc2f31d8dd4a28159abfffef2ec",
+      "last_updated": "2026-06-23T20:12:09+00:00",
       "original_url": "https://code.claude.com/docs/en/slack",
       "path": "/docs/en/slack",
       "source_url": "https://code.claude.com/docs/en/slack.md",
@@ -1225,7 +1225,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-23T03:55:00+00:00",
+  "last_updated": "2026-06-23T20:12:36+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
