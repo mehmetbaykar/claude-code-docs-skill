@@ -109,6 +109,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `plugin-dependencies` - [Constrain plugin dependency versions](https://code.claude.com/docs/en/plugin-dependencies)
 - `plugin-hints` - [Recommend your plugin from your CLI](https://code.claude.com/docs/en/plugin-hints)
 - `plugin-marketplaces` - [Create and distribute a plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces)
+- `plugin-relevance` - [Recommend plugins for your org](https://code.claude.com/docs/en/plugin-relevance)
 - `plugins-reference` - [Plugins reference](https://code.claude.com/docs/en/plugins-reference)
 - `plugins` - [Create plugins](https://code.claude.com/docs/en/plugins)
 - `prompt-caching` - [How Claude Code uses prompt caching](https://code.claude.com/docs/en/prompt-caching)
