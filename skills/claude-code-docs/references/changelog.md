@@ -12,6 +12,10 @@ This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anth
 
 Run `claude --version` to check your installed version.
 
+### 2.1.190 (June 24, 2026)
+
+* Bug fixes and reliability improvements
+
 ### 2.1.187 (June 23, 2026)
 
 * Added `sandbox.credentials` setting to block sandboxed commands from reading credential files and secret environment variables
