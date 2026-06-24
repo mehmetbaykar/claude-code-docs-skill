@@ -531,8 +531,8 @@
       "title": "Development containers"
     },
     "discover-plugins.md": {
-      "hash": "dc9a6fc18d2cfe25f50b43912812db7df437ebe3afcf19aad126c00e0a1721ad",
-      "last_updated": "2026-06-24T17:08:12+00:00",
+      "hash": "4711354194a730281b2493ca90d0908c54e675e0229d1ebfa67ff1142efc23c9",
+      "last_updated": "2026-06-24T19:51:37+00:00",
       "original_url": "https://code.claude.com/docs/en/discover-plugins",
       "path": "/docs/en/discover-plugins",
       "source_url": "https://code.claude.com/docs/en/discover-plugins.md",
@@ -659,8 +659,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "ac03842cda4caac7a34ca81f1bb716cc19eac04348b84b86271ca646b95a5d55",
-      "last_updated": "2026-06-24T17:08:22+00:00",
+      "hash": "b4a94be24ec4c6fd63b4410ead01324b3a80199987081ee3c39d51e3a059c9c1",
+      "last_updated": "2026-06-24T19:51:48+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -995,8 +995,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "76ca8d6bc9288d746996bc3b18df7752de9bdc8acae79cd914d0b7f91eda2e5c",
-      "last_updated": "2026-06-24T17:08:44+00:00",
+      "hash": "2279248cd538c57934a2dfd28a63e5c56c194ba03a911f558ff79dd8926296b4",
+      "last_updated": "2026-06-24T19:52:17+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1225,7 +1225,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-24T17:09:03+00:00",
+  "last_updated": "2026-06-24T19:52:34+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
