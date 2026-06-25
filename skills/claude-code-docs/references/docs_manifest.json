@@ -483,8 +483,8 @@
       "title": "Data usage"
     },
     "debug-your-config.md": {
-      "hash": "70bef2ed8417e73467bc8b0869cd119047c1c6405ec3516e824492c23ea82179",
-      "last_updated": "2026-06-09T15:15:38+00:00",
+      "hash": "7e8516f206b65b54f10437a6aee2e87f9b28b3c7db1c853dc26e9c380fd1af2e",
+      "last_updated": "2026-06-25T17:14:14+00:00",
       "original_url": "https://code.claude.com/docs/en/debug-your-config",
       "path": "/docs/en/debug-your-config",
       "source_url": "https://code.claude.com/docs/en/debug-your-config.md",
@@ -635,8 +635,8 @@
       "title": "Run Claude Code programmatically"
     },
     "hooks-guide.md": {
-      "hash": "b42ecc9c4a29fc46a87591f59c4f6f4502c22d18e6d0a1c69f6b332830500e87",
-      "last_updated": "2026-06-09T20:13:16+00:00",
+      "hash": "8a11ae49eb2995286c6ada22ed28b1acd7fadec04b64540576be16ffbec33526",
+      "last_updated": "2026-06-25T17:14:33+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks-guide",
       "path": "/docs/en/hooks-guide",
       "source_url": "https://code.claude.com/docs/en/hooks-guide.md",
@@ -739,8 +739,8 @@
       "title": "Control MCP server access for your organization"
     },
     "mcp-quickstart.md": {
-      "hash": "ad27e603309e36e835f571f553c1013e1410770a88f84f7b9a0e7c9c6b9105f7",
-      "last_updated": "2026-06-18T20:30:46+00:00",
+      "hash": "633ec1ca72d232724cd0fc792ce7f09a451bd2f8f9453323fb96d33c9eb1cad8",
+      "last_updated": "2026-06-25T17:14:43+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp-quickstart",
       "path": "/docs/en/mcp-quickstart",
       "source_url": "https://code.claude.com/docs/en/mcp-quickstart.md",
@@ -915,8 +915,8 @@
       "title": "Continue local sessions from any device with Remote Control"
     },
     "routines.md": {
-      "hash": "afb1e9cf4f575c0a09db258c5c91f7177b763baa373ea5c5f8d0dae1f3412ea1",
-      "last_updated": "2026-05-19T22:19:18+00:00",
+      "hash": "d1eee3639b1a58d8f533321aa3cb4051567c82a51d784abe0133d7c057345565",
+      "last_updated": "2026-06-25T17:14:59+00:00",
       "original_url": "https://code.claude.com/docs/en/routines",
       "path": "/docs/en/routines",
       "source_url": "https://code.claude.com/docs/en/routines.md",
@@ -1099,8 +1099,8 @@
       "title": "Use Claude Code in VS Code"
     },
     "web-quickstart.md": {
-      "hash": "aaa3596f215aa62fd618bc200f96a4bf5970b826b0344ee9d3b117029e6d2249",
-      "last_updated": "2026-06-10T04:05:00+00:00",
+      "hash": "68286f39f2431011385ace2b9cf1f37ebcefaf5a68fae8a632657fa4b60c1020",
+      "last_updated": "2026-06-25T17:15:17+00:00",
       "original_url": "https://code.claude.com/docs/en/web-quickstart",
       "path": "/docs/en/web-quickstart",
       "source_url": "https://code.claude.com/docs/en/web-quickstart.md",
@@ -1249,7 +1249,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-25T09:30:16+00:00",
+  "last_updated": "2026-06-25T17:15:32+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
