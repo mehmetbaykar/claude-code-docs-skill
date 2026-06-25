@@ -787,8 +787,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "9b99e2f2cf35e5e2d2d252bed423a3d24a59b30bffb6c5e9e668e00c21b329c7",
-      "last_updated": "2026-06-25T20:06:30+00:00",
+      "hash": "3f66654db0923b895b362aec8fe4f194d9a0c1fc6697380b80f8243f611d6c46",
+      "last_updated": "2026-06-25T22:24:11+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -1257,7 +1257,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-25T20:07:14+00:00",
+  "last_updated": "2026-06-25T22:24:59+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
