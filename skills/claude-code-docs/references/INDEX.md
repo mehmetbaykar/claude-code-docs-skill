@@ -75,6 +75,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `env-vars` - [Environment variables](https://code.claude.com/docs/en/env-vars)
 - `errors` - [Error reference](https://code.claude.com/docs/en/errors)
 - `fast-mode` - [Speed up responses with fast mode](https://code.claude.com/docs/en/fast-mode)
+- `feature-availability` - [Feature availability](https://code.claude.com/docs/en/feature-availability)
 - `features-overview` - [Extend Claude Code](https://code.claude.com/docs/en/features-overview)
 - `fullscreen` - [Fullscreen rendering](https://code.claude.com/docs/en/fullscreen)
 - `github-actions` - [Claude Code GitHub Actions](https://code.claude.com/docs/en/github-actions)
