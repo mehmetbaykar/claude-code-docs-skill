@@ -25,8 +25,6 @@ What to know:
 * Available to all Claude Code users on subscription plans (Pro/Max/Team/Enterprise) and Claude Console.
 * For Claude Code users on subscription plans (Pro/Max/Team/Enterprise), fast mode is available via usage credits only and not included in the subscription rate limits.
 
-This page covers how to [toggle fast mode](#toggle-fast-mode), its [cost tradeoff](#understand-the-cost-tradeoff), [when to use it](#decide-when-to-use-fast-mode), [requirements](#requirements), [per-session opt-in](#require-per-session-opt-in), and [rate limit behavior](#handle-rate-limits).
-
 ## Toggle fast mode
 
 Toggle fast mode in either of these ways:
