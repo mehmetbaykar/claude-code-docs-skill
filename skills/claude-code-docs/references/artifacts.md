@@ -17,15 +17,6 @@ An artifact is a live, interactive web page that Claude Code publishes from your
 
 ![](https://mintcdn.com/claude-code/kaHIYYMIYMYPxQg9/images/artifacts-viewer.png?fit=max&auto=format&n=kaHIYYMIYMYPxQg9&q=85&s=dbfd671cdb0d15f49f808b9e89778fe1)
 
-This page covers how to:
-
-* Decide [when to use an artifact](#when-to-use-an-artifact)
-* [Create](#create-an-artifact), [update](#update-an-artifact), and [share](#share-an-artifact) an artifact
-* Apply [prompting patterns](#what-you-can-build) for richer pages
-* [Apply your own design system](#improve-the-visual-design) so artifacts match your product's branding
-* Understand the [page constraints](#page-constraints) and [availability requirements](#availability)
-* [Disable](#disable-artifacts) or [manage artifacts for your organization](#manage-artifacts-for-your-organization)
-
 ## When to use an artifact
 
 Use an artifact when terminal text is the wrong medium for what Claude produced: output that is easier to look at and interact with than to read line by line. Claude builds the page from anything your session can reach, including your codebase and data it pulls through your [connected tools](/en/mcp), so the page can show things that would take paragraphs to describe. For example, ask Claude to:
