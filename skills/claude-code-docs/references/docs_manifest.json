@@ -539,8 +539,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "820746c1b2e8ce2c6251e554be67412231822aed2c5f7e11fc48e422100e39a5",
-      "last_updated": "2026-06-25T09:29:03+00:00",
+      "hash": "c676cafc3bb556668ea0c31ec1980388bec1c742a5d9906ddce165b01f3d5d26",
+      "last_updated": "2026-06-26T19:54:34+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -555,8 +555,8 @@
       "title": "Error reference"
     },
     "fast-mode.md": {
-      "hash": "06330d544ead0d2eb2a8d6ba7382fe3c963e019a9d2dae44e25d3790403a7ac7",
-      "last_updated": "2026-06-26T04:03:03+00:00",
+      "hash": "8f7ee99123b8891cec6ea8c179f18a2252020e93daee2668884f4eb500ffdce2",
+      "last_updated": "2026-06-26T19:54:35+00:00",
       "original_url": "https://code.claude.com/docs/en/fast-mode",
       "path": "/docs/en/fast-mode",
       "source_url": "https://code.claude.com/docs/en/fast-mode.md",
@@ -579,8 +579,8 @@
       "title": "Extend Claude Code"
     },
     "fullscreen.md": {
-      "hash": "809a138ca03ac46c202262bf7cf5d2be3688afaf303afa5fd5c8bff7fb5266e5",
-      "last_updated": "2026-06-24T17:08:15+00:00",
+      "hash": "5640e3dd7acfa71142051a78ef39b2b30d73cbedd988e0884c4f28c012fb4701",
+      "last_updated": "2026-06-26T19:54:37+00:00",
       "original_url": "https://code.claude.com/docs/en/fullscreen",
       "path": "/docs/en/fullscreen",
       "source_url": "https://code.claude.com/docs/en/fullscreen.md",
@@ -979,8 +979,8 @@
       "title": "Configure server-managed settings"
     },
     "sessions.md": {
-      "hash": "78226e914e01a1c3a06d452cafa717bc3c9cb5c9a59dcaaed01aac9d9de2e231",
-      "last_updated": "2026-06-12T04:20:43+00:00",
+      "hash": "2b22ee2cbb61acc290313a02f872d012a791b40be9bb0dc514731a25a9d6b1e8",
+      "last_updated": "2026-06-26T19:55:13+00:00",
       "original_url": "https://code.claude.com/docs/en/sessions",
       "path": "/docs/en/sessions",
       "source_url": "https://code.claude.com/docs/en/sessions.md",
@@ -1257,7 +1257,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-26T09:35:34+00:00",
+  "last_updated": "2026-06-26T19:55:36+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
