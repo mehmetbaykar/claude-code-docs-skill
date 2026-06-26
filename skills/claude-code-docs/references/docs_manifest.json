@@ -1059,8 +1059,8 @@
       "title": "Tools reference"
     },
     "troubleshoot-install.md": {
-      "hash": "4e79116213ba57a0e409dee29a2ffcf05eb8a0dcb8b549c3966c3b3237ec2c31",
-      "last_updated": "2026-06-15T23:05:41+00:00",
+      "hash": "2cac9a41cdf9243fa346ef788e4ffdec6bc1fdd389dd117cff8326e26b6e70b6",
+      "last_updated": "2026-06-26T09:35:11+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshoot-install",
       "path": "/docs/en/troubleshoot-install",
       "source_url": "https://code.claude.com/docs/en/troubleshoot-install.md",
@@ -1257,7 +1257,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-26T04:04:09+00:00",
+  "last_updated": "2026-06-26T09:35:34+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
