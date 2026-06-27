@@ -10,6 +10,18 @@ path: /docs/en/whats-new
 
 The weekly dev digest highlights the features most likely to change how you work. Each entry includes runnable code, a short demo, and a link to the full docs. For every bug fix and minor improvement, see the [changelog](/en/changelog).
 
+  **`claude mcp login`**: authenticate a configured MCP server from your shell instead of the interactive `/mcp` menu, and clear its stored credentials later with `claude mcp logout`.
+
+Also this week: **shell mode responds to command output** (`! npm test` gets an explanation without a second prompt); **`/rewind`** can resume a conversation from before `/clear` was run; and **background subagents** now surface permission prompts in the main session instead of auto-denying.
+
+[Read the Week 26 digest →](/en/whats-new/2026-w26)
+
+  **Artifacts**: turn a session's output into a live, shareable page on claude.ai that updates in place as the session works, now in beta on Team and Enterprise plans.
+
+Also this week: **deny and ask rules match tool parameters** with `Tool(param:value)`, for example `Agent(model:opus)`; **`/config key=value`** sets any setting from the prompt, in `-p` mode, and from Remote Control; and **auto mode blocks destructive git commands** when you didn't ask to discard local work.
+
+[Read the Week 25 digest →](/en/whats-new/2026-w25)
+
   **`/cd`**: move the current session to a new working directory mid-conversation without rebuilding the prompt cache.
 
 Also this week: **sub-agents can spawn their own sub-agents** (background chains are capped at five levels deep); **`--safe-mode`** starts Claude Code with all customizations disabled for troubleshooting; and **`fallbackModel`** configures up to three fallback models tried in order.
