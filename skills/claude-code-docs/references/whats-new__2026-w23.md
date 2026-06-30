@@ -58,7 +58,9 @@ Two managed settings, `requiredMinimumVersion` and `requiredMaximumVersion`, let
 
 Add a floor to your managed settings so older clients refuse to start:
 ```json managed-settings.json
-  "requiredMinimumVersion": "2.1.163"
+  {
+    "requiredMinimumVersion": "2.1.163"
+  }
 ```
 
 [Decide what to enforce](https://code.claude.com/docs/en/admin-setup#decide-what-to-enforce)
