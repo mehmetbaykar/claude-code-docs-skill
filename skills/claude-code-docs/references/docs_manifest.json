@@ -4,10 +4,10 @@
     "failed_pages": [],
     "fetch_tool_version": "1.0",
     "pages_failed": 0,
-    "pages_fetched_successfully": 162,
+    "pages_fetched_successfully": 163,
     "pages_skipped": 0,
     "raw_fallback_pages": 0,
-    "total_pages_discovered": 162
+    "total_pages_discovered": 163
   },
   "files": {
     "admin-setup.md": {
@@ -538,9 +538,17 @@
       "source_url": "https://code.claude.com/docs/en/deep-links.md",
       "title": "Launch sessions from links"
     },
+    "desktop-linux.md": {
+      "hash": "2fc18087244b6e415a21d58f4c8f6dd3deaa0c3b50fa6622751d4c7706873dbf",
+      "last_updated": "2026-06-30T17:08:39+00:00",
+      "original_url": "https://code.claude.com/docs/en/desktop-linux",
+      "path": "/docs/en/desktop-linux",
+      "source_url": "https://code.claude.com/docs/en/desktop-linux.md",
+      "title": "Claude Desktop on Linux (beta)"
+    },
     "desktop-quickstart.md": {
-      "hash": "cbd95d98ba1315a73f9f1a5106dc49112334ef9bb3af173e21fd9bec129458c8",
-      "last_updated": "2026-06-09T20:12:14+00:00",
+      "hash": "922dfb07810a5a714be8345ea8bf2ff83d4c518fcff6a045472e35c4572bd4b3",
+      "last_updated": "2026-06-30T17:08:40+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-quickstart",
       "path": "/docs/en/desktop-quickstart",
       "source_url": "https://code.claude.com/docs/en/desktop-quickstart.md",
@@ -555,8 +563,8 @@
       "title": "Schedule recurring tasks in Claude Code Desktop"
     },
     "desktop.md": {
-      "hash": "43917cd9e39f38fd71a935bc9f963cfa2bf2270df89252d96caa54eb97381a03",
-      "last_updated": "2026-06-24T17:08:09+00:00",
+      "hash": "b96976ecf56813414d5e4575c563912d9bf3ab2085d7ea671855be505888db0f",
+      "last_updated": "2026-06-30T17:08:38+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -1043,8 +1051,8 @@
       "title": "Claude Code settings"
     },
     "setup.md": {
-      "hash": "3afbf9c3961f1684bdeeddbc27437621eeb1e32a96c6beb09c183615b02de01f",
-      "last_updated": "2026-06-25T20:06:49+00:00",
+      "hash": "7474830818c497452a81f8c3b005fd967896959b8ceb168dbaaf9f6c51445dd1",
+      "last_updated": "2026-06-30T17:09:30+00:00",
       "original_url": "https://code.claude.com/docs/en/setup",
       "path": "/docs/en/setup",
       "source_url": "https://code.claude.com/docs/en/setup.md",
@@ -1107,8 +1115,8 @@
       "title": "Tools reference"
     },
     "troubleshoot-install.md": {
-      "hash": "2cac9a41cdf9243fa346ef788e4ffdec6bc1fdd389dd117cff8326e26b6e70b6",
-      "last_updated": "2026-06-26T09:35:11+00:00",
+      "hash": "2cefae3ea1227d9416710d73c6481d05539ce0c2f12277001cf4dc8518af2d2a",
+      "last_updated": "2026-06-30T17:09:35+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshoot-install",
       "path": "/docs/en/troubleshoot-install",
       "source_url": "https://code.claude.com/docs/en/troubleshoot-install.md",
@@ -1321,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-30T09:45:49+00:00",
+  "last_updated": "2026-06-30T17:09:54+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",

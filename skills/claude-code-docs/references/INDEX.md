@@ -72,6 +72,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `data-usage` - [Data usage](https://code.claude.com/docs/en/data-usage)
 - `debug-your-config` - [Debug your configuration](https://code.claude.com/docs/en/debug-your-config)
 - `deep-links` - [Launch sessions from links](https://code.claude.com/docs/en/deep-links)
+- `desktop-linux` - [Claude Desktop on Linux (beta)](https://code.claude.com/docs/en/desktop-linux)
 - `desktop-quickstart` - [Get started with the desktop app](https://code.claude.com/docs/en/desktop-quickstart)
 - `desktop-scheduled-tasks` - [Schedule recurring tasks in Claude Code Desktop](https://code.claude.com/docs/en/desktop-scheduled-tasks)
 - `desktop` - [Desktop application](https://code.claude.com/docs/en/desktop)
