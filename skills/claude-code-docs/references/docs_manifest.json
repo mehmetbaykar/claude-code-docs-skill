@@ -123,8 +123,8 @@
       "title": "Agent SDK overview"
     },
     "agent-sdk__permissions.md": {
-      "hash": "d2b07214226cfaf5433e3263095eb9a9be84e1609b250f30f59f198aab374518",
-      "last_updated": "2026-06-10T04:03:34+00:00",
+      "hash": "2f276cfacd5882627be4bdcf63aa93c8118314bdb380c5fd12350e9447357ca6",
+      "last_updated": "2026-06-30T22:17:29+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/permissions",
       "path": "/docs/en/agent-sdk/permissions",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/permissions.md",
@@ -139,8 +139,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "0f6af353093a45eedfc1ce4499672a449c940dbc724a12fc018a8c8c5596e82b",
-      "last_updated": "2026-06-30T20:03:14+00:00",
+      "hash": "e7346477d913e10062f5b68921c7a73bf953da21c916d16358446da4b8d0ad85",
+      "last_updated": "2026-06-30T22:17:40+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -259,8 +259,8 @@
       "title": "Agent SDK reference - TypeScript"
     },
     "agent-sdk__user-input.md": {
-      "hash": "0cbc9e7928541f4bc6ffb84641a744c8fc9ac12a55be9810a26629e9e4a420dc",
-      "last_updated": "2026-06-09T15:15:21+00:00",
+      "hash": "31a7e3ae00e4f30351d3aaed7545ef3afdbcd283a53a3cf1e48668bee583bd64",
+      "last_updated": "2026-06-30T22:18:02+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/user-input",
       "path": "/docs/en/agent-sdk/user-input",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/user-input.md",
@@ -707,8 +707,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "3ac38af17fb5a8f7ac6eb5ae92dc925d8c9f82d617467f9f3005a6c5e76935d5",
-      "last_updated": "2026-06-30T20:04:10+00:00",
+      "hash": "d382b9931cae4c94fb476d46ed4cce64109e5c36a7b620068dc74a0152eca613",
+      "last_updated": "2026-06-30T22:18:34+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -1027,8 +1027,8 @@
       "title": "Security"
     },
     "server-managed-settings.md": {
-      "hash": "49ef6a31f9fb857b5c9837ec4a34aa138f674d2e35e1e11faad87c2d5219f117",
-      "last_updated": "2026-06-29T22:12:20+00:00",
+      "hash": "8507b37dd027696ef35d397aab402418ebaba266aa3172afb5da1c69d73f955a",
+      "last_updated": "2026-06-30T22:18:59+00:00",
       "original_url": "https://code.claude.com/docs/en/server-managed-settings",
       "path": "/docs/en/server-managed-settings",
       "source_url": "https://code.claude.com/docs/en/server-managed-settings.md",
@@ -1043,8 +1043,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "c340a2aeec327d8efd2f6469e5e86de5e08689b0e2dacf6ed9972d965614bc52",
-      "last_updated": "2026-06-30T20:04:42+00:00",
+      "hash": "8d88af08dafbc914b47fadf9db9e37a9e45d093c94ee7f6203f24cc7cee3035b",
+      "last_updated": "2026-06-30T22:19:01+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-30T20:05:07+00:00",
+  "last_updated": "2026-06-30T22:19:31+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
