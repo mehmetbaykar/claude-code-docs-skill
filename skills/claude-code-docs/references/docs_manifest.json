@@ -267,16 +267,16 @@
       "title": "Handle approvals and user input"
     },
     "agent-teams.md": {
-      "hash": "523b979f44e2782df29f6a6c984f461d495c63d05359f440346e8cc12eb7973f",
-      "last_updated": "2026-06-30T09:44:19+00:00",
+      "hash": "b6992b3dc90345a5f2e9807b33df3158aeca95e0de49bee6ff842de1291b855d",
+      "last_updated": "2026-07-01T04:13:15+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-teams",
       "path": "/docs/en/agent-teams",
       "source_url": "https://code.claude.com/docs/en/agent-teams.md",
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "4c3811284fcedfd75e015eba0c9360c6897e1d9b006457a6fc7dbfdf3d40a744",
-      "last_updated": "2026-06-30T09:44:19+00:00",
+      "hash": "43b650c5a50ea556d588c034e6a5ba0ff5d50cb7968b059f2e059a23fd6f42d6",
+      "last_updated": "2026-07-01T04:13:16+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "source_url": "https://code.claude.com/docs/en/agent-view.md",
@@ -707,8 +707,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "d382b9931cae4c94fb476d46ed4cce64109e5c36a7b620068dc74a0152eca613",
-      "last_updated": "2026-06-30T22:18:34+00:00",
+      "hash": "a06a52f9f595f7d7427d0db62b2ff7506f5a93ccc3864699ed8a8eaed30e152f",
+      "last_updated": "2026-07-01T04:13:52+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-06-30T22:19:31+00:00",
+  "last_updated": "2026-07-01T04:14:51+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
