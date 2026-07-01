@@ -19,16 +19,16 @@
       "title": "Set up Claude Code for your organization"
     },
     "advisor.md": {
-      "hash": "6506837cf1bc1438a2c8002433c9963a9745ff4f6fd6fcc860d939153ba971d9",
-      "last_updated": "2026-06-30T20:03:05+00:00",
+      "hash": "2f877b7ba7640d1a11c9adb318352f08e77d867d7cf2900c96928d7a4b33e105",
+      "last_updated": "2026-07-01T20:00:44+00:00",
       "original_url": "https://code.claude.com/docs/en/advisor",
       "path": "/docs/en/advisor",
       "source_url": "https://code.claude.com/docs/en/advisor.md",
       "title": "Escalate hard decisions with the advisor tool"
     },
     "agent-sdk__agent-loop.md": {
-      "hash": "cd54c1aac07dab8ff9b017275c6c9b35f191909c089e0690312a834e0b77ff31",
-      "last_updated": "2026-06-30T20:03:06+00:00",
+      "hash": "3d8585de184c529c08e5a01c74217a7d38317c28ec72359bcdb7c49d2bbbbfc3",
+      "last_updated": "2026-07-01T20:00:44+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
       "path": "/docs/en/agent-sdk/agent-loop",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop.md",
@@ -251,8 +251,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "ce4afaa318df48f54471635e9cdaf35a87e6608fc80f894d3657930b05b6bbfa",
-      "last_updated": "2026-06-30T09:44:17+00:00",
+      "hash": "2f91860621f21256dad7edfdce3cbcd0a4f4b2f2520b29ec538a97682205ea6f",
+      "last_updated": "2026-07-01T20:01:01+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/typescript.md",
@@ -587,8 +587,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "dd4007d949b0cb740f0da87217b85b8e6918fed8514ee1cabea76ace81a89f29",
-      "last_updated": "2026-07-01T09:55:28+00:00",
+      "hash": "beb9c5d0e6208475d2e4e323b94d726f183527000181e32fabc83dee875adcfd",
+      "last_updated": "2026-07-01T20:01:30+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -771,8 +771,8 @@
       "title": "Connect Claude Code to an LLM gateway"
     },
     "llm-gateway-protocol.md": {
-      "hash": "f2b8f6f5197a41ffe967cd05b67e5cc7c0fe0cba1572e3ae1111e50655608e24",
-      "last_updated": "2026-06-29T22:12:00+00:00",
+      "hash": "21170ea088a8e49b5d1e961cf4ba93126a8f3d0195b2444dfeeb697b8ac75ad6",
+      "last_updated": "2026-07-01T20:01:47+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-protocol",
       "path": "/docs/en/llm-gateway-protocol",
       "source_url": "https://code.claude.com/docs/en/llm-gateway-protocol.md",
@@ -843,8 +843,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "54124fc9b959f2fcca23f6445a154780828cca4061ffba8355f234b611fd462e",
-      "last_updated": "2026-06-30T20:04:25+00:00",
+      "hash": "5fb79a3802cbb7ae8e75093b56cad36f4b41414b0d03df8f29685e2a1c3e6362",
+      "last_updated": "2026-07-01T20:01:52+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -1043,8 +1043,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "8d88af08dafbc914b47fadf9db9e37a9e45d093c94ee7f6203f24cc7cee3035b",
-      "last_updated": "2026-06-30T22:19:01+00:00",
+      "hash": "0ba628d21729cb272f00469dfb36e0d27c2170f39a5ff3738227779ceada8629",
+      "last_updated": "2026-07-01T20:02:07+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1107,8 +1107,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "1e036aaa253a482a531cd4f1fbb47ab85bfd4c862c90183fe1cac7c8862b2eeb",
-      "last_updated": "2026-06-30T09:45:31+00:00",
+      "hash": "8cecc5589c53ff091465194a5a078ec565a1f8a06f39008619212e4f1b34451b",
+      "last_updated": "2026-07-01T20:02:12+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1155,8 +1155,8 @@
       "title": "Voice dictation"
     },
     "vs-code.md": {
-      "hash": "a3684b2fd8fc14cb5102d052f251183f6566cc3fad8f5fc7392c6212f519b92e",
-      "last_updated": "2026-06-12T22:28:06+00:00",
+      "hash": "165ac0997b9353ee0e218525b25051011157dd80e26e306a603c5d48cc5846a2",
+      "last_updated": "2026-07-01T20:02:18+00:00",
       "original_url": "https://code.claude.com/docs/en/vs-code",
       "path": "/docs/en/vs-code",
       "source_url": "https://code.claude.com/docs/en/vs-code.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-01T09:56:30+00:00",
+  "last_updated": "2026-07-01T20:02:29+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
