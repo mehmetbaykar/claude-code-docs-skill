@@ -587,8 +587,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "d488959ea9ac684ea2f5d042dce7322121e1dcc113b1748bdafad30ba9709c02",
-      "last_updated": "2026-06-30T20:03:58+00:00",
+      "hash": "dd4007d949b0cb740f0da87217b85b8e6918fed8514ee1cabea76ace81a89f29",
+      "last_updated": "2026-07-01T09:55:28+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -1059,8 +1059,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "932cef1acf834c4e9104fe70e740981d7cb1fb59bb7185ca97d7e8254be4fdbe",
-      "last_updated": "2026-06-30T09:45:27+00:00",
+      "hash": "e1360ad49983538dd765ae86b164602a329f26b5ac5be795852d33b31af93d67",
+      "last_updated": "2026-07-01T09:56:08+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1115,8 +1115,8 @@
       "title": "Tools reference"
     },
     "troubleshoot-install.md": {
-      "hash": "2cefae3ea1227d9416710d73c6481d05539ce0c2f12277001cf4dc8518af2d2a",
-      "last_updated": "2026-06-30T17:09:35+00:00",
+      "hash": "a19a1a4309420e981596e756dacc70d23eeb4b21d79c9ad29751c25f062caa38",
+      "last_updated": "2026-07-01T09:56:12+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshoot-install",
       "path": "/docs/en/troubleshoot-install",
       "source_url": "https://code.claude.com/docs/en/troubleshoot-install.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-01T04:14:51+00:00",
+  "last_updated": "2026-07-01T09:56:30+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
