@@ -1643,12 +1643,14 @@ type SlashCommand = {
 ```typescript
 type ModelInfo = {
   value: string;
+  resolvedModel?: string;
   displayName: string;
   description: string;
   supportsEffort?: boolean;
   supportedEffortLevels?: ("low" | "medium" | "high" | "xhigh" | "max")[];
   supportsAdaptiveThinking?: boolean;
   supportsFastMode?: boolean;
+  supportsAutoMode?: boolean;
 };
 ```
 ```typescript
