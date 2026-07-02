@@ -53,10 +53,12 @@ If you don't see the `/plugin` command, update Claude Code to the latest version
 
 **Create the plugin directory**
 
-Every plugin lives in its own directory containing your skills, agents, or hooks, optionally alongside a `.claude-plugin/plugin.json` manifest. Create one now:
+Every plugin lives in its own directory containing your skills, agents, or hooks, optionally alongside a `.claude-plugin/plugin.json` manifest. The location doesn't matter for this quickstart because you'll point Claude Code at the directory with `--plugin-dir` in the test step. Create it anywhere convenient, such as a scratch folder or a projects directory:
 ```bash
     mkdir my-first-plugin
 ```
+
+The remaining steps run from the parent directory and reference paths like `my-first-plugin/...` relative to it.
 
 
 
@@ -377,7 +379,7 @@ If you already have skills or hooks in your `.claude/` directory, you can conver
 
 **Create the plugin structure**
 
-Create a new plugin directory:
+Create a new plugin directory in your project root, alongside the existing `.claude/` folder, so the relative `cp` paths in the next step resolve:
 ```bash
     mkdir -p my-plugin/.claude-plugin
 ```
