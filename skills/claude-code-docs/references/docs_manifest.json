@@ -35,8 +35,8 @@
       "title": "How the agent loop works"
     },
     "agent-sdk__claude-code-features.md": {
-      "hash": "536c9ae2ba1de71f0bb87580202b22bf58ecaa6a0fa53ef22ebbb95f015c9087",
-      "last_updated": "2026-06-25T03:55:22+00:00",
+      "hash": "adf840a67faeeb91443d6903c23f97a306fbc6945fccd171295a88a96c84e197",
+      "last_updated": "2026-07-02T19:35:08+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/claude-code-features",
       "path": "/docs/en/agent-sdk/claude-code-features",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/claude-code-features.md",
@@ -307,8 +307,8 @@
       "title": "Track team usage with analytics"
     },
     "artifacts.md": {
-      "hash": "53255261345f4a6d27543c6485dd82d86943cd08edc9ac2aa11ab76c7a9b8355",
-      "last_updated": "2026-07-02T03:53:50+00:00",
+      "hash": "6aa33f02a4cbb2246d94e487af5acf89a439ee29ec0e59b1d0fed97ff606f1cb",
+      "last_updated": "2026-07-02T19:35:36+00:00",
       "original_url": "https://code.claude.com/docs/en/artifacts",
       "path": "/docs/en/artifacts",
       "source_url": "https://code.claude.com/docs/en/artifacts.md",
@@ -539,8 +539,8 @@
       "title": "Launch sessions from links"
     },
     "desktop-linux.md": {
-      "hash": "2fc18087244b6e415a21d58f4c8f6dd3deaa0c3b50fa6622751d4c7706873dbf",
-      "last_updated": "2026-06-30T17:08:39+00:00",
+      "hash": "381438e44e8e1b82d7e962cad54a83c964cc1f4630cf7f3f7fcef190ca31a020",
+      "last_updated": "2026-07-02T19:35:53+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-linux",
       "path": "/docs/en/desktop-linux",
       "source_url": "https://code.claude.com/docs/en/desktop-linux.md",
@@ -611,8 +611,8 @@
       "title": "Speed up responses with fast mode"
     },
     "feature-availability.md": {
-      "hash": "495124e7cbda1befe12f9af948769f35b2713d4f9024860b3bc9c4c909351c0d",
-      "last_updated": "2026-06-25T20:06:07+00:00",
+      "hash": "08c93fb1372addf401b7318d475dc237ae4efab6fe2b44c27fd804bf015f874c",
+      "last_updated": "2026-07-02T19:36:00+00:00",
       "original_url": "https://code.claude.com/docs/en/feature-availability",
       "path": "/docs/en/feature-availability",
       "source_url": "https://code.claude.com/docs/en/feature-availability.md",
@@ -723,8 +723,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "4ae9aeb7d34fadcfa06cbb350401d18ece18e52dc6bf2e3822f6a819cdb85170",
-      "last_updated": "2026-06-30T09:45:01+00:00",
+      "hash": "27b1499d48e34c24153e823953db8c207bb40d58ffb43b30abf076aa3c89d0ac",
+      "last_updated": "2026-07-02T19:36:10+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -739,8 +739,8 @@
       "title": "JetBrains IDEs"
     },
     "keybindings.md": {
-      "hash": "fa3134f45fd526e932d130338fee92234603e53e769517cfc24bf80d3c0a6a19",
-      "last_updated": "2026-06-19T22:08:40+00:00",
+      "hash": "b0f28c66c275157b9845769eb02e69bec97a5205a3d121ce985251e33c7864c9",
+      "last_updated": "2026-07-02T19:36:12+00:00",
       "original_url": "https://code.claude.com/docs/en/keybindings",
       "path": "/docs/en/keybindings",
       "source_url": "https://code.claude.com/docs/en/keybindings.md",
@@ -939,8 +939,8 @@
       "title": "Plugins reference"
     },
     "plugins.md": {
-      "hash": "38c1f72fab6181ee59c62af72d30f89ccb42d9608a6d81796f1a348bd1383410",
-      "last_updated": "2026-06-11T04:18:14+00:00",
+      "hash": "8c07165c54a6165c69988bf44c80730aa3be29d8d3630a5f154f7e138dcc8bae",
+      "last_updated": "2026-07-02T19:36:27+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins",
       "path": "/docs/en/plugins",
       "source_url": "https://code.claude.com/docs/en/plugins.md",
@@ -1107,8 +1107,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "8cecc5589c53ff091465194a5a078ec565a1f8a06f39008619212e4f1b34451b",
-      "last_updated": "2026-07-01T20:02:12+00:00",
+      "hash": "62a01b1fae3ff5f40fcbcfb6791b9728606251f51e96324c39a1a4bdd5769556",
+      "last_updated": "2026-07-02T19:36:45+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-02T03:55:35+00:00",
+  "last_updated": "2026-07-02T19:37:03+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
