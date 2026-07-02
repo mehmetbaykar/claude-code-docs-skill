@@ -307,8 +307,8 @@
       "title": "Track team usage with analytics"
     },
     "artifacts.md": {
-      "hash": "878b451de78040f6eb893b3460b29ed02bdf447d7c81b79ccf4be9234b39111b",
-      "last_updated": "2026-06-26T22:17:17+00:00",
+      "hash": "53255261345f4a6d27543c6485dd82d86943cd08edc9ac2aa11ab76c7a9b8355",
+      "last_updated": "2026-07-02T03:53:50+00:00",
       "original_url": "https://code.claude.com/docs/en/artifacts",
       "path": "/docs/en/artifacts",
       "source_url": "https://code.claude.com/docs/en/artifacts.md",
@@ -347,8 +347,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "385db353a33b70e6ae1961ae33e75a65ae38c52bc9cd3a9f29e2d9e8b932d5db",
-      "last_updated": "2026-06-30T20:03:34+00:00",
+      "hash": "81b5a2dd39f2b15f020273dc4311e34e41289b41554a346790b22ac7c9670090",
+      "last_updated": "2026-07-02T03:53:56+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -595,8 +595,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "f45aa266562068b25b8642d3547451e037ed19a4757917af195d2305cbbe3224",
-      "last_updated": "2026-06-30T20:03:59+00:00",
+      "hash": "5b2d5f484f9940f1014b9b6bebbea6943a891272a5559317e2c21de53edd06a5",
+      "last_updated": "2026-07-02T03:54:24+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -835,8 +835,8 @@
       "title": "Claude Code on Microsoft Foundry"
     },
     "model-config.md": {
-      "hash": "122514fb9edf3aaec54f378a7a465c6c81c0554f4cda83ef9e1ac2ab25174f6b",
-      "last_updated": "2026-06-30T20:04:23+00:00",
+      "hash": "c8d962245ab649981d691c7893251935d6b38ac068f38139f2cb6e2148e20b4f",
+      "last_updated": "2026-07-02T03:54:48+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-01T20:02:29+00:00",
+  "last_updated": "2026-07-02T03:55:35+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
