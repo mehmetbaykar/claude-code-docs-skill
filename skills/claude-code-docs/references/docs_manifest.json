@@ -587,8 +587,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "72f7d678666a2310c497c5e10445def050991c8ad4e729ec41735a4f53becb8f",
-      "last_updated": "2026-07-03T03:36:13+00:00",
+      "hash": "a67d98e2bacec0f6b89a8d18d87418b985007e02c446b39f07acdac4effc0679",
+      "last_updated": "2026-07-03T16:28:30+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -771,8 +771,8 @@
       "title": "Connect Claude Code to an LLM gateway"
     },
     "llm-gateway-protocol.md": {
-      "hash": "21170ea088a8e49b5d1e961cf4ba93126a8f3d0195b2444dfeeb697b8ac75ad6",
-      "last_updated": "2026-07-01T20:01:47+00:00",
+      "hash": "987101153ed3cdf348e5190adb8fc44aa3d32445be2081efae58e523955cb13b",
+      "last_updated": "2026-07-03T16:28:51+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-protocol",
       "path": "/docs/en/llm-gateway-protocol",
       "source_url": "https://code.claude.com/docs/en/llm-gateway-protocol.md",
@@ -883,8 +883,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "1857ebe9e671ce5a1c9d51cb5407d358776a43a36eca99f3b229b11406d4787f",
-      "last_updated": "2026-06-30T09:45:13+00:00",
+      "hash": "cd40f1c60171af0bee02e0dfcd970c452c83a7a2615dc871ff7fe54c6817f1e5",
+      "last_updated": "2026-07-03T16:28:59+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-03T09:25:35+00:00",
+  "last_updated": "2026-07-03T16:29:34+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
