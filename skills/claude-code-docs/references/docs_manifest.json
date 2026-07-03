@@ -251,8 +251,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "8e71bf0a2884992c33f09f6b7aaf9be82e35b7fee85fba18dc46c74839f28b79",
-      "last_updated": "2026-07-03T03:35:43+00:00",
+      "hash": "4b90957307cd49e04907b2286663f3236b1d607c99d4bfad1fd853fd423b9b67",
+      "last_updated": "2026-07-03T09:23:54+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/typescript.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-03T03:37:17+00:00",
+  "last_updated": "2026-07-03T09:25:35+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
