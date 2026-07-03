@@ -324,8 +324,9 @@ type CanUseTool = (
     decisionReason?: string;
     toolUseID: string;
     agentID?: string;
+    requestId: string;
   }
-) => Promise<PermissionResult>;
+) => Promise<PermissionResult | null>;
 ```
 ```typescript
 type PermissionResult =
