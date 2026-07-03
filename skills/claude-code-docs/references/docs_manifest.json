@@ -27,8 +27,8 @@
       "title": "Escalate hard decisions with the advisor tool"
     },
     "agent-sdk__agent-loop.md": {
-      "hash": "3d8585de184c529c08e5a01c74217a7d38317c28ec72359bcdb7c49d2bbbbfc3",
-      "last_updated": "2026-07-01T20:00:44+00:00",
+      "hash": "0351167d2bc11a29f0ebba09ea99b3e55703d227357a724c2710a7b8b9a9254d",
+      "last_updated": "2026-07-03T22:07:45+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
       "path": "/docs/en/agent-sdk/agent-loop",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop.md",
@@ -43,8 +43,8 @@
       "title": "Use Claude Code features in the SDK"
     },
     "agent-sdk__cost-tracking.md": {
-      "hash": "7e0cce90c309e41f90bad259d3f40d78e8385eabc7d736bc5e2a5810256b370c",
-      "last_updated": "2026-06-15T23:04:28+00:00",
+      "hash": "68c1919e16f0ff9573266fe1268ac8d0721ddc0c0b16c5eb221c876c079965e2",
+      "last_updated": "2026-07-03T22:07:47+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/cost-tracking",
       "path": "/docs/en/agent-sdk/cost-tracking",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/cost-tracking.md",
@@ -59,8 +59,8 @@
       "title": "Give Claude custom tools"
     },
     "agent-sdk__file-checkpointing.md": {
-      "hash": "439f9038f9e347b4beb3088167ecc9474e76434114e77aa8780dc667c1e56653",
-      "last_updated": "2026-07-03T03:35:24+00:00",
+      "hash": "09d121598d31780235bbadc7210e729bead2fe31d5298035512a34097402b2a8",
+      "last_updated": "2026-07-03T22:07:48+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/file-checkpointing",
       "path": "/docs/en/agent-sdk/file-checkpointing",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/file-checkpointing.md",
@@ -227,8 +227,8 @@
       "title": "Subagents in the SDK"
     },
     "agent-sdk__todo-tracking.md": {
-      "hash": "91ddf7f56e38644c2e3b7bc61d78ec50ef015c9e65c934fd2af6bc4d6245af47",
-      "last_updated": "2026-07-03T03:35:41+00:00",
+      "hash": "bbb2a8856fa4ae6adbac845372ef5278f714c99aa3fdc72783bbdba27f208116",
+      "last_updated": "2026-07-03T22:08:06+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/todo-tracking",
       "path": "/docs/en/agent-sdk/todo-tracking",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/todo-tracking.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-03T19:32:48+00:00",
+  "last_updated": "2026-07-03T22:09:52+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
