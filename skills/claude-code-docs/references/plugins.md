@@ -307,7 +307,7 @@ When a `--plugin-dir` plugin has the same name as an installed marketplace plugi
 As you make changes to your plugin, run `/reload-plugins` to pick up the updates without restarting. This reloads plugins, skills, agents, hooks, plugin MCP servers, and plugin LSP servers. Test your plugin components:
 
 * Try your skills with `/plugin-name:skill-name`
-* Check that agents appear in `/agents`
+* Check that agents appear in `/context` under Custom Agents, or @-mention one by its scoped name
 * Verify hooks work as expected
 
 You can load multiple plugins at once by specifying the flag multiple times:
@@ -441,7 +441,7 @@ Load your plugin to verify everything works:
     claude --plugin-dir ./my-plugin
 ```
 
-Test each component: run your commands, check agents appear in `/agents`, and verify hooks trigger correctly.
+Test each component: run your commands, check that agents appear in `/context`, and verify hooks trigger correctly.
 
 
 ### What changes when migrating
