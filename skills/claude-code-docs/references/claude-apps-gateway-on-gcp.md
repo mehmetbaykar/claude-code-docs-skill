@@ -6,7 +6,7 @@ path: /docs/en/claude-apps-gateway-on-gcp
 
 # Deploy Claude apps gateway on Google Cloud
 
-> A worked example of running Claude apps gateway on Google Cloud: Cloud Run or GKE, Cloud SQL for PostgreSQL, Secret Manager, and service-account auth to Agent Platform.
+> A worked example of running Claude apps gateway on Google Cloud: Cloud Run or GKE, Cloud SQL for PostgreSQL, Secret Manager, and service-account auth to Google Cloud's Agent Platform.
 
 This page walks through one way to run Claude apps gateway on Google Cloud. The configuration is a working example for customer-managed infrastructure rather than a supported production deployment; use it to see how the pieces fit together before adapting it to your own environment. For the platform-agnostic requirements, see the [deployment guide](/en/claude-apps-gateway-deploy).
 
@@ -74,7 +74,7 @@ The APIs you need depend on the deployment path:
 
 **Create the service account and grant IAM**
 
-The gateway runs as a dedicated service account with permission to call Agent Platform. It reaches Cloud SQL over the VPC with a password user, so no Cloud SQL IAM role is required:
+The gateway runs as a dedicated service account with permission to call Google Cloud's Agent Platform. It reaches Cloud SQL over the VPC with a password user, so no Cloud SQL IAM role is required:
 ```bash
     gcloud iam service-accounts create claude-gateway --display-name="Claude apps gateway"
     SA="claude-gateway@${PROJECT_ID}.iam.gserviceaccount.com"
@@ -138,7 +138,7 @@ The Cloud Run or GKE runtime must be on, or routed into, this VPC.
 
 **Write gateway.yaml**
 
-The `upstreams` block points at Agent Platform with `auth: {}`, so the gateway authenticates via Application Default Credentials from the runtime service account. See the [configuration reference](/en/claude-apps-gateway-config) for every field.
+The `upstreams` block points at Google Cloud's Agent Platform with `auth: {}`, so the gateway authenticates via Application Default Credentials from the runtime service account. See the [configuration reference](/en/claude-apps-gateway-config) for every field.
 
 Two `listen` fields depend on what fronts the gateway:
 
@@ -227,7 +227,7 @@ The command below deploys for production behind an internal load balancer.
           --no-invoker-iam-check
 ```
 
-Direct VPC egress, via `--network`, `--subnet`, and `--vpc-egress=private-ranges-only`, lets the service reach the Cloud SQL private IP directly. Public egress to the Agent Platform endpoints and `accounts.google.com` goes directly to the internet rather than through the VPC, so no Cloud NAT is needed.
+Direct VPC egress, via `--network`, `--subnet`, and `--vpc-egress=private-ranges-only`, lets the service reach the Cloud SQL private IP directly. Public egress to Google Cloud's Agent Platform endpoints and `accounts.google.com` goes directly to the internet rather than through the VPC, so no Cloud NAT is needed.
 
 The invoker IAM check must be open or disabled. The gateway runs its own OIDC and its clients carry no GCP token, so Cloud Run's invoker check has to admit unauthenticated requests. The gateway's OIDC sign-in authenticates the request once it reaches the container, with `allowed_email_domains` gating which domains may sign in.
 
@@ -317,7 +317,7 @@ For gateway boot and login errors, see the platform-agnostic [troubleshooting ta
 | `--no-invoker-iam-check` rejected with `invoker_iam_disabled is not currently available` | Blocked by `constraints/run.managed.requireInvokerIam`                                                                              | Use `--allow-unauthenticated`. If Domain Restricted Sharing via `constraints/iam.allowedPolicyMemberDomains` blocks that too, use the GKE track, which exposes the gateway at the network layer with no `allUsers` binding. |
 | `Container manifest type … must support amd64/linux` at deploy                           | Image was built on a non-amd64 host, or buildx emitted an OCI image index                                                           | Build with `--platform=linux/amd64 --provenance=false`                                                                                                                                                                      |
 | Gateway boot exits with a Postgres connection-timeout error on Cloud Run                 | Service isn't attached to the VPC, or Cloud SQL has no private IP on that VPC; the store stops waiting after 5 seconds              | Deploy with `--network` and `--subnet` for Direct VPC egress, and create the Cloud SQL instance with `--no-assign-ip` and `--network` pointing at the same VPC                                                              |
-| Agent Platform requests return `403 PERMISSION_DENIED`                                   | Runtime isn't using the `claude-gateway` service account, or the model isn't enabled in Model Garden for the project                | Set `--service-account` on Cloud Run or bind Workload Identity on GKE, and enable each Claude model in Model Garden for the target region                                                                                   |
+| Google Cloud's Agent Platform requests return `403 PERMISSION_DENIED`                    | Runtime isn't using the `claude-gateway` service account, or the model isn't enabled in Model Garden for the project                | Set `--service-account` on Cloud Run or bind Workload Identity on GKE, and enable each Claude model in Model Garden for the target region                                                                                   |
 | Streaming responses cut off after a fixed duration                                       | Front-end request timeout: the load balancer backend service behind GKE Ingress defaults to 30 seconds and Cloud Run to 300 seconds | Attach a BackendConfig with a raised `timeoutSec` on GKE, or deploy with `--timeout=3600` on Cloud Run                                                                                                                      |
 
 ## Next steps

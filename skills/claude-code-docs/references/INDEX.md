@@ -90,7 +90,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `gitlab-ci-cd` - [Claude Code GitLab CI/CD](https://code.claude.com/docs/en/gitlab-ci-cd)
 - `glossary` - [Glossary](https://code.claude.com/docs/en/glossary)
 - `goal` - [Keep Claude working toward a goal](https://code.claude.com/docs/en/goal)
-- `google-vertex-ai` - [Claude Code on Google Vertex AI](https://code.claude.com/docs/en/google-vertex-ai)
+- `google-vertex-ai` - [Claude Code on Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai)
 - `headless` - [Run Claude Code programmatically](https://code.claude.com/docs/en/headless)
 - `hooks-guide` - [Automate actions with hooks](https://code.claude.com/docs/en/hooks-guide)
 - `hooks` - [Hooks reference](https://code.claude.com/docs/en/hooks)

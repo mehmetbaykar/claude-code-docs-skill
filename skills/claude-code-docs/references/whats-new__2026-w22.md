@@ -96,8 +96,8 @@ New `MessageDisplay` hook event lets hooks transform or hide assistant message t
 Claude Code now switches to your configured `--fallback-model` for the rest of the session when the primary model is not found, instead of failing every request
 Plugins can declare `defaultEnabled: false` in `plugin.json` or a marketplace entry, so they install without turning on until you enable them
 Vim mode: `/` in NORMAL mode opens reverse history search, matching Bash and Zsh vi-mode
-Streaming tool execution is now always enabled, including with telemetry disabled and on Bedrock, Vertex, and Foundry
-`←←` to open the agents view now works on Bedrock, Vertex, Foundry, and with telemetry disabled
+Streaming tool execution is now always enabled, including with telemetry disabled and on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry
+`←←` to open the agents view now works on Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, and with telemetry disabled
 Claude in Chrome: pick which connected browser to use via `/chrome` → "Select browser…", or in-chat when a browser action runs with multiple connected
 `claude mcp list` and `claude mcp get` now show unapproved `.mcp.json` servers as pending approval instead of auto-approving and connecting when output is piped
 

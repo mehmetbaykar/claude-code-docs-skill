@@ -6,23 +6,23 @@ path: /docs/en/whats-new/2026-w23
 
 # Week 23 · June 1–5, 2026
 
-> Run auto mode on Bedrock, Vertex, and Foundry, prompt before writing files that can run code in acceptEdits mode, list installed plugins with /plugin list, and require an approved version range for managed deployments.
+> Run auto mode on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry, prompt before writing files that can run code in acceptEdits mode, list installed plugins with /plugin list, and require an approved version range for managed deployments.
 
 Releases [v2.1.158 → v2.1.165](https://code.claude.com/docs/en/changelog#2-1-158)
 4 features · June 1–5
 
-Auto mode on Bedrock, Vertex, and Foundry
+Auto mode on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry
 v2.1.158
 
 
-Auto mode is now available on Bedrock, Vertex, and Foundry for Opus 4.7 and Opus 4.8, replacing permission prompts with background safety checks on third-party providers. Opt in by setting `CLAUDE\_CODE\_ENABLE\_AUTO\_MODE=1`.
+Auto mode is now available on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry for Opus 4.7 and Opus 4.8, replacing permission prompts with background safety checks on third-party providers. Opt in by setting `CLAUDE\_CODE\_ENABLE\_AUTO\_MODE=1`.
 
 Opt in on a third-party provider, then cycle to auto mode with Shift+Tab:
 ```bash
   export CLAUDE_CODE_ENABLE_AUTO_MODE=1
 ```
 
-[Enable auto mode on third-party providers](https://code.claude.com/docs/en/permission-modes#enable-auto-mode-on-bedrock-vertex-ai-or-foundry)
+[Enable auto mode on third-party providers](https://code.claude.com/docs/en/permission-modes#enable-auto-mode-on-bedrock-agent-platform-or-foundry)
 
 Safer automatic edits
 v2.1.160

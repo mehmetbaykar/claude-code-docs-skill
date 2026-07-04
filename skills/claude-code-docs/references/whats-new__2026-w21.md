@@ -31,7 +31,7 @@ Other wins
 New [/code-review](https://code.claude.com/docs/en/code-review) command reports correctness bugs at a chosen effort level such as `/code-review high`, and `--comment` posts findings as inline GitHub PR comments. `/simplify` remains as a separate cleanup-only review.
 Background sessions now appear in `/resume` alongside interactive ones, marked with `bg`, and sessions pinned with `Ctrl+T` in `claude agents` stay alive when idle
 `claude agents --json` lists live sessions as JSON for scripting, such as status bars and session pickers
-The PowerShell tool is now enabled by default on Windows for Bedrock, Vertex, and Foundry users; opt out with `CLAUDE\_CODE\_USE\_POWERSHELL\_TOOL=0`
+The PowerShell tool is now enabled by default on Windows for Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry users; opt out with `CLAUDE\_CODE\_USE\_POWERSHELL\_TOOL=0`
 `claude plugin disable` now refuses when another enabled plugin depends on the target, and `claude plugin enable` force-enables transitive dependencies
 The `/plugin` marketplace browse pane shows projected context cost, and the Discover and Browse screens list a plugin's commands, agents, skills, hooks, and MCP/LSP servers before installation
 New `worktree.bgIsolation: "none"` setting lets background sessions edit the working copy directly without `EnterWorktree`, for repos where worktrees are impractical

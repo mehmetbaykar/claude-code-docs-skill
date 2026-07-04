@@ -83,9 +83,9 @@ New [claude ultrareview](https://code.claude.com/docs/en/ultrareview) subcommand
 `--dangerously-skip-permissions` now bypasses prompts for writes to `.claude/`, `.git/`, `.vscode/`, shell config files, and other previously protected paths, while catastrophic removal commands still prompt as a safety net
 The `/model` picker can list models from your gateway's `/v1/models` endpoint when `ANTHROPIC\_BASE\_URL` points at an Anthropic-compatible gateway; opt in with `CLAUDE\_CODE\_ENABLE\_GATEWAY\_MODEL\_DISCOVERY=1` since v2.1.129
 MCP servers that hit a transient error during startup now auto-retry up to 3 times instead of staying disconnected
-`ANTHROPIC\_BEDROCK\_SERVICE\_TIER` selects a Bedrock service tier: `default`, `flex`, or `priority`
+`ANTHROPIC\_BEDROCK\_SERVICE\_TIER` selects an Amazon Bedrock service tier: `default`, `flex`, or `priority`
 `/terminal-setup` enables iTerm2's clipboard access setting so `/copy` works, including from tmux
-Vertex AI now supports X.509 certificate-based Workload Identity Federation (mTLS ADC)
+Google Cloud's Agent Platform now supports X.509 certificate-based Workload Identity Federation (mTLS ADC)
 Significant memory leak fixes: image-heavy sessions, `/usage` on large transcript histories, and long-running tools without progress events
 
 [Full changelog for v2.1.120–v2.1.126 →](/en/changelog#2-1-120)
