@@ -89,9 +89,9 @@ Run it from a project you've spent real time in:
 Other wins
 
 Focus view: press `Ctrl+O` in flicker-free mode to collapse the view to your last prompt, a one-line tool summary with diffstats, and Claude's final response
-Guided [Bedrock](https://code.claude.com/docs/en/amazon-bedrock) and [Vertex AI](https://code.claude.com/docs/en/google-vertex-ai) setup wizards on the login screen: pick "3rd-party platform" for step-by-step auth, region, credential check, and model pinning
+Guided [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock) and [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai) setup wizards on the login screen: pick "3rd-party platform" for step-by-step auth, region, credential check, and model pinning
 `/agents` gets a tabbed layout: a Running tab shows live subagents with a `● N running` count, plus Run agent and View running instance actions in the Library tab
-Default effort level is now `high` for API-key, Bedrock, Vertex, Foundry, Team, and Enterprise users (control with `/effort`)
+Default effort level is now `high` for API-key, Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, Team, and Enterprise users (control with `/effort`)
 `/cost` shows a per-model and cache-hit breakdown for subscription users
 `/release-notes` is now an interactive version picker
 Status line: new `refreshInterval` setting re-runs the command every N seconds, and `workspace.git\_worktree` in the JSON input

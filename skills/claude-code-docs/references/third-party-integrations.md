@@ -22,7 +22,7 @@ Learn more about [Team plans](https://support.claude.com/en/articles/9266767-wha
 
 If your organization has specific infrastructure requirements, compare the options below:
 
-| Feature | Claude for Teams/Enterprise | Anthropic Console | Amazon Bedrock | Claude Platform on AWS | Google Vertex AI | Microsoft Foundry |
+| Feature | Claude for Teams/Enterprise | Anthropic Console | Amazon Bedrock | Claude Platform on AWS | Google Cloud's Agent Platform, formerly Vertex AI | Microsoft Foundry |
 | --- | --- | --- | --- | --- | --- | --- |
 | Best for | Most organizations (recommended) | Individual developers | AWS-native deployments | AWS Marketplace billing with Claude API features | GCP-native deployments | Azure-native deployments |
 | Billing | **Teams:** \$150/seat (Premium) with PAYG available **Enterprise:** [Contact Sales](https://claude.com/contact-sales?utm_source=claude_code&utm_medium=docs&utm_content=third_party_enterprise) | PAYG | PAYG through AWS | PAYG through AWS Marketplace | PAYG through GCP | PAYG through Azure |
@@ -39,10 +39,10 @@ Select a deployment option to view setup instructions:
 
 * [Claude for Teams or Enterprise](/en/authentication#claude-for-teams-or-enterprise)
 * [Anthropic Console](/en/authentication#claude-console-authentication)
-* [Claude apps gateway](/en/claude-apps-gateway), a self-hosted gateway that adds IdP sign-in in front of Amazon Bedrock, Claude Platform on AWS, Google Vertex AI, Microsoft Foundry, or the Anthropic API
+* [Claude apps gateway](/en/claude-apps-gateway), a self-hosted gateway that adds IdP sign-in in front of Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, Microsoft Foundry, or the Anthropic API
 * [Amazon Bedrock](/en/amazon-bedrock)
 * [Claude Platform on AWS](/en/claude-platform-on-aws)
-* [Google Vertex AI](/en/google-vertex-ai)
+* [Google Cloud's Agent Platform](/en/google-vertex-ai)
 * [Microsoft Foundry](/en/microsoft-foundry)
 
 ## Configure proxies and gateways
@@ -59,7 +59,7 @@ The following examples show the environment variables to set in your shell or sh
 
 **Corporate proxy**
 
-Route Bedrock traffic through your corporate proxy by setting the following [environment variables](/en/env-vars):
+Route Amazon Bedrock traffic through your corporate proxy by setting the following [environment variables](/en/env-vars):
 ```bash
     # Enable Bedrock
     export CLAUDE_CODE_USE_BEDROCK=1
@@ -73,7 +73,7 @@ Route Bedrock traffic through your corporate proxy by setting the following [env
 
 **LLM Gateway**
 
-Route Bedrock traffic through your LLM gateway by setting the following [environment variables](/en/env-vars):
+Route Amazon Bedrock traffic through your LLM gateway by setting the following [environment variables](/en/env-vars):
 ```bash
     # Enable Bedrock
     export CLAUDE_CODE_USE_BEDROCK=1
@@ -89,7 +89,7 @@ Route Bedrock traffic through your LLM gateway by setting the following [environ
 
 **Corporate proxy**
 
-Route Foundry traffic through your corporate proxy by setting the following [environment variables](/en/env-vars):
+Route Microsoft Foundry traffic through your corporate proxy by setting the following [environment variables](/en/env-vars):
 ```bash
     # Enable Microsoft Foundry
     export CLAUDE_CODE_USE_FOUNDRY=1
@@ -104,7 +104,7 @@ Route Foundry traffic through your corporate proxy by setting the following [env
 
 **LLM Gateway**
 
-Route Foundry traffic through your LLM gateway by setting the following [environment variables](/en/env-vars):
+Route Microsoft Foundry traffic through your LLM gateway by setting the following [environment variables](/en/env-vars):
 ```bash
     # Enable Microsoft Foundry
     export CLAUDE_CODE_USE_FOUNDRY=1
@@ -115,14 +115,14 @@ Route Foundry traffic through your LLM gateway by setting the following [environ
 ```
 
 
-### Google Vertex AI
+### Google Cloud's Agent Platform
 
 
 **Corporate proxy**
 
-Route Vertex AI traffic through your corporate proxy by setting the following [environment variables](/en/env-vars):
+Route Google Cloud's Agent Platform traffic through your corporate proxy by setting the following [environment variables](/en/env-vars):
 ```bash
-    # Enable Vertex
+    # Enable Agent Platform
     export CLAUDE_CODE_USE_VERTEX=1
     export CLOUD_ML_REGION=us-east5
     export ANTHROPIC_VERTEX_PROJECT_ID=your-project-id
@@ -135,9 +135,9 @@ Route Vertex AI traffic through your corporate proxy by setting the following [e
 
 **LLM Gateway**
 
-Route Vertex AI traffic through your LLM gateway by setting the following [environment variables](/en/env-vars):
+Route Google Cloud's Agent Platform traffic through your LLM gateway by setting the following [environment variables](/en/env-vars):
 ```bash
-    # Enable Vertex
+    # Enable Agent Platform
     export CLAUDE_CODE_USE_VERTEX=1
 
     # Configure LLM gateway
@@ -171,7 +171,7 @@ Encourage new users to try Claude Code for codebase Q\&A, or on smaller bug fixe
 
 ### Pin model versions for cloud providers
 
-If you deploy through [Bedrock](/en/amazon-bedrock), [Vertex AI](/en/google-vertex-ai), [Foundry](/en/microsoft-foundry), or [Claude Platform on AWS](/en/claude-platform-on-aws), pin specific model versions using `ANTHROPIC_DEFAULT_FABLE_MODEL`, `ANTHROPIC_DEFAULT_OPUS_MODEL`, `ANTHROPIC_DEFAULT_SONNET_MODEL`, and `ANTHROPIC_DEFAULT_HAIKU_MODEL`. Without pinning, model aliases resolve to Claude Code's built-in default for that provider, which can lag the newest release and may not yet be enabled in your account. Pinning lets you control when your users move to a new model. See [Model configuration](/en/model-config#pin-models-for-third-party-deployments) for what each provider does when the default is unavailable.
+If you deploy through [Amazon Bedrock](/en/amazon-bedrock), [Google Cloud's Agent Platform](/en/google-vertex-ai), [Microsoft Foundry](/en/microsoft-foundry), or [Claude Platform on AWS](/en/claude-platform-on-aws), pin specific model versions using `ANTHROPIC_DEFAULT_FABLE_MODEL`, `ANTHROPIC_DEFAULT_OPUS_MODEL`, `ANTHROPIC_DEFAULT_SONNET_MODEL`, and `ANTHROPIC_DEFAULT_HAIKU_MODEL`. Without pinning, model aliases resolve to Claude Code's built-in default for that provider, which can lag the newest release and may not yet be enabled in your account. Pinning lets you control when your users move to a new model. See [Model configuration](/en/model-config#pin-models-for-third-party-deployments) for what each provider does when the default is unavailable.
 
 ### Configure security policies
 

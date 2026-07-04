@@ -28,7 +28,7 @@ Also this week: **sub-agents can spawn their own sub-agents** (background chains
 
 [Read the Week 24 digest →](/en/whats-new/2026-w24)
 
-  **Auto mode on Bedrock, Vertex, and Foundry**: auto mode is now available on third-party providers for Opus 4.7 and Opus 4.8, replacing permission prompts with background safety checks.
+  **Auto mode on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry**: auto mode is now available on third-party providers for Opus 4.7 and Opus 4.8, replacing permission prompts with background safety checks.
 
 Also this week: **safer automatic edits** prompt before writing files that can run code in `acceptEdits` mode; **`/plugin list`** prints your installed plugins inline; and **version requirements** let managed deployments require an approved Claude Code version range.
 

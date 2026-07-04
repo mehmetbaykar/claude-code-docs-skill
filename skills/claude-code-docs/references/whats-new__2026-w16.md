@@ -107,7 +107,7 @@ Plugins can ship background watchers via a top-level `monitors` manifest key tha
 `/fewer-permission-prompts` scans your transcripts for common read-only Bash and MCP calls and proposes an allowlist for `.claude/settings.json`
 Claude can now discover and run built-in commands like `/init`, `/review`, and `/security-review` via the Skill tool
 `PreCompact` hooks can block compaction by exiting with code 2 or returning `{"{"}"decision":"block"{"}"}`
-`ENABLE\_PROMPT\_CACHING\_1H` opts API key, Bedrock, Vertex, and Foundry users into 1-hour prompt cache TTL
+`ENABLE\_PROMPT\_CACHING\_1H` opts API key, Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry users into 1-hour prompt cache TTL
 `sandbox.network.deniedDomains` setting carves specific domains out of a broader `allowedDomains` wildcard
 `/undo` is now an alias for `/rewind`, and `/proactive` is an alias for `/loop`
 Hardened Bash permissions: deny rules now match through `env`/`sudo`/`watch` wrappers, and `Bash(find:\*)` allow rules no longer auto-approve `-exec` or `-delete`

@@ -70,7 +70,7 @@ Long paragraphs now stream line by line instead of waiting for the first line br
 API connection drops mid-thinking now retry automatically instead of showing "Connection closed while thinking"
 With `CLAUDE\_CODE\_EXPERIMENTAL\_AGENT\_TEAMS=1` set, every session has one implicit team, so you spawn teammates directly with the Agent tool's `name` parameter
 Skills in nested `.claude/skills` directories load when working on files there; on a name clash the nested skill appears as `<dir>:<name>` so both stay available
-Fixed prompt caching not reading on a custom `ANTHROPIC\_BASE\_URL` and on Foundry
+Fixed prompt caching not reading on a custom `ANTHROPIC\_BASE\_URL` and on Microsoft Foundry
 Fixed Write and Edit producing zero-byte or truncated files on network drives and cloud-synced folders
 
 [Full changelog for v2.1.178–v2.1.183 →](/en/changelog#2-1-178)
