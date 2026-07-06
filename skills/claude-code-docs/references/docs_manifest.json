@@ -651,8 +651,8 @@
       "title": "Claude Code GitHub Actions"
     },
     "github-enterprise-server.md": {
-      "hash": "4e3c26c760732aa6338d578a974446af00ce0dceb1fb8ceca0b31eb0cb3859a0",
-      "last_updated": "2026-07-04T03:28:57+00:00",
+      "hash": "cd6a8393d8ae3d9b3096f3956004dd0f89e5c772b0b34104ca5b3ca19ed25707",
+      "last_updated": "2026-07-06T15:41:19+00:00",
       "original_url": "https://code.claude.com/docs/en/github-enterprise-server",
       "path": "/docs/en/github-enterprise-server",
       "source_url": "https://code.claude.com/docs/en/github-enterprise-server.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-04T03:29:43+00:00",
+  "last_updated": "2026-07-06T15:42:29+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
