@@ -539,8 +539,8 @@
       "title": "Launch sessions from links"
     },
     "desktop-linux.md": {
-      "hash": "381438e44e8e1b82d7e962cad54a83c964cc1f4630cf7f3f7fcef190ca31a020",
-      "last_updated": "2026-07-02T19:35:53+00:00",
+      "hash": "25f416819d9f060032083764156c0cede5dcc49d1f2778d80bda0bc8bb041e16",
+      "last_updated": "2026-07-06T20:03:02+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-linux",
       "path": "/docs/en/desktop-linux",
       "source_url": "https://code.claude.com/docs/en/desktop-linux.md",
@@ -1051,8 +1051,8 @@
       "title": "Claude Code settings"
     },
     "setup.md": {
-      "hash": "6e148d50b47ee60d456a5f47ebe722013680474ddd022813bc33ec003012cc13",
-      "last_updated": "2026-07-04T03:29:26+00:00",
+      "hash": "af4fb43752a4cce9c06c6e9e6044062b5e47f1499b7b31576387000444e571b4",
+      "last_updated": "2026-07-06T20:03:39+00:00",
       "original_url": "https://code.claude.com/docs/en/setup",
       "path": "/docs/en/setup",
       "source_url": "https://code.claude.com/docs/en/setup.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-06T15:42:29+00:00",
+  "last_updated": "2026-07-06T20:03:56+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
