@@ -27,8 +27,8 @@
       "title": "Escalate hard decisions with the advisor tool"
     },
     "agent-sdk__agent-loop.md": {
-      "hash": "f97a2c6631883f5214b514b46ef65c683ac3c86e7786511959d83a0a9d4987f1",
-      "last_updated": "2026-07-04T03:28:11+00:00",
+      "hash": "588d0126ba703f4610b2b93f5893a859755f98383760529fc19feac0b51d7f3d",
+      "last_updated": "2026-07-07T17:19:51+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
       "path": "/docs/en/agent-sdk/agent-loop",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop.md",
@@ -51,8 +51,8 @@
       "title": "Track cost and usage"
     },
     "agent-sdk__custom-tools.md": {
-      "hash": "e4873b6dd48039e93a21ddc8497c9e514c627074c44e59966cce9265f39d195b",
-      "last_updated": "2026-06-09T15:15:04+00:00",
+      "hash": "b65d69e723ceb4c5a3779bb35d34e0dec91fdef2aae0f6815148e2162d167e98",
+      "last_updated": "2026-07-07T17:19:53+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/custom-tools",
       "path": "/docs/en/agent-sdk/custom-tools",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/custom-tools.md",
@@ -67,8 +67,8 @@
       "title": "Rewind file changes with checkpointing"
     },
     "agent-sdk__hooks.md": {
-      "hash": "d6623164148b62983928ccbc57800ef75232b36ffeb78b81fc37aba11c49ba6c",
-      "last_updated": "2026-06-30T09:44:02+00:00",
+      "hash": "5900819bed228238d2192e203828bbdfd9c3e5ec89c12cae8b94402ce841bea8",
+      "last_updated": "2026-07-07T17:19:55+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/hooks",
       "path": "/docs/en/agent-sdk/hooks",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/hooks.md",
@@ -123,8 +123,8 @@
       "title": "Agent SDK overview"
     },
     "agent-sdk__permissions.md": {
-      "hash": "18be57018d2dd6b8df48378385f63da3d0f1a37a57fe67c4ee88083d007bba41",
-      "last_updated": "2026-07-03T03:35:30+00:00",
+      "hash": "a8cf813b35a103eeeac585110e778f31c3b13fac72a402f12752c854725a81cb",
+      "last_updated": "2026-07-07T17:20:02+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/permissions",
       "path": "/docs/en/agent-sdk/permissions",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/permissions.md",
@@ -139,16 +139,16 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "120b7988a7149155d7c4d1c7a2e40a42a17bd78e97a593e20ccbe9b14df1880b",
-      "last_updated": "2026-07-04T03:28:20+00:00",
+      "hash": "ccac590c5943d17e7f04349d6eaf0481e078d2d39157b944f05bd8c089379226",
+      "last_updated": "2026-07-07T17:20:04+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
       "title": "Agent SDK reference - Python"
     },
     "agent-sdk__quickstart.md": {
-      "hash": "eb7b2e2caff685da90c6cacb3db8859d376b3e4032cbd54c8e689f90e090a280",
-      "last_updated": "2026-07-04T03:28:20+00:00",
+      "hash": "17e363e26a4f6d96435b7cdbc6f92905b5ec8cc9143928bf88441727da258bcb",
+      "last_updated": "2026-07-07T17:20:05+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/quickstart",
       "path": "/docs/en/agent-sdk/quickstart",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/quickstart.md",
@@ -259,8 +259,8 @@
       "title": "Agent SDK reference - TypeScript"
     },
     "agent-sdk__user-input.md": {
-      "hash": "c228038689c7fc12da69bfb1470d9a6030ef4877eede8601b1d5767a792489e9",
-      "last_updated": "2026-07-04T03:28:29+00:00",
+      "hash": "5096e00c238ec5ae1a1a5186acfb7c8dd078d2487def1da5b33f91bc8771777a",
+      "last_updated": "2026-07-07T17:20:17+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/user-input",
       "path": "/docs/en/agent-sdk/user-input",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/user-input.md",
@@ -355,8 +355,8 @@
       "title": "Claude Code changelog"
     },
     "channels-reference.md": {
-      "hash": "60daf4c6474183135ef08999e2575642a35be450bf07ecaea474dfcb6f78892b",
-      "last_updated": "2026-06-09T20:11:53+00:00",
+      "hash": "f2cf526a9cf9e8e858230237b0c0ae7b9408fdc0327b7125ce7459ac381e1670",
+      "last_updated": "2026-07-07T17:20:27+00:00",
       "original_url": "https://code.claude.com/docs/en/channels-reference",
       "path": "/docs/en/channels-reference",
       "source_url": "https://code.claude.com/docs/en/channels-reference.md",
@@ -699,16 +699,16 @@
       "title": "Run Claude Code programmatically"
     },
     "hooks-guide.md": {
-      "hash": "c504a91fa44fc0ac47b29d4d561c8865c2b743ec33c818e7ad181a8bead27ece",
-      "last_updated": "2026-07-03T03:36:24+00:00",
+      "hash": "dff444db08c1a7b286fea8abf36d5a6cd74256ca8726f2ebb7ef6e52d640ff14",
+      "last_updated": "2026-07-07T17:21:04+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks-guide",
       "path": "/docs/en/hooks-guide",
       "source_url": "https://code.claude.com/docs/en/hooks-guide.md",
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "0680cc32247c459e6460d44a3c81f01c494d2d60b62787313ffcfa05d25f51b0",
-      "last_updated": "2026-07-07T03:44:23+00:00",
+      "hash": "2741b66c3b75ed6f951f80ee5fb7d1565312692254c423e8eafe24b169cf68d2",
+      "last_updated": "2026-07-07T17:21:03+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -811,8 +811,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "3f5fc58459047471570cc648a2089aad64dc5ee25b37cbe295ba2f354d6317ad",
-      "last_updated": "2026-07-07T14:44:45+00:00",
+      "hash": "4db31357ded818b95f094d5180e6cb2504a0a96568ae7d4cd72a1f021f76cf5a",
+      "last_updated": "2026-07-07T17:21:14+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -931,8 +931,8 @@
       "title": "Recommend plugins for your org"
     },
     "plugins-reference.md": {
-      "hash": "0ca89039a7338af85ca97174cea71dbfb99f2c98748c1d3b49a9e18ef491b6ed",
-      "last_updated": "2026-07-03T03:36:45+00:00",
+      "hash": "fbc42c0128725e7244a17272eb5d857e39c84120ba8c43d6177f9d938dba3b72",
+      "last_updated": "2026-07-07T17:21:25+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins-reference",
       "path": "/docs/en/plugins-reference",
       "source_url": "https://code.claude.com/docs/en/plugins-reference.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-07T14:45:32+00:00",
+  "last_updated": "2026-07-07T17:22:03+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
