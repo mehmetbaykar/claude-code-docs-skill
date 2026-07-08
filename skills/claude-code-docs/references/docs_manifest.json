@@ -347,8 +347,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "27b06f2a6166d3ceb3add1d56bad4a4eb879e953beaefe9939eece086017bc08",
-      "last_updated": "2026-07-07T03:43:44+00:00",
+      "hash": "33b491ae327b10e29f7b8cc75d29a787f1d4037b5f81f3481db3aecde03fe9df",
+      "last_updated": "2026-07-08T11:08:30+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-07T17:22:03+00:00",
+  "last_updated": "2026-07-08T11:10:23+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
