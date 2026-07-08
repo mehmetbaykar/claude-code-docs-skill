@@ -427,6 +427,7 @@ type SDKMessage =
   | SDKTaskStartedMessage
   | SDKTaskProgressMessage
   | SDKTaskUpdatedMessage
+  | SDKBackgroundTasksChangedMessage
   | SDKSessionStateChangedMessage
   | SDKWorkerShuttingDownMessage
   | SDKCommandsChangedMessage
@@ -440,7 +441,8 @@ type SDKMessage =
   | SDKPromptSuggestionMessage
   | SDKAPIRetryMessage
   | SDKMirrorErrorMessage
-  | SDKInformationalMessage;
+  | SDKInformationalMessage
+  | SDKConversationResetMessage;
 ```
 ```typescript
 type SDKAssistantMessage = {
@@ -1953,6 +1955,19 @@ type SDKTaskUpdatedMessage = {
 };
 ```
 ```typescript
+type SDKBackgroundTasksChangedMessage = {
+  type: "system";
+  subtype: "background_tasks_changed";
+  tasks: {
+    task_id: string;
+    task_type: string;
+    description: string;
+  }[];
+  uuid: UUID;
+  session_id: string;
+};
+```
+```typescript
 type SDKFilesPersistedEvent = {
   type: "system";
   subtype: "files_persisted";
@@ -2000,6 +2015,14 @@ type SDKCommandsChangedMessage = {
 type SDKPromptSuggestionMessage = {
   type: "prompt_suggestion";
   suggestion: string;
+  uuid: UUID;
+  session_id: string;
+};
+```
+```typescript
+type SDKConversationResetMessage = {
+  type: "conversation_reset";
+  new_conversation_id: UUID;
   uuid: UUID;
   session_id: string;
 };
