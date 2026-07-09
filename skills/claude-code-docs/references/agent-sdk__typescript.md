@@ -165,7 +165,7 @@ const result = query({
 ```
 ```typescript
 interface Query extends AsyncGenerator<SDKMessage, void> {
-  interrupt(): Promise<void>;
+  interrupt(): Promise<SDKControlInterruptResponse | undefined>;
   rewindFiles(
     userMessageId: string,
     options?: { dryRun?: boolean }
@@ -213,6 +213,11 @@ type SDKControlInitializeResponse = {
   models: ModelInfo[];
   account: AccountInfo;
   fast_mode_state?: "off" | "cooldown" | "on";
+};
+```
+```typescript
+type SDKControlInterruptResponse = {
+  still_queued: string[];
 };
 ```
 ```typescript
@@ -552,6 +557,7 @@ type SDKSystemMessage = {
   output_style: string;
   skills: string[];
   plugins: { name: string; path: string }[];
+  capabilities?: string[];
 };
 ```
 ```typescript
@@ -633,7 +639,13 @@ type SDKPermissionDenial = {
 type SDKMessageOrigin =
   | { kind: "human" }
   | { kind: "channel"; server: string }
-  | { kind: "peer"; from: string; name?: string; senderTaskId?: string }
+  | {
+      kind: "peer";
+      from: string;
+      name?: string;
+      senderTaskId?: string;
+      body?: string;
+    }
   | { kind: "task-notification" }
   | { kind: "coordinator" }
   | { kind: "auto-continuation" };
@@ -1184,6 +1196,7 @@ type TaskListInput = {};
 ```
 ```typescript
 type ExitPlanModeInput = {
+  /** Deprecated: no longer used. */
   allowedPrompts?: Array<{
     tool: "Bash";
     prompt: string;
