@@ -547,8 +547,8 @@
       "title": "Claude Desktop on Linux (beta)"
     },
     "desktop-quickstart.md": {
-      "hash": "779ad9cb4faa88fdc5296870f6a666e21c57f6eff6d7b487460f1a5a3613bd5d",
-      "last_updated": "2026-07-09T19:51:28+00:00",
+      "hash": "17a7d4656884c615cbb57d489613520fd14d8d2aeb50e9145c798b7da6455f72",
+      "last_updated": "2026-07-09T22:25:55+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-quickstart",
       "path": "/docs/en/desktop-quickstart",
       "source_url": "https://code.claude.com/docs/en/desktop-quickstart.md",
@@ -563,8 +563,8 @@
       "title": "Schedule recurring tasks in Claude Code Desktop"
     },
     "desktop.md": {
-      "hash": "a1506151558c82fa3b737579431b9b5347479ba2492105e2618694cdd3e73653",
-      "last_updated": "2026-07-09T19:51:27+00:00",
+      "hash": "200bb281137d2dab0ef367c981077cb13ecae374c21cfef63bfdb3d42bdbdf1f",
+      "last_updated": "2026-07-09T22:25:54+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -1043,8 +1043,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "11d66114171c7fe27f16dd671a5b77f57697c31eea0e40e33daeafb675da70c6",
-      "last_updated": "2026-07-09T19:52:08+00:00",
+      "hash": "542e494d206d479399d2d6ac456f7ccae3a86c4fefe55f4d64e89a960cb2be3d",
+      "last_updated": "2026-07-09T22:26:49+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-09T19:52:33+00:00",
+  "last_updated": "2026-07-09T22:27:20+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
