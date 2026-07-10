@@ -139,8 +139,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "ccac590c5943d17e7f04349d6eaf0481e078d2d39157b944f05bd8c089379226",
-      "last_updated": "2026-07-07T17:20:04+00:00",
+      "hash": "80f098f6fe16b6d7505ebe0fdf8ee9a70e707604abfdfa2b5668e473116fb3da",
+      "last_updated": "2026-07-10T16:58:33+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -539,8 +539,8 @@
       "title": "Launch sessions from links"
     },
     "desktop-linux.md": {
-      "hash": "25f416819d9f060032083764156c0cede5dcc49d1f2778d80bda0bc8bb041e16",
-      "last_updated": "2026-07-06T20:03:02+00:00",
+      "hash": "8c88a89952307b89e28d8875b8d24359254d2a5aca7d84dcde42b3a4b6522000",
+      "last_updated": "2026-07-10T16:59:10+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-linux",
       "path": "/docs/en/desktop-linux",
       "source_url": "https://code.claude.com/docs/en/desktop-linux.md",
@@ -595,8 +595,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "5942572d6afcce971e38f1e9c46e28ea70c40688b613e053ad204a1c8a511b85",
-      "last_updated": "2026-07-09T19:51:33+00:00",
+      "hash": "ca554c0c28cfbebb272b15d0348aaa5a75ac9cf8b12960f2d0d8bd485d6c0399",
+      "last_updated": "2026-07-10T16:59:18+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -835,8 +835,8 @@
       "title": "Claude Code on Microsoft Foundry"
     },
     "model-config.md": {
-      "hash": "0265e6d9089f3e8eb402729545a2709823bc82abab49e7cd9d1c9668d9e888c3",
-      "last_updated": "2026-07-09T19:51:51+00:00",
+      "hash": "ee86a48fd4a433aca8383aeda99a56a5a2bcf922c1478aa7f96625bf3a389c3c",
+      "last_updated": "2026-07-10T16:59:37+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -867,8 +867,8 @@
       "title": "Output styles"
     },
     "overview.md": {
-      "hash": "76975e5e655479898f3c0d43469908e5d62763ea21f98874154e579e20648a78",
-      "last_updated": "2026-06-25T20:06:32+00:00",
+      "hash": "362098212c1e87a08847f1b8c545c6d55d726fd1b25dab68f457ea77082eeece",
+      "last_updated": "2026-07-10T16:59:40+00:00",
       "original_url": "https://code.claude.com/docs/en/overview",
       "path": "/docs/en/overview",
       "source_url": "https://code.claude.com/docs/en/overview.md",
@@ -1123,8 +1123,8 @@
       "title": "Troubleshoot installation and login"
     },
     "troubleshooting.md": {
-      "hash": "e321344183bf601f3fdaf1f19c7ddf3aed9fd3a3411cb0e3b74ebfc289a877fd",
-      "last_updated": "2026-07-09T19:52:16+00:00",
+      "hash": "cf1650a989612aee311cc702bee71b6e01716e88cf3eb9276f4e10ba62b9c368",
+      "last_updated": "2026-07-10T16:59:56+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshooting",
       "path": "/docs/en/troubleshooting",
       "source_url": "https://code.claude.com/docs/en/troubleshooting.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-10T03:40:14+00:00",
+  "last_updated": "2026-07-10T17:00:10+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
