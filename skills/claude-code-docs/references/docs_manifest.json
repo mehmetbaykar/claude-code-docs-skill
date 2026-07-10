@@ -347,8 +347,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "59334cf310006504b1618de6192b4f78789a89da5e2c5d7907054ae171a69553",
-      "last_updated": "2026-07-08T22:11:00+00:00",
+      "hash": "41a97e32ecc99a5d1e7476b6fd3c5d41f0f3041f86c18e9d8d7a8d3cf9f1478a",
+      "last_updated": "2026-07-10T03:38:49+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -563,8 +563,8 @@
       "title": "Schedule recurring tasks in Claude Code Desktop"
     },
     "desktop.md": {
-      "hash": "200bb281137d2dab0ef367c981077cb13ecae374c21cfef63bfdb3d42bdbdf1f",
-      "last_updated": "2026-07-09T22:25:54+00:00",
+      "hash": "39e93c035c6a3af8ec48251e7427a522beac4238f9624622608bb6843f66aabf",
+      "last_updated": "2026-07-10T03:39:06+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -611,8 +611,8 @@
       "title": "Speed up responses with fast mode"
     },
     "feature-availability.md": {
-      "hash": "ee10c24c69d77415b820b706abfc0180ca0a214e713a8d5184fcedabda4180e7",
-      "last_updated": "2026-07-04T03:28:54+00:00",
+      "hash": "3d52d3205a26144e386c1e18d5e79d2845ed228bded4353a3ebff4db4f7a677a",
+      "last_updated": "2026-07-10T03:39:12+00:00",
       "original_url": "https://code.claude.com/docs/en/feature-availability",
       "path": "/docs/en/feature-availability",
       "source_url": "https://code.claude.com/docs/en/feature-availability.md",
@@ -763,8 +763,8 @@
       "title": "Legal and compliance"
     },
     "llm-gateway-connect.md": {
-      "hash": "ec3660731e3698ce337e5a3c0c528cdaac02388ae3225970cc53f7a29c1a5cf6",
-      "last_updated": "2026-07-09T19:51:47+00:00",
+      "hash": "f3f60f6438467420f5c783ec1769006846c93178bd894a964ff3fd05a9ff5d93",
+      "last_updated": "2026-07-10T03:39:27+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-connect",
       "path": "/docs/en/llm-gateway-connect",
       "source_url": "https://code.claude.com/docs/en/llm-gateway-connect.md",
@@ -779,8 +779,8 @@
       "title": "Gateway protocol reference"
     },
     "llm-gateway-rollout.md": {
-      "hash": "13ce522d2907ac4309194069c7f0e0e4c9377f4673a8e22dfeb020734702a667",
-      "last_updated": "2026-07-04T03:29:07+00:00",
+      "hash": "00742e7d3c4fdbf3131c9aa06b822b5c6a26c63bace7c0d1381b2a8ad0c9c3a8",
+      "last_updated": "2026-07-10T03:39:28+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-rollout",
       "path": "/docs/en/llm-gateway-rollout",
       "source_url": "https://code.claude.com/docs/en/llm-gateway-rollout.md",
@@ -891,8 +891,8 @@
       "title": "Configure permissions"
     },
     "platforms.md": {
-      "hash": "bbdeb019f895800781f890a732cfb42e349455b2be3d5add3c2033b665553e92",
-      "last_updated": "2026-07-04T03:29:15+00:00",
+      "hash": "97770d72d3ced012db44acbf17c6a0ed778835ebf6a3074086c31d8716ba3af7",
+      "last_updated": "2026-07-10T03:39:38+00:00",
       "original_url": "https://code.claude.com/docs/en/platforms",
       "path": "/docs/en/platforms",
       "source_url": "https://code.claude.com/docs/en/platforms.md",
@@ -1329,7 +1329,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-09T22:27:20+00:00",
+  "last_updated": "2026-07-10T03:40:14+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
