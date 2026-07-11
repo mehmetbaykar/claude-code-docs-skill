@@ -4,10 +4,10 @@
     "failed_pages": [],
     "fetch_tool_version": "1.0",
     "pages_failed": 0,
-    "pages_fetched_successfully": 163,
+    "pages_fetched_successfully": 165,
     "pages_skipped": 0,
     "raw_fallback_pages": 0,
-    "total_pages_discovered": 163
+    "total_pages_discovered": 165
   },
   "files": {
     "admin-setup.md": {
@@ -1171,8 +1171,8 @@
       "title": "Get started with Claude Code on the web"
     },
     "whats-new.md": {
-      "hash": "08e6c4bec60f49f3e512e3e649c916bac5de466f6fad9bfa313bbc7f53a76a34",
-      "last_updated": "2026-07-04T03:29:35+00:00",
+      "hash": "ca8f5871f18e37e9e597b15caa29df79a148f7e4e3c4271dbc92d3bec5149d5b",
+      "last_updated": "2026-07-11T05:45:00+00:00",
       "original_url": "https://code.claude.com/docs/en/whats-new",
       "path": "/docs/en/whats-new",
       "source_url": "https://code.claude.com/docs/en/whats-new.md",
@@ -1290,6 +1290,22 @@
       "source_url": "https://code.claude.com/docs/en/whats-new/2026-w26.md",
       "title": "Week 26 \u00b7 June 22\u201326, 2026"
     },
+    "whats-new__2026-w27.md": {
+      "hash": "6a9f9f1aeb3dbd70a4a004a2e9f3931cdcd37a685fb0becc6ab7b1e3c67ad4a1",
+      "last_updated": "2026-07-11T05:45:09+00:00",
+      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w27",
+      "path": "/docs/en/whats-new/2026-w27",
+      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w27.md",
+      "title": "Week 27 \u00b7 June 29 \u2013 July 3, 2026"
+    },
+    "whats-new__2026-w28.md": {
+      "hash": "1e9f7ae6f38b02edd99a7ccb5e1e4a7984102615c15d28729bd91d3f6b898c3e",
+      "last_updated": "2026-07-11T05:45:09+00:00",
+      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w28",
+      "path": "/docs/en/whats-new/2026-w28",
+      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w28.md",
+      "title": "Week 28 \u00b7 July 6\u201310, 2026"
+    },
     "workflows.md": {
       "hash": "c59c3ed36decd98b005b90ef7c64e9a5ca2e96a1748be06e88e008df1806345e",
       "last_updated": "2026-07-08T16:43:52+00:00",
@@ -1329,7 +1345,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-11T02:55:36+00:00",
+  "last_updated": "2026-07-11T05:45:12+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
