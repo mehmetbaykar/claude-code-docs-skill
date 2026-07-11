@@ -483,8 +483,8 @@
       "title": "Common workflows"
     },
     "communications-kit.md": {
-      "hash": "fe84fd4ead3a0d78f9f3fe88bf71c8fbd287755215b802e770ff82886360a43c",
-      "last_updated": "2026-07-04T03:28:46+00:00",
+      "hash": "0e15c907bdbb0f884c24251e8253611afab7574ca023070e8f347dd9dc7b2eb4",
+      "last_updated": "2026-07-11T08:01:24+00:00",
       "original_url": "https://code.claude.com/docs/en/communications-kit",
       "path": "/docs/en/communications-kit",
       "source_url": "https://code.claude.com/docs/en/communications-kit.md",
@@ -883,8 +883,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "3bcf9cdcdae17c524feeb9c06fb3f15da14eb053a8d15ee53a27e1b1143f7ffa",
-      "last_updated": "2026-07-11T02:54:37+00:00",
+      "hash": "80db4629a9eda6434e63755f497f9358cbd18602dd7eb9a6dbf1a248c0abf332",
+      "last_updated": "2026-07-11T08:01:51+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -1019,8 +1019,8 @@
       "title": "Catch security issues as Claude writes code"
     },
     "security.md": {
-      "hash": "0dddce1fdf1cad6bfa840de46065c5e2a48deba4cbc576a36c7b7fdfaaa803b8",
-      "last_updated": "2026-06-09T20:14:22+00:00",
+      "hash": "3a0bd4e2dc57ed2e338ee0600a1fa25d08a937ec9371d54010938122d66e8bbb",
+      "last_updated": "2026-07-11T08:02:01+00:00",
       "original_url": "https://code.claude.com/docs/en/security",
       "path": "/docs/en/security",
       "source_url": "https://code.claude.com/docs/en/security.md",
@@ -1107,8 +1107,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "f8f9f6db8d3d94ceb3f28c5c47a4e5879ebd90d2efa1a57b7c0c9433c25a8491",
-      "last_updated": "2026-07-08T16:43:37+00:00",
+      "hash": "c9fdc672a7a68f48066a8d8677d91b5a11d941086ed697967cfa53d9b452a2a1",
+      "last_updated": "2026-07-11T08:02:08+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1155,8 +1155,8 @@
       "title": "Voice dictation"
     },
     "vs-code.md": {
-      "hash": "d3874ed8f6b0c6647a669401541f6e14ea30be94061fd4c054a5e692528e160a",
-      "last_updated": "2026-07-09T19:52:18+00:00",
+      "hash": "93639bf27e889d0b6ec96610fdbb2a896a08958dfe462e06f28c61c2d55bb087",
+      "last_updated": "2026-07-11T08:02:12+00:00",
       "original_url": "https://code.claude.com/docs/en/vs-code",
       "path": "/docs/en/vs-code",
       "source_url": "https://code.claude.com/docs/en/vs-code.md",
@@ -1345,7 +1345,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-11T05:45:12+00:00",
+  "last_updated": "2026-07-11T08:02:27+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
