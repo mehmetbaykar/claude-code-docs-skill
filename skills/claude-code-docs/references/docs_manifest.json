@@ -83,8 +83,8 @@
       "title": "Hosting the Agent SDK"
     },
     "agent-sdk__mcp.md": {
-      "hash": "1777d472bd8763f446d74d6281f54c6f74f0f6011dcd8d6a7062042e63ded843",
-      "last_updated": "2026-07-04T03:28:16+00:00",
+      "hash": "f2ba74faa0b7fa747526b2d5350897941af9c1c5f2198107d491efb760c9dbb9",
+      "last_updated": "2026-07-11T15:58:48+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/mcp",
       "path": "/docs/en/agent-sdk/mcp",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/mcp.md",
@@ -539,8 +539,8 @@
       "title": "Launch sessions from links"
     },
     "desktop-linux.md": {
-      "hash": "8c88a89952307b89e28d8875b8d24359254d2a5aca7d84dcde42b3a4b6522000",
-      "last_updated": "2026-07-10T16:59:10+00:00",
+      "hash": "86c40f945d94ec5d7c2249632d75a5e8d070e58750d907578516a28bdaddf3c4",
+      "last_updated": "2026-07-11T15:59:36+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-linux",
       "path": "/docs/en/desktop-linux",
       "source_url": "https://code.claude.com/docs/en/desktop-linux.md",
@@ -1051,8 +1051,8 @@
       "title": "Claude Code settings"
     },
     "setup.md": {
-      "hash": "af4fb43752a4cce9c06c6e9e6044062b5e47f1499b7b31576387000444e571b4",
-      "last_updated": "2026-07-06T20:03:39+00:00",
+      "hash": "ea85aec733ce09b385b82473b629543a6bae2d353b646aa8a57130f3539cee59",
+      "last_updated": "2026-07-11T16:00:21+00:00",
       "original_url": "https://code.claude.com/docs/en/setup",
       "path": "/docs/en/setup",
       "source_url": "https://code.claude.com/docs/en/setup.md",
@@ -1115,8 +1115,8 @@
       "title": "Tools reference"
     },
     "troubleshoot-install.md": {
-      "hash": "a23b9e1bc73b3482b696594e41ba1be444aef386683712c909d9da19e0d36f5b",
-      "last_updated": "2026-07-09T19:52:15+00:00",
+      "hash": "b4ed67bd240b53c00cbaecd13bfa43da6e25de34ae2801b6b82e03fab98fbb19",
+      "last_updated": "2026-07-11T16:00:27+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshoot-install",
       "path": "/docs/en/troubleshoot-install",
       "source_url": "https://code.claude.com/docs/en/troubleshoot-install.md",
@@ -1345,7 +1345,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-11T08:02:27+00:00",
+  "last_updated": "2026-07-11T16:00:49+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
