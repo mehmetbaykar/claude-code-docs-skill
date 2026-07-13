@@ -6,6 +6,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 
 ## Topics
 
+- `accessibility` - [Use Claude Code with a screen reader](https://code.claude.com/docs/en/accessibility)
 - `admin-setup` - [Set up Claude Code for your organization](https://code.claude.com/docs/en/admin-setup)
 - `advisor` - [Escalate hard decisions with the advisor tool](https://code.claude.com/docs/en/advisor)
 - `agent-sdk__agent-loop` - [How the agent loop works](https://code.claude.com/docs/en/agent-sdk/agent-loop)
