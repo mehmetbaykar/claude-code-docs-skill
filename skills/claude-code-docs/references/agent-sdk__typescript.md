@@ -1025,13 +1025,11 @@ type ToolInputSchemas =
 type AgentInput = {
   description: string;
   prompt: string;
-  subagent_type: string;
+  subagent_type?: string;
   model?: "sonnet" | "opus" | "haiku" | "fable";
-  resume?: string;
   run_in_background?: boolean;
-  max_turns?: number;
   name?: string;
-  mode?: "acceptEdits" | "bypassPermissions" | "default" | "dontAsk" | "plan";
+  mode?: "acceptEdits" | "auto" | "bypassPermissions" | "default" | "dontAsk" | "plan";
   isolation?: "worktree";
 };
 ```
@@ -1251,7 +1249,8 @@ type AgentOutput =
   | {
       status: "completed";
       agentId: string;
-      content: Array<{ type: "text"; text: string }>;
+      agentType?: string;
+      content: Array<{ type: "text"; text: string; citations?: unknown[] | null }>;
       resolvedModel?: string;
       totalToolUseCount: number;
       totalDurationMs: number;
@@ -1265,16 +1264,32 @@ type AgentOutput =
           web_search_requests: number;
           web_fetch_requests: number;
         } | null;
-        service_tier: ("standard" | "priority" | "batch") | null;
+        service_tier: string | null;
         cache_creation: {
           ephemeral_1h_input_tokens: number;
           ephemeral_5m_input_tokens: number;
         } | null;
+        inference_geo?: string | null;
+        speed?: string | null;
+        iterations?: unknown;
+      };
+      toolStats?: {
+        readCount: number;
+        searchCount: number;
+        bashCount: number;
+        editFileCount: number;
+        linesAdded: number;
+        linesRemoved: number;
+        otherToolCount: number;
+        frameCount?: number;
       };
       prompt: string;
+      worktreePath?: string;
+      worktreeBranch?: string;
     }
   | {
       status: "async_launched";
+      isAsync?: true;
       agentId: string;
       description: string;
       resolvedModel?: string;
@@ -1283,9 +1298,12 @@ type AgentOutput =
       canReadOutputFile?: boolean;
     }
   | {
-      status: "sub_agent_entered";
+      status: "remote_launched";
+      taskId: string;
+      sessionUrl: string;
       description: string;
-      message: string;
+      prompt: string;
+      outputFile: string;
     };
 ```
 ```typescript
