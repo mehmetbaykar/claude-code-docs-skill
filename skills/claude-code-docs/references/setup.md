@@ -181,6 +181,12 @@ Claude Code checks for updates on startup and periodically while running. Update
 
 Run `claude doctor` to see the result of the most recent update attempt.
 
+On macOS and Linux, the native installer manages the launcher at `~/.local/bin/claude` as a symlink into `~/.local/share/claude/versions/`. If you replace that launcher with your own script or symlink, auto-update and `claude update` leave it in place: new versions still install under the `versions/` directory, and your launcher decides which version runs. Before v2.1.207, the auto-updater replaced a custom launcher at that path with its own symlink on every update.
+
+With a custom launcher, Claude Code also keeps every installed version on disk because it can't tell which version the launcher needs. `claude doctor` reports a launcher that the native installer didn't create.
+
+To let Claude Code manage the launcher again, remove `~/.local/bin/claude` and run `claude update`.
+
 If an npm global install can't auto-update because the npm global directory isn't writable, Claude Code shows a one-time notice at startup, and `claude doctor` lists the available fixes. See [permission errors during installation](/en/troubleshoot-install#permission-errors-during-installation) for details.
 
 Homebrew, WinGet, apt, dnf, and apk installations do not auto-update by default; see below to opt in for Homebrew and WinGet. To upgrade Homebrew manually, run `brew upgrade claude-code` or `brew upgrade claude-code@latest`, depending on which cask you installed. For WinGet, run `winget upgrade Anthropic.ClaudeCode`. For Linux package managers, see the upgrade commands in [Install with Linux package managers](#install-with-linux-package-managers).

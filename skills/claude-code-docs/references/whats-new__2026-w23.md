@@ -22,7 +22,7 @@ Opt in on a third-party provider, then cycle to auto mode with Shift+Tab:
   export CLAUDE_CODE_ENABLE_AUTO_MODE=1
 ```
 
-[Enable auto mode on third-party providers](https://code.claude.com/docs/en/permission-modes#enable-auto-mode-on-bedrock-agent-platform-or-foundry)
+[Auto mode on third-party providers](https://code.claude.com/docs/en/permission-modes#enable-auto-mode-on-bedrock-agent-platform-or-foundry)
 
 Safer automatic edits
 v2.1.160
