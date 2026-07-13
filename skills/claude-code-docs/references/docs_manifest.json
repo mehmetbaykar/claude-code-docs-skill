@@ -4,15 +4,15 @@
     "failed_pages": [],
     "fetch_tool_version": "1.0",
     "pages_failed": 0,
-    "pages_fetched_successfully": 165,
+    "pages_fetched_successfully": 166,
     "pages_skipped": 0,
     "raw_fallback_pages": 0,
-    "total_pages_discovered": 165
+    "total_pages_discovered": 166
   },
   "files": {
     "admin-setup.md": {
-      "hash": "e1694acde4fe6a065aa297f2612fcda2ff41c3a78d7a716573ed7142d8c77188",
-      "last_updated": "2026-07-04T03:28:10+00:00",
+      "hash": "100a1a2ee380263e4cae83eedfaec9432e537b501f3f5af1bd500490e56b08bb",
+      "last_updated": "2026-07-13T14:41:22+00:00",
       "original_url": "https://code.claude.com/docs/en/admin-setup",
       "path": "/docs/en/admin-setup",
       "source_url": "https://code.claude.com/docs/en/admin-setup.md",
@@ -547,8 +547,8 @@
       "title": "Claude Desktop on Linux (beta)"
     },
     "desktop-quickstart.md": {
-      "hash": "17a7d4656884c615cbb57d489613520fd14d8d2aeb50e9145c798b7da6455f72",
-      "last_updated": "2026-07-09T22:25:55+00:00",
+      "hash": "bca3acb0482a1b4dca33c211bd791efc7ac128ea656a554bbe1d4d7cebec6400",
+      "last_updated": "2026-07-13T14:42:09+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-quickstart",
       "path": "/docs/en/desktop-quickstart",
       "source_url": "https://code.claude.com/docs/en/desktop-quickstart.md",
@@ -562,9 +562,17 @@
       "source_url": "https://code.claude.com/docs/en/desktop-scheduled-tasks.md",
       "title": "Schedule recurring tasks in Claude Code Desktop"
     },
+    "desktop-wsl.md": {
+      "hash": "0eda08fbd2b681245f2bacd1fc655423fcb7ca8dc9a518401bb92a9b01ebcfa3",
+      "last_updated": "2026-07-13T14:42:11+00:00",
+      "original_url": "https://code.claude.com/docs/en/desktop-wsl",
+      "path": "/docs/en/desktop-wsl",
+      "source_url": "https://code.claude.com/docs/en/desktop-wsl.md",
+      "title": "Claude Code Desktop in WSL"
+    },
     "desktop.md": {
-      "hash": "7e144a3ed5f7f505ed15c49658f84253dc258606e1defff2c54dfa0ede139577",
-      "last_updated": "2026-07-11T02:54:00+00:00",
+      "hash": "ef1f8ededac542d2791da8aacc00cee0daf7dda50b5de46dc1f52cfce44b77fd",
+      "last_updated": "2026-07-13T14:42:08+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -1345,7 +1353,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-11T16:00:49+00:00",
+  "last_updated": "2026-07-13T14:43:21+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
