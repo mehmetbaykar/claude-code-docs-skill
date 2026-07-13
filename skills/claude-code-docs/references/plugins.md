@@ -455,7 +455,7 @@ Test each component: run your commands, check that agents appear in `/context`, 
 | Hooks in `settings.json`      | Hooks in `hooks/hooks.json`      |
 | Must manually copy to share   | Install with `/plugin install`   |
 
-After migrating, remove the original files from `.claude/` to avoid duplicates. Project and user `.claude/agents/` definitions override same-named plugin agents, so the plugin version only takes effect once the originals are removed.
+After migrating, remove the original files from `.claude/` to avoid duplicates. Project and user `.claude/agents/` definitions override same-named plugin agents, so the plugin version only takes effect once the originals are removed. Plugin skills are namespaced as `/plugin-name:skill-name`, so the original `/skill-name` and the plugin copy both remain available rather than one overriding the other.
 
 ## Next steps
 
