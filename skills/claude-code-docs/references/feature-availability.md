@@ -71,7 +71,7 @@ Organization-level controls and usage visibility.
 
 | Feature | Claude subscription | Anthropic Console | Amazon Bedrock | Claude Platform on AWS | Google Cloud's Agent Platform | Microsoft Foundry |
 | --- | --- | --- | --- | --- | --- | --- |
-| [Analytics dashboard and API](/en/analytics) | ✓ (Team and Enterprise) | ✓ [5](#fn5) | ✗ | ✗ | ✗ | ✗ |
+| [Analytics dashboard and API](/en/analytics) | ✓ (dashboard: Team and Enterprise; API: Enterprise) | ✓ [5](#fn5) | ✗ | ✗ | ✗ | ✗ |
 | [Server-managed settings](/en/server-managed-settings) | ✓ (Team and Enterprise) | ✓ (Team and Enterprise) | ✗ | ✗ | ✗ | ✗ |
 | [Zero Data Retention](/en/zero-data-retention) | ✓ (qualified Enterprise accounts) | ✓ (qualified accounts) | See note [4](#fn4) | ✓ (qualified accounts) | See note [4](#fn4) | See note [4](#fn4) |
 
@@ -161,7 +161,8 @@ If you authenticate through Amazon Bedrock, Google Cloud's Agent Platform, Micro
 | Dispatch ([Desktop](/en/desktop#sessions-from-dispatch))                                | ✓   | ✓   | ✗             | ✗                                 |
 | [Code Review](/en/code-review)                                                          | ✗   | ✗   | ✓             | ✓                                 |
 | [Artifacts](/en/artifacts)                                                              | ✓   | ✓   | ✓             | Admin-enabled                     |
-| [Analytics dashboard, API, and contribution metrics](/en/analytics)                     | ✗   | ✗   | ✓             | ✓                                 |
+| [Analytics dashboard and contribution metrics](/en/analytics)                           | ✗   | ✗   | ✓             | ✓                                 |
+| [Enterprise Analytics API](/en/analytics#access-data-programmatically)                  | ✗   | ✗   | ✗             | ✓                                 |
 | [Server-managed settings](/en/server-managed-settings)                                  | ✗   | ✗   | ✓             | ✓                                 |
 | [SSO](https://support.claude.com/en/articles/9266767-what-is-the-team-plan)             | ✗   | ✗   | ✓             | ✓                                 |
 | SCIM                                                                                    | ✗   | ✗   | ✗             | ✓                                 |
