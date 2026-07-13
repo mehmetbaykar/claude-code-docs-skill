@@ -75,6 +75,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `desktop-linux` - [Claude Desktop on Linux (beta)](https://code.claude.com/docs/en/desktop-linux)
 - `desktop-quickstart` - [Get started with the desktop app](https://code.claude.com/docs/en/desktop-quickstart)
 - `desktop-scheduled-tasks` - [Schedule recurring tasks in Claude Code Desktop](https://code.claude.com/docs/en/desktop-scheduled-tasks)
+- `desktop-wsl` - [Claude Code Desktop in WSL](https://code.claude.com/docs/en/desktop-wsl)
 - `desktop` - [Desktop application](https://code.claude.com/docs/en/desktop)
 - `devcontainer` - [Development containers](https://code.claude.com/docs/en/devcontainer)
 - `discover-plugins` - [Discover and install prebuilt plugins through marketplaces](https://code.claude.com/docs/en/discover-plugins)
