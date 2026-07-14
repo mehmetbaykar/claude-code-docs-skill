@@ -523,8 +523,8 @@
       "title": "Manage costs effectively"
     },
     "data-usage.md": {
-      "hash": "9229e1db2a32fb18ad8dac753fdc75dae0595f25fd6e62a1708d88f988557b5f",
-      "last_updated": "2026-07-04T03:28:48+00:00",
+      "hash": "ba75a12a2f4ad8f9a3776e20e7d12cb069ed912bc2c2b77afd33bd5cdfa25ca3",
+      "last_updated": "2026-07-14T22:01:43+00:00",
       "original_url": "https://code.claude.com/docs/en/data-usage",
       "path": "/docs/en/data-usage",
       "source_url": "https://code.claude.com/docs/en/data-usage.md",
@@ -683,8 +683,8 @@
       "title": "Claude Code GitLab CI/CD"
     },
     "glossary.md": {
-      "hash": "df927992a415f39a762cc172766dae6fbf1fa24d918655917c6cc27412dc6291",
-      "last_updated": "2026-07-14T02:46:11+00:00",
+      "hash": "2318768e4a37030c6e7bb5c342f6b0e3176f97277378625c95ac65550c214f2c",
+      "last_updated": "2026-07-14T22:02:03+00:00",
       "original_url": "https://code.claude.com/docs/en/glossary",
       "path": "/docs/en/glossary",
       "source_url": "https://code.claude.com/docs/en/glossary.md",
@@ -731,8 +731,8 @@
       "title": "Hooks reference"
     },
     "how-claude-code-works.md": {
-      "hash": "55651e07e430ff859677bc2878c9462f69f69238518cad517685afac93dfb540",
-      "last_updated": "2026-07-13T17:16:15+00:00",
+      "hash": "28e018614f32439de773ab6ecc10935c7b6324103dbad8b138a8fae9b24f684d",
+      "last_updated": "2026-07-14T22:02:06+00:00",
       "original_url": "https://code.claude.com/docs/en/how-claude-code-works",
       "path": "/docs/en/how-claude-code-works",
       "source_url": "https://code.claude.com/docs/en/how-claude-code-works.md",
@@ -987,8 +987,8 @@
       "title": "Quickstart"
     },
     "remote-control.md": {
-      "hash": "57733451da81707c9ce7d760b2814ed708e2485627d040f0c729fae3d0535584",
-      "last_updated": "2026-07-14T19:25:59+00:00",
+      "hash": "1f064d80d5c3b4aa77f3962338d47057ec9712f72ea43b1cd067e3fa311bf29a",
+      "last_updated": "2026-07-14T22:02:24+00:00",
       "original_url": "https://code.claude.com/docs/en/remote-control",
       "path": "/docs/en/remote-control",
       "source_url": "https://code.claude.com/docs/en/remote-control.md",
@@ -1035,8 +1035,8 @@
       "title": "Catch security issues as Claude writes code"
     },
     "security.md": {
-      "hash": "3a0bd4e2dc57ed2e338ee0600a1fa25d08a937ec9371d54010938122d66e8bbb",
-      "last_updated": "2026-07-11T08:02:01+00:00",
+      "hash": "8a52bc1768e84cbb3191badbfc4ae24a1dc3344f3d61faab0a287ba425266763",
+      "last_updated": "2026-07-14T22:02:26+00:00",
       "original_url": "https://code.claude.com/docs/en/security",
       "path": "/docs/en/security",
       "source_url": "https://code.claude.com/docs/en/security.md",
@@ -1339,8 +1339,8 @@
       "title": "Run parallel sessions with worktrees"
     },
     "zero-data-retention.md": {
-      "hash": "ff4edbade41f8432180ca1272546a5cfbfdfcda053afea74727253e182970c39",
-      "last_updated": "2026-07-04T03:29:43+00:00",
+      "hash": "fb8836368b311f5bcc9c1e92a830a92beb07feb2cf8c1f0a277079be033c727c",
+      "last_updated": "2026-07-14T22:02:45+00:00",
       "original_url": "https://code.claude.com/docs/en/zero-data-retention",
       "path": "/docs/en/zero-data-retention",
       "source_url": "https://code.claude.com/docs/en/zero-data-retention.md",
@@ -1361,7 +1361,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-14T19:26:33+00:00",
+  "last_updated": "2026-07-14T22:02:45+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
