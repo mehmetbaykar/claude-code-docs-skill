@@ -433,6 +433,7 @@ type SDKMessage =
   | SDKTaskProgressMessage
   | SDKTaskUpdatedMessage
   | SDKBackgroundTasksChangedMessage
+  | SDKThinkingTokensMessage
   | SDKSessionStateChangedMessage
   | SDKWorkerShuttingDownMessage
   | SDKCommandsChangedMessage
@@ -1994,6 +1995,16 @@ type SDKBackgroundTasksChangedMessage = {
     task_type: string;
     description: string;
   }[];
+  uuid: UUID;
+  session_id: string;
+};
+```
+```typescript
+type SDKThinkingTokensMessage = {
+  type: "system";
+  subtype: "thinking_tokens";
+  estimated_tokens: number;
+  estimated_tokens_delta: number;
   uuid: UUID;
   session_id: string;
 };
