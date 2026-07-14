@@ -12,6 +12,10 @@ This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anth
 
 Run `claude --version` to check your installed version.
 
+### 2.1.209 (July 14, 2026)
+
+* Fixed /model and other dialogs being blocked in `claude agents` background sessions (reverts an overly broad guard)
+
 ### 2.1.208 (July 14, 2026)
 
 * Added screen reader mode: opt-in plain-text rendering for screen reader users. Run `claude --ax-screen-reader`, set CLAUDE\_AX\_SCREEN\_READER=1, or add "axScreenReader": true to settings.
