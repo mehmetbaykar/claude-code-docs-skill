@@ -14,8 +14,6 @@ When you install a plugin that declares dependencies, Claude Code resolves and i
 
 This guide is for plugin authors who declare dependencies in `plugin.json` and for marketplace maintainers who tag releases. To install plugins that have dependencies, see [Discover and install plugins](/en/discover-plugins). For the full manifest schema, see the [Plugins reference](/en/plugins-reference).
 
-Dependency version constraints require Claude Code v2.1.110 or later.
-
 ## Why constrain dependency versions
 
 Consider an internal marketplace where two teams publish plugins. The platform team maintains `secrets-vault`, an MCP server that wraps a secrets backend. The deploy team maintains `deploy-kit`, which calls `secrets-vault` to fetch credentials during deploys.
