@@ -59,6 +59,8 @@ This example navigates to a page, interacts with it, and reports what it finds, 
     type "hooks", and tell me what results appear
 ```
 
+The first browser action asks for permission to use the `claude-in-chrome` skill. Approve it and Claude opens a new tab and starts the task.
+
 
 Run `/chrome` at any time to check the connection status, manage permissions, reconnect the extension, or choose which connected browser to use. If more than one browser is connected when a browser action starts, Claude prompts you to pick one.
 
@@ -87,7 +89,7 @@ As of v2.1.199, an otherwise read-only call that sets a state-changing input fla
 
 ## Example workflows
 
-These examples show common ways to combine browser actions with coding tasks. Run `/mcp` and select `claude-in-chrome` to see the full list of available browser tools.
+These examples show common ways to combine browser actions with coding tasks. Run `/mcp`, select `claude-in-chrome`, then select **View tools** to see the full list of available browser tools.
 
 ### Test a local web application
 

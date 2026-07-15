@@ -234,17 +234,19 @@ Lists past sessions with metadata. Filter by project directory or list sessions 
 def list_sessions(
     directory: str | None = None,
     limit: int | None = None,
+    offset: int = 0,
     include_worktrees: bool = True
 ) -> list[SDKSessionInfo]
 ```
 
 #### Parameters
 
-| Parameter           | Type          | Default | Description                                                                           |
-| :------------------ | :------------ | :------ | :------------------------------------------------------------------------------------ |
-| `directory`         | `str \| None` | `None`  | Directory to list sessions for. When omitted, returns sessions across all projects    |
-| `limit`             | `int \| None` | `None`  | Maximum number of sessions to return                                                  |
-| `include_worktrees` | `bool`        | `True`  | When `directory` is inside a git repository, include sessions from all worktree paths |
+| Parameter           | Type          | Default | Description                                                                                      |
+| :------------------ | :------------ | :------ | :----------------------------------------------------------------------------------------------- |
+| `directory`         | `str \| None` | `None`  | Directory to list sessions for. When omitted, returns sessions across all projects               |
+| `limit`             | `int \| None` | `None`  | Maximum number of sessions to return                                                             |
+| `offset`            | `int`         | `0`     | Number of sessions to skip from the start of the sorted results. Use with `limit` for pagination |
+| `include_worktrees` | `bool`        | `True`  | When `directory` is inside a git repository, include sessions from all worktree paths            |
 
 #### Return type: `SDKSessionInfo`
 
