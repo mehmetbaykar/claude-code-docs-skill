@@ -1047,7 +1047,7 @@ type AskUserQuestionInput = {
 ```typescript
 type BashInput = {
   command: string;
-  timeout?: number;
+  timeout?: number; // milliseconds, max 600000; higher values are clamped to the max
   description?: string;
   run_in_background?: boolean;
   dangerouslyDisableSandbox?: boolean;
