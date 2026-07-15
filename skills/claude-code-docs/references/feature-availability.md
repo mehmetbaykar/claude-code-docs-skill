@@ -68,7 +68,7 @@ These features work in the local CLI but depend on a server-side capability that
 | [Auto mode](/en/auto-mode-config) | ✓ | ✓ | See note [2](#fn2) | ✓ | See note [2](#fn2) | See note [2](#fn2) |
 | [Advisor](/en/advisor) | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ |
 | [Channels](/en/channels) | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ |
-| [`/loop` scheduled tasks](/en/scheduled-tasks) | ✓ | ✓ | See note [3](#fn3) | ✓ | See note [3](#fn3) | See note [3](#fn3) |
+| [`/loop` scheduled tasks](/en/scheduled-tasks) | ✓ | ✓ | See note [3](#fn3) | See note [3](#fn3) | See note [3](#fn3) | See note [3](#fn3) |
 | [GitHub Actions](/en/github-actions) and [GitLab CI/CD](/en/gitlab-ci-cd) | ✓ | ✓ | ✓ | ✓ | ✓ | ✗ |
 
 ### Admin and analytics
@@ -109,9 +109,13 @@ Each tab lists what is unavailable or partially supported on that provider, with
 
     **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [fast mode](/en/fast-mode), [Advisor](/en/advisor), [Channels](/en/channels), the [analytics dashboard](/en/analytics), [server-managed settings](/en/server-managed-settings), and the [`/design-sync` and `/radio` commands](/en/commands#all-commands).
 
-    **Available where Amazon Bedrock is not:** [web search](/en/tools-reference#websearch-tool-behavior) and [`/loop` self-pacing](/en/scheduled-tasks).
+    **Available where Amazon Bedrock is not:** [web search](/en/tools-reference#websearch-tool-behavior).
 
-    **Alternatives:** for scheduling, use [`/loop`](/en/scheduled-tasks) instead of `/schedule`. For cloud sessions, use [GitHub Actions](/en/github-actions) or [GitLab CI/CD](/en/gitlab-ci-cd).
+    **Partial support:**
+
+* [`/loop`](/en/scheduled-tasks): explicit intervals only
+
+    **Alternatives:** for scheduling, use [`/loop`](/en/scheduled-tasks) with an explicit interval instead of `/schedule`. For cloud sessions, use [GitHub Actions](/en/github-actions) or [GitLab CI/CD](/en/gitlab-ci-cd).
 
 
 
