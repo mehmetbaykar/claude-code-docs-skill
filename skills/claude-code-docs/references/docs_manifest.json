@@ -19,8 +19,8 @@
       "title": "Use Claude Code with a screen reader"
     },
     "admin-setup.md": {
-      "hash": "bedc592bae49083b0d97b4d35c376772dcf9339bc052d8e56d7b1b93beaf6ce5",
-      "last_updated": "2026-07-14T02:44:55+00:00",
+      "hash": "ea548bf50d558c2338cae17a9ab5692914f9eeab3c87783a6a1b55c007184455",
+      "last_updated": "2026-07-15T02:44:05+00:00",
       "original_url": "https://code.claude.com/docs/en/admin-setup",
       "path": "/docs/en/admin-setup",
       "source_url": "https://code.claude.com/docs/en/admin-setup.md",
@@ -355,8 +355,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "5cdeadfd8a889b4bffc8ce52312c56e0d015df6fea7c3f8db0ba0b8cf35884e7",
-      "last_updated": "2026-07-14T19:24:34+00:00",
+      "hash": "3653f54a95f5e1e982a80e36a95b52530f1b52e9ff5e99ff6fdaa4dc12b9c455",
+      "last_updated": "2026-07-15T02:46:29+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -435,8 +435,8 @@
       "title": "Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry"
     },
     "claude-code-on-the-web.md": {
-      "hash": "87a79545157b95c9bf999f552aeea3891911f6ffd74a6c0c9c364bf15a941e8c",
-      "last_updated": "2026-07-09T19:51:18+00:00",
+      "hash": "a1b822402fc01fad3e17623ab11a541140acaec47956e569a042093d559634c5",
+      "last_updated": "2026-07-15T02:47:07+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-code-on-the-web",
       "path": "/docs/en/claude-code-on-the-web",
       "source_url": "https://code.claude.com/docs/en/claude-code-on-the-web.md",
@@ -475,8 +475,8 @@
       "title": "Code Review"
     },
     "commands.md": {
-      "hash": "da9dbac327dd8efe6ecd5ac73566f25734a619c209b8f0c841575e5f4c0ae422",
-      "last_updated": "2026-07-14T19:24:49+00:00",
+      "hash": "4befece9795cf5d948da160df903bfe192e1c61d9a9207ef8d6ffd1dea779bcc",
+      "last_updated": "2026-07-15T02:47:16+00:00",
       "original_url": "https://code.claude.com/docs/en/commands",
       "path": "/docs/en/commands",
       "source_url": "https://code.claude.com/docs/en/commands.md",
@@ -555,8 +555,8 @@
       "title": "Claude Desktop on Linux (beta)"
     },
     "desktop-quickstart.md": {
-      "hash": "2966e0539af4e7e13c16bede8ec9a8f21026ecb9a69977d679802ead89cd95ed",
-      "last_updated": "2026-07-14T02:45:58+00:00",
+      "hash": "a5debbd6b44b618fff66a7b6fca4d52cc2aca2ac7ce08fa9680e0a5d7ca99089",
+      "last_updated": "2026-07-15T02:47:30+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-quickstart",
       "path": "/docs/en/desktop-quickstart",
       "source_url": "https://code.claude.com/docs/en/desktop-quickstart.md",
@@ -595,16 +595,16 @@
       "title": "Development containers"
     },
     "discover-plugins.md": {
-      "hash": "6daa8aea3df32f7749abcb9ef3a0bc1586fff3e0e92107c4e77b64355f0461d5",
-      "last_updated": "2026-07-13T22:00:33+00:00",
+      "hash": "8bfbce8e4487cb8920aee2eb09f9c42b9c59c968d07e75d697251184454fd86b",
+      "last_updated": "2026-07-15T02:47:34+00:00",
       "original_url": "https://code.claude.com/docs/en/discover-plugins",
       "path": "/docs/en/discover-plugins",
       "source_url": "https://code.claude.com/docs/en/discover-plugins.md",
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "f7796c86369aa80ea5aebc9183e8feff28b328ad97314537bb019fde8e3e0c7e",
-      "last_updated": "2026-07-14T19:25:10+00:00",
+      "hash": "a685fca2c364f0aa7355bc0c4e381756fb8fba6baa62d2707842c05457dba632",
+      "last_updated": "2026-07-15T02:47:36+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -739,8 +739,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "0bcd33567ef934b7d3cef68f15bb6de12f69a81a6b1e817e6f7d81ebef2f48f0",
-      "last_updated": "2026-07-14T19:25:25+00:00",
+      "hash": "9bfebd3407ab7978090e5b74885cbc35c68ae0227448fa1cdb6943edb1c5c1d9",
+      "last_updated": "2026-07-15T02:47:57+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -827,8 +827,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "09ee2647f6cfd07af1b5e41b0add681bdba44680c6c844edd8128d02e5c7f095",
-      "last_updated": "2026-07-14T19:25:36+00:00",
+      "hash": "3bf27fd2fee4fcef7d6dba020440bf5a1b6a489f8b7c441e903dd29b1fd2990f",
+      "last_updated": "2026-07-15T02:48:04+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -931,8 +931,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugin-marketplaces.md": {
-      "hash": "7e1495365e80cfc24333fd2ff0e17e299d17d9adfa4564838ffd8963ea5f4b7b",
-      "last_updated": "2026-07-13T17:16:35+00:00",
+      "hash": "f10107aa044b2b85e7ad236c67d7f442782e4e414e808d18473ecf46b802a374",
+      "last_updated": "2026-07-15T02:48:21+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-marketplaces",
       "path": "/docs/en/plugin-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugin-marketplaces.md",
@@ -947,8 +947,8 @@
       "title": "Recommend plugins for your org"
     },
     "plugins-reference.md": {
-      "hash": "46eaf33c7b911780bb6d617cf3f8404c7a45b17587ee24dcee1077a73263d981",
-      "last_updated": "2026-07-14T19:25:55+00:00",
+      "hash": "2638e02bc2f73f99b1928fadf59aa70fd99f3328150a97640bcde7f42a90ba94",
+      "last_updated": "2026-07-15T02:48:23+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins-reference",
       "path": "/docs/en/plugins-reference",
       "source_url": "https://code.claude.com/docs/en/plugins-reference.md",
@@ -1361,7 +1361,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-14T22:02:45+00:00",
+  "last_updated": "2026-07-15T02:49:07+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
