@@ -37,6 +37,8 @@ Suppose you've just joined a new project and need to understand its structure qu
     cd /path/to/project
 ```
 
+Replace `/path/to/project` with the path to your project.
+
 
 
 **Start Claude Code**
@@ -383,6 +385,7 @@ This fetches data from connected MCP servers using the format @server:resource. 
 Tips:
 
 * File paths can be relative or absolute
+* Type `@` to open a path suggestion menu, then press Enter or Tab to accept the highlighted path and Enter again to send the message
 * @ file references add `CLAUDE.md` in the file's directory and parent directories to context
 * Directory references show file listings, not contents
 * You can reference multiple files in a single message (for example, "@file1.js and @file2.js")
@@ -451,21 +454,21 @@ This resumes the most recent session in the current directory; if there isn't on
 
 ## Run parallel sessions with worktrees
 
-Work on a feature in one terminal while Claude fixes a bug in another, without the edits colliding. Each worktree is a separate checkout on its own branch.
+Work on a feature in one terminal while Claude fixes a bug in another, without the edits colliding. Each [git worktree](https://git-scm.com/docs/git-worktree) is a separate checkout on its own branch, created from an existing commit, so the repository needs at least one commit first.
 ```bash
 claude --worktree feature-auth
 ```
 
-Run the same command with a different name in a second terminal to start an isolated parallel session. See [Worktrees](/en/worktrees) for cleanup, `.worktreeinclude`, and non-git VCS support. To monitor parallel sessions from one screen instead of separate terminals, see [background agents](/en/agent-view).
+Run the same command with a different name in a second terminal to start an isolated parallel session. In a repository with no commits, the command fails with `Failed to resolve base branch "HEAD": git rev-parse failed`. See [Worktrees](/en/worktrees) for cleanup, `.worktreeinclude`, and non-git VCS support. To monitor parallel sessions from one screen instead of separate terminals, see [background agents](/en/agent-view).
 
 ## Plan before editing
 
-For changes you want to review before they touch disk, switch to plan mode. Claude reads files and proposes a plan but makes no edits until you approve.
+For changes you want to review before they touch disk, switch to plan mode. Claude reads files and proposes a plan but makes no edits until you approve. The status bar shows `⏸ plan mode on` while plan mode is active.
 ```bash
 claude --permission-mode plan
 ```
 
-You can also press `Shift+Tab` mid-session to toggle into plan mode. See [Plan mode](/en/permission-modes#analyze-before-you-edit-with-plan-mode) for the approval flow and editing the plan in your text editor.
+You can also press `Shift+Tab` mid-session to cycle to plan mode. The cycle runs `default` → `acceptEdits` → `plan`. See [Plan mode](/en/permission-modes#analyze-before-you-edit-with-plan-mode) for the approval flow and editing the plan in your text editor.
 
 ## Delegate research to subagents
 
