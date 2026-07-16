@@ -97,7 +97,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
     **Partial support:**
 
 * [Desktop](/en/desktop): only via [Claude Desktop on 3P](https://claude.com/docs/third-party/claude-desktop/overview)
-* [Auto mode](/en/auto-mode-config): Sonnet 5, Opus 4.7, and Opus 4.8 only
+* [Auto mode](/en/auto-mode-config): Sonnet 5, Opus 4.7, Opus 4.8, and Fable 5 only
 * [`/loop`](/en/scheduled-tasks): explicit intervals only
 * [Zero Data Retention](/en/zero-data-retention): subject to your AWS agreement
 
@@ -127,7 +127,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 
 * [Desktop](/en/desktop): via [managed settings](https://claude.com/docs/third-party/claude-desktop/configuration) or [Claude Desktop on 3P](https://claude.com/docs/third-party/claude-desktop/overview)
 * [Web search](/en/tools-reference#websearch-tool-behavior): Claude 4 models and later
-* [Auto mode](/en/auto-mode-config): Sonnet 5, Opus 4.7, and Opus 4.8 only
+* [Auto mode](/en/auto-mode-config): Sonnet 5, Opus 4.7, Opus 4.8, and Fable 5 only
 * [`/loop`](/en/scheduled-tasks): explicit intervals only
 * [Zero Data Retention](/en/zero-data-retention): subject to your Google Cloud agreement
 
@@ -142,7 +142,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
     **Partial support:**
 
 * [Desktop](/en/desktop): only via [Claude Desktop on 3P](https://claude.com/docs/third-party/claude-desktop/overview)
-* [Auto mode](/en/auto-mode-config): Sonnet 5, Opus 4.7, and Opus 4.8 only
+* [Auto mode](/en/auto-mode-config): Sonnet 5, Opus 4.7, Opus 4.8, and Fable 5 only
 * [`/loop`](/en/scheduled-tasks): explicit intervals only
 * [Zero Data Retention](/en/zero-data-retention): subject to your Azure agreement
 

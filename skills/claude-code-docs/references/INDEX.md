@@ -69,6 +69,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `communications-kit` - [Communications kit](https://code.claude.com/docs/en/communications-kit)
 - `computer-use` - [Let Claude use your computer from the CLI](https://code.claude.com/docs/en/computer-use)
 - `context-window` - [Explore the context window](https://code.claude.com/docs/en/context-window)
+- `corporate-launcher` - [Run Claude Code behind a corporate launcher](https://code.claude.com/docs/en/corporate-launcher)
 - `costs` - [Manage costs effectively](https://code.claude.com/docs/en/costs)
 - `data-usage` - [Data usage](https://code.claude.com/docs/en/data-usage)
 - `debug-your-config` - [Debug your configuration](https://code.claude.com/docs/en/debug-your-config)
