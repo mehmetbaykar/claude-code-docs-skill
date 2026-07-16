@@ -458,6 +458,7 @@ type SDKAssistantMessage = {
   message: BetaMessage; // From Anthropic SDK
   parent_tool_use_id: string | null;
   error?: SDKAssistantMessageError;
+  timestamp?: string;
 };
 ```
 ```typescript
@@ -659,6 +660,7 @@ type HookEvent =
   | "PostToolBatch"
   | "Notification"
   | "UserPromptSubmit"
+  | "UserPromptExpansion"
   | "SessionStart"
   | "SessionEnd"
   | "Stop"
@@ -1328,6 +1330,8 @@ type BashOutput = {
   isImage?: boolean;
   backgroundTaskId?: string;
   backgroundedByUser?: boolean;
+  timedOutAfterMs?: number;
+  backgroundCwdHint?: string;
   dangerouslyDisableSandbox?: boolean;
   returnCodeInterpretation?: string;
   structuredContent?: unknown[];
@@ -1447,6 +1451,8 @@ type GlobOutput = {
   numFiles: number;
   filenames: string[];
   truncated: boolean;
+  totalMatches?: number;
+  countIsComplete?: boolean;
 };
 ```
 ```typescript
@@ -1457,6 +1463,8 @@ type GrepOutput = {
   content?: string;
   numLines?: number;
   numMatches?: number;
+  totalFiles?: number;
+  totalLines?: number;
   appliedLimit?: number;
   appliedOffset?: number;
 };
