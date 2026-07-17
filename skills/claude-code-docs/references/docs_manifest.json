@@ -531,8 +531,8 @@
       "title": "Manage costs effectively"
     },
     "data-usage.md": {
-      "hash": "3284895391c7481f05c9e7d797ad294671f409f8e7ffc742691396c88195c10a",
-      "last_updated": "2026-07-17T02:53:22+00:00",
+      "hash": "bdfc2762242cf0473534d62e2c952a6a19a1b4931b8b2f287807950145bf1794",
+      "last_updated": "2026-07-17T19:16:14+00:00",
       "original_url": "https://code.claude.com/docs/en/data-usage",
       "path": "/docs/en/data-usage",
       "source_url": "https://code.claude.com/docs/en/data-usage.md",
@@ -611,8 +611,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "412540c9929f7fdc4fb8d4bc24984ae5acdbe012a5e85c88f90873367c1ed75c",
-      "last_updated": "2026-07-17T02:53:31+00:00",
+      "hash": "ac40e34dc83bcd597a58fb9adac6ae786af9c957cb166d3f360174c24d0edb07",
+      "last_updated": "2026-07-17T19:16:22+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -627,8 +627,8 @@
       "title": "Error reference"
     },
     "fast-mode.md": {
-      "hash": "3fcb65d7db791d26a5899b973479028204c7f85aa39e5758b0037bc04161977c",
-      "last_updated": "2026-07-15T22:05:16+00:00",
+      "hash": "02f98001e807d323491a99f05ddd98fc3a51773801f2114cfe171a03f79bd4ac",
+      "last_updated": "2026-07-17T19:16:24+00:00",
       "original_url": "https://code.claude.com/docs/en/fast-mode",
       "path": "/docs/en/fast-mode",
       "source_url": "https://code.claude.com/docs/en/fast-mode.md",
@@ -723,8 +723,8 @@
       "title": "Run Claude Code programmatically"
     },
     "hooks-guide.md": {
-      "hash": "11c6139b98be47a4a577187dedea8de19a110e94e1ff159f59f2ef785c989fe8",
-      "last_updated": "2026-07-17T02:53:43+00:00",
+      "hash": "13e8f415dc5129bb04e9af990094175e5c9f9c6c236cddb4f5d87b54f51a2efd",
+      "last_updated": "2026-07-17T19:16:32+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks-guide",
       "path": "/docs/en/hooks-guide",
       "source_url": "https://code.claude.com/docs/en/hooks-guide.md",
@@ -787,24 +787,24 @@
       "title": "Legal and compliance"
     },
     "llm-gateway-connect.md": {
-      "hash": "c6baa1991c29c89d86f56f1d7023a3fedc88873b161dc60ef660ee992c1c6bb3",
-      "last_updated": "2026-07-16T22:06:02+00:00",
+      "hash": "a6230397369213b67c62c878663e0ea56c0a67403e358a465b02a5fc20f4e8f8",
+      "last_updated": "2026-07-17T19:16:37+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-connect",
       "path": "/docs/en/llm-gateway-connect",
       "source_url": "https://code.claude.com/docs/en/llm-gateway-connect.md",
       "title": "Connect Claude Code to an LLM gateway"
     },
     "llm-gateway-protocol.md": {
-      "hash": "a0dac6953136838890ba84cb0c341cdb65f7e2d06d8e44682d008a2242d2ec4b",
-      "last_updated": "2026-07-15T22:05:33+00:00",
+      "hash": "fe7a5a51638df556fb27d47c13969e5f77b436aba814fa35d4ff90eee904307a",
+      "last_updated": "2026-07-17T19:16:37+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-protocol",
       "path": "/docs/en/llm-gateway-protocol",
       "source_url": "https://code.claude.com/docs/en/llm-gateway-protocol.md",
       "title": "Gateway protocol reference"
     },
     "llm-gateway-rollout.md": {
-      "hash": "5c3a82b2e9e1e3488ed7bf8d3856f7d47fc9791a576c4248a46e9571e0bd5c17",
-      "last_updated": "2026-07-15T19:21:19+00:00",
+      "hash": "dbc4b426c2f2310cbb309cefbd8dca9d09c05632831689ff0a48fb329a21492c",
+      "last_updated": "2026-07-17T19:16:38+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-rollout",
       "path": "/docs/en/llm-gateway-rollout",
       "source_url": "https://code.claude.com/docs/en/llm-gateway-rollout.md",
@@ -875,8 +875,8 @@
       "title": "Monitoring"
     },
     "network-config.md": {
-      "hash": "c512bfcc23aef71f29e39f2d36179f4caefa20574e762dbf6744e4467752972b",
-      "last_updated": "2026-07-16T16:19:50+00:00",
+      "hash": "c691252c1d62d6a582eb7928d198c45224e80ceea9f0675ce4269aebb9a64861",
+      "last_updated": "2026-07-17T19:16:43+00:00",
       "original_url": "https://code.claude.com/docs/en/network-config",
       "path": "/docs/en/network-config",
       "source_url": "https://code.claude.com/docs/en/network-config.md",
@@ -1369,7 +1369,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-17T16:19:28+00:00",
+  "last_updated": "2026-07-17T19:17:30+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
