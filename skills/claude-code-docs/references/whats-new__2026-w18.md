@@ -58,7 +58,7 @@ Paste the PR URL into the picker. The first character of the paste drops you int
   https://github.com/your-org/your-repo/pull/1234
 ```
 
-To skip the picker, pass the PR number on the command line instead:
+To open the picker already filtered to the PR, pass the PR number on the command line:
 ```bash
   claude --from-pr 1234
 ```
