@@ -147,8 +147,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "f436c8abbc6ee97767b7254f6f1cb1f8749c5a602d3fb556f818e3f6eacdd606",
-      "last_updated": "2026-07-16T22:05:13+00:00",
+      "hash": "ea85a8ee4f6d855ccf4cf2bb461090ee9f83cc7b0416ce5e892c6eb418c15a75",
+      "last_updated": "2026-07-17T16:17:33+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -219,8 +219,8 @@
       "title": "Streaming Input"
     },
     "agent-sdk__structured-outputs.md": {
-      "hash": "8f594e45f6707a82c6aaef22f4a3384273a8f5a41883c92e23fdd45a78a4a1fb",
-      "last_updated": "2026-07-17T02:52:50+00:00",
+      "hash": "18b82f69aaaa910879332e99c34012a2fde99fd59f449331ed189a8080f35831",
+      "last_updated": "2026-07-17T16:17:38+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/structured-outputs",
       "path": "/docs/en/agent-sdk/structured-outputs",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/structured-outputs.md",
@@ -259,8 +259,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "562f79c01ab4c5633a4dc1654018e7e9c558544473cec9c1f520c86c2a769017",
-      "last_updated": "2026-07-16T16:18:59+00:00",
+      "hash": "efb3e2426281e54f63684513850fe31fc08524f11fe1f98d9b6a575792bb0021",
+      "last_updated": "2026-07-17T16:17:41+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/typescript.md",
@@ -843,8 +843,8 @@
       "title": "Connect Claude Code to tools via MCP"
     },
     "memory.md": {
-      "hash": "075e18d58f2f1e227ca1635d3e2d3aeb8e743a6b312b964838273a8b5bcf11f8",
-      "last_updated": "2026-07-16T22:06:06+00:00",
+      "hash": "8f6571ccd24f9f88a6329ce4f04aa8f6cf913b72ffe61d8f8ae943fc8e9cb32d",
+      "last_updated": "2026-07-17T16:18:37+00:00",
       "original_url": "https://code.claude.com/docs/en/memory",
       "path": "/docs/en/memory",
       "source_url": "https://code.claude.com/docs/en/memory.md",
@@ -883,8 +883,8 @@
       "title": "Enterprise network configuration"
     },
     "output-styles.md": {
-      "hash": "fac05293ec011189e93f7afede7848e1058d7cf94e74ad5f84c091942febcd54",
-      "last_updated": "2026-06-16T22:55:53+00:00",
+      "hash": "71841e336ebc005bcedc6ab9d1ed8c3411f2298b78ca3f5c69a6d026b4bfe47d",
+      "last_updated": "2026-07-17T16:18:41+00:00",
       "original_url": "https://code.claude.com/docs/en/output-styles",
       "path": "/docs/en/output-styles",
       "source_url": "https://code.claude.com/docs/en/output-styles.md",
@@ -1107,8 +1107,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "a9d58a52c356d678d0aa581d021d38931f477d0bf84426fc0dd8eff23033d0bf",
-      "last_updated": "2026-07-16T16:20:07+00:00",
+      "hash": "540f1422c4c6b2120470602fe8edd1b7ca1e095e84a548a8ad5c2fae16d19c53",
+      "last_updated": "2026-07-17T16:19:06+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1369,7 +1369,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-17T02:54:37+00:00",
+  "last_updated": "2026-07-17T16:19:28+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
