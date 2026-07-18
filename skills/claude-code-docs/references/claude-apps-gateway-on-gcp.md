@@ -292,7 +292,7 @@ The gateway logs a boot warning that the metadata endpoint is reachable and sugg
 
 **Push the gateway URL to developer machines**
 
-The gateway is now running, but developers can't reach it from `/login` until the gateway URL is on their machines. Set `forceLoginMethod` and `forceLoginGatewayUrl` in the [managed settings file](/en/claude-apps-gateway#set-the-gateway-url) you deploy to each device via MDM. There is no gateway option in the login picker for a developer to select manually.
+The gateway is now running, but developers can't reach it from `/login` until the gateway URL is on their machines. Deploy the full [managed settings snippet](/en/claude-apps-gateway#set-the-gateway-url), with `forceLoginMethod`, `forceLoginGatewayUrl`, and the `parentSettingsBehavior: "merge"` opt-in, to each device via MDM. There is no gateway option in the login picker for a developer to select manually.
 
 
 ## Terraform reference

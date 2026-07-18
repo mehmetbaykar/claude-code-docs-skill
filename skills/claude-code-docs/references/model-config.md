@@ -485,7 +485,7 @@ The environment variable takes precedence over all other methods, then your conf
 
 The `effortLevel` key in [managed settings](/en/settings#settings-precedence) is a starting default, not enforcement: users can change it for a session with `/effort` or `--effort`, and the managed value re-asserts as the default in new sessions.
 
-The effort slider appears in `/model` when a supported model is selected. The current effort level is also displayed next to the logo and spinner, for example "with low effort", so you can confirm which setting is active without opening `/model`.
+The effort slider appears in `/model` when a supported model is selected. The current effort level is also shown in the session header next to the model name, for example "with low effort", so you can confirm which setting is active without opening `/model`. The footer also briefly shows the effort level at startup and when it changes.
 
 #### Adaptive reasoning and fixed thinking budgets
 
@@ -528,7 +528,7 @@ The 1M context window uses standard model pricing with no premium for tokens bey
 If your account supports 1M context, the option appears in the `/model` picker in the latest versions of Claude Code. If you don't see it, try restarting your session.
 
 You can also use the `[1m]` suffix with model aliases or full model names:
-```bash
+```text
 # Use the opus[1m] or sonnet[1m] alias
 /model opus[1m]
 /model sonnet[1m]

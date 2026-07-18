@@ -122,7 +122,9 @@ The SDK supports these permission modes:
 | `plan`              | Planning mode                | Claude explores and plans without editing your source files; file edits are never auto-approved and prompt through your `canUseTool` callback                                                                                                                                          |
 | `auto`              | Model-classified approvals   | A model classifier approves or denies each tool call. See [Auto mode](/en/permission-modes#eliminate-prompts-with-auto-mode) for availability                                                                                                                                          |
 
-  **Subagent inheritance:** When the parent uses `bypassPermissions`, `acceptEdits`, or `auto`, all subagents inherit that mode and it cannot be overridden per subagent. Subagents may have different system prompts and less constrained behavior than your main agent, so inheriting `bypassPermissions` grants them full, autonomous system access. Explicit [`ask` rules](#how-permissions-are-evaluated), connector tools [your organization set to `ask`](/en/mcp#organization-controls-on-connector-tools), and tools that require user interaction still force a prompt.
+  **Subagent inheritance:** Subagents inherit the parent session's permission mode. An [`AgentDefinition`'s `permissionMode`](/en/agent-sdk/typescript#agentdefinition) can override it, except when the parent uses `bypassPermissions`, `acceptEdits`, or `auto`: those modes apply to every subagent and can't be overridden per subagent.
+
+Subagents may have different system prompts and less constrained behavior than your main agent, so inheriting `bypassPermissions` grants them full, autonomous system access. Explicit [`ask` rules](#how-permissions-are-evaluated), connector tools [your organization set to `ask`](/en/mcp#organization-controls-on-connector-tools), and tools that require user interaction still force a prompt.
 
 ### Set permission mode
 
@@ -253,7 +255,11 @@ Use with extreme caution. Claude has full system access in this mode. Only use i
 
 #### Plan mode (`plan`)
 
-Claude explores the codebase and produces a plan without editing your source files. Read-only tools run as in default mode. File edits are never auto-approved in plan mode, even when an allow rule matches. They prompt through your `canUseTool` callback instead. Claude may use `AskUserQuestion` to clarify requirements before finalizing the plan. See [Handle approvals and user input](/en/agent-sdk/user-input#handle-clarifying-questions) for handling these prompts.
+Claude explores the codebase and produces a plan without editing your source files. Read-only tools run as in default mode.
+
+File edits are never auto-approved in plan mode, even when an allow rule matches. They prompt through your `canUseTool` callback instead. {/* min-version: 2.1.212 */}On Claude Code v2.1.212 or later, shell commands that modify files, such as `touch` and `rm`, reach your `canUseTool` callback the same way.
+
+Claude may use `AskUserQuestion` to clarify requirements before finalizing the plan. See [Handle approvals and user input](/en/agent-sdk/user-input#handle-clarifying-questions) for handling these prompts.
 
 **Use when:** you want Claude to propose changes without executing them, such as during code review or when you need to approve changes before they're made.
 
