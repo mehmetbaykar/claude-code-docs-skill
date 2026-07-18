@@ -315,8 +315,8 @@
       "title": "Track team usage with analytics"
     },
     "artifacts.md": {
-      "hash": "1c7f103250726887d09d3274005145ed87a2af2ca592ee0fb0dfcaeec49e857a",
-      "last_updated": "2026-07-17T02:52:59+00:00",
+      "hash": "f7d360dbab310c71cf3f5615ae9638fa88ca40c6e3d54a646f597518065fab0f",
+      "last_updated": "2026-07-18T16:00:15+00:00",
       "original_url": "https://code.claude.com/docs/en/artifacts",
       "path": "/docs/en/artifacts",
       "source_url": "https://code.claude.com/docs/en/artifacts.md",
@@ -403,8 +403,8 @@
       "title": "Claude apps gateway configuration"
     },
     "claude-apps-gateway-deploy.md": {
-      "hash": "03f623d393f85423a1ed4e423485d2332fc47f54fabf0accad6cdc451bbf450f",
-      "last_updated": "2026-07-18T02:46:03+00:00",
+      "hash": "85df54905c86998f6f174b764caca8e13b63026d9f8d99b9daac6ba39a960f5f",
+      "last_updated": "2026-07-18T16:00:20+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-deploy",
       "path": "/docs/en/claude-apps-gateway-deploy",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-deploy.md",
@@ -435,8 +435,8 @@
       "title": "Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry"
     },
     "claude-code-on-the-web.md": {
-      "hash": "8a1281ed6ec4c8e09f776106dc17ad89876a2bc4772d7436f59f91dd7e8030aa",
-      "last_updated": "2026-07-18T02:46:06+00:00",
+      "hash": "3389617963fac004a53b2e456e332feffebbf530f1a587d7b8a248b82355a7f2",
+      "last_updated": "2026-07-18T16:00:21+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-code-on-the-web",
       "path": "/docs/en/claude-code-on-the-web",
       "source_url": "https://code.claude.com/docs/en/claude-code-on-the-web.md",
@@ -835,8 +835,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "26e03f63603568092664e8f0692c0db42556a7af58eeba2f247d1e9d4de1bffb",
-      "last_updated": "2026-07-18T02:47:05+00:00",
+      "hash": "ed67c0d898167b32d555c66d67d7ecf5d8d430f385083950ac812dea2e47d18a",
+      "last_updated": "2026-07-18T16:00:54+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -899,8 +899,8 @@
       "title": "Output styles"
     },
     "overview.md": {
-      "hash": "979fc4a76179f5737bcea9a2d152a9cee222683ca8a913eb1ac0be1122d90634",
-      "last_updated": "2026-07-17T21:57:42+00:00",
+      "hash": "20ef758c04ef8777c5a877cfcfd179343b54bfa2937a4eb9d567b60dcade4f75",
+      "last_updated": "2026-07-18T16:00:59+00:00",
       "original_url": "https://code.claude.com/docs/en/overview",
       "path": "/docs/en/overview",
       "source_url": "https://code.claude.com/docs/en/overview.md",
@@ -1011,8 +1011,8 @@
       "title": "Continue local sessions from any device with Remote Control"
     },
     "routines.md": {
-      "hash": "e462d7d3b355c149b6bd24666ac34824af67c61c4d3f35aac400f49f64f90ae5",
-      "last_updated": "2026-07-18T02:47:33+00:00",
+      "hash": "9749320b8f28a0d1a498242cb16f9d67a02ed84701a0e7e3e31bce826c6c4c1d",
+      "last_updated": "2026-07-18T16:01:12+00:00",
       "original_url": "https://code.claude.com/docs/en/routines",
       "path": "/docs/en/routines",
       "source_url": "https://code.claude.com/docs/en/routines.md",
@@ -1147,16 +1147,16 @@
       "title": "Tools reference"
     },
     "troubleshoot-install.md": {
-      "hash": "2fbfb4dc85041989e96ac3e0444c083327dacb89b838fc236936e62df1819215",
-      "last_updated": "2026-07-18T02:47:57+00:00",
+      "hash": "4aa8920f83616c539c89509630a008d1457268acab39ab7b4aec6c99bd9e670c",
+      "last_updated": "2026-07-18T16:01:22+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshoot-install",
       "path": "/docs/en/troubleshoot-install",
       "source_url": "https://code.claude.com/docs/en/troubleshoot-install.md",
       "title": "Troubleshoot installation and login"
     },
     "troubleshooting.md": {
-      "hash": "de284a84a6afd282c93dc92d52086100f7b645b89bdb3d6aed810b86a86f0a88",
-      "last_updated": "2026-07-18T02:47:58+00:00",
+      "hash": "78920a764e76bb2e91b3d8fccc9123b328c4f9efe418dfe96696314fe09aed0d",
+      "last_updated": "2026-07-18T16:01:23+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshooting",
       "path": "/docs/en/troubleshooting",
       "source_url": "https://code.claude.com/docs/en/troubleshooting.md",
@@ -1187,8 +1187,8 @@
       "title": "Voice dictation"
     },
     "vs-code.md": {
-      "hash": "dde74be80da06fcc463e3ea0b86e366b6847af2a55f6cf19a55921b97f128fa9",
-      "last_updated": "2026-07-17T02:54:22+00:00",
+      "hash": "da0251862f9bacb2697f4543277456ba3c302c9aceafa06d682b13211724b040",
+      "last_updated": "2026-07-18T16:01:26+00:00",
       "original_url": "https://code.claude.com/docs/en/vs-code",
       "path": "/docs/en/vs-code",
       "source_url": "https://code.claude.com/docs/en/vs-code.md",
@@ -1385,7 +1385,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-18T05:31:41+00:00",
+  "last_updated": "2026-07-18T16:01:39+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",

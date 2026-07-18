@@ -78,7 +78,7 @@ WinGet installations do not auto-update. Run `winget upgrade Anthropic.ClaudeCod
 
 You can also install with [apt, dnf, or apk](/en/setup#install-with-linux-package-managers) on Debian, Fedora, RHEL, and Alpine.
 
-Then start Claude Code in any project:
+Then start Claude Code in any project. Replace `your-project` with the path to a project directory on your machine:
 ```bash
     cd your-project
     claude
@@ -232,7 +232,7 @@ Sessions aren't tied to a single surface. Move work between them as your context
 * Step away from your desk and keep working from your phone or any browser with [Remote Control](/en/remote-control)
 * Message [Dispatch](/en/desktop#sessions-from-dispatch) a task from your phone and open the Desktop session it creates
 * Kick off a long-running task on the [web](/en/claude-code-on-the-web) or the [Claude mobile app](/en/mobile), then pull it into your terminal with `claude --teleport`. Teleport requires a claude.ai subscription.
-* Hand off a terminal session to the [Desktop app](/en/desktop) with `/desktop` for visual diff review
+* Run `/desktop` to continue your current terminal session in the [Desktop app](/en/desktop), where you can review diffs visually. Available on macOS and x64 Windows.
 * Route tasks from team chat: mention `@Claude` in [Slack](/en/slack) with a bug report and get a pull request back
 
 
