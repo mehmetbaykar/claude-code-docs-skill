@@ -103,7 +103,7 @@ For a complete worked example on Google Cloud, covering Cloud Run or GKE, Cloud 
 
 ### Push the gateway URL to developer machines
 
-Once the gateway is serving, push `forceLoginMethod` and `forceLoginGatewayUrl` to each developer's machine through managed settings, via MDM or by writing the per-OS `managed-settings.json` directly. Without this, `/login` shows the standard account picker with no gateway option. See [Client-side managed settings](/en/claude-apps-gateway-config#client-side-managed-settings) for the file paths.
+Once the gateway is serving, push `forceLoginMethod`, `forceLoginGatewayUrl`, and `parentSettingsBehavior: "merge"` to each developer's machine through managed settings, via MDM or by writing the per-OS `managed-settings.json` directly. Without this, `/login` shows the standard account picker with no gateway option. See [Client-side managed settings](/en/claude-apps-gateway-config#client-side-managed-settings) for the file paths.
 
 ## Operations
 

@@ -1255,6 +1255,7 @@ type AgentOutput =
       agentType?: string;
       content: Array<{ type: "text"; text: string; citations?: unknown[] | null }>;
       resolvedModel?: string;
+      modelsUsed?: string[];
       totalToolUseCount: number;
       totalDurationMs: number;
       totalTokens: number;
@@ -1296,6 +1297,7 @@ type AgentOutput =
       agentId: string;
       description: string;
       resolvedModel?: string;
+      modelsUsed?: string[];
       prompt: string;
       outputFile: string;
       canReadOutputFile?: boolean;
