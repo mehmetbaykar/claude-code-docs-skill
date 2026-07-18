@@ -187,7 +187,6 @@ Claude Code sends the following JSON fields to your script via stdin:
 | `output_style.name`                                                              | Name of the current output style                                                                                                                                                                                                                                                                                                 |
 | `vim.mode`                                                                       | Current vim mode (`NORMAL`, `INSERT`, `VISUAL`, or `VISUAL LINE`) when [vim mode](/en/interactive-mode#vim-editor-mode) is enabled                                                                                                                                                                                               |
 | `agent.name`                                                                     | Agent name when running with the `--agent` flag or agent settings configured                                                                                                                                                                                                                                                     |
-| `remote.session_id`                                                              | Session identifier for remote sessions, such as sessions started with `--cloud`. Absent for local sessions                                                                                                                                                                                                                       |
 | `pr.number`, `pr.url`                                                            | Open pull request for the current branch. Mirrors the PR badge in the bottom status bar. Absent until a PR is found, when not in a git repository, or once the PR merges or closes                                                                                                                                               |
 | `pr.review_state`                                                                | Review status of the open PR: `approved`, `pending`, `changes_requested`, or `draft`. May be independently absent even when `pr` is present                                                                                                                                                                                      |
 | `worktree.name`                                                                  | Name of the active worktree. Present only during `--worktree` sessions                                                                                                                                                                                                                                                           |
@@ -269,9 +268,6 @@ Your status line command receives this JSON structure via stdin:
     "agent": {
       "name": "security-reviewer"
     },
-    "remote": {
-      "session_id": "abc123..."
-    },
     "pr": {
       "number": 1234,
       "url": "https://github.com/anthropics/claude-code/pull/1234",
@@ -296,7 +292,6 @@ Your status line command receives this JSON structure via stdin:
 * `effort`: appears only when the current model supports the reasoning effort parameter
 * `vim`: appears only when vim mode is enabled
 * `agent`: appears only when running with the `--agent` flag or agent settings configured
-* `remote`: appears only for remote sessions, meaning [cloud sessions](/en/claude-code-on-the-web) such as those started with `--cloud`
 * `pr`: appears only while an open PR is found for the current branch, and is removed once the PR merges or closes. `pr.review_state` may be independently absent
 * `worktree`: appears only during `--worktree` sessions. When present, `branch` and `original_branch` may also be absent for hook-based worktrees
 * `rate_limits`: appears only for Claude.ai subscribers (Pro/Max) after the first API response in the session. Each window (`five_hour`, `seven_day`) may be independently absent. Use `jq -r '.rate_limits.five_hour.used_percentage // empty'` to handle absence gracefully.
