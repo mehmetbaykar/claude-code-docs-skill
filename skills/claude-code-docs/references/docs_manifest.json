@@ -1107,8 +1107,8 @@
       "title": "Claude Code in Slack"
     },
     "statusline.md": {
-      "hash": "12a00973d69682cc5b07b42240769cf259e69a6c78dee0f2761667bee69d3d14",
-      "last_updated": "2026-07-18T02:47:51+00:00",
+      "hash": "174cdb95b0a6be1de667568751409fbe3f87efb589c2fa34e5704871586e2d8c",
+      "last_updated": "2026-07-18T05:31:21+00:00",
       "original_url": "https://code.claude.com/docs/en/statusline",
       "path": "/docs/en/statusline",
       "source_url": "https://code.claude.com/docs/en/statusline.md",
@@ -1385,7 +1385,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-18T02:48:30+00:00",
+  "last_updated": "2026-07-18T05:31:41+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
