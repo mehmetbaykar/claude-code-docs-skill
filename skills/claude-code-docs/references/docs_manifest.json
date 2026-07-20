@@ -147,8 +147,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "ea85a8ee4f6d855ccf4cf2bb461090ee9f83cc7b0416ce5e892c6eb418c15a75",
-      "last_updated": "2026-07-17T16:17:33+00:00",
+      "hash": "0ad8dff3ca8cc706411c55889e235340d4a6ab335552fa578b98236266fc2e2e",
+      "last_updated": "2026-07-20T22:02:47+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -731,8 +731,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "7c9c896d8c638fae2dd13f56d8851101717ec73ac142fcd502455ff81e5b56ce",
-      "last_updated": "2026-07-18T02:46:50+00:00",
+      "hash": "79fd849b8836791b406f27a762e0a0adbebfaa958221cffae5a7871e4b40f28e",
+      "last_updated": "2026-07-20T22:03:50+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -1385,7 +1385,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-20T19:49:06+00:00",
+  "last_updated": "2026-07-20T22:04:46+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
