@@ -619,8 +619,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "576366c127a478d88a680cb50aa43bb161a42634f70b4e59795f750890d16c55",
-      "last_updated": "2026-07-18T02:46:38+00:00",
+      "hash": "a9f0c49423e10233731f8ce44476b87244b039cb3f7e9fe1c18dee40686cae93",
+      "last_updated": "2026-07-20T19:47:52+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -875,16 +875,16 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "e53ee7c94acf80c51ed98908bedd5bfaf335426a70973f243650db1c1bfa0a30",
-      "last_updated": "2026-07-18T02:47:10+00:00",
+      "hash": "b45d74851dbf5680d04b74bb7e4e65fa159b2dba1f0c2e39124a5fa1cea9a88b",
+      "last_updated": "2026-07-20T19:48:18+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
       "title": "Monitoring"
     },
     "network-config.md": {
-      "hash": "1ce567eaff8ac2f160d5480840b0a142475995361cd4f34691460505e7f4e9c9",
-      "last_updated": "2026-07-18T02:47:10+00:00",
+      "hash": "b287dbfc5decfe07123744b39e5d904e22d58f65f250bf98036771eb4897fe66",
+      "last_updated": "2026-07-20T19:48:19+00:00",
       "original_url": "https://code.claude.com/docs/en/network-config",
       "path": "/docs/en/network-config",
       "source_url": "https://code.claude.com/docs/en/network-config.md",
@@ -1043,8 +1043,8 @@
       "title": "Run prompts on a schedule"
     },
     "security-guidance.md": {
-      "hash": "8f31827fe461d150f0d7a4c7c7c1743041cc56680de6b3b3c8edf27b2db34238",
-      "last_updated": "2026-07-16T22:06:20+00:00",
+      "hash": "30deaa0209d2adf51af54daf60e2233946dd85684e4f5bc0f7aa18186422f571",
+      "last_updated": "2026-07-20T19:48:33+00:00",
       "original_url": "https://code.claude.com/docs/en/security-guidance",
       "path": "/docs/en/security-guidance",
       "source_url": "https://code.claude.com/docs/en/security-guidance.md",
@@ -1385,7 +1385,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-19T03:16:26+00:00",
+  "last_updated": "2026-07-20T19:49:06+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
