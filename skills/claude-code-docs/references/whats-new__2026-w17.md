@@ -8,7 +8,7 @@ path: /docs/en/whats-new/2026-w17
 
 > /ultrareview opens as a research preview, automatic session recaps when you return to a terminal, custom color themes you can build and ship in plugins, and a redesigned Claude Code on the web.
 
-Releases [v2.1.114 → v2.1.119](https://code.claude.com/docs/en/changelog#2-1-114)
+Releases [v2.1.114 → v2.1.119](https://code.claude.com/docs/docs/en/changelog#2-1-114)
 4 features · April 20–24
 
     /ultrareview
@@ -33,7 +33,7 @@ Or point it at a PR:
   > /ultrareview 1234
 ```
 
-[Ultrareview guide](https://code.claude.com/docs/en/ultrareview)
+[Ultrareview guide](https://code.claude.com/docs/docs/en/ultrareview)
 
 Session recap
 CLI
@@ -52,7 +52,7 @@ Generate a recap on demand, or turn the automatic one off from `/config`:
   > /recap
 ```
 
-[Interactive mode: session recap](https://code.claude.com/docs/en/interactive-mode#session-recap)
+[Interactive mode: session recap](https://code.claude.com/docs/docs/en/interactive-mode#session-recap)
 
 Custom themes
 v2.1.118
@@ -65,7 +65,7 @@ Open the theme picker and create a new one:
   > /theme
 ```
 
-[Terminal config: create a custom theme](https://code.claude.com/docs/en/terminal-config#create-a-custom-theme)
+[Terminal config: create a custom theme](https://code.claude.com/docs/docs/en/terminal-config#create-a-custom-theme)
 
 Claude Code on the web
 web
@@ -79,21 +79,21 @@ A new look for [claude.ai/code](https://claude.ai/code) that matches the redesig
 
 
 
-[Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web)
+[Claude Code on the web](https://code.claude.com/docs/docs/en/claude-code-on-the-web)
 
 Other wins
 
-[Vim visual mode](https://code.claude.com/docs/en/interactive-mode#vim-editor-mode): press `v` for character selection or `V` for line selection in the prompt input, with operators and visual feedback
-Hooks can now call MCP tools directly via [type: "mcp\_tool"](https://code.claude.com/docs/en/hooks#mcp-tool-hook-fields), so a hook can hit an already-connected server without spawning a process
-`/cost` and `/stats` are merged into [/usage](https://code.claude.com/docs/en/commands); the old names still work as typing shortcuts that open the relevant tab
-`/config` changes (theme, editor mode, verbose, and similar) now persist to `\~/.claude/settings.json` and follow the same project/local/policy precedence as other [settings](https://code.claude.com/docs/en/settings)
-[Forked subagents](https://code.claude.com/docs/en/sub-agents#fork-the-current-conversation) can be enabled on external builds with `CLAUDE\_CODE\_FORK\_SUBAGENT=1`: a fork inherits your full conversation context instead of starting fresh
-Default [effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) for Pro and Max subscribers on Opus 4.6 and Sonnet 4.6 is now `high` (was `medium`)
+[Vim visual mode](https://code.claude.com/docs/docs/en/interactive-mode#vim-editor-mode): press `v` for character selection or `V` for line selection in the prompt input, with operators and visual feedback
+Hooks can now call MCP tools directly via [type: "mcp\_tool"](https://code.claude.com/docs/docs/en/hooks#mcp-tool-hook-fields), so a hook can hit an already-connected server without spawning a process
+`/cost` and `/stats` are merged into [/usage](https://code.claude.com/docs/docs/en/commands); the old names still work as typing shortcuts that open the relevant tab
+`/config` changes (theme, editor mode, verbose, and similar) now persist to `\~/.claude/settings.json` and follow the same project/local/policy precedence as other [settings](https://code.claude.com/docs/docs/en/settings)
+[Forked subagents](https://code.claude.com/docs/docs/en/sub-agents#fork-the-current-conversation) can be enabled on external builds with `CLAUDE\_CODE\_FORK\_SUBAGENT=1`: a fork inherits your full conversation context instead of starting fresh
+Default [effort level](https://code.claude.com/docs/docs/en/model-config#adjust-effort-level) for Pro and Max subscribers on Opus 4.6 and Sonnet 4.6 is now `high` (was `medium`)
 Native macOS and Linux builds replace the `Glob` and `Grep` tools with embedded `bfs` and `ugrep` available through Bash, for faster searches without a separate tool round-trip
 `--from-pr` now accepts GitLab merge request, Bitbucket pull request, and GitHub Enterprise PR URLs in addition to github.com
-Auto mode: include `"\$defaults"` in [autoMode.allow, soft\_deny, or environment](https://code.claude.com/docs/en/auto-mode-config) to add custom rules alongside the built-in list instead of replacing it
-New [claude plugin tag](https://code.claude.com/docs/en/plugin-dependencies#tag-plugin-releases-for-version-resolution) command creates release git tags for plugins with version validation
+Auto mode: include `"\$defaults"` in [autoMode.allow, soft\_deny, or environment](https://code.claude.com/docs/docs/en/auto-mode-config) to add custom rules alongside the built-in list instead of replacing it
+New [claude plugin tag](https://code.claude.com/docs/docs/en/plugin-dependencies#tag-plugin-releases-for-version-resolution) command creates release git tags for plugins with version validation
 Opus 4.7 sessions now compute against the model's native 1M context window, fixing inflated `/context` percentages and premature autocompaction
 `/resume` on large sessions is up to 67% faster and now offers to summarize stale, large sessions before re-reading them
 
-[Full changelog for v2.1.114–v2.1.119 →](/en/changelog#2-1-114)
+[Full changelog for v2.1.114–v2.1.119 →](/docs/en/changelog#2-1-114)

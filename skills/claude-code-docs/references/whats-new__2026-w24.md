@@ -8,7 +8,7 @@ path: /docs/en/whats-new/2026-w24
 
 > Move a session to a new directory with /cd, let subagents spawn their own subagents, and troubleshoot a broken configuration with safe mode.
 
-Releases [v2.1.166 → v2.1.176](https://code.claude.com/docs/en/changelog#2-1-166)
+Releases [v2.1.166 → v2.1.176](https://code.claude.com/docs/docs/en/changelog#2-1-166)
 3 features · June 8–12
 
 Move a session with /cd
@@ -22,7 +22,7 @@ Move the session into another project without restarting:
   > /cd ../other-project
 ```
 
-[Commands reference](https://code.claude.com/docs/en/commands#all-commands)
+[Commands reference](https://code.claude.com/docs/docs/en/commands#all-commands)
 
 Subagents can spawn subagents
 v2.1.172
@@ -35,7 +35,7 @@ Open the agents view to watch the nested tree as work fans out:
   > /agents
 ```
 
-[Spawn nested subagents](https://code.claude.com/docs/en/sub-agents#spawn-nested-subagents)
+[Spawn nested subagents](https://code.claude.com/docs/docs/en/sub-agents#spawn-nested-subagents)
 
 Troubleshoot with safe mode
 v2.1.169
@@ -48,11 +48,11 @@ Launch a clean session to isolate a broken configuration:
   claude --safe-mode
 ```
 
-[Test against a clean configuration](https://code.claude.com/docs/en/debug-your-config#test-against-a-clean-configuration)
+[Test against a clean configuration](https://code.claude.com/docs/docs/en/debug-your-config#test-against-a-clean-configuration)
 
 Other wins
 
-[fallbackModel](https://code.claude.com/docs/en/model-config#fallback-model-chains) configures up to three fallback models tried in order when the primary is overloaded or unavailable, and `--fallback-model` now applies to interactive sessions too
+[fallbackModel](https://code.claude.com/docs/docs/en/model-config#fallback-model-chains) configures up to three fallback models tried in order when the primary is overloaded or unavailable, and `--fallback-model` now applies to interactive sessions too
 Session titles are now generated in the language of your conversation; pin a specific one with the `language` setting
 `claude agents --json` adds `--all` to include completed sessions plus new `id` and `state` fields, and no longer omits blocked or newly dispatched sessions
 Browsing a marketplace's plugins in `/plugin` now has a search bar
@@ -65,4 +65,4 @@ Claude in Chrome browser tools now load in a single batched call instead of one 
 `claude update` announces the target version before downloading instead of going silent
 New `footerLinksRegexes` setting adds regex-matched link badges to the footer row
 
-[Full changelog for v2.1.166–v2.1.176 →](/en/changelog#2-1-166)
+[Full changelog for v2.1.166–v2.1.176 →](/docs/en/changelog#2-1-166)

@@ -8,7 +8,7 @@ path: /docs/en/whats-new/2026-w27
 
 > Claude Sonnet 5 becomes the default model, Claude in Chrome reaches general availability, subagents run in the background by default, Claude Desktop arrives on Linux in beta, and /radio tunes into Claude FM.
 
-Releases [v2.1.195 → v2.1.201](https://code.claude.com/docs/en/changelog#2-1-195)
+Releases [v2.1.195 → v2.1.201](https://code.claude.com/docs/docs/en/changelog#2-1-195)
 5 features · June 29 – July 3
 
 Claude Sonnet 5
@@ -22,7 +22,7 @@ Switch to Sonnet 5 by name, or pick it from the model picker:
   > /model claude-sonnet-5
 ```
 
-[Model configuration](https://code.claude.com/docs/en/model-config#available-models)
+[Model configuration](https://code.claude.com/docs/docs/en/model-config#available-models)
 
 Claude in Chrome is generally available
 v2.1.198
@@ -30,7 +30,7 @@ v2.1.198
 
 The Chrome integration is out of preview for everyone on a direct Anthropic plan. Claude Code drives your browser through the Claude in Chrome extension: it opens tabs, clicks through pages, fills forms, reads console logs, and shares your login state, so it can test the app it builds without you switching contexts.
 
-[Use Claude Code with Chrome](https://code.claude.com/docs/en/chrome)
+[Use Claude Code with Chrome](https://code.claude.com/docs/docs/en/chrome)
 
 Subagents run in the background by default
 v2.1.198
@@ -38,7 +38,7 @@ v2.1.198
 
 Claude now keeps working while subagents run and picks up their results when they finish, instead of pausing the conversation to wait. Claude still runs a subagent in the foreground when it needs the result before continuing, and background subagents surface every permission prompt in your main session. Pin a subagent's behavior with the `background` frontmatter field.
 
-[Run subagents in foreground or background](https://code.claude.com/docs/en/sub-agents#run-subagents-in-foreground-or-background)
+[Run subagents in foreground or background](https://code.claude.com/docs/docs/en/sub-agents#run-subagents-in-foreground-or-background)
 
 Claude Desktop on Linux
 Desktop
@@ -46,7 +46,7 @@ Desktop
 
 The Claude desktop app is now available on Ubuntu 22.04+ and Debian 12+ in beta, on x86\_64 and arm64. You get the same Chat, Cowork, and Claude Code experience as macOS and Windows: parallel sessions, visual diff review, an integrated terminal and editor, and live app preview. Installs from Anthropic's apt repository, so updates arrive through regular package updates.
 
-[Claude Desktop on Linux](https://code.claude.com/docs/en/desktop-linux)
+[Claude Desktop on Linux](https://code.claude.com/docs/docs/en/desktop-linux)
 
     /radio
 CLI
@@ -65,12 +65,12 @@ Tune in from any session:
   > /radio
 ```
 
-[All commands](https://code.claude.com/docs/en/commands#all-commands)
+[All commands](https://code.claude.com/docs/docs/en/commands#all-commands)
 
 Other wins
 
-[Artifacts](https://code.claude.com/docs/en/artifacts) are now generally available and included on Pro and Max plans, joining Team and Enterprise
-Admins can set an [organization default model](https://code.claude.com/docs/en/model-config#organization-default-model) in the org console; it shows as "Org default" in `/model` when you haven't picked a model yourself
+[Artifacts](https://code.claude.com/docs/docs/en/artifacts) are now generally available and included on Pro and Max plans, joining Team and Enterprise
+Admins can set an [organization default model](https://code.claude.com/docs/docs/en/model-config#organization-default-model) in the org console; it shows as "Org default" in `/model` when you haven't picked a model yourself
 Stacked skill invocations like `/skill-a /skill-b do XYZ` now load all leading skills (up to 5), not only the first
 `AskUserQuestion` dialogs no longer auto-continue by default; opt into an idle timeout via `/config`
 The "default" permission mode is now named "Manual" across the CLI, `--help`, VS Code, and JetBrains; `--permission-mode manual` is accepted alongside `default`
@@ -81,4 +81,4 @@ Hook matchers with hyphenated identifiers like `code-reviewer` now exact-match i
 Transient server rate-limit errors unrelated to your usage limit are now retried automatically with backoff for subscribers instead of failing the turn
 The streaming idle watchdog is now on by default for all providers: it aborts and retries when a response stream produces no events for 5 minutes (`CLAUDE\_ENABLE\_STREAM\_WATCHDOG=0` to disable)
 
-[Full changelog for v2.1.195–v2.1.201 →](/en/changelog#2-1-195)
+[Full changelog for v2.1.195–v2.1.201 →](/docs/en/changelog#2-1-195)

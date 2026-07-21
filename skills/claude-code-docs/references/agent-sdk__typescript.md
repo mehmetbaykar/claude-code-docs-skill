@@ -56,7 +56,7 @@ function tool<Schema extends AnyZodRawShape>(
   description: string,
   inputSchema: Schema,
   handler: (args: InferShape<Schema>, extra: unknown) => Promise<CallToolResult>,
-  extras?: { annotations?: ToolAnnotations }
+  extras?: { annotations?: ToolAnnotations; searchHint?: string; alwaysLoad?: boolean }
 ): SdkMcpToolDefinition<Schema>;
 ```
 ```typescript
@@ -77,7 +77,9 @@ const searchTool = tool(
 function createSdkMcpServer(options: {
   name: string;
   version?: string;
+  instructions?: string;
   tools?: Array<SdkMcpToolDefinition<any>>;
+  alwaysLoad?: boolean;
 }): McpSdkServerConfigWithInstance;
 ```
 ```typescript
