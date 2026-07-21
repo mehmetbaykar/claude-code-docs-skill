@@ -63,7 +63,10 @@ Create a `plugin.json` file that describes the plugin. The manifest goes in the 
     {
       "name": "quality-review-plugin",
       "description": "Adds a quality-review skill for quick code reviews",
-      "version": "1.0.0"
+      "version": "1.0.0",
+      "author": {
+        "name": "Your Name"
+      }
     }
 ```
 
@@ -96,10 +99,11 @@ Create the marketplace catalog that lists your plugin.
 
 **Add and install**
 
-Add the marketplace and install the plugin.
+From the directory that contains `my-marketplace`, start Claude Code and run the following commands. The install command opens a plugin details view where you select an installation scope to confirm the install, and `/reload-plugins` activates the plugin in your current session.
 ```shell
     /plugin marketplace add ./my-marketplace
     /plugin install quality-review-plugin@my-plugins
+    /reload-plugins
 ```
 
 
@@ -830,7 +834,7 @@ Earlier versions of Claude Code ignore the `renames` field and report `plugin-no
 
 Test your marketplace before sharing.
 
-Validate your marketplace JSON syntax:
+From your marketplace directory, validate the JSON syntax:
 ```bash
 claude plugin validate .
 ```
@@ -924,7 +928,7 @@ claude plugin marketplace list [options]
 | :------- | :------------- |
 | `--json` | Output as JSON |
 
-With `--json`, each entry includes `name`, `source`, and source-specific fields: `repo` for GitHub sources, `url` for git and URL sources, and `path` for local sources. GitHub and git sources also include a `ref` field when the marketplace was added with a pinned branch or tag.
+With `--json`, each entry includes `name`, `source`, an `installLocation` field with the local cache path where the marketplace is stored, and source-specific fields: `repo` for GitHub sources, `url` for git and URL sources, and `path` for local sources. GitHub and git sources also include a `ref` field when the marketplace was added with a pinned branch or tag.
 
 ### Plugin marketplace remove
 
@@ -1021,8 +1025,8 @@ To validate an individual plugin's `plugin.json` and its skill, agent, command, 
 For manual installation and updates:
 
 * Verify you're authenticated with your git provider (for example, run `gh auth status` for GitHub)
-* Check that your credential helper is configured correctly: `git config --global credential.helper`
-* Try cloning the repository manually to verify your credentials work
+* Check that your credential helper is configured: `git config --global credential.helper`
+* Run `git ls-remote <marketplace-url>` to test whether git can authenticate on its own. If git asks for a username or password, store the credential first: for GitHub over HTTPS, run `gh auth setup-git`, and for SSH remotes, load your key into `ssh-agent`
 
 For background auto-updates:
 
