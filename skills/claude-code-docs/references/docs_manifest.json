@@ -4,10 +4,10 @@
     "failed_pages": [],
     "fetch_tool_version": "1.0",
     "pages_failed": 0,
-    "pages_fetched_successfully": 170,
+    "pages_fetched_successfully": 171,
     "pages_skipped": 0,
     "raw_fallback_pages": 0,
-    "total_pages_discovered": 170
+    "total_pages_discovered": 171
   },
   "files": {
     "accessibility.md": {
@@ -355,8 +355,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "4565867773489e2e3bbd99e50ad0755a89682073e8b8a8a0edda587505c4f5f4",
-      "last_updated": "2026-07-21T19:36:07+00:00",
+      "hash": "cf22ff0553e4ad2b1622a32817b325e129e4429512c2b7d060aca648f93dc080",
+      "last_updated": "2026-07-21T22:05:59+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -499,8 +499,8 @@
       "title": "Communications kit"
     },
     "computer-use.md": {
-      "hash": "ca0b03e94c2b26acce6c7c3c95413d02c4d0986b44809b50ac77c8ea2e987fb8",
-      "last_updated": "2026-07-21T02:56:02+00:00",
+      "hash": "009f118cdeae6f6eb217a4dc4ecdb1b784d9cfbbc147c034fced6fe77de648c6",
+      "last_updated": "2026-07-21T22:07:04+00:00",
       "original_url": "https://code.claude.com/docs/en/computer-use",
       "path": "/docs/en/computer-use",
       "source_url": "https://code.claude.com/docs/en/computer-use.md",
@@ -554,6 +554,14 @@
       "source_url": "https://code.claude.com/docs/en/deep-links.md",
       "title": "Launch sessions from links"
     },
+    "desktop-ios-simulator.md": {
+      "hash": "d36fd75d82ebbe2c76b4b90023de2b65f7894e56a8e76310f22895130a1f91d5",
+      "last_updated": "2026-07-21T22:07:09+00:00",
+      "original_url": "https://code.claude.com/docs/en/desktop-ios-simulator",
+      "path": "/docs/en/desktop-ios-simulator",
+      "source_url": "https://code.claude.com/docs/en/desktop-ios-simulator.md",
+      "title": "Test iOS apps in the simulator"
+    },
     "desktop-linux.md": {
       "hash": "a2f8678c04e14efe2e12ac046ddda74e263a296510c3ff2ea74cee091b0d48f5",
       "last_updated": "2026-07-21T02:56:07+00:00",
@@ -587,8 +595,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "941080504010c7398498d9548ba8c4e1dca7baa5d04fabfc24857b9cceca1711",
-      "last_updated": "2026-07-21T02:56:07+00:00",
+      "hash": "efc7815a8a643b2cf2b8d6e4eed31de5c760fc2cb59765725ddc2170e0313f5c",
+      "last_updated": "2026-07-21T22:07:09+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -835,8 +843,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "de95ea5fa801f45fd10e1b9b5b9f5f2bc15c348eefcaeb1382e5e320a6fee01e",
-      "last_updated": "2026-07-21T02:56:34+00:00",
+      "hash": "965627ec1861445b2fffba9016a4d75d9ecbe94e40b79d5e16c582ffbacee3e9",
+      "last_updated": "2026-07-21T22:07:28+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -867,8 +875,8 @@
       "title": "Claude Code on mobile"
     },
     "model-config.md": {
-      "hash": "37ac78149eff252f017d9e2d9b6c7a67f49b323b78a52aa662219da8f89fb02f",
-      "last_updated": "2026-07-21T02:56:37+00:00",
+      "hash": "2a60bb48e9ea840d9d83a272cdbd0e1e40382f03cbe5a77361c51e7475698e54",
+      "last_updated": "2026-07-21T22:07:31+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -1091,8 +1099,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "85708d86eaad867d8744e81fe4ae5b4e839a0a210d33f240887336a3379cad28",
-      "last_updated": "2026-07-21T02:56:58+00:00",
+      "hash": "9bc178a04c24cb7129aa5b0eb699c8d487260664179f03d12b6d98298c7a7fdb",
+      "last_updated": "2026-07-21T22:08:03+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1385,7 +1393,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-21T19:37:53+00:00",
+  "last_updated": "2026-07-21T22:08:48+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
