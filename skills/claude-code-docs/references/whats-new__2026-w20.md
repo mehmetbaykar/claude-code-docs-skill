@@ -8,7 +8,7 @@ path: /docs/en/whats-new/2026-w20
 
 > Manage every Claude Code session from one screen with agent view, keep Claude working toward a goal until a condition holds, and run fast mode on Opus 4.7 by default.
 
-Releases [v2.1.139 → v2.1.142](https://code.claude.com/docs/en/changelog#2-1-139)
+Releases [v2.1.139 → v2.1.142](https://code.claude.com/docs/docs/en/changelog#2-1-139)
 3 features · May 11–15
 
 Agent view
@@ -28,7 +28,7 @@ Open the dashboard from your shell:
   claude agents
 ```
 
-[Agent view](https://code.claude.com/docs/en/agent-view)
+[Agent view](https://code.claude.com/docs/docs/en/agent-view)
 
     /goal
 v2.1.139
@@ -47,7 +47,7 @@ Set a goal and let Claude run until it holds:
   > /goal all tests in test/auth pass and the lint step is clean
 ```
 
-[Goals](https://code.claude.com/docs/en/goal)
+[Goals](https://code.claude.com/docs/docs/en/goal)
 
 Fast mode on Opus 4.7
 research preview
@@ -66,7 +66,7 @@ Toggle fast mode, now running on Opus 4.7:
   > /fast
 ```
 
-[Fast mode on Opus 4.7](https://code.claude.com/docs/en/fast-mode#understand-the-cost-tradeoff)
+[Fast mode on Opus 4.7](https://code.claude.com/docs/docs/en/fast-mode#understand-the-cost-tradeoff)
 
 Other wins
 
@@ -82,4 +82,4 @@ Plugins with a root-level `SKILL.md` and no `skills/` subdirectory are now surfa
 `/feedback` can now include recent sessions from the last 24 hours or 7 days for issues spanning more than the current session
 Agent tool `subagent\_type` now matches case- and separator-insensitively, so `"Code Reviewer"` resolves to `code-reviewer`
 
-[Full changelog for v2.1.139–v2.1.142 →](/en/changelog#2-1-139)
+[Full changelog for v2.1.139–v2.1.142 →](/docs/en/changelog#2-1-139)
