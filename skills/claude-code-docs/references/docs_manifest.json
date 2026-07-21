@@ -115,8 +115,8 @@
       "title": "Modifying system prompts"
     },
     "agent-sdk__observability.md": {
-      "hash": "8bfbe9854ad293fcaf3e6fd6c369e42f30b05fd7741ae9c8b880161172f5f382",
-      "last_updated": "2026-07-21T02:55:20+00:00",
+      "hash": "f6e8ad05acc9d3cc9b00d9923402900f79cdbfae30e6cb9d7388175800edc633",
+      "last_updated": "2026-07-21T16:24:34+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/observability",
       "path": "/docs/en/agent-sdk/observability",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/observability.md",
@@ -387,8 +387,8 @@
       "title": "Checkpointing"
     },
     "chrome.md": {
-      "hash": "d4686a29b7412967871f0a804d3acac37865aacc0a3f4e41e503fc27bf3ea43a",
-      "last_updated": "2026-07-21T02:55:51+00:00",
+      "hash": "5ae06424519a37e1f10a7b176fe18a2d1458332c947bc245013e99bd45413c09",
+      "last_updated": "2026-07-21T16:25:01+00:00",
       "original_url": "https://code.claude.com/docs/en/chrome",
       "path": "/docs/en/chrome",
       "source_url": "https://code.claude.com/docs/en/chrome.md",
@@ -875,8 +875,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "edde3bc8e1e7321dbedd8d93fffd5fa88af6e3f64912a6e11fb1f131322eb9ca",
-      "last_updated": "2026-07-21T02:56:38+00:00",
+      "hash": "8852d0132ed4d6f0e9d5b58bde4345aee9daa16ad2d78e1b87a12ecddc2ba052",
+      "last_updated": "2026-07-21T16:25:53+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -1027,8 +1027,8 @@
       "title": "Choose a sandbox environment"
     },
     "sandboxing.md": {
-      "hash": "61abf84678b6ecf56aaeec81cd2f54c3687c444082cfb270dd4410fa4079cf6a",
-      "last_updated": "2026-07-21T02:56:54+00:00",
+      "hash": "c6cf4156ff93b7a847422ca0a7430e689f88c424029cc9ed646a04468e59ca54",
+      "last_updated": "2026-07-21T16:26:04+00:00",
       "original_url": "https://code.claude.com/docs/en/sandboxing",
       "path": "/docs/en/sandboxing",
       "source_url": "https://code.claude.com/docs/en/sandboxing.md",
@@ -1385,7 +1385,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-21T02:57:29+00:00",
+  "last_updated": "2026-07-21T16:26:40+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
