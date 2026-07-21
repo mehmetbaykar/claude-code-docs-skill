@@ -8,7 +8,7 @@ path: /docs/en/whats-new/2026-w13
 
 > Auto mode for hands-off permissions, computer use built in, PR auto-fix in the cloud, transcript search, and a PowerShell tool for Windows.
 
-Releases [v2.1.83 → v2.1.85](https://code.claude.com/docs/en/changelog#2-1-83)
+Releases [v2.1.83 → v2.1.85](https://code.claude.com/docs/docs/en/changelog#2-1-83)
 6 features · March 23–27
 
 Auto mode
@@ -32,7 +32,7 @@ Cycle to auto with Shift+Tab, or set it as your default:
   }
 ```
 
-[Permission modes guide](https://code.claude.com/docs/en/permission-modes)
+[Permission modes guide](https://code.claude.com/docs/docs/en/permission-modes)
 
 Computer use
 Desktop
@@ -51,7 +51,7 @@ Enable it in Settings, grant the OS permissions, then ask Claude to verify a cha
   > Open the iOS simulator, tap through the onboarding flow, and screenshot each step
 ```
 
-[Computer use guide](https://code.claude.com/docs/en/desktop#let-claude-use-your-computer)
+[Computer use guide](https://code.claude.com/docs/docs/en/desktop#let-claude-use-your-computer)
 
 PR auto-fix
 Web
@@ -67,7 +67,7 @@ Flip a switch when you open a PR and walk away. Claude watches CI, fixes the fai
 
 After creating a PR on Claude Code web, toggle Auto fix in the CI panel.
 
-[Auto-fix pull requests](https://code.claude.com/docs/en/claude-code-on-the-web#auto-fix-pull-requests)
+[Auto-fix pull requests](https://code.claude.com/docs/docs/en/claude-code-on-the-web#auto-fix-pull-requests)
 
 Transcript search
 v2.1.83
@@ -83,7 +83,7 @@ Open transcript mode and search:
   N         # previous match
 ```
 
-[Fullscreen guide](https://code.claude.com/docs/en/fullscreen#search-and-review-the-conversation)
+[Fullscreen guide](https://code.claude.com/docs/docs/en/fullscreen#search-and-review-the-conversation)
 
 PowerShell tool
 preview
@@ -101,7 +101,7 @@ Opt in from settings:
   }
 ```
 
-[PowerShell tool docs](https://code.claude.com/docs/en/tools-reference#powershell-tool)
+[PowerShell tool docs](https://code.claude.com/docs/docs/en/tools-reference#powershell-tool)
 
 Conditional hooks
 v2.1.85
@@ -124,7 +124,7 @@ Scope a hook to git commits only:
   }
 ```
 
-[Hooks reference](https://code.claude.com/docs/en/hooks)
+[Hooks reference](https://code.claude.com/docs/docs/en/hooks)
 
 Other wins
 
@@ -140,4 +140,4 @@ Deep links open in your preferred terminal, not first-detected
 Idle-return nudge to `/clear` after 75+ minutes away
 VS Code: rate limit banner, Esc-twice rewind picker
 
-[Full changelog for v2.1.83–v2.1.85 →](/en/changelog#2-1-83)
+[Full changelog for v2.1.83–v2.1.85 →](/docs/en/changelog#2-1-83)

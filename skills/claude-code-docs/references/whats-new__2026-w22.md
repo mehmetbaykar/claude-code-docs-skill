@@ -8,7 +8,7 @@ path: /docs/en/whats-new/2026-w22
 
 > Run Claude Code on Claude Opus 4.8, orchestrate large tasks with dynamic workflows, catch security issues with the security-guidance plugin, and use fast mode on Opus 4.8 at a lower price.
 
-Releases [v2.1.150 → v2.1.157](https://code.claude.com/docs/en/changelog#2-1-150)
+Releases [v2.1.150 → v2.1.157](https://code.claude.com/docs/docs/en/changelog#2-1-150)
 4 features · May 25–29
 
 Claude Opus 4.8
@@ -28,7 +28,7 @@ Switch to Opus 4.8 by name, or pick it from the model picker:
   > /model claude-opus-4-8
 ```
 
-[Model configuration](https://code.claude.com/docs/en/model-config#available-models)
+[Model configuration](https://code.claude.com/docs/docs/en/model-config#available-models)
 
 Dynamic workflows
 research preview
@@ -47,7 +47,7 @@ Describe the task and ask for a workflow:
   > create a workflow that migrates every internal fetch() call to the new HttpClient wrapper
 ```
 
-[Dynamic workflows](https://code.claude.com/docs/en/workflows)
+[Dynamic workflows](https://code.claude.com/docs/docs/en/workflows)
 
 Security guidance plugin
 plugin
@@ -71,7 +71,7 @@ Then activate it in the current session:
   > /reload-plugins
 ```
 
-[Security guidance plugin](https://code.claude.com/docs/en/security-guidance)
+[Security guidance plugin](https://code.claude.com/docs/docs/en/security-guidance)
 
 Fast mode on Opus 4.8
 research preview
@@ -84,7 +84,7 @@ Toggle fast mode, now on Opus 4.8:
   > /fast
 ```
 
-[Fast mode pricing](https://code.claude.com/docs/en/fast-mode#understand-the-cost-tradeoff)
+[Fast mode pricing](https://code.claude.com/docs/docs/en/fast-mode#understand-the-cost-tradeoff)
 
 Other wins
 
@@ -101,4 +101,4 @@ Streaming tool execution is now always enabled, including with telemetry disable
 Claude in Chrome: pick which connected browser to use via `/chrome` → "Select browser…", or in-chat when a browser action runs with multiple connected
 `claude mcp list` and `claude mcp get` now show unapproved `.mcp.json` servers as pending approval instead of auto-approving and connecting when output is piped
 
-[Full changelog for v2.1.150–v2.1.157 →](/en/changelog#2-1-150)
+[Full changelog for v2.1.150–v2.1.157 →](/docs/en/changelog#2-1-150)
