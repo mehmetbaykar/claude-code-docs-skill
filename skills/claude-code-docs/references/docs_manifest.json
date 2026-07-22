@@ -475,8 +475,8 @@
       "title": "Code Review"
     },
     "commands.md": {
-      "hash": "d11ce94052b8652e5f63113e2b9eab9a16e958571b3e8dbf4fbb89d83ba8649b",
-      "last_updated": "2026-07-21T19:36:19+00:00",
+      "hash": "b86b9a45af89e16e78805221ae2ae1c8d44f89a68d6d0983f745ea1c9b7dc155",
+      "last_updated": "2026-07-22T02:53:55+00:00",
       "original_url": "https://code.claude.com/docs/en/commands",
       "path": "/docs/en/commands",
       "source_url": "https://code.claude.com/docs/en/commands.md",
@@ -523,8 +523,8 @@
       "title": "Run Claude Code behind a corporate launcher"
     },
     "costs.md": {
-      "hash": "accc18456389dac1135411ccd89c5ba8a10126627c97f125af74dba5ed33c80b",
-      "last_updated": "2026-07-21T02:56:04+00:00",
+      "hash": "ca2d38a069123ceee6e52c9b13b301500eba43d2c0c83bd420e21bce8e79bee2",
+      "last_updated": "2026-07-22T02:54:01+00:00",
       "original_url": "https://code.claude.com/docs/en/costs",
       "path": "/docs/en/costs",
       "source_url": "https://code.claude.com/docs/en/costs.md",
@@ -627,8 +627,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "3223fa8b9c851a8ecdf49d93ab80e15962827ad3141b59232775cb29281ce619",
-      "last_updated": "2026-07-21T19:36:34+00:00",
+      "hash": "40554a936fbffba18570595bdf56145da0e02d148112541b420e39d8e81b571e",
+      "last_updated": "2026-07-22T02:54:12+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -1011,8 +1011,8 @@
       "title": "Quickstart"
     },
     "remote-control.md": {
-      "hash": "9e8a5cb8711fe81e9ab02bccff1b80a3c77d3d2467b71a1cee21d4945816ebeb",
-      "last_updated": "2026-07-21T02:56:52+00:00",
+      "hash": "3261fba574bae4cf3843fbf614d2d53961196770be2f47e1100515e9a228371c",
+      "last_updated": "2026-07-22T02:54:51+00:00",
       "original_url": "https://code.claude.com/docs/en/remote-control",
       "path": "/docs/en/remote-control",
       "source_url": "https://code.claude.com/docs/en/remote-control.md",
@@ -1393,7 +1393,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-21T22:08:48+00:00",
+  "last_updated": "2026-07-22T02:55:25+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
