@@ -1075,8 +1075,8 @@
       "title": "Configure server-managed settings"
     },
     "sessions.md": {
-      "hash": "b5a5fa81a2b92afc50df4790fc94ca933e0ca5ca9cbe0d00491f9d5ec51a25e6",
-      "last_updated": "2026-07-21T19:37:21+00:00",
+      "hash": "a3bd8628399820120f0bec62fc9866971ea4fa0dc778fb060ed4200059aeed61",
+      "last_updated": "2026-07-22T16:22:17+00:00",
       "original_url": "https://code.claude.com/docs/en/sessions",
       "path": "/docs/en/sessions",
       "source_url": "https://code.claude.com/docs/en/sessions.md",
@@ -1393,7 +1393,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-22T02:55:25+00:00",
+  "last_updated": "2026-07-22T16:22:40+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
