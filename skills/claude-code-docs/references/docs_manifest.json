@@ -4,10 +4,10 @@
     "failed_pages": [],
     "fetch_tool_version": "1.0",
     "pages_failed": 0,
-    "pages_fetched_successfully": 171,
+    "pages_fetched_successfully": 172,
     "pages_skipped": 0,
     "raw_fallback_pages": 0,
-    "total_pages_discovered": 171
+    "total_pages_discovered": 172
   },
   "files": {
     "accessibility.md": {
@@ -435,8 +435,8 @@
       "title": "Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry"
     },
     "claude-code-on-the-web.md": {
-      "hash": "f7bc5ddb165781528f37a8a8680f87d61b226c413198cfe66c3922d593dc0ddf",
-      "last_updated": "2026-07-21T02:55:56+00:00",
+      "hash": "dbc144bfa6b3e08f088c33093bb6e736c002a522da9778d5f23664e42d6491f7",
+      "last_updated": "2026-07-22T19:26:29+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-code-on-the-web",
       "path": "/docs/en/claude-code-on-the-web",
       "source_url": "https://code.claude.com/docs/en/claude-code-on-the-web.md",
@@ -457,6 +457,14 @@
       "path": "/docs/en/claude-platform-on-aws",
       "source_url": "https://code.claude.com/docs/en/claude-platform-on-aws.md",
       "title": "Claude Code on Claude Platform on AWS"
+    },
+    "claude-security.md": {
+      "hash": "895fdfe403a640e76670a6cb8eb74cfef00311b14eccc2e0c19992a3f0c23754",
+      "last_updated": "2026-07-22T19:26:36+00:00",
+      "original_url": "https://code.claude.com/docs/en/claude-security",
+      "path": "/docs/en/claude-security",
+      "source_url": "https://code.claude.com/docs/en/claude-security.md",
+      "title": "Scan your codebase for vulnerabilities"
     },
     "cli-reference.md": {
       "hash": "3b57a0d4a82d6554c0c64497bd5d222890c860d01541075af6a598ad94354546",
@@ -1051,8 +1059,8 @@
       "title": "Run prompts on a schedule"
     },
     "security-guidance.md": {
-      "hash": "ada25acac61dec36e9c11a5c1222b5bf773311f6617fdd4728e1b4b02b48ac61",
-      "last_updated": "2026-07-21T02:56:55+00:00",
+      "hash": "6cce7934561f8a3faea6b5c79a001e9afed0f596c0c15e5d73159cbce04d5458",
+      "last_updated": "2026-07-22T19:29:08+00:00",
       "original_url": "https://code.claude.com/docs/en/security-guidance",
       "path": "/docs/en/security-guidance",
       "source_url": "https://code.claude.com/docs/en/security-guidance.md",
@@ -1393,7 +1401,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-22T16:22:40+00:00",
+  "last_updated": "2026-07-22T19:29:32+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
