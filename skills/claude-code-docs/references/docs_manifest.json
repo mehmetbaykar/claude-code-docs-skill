@@ -11,8 +11,8 @@
   },
   "files": {
     "accessibility.md": {
-      "hash": "1b462824931ab5ce85df9b43d70e9d85bc60b5ac04b0d8b69ae48eb742a85e2a",
-      "last_updated": "2026-07-21T02:55:10+00:00",
+      "hash": "d6df372e1f0270260b8e2c8fd177e360d72d627821967b0a067d41a5168d4e2b",
+      "last_updated": "2026-07-23T03:14:27+00:00",
       "original_url": "https://code.claude.com/docs/en/accessibility",
       "path": "/docs/en/accessibility",
       "source_url": "https://code.claude.com/docs/en/accessibility.md",
@@ -147,8 +147,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "1e0aef56bb17fbb15cfd373d0dac87b9c0f6976afbebbc18ef94edc399beb561",
-      "last_updated": "2026-07-21T02:55:23+00:00",
+      "hash": "0e088ec402d01fe2bd7ef7ebddc46f4e7c5ae37880b8a29db81ed534f2b79dc4",
+      "last_updated": "2026-07-23T03:14:38+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -227,8 +227,8 @@
       "title": "Get structured output from agents"
     },
     "agent-sdk__subagents.md": {
-      "hash": "b6c6042004f685f9b36d0f061513fc9a6346506c9cb1fd89147eba1f7f3a586d",
-      "last_updated": "2026-07-21T02:55:30+00:00",
+      "hash": "aa1730a384f8be7533daf2196618f7c4a420513e4c9da56c2c25f6cdc8ef8ccd",
+      "last_updated": "2026-07-23T03:14:43+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/subagents",
       "path": "/docs/en/agent-sdk/subagents",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/subagents.md",
@@ -627,16 +627,16 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "8043057cbf8eed273a2f02603e2091353f6475e975bf9b6df2fe296f84de1d1b",
-      "last_updated": "2026-07-21T02:56:12+00:00",
+      "hash": "fbcdd6ed58edf1e7d7327d25db9e50394f66b9feabb8f078f4b6a340a8792de3",
+      "last_updated": "2026-07-23T03:15:18+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "40554a936fbffba18570595bdf56145da0e02d148112541b420e39d8e81b571e",
-      "last_updated": "2026-07-22T02:54:12+00:00",
+      "hash": "3f751fa6d3d1e720bdf4437c586f7ac09bd2376eb76337d183c201360f1a85c7",
+      "last_updated": "2026-07-23T03:15:19+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -747,8 +747,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "6681e02b3e94afc9d1baddb799983ae705a01004f68aea32424fc8380ecaebd6",
-      "last_updated": "2026-07-21T19:36:45+00:00",
+      "hash": "034d5fca6a79bd656ecefe4d090cbf91b9ee0fb6d9e7efd62ce271953032c62c",
+      "last_updated": "2026-07-23T03:15:28+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -763,8 +763,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "86e9630a86a261165bc973f820e646aa87a56f4886be68c1b652170d3acac225",
-      "last_updated": "2026-07-22T22:08:10+00:00",
+      "hash": "923c0eeb190d9059bf506be3c570ba94b7c90ab3ecd01f082ddc62c6c7a12f8b",
+      "last_updated": "2026-07-23T03:15:29+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -851,8 +851,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "965627ec1861445b2fffba9016a4d75d9ecbe94e40b79d5e16c582ffbacee3e9",
-      "last_updated": "2026-07-21T22:07:28+00:00",
+      "hash": "8ea7502a9be4bd1b182fd05c8e1c774c53170a49b611faec4a9e4d10aa6d0492",
+      "last_updated": "2026-07-23T03:15:35+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -1131,8 +1131,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "bd2f65e4ca821050edb4baa431cd28b558fa79a2d81eab133f758d98e3605969",
-      "last_updated": "2026-07-21T02:57:02+00:00",
+      "hash": "98206c74b353bad4e87925cf006c06c85e1fadd812d88fe7a055334fd9ad39d3",
+      "last_updated": "2026-07-23T03:15:56+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1155,8 +1155,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "ea43139c594653daac0ce881073a671376afd6184c3f7cd055a6eb43b443c563",
-      "last_updated": "2026-07-22T22:08:45+00:00",
+      "hash": "34644a7f943508c83d45c64e4f550b5bbe16a40f6c70f01c2129ce04a5c386c9",
+      "last_updated": "2026-07-23T03:15:57+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1315,8 +1315,8 @@
       "title": "Week 23 \u00b7 June 1\u20135, 2026"
     },
     "whats-new__2026-w24.md": {
-      "hash": "fe5a44b0356012f2e2223650bc36101e59c20a2a0f69405f32682b74d4798a50",
-      "last_updated": "2026-07-21T02:57:22+00:00",
+      "hash": "d5c6112ebc5286153e864014c54ea388c37be9e61464a68780c734a8308ba433",
+      "last_updated": "2026-07-23T03:16:10+00:00",
       "original_url": "https://code.claude.com/docs/en/whats-new/2026-w24",
       "path": "/docs/en/whats-new/2026-w24",
       "source_url": "https://code.claude.com/docs/en/whats-new/2026-w24.md",
@@ -1401,7 +1401,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-22T22:09:01+00:00",
+  "last_updated": "2026-07-23T03:16:15+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
