@@ -283,8 +283,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "f9219e128f1574eb9089efdd6804b677513cdad478e5679d4a942c46b57d085e",
-      "last_updated": "2026-07-23T14:08:38+00:00",
+      "hash": "f76fc1e6bea07548871c2d4256e5469969c219a6c5aa9c0f01bf2bbe3481cf2c",
+      "last_updated": "2026-07-23T16:38:59+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "source_url": "https://code.claude.com/docs/en/agent-view.md",
@@ -379,8 +379,8 @@
       "title": "Push events into a running session with channels"
     },
     "checkpointing.md": {
-      "hash": "1c05016f521cac8329ab10114f7e8cbd1525668b9bf9e0eecae71c71b269d359",
-      "last_updated": "2026-07-21T19:36:09+00:00",
+      "hash": "5d4bda4288d45301379fd456a1f43d83d5db516a9d11b646d2515b68c33ada37",
+      "last_updated": "2026-07-23T16:39:10+00:00",
       "original_url": "https://code.claude.com/docs/en/checkpointing",
       "path": "/docs/en/checkpointing",
       "source_url": "https://code.claude.com/docs/en/checkpointing.md",
@@ -563,8 +563,8 @@
       "title": "Launch sessions from links"
     },
     "desktop-ios-simulator.md": {
-      "hash": "d36fd75d82ebbe2c76b4b90023de2b65f7894e56a8e76310f22895130a1f91d5",
-      "last_updated": "2026-07-21T22:07:09+00:00",
+      "hash": "6d317c3d367e35010c01d67dd1d43230afa9a48052c2d095052a9774716ed602",
+      "last_updated": "2026-07-23T16:39:32+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-ios-simulator",
       "path": "/docs/en/desktop-ios-simulator",
       "source_url": "https://code.claude.com/docs/en/desktop-ios-simulator.md",
@@ -635,8 +635,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "68f65b43d730b33e1b0127dcc780ec248be3f0647fbda195d4ad71a36245ae73",
-      "last_updated": "2026-07-23T14:09:11+00:00",
+      "hash": "f8179fb949638f5c62287fb7ce2ac2e48340db08bb1f416e495ae2c121044f9b",
+      "last_updated": "2026-07-23T16:39:38+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -923,16 +923,16 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "2c077b12fc5cf8a5c3d57cdc733a58a06b814c0a86d1ad4bb4ff4295747be649",
-      "last_updated": "2026-07-21T02:56:41+00:00",
+      "hash": "aa3870b8fa840b3d655fcbc224e773e4caa21596b8c7dd58d6b83a3782f18790",
+      "last_updated": "2026-07-23T16:40:05+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "source_url": "https://code.claude.com/docs/en/permission-modes.md",
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "dc65072726857a2df471fb1d916b5106f33119cddf22dd040ff1854517b23140",
-      "last_updated": "2026-07-21T02:56:42+00:00",
+      "hash": "626c5138cb38e03d6a2855d908867c9851a9830a9aa26b89caecd4d15e435cc4",
+      "last_updated": "2026-07-23T16:40:06+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -1091,8 +1091,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "95675568159ddbfd5a05f2093cc5df8f49a7f25fb34e2f622b885cfa30e1dff3",
-      "last_updated": "2026-07-22T22:08:41+00:00",
+      "hash": "2d953959369840a5a4d9e9ed11a85856c9590aa912b2df6e38d2fa8f06967631",
+      "last_updated": "2026-07-23T16:40:24+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1107,8 +1107,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "9bc178a04c24cb7129aa5b0eb699c8d487260664179f03d12b6d98298c7a7fdb",
-      "last_updated": "2026-07-21T22:08:03+00:00",
+      "hash": "c542b83616cb93bcbeb5e34a8bc50f0758ffe8fbe4dd0853bff11ee4b57a2a7b",
+      "last_updated": "2026-07-23T16:40:26+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1131,8 +1131,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "98206c74b353bad4e87925cf006c06c85e1fadd812d88fe7a055334fd9ad39d3",
-      "last_updated": "2026-07-23T03:15:56+00:00",
+      "hash": "8e085d3e341628bd0da651c2c56c20a08af6b6a78edd5c2b37fe2315afbc4438",
+      "last_updated": "2026-07-23T16:40:29+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1363,8 +1363,8 @@
       "title": "Week 29 \u00b7 July 13\u201317, 2026"
     },
     "workflows.md": {
-      "hash": "c648d30b8f82c6b5a89d265572bf729b09795d184811b39088bec080efd74090",
-      "last_updated": "2026-07-21T02:57:27+00:00",
+      "hash": "9d2606e8b4e82a82bdcc5eb69612a34f4509c239f64d9ace35717a5de9fc81a5",
+      "last_updated": "2026-07-23T16:40:51+00:00",
       "original_url": "https://code.claude.com/docs/en/workflows",
       "path": "/docs/en/workflows",
       "source_url": "https://code.claude.com/docs/en/workflows.md",
@@ -1401,7 +1401,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-23T14:10:15+00:00",
+  "last_updated": "2026-07-23T16:40:54+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
