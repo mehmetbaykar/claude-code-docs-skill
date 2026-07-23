@@ -283,8 +283,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "d8c3801702cd824c16a053d23aae199310891eea83a1708bd5ad95359bf75f22",
-      "last_updated": "2026-07-21T02:55:38+00:00",
+      "hash": "f9219e128f1574eb9089efdd6804b677513cdad478e5679d4a942c46b57d085e",
+      "last_updated": "2026-07-23T14:08:38+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "source_url": "https://code.claude.com/docs/en/agent-view.md",
@@ -635,8 +635,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "3f751fa6d3d1e720bdf4437c586f7ac09bd2376eb76337d183c201360f1a85c7",
-      "last_updated": "2026-07-23T03:15:19+00:00",
+      "hash": "68f65b43d730b33e1b0127dcc780ec248be3f0647fbda195d4ad71a36245ae73",
+      "last_updated": "2026-07-23T14:09:11+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -1401,7 +1401,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-23T03:16:15+00:00",
+  "last_updated": "2026-07-23T14:10:15+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
