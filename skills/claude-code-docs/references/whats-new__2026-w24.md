@@ -35,7 +35,7 @@ Open the agents view to watch the nested tree as work fans out:
   > /agents
 ```
 
-[Spawn nested subagents](https://code.claude.com/docs/docs/en/sub-agents#spawn-nested-subagents)
+[Spawn nested subagents](https://code.claude.com/docs/docs/en/sub-agents#let-subagents-spawn-their-own-subagents)
 
 Troubleshoot with safe mode
 v2.1.169
