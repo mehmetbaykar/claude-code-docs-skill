@@ -467,16 +467,16 @@
       "title": "Scan your codebase for vulnerabilities"
     },
     "cli-reference.md": {
-      "hash": "3b57a0d4a82d6554c0c64497bd5d222890c860d01541075af6a598ad94354546",
-      "last_updated": "2026-07-21T19:36:17+00:00",
+      "hash": "34b5f6c8cf2c01d10f653a80f3039856b5c52d103b37b24806ca51e276c83a8d",
+      "last_updated": "2026-07-24T02:54:05+00:00",
       "original_url": "https://code.claude.com/docs/en/cli-reference",
       "path": "/docs/en/cli-reference",
       "source_url": "https://code.claude.com/docs/en/cli-reference.md",
       "title": "CLI reference"
     },
     "code-review.md": {
-      "hash": "f2822c1730cd319cda8d1f3b739d4313bb01c06a24f3839685269bb29b1996b6",
-      "last_updated": "2026-07-21T02:55:59+00:00",
+      "hash": "0494dfd809c4aa2de15a61976614bac05863b7081078487a2d40a02fd2ed84cc",
+      "last_updated": "2026-07-24T02:54:05+00:00",
       "original_url": "https://code.claude.com/docs/en/code-review",
       "path": "/docs/en/code-review",
       "source_url": "https://code.claude.com/docs/en/code-review.md",
@@ -635,16 +635,16 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "f8179fb949638f5c62287fb7ce2ac2e48340db08bb1f416e495ae2c121044f9b",
-      "last_updated": "2026-07-23T16:39:38+00:00",
+      "hash": "49c0966b9d6c03e38b6b8234df3f26f92fa7b30ec854b97f29cde89ee932faf9",
+      "last_updated": "2026-07-24T02:54:19+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
       "title": "Error reference"
     },
     "fast-mode.md": {
-      "hash": "1790574912e30a1f53d06406c261db843cf58a9011ba082204230a86e0167616",
-      "last_updated": "2026-07-21T02:56:14+00:00",
+      "hash": "0c311d5e5c1f97b682bd6d6120129564b8f25261585db4382b4517f56194d495",
+      "last_updated": "2026-07-24T02:54:19+00:00",
       "original_url": "https://code.claude.com/docs/en/fast-mode",
       "path": "/docs/en/fast-mode",
       "source_url": "https://code.claude.com/docs/en/fast-mode.md",
@@ -899,8 +899,8 @@
       "title": "Monitoring"
     },
     "network-config.md": {
-      "hash": "4657be2d8ad927b4d2deca7b4455a8762875df6faad73319d30f280a489edfb8",
-      "last_updated": "2026-07-21T02:56:39+00:00",
+      "hash": "ac8fe21d777d679b05604e3f6575c0fb85ebbdf0c4f02d0ea091946d975b5cce",
+      "last_updated": "2026-07-24T02:54:38+00:00",
       "original_url": "https://code.claude.com/docs/en/network-config",
       "path": "/docs/en/network-config",
       "source_url": "https://code.claude.com/docs/en/network-config.md",
@@ -979,8 +979,8 @@
       "title": "Recommend plugins for your org"
     },
     "plugins-reference.md": {
-      "hash": "4736f6a4f01a29e0c38066206cfcbfefccf98ab3abf0470538b53e1d0e0e11c8",
-      "last_updated": "2026-07-21T02:56:49+00:00",
+      "hash": "90a4d5b45b59c4a980251ba6006f265eda28c6b153009ae8b424037220eb8731",
+      "last_updated": "2026-07-24T02:54:45+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins-reference",
       "path": "/docs/en/plugins-reference",
       "source_url": "https://code.claude.com/docs/en/plugins-reference.md",
@@ -1083,8 +1083,8 @@
       "title": "Configure server-managed settings"
     },
     "sessions.md": {
-      "hash": "d2a010e8d9c8e9e7331855e0d48a4086069ae35705d33785b9d1b036451734d3",
-      "last_updated": "2026-07-22T22:08:40+00:00",
+      "hash": "69c6c36408b47f559e26b95b38f140c9f8d466921ac508241612293310dbd399",
+      "last_updated": "2026-07-24T02:54:54+00:00",
       "original_url": "https://code.claude.com/docs/en/sessions",
       "path": "/docs/en/sessions",
       "source_url": "https://code.claude.com/docs/en/sessions.md",
@@ -1163,16 +1163,16 @@
       "title": "Tools reference"
     },
     "troubleshoot-install.md": {
-      "hash": "d6fd2f188f55c13df43973b4220209456efdd5a4b9a3113fa3e70546d04ac7d2",
-      "last_updated": "2026-07-21T02:57:05+00:00",
+      "hash": "8c8cc45fae1a1c3809aea120e0e7b06bec988fe7cc88668908a8156606f30982",
+      "last_updated": "2026-07-24T02:55:01+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshoot-install",
       "path": "/docs/en/troubleshoot-install",
       "source_url": "https://code.claude.com/docs/en/troubleshoot-install.md",
       "title": "Troubleshoot installation and login"
     },
     "troubleshooting.md": {
-      "hash": "3f4791b2b8ea62ad37825500e833e0722c080f68d3cc8d6d966b55411243a2c6",
-      "last_updated": "2026-07-21T02:57:06+00:00",
+      "hash": "06939d31493038b21b155de902700715ea9d83a7e617fa6d5549f8c9347d7562",
+      "last_updated": "2026-07-24T02:55:02+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshooting",
       "path": "/docs/en/troubleshooting",
       "source_url": "https://code.claude.com/docs/en/troubleshooting.md",
@@ -1187,8 +1187,8 @@
       "title": "Plan in the cloud with ultraplan"
     },
     "ultrareview.md": {
-      "hash": "2226ad16e5de1f8d4c9ec3d059445d7ac28f51ed2d51b5439a1485b1e8316c0d",
-      "last_updated": "2026-07-21T02:57:07+00:00",
+      "hash": "fb473000f2e655bad7897634fb9ae9b3066a36c2e50f45e30ecc53646ad34c33",
+      "last_updated": "2026-07-24T02:55:03+00:00",
       "original_url": "https://code.claude.com/docs/en/ultrareview",
       "path": "/docs/en/ultrareview",
       "source_url": "https://code.claude.com/docs/en/ultrareview.md",
@@ -1401,7 +1401,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-23T19:26:37+00:00",
+  "last_updated": "2026-07-24T02:55:20+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
