@@ -763,8 +763,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "923c0eeb190d9059bf506be3c570ba94b7c90ab3ecd01f082ddc62c6c7a12f8b",
-      "last_updated": "2026-07-23T03:15:29+00:00",
+      "hash": "edad3b6d31e8c68173ebb2b8c69c74da8e82a06f7dd70c75b7833a34eb0084f9",
+      "last_updated": "2026-07-25T21:59:28+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -963,8 +963,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugin-marketplaces.md": {
-      "hash": "b6d2886fe5280dd33a76b0db83892284c68eadd6304e50305f2d2e8ab69ebf88",
-      "last_updated": "2026-07-21T19:37:08+00:00",
+      "hash": "e526e3ac482cea6b0e75a6075e91f66773312e3104c36445ca8f41d3b2dc594c",
+      "last_updated": "2026-07-25T21:59:43+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-marketplaces",
       "path": "/docs/en/plugin-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugin-marketplaces.md",
@@ -1401,7 +1401,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-25T02:54:53+00:00",
+  "last_updated": "2026-07-25T22:00:25+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
