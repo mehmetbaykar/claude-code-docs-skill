@@ -283,8 +283,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "f76fc1e6bea07548871c2d4256e5469969c219a6c5aa9c0f01bf2bbe3481cf2c",
-      "last_updated": "2026-07-23T16:38:59+00:00",
+      "hash": "ed92e5cb06d11c88453efb0766aed59bc89e5aef2d4cdd1d1aed912863605ad1",
+      "last_updated": "2026-07-25T02:53:19+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "source_url": "https://code.claude.com/docs/en/agent-view.md",
@@ -331,8 +331,8 @@
       "title": "Authentication"
     },
     "auto-mode-config.md": {
-      "hash": "8144e50a8a13edbc89b39259196a0e3b7db9a5485ec9904bab696d1c10fdab5a",
-      "last_updated": "2026-07-21T02:55:43+00:00",
+      "hash": "3acb286a217c2ed71d08f67379435eb9c71a0d7e6be8edbdbed7ca5bac8151df",
+      "last_updated": "2026-07-25T02:53:24+00:00",
       "original_url": "https://code.claude.com/docs/en/auto-mode-config",
       "path": "/docs/en/auto-mode-config",
       "source_url": "https://code.claude.com/docs/en/auto-mode-config.md",
@@ -355,8 +355,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "e225f615b9700770563484a69f49ad224c96c528e6b738c0e5731368fc59eb8d",
-      "last_updated": "2026-07-24T19:28:36+00:00",
+      "hash": "e7529cabf42ba4a4be1be3614e8c2e137e50d7fc5b00f1dac9098de222c27e71",
+      "last_updated": "2026-07-25T02:53:27+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -851,8 +851,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "8ea7502a9be4bd1b182fd05c8e1c774c53170a49b611faec4a9e4d10aa6d0492",
-      "last_updated": "2026-07-23T03:15:35+00:00",
+      "hash": "b59ee8ad325ac159970e800e767dfc7f3e6a1c5622fa16e7b55ed627e8dce2ef",
+      "last_updated": "2026-07-25T02:54:11+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -923,16 +923,16 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "41f4634c3a3dac38bb46ea2332ec7bfee3b27d008d47f3b917be82e448092997",
-      "last_updated": "2026-07-24T22:08:51+00:00",
+      "hash": "88f6b947d7f9013be0a07a4296a2c61d95db3ce6cdf9e9554231af5cd89b4dce",
+      "last_updated": "2026-07-25T02:54:17+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "source_url": "https://code.claude.com/docs/en/permission-modes.md",
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "626c5138cb38e03d6a2855d908867c9851a9830a9aa26b89caecd4d15e435cc4",
-      "last_updated": "2026-07-23T16:40:06+00:00",
+      "hash": "b8f245d8c759413d8faaba9dbe634aafe3c6ad8fb7c8a96ac27905575dcee531",
+      "last_updated": "2026-07-25T02:54:17+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -1043,8 +1043,8 @@
       "title": "Choose a sandbox environment"
     },
     "sandboxing.md": {
-      "hash": "c6cf4156ff93b7a847422ca0a7430e689f88c424029cc9ed646a04468e59ca54",
-      "last_updated": "2026-07-21T16:26:04+00:00",
+      "hash": "eeceeb16c6f4950643bf00cae588dbfcdd8e5ab7a03ef136d252c6141a65c89a",
+      "last_updated": "2026-07-25T02:54:26+00:00",
       "original_url": "https://code.claude.com/docs/en/sandboxing",
       "path": "/docs/en/sandboxing",
       "source_url": "https://code.claude.com/docs/en/sandboxing.md",
@@ -1401,7 +1401,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-24T22:09:28+00:00",
+  "last_updated": "2026-07-25T02:54:53+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
