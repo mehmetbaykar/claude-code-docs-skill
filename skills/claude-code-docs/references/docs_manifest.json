@@ -227,8 +227,8 @@
       "title": "Get structured output from agents"
     },
     "agent-sdk__subagents.md": {
-      "hash": "aa1730a384f8be7533daf2196618f7c4a420513e4c9da56c2c25f6cdc8ef8ccd",
-      "last_updated": "2026-07-23T03:14:43+00:00",
+      "hash": "fe641134f7714c420de566f8cb829b5d35474b23b1f834988966d706cab97092",
+      "last_updated": "2026-07-26T19:16:21+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/subagents",
       "path": "/docs/en/agent-sdk/subagents",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/subagents.md",
@@ -627,16 +627,16 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "42883ab958af43dda050eeb24b277a384919d5f82453687487e464c8410f38fa",
-      "last_updated": "2026-07-26T03:19:29+00:00",
+      "hash": "2ba7263e2aed23c2b08ca4b5e9f1b2b8c4ef236eafc859176a7aad464a0b74ba",
+      "last_updated": "2026-07-26T19:16:52+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "c1a7b5cfc36a3f585a7167cbaa4d9b75091fa3db3ba0a231fd25624034ca3e74",
-      "last_updated": "2026-07-24T19:28:51+00:00",
+      "hash": "efa9e1a9d809db0d13b50d93c26c8f2c25c05cf29a63fe0a1fcf3059d46c0255",
+      "last_updated": "2026-07-26T19:16:53+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -1091,8 +1091,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "2d953959369840a5a4d9e9ed11a85856c9590aa912b2df6e38d2fa8f06967631",
-      "last_updated": "2026-07-23T16:40:24+00:00",
+      "hash": "78c1457090eeddf4a72083cf8953249d2a478cd323e4ca73b96e9f6b0d03da5d",
+      "last_updated": "2026-07-26T19:17:33+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1131,8 +1131,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "3406b02a50219c8af9169e2432c0b460cad3f254cd6fbf80e1648337cbf84647",
-      "last_updated": "2026-07-24T19:29:22+00:00",
+      "hash": "01966e25fefa5982e486c335744eeb9bd25ded262373fc43e29d325489a86f59",
+      "last_updated": "2026-07-26T19:17:36+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1363,8 +1363,8 @@
       "title": "Week 29 \u00b7 July 13\u201317, 2026"
     },
     "workflows.md": {
-      "hash": "6e40640af70a9b0d5734fe40139b58d0f6688cffedb1b1b8149a6e6ef3b46a41",
-      "last_updated": "2026-07-24T22:09:26+00:00",
+      "hash": "9f42797ef0cafef51552f116664cd6f6848dc3476c740c3fe27d818d070e959d",
+      "last_updated": "2026-07-26T19:17:47+00:00",
       "original_url": "https://code.claude.com/docs/en/workflows",
       "path": "/docs/en/workflows",
       "source_url": "https://code.claude.com/docs/en/workflows.md",
@@ -1401,7 +1401,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-26T03:20:34+00:00",
+  "last_updated": "2026-07-26T19:17:49+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
