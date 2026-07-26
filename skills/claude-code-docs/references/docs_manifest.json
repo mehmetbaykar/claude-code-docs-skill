@@ -283,8 +283,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "ed92e5cb06d11c88453efb0766aed59bc89e5aef2d4cdd1d1aed912863605ad1",
-      "last_updated": "2026-07-25T02:53:19+00:00",
+      "hash": "52088815fee60e436c2e118d986beebb831f4702ca50d7f4e4c819145c6d6089",
+      "last_updated": "2026-07-26T03:19:03+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "source_url": "https://code.claude.com/docs/en/agent-view.md",
@@ -627,8 +627,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "b4bde8216d29004e0febd22835591c1718fa4ce455a48534ec71d001c2d87b65",
-      "last_updated": "2026-07-24T19:28:51+00:00",
+      "hash": "42883ab958af43dda050eeb24b277a384919d5f82453687487e464c8410f38fa",
+      "last_updated": "2026-07-26T03:19:29+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -1163,8 +1163,8 @@
       "title": "Tools reference"
     },
     "troubleshoot-install.md": {
-      "hash": "8c8cc45fae1a1c3809aea120e0e7b06bec988fe7cc88668908a8156606f30982",
-      "last_updated": "2026-07-24T02:55:01+00:00",
+      "hash": "d669437e3203e4ddecee18fe049531f7e0cf2fa501b5fd58912ae525b44feb9a",
+      "last_updated": "2026-07-26T03:20:12+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshoot-install",
       "path": "/docs/en/troubleshoot-install",
       "source_url": "https://code.claude.com/docs/en/troubleshoot-install.md",
@@ -1401,7 +1401,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-25T22:00:25+00:00",
+  "last_updated": "2026-07-26T03:20:34+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
