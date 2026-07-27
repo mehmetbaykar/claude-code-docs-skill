@@ -147,8 +147,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "0e088ec402d01fe2bd7ef7ebddc46f4e7c5ae37880b8a29db81ed534f2b79dc4",
-      "last_updated": "2026-07-23T03:14:38+00:00",
+      "hash": "cd6be968710a4c25ea5bbe7cc6c7ef6de73c7fad4c194957cff5e2c5eab5bb25",
+      "last_updated": "2026-07-27T19:38:55+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -667,8 +667,8 @@
       "title": "Extend Claude Code"
     },
     "fullscreen.md": {
-      "hash": "7d97a8ed3bf2165499fceeb5dfaf01ae9694e056d1681641ac281224398f5e47",
-      "last_updated": "2026-07-21T02:56:16+00:00",
+      "hash": "1f381e18cac1c7bdd387fecde9e882367cea47ab04271fc545c5bc60734edba3",
+      "last_updated": "2026-07-27T19:39:41+00:00",
       "original_url": "https://code.claude.com/docs/en/fullscreen",
       "path": "/docs/en/fullscreen",
       "source_url": "https://code.claude.com/docs/en/fullscreen.md",
@@ -747,8 +747,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "536608a11a68e8a0ebb47ccdd95d5785ed2d48d88b775978d6910ffc2694ef56",
-      "last_updated": "2026-07-24T22:08:31+00:00",
+      "hash": "2f163259e12d1eec1cf4df52a5a5096a88d7c2d30152971656aaf94a70d9d49b",
+      "last_updated": "2026-07-27T19:39:46+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -1019,8 +1019,8 @@
       "title": "Quickstart"
     },
     "remote-control.md": {
-      "hash": "3261fba574bae4cf3843fbf614d2d53961196770be2f47e1100515e9a228371c",
-      "last_updated": "2026-07-22T02:54:51+00:00",
+      "hash": "c6ef6dcb26aae6809f9bf6285a3fb2b20d66618c3e74eb6037c56766933f5ab3",
+      "last_updated": "2026-07-27T19:40:09+00:00",
       "original_url": "https://code.claude.com/docs/en/remote-control",
       "path": "/docs/en/remote-control",
       "source_url": "https://code.claude.com/docs/en/remote-control.md",
@@ -1043,8 +1043,8 @@
       "title": "Choose a sandbox environment"
     },
     "sandboxing.md": {
-      "hash": "eeceeb16c6f4950643bf00cae588dbfcdd8e5ab7a03ef136d252c6141a65c89a",
-      "last_updated": "2026-07-25T02:54:26+00:00",
+      "hash": "c9b7e5b4ee73ebc46e3098e940007f6f49fabf792c6a65a10ea36fd8252a6286",
+      "last_updated": "2026-07-27T19:40:10+00:00",
       "original_url": "https://code.claude.com/docs/en/sandboxing",
       "path": "/docs/en/sandboxing",
       "source_url": "https://code.claude.com/docs/en/sandboxing.md",
@@ -1091,8 +1091,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "78c1457090eeddf4a72083cf8953249d2a478cd323e4ca73b96e9f6b0d03da5d",
-      "last_updated": "2026-07-26T19:17:33+00:00",
+      "hash": "b5ebcb44cbff39baf1d55db90cbc130699b23b69b774686dd056fc25b45cdd57",
+      "last_updated": "2026-07-27T19:40:12+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1131,8 +1131,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "01966e25fefa5982e486c335744eeb9bd25ded262373fc43e29d325489a86f59",
-      "last_updated": "2026-07-26T19:17:36+00:00",
+      "hash": "e692e39df44224fbdce772996c458f8cf4cf013a833e635863db99e010d7b489",
+      "last_updated": "2026-07-27T19:40:14+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1401,7 +1401,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-26T19:17:49+00:00",
+  "last_updated": "2026-07-27T19:40:33+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
