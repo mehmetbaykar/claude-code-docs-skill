@@ -215,11 +215,13 @@ type SDKControlInitializeResponse = {
   models: ModelInfo[];
   account: AccountInfo;
   fast_mode_state?: "off" | "cooldown" | "on";
+  fast_mode_disabled_reason?: FastModeDisabledReason;
 };
 ```
 ```typescript
 type SDKControlInterruptResponse = {
   still_queued: string[];
+  cancelled?: string[];
 };
 ```
 ```typescript
@@ -460,6 +462,7 @@ type SDKAssistantMessage = {
   message: BetaMessage; // From Anthropic SDK
   parent_tool_use_id: string | null;
   error?: SDKAssistantMessageError;
+  aborted?: true;
   timestamp?: string;
 };
 ```
@@ -505,6 +508,8 @@ type SDKResultMessage =
       stop_reason: string | null;
       ttft_ms?: number;
       ttft_stream_ms?: number;
+      user_message_uuid?: string;
+      request_sent_wall_ms?: number;
       total_cost_usd: number;
       usage: NonNullableUsage;
       modelUsage: { [modelName: string]: ModelUsage };
@@ -513,6 +518,7 @@ type SDKResultMessage =
       deferred_tool_use?: { id: string; name: string; input: Record<string, unknown> };
       terminal_reason?: TerminalReason;
       fast_mode_state?: FastModeState;
+      fast_mode_disabled_reason?: FastModeDisabledReason;
       origin?: SDKMessageOrigin;
     }
   | {
@@ -536,6 +542,7 @@ type SDKResultMessage =
       errors: string[];
       terminal_reason?: TerminalReason;
       fast_mode_state?: FastModeState;
+      fast_mode_disabled_reason?: FastModeDisabledReason;
       origin?: SDKMessageOrigin;
     };
 ```
@@ -561,6 +568,8 @@ type SDKSystemMessage = {
   output_style: string;
   skills: string[];
   plugins: { name: string; path: string }[];
+  fast_mode_state?: FastModeState;
+  fast_mode_disabled_reason?: FastModeDisabledReason;
   capabilities?: string[];
 };
 ```
@@ -647,8 +656,10 @@ type SDKMessageOrigin =
       kind: "peer";
       from: string;
       name?: string;
+      fromSession?: string;
       senderTaskId?: string;
       body?: string;
+      verifiedPeerPid?: number;
     }
   | { kind: "task-notification" }
   | { kind: "coordinator" }
@@ -674,6 +685,7 @@ type HookEvent =
   | "TeammateIdle"
   | "TaskCompleted"
   | "ConfigChange"
+  | "DirectoryAdded"
   | "WorktreeCreate"
   | "WorktreeRemove"
   | "MessageDisplay";
@@ -711,6 +723,7 @@ type HookInput =
   | TeammateIdleHookInput
   | TaskCompletedHookInput
   | ConfigChangeHookInput
+  | DirectoryAddedHookInput
   | WorktreeCreateHookInput
   | WorktreeRemoveHookInput
   | MessageDisplayHookInput;
@@ -786,7 +799,7 @@ type UserPromptSubmitHookInput = BaseHookInput & {
 ```typescript
 type SessionStartHookInput = BaseHookInput & {
   hook_event_name: "SessionStart";
-  source: "startup" | "resume" | "clear" | "compact";
+  source: "startup" | "resume" | "clear" | "compact" | "fork";
   agent_type?: string;
   model?: string;
 };
@@ -894,6 +907,13 @@ type ConfigChangeHookInput = BaseHookInput & {
     | "policy_settings"
     | "skills";
   file_path?: string;
+};
+```
+```typescript
+type DirectoryAddedHookInput = BaseHookInput & {
+  hook_event_name: "DirectoryAdded";
+  directory: string;
+  source: "slash_command" | "register_repo_root";
 };
 ```
 ```typescript
@@ -1756,6 +1776,8 @@ type ModelUsage = {
   costUSD: number;
   contextWindow: number;
   maxOutputTokens: number;
+  canonicalModel?: string;
+  provider?: string;
 };
 ```
 ```typescript
@@ -1848,6 +1870,7 @@ type RewindFilesResult = {
   filesChanged?: string[];
   insertions?: number;
   deletions?: number;
+  skippedLinks?: number;
 };
 ```
 ```typescript
@@ -1936,6 +1959,16 @@ type SDKToolProgressMessage = {
   parent_tool_use_id: string | null;
   elapsed_time_seconds: number;
   task_id?: string;
+  heartbeat?: boolean;
+  subagent_type?: string;
+  subagent_retry?: {
+    agent_id: string;
+    attempt: number;
+    max_retries: number;
+    retry_delay_ms: number;
+    error_status: number | null;
+    error_category: string;
+  };
   uuid: UUID;
   session_id: string;
 };
@@ -2126,6 +2159,7 @@ try {
 type SandboxNetworkConfig = {
   allowedDomains?: string[];
   deniedDomains?: string[];
+  strictAllowlist?: boolean;
   allowManagedDomainsOnly?: boolean;
   allowLocalBinding?: boolean;
   allowUnixSockets?: string[];
