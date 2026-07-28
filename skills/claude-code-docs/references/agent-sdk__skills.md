@@ -117,8 +117,11 @@ Import statements from the first example are assumed in the following code snipp
       allowed_tools=["Read", "Grep", "Glob"],
   )
 
-  async for message in query(prompt="Analyze the codebase structure", options=options):
-      print(message)
+  async def main():
+      async for message in query(prompt="Analyze the codebase structure", options=options):
+          print(message)
+
+  asyncio.run(main())
 ```
 ```typescript TypeScript
   for await (const message of query({
@@ -143,8 +146,11 @@ To see which Skills are available in your SDK application, simply ask Claude:
       skills="all",
   )
 
-  async for message in query(prompt="What Skills are available?", options=options):
-      print(message)
+  async def main():
+      async for message in query(prompt="What Skills are available?", options=options):
+          print(message)
+
+  asyncio.run(main())
 ```
 ```typescript TypeScript
   for await (const message of query({
@@ -171,8 +177,11 @@ Test Skills by asking questions that match their descriptions:
       allowed_tools=["Read", "Bash"],
   )
 
-  async for message in query(prompt="Extract text from invoice.pdf", options=options):
-      print(message)
+  async def main():
+      async for message in query(prompt="Extract text from invoice.pdf", options=options):
+          print(message)
+
+  asyncio.run(main())
 ```
 ```typescript TypeScript
   for await (const message of query({
