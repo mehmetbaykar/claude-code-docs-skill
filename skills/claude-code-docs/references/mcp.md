@@ -81,6 +81,8 @@ A JSON entry that has a `url` but no `type` is a configuration error, because Cl
 ### Option 2: Add a remote SSE server
 
 The SSE (Server-Sent Events) transport is deprecated. Use HTTP servers instead, where available.
+
+Some services still expose only an SSE endpoint. Use the same command as the HTTP transport, with `--transport sse`:
 ```bash
 # Basic syntax
 claude mcp add --transport sse <name> <url>
@@ -453,6 +455,8 @@ If a referenced environment variable isn't set and has no default value, the con
 
 ### Example: Monitor errors with Sentry
 
+Sentry's remote MCP server gives Claude access to the errors your applications report to Sentry. It authenticates through OAuth rather than an API key, so you don't pass a credential when you add it.
+
 If you already added the `sentry` server in the [MCP quickstart](/docs/en/mcp-quickstart), skip this command: running `claude mcp add` again with the same server name at the same scope fails with `MCP server sentry already exists in local config`.
 ```bash
 claude mcp add --transport http sentry https://mcp.sentry.dev/mcp
@@ -462,6 +466,8 @@ Authenticate with your Sentry account:
 ```text
 /mcp
 ```
+
+Follow the sign-in steps in your browser. Once you're signed in, the `sentry` server shows `connected` in the `/mcp` menu.
 
 Then debug production issues:
 ```text
@@ -496,10 +502,14 @@ Show me all open PRs assigned to me
 ```
 
 ### Example: Query your PostgreSQL database
+
+[DBHub](https://github.com/bytebase/dbhub), the `@bytebase/dbhub` package, is an MCP server that connects Claude to a relational database through the connection string you pass in `--dsn`. Use a read-only database user in the connection string so the queries Claude runs can't modify data:
 ```bash
 claude mcp add --transport stdio db -- npx -y @bytebase/dbhub \
   --dsn "postgresql://readonly:pass@prod.db.com:5432/analytics"
 ```
+
+To confirm the server starts, run `/mcp` and check that `db` shows `connected`.
 
 Then query your database naturally:
 ```text

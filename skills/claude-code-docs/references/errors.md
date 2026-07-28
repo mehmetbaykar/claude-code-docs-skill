@@ -88,6 +88,7 @@ Match the message you see in your terminal to a section below.
 | `Error: Workspace not trusted` when starting Remote Control                                                               | [Command-line errors](#workspace-not-trusted-when-starting-remote-control)                                                    |
 | `Could not import <server>: <reason>`                                                                                     | [Command-line errors](#could-not-import-a-server-from-claude-desktop)                                                         |
 | `Error: MCP tool <name> (passed via --permission-prompt-tool) not found`                                                  | [Command-line errors](#mcp-permission-prompt-tool-not-found)                                                                  |
+| ``Shell command failed for pattern "!`git ... origin/HEAD...`"``                                                          | [Command-line errors](#security-review-fails-without-origin-head)                                                             |
 | `Input must be provided either through stdin or as a prompt argument when using --print`                                  | [Command-line errors](#input-must-be-provided-when-using-print)                                                               |
 | `Diff is too large for ultrareview` / `PR # is too large for ultrareview`                                              | [Command-line errors](#diff-is-too-large-for-ultrareview)                                                                     |
 | `Failed to resume the conversation`                                                                                       | [Command-line errors](#failed-to-resume-the-conversation)                                                                     |
@@ -1119,7 +1120,7 @@ The usual cause is a proxy or gateway that closes a long transfer before it fini
 
 ## Command-line errors
 
-These errors come from the `claude` command line and its subcommands. Claude Code prints them before running your prompt or sending any API request.
+These errors come from the `claude` command line, its subcommands, and commands such as `/security-review` that gather context by running shell commands before their prompt runs.
 
 ### Conflict between --bg and --print
 
@@ -1208,6 +1209,26 @@ The list after `Available MCP tools:` names the MCP tools that were connected wh
 * Check that the server starts and stays connected: run `claude mcp list` in the same directory and confirm the server is listed as connected
 * Confirm the tool name matches the `mcp__<server>__<tool>` name the server exposes
 * If the server needs longer than 30 seconds to start, raise [`MCP_TIMEOUT`](/docs/en/env-vars)
+
+<h3 id="security-review-fails-without-origin-head">
+  /security-review fails without origin/HEAD
+</h3>
+
+[`/security-review`](/docs/en/commands#all-commands) builds its review context by diffing your branch against `origin/HEAD`, the local ref that records which branch is the default on your `origin` remote. When that ref doesn't exist, the git commands that gather the diff fail and the review stops before it starts.
+```text
+Error: Shell command failed for pattern "!`git diff --name-only origin/HEAD...`": [stderr]
+fatal: ambiguous argument 'origin/HEAD...': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+```
+
+The quoted command varies between runs: the review starts several `git` commands against `origin/HEAD` at once and reports whichever fails first, so you may see `git log` or a different `git diff` in its place. Git creates the ref only when the remote's default branch is both advertised by the remote and covered by your fetch refspec. A full `git clone` of a remote with commits meets both conditions. Single-branch and CI checkouts fetch too narrow a refspec, a server-side HEAD left pointing at a branch nobody pushed advertises no default, and a repository with no `origin` remote, or one you never fetched, provides neither.
+
+**What to do:**
+
+* Create the ref by naming your remote's default branch: `git remote set-head origin <default-branch>`. This works whenever the local tracking ref `origin/<default-branch>` exists. If it doesn't, as in single-branch clones, fetch the branch first: `git remote set-branches --add origin <branch> && git fetch origin`, then rerun the set-head command. Rerun `/security-review`.
+* If you'd rather not name the branch, run `git fetch origin && git remote set-head origin --auto`, which asks the remote which branch is its default. It fails with `error: Cannot determine remote HEAD` when the remote advertises no default branch, because it is empty or its HEAD points at a branch nobody pushed; name the branch explicitly instead. It fails with `error: Not a valid ref` when your clone doesn't fetch that branch; widen the refspec as above first.
+* If the repository has no remote, add one with `git remote add origin <url>` and fetch before creating the ref. If the remote is empty, push your branch first with `git push -u origin HEAD` and name that branch in the set-head command; `origin/HEAD` then points at the branch you just pushed, so `/security-review` sees an empty diff until the branch diverges from it.
 
 <h3 id="input-must-be-provided-when-using-print">
 Input must be provided when using --print
