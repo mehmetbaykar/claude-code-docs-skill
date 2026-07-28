@@ -459,8 +459,8 @@
       "title": "Claude Code on Claude Platform on AWS"
     },
     "claude-security.md": {
-      "hash": "259e09b2937d8cd598304f0c984e08fab490e8ce575c930542bf2a72d446105b",
-      "last_updated": "2026-07-23T19:24:06+00:00",
+      "hash": "dc000130c398613ce7a0df56a989ca3a3675d699d0852e5636e3a6828abc828e",
+      "last_updated": "2026-07-28T16:42:43+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-security",
       "path": "/docs/en/claude-security",
       "source_url": "https://code.claude.com/docs/en/claude-security.md",
@@ -1409,7 +1409,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-28T14:16:41+00:00",
+  "last_updated": "2026-07-28T16:44:03+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
