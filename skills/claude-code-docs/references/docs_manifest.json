@@ -155,16 +155,16 @@
       "title": "Agent SDK reference - Python"
     },
     "agent-sdk__quickstart.md": {
-      "hash": "48d120951cb89e14572dfb2c48bea6ad7cb9ae469fdb054b1c3970338ee845b4",
-      "last_updated": "2026-07-29T02:52:42+00:00",
+      "hash": "d09561527393ed826881c22eb48857bd65cd19827bf060bdb6309e028d9006c9",
+      "last_updated": "2026-07-29T19:22:19+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/quickstart",
       "path": "/docs/en/agent-sdk/quickstart",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/quickstart.md",
       "title": "Quickstart"
     },
     "agent-sdk__secure-deployment.md": {
-      "hash": "48f1603eb340020a690687177c95e0a0d64efe1dda1434717cd282273643964d",
-      "last_updated": "2026-07-21T02:55:25+00:00",
+      "hash": "8adc8105db4a52c1884cb5b3f927811d1ddab3918ff86c52bb82252a89f4f7a7",
+      "last_updated": "2026-07-29T19:22:32+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/secure-deployment",
       "path": "/docs/en/agent-sdk/secure-deployment",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/secure-deployment.md",
@@ -651,8 +651,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "9d3dd7982f685c52d205d0cdb12c5d6b3647ede584c94f3b88d333da394b8ac0",
-      "last_updated": "2026-07-29T02:53:22+00:00",
+      "hash": "187828b808665215baa207c9b7fd8b24fa6f0d0eaa87c8c879fb08fc825545fd",
+      "last_updated": "2026-07-29T19:23:54+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -947,8 +947,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "a6bd95831b1c84a1140c10d230b25c65391121769a93824b980d9a4e089d59f8",
-      "last_updated": "2026-07-29T16:25:40+00:00",
+      "hash": "19063a3b1ebdcdb45de501cfd0c95c212e062658d12fc6b615dc09f632f9f17b",
+      "last_updated": "2026-07-29T19:24:40+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -1043,8 +1043,8 @@
       "title": "Continue local sessions from any device with Remote Control"
     },
     "routines.md": {
-      "hash": "74e1eec48d7eae8401d14dda66d5c0d7d5b0d09e801684bc97132045fb31717b",
-      "last_updated": "2026-07-28T14:16:08+00:00",
+      "hash": "850b69150116518a5f04edbc213e2dd6496824a290ee1f76340ec0b972b4bbab",
+      "last_updated": "2026-07-29T19:24:57+00:00",
       "original_url": "https://code.claude.com/docs/en/routines",
       "path": "/docs/en/routines",
       "source_url": "https://code.claude.com/docs/en/routines.md",
@@ -1107,8 +1107,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "e5d12609cee49207a4efe61bccbe60d69740d551b70ed0661e8a7598b039674c",
-      "last_updated": "2026-07-29T16:25:53+00:00",
+      "hash": "7db19a5bf783a9ccec7feb9d246d11b73782c8d6dabaa34703841b11081b8094",
+      "last_updated": "2026-07-29T19:25:12+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1417,7 +1417,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-29T16:26:18+00:00",
+  "last_updated": "2026-07-29T19:25:59+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
