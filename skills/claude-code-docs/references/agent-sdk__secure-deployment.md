@@ -162,8 +162,7 @@ Standard containers share the host kernel: when code inside a container makes a 
 If an agent runs malicious code (perhaps due to prompt injection), that code runs in the container and could attempt kernel exploits. With gVisor, the attack surface is much smaller: the malicious code would need to exploit gVisor's userspace implementation first and would have limited access to the real kernel.
 
 To use gVisor with Docker, install the `runsc` runtime and configure the daemon:
-```json
-// /etc/docker/daemon.json
+```json /etc/docker/daemon.json
 {
   "runtimes": {
     "runsc": {
