@@ -153,6 +153,8 @@ console.log(`Cleanup period: ${effective.cleanupPeriodDays} days`);
 console.log(`Set by: ${provenance.cleanupPeriodDays?.source}`);
 ```
 ```typescript
+import { query } from "@anthropic-ai/claude-agent-sdk";
+
 const result = query({
   prompt: "Analyze this code",
   options: {
@@ -182,6 +184,7 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
   supportedModels(): Promise<ModelInfo[]>;
   supportedAgents(): Promise<AgentInfo[]>;
   mcpServerStatus(): Promise<McpServerStatus[]>;
+  getContextUsage(): Promise<SDKControlGetContextUsageResponse>;
   accountInfo(): Promise<AccountInfo>;
   reconnectMcpServer(serverName: string): Promise<void>;
   toggleMcpServer(serverName: string, enabled: boolean): Promise<void>;
@@ -192,6 +195,8 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
 }
 ```
 ```typescript
+import { query } from "@anthropic-ai/claude-agent-sdk";
+
 const q = query({ prompt: messageStream });
 
 // Override the model for the rest of the session
@@ -225,6 +230,99 @@ type SDKControlInterruptResponse = {
 };
 ```
 ```typescript
+type SDKControlGetContextUsageResponse = {
+  categories: {
+    name: string;
+    tokens: number;
+    color: string;
+    isDeferred?: boolean;
+  }[];
+  totalTokens: number;
+  maxTokens: number;
+  rawMaxTokens: number;
+  percentage: number;
+  gridRows: {
+    color: string;
+    isFilled: boolean;
+    categoryName: string;
+    tokens: number;
+    percentage: number;
+    squareFullness: number;
+  }[][];
+  model: string;
+  memoryFiles: {
+    path: string;
+    type: string;
+    tokens: number;
+  }[];
+  mcpTools: {
+    name: string;
+    serverName: string;
+    tokens: number;
+    isLoaded?: boolean;
+  }[];
+  deferredBuiltinTools?: {
+    name: string;
+    tokens: number;
+    isLoaded: boolean;
+  }[];
+  systemTools?: {
+    name: string;
+    tokens: number;
+  }[];
+  systemPromptSections?: {
+    name: string;
+    tokens: number;
+  }[];
+  agents: {
+    agentType: string;
+    source: string;
+    tokens: number;
+  }[];
+  slashCommands?: {
+    totalCommands: number;
+    includedCommands: number;
+    tokens: number;
+  };
+  skills?: {
+    totalSkills: number;
+    includedSkills: number;
+    tokens: number;
+    skillFrontmatter: {
+      name: string;
+      source: string;
+      tokens: number;
+    }[];
+  };
+  autoCompactThreshold?: number;
+  isAutoCompactEnabled: boolean;
+  messageBreakdown?: {
+    toolCallTokens: number;
+    toolResultTokens: number;
+    attachmentTokens: number;
+    assistantMessageTokens: number;
+    userMessageTokens: number;
+    redirectedContextTokens: number;
+    unattributedTokens: number;
+    toolCallsByType: {
+      name: string;
+      callTokens: number;
+      resultTokens: number;
+    }[];
+    attachmentsByType: {
+      name: string;
+      tokens: number;
+    }[];
+  };
+  apiUsage: {
+    input_tokens: number;
+    output_tokens: number;
+    cache_creation_input_tokens: number;
+    cache_read_input_tokens: number;
+  } | null;
+};
+```
+```typescript
 type AgentDefinition = {
   description: string;
   tools?: string[];
@@ -249,6 +347,8 @@ type AgentMcpServerSpec = string | Record<string, McpServerConfigForProcessTrans
 type SettingSource = "user" | "project" | "local";
 ```
 ```typescript
+import { query } from "@anthropic-ai/claude-agent-sdk";
+
 // Do not load user, project, or local settings from disk
 const result = query({
   prompt: "Analyze this code",
@@ -256,6 +356,8 @@ const result = query({
 });
 ```
 ```typescript
+import { query } from "@anthropic-ai/claude-agent-sdk";
+
 const result = query({
   prompt: "Analyze this code",
   options: {
@@ -264,6 +366,8 @@ const result = query({
 });
 ```
 ```typescript
+import { query } from "@anthropic-ai/claude-agent-sdk";
+
 // Load only project settings, ignore user and local
 const result = query({
   prompt: "Run CI checks",
@@ -273,16 +377,21 @@ const result = query({
 });
 ```
 ```typescript
+import { query } from "@anthropic-ai/claude-agent-sdk";
+
 // Ensure consistent behavior in CI by excluding local settings
 const result = query({
   prompt: "Run tests",
   options: {
     settingSources: ["project"], // Only team-shared settings
-    permissionMode: "bypassPermissions"
+    permissionMode: "bypassPermissions",
+    allowDangerouslySkipPermissions: true
   }
 });
 ```
 ```typescript
+import { query } from "@anthropic-ai/claude-agent-sdk";
+
 // Define everything programmatically.
 // Pass [] to opt out of filesystem setting sources.
 const result = query({
@@ -300,6 +409,8 @@ const result = query({
 });
 ```
 ```typescript
+import { query } from "@anthropic-ai/claude-agent-sdk";
+
 // Load project settings to include CLAUDE.md files
 const result = query({
   prompt: "Add a new feature following project conventions",
@@ -677,17 +788,26 @@ type HookEvent =
   | "SessionStart"
   | "SessionEnd"
   | "Stop"
+  | "StopFailure"
   | "SubagentStart"
   | "SubagentStop"
   | "PreCompact"
+  | "PostCompact"
   | "PermissionRequest"
+  | "PermissionDenied"
   | "Setup"
   | "TeammateIdle"
+  | "TaskCreated"
   | "TaskCompleted"
+  | "Elicitation"
+  | "ElicitationResult"
   | "ConfigChange"
   | "DirectoryAdded"
   | "WorktreeCreate"
   | "WorktreeRemove"
+  | "InstructionsLoaded"
+  | "CwdChanged"
+  | "FileChanged"
   | "MessageDisplay";
 ```
 ```typescript
@@ -710,22 +830,32 @@ type HookInput =
   | PostToolUseHookInput
   | PostToolUseFailureHookInput
   | PostToolBatchHookInput
+  | PermissionDeniedHookInput
   | NotificationHookInput
   | UserPromptSubmitHookInput
+  | UserPromptExpansionHookInput
   | SessionStartHookInput
   | SessionEndHookInput
   | StopHookInput
+  | StopFailureHookInput
   | SubagentStartHookInput
   | SubagentStopHookInput
   | PreCompactHookInput
+  | PostCompactHookInput
   | PermissionRequestHookInput
   | SetupHookInput
   | TeammateIdleHookInput
+  | TaskCreatedHookInput
   | TaskCompletedHookInput
+  | ElicitationHookInput
+  | ElicitationResultHookInput
   | ConfigChangeHookInput
+  | InstructionsLoadedHookInput
   | DirectoryAddedHookInput
   | WorktreeCreateHookInput
   | WorktreeRemoveHookInput
+  | CwdChangedHookInput
+  | FileChangedHookInput
   | MessageDisplayHookInput;
 ```
 ```typescript
@@ -783,6 +913,15 @@ type PostToolBatchToolCall = {
 };
 ```
 ```typescript
+type PermissionDeniedHookInput = BaseHookInput & {
+  hook_event_name: "PermissionDenied";
+  tool_name: string;
+  tool_input: unknown;
+  tool_use_id: string;
+  reason: string;
+};
+```
+```typescript
 type NotificationHookInput = BaseHookInput & {
   hook_event_name: "Notification";
   message: string;
@@ -794,6 +933,17 @@ type NotificationHookInput = BaseHookInput & {
 type UserPromptSubmitHookInput = BaseHookInput & {
   hook_event_name: "UserPromptSubmit";
   prompt: string;
+  session_title?: string;
+};
+```
+```typescript
+type UserPromptExpansionHookInput = BaseHookInput & {
+  hook_event_name: "UserPromptExpansion";
+  expansion_type: "slash_command" | "mcp_prompt";
+  command_name: string;
+  command_args: string;
+  command_source?: string;
+  prompt: string;
 };
 ```
 ```typescript
@@ -802,6 +952,7 @@ type SessionStartHookInput = BaseHookInput & {
   source: "startup" | "resume" | "clear" | "compact" | "fork";
   agent_type?: string;
   model?: string;
+  session_title?: string;
 };
 ```
 ```typescript
@@ -817,6 +968,14 @@ type StopHookInput = BaseHookInput & {
   last_assistant_message?: string;
   background_tasks?: BackgroundTaskSummary[];
   session_crons?: SessionCronSummary[];
+};
+```
+```typescript
+type StopFailureHookInput = BaseHookInput & {
+  hook_event_name: "StopFailure";
+  error: SDKAssistantMessageError;
+  error_details?: string;
+  last_assistant_message?: string;
 };
 ```
 ```typescript
@@ -865,6 +1024,13 @@ type PreCompactHookInput = BaseHookInput & {
 };
 ```
 ```typescript
+type PostCompactHookInput = BaseHookInput & {
+  hook_event_name: "PostCompact";
+  trigger: "manual" | "auto";
+  compact_summary: string;
+};
+```
+```typescript
 type PermissionRequestHookInput = BaseHookInput & {
   hook_event_name: "PermissionRequest";
   tool_name: string;
@@ -887,6 +1053,17 @@ type TeammateIdleHookInput = BaseHookInput & {
 };
 ```
 ```typescript
+type TaskCreatedHookInput = BaseHookInput & {
+  hook_event_name: "TaskCreated";
+  task_id: string;
+  task_subject: string;
+  task_description?: string;
+  teammate_name?: string;
+  /** @deprecated since v2.1.178. Carries the session-derived team name; will be removed. */
+  team_name?: string;
+};
+```
+```typescript
 type TaskCompletedHookInput = BaseHookInput & {
   hook_event_name: "TaskCompleted";
   task_id: string;
@@ -895,6 +1072,27 @@ type TaskCompletedHookInput = BaseHookInput & {
   teammate_name?: string;
   /** @deprecated since v2.1.178. Carries the session-derived team name; will be removed. */
   team_name?: string;
+};
+```
+```typescript
+type ElicitationHookInput = BaseHookInput & {
+  hook_event_name: "Elicitation";
+  mcp_server_name: string;
+  message: string;
+  mode?: "form" | "url";
+  url?: string;
+  elicitation_id?: string;
+  requested_schema?: Record<string, unknown>;
+};
+```
+```typescript
+type ElicitationResultHookInput = BaseHookInput & {
+  hook_event_name: "ElicitationResult";
+  mcp_server_name: string;
+  elicitation_id?: string;
+  mode?: "form" | "url";
+  action: "accept" | "decline" | "cancel";
+  content?: Record<string, unknown>;
 };
 ```
 ```typescript
@@ -907,6 +1105,22 @@ type ConfigChangeHookInput = BaseHookInput & {
     | "policy_settings"
     | "skills";
   file_path?: string;
+};
+```
+```typescript
+type InstructionsLoadedHookInput = BaseHookInput & {
+  hook_event_name: "InstructionsLoaded";
+  file_path: string;
+  memory_type: "User" | "Project" | "Local" | "Managed";
+  load_reason:
+    | "session_start"
+    | "nested_traversal"
+    | "path_glob_match"
+    | "include"
+    | "compact";
+  globs?: string[];
+  trigger_file_path?: string;
+  parent_file_path?: string;
 };
 ```
 ```typescript
@@ -926,6 +1140,20 @@ type WorktreeCreateHookInput = BaseHookInput & {
 type WorktreeRemoveHookInput = BaseHookInput & {
   hook_event_name: "WorktreeRemove";
   worktree_path: string;
+};
+```
+```typescript
+type CwdChangedHookInput = BaseHookInput & {
+  hook_event_name: "CwdChanged";
+  old_cwd: string;
+  new_cwd: string;
+};
+```
+```typescript
+type FileChangedHookInput = BaseHookInput & {
+  hook_event_name: "FileChanged";
+  file_path: string;
+  event: "change" | "add" | "unlink";
 };
 ```
 ```typescript
@@ -954,6 +1182,13 @@ type SyncHookJSONOutput = {
   stopReason?: string;
   decision?: "approve" | "block";
   systemMessage?: string;
+  /**
+   * A terminal escape sequence (e.g. OSC 9 / OSC 777 desktop-notification)
+   * for Claude Code to emit on your behalf. Only notification/title OSCs
+   * (0, 1, 2, 9, 99, 777) and BEL are permitted; a value containing
+   * anything else is ignored as a whole.
+   */
+  terminalSequence?: string;
   reason?: string;
   hookSpecificOutput?:
     | {
@@ -966,10 +1201,26 @@ type SyncHookJSONOutput = {
     | {
         hookEventName: "UserPromptSubmit";
         additionalContext?: string;
+        sessionTitle?: string;
+        /** When decision is "block", omit the original prompt from the block message. */
+        suppressOriginalPrompt?: boolean;
+      }
+    | {
+        hookEventName: "UserPromptExpansion";
+        additionalContext?: string;
       }
     | {
         hookEventName: "SessionStart";
         additionalContext?: string;
+        initialUserMessage?: string;
+        sessionTitle?: string;
+        watchPaths?: string[];
+        /**
+         * Re-scan skill and command directories after SessionStart hooks
+         * complete, so skills installed by the hook are available in the
+         * same session.
+         */
+        reloadSkills?: boolean;
       }
     | {
         hookEventName: "Setup";
@@ -995,6 +1246,18 @@ type SyncHookJSONOutput = {
         additionalContext?: string;
       }
     | {
+        hookEventName: "Stop";
+        additionalContext?: string;
+      }
+    | {
+        hookEventName: "SubagentStop";
+        additionalContext?: string;
+      }
+    | {
+        hookEventName: "PermissionDenied";
+        retry?: boolean;
+      }
+    | {
         hookEventName: "Notification";
         additionalContext?: string;
       }
@@ -1011,17 +1274,49 @@ type SyncHookJSONOutput = {
               message?: string;
               interrupt?: boolean;
             };
+      }
+    | {
+        hookEventName: "Elicitation";
+        action?: "accept" | "decline" | "cancel";
+        content?: Record<string, unknown>;
+      }
+    | {
+        hookEventName: "ElicitationResult";
+        action?: "accept" | "decline" | "cancel";
+        content?: Record<string, unknown>;
+      }
+    | {
+        hookEventName: "CwdChanged";
+        watchPaths?: string[];
+      }
+    | {
+        hookEventName: "FileChanged";
+        watchPaths?: string[];
+      }
+    | {
+        hookEventName: "WorktreeCreate";
+        worktreePath: string;
+      }
+    | {
+        hookEventName: "MessageDisplay";
+        /** Text displayed in place of the delta. Omit (or return the delta unchanged) to display the original. */
+        displayContent?: string;
       };
 };
 ```
 ```typescript
 type ToolInputSchemas =
   | AgentInput
+  | ArtifactInput
   | AskUserQuestionInput
   | BashInput
-  | TaskOutputInput
+  | CronCreateInput
+  | CronDeleteInput
+  | CronListInput
+  | EnterPlanModeInput
   | EnterWorktreeInput
   | ExitPlanModeInput
+  | ExitWorktreeInput
   | FileEditInput
   | FileReadInput
   | FileWriteInput
@@ -1031,17 +1326,23 @@ type ToolInputSchemas =
   | McpInput
   | MonitorInput
   | NotebookEditInput
+  | ProjectsInput
+  | PushNotificationInput
+  | ReadMcpResourceDirInput
   | ReadMcpResourceInput
-  | SubscribeMcpResourceInput
-  | SubscribePollingInput
+  | RefreshMcpToolsInput
+  | RemoteTriggerInput
+  | REPLInput
+  | ReportFindingsInput
+  | ScheduleWakeupInput
+  | ShowOnboardingRolePickerInput
   | TaskCreateInput
   | TaskGetInput
   | TaskListInput
+  | TaskOutputInput
   | TaskStopInput
   | TaskUpdateInput
   | TodoWriteInput
-  | UnsubscribeMcpResourceInput
-  | UnsubscribePollingInput
   | WebFetchInput
   | WebSearchInput
   | WorkflowInput;
@@ -1054,7 +1355,8 @@ type AgentInput = {
   model?: "sonnet" | "opus" | "haiku" | "fable";
   run_in_background?: boolean;
   name?: string;
-  mode?: "acceptEdits" | "auto" | "bypassPermissions" | "default" | "dontAsk" | "plan";
+  team_name?: string; // Deprecated; ignored
+  mode?: "acceptEdits" | "auto" | "bypassPermissions" | "default" | "dontAsk" | "plan"; // Deprecated; ignored. Subagents inherit the parent session's permission mode; agent-definition frontmatter may override it
   isolation?: "worktree" | "remote";
 };
 ```
@@ -1066,6 +1368,9 @@ type AskUserQuestionInput = {
     options: Array<{ label: string; description: string; preview?: string }>;
     multiSelect: boolean;
   }>;
+  answers?: Record<string, string>;
+  annotations?: Record<string, { preview?: string; notes?: string }>;
+  metadata?: { source?: string };
 };
 ```
 ```typescript
@@ -1085,8 +1390,8 @@ type MonitorInput = {
     protocols?: string[];
   };
   description: string;
-  timeout_ms?: number;
-  persistent?: boolean;
+  timeout_ms: number;
+  persistent: boolean;
 };
 ```
 ```typescript
@@ -1132,6 +1437,7 @@ type GrepInput = {
   type?: string;
   output_mode?: "content" | "files_with_matches" | "count";
   "-i"?: boolean;
+  "-o"?: boolean; // print only the matched parts of each line; requires output_mode: "content"
   "-n"?: boolean;
   "-B"?: number;
   "-A"?: number;
@@ -1175,8 +1481,10 @@ type WorkflowInput = {
   script?: string;
   name?: string;
   scriptPath?: string;
-  args?: unknown;
+  args?: unknown; // any JSON value; the published typings render this as an object map
   resumeFromRunId?: string;
+  title?: string; // ignored; the script's meta block sets the title
+  description?: string; // ignored; the script's meta block sets the description
 };
 ```
 ```typescript
@@ -1224,6 +1532,7 @@ type ExitPlanModeInput = {
     tool: "Bash";
     prompt: string;
   }>;
+  [k: string]: unknown;
 };
 ```
 ```typescript
@@ -1244,21 +1553,156 @@ type EnterWorktreeInput = {
 };
 ```
 ```typescript
+type ExitWorktreeInput = {
+  action: "keep" | "remove";
+  discard_changes?: boolean;
+};
+```
+```typescript
+type EnterPlanModeInput = {};
+```
+```typescript
+type CronCreateInput = {
+  cron: string;
+  prompt: string;
+  recurring?: boolean;
+  durable?: boolean;
+};
+```
+```typescript
+type CronDeleteInput = {
+  id: string;
+};
+```
+```typescript
+type CronListInput = {};
+```
+```typescript
+type ScheduleWakeupInput = {
+  delaySeconds?: number;
+  reason?: string;
+  prompt?: string;
+  stop?: boolean;
+};
+```
+```typescript
+type RemoteTriggerInput = {
+  action: "list" | "get" | "create" | "update" | "run";
+  trigger_id?: string;
+  body?: {
+    [k: string]: unknown;
+  };
+};
+```
+```typescript
+type PushNotificationInput = {
+  message: string;
+  status: "proactive";
+};
+```
+```typescript
+type REPLInput = {
+  code: string;
+  description?: string;
+  timeout?: number;
+};
+```
+```typescript
+type ReportFindingsInput = {
+  level?: "low" | "medium" | "high" | "xhigh" | "max";
+  findings: Array<{
+    file: string;
+    line?: number;
+    summary: string;
+    failure_scenario: string;
+    short_summary?: string;
+    category?: string;
+    verdict?: "CONFIRMED" | "PLAUSIBLE";
+    outcome?: "fixed" | "skipped" | "no_change_needed";
+  }>;
+};
+```
+```typescript
+type ArtifactInput = {
+  action?: "publish" | "list";
+  file_path?: string;
+  favicon?: string;
+  limit?: number;
+  scope?: "mine" | "shared" | "all";
+  title?: string;
+  description?: string;
+  label?: string;
+  url?: string;
+  force?: boolean;
+};
+```
+```typescript
+type ProjectsInput = {
+  method:
+    | "project_info"
+    | "project_read"
+    | "project_search"
+    | "project_write"
+    | "project_delete";
+  path?: string;
+  content?: string;
+  local_path?: string;
+  present_to_user?: boolean;
+  query?: string;
+  n?: number;
+};
+```
+```typescript
+type ReadMcpResourceDirInput = {
+  server: string;
+  uri: string;
+};
+```
+```typescript
+type RefreshMcpToolsInput = {
+  server?: string; // refresh only this server; omit to refresh all connected servers
+};
+```
+```typescript
+type ShowOnboardingRolePickerInput = {};
+```
+```typescript
+type McpInput = {
+  [k: string]: unknown;
+};
+```
+```typescript
 type ToolOutputSchemas =
   | AgentOutput
+  | ArtifactOutput
   | AskUserQuestionOutput
   | BashOutput
+  | CronCreateOutput
+  | CronDeleteOutput
+  | CronListOutput
+  | EnterPlanModeOutput
   | EnterWorktreeOutput
   | ExitPlanModeOutput
+  | ExitWorktreeOutput
   | FileEditOutput
   | FileReadOutput
   | FileWriteOutput
   | GlobOutput
   | GrepOutput
   | ListMcpResourcesOutput
+  | McpOutput
   | MonitorOutput
   | NotebookEditOutput
+  | ProjectsOutput
+  | PushNotificationOutput
+  | ReadMcpResourceDirOutput
   | ReadMcpResourceOutput
+  | RefreshMcpToolsOutput
+  | RemoteTriggerOutput
+  | REPLOutput
+  | ReportFindingsOutput
+  | ScheduleWakeupOutput
+  | ShowOnboardingRolePickerOutput
   | TaskCreateOutput
   | TaskGetOutput
   | TaskListOutput
@@ -1343,6 +1787,8 @@ type AskUserQuestionOutput = {
   }>;
   answers: Record<string, string>;
   response?: string;
+  annotations?: Record<string, { preview?: string; notes?: string }>;
+  afkTimeoutMs?: number;
 };
 ```
 ```typescript
@@ -1358,9 +1804,22 @@ type BashOutput = {
   backgroundCwdHint?: string;
   dangerouslyDisableSandbox?: boolean;
   returnCodeInterpretation?: string;
+  noOutputExpected?: boolean;
   structuredContent?: unknown[];
   persistedOutputPath?: string;
   persistedOutputSize?: number;
+  staleReadFileStateHint?: string;
+  ghRateLimitHint?: string;
+  gitOperation?: {
+    commit?: { sha: string; kind: "committed" | "amended" | "cherry-picked" };
+    push?: { branch: string };
+    branch?: { ref: string; action: "merged" | "rebased" };
+    pr?: {
+      number: number;
+      url?: string;
+      action: "created" | "edited" | "merged" | "commented" | "closed" | "ready" | "draft" | "auto-merge-enabled" | "auto-merge-disabled";
+    };
+  };
 };
 ```
 ```typescript
@@ -1375,7 +1834,7 @@ type FileEditOutput = {
   filePath: string;
   oldString: string;
   newString: string;
-  originalFile: string;
+  originalFile: string | null;
   structuredPatch: Array<{
     oldStart: number;
     oldLines: number;
@@ -1392,6 +1851,7 @@ type FileEditOutput = {
     deletions: number;
     changes: number;
     patch: string;
+    repository?: string | null;
   };
 };
 ```
@@ -1405,6 +1865,8 @@ type FileReadOutput =
         numLines: number;
         startLine: number;
         totalLines: number;
+        /** True when a whole-file read was auto-paginated because it exceeded the token cap (the content is a partial first page). */
+        truncatedByTokenCap?: boolean;
       };
     }
   | {
@@ -1444,6 +1906,14 @@ type FileReadOutput =
         count: number;
         outputDir: string;
       };
+    }
+  | {
+      type: "file_unchanged";
+      file: {
+        filePath: string;
+      };
+      /** Set when the dedup matched a startup-seeded entry (CLAUDE.md / nested memory) rather than a prior Read tool_result. */
+      source?: "seeded";
     };
 ```
 ```typescript
@@ -1466,7 +1936,9 @@ type FileWriteOutput = {
     deletions: number;
     changes: number;
     patch: string;
+    repository?: string | null;
   };
+  userModified?: boolean;
 };
 ```
 ```typescript
@@ -1504,6 +1976,7 @@ type TaskStopOutput = {
 ```typescript
 type NotebookEditOutput = {
   new_source: string;
+  old_source?: string;
   cell_id?: string;
   cell_type: "code" | "markdown";
   language: string;
@@ -1522,6 +1995,10 @@ type WebFetchOutput = {
   result: string;
   durationMs: number;
   url: string;
+  artifactRead?: {
+    slug: string;
+    ver?: string;
+  };
 };
 ```
 ```typescript
@@ -1535,16 +2012,21 @@ type WebSearchOutput = {
     | string
   >;
   durationSeconds: number;
+  searchCount?: number;
 };
 ```
 ```typescript
 type WorkflowOutput = {
-  status: "async_launched";
+  status: "async_launched" | "remote_launched";
   taskId: string;
+  taskType?: "local_workflow" | "remote_agent";
+  workflowName?: string;
   runId?: string;
   summary?: string;
   transcriptDir?: string;
   scriptPath?: string;
+  sessionUrl?: string; // set when the workflow launched as a remote session
+  warning?: string;
   error?: string;
 };
 ```
@@ -1611,6 +2093,7 @@ type ExitPlanModeOutput = {
   isAgent: boolean;
   filePath?: string;
   hasTaskTool?: boolean;
+  planWasEdited?: boolean;
   awaitingLeaderApproval?: boolean;
   requestId?: string;
 };
@@ -1630,7 +2113,9 @@ type ReadMcpResourceOutput = {
     uri: string;
     mimeType?: string;
     text?: string;
+    blobSavedTo?: string;
   }>;
+  error?: string;
 };
 ```
 ```typescript
@@ -1639,6 +2124,228 @@ type EnterWorktreeOutput = {
   worktreeBranch?: string;
   message: string;
 };
+```
+```typescript
+type ExitWorktreeOutput = {
+  action: "keep" | "remove";
+  originalCwd: string;
+  worktreePath: string;
+  worktreeBranch?: string;
+  tmuxSessionName?: string;
+  discardedFiles?: number;
+  discardedCommits?: number;
+  message: string;
+};
+```
+```typescript
+type EnterPlanModeOutput = {
+  message: string;
+};
+```
+```typescript
+type CronCreateOutput = {
+  id: string;
+  humanSchedule: string;
+  recurring: boolean;
+  durable?: boolean; // true when persisted to .claude/scheduled_tasks.json; false when session-only
+};
+```
+```typescript
+type CronDeleteOutput = {
+  id: string;
+};
+```
+```typescript
+type CronListOutput = {
+  jobs: {
+    id: string;
+    cron: string;
+    humanSchedule: string;
+    prompt: string;
+    recurring?: boolean;
+    durable?: boolean;
+  }[];
+};
+```
+```typescript
+type ScheduleWakeupOutput = {
+  scheduledFor: number;
+  clampedDelaySeconds: number;
+  wasClamped: boolean;
+  stopped?: boolean;
+  cancelledWakeups?: number;
+};
+```
+```typescript
+type RemoteTriggerOutput = {
+  status: number;
+  json: string;
+  summary?: string;
+};
+```
+```typescript
+type PushNotificationOutput = {
+  message: string;
+  pushSent?: boolean;
+  localSent?: boolean;
+  disabledReason?: "config_off" | "user_present" | "no_transport";
+  sentAt?: string;
+};
+```
+```typescript
+type REPLOutput = {
+  code: string;
+  result: {
+    [k: string]: unknown;
+  };
+  stdout: string;
+  stderr: string;
+  error?: string;
+  registeredTools?: string[];
+  images?: {
+    base64: string;
+    mediaType: string;
+  }[];
+  documents?: {
+    base64: string;
+  }[];
+};
+```
+```typescript
+type ReportFindingsOutput = {
+  count: number;
+  level?: "low" | "medium" | "high" | "xhigh" | "max";
+  findings: Array<{
+    file: string;
+    line?: number;
+    summary: string;
+    failure_scenario: string;
+    short_summary?: string;
+    category?: string;
+    verdict?: "CONFIRMED" | "PLAUSIBLE";
+    outcome?: "fixed" | "skipped" | "no_change_needed";
+  }>;
+};
+```
+```typescript
+type ArtifactOutput =
+  | {
+      url: string;
+      path: string;
+      title?: string;
+      version?: string;
+      capabilities?: unknown;
+      stored?: {
+        contract: string;
+        capabilities?: Record<string, unknown>;
+      };
+      warnings?: string[];
+      contract?: string;
+      updated?: boolean;
+      liveSubscription?: string;
+    }
+  | {
+      artifacts: Array<{
+        title: string;
+        url: string;
+        updatedAt?: string;
+        rel?: "mine" | "shared";
+      }>;
+      truncated?: boolean;
+      scope?: "shared" | "all";
+    };
+```
+```typescript
+type ProjectsOutput =
+  | {
+      method: "project_info";
+      notice?: string;
+      name: string;
+      description: string;
+      instructions: string;
+      docs: Array<{ path: string; created_at: string | null }>;
+      files?: Array<{
+        path: string;
+        file_kind: string;
+        created_at: string | null;
+      }>;
+      sync_sources?: Array<{
+        type: string | null;
+        config: Record<string, unknown>;
+      }>;
+      knowledge: {
+        knowledge_size: number;
+        max_knowledge_size: number;
+      };
+    }
+  | {
+      method: "project_read";
+      notice?: string;
+      path: string;
+      file_kind?: string;
+      content?: string;
+      local_file?: string;
+      created_at: string | null;
+    }
+  | {
+      method: "project_search";
+      notice?: string;
+      rag: boolean;
+      hits?: Array<{ name?: string; doc_uuid?: string; text?: string }>;
+      docs?: string[];
+    }
+  | {
+      method: "project_write";
+      notice?: string;
+      path: string;
+      doc_uuid: string;
+      replaced: boolean;
+      present_to_user?: boolean;
+      local_path?: string;
+    }
+  | {
+      method: "project_delete";
+      notice?: string;
+      path: string;
+      deleted: boolean;
+    };
+```
+```typescript
+type ReadMcpResourceDirOutput = {
+  resources: Array<{
+    uri: string;
+    name: string;
+    mimeType?: string;
+  }>;
+  error?: string;
+};
+```
+```typescript
+type RefreshMcpToolsOutput = Array<{
+  server: string;
+  status: "refreshed" | "error" | "not_connected";
+  toolCount?: number; // tools now available from this server
+  added?: string[]; // tool names this refresh added
+  removed?: string[]; // tool names this refresh removed
+  error?: string; // why the refresh failed or the server was unavailable
+}>;
+```
+```typescript
+type ShowOnboardingRolePickerOutput = {
+  role?: string;
+  dismissed?: boolean;
+};
+```
+```typescript
+type McpOutput =
+  | string
+  | {
+      type: string;
+      [k: string]: unknown;
+    }[]
+  | {
+      [k: string]: unknown;
+    };
 ```
 ```typescript
 type PermissionUpdate =

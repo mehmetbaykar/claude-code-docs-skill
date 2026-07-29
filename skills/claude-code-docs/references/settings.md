@@ -16,12 +16,12 @@ Claude Code uses a scope system to determine where configurations apply and who 
 
 ### Available scopes
 
-| Scope       | Location                                                                           | Who it affects                                                                                                                                                          | Shared with team?                           |
-| :---------- | :--------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------ |
-| **Managed** | Server-managed settings, plist / registry, or system-level `managed-settings.json` | All organization members for server-managed delivery; all users on the machine for plist, HKLM registry, and file delivery; the current user for HKCU registry delivery | Yes (deployed by IT)                        |
-| **User**    | `~/.claude/` directory                                                             | You, across all projects                                                                                                                                                | No                                          |
-| **Project** | `.claude/` in repository                                                           | All collaborators on this repository                                                                                                                                    | Yes (committed to git)                      |
-| **Local**   | `.claude/settings.local.json` at the repository root                               | You, in this repository only                                                                                                                                            | No (gitignored when Claude Code creates it) |
+| Scope       | Location                                                                           | Who it affects                                                                                                                                                          | Shared with team?                                      |
+| :---------- | :--------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------- |
+| **Managed** | Server-managed settings, plist / registry, or system-level `managed-settings.json` | All organization members for server-managed delivery; all users on the machine for plist, HKLM registry, and file delivery; the current user for HKCU registry delivery | Yes (deployed by IT)                                   |
+| **User**    | `~/.claude/` directory                                                             | You, across all projects                                                                                                                                                | No                                                     |
+| **Project** | `.claude/` in repository                                                           | All collaborators on this repository                                                                                                                                    | Yes (committed to git)                                 |
+| **Local**   | `.claude/settings.local.json` at the repository root                               | You, in this repository only                                                                                                                                            | No (gitignored when Claude Code saves a setting to it) |
 
 ### When to use each scope
 
@@ -86,7 +86,7 @@ Code through hierarchical settings:
 projects.
 * **Project settings** are saved in your project directory:
 * `.claude/settings.json` for settings that are checked into source control and shared with your team
-* `.claude/settings.local.json` for settings that are not checked in, useful for personal preferences and experimentation. When Claude Code creates `.claude/settings.local.json`, it configures git to ignore the file. If you create the file yourself, add it to your gitignore manually.
+* `.claude/settings.local.json` for settings that are not checked in, useful for personal preferences and experimentation. When Claude Code saves a setting to this file in a repository that doesn't already ignore it, Claude Code adds `**/.claude/settings.local.json` to your global git excludes file. That excludes file is `core.excludesFile` from your global git config when it's set to an absolute or `~`-prefixed path, otherwise `$XDG_CONFIG_HOME/git/ignore`, or `~/.config/git/ignore`. If you create the file by hand or have Claude write it with the Write tool, add it to your gitignore yourself.
 
 Claude Code reads and writes this file at the root of the git repository, resolved through [worktrees](/docs/en/worktrees) to the main checkout, so one file covers sessions started in any subdirectory or worktree of the repository. The file stays in the directory you start Claude Code from in three cases: outside a git repository, when the repository root is your home directory, and in [Agent SDK](/docs/en/agent-sdk/claude-code-features#control-filesystem-settings-with-settingsources) sessions.
 
@@ -152,7 +152,8 @@ The following example works in any of the settings file locations above. Where y
   },
   "env": {
     "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
-    "OTEL_METRICS_EXPORTER": "otlp"
+    "OTEL_METRICS_EXPORTER": "otlp",
+    "OTEL_EXPORTER_OTLP_PROTOCOL": "http/protobuf"
   },
   "companyAnnouncements": [
     "Welcome to Acme Corp! Review our code guidelines at docs.acme.com",
@@ -764,7 +765,7 @@ Controls which plugins are enabled. Format: `"plugin-name@marketplace-name": tru
 
 * **User settings** (`~/.claude/settings.json`): Personal plugin preferences
 * **Project settings** (`.claude/settings.json`): Project-specific plugins shared with team
-* **Local settings** (`.claude/settings.local.json`): Per-machine overrides, gitignored when Claude Code creates it
+* **Local settings** (`.claude/settings.local.json`): Per-machine overrides, gitignored when Claude Code saves a setting to it
 * **Managed settings** (`managed-settings.json`): Organization-wide policy overrides that block installation at all scopes and hide the plugin from the marketplace
 
 Project settings take precedence over user settings, so setting a plugin to `false` in `~/.claude/settings.json` does not disable a plugin that the project's `.claude/settings.json` enables. To opt out of a project-enabled plugin on your machine, set it to `false` in `.claude/settings.local.json` instead.
@@ -891,7 +892,7 @@ Use `source: 'settings'` to declare a small set of plugins inline without settin
 **Allowlist behavior**:
 
 * `undefined` (default): no restrictions, so users can add any marketplace
-* Empty array `[]`: complete lockdown, so users can't add any new marketplaces
+* Empty array `[]`: complete lockdown that blocks every marketplace source, including the official Anthropic marketplace, so users can't add any new marketplaces
 * List of sources: users can only add marketplaces that match exactly
 
 **All supported source types**:
@@ -1004,12 +1005,26 @@ Example: allow specific marketplaces only:
 }
 ```
 
-Example: disable all marketplace additions:
+Example: disable all marketplace additions, including the official Anthropic marketplace:
 ```json
 {
   "strictKnownMarketplaces": []
 }
 ```
+
+Example: allow only the official Anthropic marketplace. Matching is exact, so this entry doesn't cover `ref` or `path` variants of the same repository:
+```json
+{
+  "strictKnownMarketplaces": [
+    {
+      "source": "github",
+      "repo": "anthropics/claude-plugins-official"
+    }
+  ]
+}
+```
+
+With this entry, the official marketplace registers itself automatically the first time you start Claude Code interactively, so you don't need to pair it with `extraKnownMarketplaces`. In a non-interactive environment that runs before that first interactive launch, add it explicitly with `claude plugin marketplace add anthropics/claude-plugins-official` or include it in `extraKnownMarketplaces`.
 
 Example: allow all marketplaces from an internal git server:
 ```json

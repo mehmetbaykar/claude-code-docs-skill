@@ -24,8 +24,8 @@ Video: https://mintcdn.com/claude-code/ItzF3QVI6L0QypjJ/images/whats-new/artifac
 
 
 Name the connector and the data you want in your prompt:
-```text Claude Code
-  > Build a dashboard artifact of open pull requests that pulls the live list through my GitHub connector when the page loads.
+```text title="Claude Code" wrap
+  Build a dashboard artifact of open pull requests that pulls the live list through my GitHub connector when the page loads.
 ```
 
 [Pull live data with MCP connectors](https://code.claude.com/docs/docs/en/artifacts#pull-live-data-with-mcp-connectors)
