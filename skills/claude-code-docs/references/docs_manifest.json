@@ -395,8 +395,8 @@
       "title": "Use Claude Code with Chrome"
     },
     "claude-apps-gateway-config.md": {
-      "hash": "82fc79d91e8e8e8455a3e146aaeda9c57f3f90430c13836e5893b7c0724d73e9",
-      "last_updated": "2026-07-29T02:53:06+00:00",
+      "hash": "0d81bbbd650113e5fff978fbdef5173b99dbfdf5149cbf3e9716a6684517f7b6",
+      "last_updated": "2026-07-29T08:45:51+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-config",
       "path": "/docs/en/claude-apps-gateway-config",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-config.md",
@@ -427,8 +427,8 @@
       "title": "Deploy Claude apps gateway on Google Cloud"
     },
     "claude-apps-gateway-spend-limits.md": {
-      "hash": "07f5f7c93eb50bf543133604d6bcc207bfcc9e262e2d8c994b43abfb18603eff",
-      "last_updated": "2026-07-21T02:55:55+00:00",
+      "hash": "13b9ae041858e3dea1f59903f19d1b1046f1a4e914e2a52b32afc177c1c9b328",
+      "last_updated": "2026-07-29T08:45:54+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-spend-limits",
       "path": "/docs/en/claude-apps-gateway-spend-limits",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-spend-limits.md",
@@ -779,8 +779,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "edad3b6d31e8c68173ebb2b8c69c74da8e82a06f7dd70c75b7833a34eb0084f9",
-      "last_updated": "2026-07-25T21:59:28+00:00",
+      "hash": "dba659d26acae080e8dbcbeb99bb4776b9c3e573f4d8ba7325c18c48ba997cb9",
+      "last_updated": "2026-07-29T08:46:26+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -1091,8 +1091,8 @@
       "title": "Security"
     },
     "server-managed-settings.md": {
-      "hash": "38c10761e8606120a06ade727c4547f3b6bf35162f0099d9cc4eb60ad976856b",
-      "last_updated": "2026-07-21T02:56:56+00:00",
+      "hash": "ecacdfcc408f9bdf978e2f28675760bd022d4c7d997e51f2e6169c456b016a1a",
+      "last_updated": "2026-07-29T08:46:51+00:00",
       "original_url": "https://code.claude.com/docs/en/server-managed-settings",
       "path": "/docs/en/server-managed-settings",
       "source_url": "https://code.claude.com/docs/en/server-managed-settings.md",
@@ -1107,8 +1107,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "d7cbc961d62e627c2ca8cd711070e355657f77de652bb9cf23420174577bc34a",
-      "last_updated": "2026-07-29T02:53:59+00:00",
+      "hash": "65a8ce3f079887020eebab1a422e81ce8ad1bb6fa38510010915f9faf922bb77",
+      "last_updated": "2026-07-29T08:46:52+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1123,8 +1123,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "392936c729c658a3b83e607a175f200596f95e1dc7046ab7d9eea19f360d8a1f",
-      "last_updated": "2026-07-29T02:54:00+00:00",
+      "hash": "63786fa29f42df8fb9fc24066763d7c26420d4e51007ec22ec8c4304122ef67f",
+      "last_updated": "2026-07-29T08:46:53+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1147,8 +1147,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "03360ca429a050349811e54e904794813eacc6529e8d5419f0a0d3b13722e630",
-      "last_updated": "2026-07-28T22:08:33+00:00",
+      "hash": "3115919b3f18031565c54639d13b55122a444d8aa96fc2bb99fbb479ae776051",
+      "last_updated": "2026-07-29T08:46:55+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1417,7 +1417,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-29T05:57:41+00:00",
+  "last_updated": "2026-07-29T08:47:11+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
