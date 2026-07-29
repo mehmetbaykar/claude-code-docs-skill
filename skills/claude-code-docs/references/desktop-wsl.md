@@ -35,7 +35,7 @@ The session starts in the distribution's home directory. Use the folder picker t
 
 **Trust the folder**
 
-The first session in a folder shows the workspace trust dialog. Trust is granted per distribution and folder; trusting a folder in one distribution doesn't apply to another distribution or to the same path on Windows.
+The first session in a folder shows the workspace trust dialog. You grant trust per distribution and folder. A folder you trust in one distribution isn't trusted in another distribution or at the same path on Windows.
 
 
 The first session in a distribution takes a little longer while Claude sets up inside it. You can also open a `\\wsl.localhost\...` folder from the normal folder picker, and it reopens inside that distribution.
