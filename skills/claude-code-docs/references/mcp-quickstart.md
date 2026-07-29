@@ -76,7 +76,7 @@ Start a session and ask Claude to use the new server by name:
 ```bash
     claude
 ```
-```text
+```text wrap
     Use the claude-code-docs server to look up what MCP_TIMEOUT does
 ```
 
@@ -195,7 +195,7 @@ The first check can show `✘ Failed to connect` while `npx` downloads the packa
 **Use the browser**
 
 Give Claude a task that needs the browser:
-```text
+```text wrap
     Use playwright to open https://example.com and tell me the page title
 ```
 
@@ -225,7 +225,7 @@ After adding, `claude mcp list` shows the server with `! Needs authentication`. 
 **Authenticate in your browser**
 
 Start a Claude Code session and open the MCP panel:
-```text
+```text wrap
     /mcp
 ```
 

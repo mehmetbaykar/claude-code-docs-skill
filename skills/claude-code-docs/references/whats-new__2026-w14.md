@@ -24,8 +24,8 @@ Video: https://mintcdn.com/claude-code/CfffsX01JHFnIKvD/images/whats-new/cli-com
 
 
 Requires macOS and a Pro or Max plan; otherwise, `computer-use` won't appear in `/mcp`. Run `/mcp`, find `computer-use`, and toggle it on. Then ask Claude to verify a change end to end:
-```text Claude Code
-  > Open the iOS simulator, tap through onboarding, and screenshot each step
+```text title="Claude Code" wrap
+  Open the iOS simulator, tap through onboarding, and screenshot each step
 ```
 
 [Computer use guide](https://code.claude.com/docs/docs/en/computer-use)
@@ -43,8 +43,8 @@ Video: https://mintcdn.com/claude-code/CfffsX01JHFnIKvD/images/whats-new/powerup
 
 
 Run it:
-```text Claude Code
-  > /powerup
+```text title="Claude Code" wrap
+  /powerup
 ```
 
 [Commands reference](https://code.claude.com/docs/docs/en/commands)
