@@ -95,7 +95,7 @@ claude
 ```
 
 For Claude subscription or Console accounts, follow the prompts to complete authentication in your browser. If you've set the `ANTHROPIC_API_KEY` environment variable, Claude Code skips the login prompt and asks you to approve the key instead. To switch accounts later or re-authenticate, type `/login` inside the running session:
-```text
+```text wrap
 /login
 ```
 
@@ -125,29 +125,29 @@ After logging in (Step 2), your credentials are stored on your system. Learn mor
 ## Step 4: Ask your first question
 
 Let's start with understanding your codebase. Try one of these commands:
-```text
+```text wrap
 what does this project do?
 ```
 
 Claude will analyze your files and provide a summary. You can also ask more specific questions:
-```text
+```text wrap
 what technologies does this project use?
 ```
-```text
+```text wrap
 where is the main entry point?
 ```
-```text
+```text wrap
 explain the folder structure
 ```
 
 You can also ask Claude about its own capabilities:
-```text
+```text wrap
 what can Claude Code do?
 ```
-```text
+```text wrap
 how do I create custom skills in Claude Code?
 ```
-```text
+```text wrap
 can Claude Code work with Docker?
 ```
 
@@ -156,7 +156,7 @@ Claude Code reads your project files as needed. You don't have to manually add c
 ## Step 5: Make your first code change
 
 Now let's make Claude Code do some actual coding. Try a simple task:
-```text
+```text wrap
 add a hello world function to the main file
 ```
 
@@ -172,21 +172,21 @@ Whether Claude Code asks before changing files depends on your [permission mode]
 ## Step 6: Use Git with Claude Code
 
 Claude Code makes Git operations conversational:
-```text
+```text wrap
 what files have I changed?
 ```
-```text
+```text wrap
 commit my changes with a descriptive message
 ```
 
 You can also prompt for more complex Git operations:
-```text
+```text wrap
 create a new branch called feature/quickstart
 ```
-```text
+```text wrap
 show me the last 5 commits
 ```
-```text
+```text wrap
 help me resolve merge conflicts
 ```
 
@@ -195,12 +195,12 @@ help me resolve merge conflicts
 Claude is proficient at debugging and feature implementation.
 
 Describe what you want in natural language:
-```text
+```text wrap
 add input validation to the user registration form
 ```
 
 Or fix existing issues:
-```text
+```text wrap
 there's a bug where users can submit empty forms - fix it
 ```
 
@@ -216,22 +216,22 @@ Claude Code will:
 There are a number of ways to work with Claude:
 
 **Refactor code**
-```text
+```text wrap
 refactor the authentication module to use async/await instead of callbacks
 ```
 
 **Write tests**
-```text
+```text wrap
 write unit tests for the calculator functions
 ```
 
 **Update documentation**
-```text
+```text wrap
 update the README with installation instructions
 ```
 
 **Code review**
-```text
+```text wrap
 review my changes and suggest improvements
 ```
 
@@ -277,7 +277,7 @@ Try: "fix the login bug where users see a blank screen after entering wrong cred
 **Use step-by-step instructions**
 
 Break complex tasks into steps:
-```text
+```text wrap
     1. create a new database table for user profiles
     2. create an API endpoint to get and update user profiles
     3. build a webpage that allows users to see and edit their information
@@ -288,10 +288,10 @@ Break complex tasks into steps:
 **Let Claude explore first**
 
 Before making changes, let Claude understand your code:
-```text
+```text wrap
     analyze the database schema
 ```
-```text
+```text wrap
     build a dashboard showing products that are most frequently returned by our UK customers
 ```
 
