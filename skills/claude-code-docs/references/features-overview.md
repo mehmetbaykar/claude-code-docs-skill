@@ -24,7 +24,7 @@ Extensions plug into different parts of the agentic loop:
 * **[MCP](/docs/en/mcp)** connects Claude to external services and tools
 * **[Subagents](/docs/en/sub-agents)** run their own loops in isolated context, returning summaries
 * **[Agent teams](/docs/en/agent-teams)** coordinate multiple independent sessions with shared tasks and peer-to-peer messaging
-* **[Hooks](/docs/en/hooks-guide)** fire on lifecycle events and can run a script, HTTP request, prompt, or subagent
+* **[Hooks](/docs/en/hooks-guide)** run your script, HTTP request, prompt, or subagent when Claude Code reaches a lifecycle event
 * **[Plugins](/docs/en/plugins)** and **[marketplaces](/docs/en/plugin-marketplaces)** package and distribute these features
 
 [Skills](/docs/en/skills) are the most flexible extension. A skill is a markdown file containing knowledge, workflows, or instructions. You can invoke skills with a command like `/deploy`, or Claude can load them automatically when relevant. Skills can run in your current conversation or in an isolated context via subagents.
@@ -176,7 +176,7 @@ Example: An MCP server connects Claude to your database. A skill teaches Claude 
 
 **Hook vs Skill**
 
-A hook fires on a lifecycle event; a skill is loaded into context for Claude to apply.
+Claude Code runs a hook at a lifecycle event; it loads a skill into context for Claude to apply.
 
     | Aspect           | Hook                                                                              | Skill                                                                 |
     | ---------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
@@ -318,7 +318,7 @@ Skills are extra capabilities in Claude's toolkit. They can be reference materia
 
 **Hooks**
 
-    **When:** On trigger. Hooks fire at specific lifecycle events like tool execution, session boundaries, prompt submission, permission requests, and compaction. See [Hooks](/docs/en/hooks) for the full list.
+    **When:** On trigger. Claude Code runs hooks at specific lifecycle events like tool execution, session boundaries, prompt submission, permission requests, and compaction. See [Hooks](/docs/en/hooks) for the full list.
 
     **What loads:** Nothing by default. Hooks execute outside the main conversation.
 
