@@ -63,7 +63,7 @@ Agent teams are disabled by default. Enable them by setting the `CLAUDE_CODE_EXP
 After enabling agent teams, describe the task and the teammates you want in natural language. Claude spawns them and coordinates work based on your prompt.
 
 This example works well because the three roles are independent and can explore the problem without waiting on each other:
-```text
+```text wrap
 I'm designing a CLI tool that helps developers track TODO comments across
 their codebase. Spawn three teammates to explore this from different angles:
 one on UX, one on technical architecture, one playing devil's advocate.
@@ -124,7 +124,7 @@ Split-pane mode requires either [tmux](https://github.com/tmux/tmux/wiki) or iTe
 ### Specify teammates and models
 
 Claude decides the number of teammates to spawn based on your task, or you can specify exactly what you want:
-```text
+```text wrap
 Spawn 4 teammates to refactor these modules in parallel. Use Sonnet for
 each teammate.
 ```
@@ -136,7 +136,7 @@ Teammates don't inherit the lead's `/model` selection by default. To change the 
 ### Require plan approval for teammates
 
 For complex or risky tasks, you can require teammates to plan before implementing. The teammate works in read-only plan mode until the lead approves their approach:
-```text
+```text wrap
 Spawn an architect teammate to refactor the authentication module.
 Require plan approval before they make any changes.
 ```
@@ -170,7 +170,7 @@ Task claiming uses file locking to prevent race conditions when multiple teammat
 ### Shut down teammates
 
 To gracefully end a teammate's session, refer to it by name. For example, with a teammate named researcher:
-```text
+```text wrap
 Ask the researcher teammate to shut down
 ```
 
@@ -236,7 +236,7 @@ There is no project-level equivalent of the team config. A file like `.claude/te
 When spawning a teammate, you can reference a [subagent](/docs/en/sub-agents) type from any [subagent scope](/docs/en/sub-agents#choose-the-subagent-scope): project, user, plugin, or CLI-defined. This lets you define a role once, such as a security-reviewer or test-runner, and reuse it both as a delegated subagent and as an agent team teammate.
 
 To use a subagent definition, mention it by name when asking Claude to spawn the teammate:
-```text
+```text wrap
 Spawn a teammate using the security-reviewer agent type to audit the auth module.
 ```
 
@@ -276,7 +276,7 @@ These examples show how agent teams handle tasks where parallel exploration adds
 ### Run a parallel code review
 
 A single reviewer tends to gravitate toward one type of issue at a time. Splitting review criteria into independent domains means security, performance, and test coverage all get thorough attention simultaneously. The prompt assigns each teammate a distinct lens so they don't overlap:
-```text
+```text wrap
 Spawn three teammates to review PR #142:
 - One focused on security implications
 - One checking performance impact
@@ -289,7 +289,7 @@ Each reviewer works from the same PR but applies a different filter. The lead sy
 ### Investigate with competing hypotheses
 
 When the root cause is unclear, a single agent tends to find one plausible explanation and stop looking. The prompt fights this by making teammates explicitly adversarial: each one's job is not only to investigate its own theory but to challenge the others'.
-```text
+```text wrap
 Users report the app exits after one message instead of staying connected.
 Spawn 5 agent teammates to investigate different hypotheses. Have them talk to
 each other to try to disprove each other's theories, like a scientific
@@ -305,7 +305,7 @@ With multiple independent investigators actively trying to disprove each other, 
 ### Give teammates enough context
 
 Teammates load project context automatically, including CLAUDE.md, MCP servers, and skills, but they don't inherit the lead's conversation history. See [Context and communication](#context-and-communication) for details. Include task-specific details in the spawn prompt:
-```text
+```text wrap
 Spawn a security reviewer teammate with the prompt: "Review the authentication module
 at src/auth/ for security vulnerabilities. Focus on token handling, session
 management, and input validation. The app uses JWT tokens stored in
@@ -337,7 +337,7 @@ The lead breaks work into tasks and assigns them to teammates automatically. If 
 ### Wait for teammates to finish
 
 Sometimes the lead starts implementing tasks itself instead of waiting for teammates. If you notice this:
-```text
+```text wrap
 Wait for your teammates to complete their tasks before proceeding
 ```
 

@@ -65,7 +65,7 @@ The recommended workflow has four phases:
 **Explore**
 
 Enter plan mode. Claude reads files and answers questions without making changes.
-```txt claude (plan mode)
+```txt title="claude (plan mode)" wrap
     read /src/auth and understand how we handle sessions and login.
     also look at how we manage environment variables for secrets.
 ```
@@ -75,7 +75,7 @@ Enter plan mode. Claude reads files and answers questions without making changes
 **Plan**
 
 Ask Claude to create a detailed implementation plan.
-```txt claude (plan mode)
+```txt title="claude (plan mode)" wrap
     I want to add Google OAuth. What files need to change?
     What's the session flow? Create a plan.
 ```
@@ -87,7 +87,7 @@ Press `Ctrl+G` to open the plan in your text editor for direct editing before Cl
 **Implement**
 
 Switch out of plan mode and let Claude code, verifying against its plan.
-```txt claude (default mode)
+```txt title="claude (default mode)" wrap
     implement the OAuth flow from your plan. write tests for the
     callback handler, run the test suite and fix any failures.
 ```
@@ -97,7 +97,7 @@ Switch out of plan mode and let Claude code, verifying against its plan.
 **Commit**
 
 Ask Claude to commit with a descriptive message and create a PR.
-```txt claude (default mode)
+```txt title="claude (default mode)" wrap
     commit with a descriptive message and open a PR
 ```
 
@@ -327,7 +327,7 @@ Using Claude Code this way is an effective onboarding workflow, improving ramp-u
 For larger features, have Claude interview you first. Start with a minimal prompt and ask Claude to interview you using the `AskUserQuestion` tool.
 
 Claude asks about things you might not have considered yet, including technical implementation, UI/UX, edge cases, and tradeoffs. Replace `[brief description]` with your feature before sending the prompt.
-```text
+```text wrap
 I want to build [brief description]. Interview me in detail using the AskUserQuestion tool.
 
 Ask about technical implementation, UI/UX, edge cases, concerns, and tradeoffs. Don't ask obvious questions, dig into the hard parts I might not have considered.
@@ -378,7 +378,7 @@ During long sessions, Claude's context window can fill with irrelevant conversat
 Delegate research with `"use subagents to investigate X"`. They explore in a separate context, keeping your main conversation clean for implementation.
 
 Since context is your fundamental constraint, subagents are one of the most powerful tools available. When Claude researches a codebase it reads lots of files, all of which consume your context. Subagents run in separate context windows and report back summaries:
-```text
+```text wrap
 Use subagents to investigate how our authentication system handles token
 refresh, and whether we have any existing OAuth utilities I should reuse.
 ```
@@ -386,7 +386,7 @@ refresh, and whether we have any existing OAuth utilities I should reuse.
 The subagent explores the codebase, reads relevant files, and reports back with findings, all without cluttering your main conversation.
 
 You can also use subagents for verification after Claude implements something:
-```text
+```text wrap
 use a subagent to review this code for edge cases
 ```
 
@@ -506,7 +506,7 @@ Before treating a task as done, have a subagent review the diff in a fresh conte
 The longer Claude works unattended, the more an independent check matters before you count the work as done. A reviewer running in a fresh [subagent](/docs/en/sub-agents) context sees only the diff and the criteria you give it, not the reasoning that produced the change, so it evaluates the result on its own terms.
 
 For a correctness check, run the bundled [`/code-review` skill](/docs/en/commands), which reviews the current diff for bugs in a fresh subagent and returns findings to the session. To check the diff against your plan instead, write the review prompt yourself. Name the work to check, the plan to check it against, and what counts as a finding:
-```text
+```text wrap
 Use a subagent to review the rate limiter diff against PLAN.md. Check that
 every requirement is implemented, the listed edge cases have tests, and
 nothing outside the task's scope changed. Report gaps, not style preferences.

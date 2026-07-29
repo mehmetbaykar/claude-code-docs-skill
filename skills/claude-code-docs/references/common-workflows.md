@@ -49,20 +49,20 @@ Replace `/path/to/project` with the path to your project.
 
 
 **Ask for a high-level overview**
-```text
+```text wrap
     give me an overview of this codebase
 ```
 
 
 
 **Dive deeper into specific components**
-```text
+```text wrap
     explain the main architecture patterns used here
 ```
-```text
+```text wrap
     what are the key data models?
 ```
-```text
+```text wrap
     how is authentication handled?
 ```
 
@@ -79,21 +79,21 @@ Suppose you need to locate code related to a specific feature or functionality.
 
 
 **Ask Claude to find relevant files**
-```text
+```text wrap
     find the files that handle user authentication
 ```
 
 
 
 **Get context on how components interact**
-```text
+```text wrap
     how do these authentication files work together?
 ```
 
 
 
 **Understand the execution flow**
-```text
+```text wrap
     trace the login process from front-end to database
 ```
 
@@ -112,21 +112,21 @@ Suppose you've encountered an error message and need to find and fix its source.
 
 
 **Share the error with Claude**
-```text
+```text wrap
     I'm seeing an error when I run npm test
 ```
 
 
 
 **Ask for fix recommendations**
-```text
+```text wrap
     suggest a few ways to fix the @ts-ignore in user.ts
 ```
 
 
 
 **Apply the fix**
-```text
+```text wrap
     update user.ts to add the null check you suggested
 ```
 
@@ -145,28 +145,28 @@ Suppose you need to update old code to use modern patterns and practices.
 
 
 **Identify legacy code for refactoring**
-```text
+```text wrap
     find deprecated API usage in our codebase
 ```
 
 
 
 **Get refactoring recommendations**
-```text
+```text wrap
     suggest how to refactor utils.js to use modern JavaScript features
 ```
 
 
 
 **Apply the changes safely**
-```text
+```text wrap
     refactor utils.js to use ES2024 features while maintaining the same behavior
 ```
 
 
 
 **Verify the refactoring**
-```text
+```text wrap
     run tests for the refactored code
 ```
 
@@ -185,28 +185,28 @@ Suppose you need to add tests for uncovered code.
 
 
 **Identify untested code**
-```text
+```text wrap
     find functions in NotificationsService.swift that are not covered by tests
 ```
 
 
 
 **Generate test scaffolding**
-```text
+```text wrap
     add tests for the notification service
 ```
 
 
 
 **Add meaningful test cases**
-```text
+```text wrap
     add test cases for edge conditions in the notification service
 ```
 
 
 
 **Run and verify tests**
-```text
+```text wrap
     run the new tests and fix any failures
 ```
 
@@ -223,21 +223,21 @@ You can create pull requests by asking Claude directly ("create a pr for my chan
 
 
 **Summarize your changes**
-```text
+```text wrap
     summarize the changes I've made to the authentication module
 ```
 
 
 
 **Generate a pull request**
-```text
+```text wrap
     create a pr
 ```
 
 
 
 **Review and refine**
-```text
+```text wrap
     enhance the PR description with more context about the security improvements
 ```
 
@@ -252,28 +252,28 @@ Suppose you need to add or update documentation for your code.
 
 
 **Identify undocumented code**
-```text
+```text wrap
     find functions without proper JSDoc comments in the auth module
 ```
 
 
 
 **Generate documentation**
-```text
+```text wrap
     add JSDoc comments to the undocumented functions in auth.js
 ```
 
 
 
 **Review and enhance**
-```text
+```text wrap
     improve the generated documentation with more context and examples
 ```
 
 
 
 **Verify documentation**
-```text
+```text wrap
     check if the documentation follows our project standards
 ```
 
@@ -310,33 +310,33 @@ You can use any of these methods:
 
 
 **Ask Claude to analyze the image**
-```text
+```text wrap
     What does this image show?
 ```
-```text
+```text wrap
     Describe the UI elements in this screenshot
 ```
-```text
+```text wrap
     Are there any problematic elements in this diagram?
 ```
 
 
 
 **Use images for context**
-```text
+```text wrap
     Here's a screenshot of the error. What's causing it?
 ```
-```text
+```text wrap
     This is our current database schema. How should we modify it for the new feature?
 ```
 
 
 
 **Get code suggestions from visual content**
-```text
+```text wrap
     Generate CSS to match this design mockup
 ```
-```text
+```text wrap
     What HTML structure would recreate this component?
 ```
 
@@ -357,7 +357,7 @@ Use @ to quickly include files or directories without waiting for Claude to read
 
 
 **Reference a single file**
-```text
+```text wrap
     Explain the logic in @src/utils/auth.js
 ```
 
@@ -366,7 +366,7 @@ This includes the full content of the file in the conversation.
 
 
 **Reference a directory**
-```text
+```text wrap
     What's the structure of @src/components?
 ```
 
@@ -375,7 +375,7 @@ This provides a directory listing with file information.
 
 
 **Reference MCP resources**
-```text
+```text wrap
     Show me the data from @github:repos/owner/repo/issues
 ```
 
@@ -414,22 +414,22 @@ When writing prompts for scheduled tasks, be explicit about what success looks l
 Claude has built-in access to its documentation and can answer questions about its own features and limitations.
 
 #### Example questions
-```text
+```text wrap
 can Claude Code create pull requests?
 ```
-```text
+```text wrap
 how does Claude Code handle permissions?
 ```
-```text
+```text wrap
 what skills are available?
 ```
-```text
+```text wrap
 how do I use MCP with Claude Code?
 ```
-```text
+```text wrap
 how do I configure Claude Code for Amazon Bedrock?
 ```
-```text
+```text wrap
 what are the limitations of Claude Code?
 ```
 
@@ -473,7 +473,7 @@ You can also press `Shift+Tab` mid-session to cycle to plan mode. The cycle runs
 ## Delegate research to subagents
 
 Exploring a large codebase fills your context with file reads. Delegate the exploration so only the findings come back.
-```text
+```text wrap
 use a subagent to investigate how our auth system handles token refresh
 ```
 
