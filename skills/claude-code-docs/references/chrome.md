@@ -59,7 +59,7 @@ To enable Chrome for future sessions without the flag, see [Enable Chrome by def
 **Ask Claude to use the browser**
 
 This example navigates to a page, interacts with it, and reports what it finds, all from your terminal or editor:
-```text
+```text wrap
     Go to code.claude.com/docs, click on the search box,
     type "hooks", and tell me what results appear
 ```
@@ -113,7 +113,7 @@ These examples show common ways to combine browser actions with coding tasks. Ru
 ### Test a local web application
 
 When developing a web app, ask Claude to verify your changes work correctly:
-```text
+```text wrap
 I just updated the login form validation. Can you open localhost:3000,
 try submitting the form with invalid data, and check if the error
 messages appear correctly?
@@ -124,7 +124,7 @@ Claude navigates to your local server, interacts with the form, and reports what
 ### Debug with console logs
 
 Claude can read console output to help diagnose problems. Tell Claude what patterns to look for rather than asking for all console output, since logs can be verbose:
-```text
+```text wrap
 Open the dashboard page and check the console for any errors when
 the page loads.
 ```
@@ -134,7 +134,7 @@ Claude reads the console messages and can filter for specific patterns or error 
 ### Automate form filling
 
 Speed up repetitive data entry tasks:
-```text
+```text wrap
 I have a spreadsheet of customer contacts in contacts.csv. For each row,
 go to the CRM at crm.example.com, click "Add Contact", and fill in the
 name, email, and phone fields.
@@ -147,7 +147,7 @@ Claude reads your local file, navigates the web interface, and enters the data f
 Claude can attach files from your machine to upload fields on a page. Claude Code reads the file and sends its contents to the browser, so uploads work in both local and remote sessions. Requires Claude Code v2.1.211 or later.
 
 This example attaches a log file to a form:
-```text
+```text wrap
 Open the bug tracker at bugs.example.com, create a new issue,
 and attach logs/session.log to it
 ```
@@ -161,7 +161,7 @@ Three restrictions apply to uploads:
 ### Draft content in Google Docs
 
 Use Claude to write directly in your documents without API setup:
-```text
+```text wrap
 Draft a project update based on the recent commits and add it to my
 Google Doc at docs.google.com/document/d/abc123
 ```
@@ -171,7 +171,7 @@ Claude opens the document, clicks into the editor, and types the content. This w
 ### Extract data from web pages
 
 Pull structured information from websites:
-```text
+```text wrap
 Go to the product listings page and extract the name, price, and
 availability for each item. Save the results as a CSV file.
 ```
@@ -181,7 +181,7 @@ Claude navigates to the page, reads the content, and compiles the data into a st
 ### Run multi-site workflows
 
 Coordinate tasks across multiple websites:
-```text
+```text wrap
 Check my calendar for meetings tomorrow, then for each meeting with
 an external attendee, look up their company website and add a note
 about what they do.
@@ -192,7 +192,7 @@ Claude works across tabs to gather information and complete the workflow.
 ### Record a demo GIF
 
 Create shareable recordings of browser interactions:
-```text
+```text wrap
 Record a GIF showing how to complete the checkout flow, from adding
 an item to the cart through to the confirmation page.
 ```
@@ -202,7 +202,7 @@ Claude records the interaction sequence and saves it as a GIF file. The recordin
 ### Save screenshots to disk
 
 Ask Claude to keep a screenshot as a file:
-```text
+```text wrap
 Take a screenshot of the checkout page and save it to disk
 ```
 

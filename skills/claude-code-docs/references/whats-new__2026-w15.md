@@ -24,8 +24,8 @@ Video: https://mintcdn.com/claude-code/aFXPQxiBOW99MHS3/images/whats-new/ultrapl
 
 
 Run the command, or just include the keyword in any prompt:
-```text Claude Code
-  > /ultraplan migrate the auth service from sessions to JWTs
+```text title="Claude Code" wrap
+  /ultraplan migrate the auth service from sessions to JWTs
 ```
 
 [Ultraplan guide](https://code.claude.com/docs/docs/en/ultraplan)
@@ -43,13 +43,13 @@ Video: https://mintcdn.com/claude-code/aFXPQxiBOW99MHS3/images/whats-new/monitor
 
 
 Ask Claude to watch something while you keep working:
-```text Claude Code
-  > Tail server.log in the background and tell me the moment a 5xx shows up
+```text title="Claude Code" wrap
+  Tail server.log in the background and tell me the moment a 5xx shows up
 ```
 
 This pairs with `/loop`, which now self-paces: omit the interval and Claude schedules the next tick based on the task, or reaches for the Monitor tool to skip polling altogether.
-```text Claude Code
-  > /loop check CI on my PR
+```text title="Claude Code" wrap
+  /loop check CI on my PR
 ```
 
 [Monitor tool reference](https://code.claude.com/docs/docs/en/tools-reference#monitor-tool)
@@ -67,8 +67,8 @@ Video: https://mintcdn.com/claude-code/aFXPQxiBOW99MHS3/images/whats-new/autofix
 
 
 Run it from the PR's branch:
-```text Claude Code
-  > /autofix-pr
+```text title="Claude Code" wrap
+  /autofix-pr
 ```
 
 [Auto-fix pull requests](https://code.claude.com/docs/docs/en/claude-code-on-the-web#auto-fix-pull-requests)
@@ -80,8 +80,8 @@ v2.1.101
 Generates a teammate ramp-up guide from your local Claude Code usage. Run it in a project you know well and hand the output to a new teammate so they can replay your setup instead of starting from defaults.
 
 Run it from a project you've spent real time in:
-```text Claude Code
-  > /team-onboarding
+```text title="Claude Code" wrap
+  /team-onboarding
 ```
 
 [Commands reference](https://code.claude.com/docs/docs/en/commands)

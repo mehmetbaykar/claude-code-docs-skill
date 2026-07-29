@@ -24,8 +24,8 @@ Video: https://mintcdn.com/claude-code/QsIrGXGFg6xd7joy/images/whats-new/opus-4-
 
 
 Switch to Opus 4.8 by name, or pick it from the model picker:
-```text Claude Code
-  > /model claude-opus-4-8
+```text title="Claude Code" wrap
+  /model claude-opus-4-8
 ```
 
 [Model configuration](https://code.claude.com/docs/docs/en/model-config#available-models)
@@ -43,8 +43,8 @@ A workflow is an orchestration script Claude writes for your task and runs acros
 
 
 Describe the task and ask for a workflow:
-```text Claude Code
-  > create a workflow that migrates every internal fetch() call to the new HttpClient wrapper
+```text title="Claude Code" wrap
+  create a workflow that migrates every internal fetch() call to the new HttpClient wrapper
 ```
 
 [Dynamic workflows](https://code.claude.com/docs/docs/en/workflows)
@@ -62,13 +62,13 @@ Video: https://mintcdn.com/claude-code/QsIrGXGFg6xd7joy/images/whats-new/securit
 
 
 Install it from the official Anthropic marketplace:
-```text Claude Code
-  > /plugin install security-guidance@claude-plugins-official
+```text title="Claude Code" wrap
+  /plugin install security-guidance@claude-plugins-official
 ```
 
 Then activate it in the current session:
-```text Claude Code
-  > /reload-plugins
+```text title="Claude Code" wrap
+  /reload-plugins
 ```
 
 [Security guidance plugin](https://code.claude.com/docs/docs/en/security-guidance)
@@ -80,8 +80,8 @@ research preview
 Fast mode now defaults to Opus 4.8 at \$10/\$50 per MTok: 2x the standard rate for about 2.5x the speed. Opus 4.7 and 4.6 stay at \$30/\$150. Opus 4.6 fast mode is deprecated.
 
 Toggle fast mode, now on Opus 4.8:
-```text Claude Code
-  > /fast
+```text title="Claude Code" wrap
+  /fast
 ```
 
 [Fast mode pricing](https://code.claude.com/docs/docs/en/fast-mode#understand-the-cost-tradeoff)

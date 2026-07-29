@@ -27,6 +27,9 @@ Events fall into three cadences:
 ![](https://mintcdn.com/claude-code/uLsR38F1U_5zPppm/images/hooks-lifecycle.svg?fit=max&auto=format&n=uLsR38F1U_5zPppm&q=85&s=fbdbd78ad9f474da7d344879341341f0)
 
 
+![](https://mintcdn.com/claude-code/_xqph1dUOslCOwsj/images/hooks-lifecycle-dark.svg?fit=max&auto=format&n=_xqph1dUOslCOwsj&q=85&s=1499b14a84a22ccff55daddf870d6c3c)
+
+
 
 The table below summarizes when each event fires. The [Hook events](#hook-events) section documents the full input schema and decision control options for each one.
 
@@ -113,6 +116,9 @@ Now suppose Claude Code decides to run `Bash "rm -rf /tmp/build"`. Here's what h
 
 
 ![](https://mintcdn.com/claude-code/ikqp3_70mqIahteV/images/hook-resolution.svg?fit=max&auto=format&n=ikqp3_70mqIahteV&q=85&s=be0bf3053550c26de5f54cd64674c197)
+
+
+![](https://mintcdn.com/claude-code/_xqph1dUOslCOwsj/images/hook-resolution-dark.svg?fit=max&auto=format&n=_xqph1dUOslCOwsj&q=85&s=e80af91f8507cee6bd51ac3c2dd92f63)
 
 
 **Event fires**

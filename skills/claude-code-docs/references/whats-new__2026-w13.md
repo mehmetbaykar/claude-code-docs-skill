@@ -47,8 +47,8 @@ Claude can now control your actual desktop from the Claude Code Desktop app: ope
 
 
 Enable it in Settings, grant the OS permissions, then ask Claude to verify a change end to end:
-```text Claude Code
-  > Open the iOS simulator, tap through the onboarding flow, and screenshot each step
+```text title="Claude Code" wrap
+  Open the iOS simulator, tap through the onboarding flow, and screenshot each step
 ```
 
 [Computer use guide](https://code.claude.com/docs/docs/en/desktop#let-claude-use-your-computer)

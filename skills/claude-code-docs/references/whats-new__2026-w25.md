@@ -23,8 +23,8 @@ Video: https://mintcdn.com/claude-code/1ylKDoQynT1UgfEK/images/whats-new/artifac
 
 
 Ask Claude for a page, then approve the publish prompt:
-```text Claude Code
-  > Make an artifact that walks through this PR with the diff annotated inline.
+```text title="Claude Code" wrap
+  Make an artifact that walks through this PR with the diff annotated inline.
 ```
 
 [Create an artifact](https://code.claude.com/docs/docs/en/artifacts#create-an-artifact)
@@ -53,8 +53,8 @@ v2.1.181
 Pass `key=value` to `/config` to change a setting directly without opening the Settings interface. The syntax also works in non-interactive mode with the `-p` flag and from Remote Control.
 
 Set the `thinking` setting from the prompt:
-```text Claude Code
-  > /config thinking=false
+```text title="Claude Code" wrap
+  /config thinking=false
 ```
 
 [Commands reference](https://code.claude.com/docs/docs/en/commands#all-commands)

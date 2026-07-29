@@ -56,6 +56,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `chrome` - [Use Claude Code with Chrome](https://code.claude.com/docs/en/chrome)
 - `claude-apps-gateway-config` - [Claude apps gateway configuration](https://code.claude.com/docs/en/claude-apps-gateway-config)
 - `claude-apps-gateway-deploy` - [Claude apps gateway deployment and operations](https://code.claude.com/docs/en/claude-apps-gateway-deploy)
+- `claude-apps-gateway-on-aws` - [Deploy Claude apps gateway on AWS](https://code.claude.com/docs/en/claude-apps-gateway-on-aws)
 - `claude-apps-gateway-on-gcp` - [Deploy Claude apps gateway on Google Cloud](https://code.claude.com/docs/en/claude-apps-gateway-on-gcp)
 - `claude-apps-gateway-spend-limits` - [Claude apps gateway spend limits](https://code.claude.com/docs/en/claude-apps-gateway-spend-limits)
 - `claude-apps-gateway` - [Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry](https://code.claude.com/docs/en/claude-apps-gateway)
