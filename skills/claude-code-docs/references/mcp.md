@@ -465,20 +465,20 @@ claude mcp add --transport http sentry https://mcp.sentry.dev/mcp
 ```
 
 Authenticate with your Sentry account:
-```text
+```text wrap
 /mcp
 ```
 
 Follow the sign-in steps in your browser. Once you're signed in, the `sentry` server shows `connected` in the `/mcp` menu.
 
 Then debug production issues:
-```text
+```text wrap
 What are the most common errors in the last 24 hours?
 ```
-```text
+```text wrap
 Show me the stack trace for error ID abc123
 ```
-```text
+```text wrap
 Which deployment introduced these new errors?
 ```
 
@@ -493,13 +493,13 @@ claude mcp add --transport http github https://api.githubcopilot.com/mcp/ \
 Replace `YOUR_GITHUB_PAT` with your personal access token. The `claude mcp add` command saves the configuration without validating credentials, so a placeholder value is accepted here but the server fails to connect later. To verify the connection, run `/mcp` and check that the server shows `connected`. A server with bad credentials shows `failed`.
 
 Then work with GitHub:
-```text
+```text wrap
 Review PR #456 and suggest improvements
 ```
-```text
+```text wrap
 Create a new issue for the bug we just found
 ```
-```text
+```text wrap
 Show me all open PRs assigned to me
 ```
 
@@ -514,13 +514,13 @@ claude mcp add --transport stdio db -- npx -y @bytebase/dbhub \
 To confirm the server starts, run `/mcp` and check that `db` shows `connected`.
 
 Then query your database naturally:
-```text
+```text wrap
 What's our total revenue this month?
 ```
-```text
+```text wrap
 Show me the schema for the orders table
 ```
-```text
+```text wrap
 Find customers who haven't made a purchase in 90 days
 ```
 
@@ -555,7 +555,7 @@ If you already added this server in the [Sentry example](#example-monitor-errors
 **Use the /mcp command within Claude Code**
 
 In Claude Code, use the command:
-```text
+```text wrap
     /mcp
 ```
 
@@ -862,7 +862,7 @@ Complete any required authentication steps in claude.ai.
 **View and manage servers in Claude Code**
 
 In Claude Code, use the command:
-```text
+```text wrap
     /mcp
 ```
 
@@ -1070,10 +1070,10 @@ Type `@` in your prompt to see available resources from all connected MCP server
 **Reference a specific resource**
 
 Use the format `@server:protocol://resource/path` to reference a resource:
-```text
+```text wrap
     Can you analyze @github:issue://123 and suggest a fix?
 ```
-```text
+```text wrap
     Please review the API documentation at @docs:file://api/authentication
 ```
 
@@ -1082,7 +1082,7 @@ Use the format `@server:protocol://resource/path` to reference a resource:
 **Multiple resource references**
 
 You can reference multiple resources in a single prompt:
-```text
+```text wrap
     Compare @postgres:schema://users with @docs:file://database/user-model
 ```
 
@@ -1189,7 +1189,7 @@ Type `/` to see all available commands, including those from MCP servers. MCP pr
 
 
 **Execute a prompt without arguments**
-```text
+```text wrap
     /mcp__github__list_prs
 ```
 
@@ -1198,10 +1198,10 @@ Type `/` to see all available commands, including those from MCP servers. MCP pr
 **Execute a prompt with arguments**
 
 Many prompts accept arguments. Pass them space-separated after the command:
-```text
+```text wrap
     /mcp__github__pr_review 456
 ```
-```text
+```text wrap
     /mcp__jira__create_issue "Bug in login flow" high
 ```
 
