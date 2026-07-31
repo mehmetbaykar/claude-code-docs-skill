@@ -35,8 +35,8 @@
       "title": "Escalate hard decisions with the advisor tool"
     },
     "agent-sdk__agent-loop.md": {
-      "hash": "9ea7e9d4018e3978cae4ac342b42bbb5938b2d08d5529d54d97e4efa7852daac",
-      "last_updated": "2026-07-29T05:55:23+00:00",
+      "hash": "c72cfa166ec72a995cabad31942ed63c5a549cd712d59f5b80a7b4daeaef37e6",
+      "last_updated": "2026-07-31T22:07:57+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
       "path": "/docs/en/agent-sdk/agent-loop",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop.md",
@@ -155,8 +155,8 @@
       "title": "Agent SDK reference - Python"
     },
     "agent-sdk__quickstart.md": {
-      "hash": "d09561527393ed826881c22eb48857bd65cd19827bf060bdb6309e028d9006c9",
-      "last_updated": "2026-07-29T19:22:19+00:00",
+      "hash": "70cba906ec0a7828900aea4a2bfa6b4eda25b846d0ac4b2c8464cd39e0b9d889",
+      "last_updated": "2026-07-31T22:08:02+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/quickstart",
       "path": "/docs/en/agent-sdk/quickstart",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/quickstart.md",
@@ -1417,7 +1417,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-07-29T19:25:59+00:00",
+  "last_updated": "2026-07-31T22:09:25+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
