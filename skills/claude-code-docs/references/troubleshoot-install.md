@@ -55,13 +55,24 @@ If you'd rather skip the terminal entirely, the [Claude Code Desktop app](/docs/
 ### Check network connectivity
 
 The installer downloads from `downloads.claude.ai`. Verify you can reach it:
+
+
+**macOS/Linux**
 ```bash
-curl -sI https://downloads.claude.ai/claude-code-releases/latest
+    curl -sI https://downloads.claude.ai/claude-code-releases/latest
 ```
 
-In PowerShell, run `curl.exe -sI` instead. PowerShell aliases `curl` to `Invoke-WebRequest`, which rejects the `-sI` flags.
 
-An `HTTP/2 200` line means you reached the server. Other results point to the cause:
+
+**Windows PowerShell**
+```powershell
+    curl.exe -sI https://downloads.claude.ai/claude-code-releases/latest
+```
+
+PowerShell aliases `curl` to `Invoke-WebRequest`, which rejects the `-sI` flags, so call `curl.exe` explicitly.
+
+
+You reached the server if the first line shows a `200` status. You see `HTTP/2 200` on macOS and Linux, and `HTTP/1.1 200 OK` from the `curl.exe` included with Windows. Other results point to the cause:
 
 * `403`: usually a proxy or network filter blocking the host, or Claude Code is [not available in your region](https://www.anthropic.com/supported-countries)
 * `5xx`: usually a temporary service issue; wait a few minutes and retry
