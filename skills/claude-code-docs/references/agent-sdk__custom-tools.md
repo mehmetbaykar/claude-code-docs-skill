@@ -335,8 +335,6 @@ The example below catches two kinds of failures inside the handler and composes 
   from typing import Any
   from claude_agent_sdk import tool
 
-  from claude_agent_sdk import tool
-
   @tool(
       "fetch_data",
       "Fetch data from an API",
@@ -439,8 +437,6 @@ An image block carries the image bytes inline, encoded as base64. There is no UR
 ```python Python
   import base64
   import httpx
-  from claude_agent_sdk import tool
-
   from claude_agent_sdk import tool
 
   # Define a tool that fetches an image from a URL and returns it to Claude
