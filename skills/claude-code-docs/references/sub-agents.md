@@ -79,11 +79,11 @@ Claude delegates to general-purpose when the task requires both exploration and 
 
 Claude Code includes additional helper agents for specific tasks. These are typically invoked automatically, so you don't need to use them directly.
 
-    | Agent             | Model    | When Claude uses it                                                                                                                                                            |
-    | :---------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | statusline-setup  | Sonnet   | When you run `/statusline` to configure your status line                                                                                                                       |
-    | claude-code-guide | Haiku    | When you ask questions about Claude Code features                                                                                                                              |
-    | claude            | Inherits | When you dispatch a [background session](/docs/en/agent-view) from `claude agents` or `claude --bg` without naming an agent. Claude can also delegate to it like any other subagent |
+    | Agent             | Model    | When Claude uses it                                                                                                                                                                                                                           |
+    | :---------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | statusline-setup  | Sonnet   | When you run `/statusline` to configure your status line                                                                                                                                                                                      |
+    | claude-code-guide | Haiku    | When you ask questions about Claude Code features                                                                                                                                                                                             |
+    | claude            | Inherits | When you dispatch a [background session](/docs/en/agent-view) from `claude agents` and the dispatch [resolves to it as the default agent](/docs/en/agent-view#permission-mode-model-and-effort). Claude can also delegate to it like any other subagent |
 
 
 Built-in subagents are registered by default in interactive sessions. To restrict them:

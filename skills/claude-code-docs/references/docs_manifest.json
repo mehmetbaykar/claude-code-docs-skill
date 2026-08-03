@@ -283,8 +283,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "a037ece256be16469bb01aa76293fafdb1c3837fda4802263b78220306991aa4",
-      "last_updated": "2026-07-29T16:24:22+00:00",
+      "hash": "ad387b6d9b05a4263e8770ff606954bbaf1f2cd3039699651a9e0f24e2268e99",
+      "last_updated": "2026-08-03T22:11:05+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "source_url": "https://code.claude.com/docs/en/agent-view.md",
@@ -659,8 +659,8 @@
       "title": "Error reference"
     },
     "fast-mode.md": {
-      "hash": "19d0e87ebb93bf781983caa0f5a4182df869fdf7b95dfc33a4925beaf18f0cdf",
-      "last_updated": "2026-07-24T22:08:22+00:00",
+      "hash": "6e2e53f437c04e082e0cdf5ca2591dfd531282359f30fac1d41ef4534e5242e3",
+      "last_updated": "2026-08-03T22:11:37+00:00",
       "original_url": "https://code.claude.com/docs/en/fast-mode",
       "path": "/docs/en/fast-mode",
       "source_url": "https://code.claude.com/docs/en/fast-mode.md",
@@ -723,8 +723,8 @@
       "title": "Claude Code GitLab CI/CD"
     },
     "glossary.md": {
-      "hash": "80e6819be2b707bda55d59e26c412c60e29692f18ac4954f7f922896810b8e2b",
-      "last_updated": "2026-07-28T14:15:40+00:00",
+      "hash": "ff6fdbff497baaa873f892a5b43f158f7f31a738c7508a80862af6719c0ebe9b",
+      "last_updated": "2026-08-03T22:11:47+00:00",
       "original_url": "https://code.claude.com/docs/en/glossary",
       "path": "/docs/en/glossary",
       "source_url": "https://code.claude.com/docs/en/glossary.md",
@@ -747,8 +747,8 @@
       "title": "Claude Code on Google Cloud's Agent Platform"
     },
     "headless.md": {
-      "hash": "1ac0bca81890d8276fc9ca716b44bee5a7ed0246f4a853f02e3972578ea4b463",
-      "last_updated": "2026-08-02T19:16:18+00:00",
+      "hash": "94d931098b82b776bfa13f3bbb29307685f2d0e2fbbedf57a3f0ddffddba1a0f",
+      "last_updated": "2026-08-03T22:11:49+00:00",
       "original_url": "https://code.claude.com/docs/en/headless",
       "path": "/docs/en/headless",
       "source_url": "https://code.claude.com/docs/en/headless.md",
@@ -1147,8 +1147,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "b727674a7faea77b8cfa2bb8f39d7e6c67c9d41dacdd140bd39eb7599e241ace",
-      "last_updated": "2026-08-02T19:16:49+00:00",
+      "hash": "e9f095e99d60c10bd24afaf856276c274407e4aeba17e78e34b4fb131e003228",
+      "last_updated": "2026-08-03T22:12:21+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1379,8 +1379,8 @@
       "title": "Week 29 \u00b7 July 13\u201317, 2026"
     },
     "workflows.md": {
-      "hash": "c76302e63c1ed18f39b440ee8804da7b42c3a0de11d8e933581fb601468e6e1a",
-      "last_updated": "2026-07-29T02:54:20+00:00",
+      "hash": "94e13ab20a649dd9d5b67e29cf4493736efb534a5409cd42edbb507bd432407f",
+      "last_updated": "2026-08-03T22:12:37+00:00",
       "original_url": "https://code.claude.com/docs/en/workflows",
       "path": "/docs/en/workflows",
       "source_url": "https://code.claude.com/docs/en/workflows.md",
@@ -1417,7 +1417,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-02T19:17:07+00:00",
+  "last_updated": "2026-08-03T22:12:37+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
