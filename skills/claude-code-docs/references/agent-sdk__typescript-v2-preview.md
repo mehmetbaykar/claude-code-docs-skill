@@ -25,7 +25,7 @@ Agent SDK 0.2.x is the last version that includes the V2 interface. The package 
 npm install @anthropic-ai/claude-agent-sdk@0.2
 ```
 
-The SDK bundles a native Claude Code binary for your platform as an optional dependency, so you don't need to install Claude Code separately.
+The SDK bundles a native Claude Code binary for your platform as an optional dependency, so most installs need no separate Claude Code install. See the [quickstart's install note](/docs/en/agent-sdk/quickstart) for the installs that need one.
 
 ## Quick start
 
