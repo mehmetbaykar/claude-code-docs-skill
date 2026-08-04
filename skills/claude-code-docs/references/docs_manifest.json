@@ -507,8 +507,8 @@
       "title": "Commands"
     },
     "common-workflows.md": {
-      "hash": "823aea9186a3168b2412af24dfa6da2703b9ff327cbfe2a797d834c4e0b5a9ee",
-      "last_updated": "2026-07-29T02:53:13+00:00",
+      "hash": "b26b5d1e135d5cc89989d66b6e9b81b64b96d496fd36df537ea9762fd23b6175",
+      "last_updated": "2026-08-04T19:42:34+00:00",
       "original_url": "https://code.claude.com/docs/en/common-workflows",
       "path": "/docs/en/common-workflows",
       "source_url": "https://code.claude.com/docs/en/common-workflows.md",
@@ -1083,8 +1083,8 @@
       "title": "Catch security issues as Claude writes code"
     },
     "security.md": {
-      "hash": "e1c37cd1558224fbb43bc7cd788017be50a18708993567ffbaada7978aeea72f",
-      "last_updated": "2026-07-28T22:08:24+00:00",
+      "hash": "757ef0cfcaee599e8a63d0e74728de964e0f9ac785cd2dda04998e08ed695983",
+      "last_updated": "2026-08-04T19:43:16+00:00",
       "original_url": "https://code.claude.com/docs/en/security",
       "path": "/docs/en/security",
       "source_url": "https://code.claude.com/docs/en/security.md",
@@ -1417,7 +1417,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-04T02:50:26+00:00",
+  "last_updated": "2026-08-04T19:43:43+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
