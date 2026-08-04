@@ -143,6 +143,8 @@ Tips:
 
 Suppose you need to update old code to use modern patterns and practices.
 
+For porting an entire codebase to a new language, see [how Anthropic runs large-scale code migrations with Claude Code](https://claude.com/blog/ai-code-migration) on the blog.
+
 
 **Identify legacy code for refactoring**
 ```text wrap
