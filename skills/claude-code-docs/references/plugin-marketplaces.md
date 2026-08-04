@@ -99,11 +99,10 @@ Create the marketplace catalog that lists your plugin.
 
 **Add and install**
 
-From the directory that contains `my-marketplace`, start Claude Code and run the following commands. The install command opens a plugin details view where you select an installation scope to confirm the install, and `/reload-plugins` activates the plugin in your current session.
+From the directory that contains `my-marketplace`, start Claude Code and run the following commands. The install command opens a plugin details view where you select an installation scope to confirm the install. Check the install summary: if it reports `Run /reload-plugins to activate.`, run that command.
 ```shell
     /plugin marketplace add ./my-marketplace
     /plugin install quality-review-plugin@my-plugins
-    /reload-plugins
 ```
 
 
