@@ -145,7 +145,7 @@ For Remote Control, the host must be signed in with your claude.ai account; API 
 
 In addition to file edits, `acceptEdits` mode auto-approves common filesystem Bash commands: `mkdir`, `touch`, `rm`, `rmdir`, `mv`, `cp`, and `sed`. These commands are also auto-approved when prefixed with safe environment variables such as `LANG=C` or `NO_COLOR=1`, or process wrappers such as `timeout`, `nice`, or `nohup`. Like file edits, auto-approval applies only to paths inside your working directory or `additionalDirectories`. Paths outside that scope, writes to [protected paths](#protected-paths), and all other Bash commands except the [built-in read-only set](/docs/en/permissions#read-only-commands) still prompt.
 
-When the [PowerShell tool](/docs/en/tools-reference#powershell-tool) is enabled, `acceptEdits` mode also auto-approves `Set-Content`, `Add-Content`, `Clear-Content`, and `Remove-Item` on in-scope paths, along with their common aliases. The same scope and protected-path rules apply.
+When the [PowerShell tool](/docs/en/tools-reference#powershell-tool) is enabled, `acceptEdits` mode also auto-approves `Set-Content`, `Add-Content`, `Clear-Content`, and `Remove-Item` on in-scope paths, along with their common aliases. The same scope and protected-path rules apply. A positional argument that contains a quote character, such as the apostrophe in `Set-Content .\notes.txt "It's done"`, still prompts even on in-scope paths, because Claude Code can't statically validate an argument whose quoted and unquoted readings differ. Pass the content through a named parameter such as `-Value` to avoid the prompt.
 
 Use `acceptEdits` when you want to review changes in your editor or via `git diff` after the fact rather than approving each edit inline.
 
@@ -173,7 +173,6 @@ When the plan is ready, Claude presents it and asks how to proceed. From that pr
 
 * **Yes, and use auto mode**: approve and start in [auto mode](#eliminate-prompts-with-auto-mode). When auto mode is unavailable, this option reads **Yes, auto-accept edits**. Sessions started with bypass permissions enabled show **Yes, and bypass permissions** instead.
 * **Yes, manually approve edits**: approve and review each edit individually.
-* **No, refine with Ultraplan on Claude Code on the web**: send the plan to [Ultraplan](/docs/en/ultraplan) for browser-based review.
 * **No, keep planning**: stay in plan mode and tell Claude what to change.
 
 Approving a plan exits plan mode and switches the session to the permission mode each approve option describes, so Claude starts editing. To plan again, cycle back to plan mode with `Shift+Tab`, or prefix your next prompt with `/plan`.
@@ -335,6 +334,8 @@ In [non-interactive mode](/docs/en/headless) with the `-p` flag, repeated blocks
 
 Repeated blocks usually mean the classifier is missing context about your infrastructure. Use `/feedback` to report false positives, or have an administrator [configure trusted infrastructure](/docs/en/auto-mode-config).
 
+If you switch permission modes while a classifier check is pending, Claude Code discards a verdict the new mode wouldn't have requested rather than applying it: you're prompted for approval instead, or the action is auto-denied in [`dontAsk` mode](#allow-only-pre-approved-tools-with-dontask-mode).
+
 
 **How the classifier evaluates actions**
 
@@ -470,7 +471,6 @@ Protected files:
 * [Permissions](/docs/en/permissions): allow, ask, and deny rules; managed policies
 * [Configure auto mode](/docs/en/auto-mode-config): tell the classifier which infrastructure your organization trusts
 * [Hooks](/docs/en/hooks): custom permission logic via `PreToolUse` and `PermissionRequest` hooks
-* [Ultraplan](/docs/en/ultraplan): run plan mode in a Claude Code on the web session with browser-based review
 * [Security](/docs/en/security): safeguards and best practices
 * [Sandboxing](/docs/en/sandboxing): filesystem and network isolation for Bash commands
 * [Non-interactive mode](/docs/en/headless): run Claude Code with the `-p` flag
