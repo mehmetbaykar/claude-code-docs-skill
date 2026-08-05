@@ -291,8 +291,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "dcada51cb3d4850ab07817f03365e4d38d9a1c23c2de44242616e9e32acba613",
-      "last_updated": "2026-08-05T19:39:50+00:00",
+      "hash": "5c005045e59964321e237db93d56784701a7d15f19e52997aced1c9438648984",
+      "last_updated": "2026-08-05T22:14:32+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "source_url": "https://code.claude.com/docs/en/agent-view.md",
@@ -515,8 +515,8 @@
       "title": "Code Review"
     },
     "commands.md": {
-      "hash": "b8d4b3a425bf99506c5d83daf7972560522130d13dbe3ec41b1f464d772f670b",
-      "last_updated": "2026-08-05T02:46:18+00:00",
+      "hash": "ed26abc63ab3de690e295f62ba50c7be24ac016568e7907b582d0a2232fe1b0b",
+      "last_updated": "2026-08-05T22:14:48+00:00",
       "original_url": "https://code.claude.com/docs/en/commands",
       "path": "/docs/en/commands",
       "source_url": "https://code.claude.com/docs/en/commands.md",
@@ -667,8 +667,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "2760c16102a31c61d4e1ff875df59c772d989f42e24f385189215704d6d2a6a9",
-      "last_updated": "2026-08-05T19:40:24+00:00",
+      "hash": "843e255d58ae27fda68978db317398fdd4bbeb841b7ac96c44e322303e4e168a",
+      "last_updated": "2026-08-05T22:14:59+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -891,8 +891,8 @@
       "title": "Connect Claude Code to tools via MCP"
     },
     "memory.md": {
-      "hash": "f71a1abf6bd42d41aa06407c480922df7d2cb1b770fe125d5b736bce8fe3ec5f",
-      "last_updated": "2026-08-04T02:49:35+00:00",
+      "hash": "bc489c31bf7e82faa0e349d8f13bd40d64690046b04fe26f85367d364255c0c5",
+      "last_updated": "2026-08-05T22:15:13+00:00",
       "original_url": "https://code.claude.com/docs/en/memory",
       "path": "/docs/en/memory",
       "source_url": "https://code.claude.com/docs/en/memory.md",
@@ -995,8 +995,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugin-marketplaces.md": {
-      "hash": "1f5c663f0a17b8e4ac030f3cc4246b315247e368cc8a961b6a4ba96dd5841964",
-      "last_updated": "2026-08-04T22:17:02+00:00",
+      "hash": "d29a0390141ff9c7c5ea73aff8b3389e1ded01e5ed47b9ac3d76976ce09c6177",
+      "last_updated": "2026-08-05T22:15:22+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-marketplaces",
       "path": "/docs/en/plugin-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugin-marketplaces.md",
@@ -1011,8 +1011,8 @@
       "title": "Recommend plugins for your org"
     },
     "plugins-reference.md": {
-      "hash": "6880be798200d7804ee8dd115db16656d1750988d9e81efa4365f03f6d0c6fd3",
-      "last_updated": "2026-08-04T02:49:49+00:00",
+      "hash": "0852d7a3f76472edec28d7cd2d7ffb20f18a979a7ed8f02704127be732e17035",
+      "last_updated": "2026-08-05T22:15:23+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins-reference",
       "path": "/docs/en/plugins-reference",
       "source_url": "https://code.claude.com/docs/en/plugins-reference.md",
@@ -1155,8 +1155,8 @@
       "title": "Claude Code in Slack"
     },
     "statusline.md": {
-      "hash": "a2c0ac23ec11d59b92b54542f5e4c41274a9e6cf3d89413522f6d1321c35fb48",
-      "last_updated": "2026-08-04T02:50:01+00:00",
+      "hash": "2cb6d373ade17e0a16aad65f15473b23804a498dc6dd5d67f0c1a160af6f49ca",
+      "last_updated": "2026-08-05T22:15:34+00:00",
       "original_url": "https://code.claude.com/docs/en/statusline",
       "path": "/docs/en/statusline",
       "source_url": "https://code.claude.com/docs/en/statusline.md",
@@ -1395,8 +1395,8 @@
       "title": "Orchestrate subagents at scale with dynamic workflows"
     },
     "worktrees.md": {
-      "hash": "f6c75381148e7883375416c71f447329fb5836077c3a62618eecd9d51ecd7506",
-      "last_updated": "2026-08-04T02:50:25+00:00",
+      "hash": "ac892c3fd233f346fada3854599df098e03ca40a46c4cc47ea37d03ef414b509",
+      "last_updated": "2026-08-05T22:15:54+00:00",
       "original_url": "https://code.claude.com/docs/en/worktrees",
       "path": "/docs/en/worktrees",
       "source_url": "https://code.claude.com/docs/en/worktrees.md",
@@ -1425,7 +1425,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-05T19:41:33+00:00",
+  "last_updated": "2026-08-05T22:15:55+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
