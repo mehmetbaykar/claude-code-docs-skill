@@ -155,7 +155,6 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `tools-reference` - [Tools reference](https://code.claude.com/docs/en/tools-reference)
 - `troubleshoot-install` - [Troubleshoot installation and login](https://code.claude.com/docs/en/troubleshoot-install)
 - `troubleshooting` - [Troubleshooting](https://code.claude.com/docs/en/troubleshooting)
-- `ultraplan` - [Plan in the cloud with ultraplan](https://code.claude.com/docs/en/ultraplan)
 - `ultrareview` - [Find bugs with ultrareview](https://code.claude.com/docs/en/ultrareview)
 - `voice-dictation` - [Voice dictation](https://code.claude.com/docs/en/voice-dictation)
 - `vs-code` - [Use Claude Code in VS Code](https://code.claude.com/docs/en/vs-code)
