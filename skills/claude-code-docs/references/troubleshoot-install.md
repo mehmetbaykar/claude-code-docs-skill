@@ -415,17 +415,51 @@ On macOS, the system curl uses the Keychain trust store; updating macOS itself u
    irm https://claude.ai/install.ps1 | iex
 ```
 
-3. **Check for proxy or firewall interference**: corporate proxies that perform TLS inspection can cause these errors, including `unable to get local issuer certificate` and `SELF_SIGNED_CERT_IN_CHAIN`. For the install step, point curl at your corporate CA bundle with `--cacert`:
+3. **Check for proxy or firewall interference**: corporate proxies that perform TLS inspection can cause these errors, including `unable to get local issuer certificate` and `SELF_SIGNED_CERT_IN_CHAIN`. For the install step, make the install download trust your corporate proxy's CA:
+
+
+
+**macOS/Linux**
 ```bash
-   curl --cacert /path/to/corporate-ca.pem -fsSL https://claude.ai/install.sh | bash
+       curl --cacert /path/to/corporate-ca.pem -fsSL https://claude.ai/install.sh | bash
 ```
+
+
+
+**Windows PowerShell**
+
+The PowerShell installer downloads through .NET, which validates TLS against the Windows certificate store. Ask your IT team to add the proxy's CA certificate to the Windows store if it isn't already there, then run the installer:
+```powershell
+       irm https://claude.ai/install.ps1 | iex
+```
+
+
+
 For Claude Code itself once installed, set `NODE_EXTRA_CA_CERTS` so API requests trust the same bundle:
+
+
+
+**macOS/Linux**
 ```bash
-   export NODE_EXTRA_CA_CERTS=/path/to/corporate-ca.pem
+       export NODE_EXTRA_CA_CERTS=/path/to/corporate-ca.pem
 ```
+
+
+
+**Windows PowerShell**
+```powershell
+       $env:NODE_EXTRA_CA_CERTS = 'C:\path\to\corporate-ca.pem'
+```
+
+
+
 Ask your IT team for the certificate file if you don't have it. You can also try on a direct connection to confirm the proxy is the cause.
 
-4. **On Windows, switch installers if your network blocks revocation checks**. The errors `CRYPT_E_NO_REVOCATION_CHECK (0x80092012)` and `CRYPT_E_REVOCATION_OFFLINE (0x80092013)` mean curl reached the server but your network blocks the certificate revocation lookup, which is common behind corporate firewalls. Adding curl's `--ssl-revoke-best-effort` flag doesn't fix this: the flag only applies to downloading `install.cmd` itself, and the script's own downloads run without it, so the install fails with the same error. Use an install method that tolerates the blocked lookup instead. Open PowerShell and run the PowerShell installer, which downloads through .NET and doesn't fail when the revocation server is unreachable:
+4. **On Windows, work around blocked revocation checks**. The errors `CRYPT_E_NO_REVOCATION_CHECK (0x80092012)` and `CRYPT_E_REVOCATION_OFFLINE (0x80092013)` mean curl reached the server but your network blocks the certificate revocation lookup, which is common behind corporate firewalls. If the failing command is the `curl` that downloads `install.cmd`, rerun it from a Command Prompt with `--ssl-revoke-best-effort` added:
+```batch
+   curl --ssl-revoke-best-effort -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+```
+When the script's own downloads hit the same errors, it retries them with best-effort revocation checking automatically, so the flag is only needed on the command you run yourself. Best-effort checking tolerates an unreachable revocation server but still rejects a certificate that is known to be revoked, matching how browsers handle revocation. You can also avoid curl's revocation check entirely by running the PowerShell installer from PowerShell, which downloads through .NET and doesn't fail when the revocation server is unreachable:
 ```powershell
    irm https://claude.ai/install.ps1 | iex
 ```
@@ -577,10 +611,7 @@ When installing Claude Code in a Docker container, installing as root into `/` c
    RUN curl -fsSL https://claude.ai/install.sh | bash
 ```
 
-2. **Increase Docker memory limits** if using Docker Desktop:
-```bash
-   docker build --memory=4g .
-```
+2. **Give Docker more memory** if using Docker Desktop. Build containers share the memory allocated to the Docker Desktop virtual machine, so open **Settings > Resources** in Docker Desktop, raise the memory limit, and rerun the build.
 
 ### `claude update` or `claude doctor` hangs
 
