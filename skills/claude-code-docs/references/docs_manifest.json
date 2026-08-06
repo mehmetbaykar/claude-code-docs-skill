@@ -147,8 +147,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "87700d91940cfe43722a451c410437631735b6a38435239781f7df6b9adf00c5",
-      "last_updated": "2026-08-06T02:48:34+00:00",
+      "hash": "bdb621fd2ad1c1b2c6a4f40b5e2dcbae54d43670882b2755b13ee688ddb39dee",
+      "last_updated": "2026-08-06T05:52:17+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -187,8 +187,8 @@
       "title": "Work with sessions"
     },
     "agent-sdk__skills.md": {
-      "hash": "2d70db79df2b8df8accc496866eed458fa9ac59c42c014eeee604177037f1344",
-      "last_updated": "2026-08-05T02:45:49+00:00",
+      "hash": "2bdcc2df9b7eb19a7f9da650c2742ea61feb7b0d871bca7a2f83ce10e5c6e663",
+      "last_updated": "2026-08-06T05:52:20+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/skills",
       "path": "/docs/en/agent-sdk/skills",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/skills.md",
@@ -1433,7 +1433,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-06T02:50:30+00:00",
+  "last_updated": "2026-08-06T05:53:51+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
