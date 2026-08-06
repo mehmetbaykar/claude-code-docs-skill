@@ -94,6 +94,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `features-overview` - [Extend Claude Code](https://code.claude.com/docs/en/features-overview)
 - `fullscreen` - [Fullscreen rendering](https://code.claude.com/docs/en/fullscreen)
 - `gateways` - [Run Claude Code through a gateway](https://code.claude.com/docs/en/gateways)
+- `github-actions-cloud-providers` - [Use Claude Code GitHub Actions with cloud providers](https://code.claude.com/docs/en/github-actions-cloud-providers)
 - `github-actions` - [Claude Code GitHub Actions](https://code.claude.com/docs/en/github-actions)
 - `github-enterprise-server` - [Claude Code with GitHub Enterprise Server](https://code.claude.com/docs/en/github-enterprise-server)
 - `gitlab-ci-cd` - [Claude Code GitLab CI/CD](https://code.claude.com/docs/en/gitlab-ci-cd)
