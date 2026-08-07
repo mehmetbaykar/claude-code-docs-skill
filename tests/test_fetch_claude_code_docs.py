@@ -152,3 +152,38 @@ def test_guards_tolerate_a_single_stale_page() -> None:
         )
         == []
     )
+
+
+def test_sanitize_error_strips_local_paths() -> None:
+    """Error text is committed to the manifest, so it must not carry a home path."""
+
+    error = OSError(
+        "[Errno 2] No such file or directory: '/Users/someone/Desktop/repo/x.md'"
+    )
+    message = fetcher.sanitize_error(error)
+
+    assert "/Users/someone" not in message
+    assert "/Users/<user>" in message
+    assert message.startswith("OSError: ")
+
+
+def test_sanitize_error_redacts_proxy_credentials() -> None:
+    error = fetcher.requests.ConnectionError(
+        "Failed to connect to https://alice:hunter2@proxy.corp.example/"
+    )
+    message = fetcher.sanitize_error(error)
+
+    assert "hunter2" not in message
+    assert "<redacted>@proxy.corp.example" in message
+
+
+def test_sanitize_error_replaces_the_repository_root() -> None:
+    error = OSError(f"cannot write {fetcher.ROOT_DIR}/skills/x/references/y.md")
+    message = fetcher.sanitize_error(error)
+
+    assert str(fetcher.ROOT_DIR) not in message
+    assert "<repo>" in message
+
+
+def test_sanitize_error_is_bounded() -> None:
+    assert len(fetcher.sanitize_error(RuntimeError("x" * 5000))) == 300
