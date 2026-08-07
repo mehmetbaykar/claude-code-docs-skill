@@ -58,7 +58,7 @@ Session titles are now generated in the language of your conversation; pin a spe
 Browsing a marketplace's plugins in `/plugin` now has a search bar
 New `disableBundledSkills` setting and `CLAUDE\_CODE\_DISABLE\_BUNDLED\_SKILLS` hide bundled skills, workflows, and built-in commands from the model
 Deny rules accept a glob in the tool-name position, so `"\*"` denies all tools, and unknown tool names in deny rules now warn at startup
-Cross-session messaging is hardened: messages relayed via `SendMessage` from other sessions no longer carry user authority, and auto mode blocks them
+Agent messaging is hardened: messages relayed via `SendMessage` from other agents no longer carry user authority, and auto mode blocks them
 Amazon Bedrock reads the AWS region from `\~/.aws` config files when `AWS\_REGION` is unset, and `/status` shows where the region came from
 New `enforceAvailableModels` managed setting makes the `availableModels` allowlist also constrain the Default model
 Claude in Chrome browser tools now load in a single batched call instead of one per tool

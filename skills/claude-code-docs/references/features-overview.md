@@ -146,7 +146,7 @@ Both parallelize work, but they're architecturally different:
 
     **Use an agent team** when teammates need to share findings, challenge each other, and coordinate independently. Agent teams are best for research with competing hypotheses, parallel code review, and new feature development where each teammate owns a separate piece.
 
-    **Transition point:** If you're running parallel subagents but hitting context limits, or if your subagents need to communicate with each other, agent teams are the natural next step.
+    **Transition point:** If you're running parallel subagents but hitting context limits, or if your subagents need to communicate with each other, agent teams are the natural next step. For separate sessions that pass messages to each other without a team, see [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging).
 
 
 Agent teams are experimental and disabled by default. See [agent teams](https://code.claude.com/docs/en/agent-teams) for setup and current limitations.

@@ -76,6 +76,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `context-window` - [Explore the context window](https://code.claude.com/docs/en/context-window)
 - `corporate-launcher` - [Run Claude Code behind a corporate launcher](https://code.claude.com/docs/en/corporate-launcher)
 - `costs` - [Manage costs effectively](https://code.claude.com/docs/en/costs)
+- `cross-session-messaging` - [Message your other Claude Code sessions](https://code.claude.com/docs/en/cross-session-messaging)
 - `data-usage` - [Data usage](https://code.claude.com/docs/en/data-usage)
 - `debug-your-config` - [Debug your configuration](https://code.claude.com/docs/en/debug-your-config)
 - `deep-links` - [Launch sessions from links](https://code.claude.com/docs/en/deep-links)
