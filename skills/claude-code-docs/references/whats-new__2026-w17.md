@@ -1,5 +1,5 @@
 ---
-title: Week 17 \u00b7 April 20\u201324, 2026
+title: "Week 17 · April 20–24, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w17
 path: /docs/en/whats-new/2026-w17
 ---
@@ -96,4 +96,4 @@ New [claude plugin tag](https://code.claude.com/docs/docs/en/plugin-dependencies
 Opus 4.7 sessions now compute against the model's native 1M context window, fixing inflated `/context` percentages and premature autocompaction
 `/resume` on large sessions is up to 67% faster and now offers to summarize stale, large sessions before re-reading them
 
-[Full changelog for v2.1.114–v2.1.119 →](/docs/en/changelog#2-1-114)
+[Full changelog for v2.1.114–v2.1.119 →](https://code.claude.com/docs/en/changelog#2-1-114)

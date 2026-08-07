@@ -4,13 +4,22 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-    labels:
-      - dependencies
-      - dependabot
     commit-message:
       prefix: "deps"
       include: "scope"
     groups:
       github-actions:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "pip"
+    directory: "/scripts"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    groups:
+      python:
         patterns:
           - "*"

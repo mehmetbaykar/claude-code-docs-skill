@@ -1,5 +1,5 @@
 ---
-title: Claude Desktop on Linux (beta)
+title: "Claude Desktop on Linux (beta)"
 source: https://code.claude.com/docs/en/desktop-linux
 path: /docs/en/desktop-linux
 ---
@@ -10,7 +10,7 @@ path: /docs/en/desktop-linux
 
 Linux support for the Claude desktop app is in beta. The Chat, Cowork, and Code tabs are all available.
 
-The desktop app on Linux gives you the same Chat, Cowork, and Claude Code experience as macOS and Windows: parallel sessions, visual diff review, an integrated terminal and editor, and live app preview. See [Use Claude Code Desktop](/docs/en/desktop) for the full feature reference.
+The desktop app on Linux gives you the same Chat, Cowork, and Claude Code experience as macOS and Windows: parallel sessions, visual diff review, an integrated terminal and editor, and live app preview. See [Use Claude Code Desktop](https://code.claude.com/docs/en/desktop) for the full feature reference.
 
 ## Requirements
 
@@ -61,7 +61,7 @@ Register the repository:
 
 Launch **Claude** from your application launcher, or run `claude-desktop` from a terminal, and sign in with your Anthropic account.
 
-The Linux app signs in the same way as on macOS and Windows: with a claude.ai subscription, or through your organization's SSO. Desktop doesn't accept a Claude Console API key directly; use the [CLI](/docs/en/quickstart) for API-key authentication. For enterprise deployments that route Desktop to Google Cloud's Agent Platform or an LLM gateway, see [Claude Desktop on 3P](https://claude.com/docs/third-party/claude-desktop/overview) and [network configuration](/docs/en/network-config).
+The Linux app signs in the same way as on macOS and Windows: with a claude.ai subscription, or through your organization's SSO. Desktop doesn't accept a Claude Console API key directly; use the [CLI](https://code.claude.com/docs/en/quickstart) for API-key authentication. For enterprise deployments that route Desktop to Google Cloud's Agent Platform or an LLM gateway, see [Claude Desktop on 3P](https://claude.com/docs/third-party/claude-desktop/overview) and [network configuration](https://code.claude.com/docs/en/network-config).
 
 
 ### Install from a downloaded file
@@ -117,9 +117,9 @@ If the repository is in place and reachable and the package is still not found, 
 
 ## What's not in the Linux beta yet
 
-* **Computer Use**: [app and screen control](/docs/en/desktop#let-claude-use-your-computer) isn't available on Linux.
-* **Dictation**: voice input isn't available in the Linux desktop app. Use [voice dictation](/docs/en/voice-dictation) in the CLI instead.
+* **Computer Use**: [app and screen control](https://code.claude.com/docs/en/desktop#let-claude-use-your-computer) isn't available on Linux.
+* **Dictation**: voice input isn't available in the Linux desktop app. Use [voice dictation](https://code.claude.com/docs/en/voice-dictation) in the CLI instead.
 * **Quick Entry global hotkey**: works on X11. On native Wayland it requires your desktop environment's GlobalShortcuts portal.
 * **Fedora and RHEL**: only Debian-based distributions are supported today. Support for additional distributions is coming in the future.
 
-For anything not yet available in the desktop app, the [CLI](/docs/en/quickstart) runs the same Claude Code engine and supports a wider range of Linux distributions; see the [system requirements](/docs/en/setup#system-requirements).
+For anything not yet available in the desktop app, the [CLI](https://code.claude.com/docs/en/quickstart) runs the same Claude Code engine and supports a wider range of Linux distributions; see the [system requirements](https://code.claude.com/docs/en/setup#system-requirements).

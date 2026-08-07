@@ -1,5 +1,5 @@
 ---
-title: Week 14 \u00b7 March 30 \u2013 April 3, 2026
+title: "Week 14 · March 30 – April 3, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w14
 path: /docs/en/whats-new/2026-w14
 ---
@@ -117,4 +117,4 @@ Thinking summaries off by default in interactive sessions (`showThinkingSummarie
 Voice mode: push-to-talk modifier combos, Windows WebSocket, macOS Apple Silicon mic permission
 `claude-cli://` deep links accept multi-line prompts (encoded `%0A`)
 
-[Full changelog for v2.1.86–v2.1.91 →](/docs/en/changelog#2-1-86)
+[Full changelog for v2.1.86–v2.1.91 →](https://code.claude.com/docs/en/changelog#2-1-86)

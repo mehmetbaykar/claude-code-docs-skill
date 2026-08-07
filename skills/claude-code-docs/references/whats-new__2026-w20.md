@@ -1,5 +1,5 @@
 ---
-title: Week 20 \u00b7 May 11\u201315, 2026
+title: "Week 20 · May 11–15, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w20
 path: /docs/en/whats-new/2026-w20
 ---
@@ -82,4 +82,4 @@ Plugins with a root-level `SKILL.md` and no `skills/` subdirectory are now surfa
 `/feedback` can now include recent sessions from the last 24 hours or 7 days for issues spanning more than the current session
 Agent tool `subagent\_type` now matches case- and separator-insensitively, so `"Code Reviewer"` resolves to `code-reviewer`
 
-[Full changelog for v2.1.139–v2.1.142 →](/docs/en/changelog#2-1-139)
+[Full changelog for v2.1.139–v2.1.142 →](https://code.claude.com/docs/en/changelog#2-1-139)

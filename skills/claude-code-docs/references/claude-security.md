@@ -1,5 +1,5 @@
 ---
-title: Scan your codebase for vulnerabilities
+title: "Scan your codebase for vulnerabilities"
 source: https://code.claude.com/docs/en/claude-security
 path: /docs/en/claude-security
 ---
@@ -12,20 +12,20 @@ The Claude Security plugin runs a multi-agent vulnerability scan of your codebas
 
 The plugin runs locally in your session, and each scan counts against your plan's usage limits. If you want a managed service that monitors your repositories, see the [Claude Security](https://claude.com/product/claude-security) product, available on the Enterprise plan. The plugin reaches code the managed product can't reach, such as repositories hosted on GitLab or Bitbucket, or on networks that don't allow inbound connections.
 
-The plugin is also distinct from the review tools already in Claude Code: the [security guidance plugin](/docs/en/security-guidance) reviews code as Claude writes it, [`/security-review`](/docs/en/commands#all-commands) runs a single pass over your branch, and [Code Review](/docs/en/code-review) reviews pull requests. For how the layers stack, see [How the plugin fits with other security tools](#how-the-plugin-fits-with-other-security-tools).
+The plugin is also distinct from the review tools already in Claude Code: the [security guidance plugin](https://code.claude.com/docs/en/security-guidance) reviews code as Claude writes it, [`/security-review`](https://code.claude.com/docs/en/commands#all-commands) runs a single pass over your branch, and [Code Review](https://code.claude.com/docs/en/code-review) reviews pull requests. For how the layers stack, see [How the plugin fits with other security tools](#how-the-plugin-fits-with-other-security-tools).
 
 ## Prerequisites
 
 To run the plugin, you need:
 
-* Claude Code v2.1.154 or later on a paid plan, for the [dynamic workflows](/docs/en/workflows) the scan uses to orchestrate its agents. On Pro, turn them on from the Dynamic workflows row in `/config`.
+* Claude Code v2.1.154 or later on a paid plan, for the [dynamic workflows](https://code.claude.com/docs/en/workflows) the scan uses to orchestrate its agents. On Pro, turn them on from the Dynamic workflows row in `/config`.
 * Python 3.9.6 or later available on your `PATH` as `python3`. Check with `python3 --version`. The plugin's tooling uses only the Python standard library, so nothing is installed.
 * Linux, macOS, or Windows.
 * Git, for change scans and for turning findings into patches; those jobs don't support other version control systems. A full scan works in any directory, with or without version control.
 
 ## Install the plugin
 
-In a Claude Code session, install from the [official Anthropic marketplace](/docs/en/discover-plugins#official-anthropic-marketplace):
+In a Claude Code session, install from the [official Anthropic marketplace](https://code.claude.com/docs/en/discover-plugins#official-anthropic-marketplace):
 ```text
 /plugin install claude-security@claude-plugins-official
 ```
@@ -33,7 +33,7 @@ In a Claude Code session, install from the [official Anthropic marketplace](/doc
 If the install fails, the fix depends on which message Claude Code reports:
 
 * If it reports `Marketplace "claude-plugins-official" not found`, add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
-* If it reports that it can't find the plugin in the marketplace, check the plugin name for a typo. Claude Code [refreshes a stale marketplace catalog and retries](/docs/en/discover-plugins#install-plugins) before reporting this. If you turned off [marketplace auto-update](/docs/en/discover-plugins#configure-auto-updates), refresh manually with `/plugin marketplace update claude-plugins-official` and retry the install.
+* If it reports that it can't find the plugin in the marketplace, check the plugin name for a typo. Claude Code [refreshes a stale marketplace catalog and retries](https://code.claude.com/docs/en/discover-plugins#install-plugins) before reporting this. If you turned off [marketplace auto-update](https://code.claude.com/docs/en/discover-plugins#configure-auto-updates), refresh manually with `/plugin marketplace update claude-plugins-official` and retry the install.
 
 Check the install summary. If it reports `Run /reload-plugins to activate.`, apply the pending change without a restart:
 ```text
@@ -71,7 +71,7 @@ A scan may take a while, may use a significant number of tokens, and needs Claud
 
 **Read the report**
 
-While the scan runs, it reports each stage as it starts, with the detail available under [`/workflows`](/docs/en/workflows). Results land in a timestamped directory in your repository, described in [Read the scan results](#read-the-scan-results).
+While the scan runs, it reports each stage as it starts, with the detail available under [`/workflows`](https://code.claude.com/docs/en/workflows). Results land in a timestamped directory in your repository, described in [Read the scan results](#read-the-scan-results).
 
 
 
@@ -86,7 +86,7 @@ Run `/claude-security` again and pick **Suggest patches**, then choose which fin
 Apply each patch from your shell with `git apply`, in its own pull request. Patches are never applied automatically.
 
 
-You don't have to start from the menu: ask for a job directly, as arguments to the command, such as `/claude-security scan my branch`, or in plain language, such as "scan commit abc1234". The plugin works best in [auto mode](/docs/en/permission-modes), which lets the scan's agents proceed without a permission prompt at each step; the plugin reminds you how to enable it when a job starts.
+You don't have to start from the menu: ask for a job directly, as arguments to the command, such as `/claude-security scan my branch`, or in plain language, such as "scan commit abc1234". The plugin works best in [auto mode](https://code.claude.com/docs/en/permission-modes), which lets the scan's agents proceed without a permission prompt at each step; the plugin reminds you how to enable it when a job starts.
 
 ### Scan only your changes
 
@@ -127,14 +127,14 @@ When the patched code has no tests, the patch's note says so, so you know its re
 
 ## How the plugin fits with other security tools
 
-The Claude Security plugin is the on-demand deep-scan layer in a defense-in-depth stack, alongside the [security guidance plugin](/docs/en/security-guidance), [`/security-review`](/docs/en/commands#all-commands), [Code Review](/docs/en/code-review), the managed [Claude Security](https://claude.com/product/claude-security) product, and your existing scanners:
+The Claude Security plugin is the on-demand deep-scan layer in a defense-in-depth stack, alongside the [security guidance plugin](https://code.claude.com/docs/en/security-guidance), [`/security-review`](https://code.claude.com/docs/en/commands#all-commands), [Code Review](https://code.claude.com/docs/en/code-review), the managed [Claude Security](https://claude.com/product/claude-security) product, and your existing scanners:
 
 | Stage                  | Tool                                                                           | What it covers                                                                             |
 | :--------------------- | :----------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------- |
-| In session             | [Security guidance plugin](/docs/en/security-guidance)                              | Common vulnerabilities in code Claude writes, fixed in the same session                    |
-| On demand, single pass | [`/security-review`](/docs/en/commands#all-commands)                                | One-time security pass on the current branch                                               |
+| In session             | [Security guidance plugin](https://code.claude.com/docs/en/security-guidance)                              | Common vulnerabilities in code Claude writes, fixed in the same session                    |
+| On demand, single pass | [`/security-review`](https://code.claude.com/docs/en/commands#all-commands)                                | One-time security pass on the current branch                                               |
 | On demand, deep scan   | Claude Security plugin                                                         | Multi-agent scan of a repository or diff, with independently reviewed findings and patches |
-| On pull request        | [Code Review](/docs/en/code-review), Team and Enterprise plans                      | Multi-agent correctness and security review with full codebase context                     |
+| On pull request        | [Code Review](https://code.claude.com/docs/en/code-review), Team and Enterprise plans                      | Multi-agent correctness and security review with full codebase context                     |
 | Managed                | [Claude Security](https://claude.com/product/claude-security), Enterprise plan | Hosted scanning that monitors connected repositories                                       |
 | In CI                  | Your existing static analysis and dependency scanners                          | Language-specific rules, supply-chain checks, and policy enforcement                       |
 
@@ -150,8 +150,8 @@ The plugin doesn't replace your existing source-code security tools. Run it alon
 
 To go deeper on the pieces this page touches:
 
-* [Security guidance plugin](/docs/en/security-guidance): catch issues in code as Claude writes it, in the same session
-* [Code Review](/docs/en/code-review): set up the PR-time multi-agent review
+* [Security guidance plugin](https://code.claude.com/docs/en/security-guidance): catch issues in code as Claude writes it, in the same session
+* [Code Review](https://code.claude.com/docs/en/code-review): set up the PR-time multi-agent review
 * [Claude Security](https://claude.com/product/claude-security): the managed service that monitors connected repositories
-* [Claude Code security](/docs/en/security): how Claude Code approaches trust, permissions, and safeguards
-* [Discover and install plugins](/docs/en/discover-plugins#official-anthropic-marketplace): browse other official plugins
+* [Claude Code security](https://code.claude.com/docs/en/security): how Claude Code approaches trust, permissions, and safeguards
+* [Discover and install plugins](https://code.claude.com/docs/en/discover-plugins#official-anthropic-marketplace): browse other official plugins

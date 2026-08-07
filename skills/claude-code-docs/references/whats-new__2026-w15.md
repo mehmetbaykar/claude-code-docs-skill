@@ -1,5 +1,5 @@
 ---
-title: Week 15 \u00b7 April 6\u201310, 2026
+title: "Week 15 · April 6–10, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w15
 path: /docs/en/whats-new/2026-w15
 ---
@@ -101,4 +101,4 @@ Amazon Bedrock powered by Mantle: set `CLAUDE\_CODE\_USE\_MANTLE=1`
 Hardened Bash tool permissions: backslash-escaped flags, env-var prefixes, `/dev/tcp` redirects, and compound commands now prompt correctly
 `UserPromptSubmit` hooks can set the session title via `hookSpecificOutput.sessionTitle`
 
-[Full changelog for v2.1.92–v2.1.101 →](/docs/en/changelog#2-1-92)
+[Full changelog for v2.1.92–v2.1.101 →](https://code.claude.com/docs/en/changelog#2-1-92)

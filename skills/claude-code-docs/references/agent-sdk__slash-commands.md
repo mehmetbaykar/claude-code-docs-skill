@@ -1,5 +1,5 @@
 ---
-title: Slash Commands in the SDK
+title: "Slash Commands in the SDK"
 source: https://code.claude.com/docs/en/agent-sdk/slash-commands
 path: /docs/en/agent-sdk/slash-commands
 ---
@@ -108,7 +108,7 @@ A query can end with an error result, for example when the `maxTurns` / `max_tur
 
 After yielding that final result message, the SDK raises an error, because the CLI process exits with a non-zero code.
 
-Wrap the loop in a `try`/`catch` in TypeScript or `try`/`except` in Python if your command might hit the limit, as shown in [Single Message Input](/docs/en/agent-sdk/streaming-vs-single-mode#single-message-input), or set `maxTurns` high enough for the work to complete. In Python, catch `Exception`: the SDK surfaces error results as a plain `Exception`.
+Wrap the loop in a `try`/`catch` in TypeScript or `try`/`except` in Python if your command might hit the limit, as shown in [Single Message Input](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode#single-message-input), or set `maxTurns` high enough for the work to complete. In Python, catch `Exception`: the SDK surfaces error results as a plain `Exception`.
 
 ## Common Slash Commands
 
@@ -185,19 +185,19 @@ The `/compact` command reduces the size of your conversation history by summariz
   asyncio.run(main())
 ```
 
-A `compact_boundary` message only arrives when compaction ran. With nothing to summarize, `/compact` reports the reason instead of raising: the run still ends with a `success` result, no `compact_boundary` message is emitted, and the result text carries the message, for example `Not enough messages to compact.` after a single short exchange. A fresh one-shot `query()` call starts with empty context, so use this pattern in a session with prior turns, for example in [streaming input mode](/docs/en/agent-sdk/streaming-vs-single-mode) or when resuming a session.
+A `compact_boundary` message only arrives when compaction ran. With nothing to summarize, `/compact` reports the reason instead of raising: the run still ends with a `success` result, no `compact_boundary` message is emitted, and the result text carries the message, for example `Not enough messages to compact.` after a single short exchange. A fresh one-shot `query()` call starts with empty context, so use this pattern in a session with prior turns, for example in [streaming input mode](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode) or when resuming a session.
 
 ### `/clear` - Reset conversation context
 
-The `/clear` command resets the conversation to an empty context, so subsequent prompts start with no prior conversation history. The previous conversation remains on disk and can be returned to by passing its session ID to the [`resume` option](/docs/en/agent-sdk/sessions#resume-by-id).
+The `/clear` command resets the conversation to an empty context, so subsequent prompts start with no prior conversation history. The previous conversation remains on disk and can be returned to by passing its session ID to the [`resume` option](https://code.claude.com/docs/en/agent-sdk/sessions#resume-by-id).
 
-This is useful in [streaming input mode](/docs/en/agent-sdk/streaming-vs-single-mode), where you send multiple prompts over a single connection. For one-shot `query()` calls, each call already starts with empty context, so sending `/clear` has no practical effect; start a new `query()` instead.
+This is useful in [streaming input mode](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode), where you send multiple prompts over a single connection. For one-shot `query()` calls, each call already starts with empty context, so sending `/clear` has no practical effect; start a new `query()` instead.
 
 ## Creating Custom Slash Commands
 
 In addition to using built-in slash commands, you can create your own custom commands that are available through the SDK. You define custom commands as markdown files in specific directories, the same way you configure subagents.
 
-The `.claude/commands/` directory is the legacy format. The recommended format is `.claude/skills/<name>/SKILL.md`, which supports the same slash-command invocation (`/name`) plus autonomous invocation by Claude. See [Skills](/docs/en/agent-sdk/skills) for the current format. The CLI continues to support both formats, and the examples below remain accurate for `.claude/commands/`.
+The `.claude/commands/` directory is the legacy format. The recommended format is `.claude/skills/<name>/SKILL.md`, which supports the same slash-command invocation (`/name`) plus autonomous invocation by Claude. See [Skills](https://code.claude.com/docs/en/agent-sdk/skills) for the current format. The CLI continues to support both formats, and the examples below remain accurate for `.claude/commands/`.
 
 ### File Locations
 
@@ -359,7 +359,7 @@ Use in SDK:
   asyncio.run(main())
 ```
 
-If the prompt passes fewer arguments than the placeholders reference, unmatched indexed placeholders such as `$1` stay in the command text verbatim. For the full substitution behavior, including named arguments, see [available string substitutions](/docs/en/skills#available-string-substitutions).
+If the prompt passes fewer arguments than the placeholders reference, unmatched indexed placeholders such as `$1` stay in the command text verbatim. For the full substitution behavior, including named arguments, see [available string substitutions](https://code.claude.com/docs/en/skills#available-string-substitutions).
 
 #### Bash Command Execution
 
@@ -516,8 +516,8 @@ Use these commands through the SDK:
 
 ## See Also
 
-* [Slash Commands](/docs/en/skills) - Complete slash command documentation
-* [Subagents in the SDK](/docs/en/agent-sdk/subagents) - Similar filesystem-based configuration for subagents
-* [TypeScript SDK reference](/docs/en/agent-sdk/typescript) - Complete API documentation
-* [SDK overview](/docs/en/agent-sdk/overview) - General SDK concepts
-* [CLI reference](/docs/en/cli-reference) - Command-line interface
+* [Slash Commands](https://code.claude.com/docs/en/skills) - Complete slash command documentation
+* [Subagents in the SDK](https://code.claude.com/docs/en/agent-sdk/subagents) - Similar filesystem-based configuration for subagents
+* [TypeScript SDK reference](https://code.claude.com/docs/en/agent-sdk/typescript) - Complete API documentation
+* [SDK overview](https://code.claude.com/docs/en/agent-sdk/overview) - General SDK concepts
+* [CLI reference](https://code.claude.com/docs/en/cli-reference) - Command-line interface

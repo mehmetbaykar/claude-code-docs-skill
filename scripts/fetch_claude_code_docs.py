@@ -26,10 +26,11 @@ RAW_DIR = REFERENCES_DIR / "_raw"
 MANIFEST_FILE = "docs_manifest.json"
 
 CLAUDE_CODE_BASE_URL = "https://code.claude.com"
-SITEMAP_URLS = [
-    f"{CLAUDE_CODE_BASE_URL}/docs/sitemap.xml",
-    "https://docs.anthropic.com/sitemap.xml",
-]
+SITEMAP_URLS = [f"{CLAUDE_CODE_BASE_URL}/docs/sitemap.xml"]
+# Machine-readable index used as a second discovery source. The former
+# docs.anthropic.com sitemap fallback no longer lists any Claude Code page, so
+# it could only ever resolve to "no pages discovered".
+LLMS_TXT_URL = f"{CLAUDE_CODE_BASE_URL}/docs/llms.txt"
 
 KEEP_PATH_PREFIX = "/docs/en/"
 LEGACY_KEEP_PATH_PREFIX = "/en/docs/claude-code/"
@@ -55,6 +56,14 @@ RETRY_BASE_DELAY_SECONDS = 1
 RETRY_MAX_DELAY_SECONDS = 10
 MAX_THROTTLE_RETRIES = 5
 RAW_FALLBACK_WARNING_THRESHOLD = 0.2
+
+# Coverage guards. A documentation mirror that silently keeps serving old
+# content is worse than one that fails loudly, so the run fails when live
+# coverage collapses.
+MAX_STALE_RATIO = 0.2
+MAX_SKIPPED_RATIO = 0.2
+MIN_DISCOVERY_RATIO = 0.8
+FETCH_TOOL_VERSION = "2.0"
 
 
 logging.basicConfig(
@@ -262,52 +271,76 @@ def title_from_path(path: str) -> str:
     return " ".join(part.capitalize() for part in re.split(r"[/_-]+", slug) if part)
 
 
-def discover_sitemap(session: requests.Session) -> str:
+def paths_from_sitemaps(session: requests.Session) -> set[str]:
+    """Collect documentation paths from the first sitemap that yields URLs."""
+
     for sitemap_url in SITEMAP_URLS:
         logger.info("Trying sitemap: %s", sitemap_url)
         try:
-            sitemap_text = fetch_text(session, sitemap_url)
+            sitemap_text = fetch_text(session, sitemap_url, allow_404=True)
         except Exception as error:  # noqa: BLE001 - try the next candidate.
             logger.warning("Failed to fetch sitemap %s: %s", sitemap_url, error)
             continue
-        if sitemap_text and xml_locs(sitemap_text):
-            logger.info("Using sitemap: %s", sitemap_url)
-            return sitemap_url
+        if not sitemap_text:
+            continue
 
-    raise RuntimeError("Could not find a valid Claude Code sitemap")
-
-
-def discover_claude_code_pages(
-    session: requests.Session, sitemap_url: str
-) -> list[ClaudeCodePage]:
-    logger.info("Fetching sitemap: %s", sitemap_url)
-    sitemap_text = fetch_text(session, sitemap_url)
-    if sitemap_text is None:
-        raise RuntimeError("Sitemap returned no content")
-
-    locs = xml_locs(sitemap_text)
-    if not locs:
-        raise RuntimeError("No URLs found in sitemap")
-
-    doc_urls: set[str] = set()
-    nested_sitemaps = [url for url in locs if url.endswith(".xml")]
-    if nested_sitemaps:
-        for nested_url in nested_sitemaps:
+        locs = xml_locs(sitemap_text)
+        for nested_url in [url for url in locs if url.endswith(".xml")]:
             logger.info("Fetching nested sitemap: %s", nested_url)
-            nested_text = fetch_text(session, nested_url)
-            if nested_text is None:
+            try:
+                nested_text = fetch_text(session, nested_url, allow_404=True)
+            except Exception as error:  # noqa: BLE001 - skip an unreadable child.
+                logger.warning("Failed to fetch %s: %s", nested_url, error)
                 continue
-            doc_urls.update(
-                url for url in xml_locs(nested_text) if is_claude_code_doc_url(url)
-            )
-    else:
-        doc_urls.update(url for url in locs if is_claude_code_doc_url(url))
+            if nested_text:
+                locs.extend(xml_locs(nested_text))
 
+        paths = {
+            normalize_path(urlparse(url).path)
+            for url in locs
+            if is_claude_code_doc_url(url)
+        }
+        if paths:
+            logger.info(
+                "Discovered %s documentation paths from %s", len(paths), sitemap_url
+            )
+            return paths
+
+    logger.warning("No documentation paths discovered from any sitemap")
+    return set()
+
+
+def paths_from_llms_txt(session: requests.Session) -> set[str]:
+    """Collect documentation paths from the llms.txt index."""
+
+    logger.info("Fetching llms.txt: %s", LLMS_TXT_URL)
+    try:
+        llms_text = fetch_text(session, LLMS_TXT_URL, allow_404=True)
+    except Exception as error:  # noqa: BLE001 - discovery falls back to sitemap.
+        logger.warning("Failed to fetch %s: %s", LLMS_TXT_URL, error)
+        return set()
+    if not llms_text:
+        return set()
+
+    paths: set[str] = set()
+    for match in re.finditer(
+        r"https://code\.claude\.com(/docs/en/[A-Za-z0-9_./-]*)", llms_text
+    ):
+        path = normalize_path(match.group(1))
+        # llms.txt spells the weekly digest index as `whats-new/index`, which is
+        # the same page the sitemap lists as `whats-new`.
+        path = path.removesuffix("/index") or path
+        if is_claude_code_doc_url(f"{CLAUDE_CODE_BASE_URL}{path}"):
+            paths.add(path)
+
+    logger.info("Discovered %s documentation paths from llms.txt", len(paths))
+    return paths
+
+
+def pages_from_paths(paths: set[str]) -> list[ClaudeCodePage]:
     pages: list[ClaudeCodePage] = []
     filename_to_path: dict[str, str] = {}
-    for url in sorted(doc_urls):
-        parsed = urlparse(url)
-        path = normalize_path(parsed.path)
+    for path in sorted(paths):
         filename = path_to_filename(path)
         prior_path = filename_to_path.get(filename)
         if prior_path is not None and prior_path != path:
@@ -316,16 +349,22 @@ def discover_claude_code_pages(
                 f"{filename!r}; adjust path_to_filename"
             )
         filename_to_path[filename] = path
-        base_url = f"{parsed.scheme}://{parsed.netloc}"
         pages.append(
             ClaudeCodePage(
-                url=f"{base_url}{path}",
+                url=f"{CLAUDE_CODE_BASE_URL}{path}",
                 path=path,
                 filename=filename,
                 title=title_from_path(path),
             )
         )
+    return pages
 
+
+def discover_claude_code_pages(session: requests.Session) -> list[ClaudeCodePage]:
+    """Discover pages from the sitemap and llms.txt, then merge both sets."""
+
+    paths = paths_from_sitemaps(session) | paths_from_llms_txt(session)
+    pages = pages_from_paths(paths)
     logger.info("Discovered %s Claude Code documentation URLs", len(pages))
     return pages
 
@@ -684,6 +723,17 @@ def _apply_outside_fences(text: str, transform) -> str:
     )
 
 
+def absolutize_links(content: str) -> str:
+    """Rewrite root-relative Markdown links to absolute documentation URLs."""
+
+    def replace(match: re.Match[str]) -> str:
+        return f"]({CLAUDE_CODE_BASE_URL}{match.group('target')})"
+
+    # Anchored on the link target rather than the label, because labels can
+    # themselves contain brackets.
+    return re.sub(r"\]\((?P<target>/(?!/)[^)\s]*)\)", replace, content)
+
+
 def clean_mdx(raw_content: str) -> str:
     content = raw_content.replace("\r\n", "\n")
     content = preclean_claude_mdx(content)
@@ -695,6 +745,7 @@ def clean_mdx(raw_content: str) -> str:
         text = convert_html_links(text)
         text = convert_keyboard_tags(text)
         text = strip_inline_markdown_noise(text)
+        text = absolutize_links(text)
         return text
 
     content = _apply_outside_fences(content, outside_fences)
@@ -737,10 +788,17 @@ def extract_title(content: str, fallback: str) -> str:
     return fallback
 
 
+def yaml_quoted(value: str) -> str:
+    """Quote a YAML scalar without escaping non-ASCII characters."""
+
+    escaped = value.replace("\\", "\\\\").replace('"', '\\"')
+    return f'"{escaped}"'
+
+
 def frontmatter_for(page: ClaudeCodePage, *, source_url: str) -> str:
     return (
         "---\n"
-        f"title: {json.dumps(page.title)[1:-1]}\n"
+        f"title: {yaml_quoted(page.title)}\n"
         f"source: {source_url}\n"
         f"path: {page.path}\n"
         "---\n\n"
@@ -792,6 +850,7 @@ def save_page(
     current_files: set[str],
     *,
     raw_content: str | None = None,
+    status: str = "live",
 ) -> None:
     content_hash = sha256(content)
     old_entry = manifest.get("files", {}).get(page.filename, {})
@@ -815,8 +874,60 @@ def save_page(
         "source_url": source_url,
         "hash": content_hash,
         "last_updated": last_updated,
+        "status": status,
     }
     current_files.add(page.filename)
+
+
+def load_previous_reference(
+    page: ClaudeCodePage, manifest: dict
+) -> tuple[str, str] | None:
+    """Return ``(content, source_url)`` for a previously mirrored page."""
+
+    entry = manifest.get("files", {}).get(page.filename)
+    reference_path = REFERENCES_DIR / page.filename
+    if not isinstance(entry, dict) or not reference_path.exists():
+        return None
+    return reference_path.read_text(encoding="utf-8"), entry.get("source_url", page.url)
+
+
+def check_coverage_guards(
+    *,
+    discovered: int,
+    live: int,
+    stale: int,
+    skipped: int,
+    previous_file_count: int,
+) -> list[str]:
+    """Return the reasons this run must fail instead of committing."""
+
+    problems: list[str] = []
+    if discovered == 0:
+        problems.append("Discovery returned no documentation pages")
+        return problems
+
+    if live == 0:
+        problems.append("No page was fetched live; the mirror would be frozen")
+
+    if previous_file_count and discovered < previous_file_count * MIN_DISCOVERY_RATIO:
+        problems.append(
+            f"Discovered {discovered} pages, below {MIN_DISCOVERY_RATIO:.0%} of the "
+            f"previous {previous_file_count}; refusing to delete references"
+        )
+
+    if stale > discovered * MAX_STALE_RATIO:
+        problems.append(
+            f"{stale}/{discovered} pages served stale content, above the "
+            f"{MAX_STALE_RATIO:.0%} threshold"
+        )
+
+    if skipped > discovered * MAX_SKIPPED_RATIO:
+        problems.append(
+            f"{skipped}/{discovered} pages had no usable Markdown, above the "
+            f"{MAX_SKIPPED_RATIO:.0%} threshold"
+        )
+
+    return problems
 
 
 def fetch_and_save_pages(
@@ -826,6 +937,7 @@ def fetch_and_save_pages(
     current_files: set[str] = set()
     skipped: list[dict] = []
     failed: list[dict] = []
+    stale: list[dict] = []
     raw_fallback_count = 0
     successful = 0
 
@@ -889,8 +1001,30 @@ def fetch_and_save_pages(
             successful += 1
             time.sleep(RATE_LIMIT_SECONDS)
         except Exception as error:  # noqa: BLE001 - collect per-page failures.
-            logger.error("Failed to process %s: %s", page.path, error)
-            failed.append({"path": page.path, "url": page.url, "error": str(error)})
+            previous = load_previous_reference(page, manifest)
+            if previous is None:
+                logger.error("Failed to process %s: %s", page.path, error)
+                failed.append(
+                    {"path": page.path, "url": page.url, "error": str(error)}
+                )
+                continue
+
+            previous_content, previous_source = previous
+            logger.warning(
+                "Serving stale content for %s after fetch failure: %s",
+                page.path,
+                error,
+            )
+            stale.append({"path": page.path, "url": page.url, "error": str(error)})
+            save_page(
+                page,
+                previous_content,
+                previous_source,
+                manifest,
+                new_files,
+                current_files,
+                status="stale",
+            )
 
     cleanup_old_files(manifest, current_files)
 
@@ -901,6 +1035,7 @@ def fetch_and_save_pages(
         "description": "Claude Code documentation mirror manifest. Files live beside this manifest in references/.",
         "source": {
             "sitemap_urls": SITEMAP_URLS,
+            "llms_txt_url": LLMS_TXT_URL,
             "base_url": CLAUDE_CODE_BASE_URL,
         },
         "filters": {
@@ -914,11 +1049,13 @@ def fetch_and_save_pages(
         "fetch_metadata": {
             "total_pages_discovered": len(pages),
             "pages_fetched_successfully": successful,
+            "pages_stale": len(stale),
             "pages_skipped": len(skipped),
             "pages_failed": len(failed),
             "failed_pages": failed,
+            "stale_pages": stale,
             "raw_fallback_pages": raw_fallback_count,
-            "fetch_tool_version": "1.0",
+            "fetch_tool_version": FETCH_TOOL_VERSION,
         },
     }
     if _manifest_projection(manifest) == _manifest_projection(new_manifest):
@@ -943,8 +1080,17 @@ def fetch_and_save_pages(
             }
         )
 
+    problems = check_coverage_guards(
+        discovered=len(pages),
+        live=successful,
+        stale=len(stale),
+        skipped=len(skipped),
+        previous_file_count=len(manifest.get("files", {})),
+    )
     if failed:
-        raise RuntimeError(f"{len(failed)} page(s) failed; see {MANIFEST_FILE}")
+        problems.append(f"{len(failed)} page(s) failed; see {MANIFEST_FILE}")
+    if problems:
+        raise RuntimeError("; ".join(problems))
 
     return new_manifest
 
@@ -963,8 +1109,7 @@ def main() -> int:
 
     manifest = load_manifest()
     with requests.Session() as session:
-        sitemap_url = discover_sitemap(session)
-        pages = discover_claude_code_pages(session, sitemap_url)
+        pages = discover_claude_code_pages(session)
         if not pages:
             raise RuntimeError("No Claude Code pages discovered")
         new_manifest = fetch_and_save_pages(session, pages, manifest)
@@ -972,9 +1117,11 @@ def main() -> int:
     elapsed = time.monotonic() - start
     metadata = new_manifest["fetch_metadata"]
     logger.info(
-        "Fetch complete in %.1fs: %s fetched, %s skipped, %s failed, %s raw fallbacks",
+        "Fetch complete in %.1fs: %s live, %s stale, %s skipped, %s failed, "
+        "%s raw fallbacks",
         elapsed,
         metadata["pages_fetched_successfully"],
+        metadata["pages_stale"],
         metadata["pages_skipped"],
         metadata["pages_failed"],
         metadata["raw_fallback_pages"],

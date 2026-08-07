@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting
+title: "Troubleshooting"
 source: https://code.claude.com/docs/en/agent-sdk/troubleshooting
 path: /docs/en/agent-sdk/troubleshooting
 ---
@@ -23,7 +23,7 @@ The message includes the configured path when you set `ClaudeAgentOptions(cli_pa
 
 To fix it:
 
-* Install Claude Code if it isn't installed. See [Install Claude Code](/docs/en/setup#install-claude-code) for the command on your platform.
+* Install Claude Code if it isn't installed. See [Install Claude Code](https://code.claude.com/docs/en/setup#install-claude-code) for the command on your platform.
 * If you set `cli_path`, confirm the file exists and is the `claude` executable.
 * If you rely on `PATH` resolution, confirm `claude --version` works in the same environment your application runs in. Processes you launch outside your shell, such as from an IDE or a service manager, often run with a different `PATH`.
 
@@ -55,7 +55,7 @@ Before `claude-agent-sdk` 0.2.124, the Python SDK spawned batch scripts through 
 
 A result message can end with `subtype: "success"` while `structured_output` is `None` in Python or `undefined` in TypeScript. The run completes, but no validated output exists. One way to hit this is a schema no output can satisfy, for example conflicting length constraints. The run ends without a validation error, and the only signal is the missing `structured_output`.
 
-Treat this result as a failure in application code. Check both that `subtype` is `success` and that `structured_output` is present before using it. The [Error handling](/docs/en/agent-sdk/structured-outputs#error-handling) section shows this pattern for both SDKs.
+Treat this result as a failure in application code. Check both that `subtype` is `success` and that `structured_output` is present before using it. The [Error handling](https://code.claude.com/docs/en/agent-sdk/structured-outputs#error-handling) section shows this pattern for both SDKs.
 
 If it happens repeatedly with a schema you believe is correct, verify the schema is satisfiable, then simplify it until outputs validate, and reintroduce constraints one at a time.
 

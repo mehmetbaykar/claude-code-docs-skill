@@ -1,5 +1,5 @@
 ---
-title: Agent SDK reference - TypeScript
+title: "Agent SDK reference - TypeScript"
 source: https://code.claude.com/docs/en/agent-sdk/typescript
 path: /docs/en/agent-sdk/typescript
 ---

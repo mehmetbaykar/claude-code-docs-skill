@@ -1,5 +1,5 @@
 ---
-title: Recommend plugins for your org
+title: "Recommend plugins for your org"
 source: https://code.claude.com/docs/en/plugin-relevance
 path: /docs/en/plugin-relevance
 ---
@@ -10,11 +10,11 @@ path: /docs/en/plugin-relevance
 
 If you operate a plugin marketplace for your organization, you can have Claude Code suggest specific plugins to users based on what they are working on. Add a `relevance` block to a plugin's entry in `marketplace.json`, then allowlist the marketplace in managed settings. When a user's session matches one of the declared signals, Claude Code surfaces an install suggestion for that plugin.
 
-Marketplace-declared suggestions are opt-in per marketplace through [managed settings](/docs/en/settings#settings-files). No marketplace's `relevance` declarations produce suggestions until an administrator adds it to the allowlist, including the official Anthropic marketplace. Claude Code also includes one built-in suggestion that is independent of this allowlist; that tip and all marketplace-declared tips are disabled when [`spinnerTipsEnabled`](/docs/en/settings#available-settings) is set to `false`.
+Marketplace-declared suggestions are opt-in per marketplace through [managed settings](https://code.claude.com/docs/en/settings#settings-files). No marketplace's `relevance` declarations produce suggestions until an administrator adds it to the allowlist, including the official Anthropic marketplace. Claude Code also includes one built-in suggestion that is independent of this allowlist; that tip and all marketplace-declared tips are disabled when [`spinnerTipsEnabled`](https://code.claude.com/docs/en/settings#available-settings) is set to `false`.
 
 This feature requires Claude Code v2.1.152 or later. Older clients ignore the `relevance` field.
 
-This page is for marketplace operators and enterprise administrators. If you are looking to install plugins, see [Discover and install plugins](/docs/en/discover-plugins).
+This page is for marketplace operators and enterprise administrators. If you are looking to install plugins, see [Discover and install plugins](https://code.claude.com/docs/en/discover-plugins).
 
 ## How it works
 
@@ -102,7 +102,7 @@ Claude Code ignores unknown fields under `relevance` and `relevance.signals` at 
 
 ## Enable suggestions in managed settings
 
-Declaring `relevance` in `marketplace.json` is not enough on its own. An administrator must allowlist the marketplace in [managed settings](/docs/en/settings#settings-files) before its suggestions appear to users.
+Declaring `relevance` in `marketplace.json` is not enough on its own. An administrator must allowlist the marketplace in [managed settings](https://code.claude.com/docs/en/settings#settings-files) before its suggestions appear to users.
 
 Add the marketplace name to `pluginSuggestionMarketplaces`. For any marketplace other than the official Anthropic marketplace, also declare the marketplace source in the same managed settings, either as that name's entry in `extraKnownMarketplaces` or as an entry in `strictKnownMarketplaces`. The allowlisted name is ignored if the marketplace registered on the machine came from a different source. This prevents an unrelated source from registering under an allowlisted name to have its plugins suggested across your org.
 
@@ -156,6 +156,6 @@ The validator reports unknown keys under `relevance` and `relevance.signals` as 
 
 ## See also
 
-* [Create and distribute a plugin marketplace](/docs/en/plugin-marketplaces): build the marketplace that hosts your plugins
-* [Recommend your plugin from your CLI](/docs/en/plugin-hints): prompt users from your own CLI instead of from Claude Code's session signals
-* [Settings](/docs/en/settings): full reference for `pluginSuggestionMarketplaces` and `extraKnownMarketplaces`
+* [Create and distribute a plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces): build the marketplace that hosts your plugins
+* [Recommend your plugin from your CLI](https://code.claude.com/docs/en/plugin-hints): prompt users from your own CLI instead of from Claude Code's session signals
+* [Settings](https://code.claude.com/docs/en/settings): full reference for `pluginSuggestionMarketplaces` and `extraKnownMarketplaces`

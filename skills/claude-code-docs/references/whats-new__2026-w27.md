@@ -1,5 +1,5 @@
 ---
-title: Week 27 \u00b7 June 29 \u2013 July 3, 2026
+title: "Week 27 · June 29 – July 3, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w27
 path: /docs/en/whats-new/2026-w27
 ---
@@ -81,4 +81,4 @@ Hook matchers with hyphenated identifiers like `code-reviewer` now exact-match i
 Transient server rate-limit errors unrelated to your usage limit are now retried automatically with backoff for subscribers instead of failing the turn
 The streaming idle watchdog is now on by default for all providers: it aborts and retries when a response stream produces no events for 5 minutes (`CLAUDE\_ENABLE\_STREAM\_WATCHDOG=0` to disable)
 
-[Full changelog for v2.1.195–v2.1.201 →](/docs/en/changelog#2-1-195)
+[Full changelog for v2.1.195–v2.1.201 →](https://code.claude.com/docs/en/changelog#2-1-195)

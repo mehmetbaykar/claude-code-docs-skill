@@ -2,17 +2,56 @@ name: Update Claude Code Documentation
 
 on:
   schedule:
-    - cron: "0 */3 * * *"
+    # Staggered across the docs-skill repositories to spread upstream load.
+    - cron: "25 */3 * * *"
   workflow_dispatch:
+  pull_request:
+    paths:
+      - "scripts/**"
+      - "tests/**"
+      - ".github/workflows/update-docs.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/**"
+      - "tests/**"
+      - ".github/workflows/update-docs.yml"
 
 permissions:
-  contents: write
-  issues: write
+  contents: read
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements-dev.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scripts/requirements-dev.txt
+
+      - name: Run tests
+        run: python -m pytest tests -q
+
   update-docs:
+    needs: test
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    permissions:
+      contents: write
+      issues: write
     concurrency:
       group: update-docs
       cancel-in-progress: false
@@ -22,9 +61,9 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
-          python-version: "3.11"
+          python-version: "3.12"
           cache: pip
           cache-dependency-path: scripts/requirements.txt
 
@@ -44,63 +83,89 @@ jobs:
             exit 0
           fi
 
-          changed=$(git diff --name-status --cached | awk '$1 == "M" {print $2}' | paste -sd ", " -)
-          added=$(git diff --name-status --cached | awk '$1 == "A" {print $2}' | paste -sd ", " -)
-          removed=$(git diff --name-status --cached | awk '$1 == "D" {print $2}' | paste -sd ", " -)
+          added=$(git diff --name-status --cached | awk '$1 == "A" {print $2}')
+          modified=$(git diff --name-status --cached | awk '$1 == "M" {print $2}')
+          removed=$(git diff --name-status --cached | awk '$1 == "D" {print $2}')
 
-          msg="Update Claude Code docs - $(date +'%Y-%m-%d')"
-          [ -n "$changed" ] && msg="$msg | Updated: $changed"
-          [ -n "$added" ] && msg="$msg | Added: $added"
-          [ -n "$removed" ] && msg="$msg | Removed: $removed"
+          count() {
+            if [ -z "$1" ]; then echo 0; else printf '%s\n' "$1" | wc -l | tr -d ' '; fi
+          }
+
+          subject="Update Claude Code docs - $(date +'%Y-%m-%d') (+$(count "$added") ~$(count "$modified") -$(count "$removed"))"
 
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git commit -m "$msg"
+
+          {
+            printf '%s\n\n' "$subject"
+            if [ -n "$added" ]; then printf 'Added:\n%s\n\n' "$added"; fi
+            if [ -n "$modified" ]; then printf 'Updated:\n%s\n\n' "$modified"; fi
+            if [ -n "$removed" ]; then printf 'Removed:\n%s\n' "$removed"; fi
+          } | git commit -F -
+
           git push
+
+      - name: Close resolved failure issues
+        if: success() && github.event_name == 'schedule'
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const title = 'Claude Code documentation update failures';
+            const open = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              creator: 'app/github-actions',
+              per_page: 100,
+            });
+
+            for (const issue of open.data.filter((item) => item.title === title)) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `Resolved by a successful run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed',
+              });
+            }
 
       - name: Open or update failure issue
         if: failure() && github.event_name == 'schedule'
         uses: actions/github-script@v9
         with:
           script: |
-            const label = 'docs-fetch-failure';
+            const title = 'Claude Code documentation update failures';
             const date = new Date().toISOString().split('T')[0];
             const body = `Scheduled Claude Code docs fetch failed on ${date}. See the [workflow run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}) for details.`;
 
-            const existing = await github.rest.issues.listForRepo({
+            // Deduplicate on the issue title so alerting never depends on a
+            // label that may not exist in the repository.
+            const open = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
               repo: context.repo.repo,
               state: 'open',
-              labels: label,
-              per_page: 1,
+              per_page: 100,
             });
+            const existing = open.data.find((item) => item.title === title);
 
-            if (existing.data.length > 0) {
+            if (existing) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                issue_number: existing.data[0].number,
+                issue_number: existing.number,
                 body,
               });
               return;
             }
 
-            const labels = [];
-            try {
-              await github.rest.issues.getLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                name: label,
-              });
-              labels.push(label);
-            } catch (_) {
-              // Ignore missing label; create the issue without labels.
-            }
-
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: 'Claude Code documentation update failures',
+              title,
               body,
-              labels,
             });

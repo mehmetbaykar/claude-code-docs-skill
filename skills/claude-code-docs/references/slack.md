@@ -1,5 +1,5 @@
 ---
-title: Claude Code in Slack
+title: "Claude Code in Slack"
 source: https://code.claude.com/docs/en/slack
 path: /docs/en/slack
 ---
@@ -31,7 +31,7 @@ Before using Claude Code in Slack, ensure you have the following:
 | Requirement            | Details                                                                                           |
 | :--------------------- | :------------------------------------------------------------------------------------------------ |
 | Claude Plan            | Pro, Max, Team, or Enterprise with Claude Code access (premium seats or Chat + Claude Code seats) |
-| Claude Code on the web | Access to [Claude Code on the web](/docs/en/claude-code-on-the-web) must be enabled                    |
+| Claude Code on the web | Access to [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) must be enabled                    |
 | GitHub Account         | Connected to Claude Code on the web with at least one repository authenticated                    |
 | Slack Authentication   | Your Slack account linked to your Claude account via the Claude app                               |
 
@@ -170,7 +170,7 @@ This channel-based model allows teams to restrict Claude Code usage to specific 
 **On the web**: The complete Claude Code session with full conversation history, all code changes, file operations, and the ability to continue the session or create pull requests.
 
 For Enterprise and Team accounts, sessions created from Claude in Slack are
-automatically visible to the organization. See [Claude Code on the Web sharing](/docs/en/claude-code-on-the-web#share-sessions)
+automatically visible to the organization. See [Claude Code on the Web sharing](https://code.claude.com/docs/en/claude-code-on-the-web#share-sessions)
 for more details.
 
 ## Best practices
@@ -204,7 +204,7 @@ This error means your Claude account has no cloud environment yet, not that an a
 
 This entry applies to workspaces using [Claude Tag](https://claude.com/docs/claude-tag/overview), where Claude works in channels as your organization's shared identity, not as any member's account. If you created the channel's cloud environment at [claude.ai/code](https://claude.ai/code), it belongs to your personal account, and Claude can't start channel sessions in a personal environment. Claude Code fails the session immediately, and retrying doesn't help.
 
-If you're an Owner or admin, recreate the environment as an [organization-shared environment](/docs/en/cloud-environments#organization-shared-environments) from the **Cloud environments** page in [admin settings](https://claude.ai/admin-settings). You can apply it in two ways:
+If you're an Owner or admin, recreate the environment as an [organization-shared environment](https://code.claude.com/docs/en/cloud-environments#organization-shared-environments) from the **Cloud environments** page in [admin settings](https://claude.ai/admin-settings). You can apply it in two ways:
 
 * Set it as the organization default at [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code).
 * [Set it on the channel](https://claude.com/docs/claude-tag/admins/troubleshooting#channel-sessions-use-the-wrong-environment-or-can%E2%80%99t-find-one) in the Claude Tag admin settings.
