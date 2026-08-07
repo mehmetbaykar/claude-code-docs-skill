@@ -77,6 +77,8 @@ Anyone who uses the environment can read the values, and cloud environments have
 
 Run `/remote-env` in your terminal to choose the default environment for cloud sessions you create from the CLI, such as [`claude --cloud`](https://code.claude.com/docs/en/claude-code-on-the-web#from-terminal-to-web). The command opens a picker of your existing environments and saves your choice to the `remote.defaultEnvironmentId` key in your [user settings](https://code.claude.com/docs/en/settings#settings-files), so it applies in every project on your machine until you change it, unless the same key is set at a higher-precedence [settings layer](https://code.claude.com/docs/en/settings#settings-precedence), such as a repo's project settings.
 
+A [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments) ID, which has the form `ccpool_...`, follows a stricter source rule. See [`remote.defaultEnvironmentId`](https://code.claude.com/docs/en/settings#available-settings) for the settings layers Claude Code honors it from.
+
 `/remote-env` only sets the default: it doesn't start a session, and it can't add or edit environments. Manage them at [claude.ai/code](https://claude.ai/code).
 
 ### Archive an environment
@@ -160,7 +162,9 @@ Cloud sessions in Anthropic-hosted environments run behind an HTTP/HTTPS network
 
 ## What's available in cloud sessions
 
-Each session gets a fresh virtual machine (VM) running Ubuntu 24.04, regardless of your own operating system, with your repository cloned and common toolchains pre-installed. This section covers those defaults, the built-in GitHub tools, how to [run tests and services](#run-tests-start-services-and-add-packages), and the [resource limits](#resource-limits) each VM gets.
+In Anthropic-hosted environments, each session gets a fresh virtual machine (VM) running Ubuntu 24.04, regardless of your own operating system, with your repository cloned and common toolchains pre-installed. This section covers the Anthropic-hosted defaults, the built-in GitHub tools, how to [run tests and services](#run-tests-start-services-and-add-packages), and the [resource limits](#resource-limits) each VM gets.
+
+Sessions your organization routes to a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments) run on your own runners instead, with the tools your runner image provides.
 
 ### What carries over from your setup
 
@@ -277,7 +281,7 @@ To add packages that aren't pre-installed, use a [setup script](#setup-scripts).
 
 ### Resource limits
 
-Cloud sessions run with approximate resource ceilings that may change over time:
+Cloud sessions in Anthropic-hosted environments run with approximate resource ceilings that may change over time:
 
 * 4 vCPUs
 * 16 GB of RAM
