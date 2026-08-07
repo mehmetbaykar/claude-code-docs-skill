@@ -230,14 +230,20 @@ npm uninstall -g @anthropic-ai/claude-code
 ```
 
 Remove the legacy local npm install:
+
+
+**macOS/Linux**
 ```bash
-rm -rf ~/.claude/local
+    rm -rf ~/.claude/local
 ```
 
-On Windows, use PowerShell:
+
+
+**Windows PowerShell**
 ```powershell
-Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\local"
+    Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\local"
 ```
+
 
 Remove a Homebrew install on macOS. If you installed the `claude-code@latest` cask, substitute that name:
 ```bash
@@ -270,14 +276,20 @@ sudo chown -R $(whoami) ~/.local
 If `claude --version` prints a version but `claude` crashes or hangs on startup, run these checks to narrow down the cause. If `claude --version` says command not found, go to [Verify your PATH](#verify-your-path) first; the commands below assume `claude` is on your PATH.
 
 Confirm the binary exists and is executable:
+
+
+**macOS/Linux**
 ```bash
-ls -la "$(command -v claude)"
+    ls -la "$(command -v claude)"
 ```
 
-On Windows, use PowerShell:
+
+
+**Windows PowerShell**
 ```powershell
-Get-Command claude | Select-Object Source
+    Get-Command claude | Select-Object Source
 ```
+
 
 On Linux, check for missing shared libraries. If `ldd` shows missing libraries, you may need to install system packages. On Alpine Linux and other musl-based distributions, see [Alpine Linux setup](/docs/en/setup#alpine-linux-and-musl-based-distributions).
 ```bash
@@ -842,10 +854,22 @@ If you see `API Error: 400 ... "This organization has been disabled"` despite ha
 When `ANTHROPIC_API_KEY` is present and you have approved it, Claude Code uses that key instead of your subscription's OAuth credentials. In non-interactive mode with the `-p` flag, the key is always used when present. See [authentication precedence](/docs/en/authentication#authentication-precedence) for the full resolution order.
 
 To use your subscription instead, unset the environment variable and remove it from your shell profile:
+
+
+**macOS/Linux**
 ```bash
-unset ANTHROPIC_API_KEY
-claude
+    unset ANTHROPIC_API_KEY
+    claude
 ```
+
+
+
+**Windows PowerShell**
+```powershell
+    Remove-Item Env:ANTHROPIC_API_KEY
+    claude
+```
+
 
 Check `~/.zshrc`, `~/.bashrc`, or `~/.profile` for `export ANTHROPIC_API_KEY=...` lines and remove them to make the change permanent. On Windows, check your PowerShell profile at `$PROFILE` and your User environment variables for `ANTHROPIC_API_KEY`. Run `/status` inside Claude Code to confirm which authentication method is active.
 
