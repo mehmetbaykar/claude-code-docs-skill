@@ -443,8 +443,8 @@
       "title": "Claude apps gateway spend limits"
     },
     "claude-apps-gateway.md": {
-      "hash": "d5d2fe5f334d57e7f79286c3a7f64224121017f7b0622107d2e38ed7a43e613a",
-      "last_updated": "2026-08-07T00:05:11+00:00",
+      "hash": "edc6b4a8d0e9f1746d5b73032cf757cc2c92b7a9924233bc4512de2cedbe05d4",
+      "last_updated": "2026-08-07T15:59:25+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway",
       "path": "/docs/en/claude-apps-gateway",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway.md",
@@ -659,8 +659,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "44b9a68fd49feb4dd00b61542a17a9535afa7896f3fbcc080608b4af3f259ff3",
-      "last_updated": "2026-08-07T07:20:59+00:00",
+      "hash": "f0d74c04e144e708a9b52c6b85b7b57503795102d74860e70a6b819dcdccd1ca",
+      "last_updated": "2026-08-07T15:59:46+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -1083,8 +1083,8 @@
       "title": "Choose a sandbox environment"
     },
     "sandboxing.md": {
-      "hash": "8fa1c954a329f392735d802b63ba1e143b543029f733e760d9ae59498f79ffeb",
-      "last_updated": "2026-08-07T04:57:58+00:00",
+      "hash": "267a3501280453bf6fb66cd461653b07eac245a6a856c6c31df42fa1c717f6b1",
+      "last_updated": "2026-08-07T16:00:20+00:00",
       "original_url": "https://code.claude.com/docs/en/sandboxing",
       "path": "/docs/en/sandboxing",
       "source_url": "https://code.claude.com/docs/en/sandboxing.md",
@@ -1187,8 +1187,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "4e6c58546de8101c938a5467646e73583c2089a95ed23ca5e1295f6eacca296e",
-      "last_updated": "2026-08-07T07:21:34+00:00",
+      "hash": "a4b26b21f5274a8178082da4398b93ade9312956831b60fdcdb1db5194e9eaa9",
+      "last_updated": "2026-08-07T16:00:26+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1489,7 +1489,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-07T07:21:58+00:00",
+  "last_updated": "2026-08-07T16:00:49+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
