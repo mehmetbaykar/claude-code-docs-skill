@@ -1,5 +1,5 @@
 ---
-title: Week 26 \u00b7 June 22\u201326, 2026
+title: "Week 26 · June 22–26, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w26
 path: /docs/en/whats-new/2026-w26
 ---
@@ -51,4 +51,4 @@ Streaming responses use about 37% less CPU, and long-session memory growth from 
 `/review <pr>` now uses the same review engine as `/code-review medium`
 Bash mode `!` commands get live file path autocomplete
 
-[Full changelog for v2.1.185–v2.1.193 →](/docs/en/changelog#2-1-185)
+[Full changelog for v2.1.185–v2.1.193 →](https://code.claude.com/docs/en/changelog#2-1-185)

@@ -1,5 +1,5 @@
 ---
-title: Run parallel sessions with worktrees
+title: "Run parallel sessions with worktrees"
 source: https://code.claude.com/docs/en/worktrees
 path: /docs/en/worktrees
 ---
@@ -10,9 +10,9 @@ path: /docs/en/worktrees
 
 A [git worktree](https://git-scm.com/docs/git-worktree) is a separate working directory with its own files and branch, sharing the same repository history and remote as your main checkout. Running each Claude Code session in its own worktree means edits in one session never touch files in another, so one session can build a feature while a second fixes a bug.
 
-Worktrees require a git repository; for other version control systems, [configure hooks to replace the git logic](#non-git-version-control). In the [desktop app](/docs/en/desktop#work-in-parallel-with-sessions), every new session gets its own worktree automatically.
+Worktrees require a git repository; for other version control systems, [configure hooks to replace the git logic](#non-git-version-control). In the [desktop app](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessions), every new session gets its own worktree automatically.
 
-Worktrees are one of several ways to run Claude in parallel. They isolate file edits, while [subagents](/docs/en/sub-agents) and [agent teams](/docs/en/agent-teams) coordinate the work itself. See [Run agents in parallel](/docs/en/agents) to compare the approaches, or skip ahead to [Isolate subagents with worktrees](#isolate-subagents-with-worktrees) to use worktrees and subagents together.
+Worktrees are one of several ways to run Claude in parallel. They isolate file edits, while [subagents](https://code.claude.com/docs/en/sub-agents) and [agent teams](https://code.claude.com/docs/en/agent-teams) coordinate the work itself. See [Run agents in parallel](https://code.claude.com/docs/en/agents) to compare the approaches, or skip ahead to [Isolate subagents with worktrees](#isolate-subagents-with-worktrees) to use worktrees and subagents together.
 
 Most sessions need only the first two sections: [start Claude in a worktree](#start-claude-in-a-worktree), then [clean up when you exit](#clean-up-worktrees). Return to the rest of the page when you need to [resume a session](#resume-a-worktree-session), [change how worktrees are created](#customize-worktree-creation), or [debug a failure](#troubleshooting).
 
@@ -25,7 +25,7 @@ claude --worktree feature-auth
 
 Run the command again with a different name in another terminal to start a second isolated session. If you omit the name, Claude generates one such as `bright-running-fox`.
 
-Interactive runs require [workspace trust](/docs/en/security): if you haven't run Claude in the directory before, run `claude` once there to accept the trust dialog, or `--worktree` exits with an error prompting you to. Non-interactive runs with `-p` skip the trust check, so `claude -p --worktree` proceeds without it.
+Interactive runs require [workspace trust](https://code.claude.com/docs/en/security): if you haven't run Claude in the directory before, run `claude` once there to accept the trust dialog, or `--worktree` exits with an error prompting you to. Non-interactive runs with `-p` skip the trust check, so `claude -p --worktree` proceeds without it.
 
 Add `.claude/worktrees/` to your `.gitignore` so worktree contents don't appear as untracked files in your main checkout.
 
@@ -35,15 +35,15 @@ A worktree is a fresh checkout, so initialize your development environment there
 
 ### Ask Claude to create a worktree
 
-You can also ask Claude to "work in a worktree" during a session, and it creates one with the [`EnterWorktree`](/docs/en/tools-reference) tool. Once in a worktree, Claude can switch directly to another one under `.claude/worktrees/` by calling `EnterWorktree` with the target path; the previous worktree stays on disk untouched.
+You can also ask Claude to "work in a worktree" during a session, and it creates one with the [`EnterWorktree`](https://code.claude.com/docs/en/tools-reference) tool. Once in a worktree, Claude can switch directly to another one under `.claude/worktrees/` by calling `EnterWorktree` with the target path; the previous worktree stays on disk untouched.
 
-When Claude enters a path outside the repository's `.claude/worktrees/` directory, Claude Code asks for your approval first, because the move takes the session's working directory, write access, and project configuration such as `CLAUDE.md` and settings to that location. An `EnterWorktree` [permission rule](/docs/en/permissions) or choosing "don't ask again" doesn't suppress this prompt; only `bypassPermissions` mode skips it. Before v2.1.206, Claude could enter any existing worktree path without asking.
+When Claude enters a path outside the repository's `.claude/worktrees/` directory, Claude Code asks for your approval first, because the move takes the session's working directory, write access, and project configuration such as `CLAUDE.md` and settings to that location. An `EnterWorktree` [permission rule](https://code.claude.com/docs/en/permissions) or choosing "don't ask again" doesn't suppress this prompt; only `bypassPermissions` mode skips it. Before v2.1.206, Claude could enter any existing worktree path without asking.
 
 ## Clean up worktrees
 
 When you exit an interactive worktree session, Claude checks the worktree for work that removal would delete: changed or untracked files, and new commits.
 
-* **The worktree is clean**: for an unnamed session, Claude removes the worktree and its branch automatically. A [named](/docs/en/sessions#name-your-sessions) session prompts you first so you can keep the worktree for later
+* **The worktree is clean**: for an unnamed session, Claude removes the worktree and its branch automatically. A [named](https://code.claude.com/docs/en/sessions#name-your-sessions) session prompts you first so you can keep the worktree for later
 * **The worktree has work in it**: Claude prompts you to keep or remove the worktree. Keeping preserves the directory and branch so you can return later. Removing deletes the worktree directory and its branch, along with all the work in them
 
 Non-interactive runs with `-p` have no exit prompt, so Claude doesn't clean up their worktrees. Remove them with `git worktree remove`.
@@ -52,7 +52,7 @@ On Windows, removing a worktree doesn't delete files outside it. If a folder ins
 
 ## Resume a worktree session
 
-When you resume a session that was inside a worktree, Claude Code returns the session to that worktree. This holds for interactive resumes, for `--continue` and `--resume` in [non-interactive mode](/docs/en/headless) with `-p`, and for the Agent SDK. Back inside the worktree, Claude can still exit it with the [`ExitWorktree`](/docs/en/tools-reference) tool.
+When you resume a session that was inside a worktree, Claude Code returns the session to that worktree. This holds for interactive resumes, for `--continue` and `--resume` in [non-interactive mode](https://code.claude.com/docs/en/headless) with `-p`, and for the Agent SDK. Back inside the worktree, Claude can still exit it with the [`ExitWorktree`](https://code.claude.com/docs/en/tools-reference) tool.
 
 Before returning the session to its worktree, Claude Code verifies that the worktree is still a checkout separate from the main one, and declines to re-enter a worktree that fails the check. For a git worktree, the check reads its git metadata. A worktree without git metadata, such as one a [`WorktreeCreate` hook](#non-git-version-control) created, can pass the check; the cases Claude Code still refuses are listed with their recoveries under [Claude Code refuses to use a worktree](#claude-code-refuses-to-use-a-worktree). For the messages and how to recover from each, see [The session resumes outside its worktree](#the-session-resumes-outside-its-worktree).
 
@@ -64,11 +64,11 @@ Where you launch from, and how you resume, change what Claude Code re-enters:
 
 Before v2.1.212, a non-interactive resume stayed in the starting directory and `ExitWorktree` reported that there was no active worktree session to exit.
 
-When Claude enters or exits a worktree that Claude Code created with git, the transcript follows: Claude Code records the session under the session's new working directory, the same way [`/cd`](/docs/en/commands) does, so `/desktop` and `--resume` find it there. Exiting moves it back the same way. A worktree created by a [`WorktreeCreate` hook](#non-git-version-control) keeps its transcript at the launch directory. Requires Claude Code v2.1.198 or later.
+When Claude enters or exits a worktree that Claude Code created with git, the transcript follows: Claude Code records the session under the session's new working directory, the same way [`/cd`](https://code.claude.com/docs/en/commands) does, so `/desktop` and `--resume` find it there. Exiting moves it back the same way. A worktree created by a [`WorktreeCreate` hook](#non-git-version-control) keeps its transcript at the launch directory. Requires Claude Code v2.1.198 or later.
 
 ## How Claude Code enforces isolation
 
-While a session is isolated in a worktree, whether you started it with `--worktree`, Claude entered one with `EnterWorktree`, or you resumed a worktree session, Claude Code blocks the tool calls listed below when they would reach the main checkout. The same enforcement covers every subagent Claude spawns from the isolated session, and it applies whether the session is interactive or runs in the [background](/docs/en/agent-view#how-file-edits-are-isolated). [Subagents that run in their own worktree](#isolate-subagents-with-worktrees) carry the same checks; their version history is under [Write subagent files](/docs/en/sub-agents#write-subagent-files). Claude Code applies three checks:
+While a session is isolated in a worktree, whether you started it with `--worktree`, Claude entered one with `EnterWorktree`, or you resumed a worktree session, Claude Code blocks the tool calls listed below when they would reach the main checkout. The same enforcement covers every subagent Claude spawns from the isolated session, and it applies whether the session is interactive or runs in the [background](https://code.claude.com/docs/en/agent-view#how-file-edits-are-isolated). [Subagents that run in their own worktree](#isolate-subagents-with-worktrees) carry the same checks; their version history is under [Write subagent files](https://code.claude.com/docs/en/sub-agents#write-subagent-files). Claude Code applies three checks:
 
 * **File edits**: Claude Code blocks an `Edit`, `Write`, or `NotebookEdit` that targets a path in the main checkout.
 * **Command working directory**: Claude Code blocks a Bash, PowerShell, or Monitor command whose working directory resolves to the main checkout, or whose working directory it can't verify stays outside it.
@@ -78,7 +78,7 @@ The checks apply to the repository you launched Claude Code from, including the 
 
 ## Isolate subagents with worktrees
 
-Subagents can run in their own worktrees so parallel edits don't conflict. Ask Claude to "use worktrees for your agents", or make the isolation permanent for a [custom subagent](/docs/en/sub-agents#supported-frontmatter-fields) by adding `isolation: worktree` to its frontmatter.
+Subagents can run in their own worktrees so parallel edits don't conflict. Ask Claude to "use worktrees for your agents", or make the isolation permanent for a [custom subagent](https://code.claude.com/docs/en/sub-agents#supported-frontmatter-fields) by adding `isolation: worktree` to its frontmatter.
 
 This subagent in `.claude/agents/` always runs in its own worktree:
 ```markdown
@@ -98,7 +98,7 @@ Subagent worktrees use the same [base branch](#choose-the-base-branch) as `--wor
 
 ### Clean up subagent and background-session worktrees
 
-A periodic sweep removes worktrees that Claude created for subagents and [background sessions](/docs/en/agent-view#how-file-edits-are-isolated) once they are older than your [`cleanupPeriodDays`](/docs/en/settings#available-settings) setting. The sweep skips a worktree that still holds work: changed or untracked files, or unpushed commits. It never removes worktrees you create with `--worktree`.
+A periodic sweep removes worktrees that Claude created for subagents and [background sessions](https://code.claude.com/docs/en/agent-view#how-file-edits-are-isolated) once they are older than your [`cleanupPeriodDays`](https://code.claude.com/docs/en/settings#available-settings) setting. The sweep skips a worktree that still holds work: changed or untracked files, or unpushed commits. It never removes worktrees you create with `--worktree`.
 
 While an agent is running, Claude runs `git worktree lock` on its worktree so that concurrent cleanup cannot remove it. The lock is released when the agent finishes.
 
@@ -112,7 +112,7 @@ Claude Code's defaults for creating worktrees cover most sessions: it creates th
 
 ### Choose the base branch
 
-New worktrees branch from the repository's default branch, so most sessions don't need this setting. Set `worktree.baseRef` in [settings](/docs/en/settings#worktree-settings) to branch from your current work instead. The setting accepts two values:
+New worktrees branch from the repository's default branch, so most sessions don't need this setting. Set `worktree.baseRef` in [settings](https://code.claude.com/docs/en/settings#worktree-settings) to branch from your current work instead. The setting accepts two values:
 
 * `"fresh"` (default): branch from the repository's default branch on the remote, usually `main`, so the worktree starts from a clean tree matching the remote.
 * `"head"`: branch from your current local `HEAD`, so the worktree carries your unpushed commits and feature-branch state. Use this when isolating subagents that need to operate on in-progress work. Inside a worktree, `"head"` resolves to that worktree's `HEAD`, not the main checkout's.
@@ -150,7 +150,7 @@ This `.worktreeinclude` copies two env files and a secrets config into each new 
 config/secrets.json
 ```
 
-This applies to every worktree Claude Code creates with git: `--worktree` worktrees, [subagent worktrees](#isolate-subagents-with-worktrees), and parallel sessions in the [desktop app](/docs/en/desktop#work-in-parallel-with-sessions). With a [`WorktreeCreate` hook](#non-git-version-control), copy the files inside the hook script.
+This applies to every worktree Claude Code creates with git: `--worktree` worktrees, [subagent worktrees](#isolate-subagents-with-worktrees), and parallel sessions in the [desktop app](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessions). With a [`WorktreeCreate` hook](#non-git-version-control), copy the files inside the hook script.
 
 ### Reuse a worktree name
 
@@ -168,17 +168,17 @@ Anything else reopens at the old tip: a worktree that fails any of the condition
 
 ### Replace worktree creation with a hook
 
-Configure a [`WorktreeCreate` hook](/docs/en/hooks#worktreecreate) to replace the default `git worktree` logic entirely, including placing worktrees somewhere other than `.claude/worktrees/`. For a complete example, see [Non-git version control](#non-git-version-control).
+Configure a [`WorktreeCreate` hook](https://code.claude.com/docs/en/hooks#worktreecreate) to replace the default `git worktree` logic entirely, including placing worktrees somewhere other than `.claude/worktrees/`. For a complete example, see [Non-git version control](#non-git-version-control).
 
 ## What worktrees share with the main checkout
 
 A worktree gets its own files and branch, but it shares the repository's `.git` directory, project-scope plugins, and saved permission approvals with the main checkout:
 
-* **The repository's `.git` directory**: git commands in a worktree write to the main repository's shared `.git` directory, and [sandboxing](/docs/en/sandboxing#filesystem-isolation) allows those writes, so commands such as `git commit` work from inside a worktree with the sandbox enabled.
-* **Plugins**: plugins installed at [project scope](/docs/en/plugins-reference#plugin-installation-scopes) from the main checkout also load in worktrees of the same repository, so you don't need to reinstall them per worktree. Requires Claude Code v2.1.200 or later.
-* **Permission approvals**: choosing "Yes, don't ask again" for a Bash command in a worktree session saves the rule to the main checkout's `.claude/settings.local.json`, so it applies in the main checkout and in every other worktree of the repository, and it survives the worktree's removal. Before v2.1.211, an approval granted in a worktree was saved inside that worktree, didn't apply elsewhere, and was lost when the worktree was removed. See [where approvals are saved](/docs/en/permissions#permission-system).
+* **The repository's `.git` directory**: git commands in a worktree write to the main repository's shared `.git` directory, and [sandboxing](https://code.claude.com/docs/en/sandboxing#filesystem-isolation) allows those writes, so commands such as `git commit` work from inside a worktree with the sandbox enabled.
+* **Plugins**: plugins installed at [project scope](https://code.claude.com/docs/en/plugins-reference#plugin-installation-scopes) from the main checkout also load in worktrees of the same repository, so you don't need to reinstall them per worktree. Requires Claude Code v2.1.200 or later.
+* **Permission approvals**: choosing "Yes, don't ask again" for a Bash command in a worktree session saves the rule to the main checkout's `.claude/settings.local.json`, so it applies in the main checkout and in every other worktree of the repository, and it survives the worktree's removal. Before v2.1.211, an approval granted in a worktree was saved inside that worktree, didn't apply elsewhere, and was lost when the worktree was removed. See [where approvals are saved](https://code.claude.com/docs/en/permissions#permission-system).
 
-All three apply whether you create the worktree with `--worktree`, with `git worktree add`, or through the [desktop app](/docs/en/desktop#work-in-parallel-with-sessions).
+All three apply whether you create the worktree with `--worktree`, with `git worktree add`, or through the [desktop app](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessions).
 
 ## Manage worktrees manually
 
@@ -214,9 +214,9 @@ See the [Git worktree documentation](https://git-scm.com/docs/git-worktree) for 
 
 ## Non-git version control
 
-Worktree isolation uses git by default. For SVN, Perforce, Mercurial, or other systems, configure [`WorktreeCreate` and `WorktreeRemove` hooks](/docs/en/hooks#worktreecreate) to provide custom creation and cleanup logic. Because the hook replaces the default git behavior, [`.worktreeinclude`](#copy-gitignored-files-into-worktrees) is not processed when you use `--worktree`. Copy any local configuration files inside your hook script instead.
+Worktree isolation uses git by default. For SVN, Perforce, Mercurial, or other systems, configure [`WorktreeCreate` and `WorktreeRemove` hooks](https://code.claude.com/docs/en/hooks#worktreecreate) to provide custom creation and cleanup logic. Because the hook replaces the default git behavior, [`.worktreeinclude`](#copy-gitignored-files-into-worktrees) is not processed when you use `--worktree`. Copy any local configuration files inside your hook script instead.
 
-This `WorktreeCreate` hook reads the worktree name from the JSON on stdin with `jq`, checks out a fresh SVN working copy, and prints the directory path so Claude Code can use it as the session's working directory. Add the configuration to your [`settings.json`](/docs/en/settings#settings-files):
+This `WorktreeCreate` hook reads the worktree name from the JSON on stdin with `jq`, checks out a fresh SVN working copy, and prints the directory path so Claude Code can use it as the session's working directory. Add the configuration to your [`settings.json`](https://code.claude.com/docs/en/settings#settings-files):
 ```json
 {
   "hooks": {
@@ -234,7 +234,7 @@ This `WorktreeCreate` hook reads the worktree name from the JSON on stdin with `
 }
 ```
 
-Pair it with a `WorktreeRemove` hook to clean up when the session ends. See the [hooks reference](/docs/en/hooks#worktreecreate) for the input schema and a removal example.
+Pair it with a `WorktreeRemove` hook to clean up when the session ends. See the [hooks reference](https://code.claude.com/docs/en/hooks#worktreecreate) for the input schema and a removal example.
 
 ## Troubleshooting
 
@@ -242,7 +242,7 @@ Claude Code reports the errors below when it creates a worktree, enters one at s
 
 ### Claude Code can't enter the worktree at startup
 
-When Claude Code can't enter the worktree directory at startup, it prints an error naming the path and exits with code 1. This can happen when a [`WorktreeCreate` hook](/docs/en/hooks#worktreecreate) prints something other than the directory it created, or when the directory was deleted after it was set up. Before v2.1.205, this crashed the session, and with `-p` it stalled for about 30 seconds before exiting with code 0.
+When Claude Code can't enter the worktree directory at startup, it prints an error naming the path and exits with code 1. This can happen when a [`WorktreeCreate` hook](https://code.claude.com/docs/en/hooks#worktreecreate) prints something other than the directory it created, or when the directory was deleted after it was set up. Before v2.1.205, this crashed the session, and with `-p` it stalled for about 30 seconds before exiting with code 0.
 
 ### Worktree creation fails on a symlinked path
 
@@ -274,7 +274,7 @@ When an interactive resume can't return the session to its worktree, Claude Code
 | `Did not re-enter your worktree <path>`           | Claude Code refused the worktree binding as unsafe; it clears the binding and the session continues without isolation. The message includes the specific refusal: match it under [Claude Code refuses to use a worktree](#claude-code-refuses-to-use-a-worktree), since the fix is recreation for some refusals and a path change for others.                                                                                                       |
 | `Could not re-enter your worktree <path>`         | Claude Code couldn't vouch for the worktree from where you launched, most commonly because you launched from inside it; the binding is kept. The rest of the message names the fix; match it under [Claude Code refuses to use a worktree](#claude-code-refuses-to-use-a-worktree).                                                                                                                                                                 |
 
-In [non-interactive mode](/docs/en/headless) with `-p`, and on resumes the [Agent SDK](/docs/en/agent-sdk/sessions) runs, Claude Code stops the resume with a stderr error for every refusal except a gone worktree, instead of continuing without isolation, and the messages take different shapes from the ones in the table above:
+In [non-interactive mode](https://code.claude.com/docs/en/headless) with `-p`, and on resumes the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/sessions) runs, Claude Code stops the resume with a stderr error for every refusal except a gone worktree, instead of continuing without isolation, and the messages take different shapes from the ones in the table above:
 
 * `Error: cannot resume into worktree <path>: ...This session was not started.` for a refusal the table shows as `Did not re-enter`
 * `Error: could not verify worktree <path> for this resume, so the resume was aborted...` for `Could not verify`
@@ -287,7 +287,7 @@ The refusal ending embedded in each error is shared with the interactive notices
 
 Worktrees handle file isolation. The related pages below cover delegating work into those isolated checkouts and switching between the sessions you create:
 
-* [Subagents](/docs/en/sub-agents): delegate work to isolated agents within a session
-* [Agent teams](/docs/en/agent-teams): coordinate multiple Claude sessions automatically
-* [Manage sessions](/docs/en/sessions): name, resume, and switch between conversations
-* [Desktop parallel sessions](/docs/en/desktop#work-in-parallel-with-sessions): worktree-backed sessions in the desktop app
+* [Subagents](https://code.claude.com/docs/en/sub-agents): delegate work to isolated agents within a session
+* [Agent teams](https://code.claude.com/docs/en/agent-teams): coordinate multiple Claude sessions automatically
+* [Manage sessions](https://code.claude.com/docs/en/sessions): name, resume, and switch between conversations
+* [Desktop parallel sessions](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessions): worktree-backed sessions in the desktop app

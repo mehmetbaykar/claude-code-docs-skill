@@ -1,5 +1,5 @@
 ---
-title: Let Claude use your computer from the CLI
+title: "Let Claude use your computer from the CLI"
 source: https://code.claude.com/docs/en/computer-use
 path: /docs/en/computer-use
 ---
@@ -12,7 +12,7 @@ Computer use is a research preview on macOS that requires a Pro or Max plan. It 
 
 Computer use lets Claude open apps, control your screen, and work on your machine the way you would. From the CLI, Claude can compile a Swift app, launch it, click through every button, and screenshot the result, all in the same conversation where it wrote the code.
 
-This page covers how computer use works in the CLI. For the Desktop app on macOS or Windows, see [computer use in Desktop](/docs/en/desktop#let-claude-use-your-computer).
+This page covers how computer use works in the CLI. For the Desktop app on macOS or Windows, see [computer use in Desktop](https://code.claude.com/docs/en/desktop#let-claude-use-your-computer).
 
 ## What you can do with computer use
 
@@ -27,12 +27,12 @@ Computer use handles tasks that require a GUI: anything you'd normally have to l
 
 Claude has several ways to interact with an app or service. Computer use is the broadest and slowest, so Claude tries the most precise tool first:
 
-* If you have an [MCP server](/docs/en/mcp) for the service, Claude uses that.
+* If you have an [MCP server](https://code.claude.com/docs/en/mcp) for the service, Claude uses that.
 * If the task is a shell command, Claude uses Bash.
-* If the task is browser work and you have [Claude in Chrome](/docs/en/chrome) set up, Claude uses that.
+* If the task is browser work and you have [Claude in Chrome](https://code.claude.com/docs/en/chrome) set up, Claude uses that.
 * If none of those apply, Claude uses computer use.
 
-Screen control is reserved for things nothing else can reach: native apps, simulators, and tools without an API. In the Desktop app, running or testing an iOS app opens the dedicated [iOS Simulator pane](/docs/en/desktop-ios-simulator) rather than screen control; from the CLI, computer use is how Claude reaches the iOS Simulator.
+Screen control is reserved for things nothing else can reach: native apps, simulators, and tools without an API. In the Desktop app, running or testing an iOS app opens the dedicated [iOS Simulator pane](https://code.claude.com/docs/en/desktop-ios-simulator) rather than screen control; from the CLI, computer use is how Claude reaches the iOS Simulator.
 
 ## Enable computer use
 
@@ -92,7 +92,7 @@ Apps with broad reach show an extra warning in the prompt so you know what appro
 
 These apps aren't blocked. The warning lets you decide whether the task warrants that level of access.
 
-Claude's level of control also varies by app category: browsers and trading platforms are view-only, terminals and IDEs are click-only, and everything else gets full control. See [app permissions in Desktop](/docs/en/desktop#app-permissions) for the complete tier breakdown.
+Claude's level of control also varies by app category: browsers and trading platforms are view-only, terminals and IDEs are click-only, and everything else gets full control. See [app permissions in Desktop](https://code.claude.com/docs/en/desktop#app-permissions) for the complete tier breakdown.
 
 ## How Claude works on your screen
 
@@ -122,7 +122,7 @@ A second notification appears when Claude is done.
 
 ## Safety and the trust boundary
 
-Unlike the [sandboxed Bash tool](/docs/en/sandboxing), computer use runs on your actual desktop with access to the apps you approve. Claude checks each action and flags potential prompt injection from on-screen content, but the trust boundary is different. See the [computer use safety guide](https://support.claude.com/en/articles/14128542) for best practices.
+Unlike the [sandboxed Bash tool](https://code.claude.com/docs/en/sandboxing), computer use runs on your actual desktop with access to the apps you approve. Claude checks each action and flags potential prompt injection from on-screen content, but the trust boundary is different. See the [computer use safety guide](https://support.claude.com/en/articles/14128542) for best practices.
 
 The built-in guardrails reduce risk without requiring configuration:
 
@@ -166,7 +166,7 @@ Open the iOS Simulator, launch the app, tap through the onboarding
 screens, and tell me if any screen takes more than a second to load.
 ```
 
-Claude controls the simulator the same way you would with a mouse. This flow applies to the CLI; in the Desktop app, the same request opens the [iOS Simulator pane](/docs/en/desktop-ios-simulator) instead of screen control.
+Claude controls the simulator the same way you would with a mouse. This flow applies to the CLI; in the Desktop app, the same request opens the [iOS Simulator pane](https://code.claude.com/docs/en/desktop-ios-simulator) instead of screen control.
 
 ## Differences from the Desktop app
 
@@ -194,15 +194,15 @@ macOS sometimes requires a restart of the requesting process after you grant Scr
 
 The server only appears on eligible setups. Check that:
 
-* You're on macOS. Computer use in the CLI is not available on Linux or Windows. On Windows, use [computer use in Desktop](/docs/en/desktop#let-claude-use-your-computer) instead.
+* You're on macOS. Computer use in the CLI is not available on Linux or Windows. On Windows, use [computer use in Desktop](https://code.claude.com/docs/en/desktop#let-claude-use-your-computer) instead.
 * You're on a Pro or Max plan. Run `/status` to confirm your subscription.
 * You're authenticated through claude.ai. Computer use is not available with third-party providers like Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry. If you access Claude exclusively through a third-party provider, you need a separate claude.ai account to use this feature.
 * You're in an interactive session. Computer use is not available in non-interactive mode with the `-p` flag.
 
 ## See also
 
-* [Computer use in Desktop](/docs/en/desktop#let-claude-use-your-computer): the same capability with a graphical settings page
-* [Claude in Chrome](/docs/en/chrome): browser automation for web-based tasks
-* [MCP](/docs/en/mcp): connect Claude to structured tools and APIs
-* [Sandboxing](/docs/en/sandboxing): how Claude's Bash tool isolates filesystem and network access
+* [Computer use in Desktop](https://code.claude.com/docs/en/desktop#let-claude-use-your-computer): the same capability with a graphical settings page
+* [Claude in Chrome](https://code.claude.com/docs/en/chrome): browser automation for web-based tasks
+* [MCP](https://code.claude.com/docs/en/mcp): connect Claude to structured tools and APIs
+* [Sandboxing](https://code.claude.com/docs/en/sandboxing): how Claude's Bash tool isolates filesystem and network access
 * [Computer use safety guide](https://support.claude.com/en/articles/14128542): best practices for safe computer use

@@ -1,5 +1,5 @@
 ---
-title: Week 23 \u00b7 June 1\u20135, 2026
+title: "Week 23 · June 1–5, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w23
 path: /docs/en/whats-new/2026-w23
 ---
@@ -79,4 +79,4 @@ Listing `Grep` or `Glob` in `--tools` now provides the dedicated search tools on
 Windsurf is renamed to Devin Desktop in `/ide`, `/terminal-setup`, and `/scroll-speed`, following the editor's rebrand
 `/btw` gains a `c to copy` shortcut that copies the raw markdown answer to the clipboard
 
-[Full changelog for v2.1.158–v2.1.165 →](/docs/en/changelog#2-1-158)
+[Full changelog for v2.1.158–v2.1.165 →](https://code.claude.com/docs/en/changelog#2-1-158)

@@ -1,5 +1,5 @@
 ---
-title: Week 19 \u00b7 May 4\u20138, 2026
+title: "Week 19 · May 4–8, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w19
 path: /docs/en/whats-new/2026-w19
 ---
@@ -46,4 +46,4 @@ Sub-agent progress summaries now hit the prompt cache, cutting `cache\_creation`
 Several OAuth and credential reliability fixes: parallel sessions no longer dead-end at 401 after a refresh-token race, MCP OAuth refresh tokens are no longer lost when multiple servers refresh concurrently, and a rare login loop from a concurrent credential write is fixed
 New `parentSettingsBehavior` admin key lets admins opt SDK `managedSettings` into the policy merge
 
-[Full changelog for v2.1.128–v2.1.136 →](/docs/en/changelog#2-1-128)
+[Full changelog for v2.1.128–v2.1.136 →](https://code.claude.com/docs/en/changelog#2-1-128)

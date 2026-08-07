@@ -1,5 +1,5 @@
 ---
-title: JetBrains IDEs
+title: "JetBrains IDEs"
 source: https://code.claude.com/docs/en/jetbrains
 path: /docs/en/jetbrains
 ---
@@ -25,7 +25,7 @@ The Claude Code plugin works with most JetBrains IDEs, including:
 
 * **Quick launch**: use `Cmd+Esc` (Mac) or `Ctrl+Esc` (Windows/Linux) to open Claude Code directly from your editor, or click the Claude Code button in the UI
 * **Diff viewing**: Claude Code opens code changes in the IDE diff viewer instead of the terminal; change this with the **Diff tool** setting in `/config`
-* **Selection context**: the current selection or tab in the IDE is automatically shared with Claude Code. [`Read` deny rules](/docs/en/permissions#read-and-edit) block this sharing for matching files
+* **Selection context**: the current selection or tab in the IDE is automatically shared with Claude Code. [`Read` deny rules](https://code.claude.com/docs/en/permissions#read-and-edit) block this sharing for matching files
 * **File reference shortcuts**: use `Cmd+Option+K` (Mac) or `Alt+Ctrl+K` (Linux/Windows) to insert file references such as `@src/auth.ts#L1-99`
 * **Diagnostic sharing**: diagnostic errors from the IDE, such as lint and syntax errors, are automatically shared with Claude as you work
 
@@ -36,7 +36,7 @@ The plugin runs the `claude` command in your IDE's integrated terminal and conne
 
 **Install the Claude Code CLI**
 
-Follow the [quickstart](/docs/en/quickstart) to install the CLI if you haven't already. The plugin shows a "Cannot launch Claude Code" notification when `claude` isn't on your PATH.
+Follow the [quickstart](https://code.claude.com/docs/en/quickstart) to install the CLI if you haven't already. The plugin shows a "Cannot launch Claude Code" notification when `claude` isn't on your PATH.
 
 
 
@@ -47,7 +47,7 @@ Install the [Claude Code plugin](https://plugins.jetbrains.com/plugin/27310-clau
 
 If `claude` is installed somewhere your IDE can't find, set the full path in the plugin's [Claude command setting](#general-settings).
 
-Claude Code works with any paid Claude subscription (Pro, Max, Team, or Enterprise) or a Claude Console account, and no API key is required. You'll be prompted to [log in](/docs/en/authentication#log-in-to-claude-code) the first time you run `claude`.
+Claude Code works with any paid Claude subscription (Pro, Max, Team, or Enterprise) or a Claude Console account, and no API key is required. You'll be prompted to [log in](https://code.claude.com/docs/en/authentication#log-in-to-claude-code) the first time you run `claude`.
 
 After installing the plugin, you may need to restart your IDE completely for it to take effect.
 
@@ -81,7 +81,7 @@ Configure IDE integration through Claude Code's settings:
 2. Enter the `/config` command
 3. Set **Diff tool** to `auto` to show diffs in the IDE, or `terminal` to keep them in the terminal
 
-The **Diff tool** entry appears in `/config` only when Claude Code is connected to the IDE, so run `claude` from the JetBrains terminal or run [`/ide`](/docs/en/commands) first from an external terminal. See [`diffTool`](/docs/en/settings#global-config-settings) for the underlying setting.
+The **Diff tool** entry appears in `/config` only when Claude Code is connected to the IDE, so run `claude` from the JetBrains terminal or run [`/ide`](https://code.claude.com/docs/en/commands) first from an external terminal. See [`diffTool`](https://code.claude.com/docs/en/settings#global-config-settings) for the underlying setting.
 
 ### Plugin settings
 
@@ -190,7 +190,7 @@ If clicking the Claude icon shows "command not found":
 
 ## Security considerations
 
-When Claude Code runs in a JetBrains IDE in [`acceptEdits` permission mode](/docs/en/permission-modes#auto-approve-file-edits-with-acceptedits-mode), it may be able to modify IDE configuration files that can be automatically executed by your IDE. This may increase the risk of running Claude Code in `acceptEdits` mode and allow bypassing Claude Code's permission prompts for bash execution.
+When Claude Code runs in a JetBrains IDE in [`acceptEdits` permission mode](https://code.claude.com/docs/en/permission-modes#auto-approve-file-edits-with-acceptedits-mode), it may be able to modify IDE configuration files that can be automatically executed by your IDE. This may increase the risk of running Claude Code in `acceptEdits` mode and allow bypassing Claude Code's permission prompts for bash execution.
 
 When running in JetBrains IDEs, consider:
 
@@ -198,15 +198,15 @@ When running in JetBrains IDEs, consider:
 * Taking extra care to ensure Claude is only used with trusted prompts
 * Being aware of which files Claude Code has access to modify
 
-For Claude Code installation or login problems outside the IDE, see [Troubleshoot installation and login](/docs/en/troubleshoot-install).
+For Claude Code installation or login problems outside the IDE, see [Troubleshoot installation and login](https://code.claude.com/docs/en/troubleshoot-install).
 
 ### The built-in IDE MCP server
 
 When the plugin is active, it runs a local MCP server that the CLI connects to automatically. This is how the CLI opens diffs in the IDE's native diff viewer, reads your current selection for `@`-mentions, and pulls inspection diagnostics into the conversation.
 
-The server is named `ide` and is hidden from `/mcp` because there's nothing to configure. If your organization uses a [`PreToolUse` hook](/docs/en/hooks#pretooluse) to allowlist MCP tools, though, you'll need to know it exists.
+The server is named `ide` and is hidden from `/mcp` because there's nothing to configure. If your organization uses a [`PreToolUse` hook](https://code.claude.com/docs/en/hooks#pretooluse) to allowlist MCP tools, though, you'll need to know it exists.
 
-**Selection and open-file context.** While connected, the CLI includes your current editor selection and the path of the active file as context on each prompt you send. The transcript shows a `⧉ Selected N lines from <file>` line when this happens. To exclude a sensitive file such as `.env`, add a [`Read` deny rule](/docs/en/permissions#read-and-edit) for its path. A matching deny rule prevents both the selected text and the open-file notice for that file from reaching Claude.
+**Selection and open-file context.** While connected, the CLI includes your current editor selection and the path of the active file as context on each prompt you send. The transcript shows a `⧉ Selected N lines from <file>` line when this happens. To exclude a sensitive file such as `.env`, add a [`Read` deny rule](https://code.claude.com/docs/en/permissions#read-and-edit) for its path. A matching deny rule prevents both the selected text and the open-file notice for that file from reaching Claude.
 
 **Transport and authentication.** The server listens on an OS-assigned ephemeral port, and the port is not configurable. The transport is unencrypted `ws://`; on loopback, any process that could capture the traffic can also read the token from the lock file, so TLS would not add protection against a local attacker. Each IDE start generates a fresh random auth token, writes it to a lock file at `~/.claude/ide/<port>.lock`, and the CLI must present it as the `X-Claude-Code-Ide-Authorization` header to connect. If `CLAUDE_CONFIG_DIR` is set, the lock file is written to `$CLAUDE_CONFIG_DIR/ide/` instead.
 

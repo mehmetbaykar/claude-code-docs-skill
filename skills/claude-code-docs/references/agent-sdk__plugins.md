@@ -1,5 +1,5 @@
 ---
-title: Plugins in the SDK
+title: "Plugins in the SDK"
 source: https://code.claude.com/docs/en/agent-sdk/plugins
 path: /docs/en/agent-sdk/plugins
 ---
@@ -21,13 +21,13 @@ Plugins are packages of Claude Code extensions that can include:
 
 The `commands/` directory is a legacy format. Use `skills/` for new plugins. Claude Code continues to support both formats for backward compatibility.
 
-For complete information on plugin structure and how to create plugins, see [Plugins](/docs/en/plugins).
+For complete information on plugin structure and how to create plugins, see [Plugins](https://code.claude.com/docs/en/plugins).
 
 ## Loading plugins
 
 Load plugins by providing their local file system paths in your options configuration. The `type` field must be `"local"`, the only value the SDK accepts. The SDK supports loading multiple plugins from different locations.
 
-To use a plugin distributed through a [marketplace](/docs/en/plugin-marketplaces) or remote repository, download it first and provide the local directory path. For the directory layout a plugin needs, see the [Plugin structure reference](#plugin-structure-reference) below.
+To use a plugin distributed through a [marketplace](https://code.claude.com/docs/en/plugin-marketplaces) or remote repository, download it first and provide the local directory path. For the directory layout a plugin needs, see the [Plugin structure reference](#plugin-structure-reference) below.
 ```typescript TypeScript
   import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -265,8 +265,8 @@ my-plugin/
 
 For detailed information on creating plugins, see:
 
-* [Plugins](/docs/en/plugins) - Complete plugin development guide
-* [Plugins reference](/docs/en/plugins-reference) - Technical specifications and schemas
+* [Plugins](https://code.claude.com/docs/en/plugins) - Complete plugin development guide
+* [Plugins reference](https://code.claude.com/docs/en/plugins-reference) - Technical specifications and schemas
 
 ## Common use cases
 
@@ -331,8 +331,8 @@ If relative paths don't work:
 
 ## See also
 
-* [Plugins](/docs/en/plugins) - Complete plugin development guide
-* [Plugins reference](/docs/en/plugins-reference) - Technical specifications
-* [Commands](/docs/en/agent-sdk/slash-commands) - Using commands in the SDK
-* [Subagents](/docs/en/agent-sdk/subagents) - Working with specialized agents
-* [Skills](/docs/en/agent-sdk/skills) - Using Agent Skills
+* [Plugins](https://code.claude.com/docs/en/plugins) - Complete plugin development guide
+* [Plugins reference](https://code.claude.com/docs/en/plugins-reference) - Technical specifications
+* [Commands](https://code.claude.com/docs/en/agent-sdk/slash-commands) - Using commands in the SDK
+* [Subagents](https://code.claude.com/docs/en/agent-sdk/subagents) - Working with specialized agents
+* [Skills](https://code.claude.com/docs/en/agent-sdk/skills) - Using Agent Skills

@@ -1,5 +1,5 @@
 ---
-title: Todo Lists
+title: "Todo Lists"
 source: https://code.claude.com/docs/en/agent-sdk/todo-tracking
 path: /docs/en/agent-sdk/todo-tracking
 ---
@@ -34,13 +34,13 @@ It may skip todos for very short or single-step requests.
 
 ## Examples
 
-Before running these examples, install the Claude Agent SDK by following the [quickstart](/docs/en/agent-sdk/quickstart).
+Before running these examples, install the Claude Agent SDK by following the [quickstart](https://code.claude.com/docs/en/agent-sdk/quickstart).
 
 Each example runs until the agent finishes and yields its final result message. If a session reaches its turn limit first, that result message has the `error_max_turns` subtype. Check `subtype` to detect that ending.
 
 These examples use single-shot `query()` calls. After yielding an `error_max_turns` result, `query()` raises an error that includes `Reached maximum number of turns`. Each example wraps its loop in a try block to exit cleanly when that happens.
 
-See [Handle the result](/docs/en/agent-sdk/agent-loop#handle-the-result) for the result subtypes.
+See [Handle the result](https://code.claude.com/docs/en/agent-sdk/agent-loop#handle-the-result) for the result subtypes.
 
 ### Monitoring Todo Changes
 ```typescript TypeScript
@@ -306,7 +306,7 @@ The streamed `tool_use` input is the raw shape the model emitted. Claude Code re
 
 ## Related Documentation
 
-* [TypeScript SDK Reference](/docs/en/agent-sdk/typescript)
-* [Python SDK Reference](/docs/en/agent-sdk/python)
-* [Streaming vs Single Mode](/docs/en/agent-sdk/streaming-vs-single-mode)
-* [Custom Tools](/docs/en/agent-sdk/custom-tools)
+* [TypeScript SDK Reference](https://code.claude.com/docs/en/agent-sdk/typescript)
+* [Python SDK Reference](https://code.claude.com/docs/en/agent-sdk/python)
+* [Streaming vs Single Mode](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode)
+* [Custom Tools](https://code.claude.com/docs/en/agent-sdk/custom-tools)
