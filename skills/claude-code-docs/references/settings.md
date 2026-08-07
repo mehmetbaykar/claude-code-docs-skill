@@ -859,6 +859,7 @@ Defines additional marketplaces that should be made available for the repository
 * `github`: GitHub repository (uses `repo`)
 * `git`: Any git URL (uses `url`)
 * `url`: Direct URL to a `marketplace.json` file (uses `url`, plus optional `headers` for authenticated access)
+* `file`: Local path to a `marketplace.json` file (uses `path`)
 * `directory`: Local filesystem path (uses `path`, for development only)
 * `hostPattern`: regex pattern to match marketplace hosts (uses `hostPattern`)
 * `settings`: inline marketplace declared directly in settings.json without a separate hosted repository (uses `name` and `plugins`)

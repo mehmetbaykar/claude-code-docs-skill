@@ -346,8 +346,8 @@
       "title": "Run agents in parallel"
     },
     "amazon-bedrock.md": {
-      "hash": "800dada4e4dfaadf7dbee92b91a97a9b4a4e063310f21ab4cb26af4783e74fbb",
-      "last_updated": "2026-08-07T17:26:11+00:00",
+      "hash": "8b1f1d3956a2fd996cf5dc17d852d263adde2e33115ad8d79a7d4652e4b425e0",
+      "last_updated": "2026-08-07T19:09:06+00:00",
       "original_url": "https://code.claude.com/docs/en/amazon-bedrock",
       "path": "/docs/en/amazon-bedrock",
       "source_url": "https://code.claude.com/docs/en/amazon-bedrock.md",
@@ -742,8 +742,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "9861dba30008c818d7fb95d1407ba42894d7951a90e3fa5464f3e194b17eff75",
-      "last_updated": "2026-08-07T17:26:45+00:00",
+      "hash": "640a69aa80e4b08970ae7f3c4f8ca90d3342908b8454e57469c5064e0e69fb6d",
+      "last_updated": "2026-08-07T19:09:40+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -1111,8 +1111,8 @@
       "title": "Platforms and integrations"
     },
     "plugin-dependencies.md": {
-      "hash": "d45278e83a3f1868eadeada6bd487084914d5978ab60f0cdee9535550b42effd",
-      "last_updated": "2026-08-07T17:27:16+00:00",
+      "hash": "3e8e4d9eff8e33b2ea988148b068531572932ae6cce9c48ccfe05095e2cc0c3c",
+      "last_updated": "2026-08-07T19:10:11+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-dependencies",
       "path": "/docs/en/plugin-dependencies",
       "source_url": "https://code.claude.com/docs/en/plugin-dependencies.md",
@@ -1129,8 +1129,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugin-marketplaces.md": {
-      "hash": "77d97b6dba8458fd57241db6888f895a94691c57302e7bb30069a4671d81e4ac",
-      "last_updated": "2026-08-07T17:27:18+00:00",
+      "hash": "c2082a19ceff6d754ab3c0649c2afb89e8fc58a16d94a99f310ecbb04f5d6cce",
+      "last_updated": "2026-08-07T19:10:13+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-marketplaces",
       "path": "/docs/en/plugin-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugin-marketplaces.md",
@@ -1336,8 +1336,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "d7441e269a3bd52480b714af2e929d93a49cc7f51e22746f546d696b4ffd7b08",
-      "last_updated": "2026-08-07T17:27:34+00:00",
+      "hash": "9abe5d002f42936461650596dee7b4d47f622037f1f0886e42c18e08678f3a0e",
+      "last_updated": "2026-08-07T19:10:32+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1674,7 +1674,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-07T17:27:58+00:00",
+  "last_updated": "2026-08-07T19:10:55+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
