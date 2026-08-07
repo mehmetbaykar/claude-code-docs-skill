@@ -92,6 +92,22 @@ def now_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
 
+def sanitize_error(error: Exception) -> str:
+    """Render an exception without leaking local paths or credentials.
+
+    Error text is recorded in the committed manifest, so a maintainer running
+    the fetcher locally must not publish their home directory, their operating
+    system username, or credentials embedded in a proxy URL.
+    """
+
+    message = f"{type(error).__name__}: {error}"
+    message = re.sub(r"//[^/@\s]+:[^/@\s]+@", "//<redacted>@", message)
+    message = message.replace(str(ROOT_DIR), "<repo>")
+    message = message.replace(str(Path.home()), "<home>")
+    message = re.sub(r"/(Users|home)/[^/\s'\"]+", r"/\1/<user>", message)
+    return message[:300]
+
+
 def sha256(content: str) -> str:
     return hashlib.sha256(content.encode("utf-8")).hexdigest()
 
@@ -1005,7 +1021,7 @@ def fetch_and_save_pages(
             if previous is None:
                 logger.error("Failed to process %s: %s", page.path, error)
                 failed.append(
-                    {"path": page.path, "url": page.url, "error": str(error)}
+                    {"path": page.path, "url": page.url, "error": sanitize_error(error)}
                 )
                 continue
 
@@ -1015,7 +1031,7 @@ def fetch_and_save_pages(
                 page.path,
                 error,
             )
-            stale.append({"path": page.path, "url": page.url, "error": str(error)})
+            stale.append({"path": page.path, "url": page.url, "error": sanitize_error(error)})
             save_page(
                 page,
                 previous_content,
