@@ -1,5 +1,5 @@
 ---
-title: Week 21 \u00b7 May 18\u201322, 2026
+title: "Week 21 · May 18–22, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w21
 path: /docs/en/whats-new/2026-w21
 ---
@@ -41,4 +41,4 @@ Markdown output renders GFM task list checkboxes, and the `/diff` detail view sc
 Status line JSON input now includes GitHub repo and PR information when detected
 Enterprise: the `allowAllClaudeAiMcps` managed setting loads claude.ai cloud MCP connectors alongside `managed-mcp.json`
 
-[Full changelog for v2.1.143–v2.1.149 →](/docs/en/changelog#2-1-143)
+[Full changelog for v2.1.143–v2.1.149 →](https://code.claude.com/docs/en/changelog#2-1-143)

@@ -38,11 +38,12 @@ Use this skill for Claude Code-specific product and configuration questions, inc
 
 ## Freshness and fallback
 
-The mirror is refreshed every 3 hours by upstream CI. If the local content looks stale, contradicted by the user, or empty:
+The mirror is refreshed every 3 hours by upstream CI, which fails rather than committing frozen content. If the local content looks stale, contradicted by the user, or empty:
 
 1. Suggest the user run `npx skills update claude-code-docs`.
-2. Cross-check the canonical URL via `original_url` in `references/docs_manifest.json` and offer it as a follow-up source.
-3. If a specific page failed MDX cleaning, the unmodified source is preserved at `references/_raw/<slug>.md` -- read that as a fallback.
+2. Check the file's entry in `references/docs_manifest.json`: a `status` of `stale` means upstream could not be reached on the last run.
+3. Cross-check the canonical URL via `original_url` in `references/docs_manifest.json` and offer it as a follow-up source.
+4. If a specific page failed MDX cleaning, the unmodified source is preserved at `references/_raw/<slug>.md` -- read that as a fallback.
 
 ## Examples
 

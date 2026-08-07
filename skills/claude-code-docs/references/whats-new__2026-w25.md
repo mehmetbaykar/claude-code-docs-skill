@@ -1,5 +1,5 @@
 ---
-title: Week 25 \u00b7 June 15\u201319, 2026
+title: "Week 25 · June 15–19, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w25
 path: /docs/en/whats-new/2026-w25
 ---
@@ -73,4 +73,4 @@ Skills in nested `.claude/skills` directories load when working on files there; 
 Fixed prompt caching not reading on a custom `ANTHROPIC\_BASE\_URL` and on Microsoft Foundry
 Fixed Write and Edit producing zero-byte or truncated files on network drives and cloud-synced folders
 
-[Full changelog for v2.1.178–v2.1.183 →](/docs/en/changelog#2-1-178)
+[Full changelog for v2.1.178–v2.1.183 →](https://code.claude.com/docs/en/changelog#2-1-178)

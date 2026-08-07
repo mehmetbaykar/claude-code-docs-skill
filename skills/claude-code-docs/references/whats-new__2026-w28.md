@@ -1,5 +1,5 @@
 ---
-title: Week 28 \u00b7 July 6\u201310, 2026
+title: "Week 28 · July 6–10, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w28
 path: /docs/en/whats-new/2026-w28
 ---
@@ -51,4 +51,4 @@ Auto-update binary downloads now stream to disk instead of buffering in memory, 
 Background task notifications now explicitly state that no human input has occurred, preventing fabricated in-transcript approvals from being acted on
 Improved `/code-review` findings quality on Opus 4.8 across all effort levels
 
-[Full changelog for v2.1.202–v2.1.206 →](/docs/en/changelog#2-1-202)
+[Full changelog for v2.1.202–v2.1.206 →](https://code.claude.com/docs/en/changelog#2-1-202)

@@ -1,5 +1,5 @@
 ---
-title: Week 24 \u00b7 June 8\u201312, 2026
+title: "Week 24 · June 8–12, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w24
 path: /docs/en/whats-new/2026-w24
 ---
@@ -65,4 +65,4 @@ Claude in Chrome browser tools now load in a single batched call instead of one 
 `claude update` announces the target version before downloading instead of going silent
 New `footerLinksRegexes` setting adds regex-matched link badges to the footer row
 
-[Full changelog for v2.1.166–v2.1.176 →](/docs/en/changelog#2-1-166)
+[Full changelog for v2.1.166–v2.1.176 →](https://code.claude.com/docs/en/changelog#2-1-166)

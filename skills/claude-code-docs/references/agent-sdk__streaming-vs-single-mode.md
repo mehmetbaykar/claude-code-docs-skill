@@ -1,5 +1,5 @@
 ---
-title: Streaming Input
+title: "Streaming Input"
 source: https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode
 path: /docs/en/agent-sdk/streaming-vs-single-mode
 ---
@@ -213,7 +213,7 @@ These examples read an image named `diagram.png` from the working directory. Cre
   asyncio.run(streaming_analysis())
 ```
 
-When you run the example, the TypeScript version prints each response as it completes. The Python version's `receive_response()` loop ends at the first result message, so it prints the security analysis; to read both responses, use one `query()` and `receive_response()` pair per message as shown in the [Python reference's example of continuing a conversation](/docs/en/agent-sdk/python#example-continuing-a-conversation).
+When you run the example, the TypeScript version prints each response as it completes. The Python version's `receive_response()` loop ends at the first result message, so it prints the security analysis; to read both responses, use one `query()` and `receive_response()` pair per message as shown in the [Python reference's example of continuing a conversation](https://code.claude.com/docs/en/agent-sdk/python#example-continuing-a-conversation).
 
 In the TypeScript SDK, if your message generator throws, for example when a file it reads is missing, the stream ends with an error that reads `Claude Code process aborted by user` instead of the original error, so check the code inside your generator first when you see that message. The error may also be preceded by a long minified line of bundled SDK source, so read to the end of the output for the error text.
 
@@ -240,7 +240,7 @@ Single message input mode does **not** support:
 * Real-time interruption
 * Natural multi-turn conversations
 
-If a query ends with an error result, such as `error_max_turns`, a single message `query()` call raises an error that includes the failure text after yielding the final result message, so wrap the loop in a try block if your code needs to continue. See [Handle the result](/docs/en/agent-sdk/agent-loop#handle-the-result) for the result subtypes.
+If a query ends with an error result, such as `error_max_turns`, a single message `query()` call raises an error that includes the failure text after yielding the final result message, so wrap the loop in a try block if your code needs to continue. See [Handle the result](https://code.claude.com/docs/en/agent-sdk/agent-loop#handle-the-result) for the result subtypes.
 
 ### Implementation Example
 ```typescript TypeScript

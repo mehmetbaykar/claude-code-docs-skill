@@ -1,5 +1,5 @@
 ---
-title: Week 29 \u00b7 July 13\u201317, 2026
+title: "Week 29 · July 13–17, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w29
 path: /docs/en/whats-new/2026-w29
 ---
@@ -57,4 +57,4 @@ Session-wide caps stop runaway loops: WebSearch calls and subagent spawns each d
 Amazon Bedrock, Google Cloud's Agent Platform, and Claude Platform on AWS now default to Claude Opus 4.8
 The collapsed tool summary line shows a live elapsed-time counter, so long-running tool calls visibly tick instead of looking stuck
 
-[Full changelog for v2.1.207–v2.1.212 →](/docs/en/changelog#2-1-207)
+[Full changelog for v2.1.207–v2.1.212 →](https://code.claude.com/docs/en/changelog#2-1-207)

@@ -1,5 +1,5 @@
 ---
-title: Week 18 \u00b7 April 27 \u2013 May 1, 2026
+title: "Week 18 · April 27 – May 1, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w18
 path: /docs/en/whats-new/2026-w18
 ---
@@ -88,4 +88,4 @@ MCP servers that hit a transient error during startup now auto-retry up to 3 tim
 Google Cloud's Agent Platform now supports X.509 certificate-based Workload Identity Federation (mTLS ADC)
 Significant memory leak fixes: image-heavy sessions, `/usage` on large transcript histories, and long-running tools without progress events
 
-[Full changelog for v2.1.120–v2.1.126 →](/docs/en/changelog#2-1-120)
+[Full changelog for v2.1.120–v2.1.126 →](https://code.claude.com/docs/en/changelog#2-1-120)

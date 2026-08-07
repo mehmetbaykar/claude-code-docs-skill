@@ -1,5 +1,5 @@
 ---
-title: Week 16 \u00b7 April 13\u201317, 2026
+title: "Week 16 · April 13–17, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w16
 path: /docs/en/whats-new/2026-w16
 ---
@@ -112,4 +112,4 @@ Claude can now discover and run built-in commands like `/init`, `/review`, and `
 `/undo` is now an alias for `/rewind`, and `/proactive` is an alias for `/loop`
 Hardened Bash permissions: deny rules now match through `env`/`sudo`/`watch` wrappers, and `Bash(find:\*)` allow rules no longer auto-approve `-exec` or `-delete`
 
-[Full changelog for v2.1.105–v2.1.113 →](/docs/en/changelog#2-1-105)
+[Full changelog for v2.1.105–v2.1.113 →](https://code.claude.com/docs/en/changelog#2-1-105)

@@ -1,5 +1,5 @@
 ---
-title: Week 22 \u00b7 May 25\u201329, 2026
+title: "Week 22 · May 25–29, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w22
 path: /docs/en/whats-new/2026-w22
 ---
@@ -101,4 +101,4 @@ Streaming tool execution is now always enabled, including with telemetry disable
 Claude in Chrome: pick which connected browser to use via `/chrome` → "Select browser…", or in-chat when a browser action runs with multiple connected
 `claude mcp list` and `claude mcp get` now show unapproved `.mcp.json` servers as pending approval instead of auto-approving and connecting when output is piped
 
-[Full changelog for v2.1.150–v2.1.157 →](/docs/en/changelog#2-1-150)
+[Full changelog for v2.1.150–v2.1.157 →](https://code.claude.com/docs/en/changelog#2-1-150)

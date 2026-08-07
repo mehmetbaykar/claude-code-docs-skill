@@ -1,5 +1,5 @@
 ---
-title: Migrate to Claude Agent SDK
+title: "Migrate to Claude Agent SDK"
 source: https://code.claude.com/docs/en/agent-sdk/migration-guide
 path: /docs/en/agent-sdk/migration-guide
 ---
@@ -18,7 +18,7 @@ The Claude Code SDK has been renamed to the **Claude Agent SDK** and its documen
 | :------------------------- | :-------------------------- | :----------------------------------------------------------------------- |
 | **Package Name (TS/JS)**   | `@anthropic-ai/claude-code` | `@anthropic-ai/claude-agent-sdk`                                         |
 | **Python Package**         | `claude-code-sdk`           | `claude-agent-sdk`                                                       |
-| **Documentation Location** | Claude Code docs            | Claude Code docs → dedicated [Agent SDK](/docs/en/agent-sdk/overview) section |
+| **Documentation Location** | Claude Code docs            | Claude Code docs → dedicated [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview) section |
 
 ## Migration Steps
 
@@ -247,7 +247,7 @@ To run isolated from filesystem settings, pass an empty array:
 
 Isolation is especially important for CI/CD pipelines, deployed applications, test environments, and multi-tenant systems where local customizations should not leak in.
 
-SDK v0.1.0 briefly defaulted to no settings loaded; this was reverted in subsequent releases. Python SDK 0.1.59 and earlier treated an empty list the same as omitting the option, so upgrade before relying on `setting_sources=[]`. See [What settingSources does not control](/docs/en/agent-sdk/claude-code-features#what-settingsources-does-not-control) for inputs that are read even when `settingSources` is `[]`.
+SDK v0.1.0 briefly defaulted to no settings loaded; this was reverted in subsequent releases. Python SDK 0.1.59 and earlier treated an empty list the same as omitting the option, so upgrade before relying on `setting_sources=[]`. See [What settingSources does not control](https://code.claude.com/docs/en/agent-sdk/claude-code-features#what-settingsources-does-not-control) for inputs that are read even when `settingSources` is `[]`.
 
 ## Why the Rename?
 
@@ -275,7 +275,7 @@ If you encounter any issues during migration:
 
 ## Next Steps
 
-* Explore the [Agent SDK Overview](/docs/en/agent-sdk/overview) to learn about available features
-* Check out the [TypeScript SDK Reference](/docs/en/agent-sdk/typescript) for detailed API documentation
-* Review the [Python SDK Reference](/docs/en/agent-sdk/python) for Python-specific documentation
-* Learn about [Custom Tools](/docs/en/agent-sdk/custom-tools) and [MCP Integration](/docs/en/agent-sdk/mcp)
+* Explore the [Agent SDK Overview](https://code.claude.com/docs/en/agent-sdk/overview) to learn about available features
+* Check out the [TypeScript SDK Reference](https://code.claude.com/docs/en/agent-sdk/typescript) for detailed API documentation
+* Review the [Python SDK Reference](https://code.claude.com/docs/en/agent-sdk/python) for Python-specific documentation
+* Learn about [Custom Tools](https://code.claude.com/docs/en/agent-sdk/custom-tools) and [MCP Integration](https://code.claude.com/docs/en/agent-sdk/mcp)

@@ -1,5 +1,5 @@
 ---
-title: TypeScript SDK V2 session API (removed)
+title: "TypeScript SDK V2 session API (removed)"
 source: https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview
 path: /docs/en/agent-sdk/typescript-v2-preview
 ---
@@ -10,7 +10,7 @@ path: /docs/en/agent-sdk/typescript-v2-preview
 
 The V2 session API is no longer supported. TypeScript Agent SDK 0.3.142 removes `unstable_v2_createSession`, `unstable_v2_resumeSession`, `unstable_v2_prompt`, and the `SDKSession` and `SDKSessionOptions` types.
 
-To migrate, use the [`query()` API](/docs/en/agent-sdk/typescript) and the [session options](/docs/en/agent-sdk/sessions) it accepts. Pass an `AsyncIterable` for multi-turn conversations, or `options.resume` to continue a saved session. This page is kept for reference if you maintain code on Agent SDK 0.2.x or earlier.
+To migrate, use the [`query()` API](https://code.claude.com/docs/en/agent-sdk/typescript) and the [session options](https://code.claude.com/docs/en/agent-sdk/sessions) it accepts. Pass an `AsyncIterable` for multi-turn conversations, or `options.resume` to continue a saved session. This page is kept for reference if you maintain code on Agent SDK 0.2.x or earlier.
 
 V2 was an experimental session API that removed the need for async generators and yield coordination. Instead of managing generator state across turns, each turn was a separate `send()`/`stream()` cycle. The API surface reduced to three concepts:
 
@@ -25,7 +25,7 @@ Agent SDK 0.2.x is the last version that includes the V2 interface. The package 
 npm install @anthropic-ai/claude-agent-sdk@0.2
 ```
 
-The SDK bundles a native Claude Code binary for your platform as an optional dependency, so most installs need no separate Claude Code install. See the [quickstart's install note](/docs/en/agent-sdk/quickstart) for the installs that need one.
+The SDK bundles a native Claude Code binary for your platform as an optional dependency, so most installs need no separate Claude Code install. See the [quickstart's install note](https://code.claude.com/docs/en/agent-sdk/quickstart) for the installs that need one.
 
 ## Quick start
 
@@ -367,13 +367,13 @@ interface SDKSession {
 
 ## Feature availability
 
-The V2 session API does not support every V1 feature. The following require the [V1 SDK](/docs/en/agent-sdk/typescript):
+The V2 session API does not support every V1 feature. The following require the [V1 SDK](https://code.claude.com/docs/en/agent-sdk/typescript):
 
 * Session forking (`forkSession` option)
 * Some advanced streaming input patterns
 
 ## See also
 
-* [TypeScript SDK reference (V1)](/docs/en/agent-sdk/typescript) - Full V1 SDK documentation
-* [SDK overview](/docs/en/agent-sdk/overview) - General SDK concepts
+* [TypeScript SDK reference (V1)](https://code.claude.com/docs/en/agent-sdk/typescript) - Full V1 SDK documentation
+* [SDK overview](https://code.claude.com/docs/en/agent-sdk/overview) - General SDK concepts
 * [V2 examples on GitHub](https://github.com/anthropics/claude-agent-sdk-demos/tree/main/hello-world-v2) - Working code examples
