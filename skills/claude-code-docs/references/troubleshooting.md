@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting
+title: "Troubleshooting"
 source: https://code.claude.com/docs/en/troubleshooting
 path: /docs/en/troubleshooting
 ---
@@ -12,15 +12,15 @@ This page covers performance, stability, and search problems once Claude Code is
 
 | Symptom                                                                                                                                              | Go to                                                                                    |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------- |
-| `command not found`, install fails, PATH issues, `EACCES`, TLS errors                                                                                | [Troubleshoot installation and login](/docs/en/troubleshoot-install)                          |
-| Update or install download fails with `The connection dropped while downloading the update` or `aborted`                                             | [Error reference](/docs/en/errors#the-connection-dropped-while-downloading-the-update)        |
-| Login loops, OAuth errors, `403 Forbidden`, "organization disabled", Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry credentials | [Troubleshoot installation and login](/docs/en/troubleshoot-install#login-and-authentication) |
-| Settings not applying, hooks not firing, MCP servers not loading                                                                                     | [Debug your configuration](/docs/en/debug-your-config)                                        |
-| `API Error: 5xx`, `529 Overloaded`, `429`, request validation errors                                                                                 | [Error reference](/docs/en/errors)                                                            |
-| `model not found` or `you may not have access to it`                                                                                                 | [Error reference](/docs/en/errors#theres-an-issue-with-the-selected-model)                    |
-| VS Code extension not connecting or detecting Claude                                                                                                 | [VS Code integration](/docs/en/vs-code#fix-common-issues)                                     |
-| `Claude Code process exited with code 1` in VS Code or an SDK app                                                                                    | [Error reference](/docs/en/errors#claude-code-process-exited-with-code-n)                     |
-| JetBrains plugin or IDE not detected                                                                                                                 | [JetBrains integration](/docs/en/jetbrains#troubleshooting)                                   |
+| `command not found`, install fails, PATH issues, `EACCES`, TLS errors                                                                                | [Troubleshoot installation and login](https://code.claude.com/docs/en/troubleshoot-install)                          |
+| Update or install download fails with `The connection dropped while downloading the update` or `aborted`                                             | [Error reference](https://code.claude.com/docs/en/errors#the-connection-dropped-while-downloading-the-update)        |
+| Login loops, OAuth errors, `403 Forbidden`, "organization disabled", Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry credentials | [Troubleshoot installation and login](https://code.claude.com/docs/en/troubleshoot-install#login-and-authentication) |
+| Settings not applying, hooks not firing, MCP servers not loading                                                                                     | [Debug your configuration](https://code.claude.com/docs/en/debug-your-config)                                        |
+| `API Error: 5xx`, `529 Overloaded`, `429`, request validation errors                                                                                 | [Error reference](https://code.claude.com/docs/en/errors)                                                            |
+| `model not found` or `you may not have access to it`                                                                                                 | [Error reference](https://code.claude.com/docs/en/errors#theres-an-issue-with-the-selected-model)                    |
+| VS Code extension not connecting or detecting Claude                                                                                                 | [VS Code integration](https://code.claude.com/docs/en/vs-code#fix-common-issues)                                     |
+| `Claude Code process exited with code 1` in VS Code or an SDK app                                                                                    | [Error reference](https://code.claude.com/docs/en/errors#claude-code-process-exited-with-code-n)                     |
+| JetBrains plugin or IDE not detected                                                                                                                 | [JetBrains integration](https://code.claude.com/docs/en/jetbrains#troubleshooting)                                   |
 | High CPU or memory, slow responses, hangs, search not finding files                                                                                  | [Performance and stability](#performance-and-stability) below                            |
 
 If you're not sure which applies, run `/doctor` inside Claude Code for an automated check of your installation, settings, extensions, and context usage; it proposes fixes it can apply after you confirm. If `claude` won't start at all, run `claude doctor` from your shell instead. Run `/mcp` to check MCP server status.
@@ -36,7 +36,7 @@ Claude Code is designed to work with most development environments, but may cons
 1. Use `/compact` regularly to reduce context size. If it returns `Not enough messages to compact.`, the conversation has too few turns to summarize; that can happen even with a full context when a single large paste filled it
 2. Close and restart Claude Code between major tasks
 3. Consider adding large build directories to your `.gitignore` file
-4. Restart with [`claude --safe-mode`](/docs/en/cli-reference#cli-flags) to check whether a plugin, MCP server, or hook is the source. It disables all customizations for the session; if usage drops, see [Debug your configuration](/docs/en/debug-your-config#test-against-a-clean-configuration) to find which one
+4. Restart with [`claude --safe-mode`](https://code.claude.com/docs/en/cli-reference#cli-flags) to check whether a plugin, MCP server, or hook is the source. It disables all customizations for the session; if usage drops, see [Debug your configuration](https://code.claude.com/docs/en/debug-your-config#test-against-a-clean-configuration) to find which one
 
 If memory usage stays high after these steps, run `/heapdump` to write two files to `~/Desktop`: a JavaScript heap snapshot named `<session-id>.heapsnapshot` and a memory breakdown named `<session-id>-diagnostics.json`. The command doesn't appear in the command menu; type it in full. On Linux without a Desktop folder, the files are written to your home directory.
 
@@ -53,7 +53,7 @@ If the summary says most memory is native, the snapshot can't show it; include t
 
 ### Large tables are cut off in the terminal
 
-A Markdown table with more than 200 rows renders its first 200 rows followed by a `… N more rows not shown` line. Only the display is capped: the full table stays in the conversation, and [`/copy`](/docs/en/commands) copies every row. For a table too large to read in the terminal, ask Claude to write it to a file instead. Before v2.1.208, Claude Code rendered every row, so resuming a session that contained a very large table could stall while it re-rendered.
+A Markdown table with more than 200 rows renders its first 200 rows followed by a `… N more rows not shown` line. Only the display is capped: the full table stays in the conversation, and [`/copy`](https://code.claude.com/docs/en/commands) copies every row. For a table too large to read in the terminal, ask Claude to write it to a file instead. Before v2.1.208, Claude Code rendered every row, so resuming a session that contained a very large table could stall while it re-rendered.
 
 ### Auto-compaction stops with a thrashing error
 
@@ -63,7 +63,7 @@ To recover:
 
 1. Ask Claude to read the oversized file in smaller chunks, such as a specific line range or function, instead of the whole file
 2. Run `/compact` with a focus that drops the large output, for example `/compact keep only the plan and the diff`
-3. Move the large-file work to a [subagent](/docs/en/sub-agents) so it runs in a separate context window
+3. Move the large-file work to a [subagent](https://code.claude.com/docs/en/sub-agents) so it runs in a separate context window
 4. Run `/clear` if the earlier conversation is no longer needed
 
 ### Command hangs or freezes
@@ -77,7 +77,7 @@ Restarting doesn't lose your conversation. Run `claude --resume` in the same dir
 
 ### Garbled or corrupted text in an editor's integrated terminal
 
-If characters render as boxes, smears, or the wrong glyphs when running Claude Code in the VS Code, Cursor, or Devin Desktop integrated terminal, the terminal's GPU renderer is likely the cause. Run `/terminal-setup` inside Claude Code to set `terminal.integrated.gpuAcceleration` to `"off"`, or set it manually in your editor settings and reload the window. See [Terminal configuration](/docs/en/terminal-config) for the other settings `/terminal-setup` writes.
+If characters render as boxes, smears, or the wrong glyphs when running Claude Code in the VS Code, Cursor, or Devin Desktop integrated terminal, the terminal's GPU renderer is likely the cause. Run `/terminal-setup` inside Claude Code to set `terminal.integrated.gpuAcceleration` to `"off"`, or set it manually in your editor settings and reload the window. See [Terminal configuration](https://code.claude.com/docs/en/terminal-config) for the other settings `/terminal-setup` writes.
 
 ### Search and discovery issues
 
@@ -103,7 +103,7 @@ If the Search tool, `@file` mentions, custom agents, or custom skills aren't fin
     apk add ripgrep
 ```
 
-`ripgrep` is in Alpine's community repository. If `apk` reports that the package is missing, see [Alpine Linux setup](/docs/en/setup#alpine-linux-and-musl-based-distributions).
+`ripgrep` is in Alpine's community repository. If `apk` reports that the package is missing, see [Alpine Linux setup](https://code.claude.com/docs/en/setup#alpine-linux-and-musl-based-distributions).
 
 
 
@@ -120,7 +120,7 @@ If the Search tool, `@file` mentions, custom agents, or custom skills aren't fin
 ```
 
 
-Then set `USE_BUILTIN_RIPGREP` to `0`, either in your shell [environment](/docs/en/env-vars) or in the `env` block of your [`settings.json`](/docs/en/settings#available-settings):
+Then set `USE_BUILTIN_RIPGREP` to `0`, either in your shell [environment](https://code.claude.com/docs/en/env-vars) or in the `env` block of your [`settings.json`](https://code.claude.com/docs/en/settings#available-settings):
 ```json
 {
   "env": {

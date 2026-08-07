@@ -1,5 +1,5 @@
 ---
-title: Week 13 \u00b7 March 23\u201327, 2026
+title: "Week 13 · March 23–27, 2026"
 source: https://code.claude.com/docs/en/whats-new/2026-w13
 path: /docs/en/whats-new/2026-w13
 ---
@@ -140,4 +140,4 @@ Deep links open in your preferred terminal, not first-detected
 Idle-return nudge to `/clear` after 75+ minutes away
 VS Code: rate limit banner, Esc-twice rewind picker
 
-[Full changelog for v2.1.83–v2.1.85 →](/docs/en/changelog#2-1-83)
+[Full changelog for v2.1.83–v2.1.85 →](https://code.claude.com/docs/en/changelog#2-1-83)

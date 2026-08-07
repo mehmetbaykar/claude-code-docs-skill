@@ -1,5 +1,5 @@
 ---
-title: Agent Skills in the SDK
+title: "Agent Skills in the SDK"
 source: https://code.claude.com/docs/en/agent-sdk/skills
 path: /docs/en/agent-sdk/skills
 ---
@@ -26,7 +26,7 @@ When using the Claude Agent SDK, Skills are:
 
 Unlike subagents (which can be defined programmatically), Skills must be created as filesystem artifacts. The SDK does not provide a programmatic API for registering Skills.
 
-Skills are discovered through the filesystem setting sources. With default `query()` options, the SDK loads user and project sources, so skills in `~/.claude/skills/`, `<cwd>/.claude/skills/`, and `.claude/skills/` in any parent directory of `<cwd>` up to the repository root are available. If you set `settingSources` explicitly, include `'user'` or `'project'` to keep skill discovery, or use the [`plugins` option](/docs/en/agent-sdk/plugins) to load skills from a specific path.
+Skills are discovered through the filesystem setting sources. With default `query()` options, the SDK loads user and project sources, so skills in `~/.claude/skills/`, `<cwd>/.claude/skills/`, and `.claude/skills/` in any parent directory of `<cwd>` up to the repository root are available. If you set `settingSources` explicitly, include `'user'` or `'project'` to keep skill discovery, or use the [`plugins` option](https://code.claude.com/docs/en/agent-sdk/plugins) to load skills from a specific path.
 
 ## Using Skills with the SDK
 
@@ -72,7 +72,7 @@ The following example sets `cwd` to the process's current working directory, so 
   }
 ```
 
-Near the start of the stream, the SDK yields a system message with subtype `init`. Check its `skills` array to confirm your Skills loaded before Claude starts working. The array lists user-invocable Skills only. A Skill with [`user-invocable: false`](/docs/en/skills#control-who-invokes-a-skill) in its frontmatter loads and remains available to Claude but doesn't appear in the array.
+Near the start of the stream, the SDK yields a system message with subtype `init`. Check its `skills` array to confirm your Skills loaded before Claude starts working. The array lists user-invocable Skills only. A Skill with [`user-invocable: false`](https://code.claude.com/docs/en/skills#control-who-invokes-a-skill) in its frontmatter loads and remains available to Claude but doesn't appear in the array.
 
 To enable only specific Skills, pass their names. Names match the `name` field in `SKILL.md` or the Skill's directory name. Use `plugin:skill` for plugin-provided Skills.
 
@@ -115,7 +115,7 @@ Create each Skill as a directory containing a `SKILL.md` file with YAML frontmat
 
 For complete guidance on creating Skills, including SKILL.md structure, multi-file Skills, and examples, see:
 
-* [Agent Skills in Claude Code](/docs/en/skills): Complete guide with examples
+* [Agent Skills in Claude Code](https://code.claude.com/docs/en/skills): Complete guide with examples
 * [Agent Skills Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices): Authoring guidelines and naming conventions
 
 ## Tool Restrictions
@@ -240,7 +240,7 @@ Claude automatically invokes the relevant Skill if the description matches your 
   };
 ```
 
-For more details on `settingSources`/`setting_sources`, see the [TypeScript SDK reference](/docs/en/agent-sdk/typescript#settingsource) or [Python SDK reference](/docs/en/agent-sdk/python#settingsource).
+For more details on `settingSources`/`setting_sources`, see the [TypeScript SDK reference](https://code.claude.com/docs/en/agent-sdk/typescript#settingsource) or [Python SDK reference](https://code.claude.com/docs/en/agent-sdk/python#settingsource).
 
 **Check working directory**: The SDK loads Skills from `.claude/skills/` in the `cwd` option and in every parent directory up to the repository root. Ensure `cwd` points at or below the directory containing `.claude/skills/`, within the same repository:
 ```python Python
@@ -279,21 +279,21 @@ ls ~/.claude/skills/*/SKILL.md
 
 ### Additional Troubleshooting
 
-For general Skills troubleshooting (YAML syntax, debugging, etc.), see the [Claude Code Skills troubleshooting section](/docs/en/skills#troubleshooting).
+For general Skills troubleshooting (YAML syntax, debugging, etc.), see the [Claude Code Skills troubleshooting section](https://code.claude.com/docs/en/skills#troubleshooting).
 
 ## Related Documentation
 
 ### Skills Guides
 
-* [Agent Skills in Claude Code](/docs/en/skills): Complete Skills guide with creation, examples, and troubleshooting
+* [Agent Skills in Claude Code](https://code.claude.com/docs/en/skills): Complete Skills guide with creation, examples, and troubleshooting
 * [Agent Skills Overview](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview): Conceptual overview, benefits, and architecture
 * [Agent Skills Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices): Authoring guidelines for effective Skills
 * [Agent Skills Cookbook](https://platform.claude.com/cookbook/skills-notebooks-01-skills-introduction): Example Skills and templates
 
 ### SDK Resources
 
-* [Subagents in the SDK](/docs/en/agent-sdk/subagents): Similar filesystem-based agents with programmatic options
-* [Slash Commands in the SDK](/docs/en/agent-sdk/slash-commands): User-invoked commands
-* [SDK Overview](/docs/en/agent-sdk/overview): General SDK concepts
-* [TypeScript SDK Reference](/docs/en/agent-sdk/typescript): Complete API documentation
-* [Python SDK Reference](/docs/en/agent-sdk/python): Complete API documentation
+* [Subagents in the SDK](https://code.claude.com/docs/en/agent-sdk/subagents): Similar filesystem-based agents with programmatic options
+* [Slash Commands in the SDK](https://code.claude.com/docs/en/agent-sdk/slash-commands): User-invoked commands
+* [SDK Overview](https://code.claude.com/docs/en/agent-sdk/overview): General SDK concepts
+* [TypeScript SDK Reference](https://code.claude.com/docs/en/agent-sdk/typescript): Complete API documentation
+* [Python SDK Reference](https://code.claude.com/docs/en/agent-sdk/python): Complete API documentation

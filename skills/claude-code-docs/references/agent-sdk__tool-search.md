@@ -1,5 +1,5 @@
 ---
-title: Scale to many tools with tool search
+title: "Scale to many tools with tool search"
 source: https://code.claude.com/docs/en/agent-sdk/tool-search
 path: /docs/en/agent-sdk/tool-search
 ---
@@ -48,9 +48,9 @@ The SDK also disables tool search when `ANTHROPIC_BASE_URL` points to a non-firs
 | `auto:N` | Same as `auto` with a custom percentage. `auto:5` activates when tool definitions exceed 5% of the context window. Lower values activate sooner.                                                                                                                                                                                                                                                                    |
 | `false`  | Tool search is off. All tool definitions are loaded into context on every turn.                                                                                                                                                                                                                                                                                                                                     |
 
-Setting [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS`](/docs/en/env-vars) keeps tool search off, and `ENABLE_TOOL_SEARCH` can't override it. The variable strips the beta header that `defer_loading` tool definitions and `tool_reference` content blocks require.
+Setting [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS`](https://code.claude.com/docs/en/env-vars) keeps tool search off, and `ENABLE_TOOL_SEARCH` can't override it. The variable strips the beta header that `defer_loading` tool definitions and `tool_reference` content blocks require.
 
-Tool search applies to all registered tools, whether they come from remote MCP servers or [custom SDK MCP servers](/docs/en/agent-sdk/custom-tools). When using `auto`, the threshold is based on the combined size of all tool definitions across all servers.
+Tool search applies to all registered tools, whether they come from remote MCP servers or [custom SDK MCP servers](https://code.claude.com/docs/en/agent-sdk/custom-tools). When using `auto`, the threshold is based on the combined size of all tool definitions across all servers.
 
 Set the value in the `env` option on `query()`. In TypeScript, `env` replaces the subprocess environment, so spread `...process.env` to keep inherited variables. In Python, `env` is merged on top of the inherited environment. This example connects to a remote MCP server that exposes many tools, pre-approves all of them with a wildcard, and uses `auto:5` so tool search activates when their definitions exceed 5% of the context window:
 ```typescript TypeScript
@@ -119,7 +119,7 @@ Set the value in the `env` option on `query()`. In TypeScript, `env` replaces th
 
 To run this example, replace `https://tools.example.com/mcp` with the URL of your own MCP server. On success the result text prints to the console.
 
-Because this is a single-shot `query()` call, the SDK raises after yielding an error result, so the example wraps the loop in a try block. To see why a run failed, check the result message's `subtype`, such as `error_during_execution`, inside the loop. For more on result messages, see [Handle the result](/docs/en/agent-sdk/agent-loop#handle-the-result).
+Because this is a single-shot `query()` call, the SDK raises after yielding an error result, so the example wraps the loop in a try block. To see why a run failed, check the result message's `subtype`, such as `error_during_execution`, inside the loop. For more on result messages, see [Handle the result](https://code.claude.com/docs/en/agent-sdk/agent-loop#handle-the-result).
 
 Setting `ENABLE_TOOL_SEARCH` to `"false"` disables tool search and loads all tool definitions into context on every turn. This removes the search round-trip, which can be faster when the tool set is small (fewer than \~10 tools) and the definitions fit comfortably in the context window.
 
@@ -147,7 +147,7 @@ You can also add a system prompt section listing available tool categories. This
   )
 ```
 
-For the full set of system prompt options, see [Modifying system prompts](/docs/en/agent-sdk/modifying-system-prompts).
+For the full set of system prompt options, see [Modifying system prompts](https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts).
 
 ## Limits
 
@@ -158,7 +158,7 @@ For the full set of system prompt options, see [Modifying system prompts](/docs/
 ## Related documentation
 
 * [Tool search in the API](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool): Full API documentation for tool search, including custom implementations
-* [Connect MCP servers](/docs/en/agent-sdk/mcp): Connect to external tools via MCP servers
-* [Custom tools](/docs/en/agent-sdk/custom-tools): Build your own tools with SDK MCP servers
-* [TypeScript SDK reference](/docs/en/agent-sdk/typescript): Full API reference
-* [Python SDK reference](/docs/en/agent-sdk/python): Full API reference
+* [Connect MCP servers](https://code.claude.com/docs/en/agent-sdk/mcp): Connect to external tools via MCP servers
+* [Custom tools](https://code.claude.com/docs/en/agent-sdk/custom-tools): Build your own tools with SDK MCP servers
+* [TypeScript SDK reference](https://code.claude.com/docs/en/agent-sdk/typescript): Full API reference
+* [Python SDK reference](https://code.claude.com/docs/en/agent-sdk/python): Full API reference

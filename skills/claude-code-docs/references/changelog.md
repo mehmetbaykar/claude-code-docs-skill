@@ -1,5 +1,5 @@
 ---
-title: Claude Code changelog
+title: "Claude Code changelog"
 source: https://code.claude.com/docs/en/changelog
 path: /docs/en/changelog
 ---
