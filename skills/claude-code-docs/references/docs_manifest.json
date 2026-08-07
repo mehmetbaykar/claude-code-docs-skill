@@ -659,16 +659,16 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "46e43ead614191d49c190dd6f909d45fb2796793f1d6587cb16ca73d5e00c005",
-      "last_updated": "2026-08-07T00:05:32+00:00",
+      "hash": "44b9a68fd49feb4dd00b61542a17a9535afa7896f3fbcc080608b4af3f259ff3",
+      "last_updated": "2026-08-07T07:20:59+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "265f141fcd890a97046607902cf7ee3b6afd19b53fc4f5588a01ef72eb0a6a32",
-      "last_updated": "2026-08-07T04:57:33+00:00",
+      "hash": "feab348f099cac496ef6f2d81015d6ddcda6e5b04819741df8d6012699ac3084",
+      "last_updated": "2026-08-07T07:21:00+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -891,8 +891,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "dc34ecef2ac08cb874574f8535827d04270b1d1a486326240a4511dd7f29a92e",
-      "last_updated": "2026-08-07T04:57:48+00:00",
+      "hash": "027fbc1107f4f258875d1a1f9bfdde69b29a30120a68efc16056abf216194d1c",
+      "last_updated": "2026-08-07T07:21:17+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -1003,8 +1003,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugin-marketplaces.md": {
-      "hash": "c4299e6b980896c195f07959f681db9ee65bb6e464d065bb447a1d24e71774c5",
-      "last_updated": "2026-08-07T04:57:54+00:00",
+      "hash": "e0e25af059cdb68c393a1725af5816e5151d025ec91d91de2eb9ba9b106c6a45",
+      "last_updated": "2026-08-07T07:21:23+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-marketplaces",
       "path": "/docs/en/plugin-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugin-marketplaces.md",
@@ -1019,16 +1019,16 @@
       "title": "Recommend plugins for your org"
     },
     "plugins-reference.md": {
-      "hash": "5d0c48412ddd1736fc8b46b402fcdfebaba877ab892eb6020476ddf10803dbfc",
-      "last_updated": "2026-08-07T04:57:55+00:00",
+      "hash": "b9625808233da66287c170240812bf8378a22df5c55a18acc9ccf920cfc08c76",
+      "last_updated": "2026-08-07T07:21:24+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins-reference",
       "path": "/docs/en/plugins-reference",
       "source_url": "https://code.claude.com/docs/en/plugins-reference.md",
       "title": "Plugins reference"
     },
     "plugins.md": {
-      "hash": "4bbd19818c05dba34c6219a825ec7ac352300a5e0306d379671bcdbfd5e329be",
-      "last_updated": "2026-08-07T04:57:55+00:00",
+      "hash": "74b08378cbf435ef952e6f5e43be66a495b87beec490bf685ede6109a6c85e46",
+      "last_updated": "2026-08-07T07:21:24+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins",
       "path": "/docs/en/plugins",
       "source_url": "https://code.claude.com/docs/en/plugins.md",
@@ -1187,8 +1187,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "d233e01289ff8fcb08e2461714be24a9942a200d86ad09b30e9f3e7729f496e3",
-      "last_updated": "2026-08-07T00:06:06+00:00",
+      "hash": "4e6c58546de8101c938a5467646e73583c2089a95ed23ca5e1295f6eacca296e",
+      "last_updated": "2026-08-07T07:21:34+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1227,8 +1227,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "fdf16ce38bd8731598ed5ffc124bb2ba09bbd8f976e5cec6132586b0bf1663bf",
-      "last_updated": "2026-08-06T02:50:09+00:00",
+      "hash": "66b760488ca2cc5aff919833351bbb5d83bf9db45895b97be68d151cba85428f",
+      "last_updated": "2026-08-07T07:21:37+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1251,8 +1251,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "6da0065d660e34817c0edb4614f77d014b3303d6f0c127bd0ecc8e0f1a212a47",
-      "last_updated": "2026-08-05T02:48:38+00:00",
+      "hash": "9123416c37fb01282ddbd7a686be6af4e3275bc0e90e1d0dc53b8e233f052a18",
+      "last_updated": "2026-08-07T07:21:39+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1489,7 +1489,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-07T04:58:25+00:00",
+  "last_updated": "2026-08-07T07:21:58+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
