@@ -248,9 +248,9 @@ An MCP server can also push messages directly into your session so Claude can re
 Tips:
 
 * Use the `-s` or `--scope` flag to specify where the configuration is stored:
-* `local` (default): available only to you in the current project. Older versions called this scope `project`
+* `local` (default): available only to you in the current project
 * `project`: shared with everyone in the project via the `.mcp.json` file
-* `user`: available to you across all projects. Older versions called this scope `global`
+* `user`: available to you across all projects
 * Set environment variables with `-e` or `--env` flags (for example, `-e KEY=value`)
 * The `--transport` and `--header` flags also accept `-t` and `-H` short forms
 * Configure MCP server startup timeout using the `MCP_TIMEOUT` environment variable (for example, `MCP_TIMEOUT=10000 claude` sets a 10-second timeout)
@@ -337,13 +337,7 @@ Or inline in `plugin.json`:
 * **User environment access**: access to the same environment variables as manually configured servers
 * **Multiple transport types**: support for stdio, SSE, HTTP, and WebSocket transports, though transport support may vary by server
 
-**Viewing plugin MCP servers**:
-```bash
-# Within Claude Code, see all MCP servers including plugin ones
-/mcp
-```
-
-Plugin servers appear in the list with indicators showing they come from plugins.
+Plugin servers appear in `/mcp` with indicators showing they come from plugins.
 
 **Plugin MCP tool names**:
 
@@ -355,12 +349,6 @@ mcp__plugin_my-plugin_database-tools__query
 Use this full name when referencing the tool in [permission rules](https://code.claude.com/docs/en/permissions), a skill's `allowed-tools` list, a [subagent's `tools` field](https://code.claude.com/docs/en/sub-agents#available-tools), or a [hook matcher](https://code.claude.com/docs/en/hooks#match-mcp-tools). A hook matcher written against the bare server key, such as `mcp__database-tools__.*`, never fires for a plugin-bundled server.
 
 The server itself registers under the scoped name `plugin:<plugin-name>:<server-name>`, such as `plugin:my-plugin:database-tools`. Use that name where a configured server name is expected, such as an [`mcp_tool` hook's `server` field](https://code.claude.com/docs/en/hooks#mcp-tool-hook-fields).
-
-**Benefits of plugin MCP servers**:
-
-* **Bundled distribution**: tools and servers packaged together
-* **Automatic setup**: no manual MCP configuration needed
-* **Team consistency**: everyone gets the same tools when the plugin is installed
 
 See the [plugin components reference](https://code.claude.com/docs/en/plugins-reference#mcp-servers) for details on bundling MCP servers with plugins.
 
@@ -559,7 +547,10 @@ Find customers who haven't made a purchase in 90 days
 
 Many cloud-based MCP servers require authentication. Claude Code supports OAuth 2.0 for secure connections.
 
-Claude Code marks a remote server as needing authentication when the server responds with `401 Unauthorized` or `403 Forbidden`. For a server you haven't signed in to, either status code flags it in `/mcp` so you can complete the OAuth flow. For a [claude.ai connector](#use-mcp-servers-from-claude-ai), a `401` caused by claude.ai rejecting your session token doesn't flag the connector this way, because re-authorizing the connector can't fix your login; Claude Code shows the [session-token-rejected state](https://code.claude.com/docs/en/errors#claude-ai-rejected-the-session-token) instead.
+Claude Code marks a remote server as needing authentication when the server responds with `401 Unauthorized` or `403 Forbidden`. What Claude Code shows depends on the server:
+
+* For a server you haven't signed in to, either status code flags it in `/mcp` so you can complete the OAuth flow.
+* For a [claude.ai connector](#use-mcp-servers-from-claude-ai), a `401` caused by claude.ai rejecting your session token doesn't flag the connector, because re-authorizing the connector can't fix your login. Claude Code shows the [session-token-rejected state](https://code.claude.com/docs/en/errors#claude-ai-rejected-the-session-token) instead.
 
 When a request to an OAuth server you already signed in to returns `401 Unauthorized`, Claude Code refreshes the stored token, reconnects, and retries the request once. It flags the server in `/mcp` only if that retry also fails. Before v2.1.206, a token refresh that failed for a transient reason, such as a network error, flagged an OAuth server as needing authentication for the rest of the session even though its refresh token was still valid.
 
@@ -997,7 +988,6 @@ Without the correct executable path, you'll encounter errors like `spawn claude 
 
 Tips:
 
-* The server provides access to Claude's tools like View, Edit, LS, etc.
 * In Claude Desktop, try asking Claude to read files in a directory, make edits, and more.
 * This MCP server only exposes Claude Code's tools to your MCP client, so your own client is responsible for implementing user confirmation for individual tool calls.
 
@@ -1015,12 +1005,6 @@ To increase the limit for tools that produce large outputs:
 export MAX_MCP_OUTPUT_TOKENS=50000
 claude
 ```
-
-This is particularly useful when working with MCP servers that:
-
-* Query large datasets or databases
-* Generate detailed reports or documentation
-* Process extensive log files or debugging information
 
 ### Raise the limit for a specific tool
 

@@ -13,6 +13,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `agent-sdk__claude-code-features` - [Use Claude Code features in the SDK](https://code.claude.com/docs/en/agent-sdk/claude-code-features)
 - `agent-sdk__cost-tracking` - [Track cost and usage](https://code.claude.com/docs/en/agent-sdk/cost-tracking)
 - `agent-sdk__custom-tools` - [Give Claude custom tools](https://code.claude.com/docs/en/agent-sdk/custom-tools)
+- `agent-sdk__examples` - [Examples](https://code.claude.com/docs/en/agent-sdk/examples)
 - `agent-sdk__file-checkpointing` - [Rewind file changes with checkpointing](https://code.claude.com/docs/en/agent-sdk/file-checkpointing)
 - `agent-sdk__hooks` - [Intercept and control agent behavior with hooks](https://code.claude.com/docs/en/agent-sdk/hooks)
 - `agent-sdk__hosting` - [Hosting the Agent SDK](https://code.claude.com/docs/en/agent-sdk/hosting)
