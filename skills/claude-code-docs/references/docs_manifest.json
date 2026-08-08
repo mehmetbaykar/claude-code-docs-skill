@@ -1102,8 +1102,8 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "4be9ba7bcd105ea4ef79233e4de2b820b8b6bbc9dec78871807944685a0079a8",
-      "last_updated": "2026-08-07T22:00:54+00:00",
+      "hash": "f09cb64165471d80d2365fa07707f2a9e0b3ec28e7e2f277de0cd718f7335fb2",
+      "last_updated": "2026-08-08T07:26:56+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "source_url": "https://code.claude.com/docs/en/permission-modes.md",
@@ -1692,7 +1692,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-08T04:33:20+00:00",
+  "last_updated": "2026-08-08T07:27:36+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
