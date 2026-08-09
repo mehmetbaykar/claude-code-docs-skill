@@ -760,8 +760,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "32bf135a163ce3cb1f1d13a7ce476fb1a4607db03e942971bfc7756fdd74e15e",
-      "last_updated": "2026-08-08T02:26:23+00:00",
+      "hash": "cbd59759d0821886a0e865ef91ecd49400db81d1e2b68495f52d4d7c57e256cb",
+      "last_updated": "2026-08-09T04:42:05+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -922,8 +922,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "c9b5501501f893471fd9d3e32e1ed3c8707d6e4377adec0ff5a765ab9879c1ea",
-      "last_updated": "2026-08-08T02:26:35+00:00",
+      "hash": "102acd8969b0124941dec11ca5e91578c956c16130c63acea110638d08ed061b",
+      "last_updated": "2026-08-09T04:42:26+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -1354,8 +1354,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "2eaeab54840ff30479cc048414b43ca5c1306c8cf5853636213c96ceec363cb4",
-      "last_updated": "2026-08-08T02:27:05+00:00",
+      "hash": "91489c7f6a479fdf4e597e768e30ebcbc09dbb2428cc7f033e1b27b6dc9ac554",
+      "last_updated": "2026-08-09T04:43:12+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1692,7 +1692,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-08T07:27:36+00:00",
+  "last_updated": "2026-08-09T04:43:43+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
