@@ -10,6 +10,18 @@ path: /docs/en/whats-new
 
 The weekly dev digest highlights the features most likely to change how you work. Each entry includes runnable code, a short demo, and a link to the full docs. For every bug fix and minor improvement, see the [changelog](https://code.claude.com/docs/en/changelog).
 
+  **Cross-session messaging**: on macOS and Linux, your Claude Code sessions can now message each other, so Claude passes a finding or a decision from one session to another instead of you re-explaining it.
+
+Also this week: **self-hosted environments** run Claude Code cloud sessions on infrastructure your organization operates, in public beta on Team and Enterprise plans; **auto mode** becomes the default permission mode for new sessions on Pro, Max, and Team plans starting August 14; and the **VS Code extension** gets Focus view.
+
+[Read the Week 32 digest →](https://code.claude.com/docs/en/whats-new/2026-w32)
+
+  **Claude Opus 5**: the new default Opus model in Claude Code, with a 1M-token context window and fast mode at \$10/\$50 per MTok.
+
+Also this week: **Claude Code Desktop** opens an iOS Simulator pane in public beta so Claude can run your app and tap through it while you watch; the **Claude Security plugin** runs a multi-agent vulnerability scan of your codebase and turns the findings you pick into patches you apply yourself; and **`/code-review`** runs as a background subagent.
+
+[Read the Week 30 digest →](https://code.claude.com/docs/en/whats-new/2026-w30)
+
   **Artifacts call your MCP connectors**: a published artifact can pull live data and take actions through each viewer's own MCP connectors when they open the page, and this week also adds public sharing links, editor roles on Team and Enterprise, and artifacts created from Claude Tag sessions.
 
 Also this week: **screen reader mode** replaces the visual terminal interface with plain, linear text for screen readers such as VoiceOver and NVDA; **`/fork`** copies your conversation into a new background session while you keep working; and **auto mode** no longer needs an opt-in variable on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry.
