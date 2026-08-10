@@ -553,8 +553,8 @@
       "title": "Scan your codebase for vulnerabilities"
     },
     "claude-tag.md": {
-      "hash": "e93db7973c1516fd8b70c72f96c541862cca13a21e799fe7087a5319b7c058b1",
-      "last_updated": "2026-08-07T17:26:29+00:00",
+      "hash": "8f3dacc641569ead2e216cec3e8f791d99598a5ebbfb3253594a11c1d187d1d1",
+      "last_updated": "2026-08-10T22:02:31+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-tag",
       "path": "/docs/en/claude-tag",
       "source_url": "https://code.claude.com/docs/en/claude-tag.md",
@@ -625,8 +625,8 @@
       "title": "Let Claude use your computer from the CLI"
     },
     "context-window.md": {
-      "hash": "7d53942b90cf6b98deb141326d0d23c8c4335c45222f7826883f3848dacb8ddd",
-      "last_updated": "2026-08-07T17:26:35+00:00",
+      "hash": "c92b1b8d49bd3ddd6fa0819114dd168b764660f9ae7229ba20b96c18ced4f363",
+      "last_updated": "2026-08-10T22:02:36+00:00",
       "original_url": "https://code.claude.com/docs/en/context-window",
       "path": "/docs/en/context-window",
       "source_url": "https://code.claude.com/docs/en/context-window.md",
@@ -760,8 +760,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "cbd59759d0821886a0e865ef91ecd49400db81d1e2b68495f52d4d7c57e256cb",
-      "last_updated": "2026-08-09T04:42:05+00:00",
+      "hash": "2ceb6d5ec2c56c1c7f38a7c5572583c61378b8cd25b8ddd32c8b3dd00673c59d",
+      "last_updated": "2026-08-10T22:02:43+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -1354,8 +1354,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "91489c7f6a479fdf4e597e768e30ebcbc09dbb2428cc7f033e1b27b6dc9ac554",
-      "last_updated": "2026-08-09T04:43:12+00:00",
+      "hash": "72f5317b6b8dbe0fd13f628783fde89bf4a0097b46a2f189b4b8d86c9e7703cb",
+      "last_updated": "2026-08-10T22:03:19+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1381,8 +1381,8 @@
       "title": "Extend Claude with skills"
     },
     "slack.md": {
-      "hash": "90cbb93378c89df9ec67fa764f8e99c73a7071cec08d1778751cea125478f85b",
-      "last_updated": "2026-08-07T17:27:36+00:00",
+      "hash": "267489d40cde746c0d4044c1ba3fed86638647f308a9420877f57cabf6d0d3e1",
+      "last_updated": "2026-08-10T22:03:20+00:00",
       "original_url": "https://code.claude.com/docs/en/slack",
       "path": "/docs/en/slack",
       "source_url": "https://code.claude.com/docs/en/slack.md",
@@ -1710,7 +1710,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-10T19:28:28+00:00",
+  "last_updated": "2026-08-10T22:03:39+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
