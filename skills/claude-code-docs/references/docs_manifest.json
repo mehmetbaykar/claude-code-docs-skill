@@ -643,8 +643,8 @@
       "title": "Run Claude Code behind a corporate launcher"
     },
     "costs.md": {
-      "hash": "358be4fe607431ca03b882c1122634d5aa74d690efbf03f345820ab9d31c7e96",
-      "last_updated": "2026-08-08T02:26:14+00:00",
+      "hash": "3d8a242892b15a6c16416162c290b274ba4b0a609cf9faf38bea80830b4e07d6",
+      "last_updated": "2026-08-11T04:45:32+00:00",
       "original_url": "https://code.claude.com/docs/en/costs",
       "path": "/docs/en/costs",
       "source_url": "https://code.claude.com/docs/en/costs.md",
@@ -688,8 +688,8 @@
       "title": "Launch sessions from links"
     },
     "desktop-ios-simulator.md": {
-      "hash": "7cdba3b10c33ceffac2b04b17c8c63a322fe53bd98228fb10d5f6ca283d19c65",
-      "last_updated": "2026-08-07T17:26:40+00:00",
+      "hash": "28ea01a07e34d876d70966f6d33da7a8188ff2612b02be66f947fc1e86a7db19",
+      "last_updated": "2026-08-11T04:45:36+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-ios-simulator",
       "path": "/docs/en/desktop-ios-simulator",
       "source_url": "https://code.claude.com/docs/en/desktop-ios-simulator.md",
@@ -778,8 +778,8 @@
       "title": "Error reference"
     },
     "fast-mode.md": {
-      "hash": "d44a4e2c173a363dcdd0c1a25ab37fbd282abd397173006994766d0327a786d8",
-      "last_updated": "2026-08-07T17:26:47+00:00",
+      "hash": "d79c07df679b6401fb617e88b69db01494ec31a141fd6af3169d388c206bb759",
+      "last_updated": "2026-08-11T04:45:42+00:00",
       "original_url": "https://code.claude.com/docs/en/fast-mode",
       "path": "/docs/en/fast-mode",
       "source_url": "https://code.claude.com/docs/en/fast-mode.md",
@@ -1710,7 +1710,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-11T02:33:30+00:00",
+  "last_updated": "2026-08-11T04:46:51+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
