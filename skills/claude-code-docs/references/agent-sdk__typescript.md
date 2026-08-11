@@ -1144,7 +1144,8 @@ type SyncHookJSONOutput = {
    * A terminal escape sequence (e.g. OSC 9 / OSC 777 desktop-notification)
    * for Claude Code to emit on your behalf. Only notification/title OSCs
    * (0, 1, 2, 9, 99, 777) and BEL are permitted; a value containing
-   * anything else is ignored as a whole.
+   * anything else is ignored as a whole. Only the interactive CLI emits
+   * it; the SDK ignores the field.
    */
   terminalSequence?: string;
   reason?: string;
@@ -1545,8 +1546,18 @@ type ScheduleWakeupInput = {
 ```
 ```typescript
 type RemoteTriggerInput = {
-  action: "list" | "get" | "create" | "update" | "run";
+  action:
+    | "list"
+    | "get"
+    | "create"
+    | "update"
+    | "run"
+    | "create_webhook_trigger"
+    | "list_runs"
+    | "get_run_log";
   trigger_id?: string;
+  session_id?: string;
+  cursor?: string;
   body?: {
     [k: string]: unknown;
   };
