@@ -380,6 +380,8 @@ export CLAUDE_CODE_ENABLE_TELEMETRY=1
 export OTEL_METRICS_EXPORTER=prometheus
 ```
 
+On a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments-reference#pass-through-session-child-metrics), the session binds port 9464 only at the runner's default capacity of one. At higher capacity, the runner re-exposes session counters and gauges on its own `/metrics` endpoint instead.
+
 To send metrics to multiple exporters:
 ```bash
 export CLAUDE_CODE_ENABLE_TELEMETRY=1
