@@ -358,53 +358,11 @@ const result = query({
 ```typescript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
-const result = query({
-  prompt: "Analyze this code",
-  options: {
-    settingSources: ["user", "project", "local"] // Load all settings
-  }
-});
-```
-```typescript
-import { query } from "@anthropic-ai/claude-agent-sdk";
-
 // Load only project settings, ignore user and local
 const result = query({
   prompt: "Run CI checks",
   options: {
     settingSources: ["project"] // Only .claude/settings.json
-  }
-});
-```
-```typescript
-import { query } from "@anthropic-ai/claude-agent-sdk";
-
-// Ensure consistent behavior in CI by excluding local settings
-const result = query({
-  prompt: "Run tests",
-  options: {
-    settingSources: ["project"], // Only team-shared settings
-    permissionMode: "bypassPermissions",
-    allowDangerouslySkipPermissions: true
-  }
-});
-```
-```typescript
-import { query } from "@anthropic-ai/claude-agent-sdk";
-
-// Define everything programmatically.
-// Pass [] to opt out of filesystem setting sources.
-const result = query({
-  prompt: "Review this PR",
-  options: {
-    settingSources: [],
-    agents: {
-      /* ... */
-    },
-    mcpServers: {
-      /* ... */
-    },
-    allowedTools: ["Read", "Grep", "Glob"]
   }
 });
 ```
