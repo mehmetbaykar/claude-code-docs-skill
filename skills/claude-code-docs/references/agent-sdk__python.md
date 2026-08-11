@@ -23,8 +23,6 @@ For uv, Windows PowerShell, and API key setup, see [Setup in the Agent SDK quick
 
 The Python SDK provides two ways to interact with Claude Code:
 
-### Quick comparison
-
 | Feature             | `query()`                                      | `ClaudeSDKClient`                  |
 | :------------------ | :--------------------------------------------- | :--------------------------------- |
 | **Session**         | Creates a new session by default               | Reuses same session                |
@@ -37,24 +35,7 @@ The Python SDK provides two ways to interact with Claude Code:
 | **Continue Chat**   | Manual via `continue_conversation` or `resume` | ✅ Automatic                        |
 | **Use Case**        | One-off tasks                                  | Continuous conversations           |
 
-### When to use `query()` (one-off tasks)
-
-**Best for:**
-
-* One-off questions where you don't need conversation history
-* Independent tasks that don't require context from previous exchanges
-* Simple automation scripts
-* When you want a fresh start each time
-
-### When to use `ClaudeSDKClient` (continuous conversation)
-
-**Best for:**
-
-* **Continuing conversations** - When you need Claude to remember context
-* **Follow-up questions** - Building on previous responses
-* **Interactive applications** - Chat interfaces, REPLs
-* **Response-driven logic** - When next action depends on Claude's response
-* **Session control** - Managing conversation lifecycle explicitly
+Use `ClaudeSDKClient` for interactive applications such as chat interfaces, or when the next action depends on Claude's response.
 
 ## Functions
 
@@ -420,16 +401,7 @@ for session in list_sessions(directory="/path/to/project"):
 
 ### `ClaudeSDKClient`
 
-**Maintains a conversation session across multiple exchanges.** This is the Python equivalent of how the TypeScript SDK's `query()` function works internally - it creates a client object that can continue conversations.
-
-#### Key Features
-
-* **Session continuity**: Maintains conversation context across multiple `query()` calls
-* **Same conversation**: The session retains previous messages
-* **Interrupt support**: Can stop execution mid-task
-* **Explicit lifecycle**: You control when the session starts and ends
-* **Response-driven flow**: Can react to responses and send follow-ups
-* **Custom tools and hooks**: Supports custom tools (created with `@tool` decorator) and hooks
+**Maintains a conversation session across multiple exchanges.** This is the Python equivalent of how the TypeScript SDK's `query()` function works internally - it creates a client object that can continue conversations. See the [comparison with `query()`](#choosing-between-query-and-claudesdkclient).
 ```python
 class ClaudeSDKClient:
     def __init__(self, options: ClaudeAgentOptions | None = None, transport: Transport | None = None)
@@ -923,23 +895,6 @@ asyncio.run(main())
 
 In Python SDK 0.1.59 and earlier, an empty list was treated the same as omitting the option, so `setting_sources=[]` did not disable filesystem settings. Upgrade to a newer release if you need an empty list to take effect. The TypeScript SDK is not affected.
 
-**Load all filesystem settings explicitly:**
-```python
-import asyncio
-from claude_agent_sdk import query, ClaudeAgentOptions
-
-async def main():
-    async for message in query(
-        prompt="Analyze this code",
-        options=ClaudeAgentOptions(
-            setting_sources=["user", "project", "local"]
-        ),
-    ):
-        print(message)
-
-asyncio.run(main())
-```
-
 **Load only specific setting sources:**
 ```python
 # Load only project settings, ignore user and local
@@ -951,25 +906,6 @@ async def main():
         prompt="Run CI checks",
         options=ClaudeAgentOptions(
             setting_sources=["project"]  # Only .claude/settings.json
-        ),
-    ):
-        print(message)
-
-asyncio.run(main())
-```
-
-**Testing and CI environments:**
-```python
-# Ensure consistent behavior in CI by excluding local settings
-import asyncio
-from claude_agent_sdk import query, ClaudeAgentOptions
-
-async def main():
-    async for message in query(
-        prompt="Run tests",
-        options=ClaudeAgentOptions(
-            setting_sources=["project"],  # Only team-shared settings
-            permission_mode="bypassPermissions",
         ),
     ):
         print(message)
@@ -1003,28 +939,7 @@ async def main():
 asyncio.run(main())
 ```
 
-**Loading CLAUDE.md project instructions:**
-```python
-# Load project settings to include CLAUDE.md files
-import asyncio
-from claude_agent_sdk import query, ClaudeAgentOptions
-
-async def main():
-    async for message in query(
-        prompt="Add a new feature following project conventions",
-        options=ClaudeAgentOptions(
-            system_prompt={
-                "type": "preset",
-                "preset": "claude_code",  # Use Claude Code's system prompt
-            },
-            setting_sources=["project"],  # Loads CLAUDE.md from project
-            allowed_tools=["Read", "Write", "Edit"],
-        ),
-    ):
-        print(message)
-
-asyncio.run(main())
-```
+To load CLAUDE.md project instructions, include `"project"` in `setting_sources`. See [Modify system prompts](https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts#claude-md-files-for-project-level-instructions) for how CLAUDE.md loading interacts with the system prompt options.
 
 #### Settings precedence
 
@@ -2168,9 +2083,7 @@ Use `continue_` (with underscore) in Python code. It is automatically converted 
 
 #### `HookSpecificOutput`
 
-A `TypedDict` containing the hook event name and event-specific fields. The shape depends on the `hookEventName` value. For full details on available fields per hook event, see [Control execution with hooks](https://code.claude.com/docs/en/agent-sdk/hooks#outputs).
-
-A discriminated union of event-specific output types. The `hookEventName` field determines which fields are valid.
+A discriminated union of event-specific `TypedDict` output types. The `hookEventName` field determines which fields are valid. For full details on available fields per hook event, see [Control execution with hooks](https://code.claude.com/docs/en/agent-sdk/hooks#outputs).
 ```python
 class PreToolUseHookSpecificOutput(TypedDict):
     hookEventName: Literal["PreToolUse"]
@@ -3185,30 +3098,6 @@ async def main():
 asyncio.run(main())
 ```
 
-### Streaming mode with client
-```python
-from claude_agent_sdk import ClaudeSDKClient
-import asyncio
-
-async def interactive_session():
-    async with ClaudeSDKClient() as client:
-        # Send initial message
-        await client.query("What's the weather like?")
-
-        # Process responses
-        async for msg in client.receive_response():
-            print(msg)
-
-        # Send follow-up
-        await client.query("Tell me more about that")
-
-        # Process follow-up response
-        async for msg in client.receive_response():
-            print(msg)
-
-asyncio.run(interactive_session())
-```
-
 ### Using custom tools with ClaudeSDKClient
 ```python
 from claude_agent_sdk import (
@@ -3382,12 +3271,9 @@ class SandboxIgnoreViolations(TypedDict, total=False):
 
 ### Permissions Fallback for Unsandboxed Commands
 
-When `allowUnsandboxedCommands` is enabled, the model can request to run commands outside the sandbox by setting `dangerouslyDisableSandbox: True` in the tool input. These requests fall back to the existing permissions system, meaning your `can_use_tool` handler will be invoked, allowing you to implement custom authorization logic.
+When `allowUnsandboxedCommands` is enabled, the model can request to run commands outside the sandbox by setting `dangerouslyDisableSandbox: True` in the tool input. These requests fall back to the existing permissions system, meaning your `can_use_tool` handler will be invoked, allowing you to implement custom authorization logic. Commands listed in `excludedCommands` instead bypass the sandbox automatically, with no model involvement; see [`SandboxSettings`](#sandboxsettings).
 
-  **`excludedCommands` vs `allowUnsandboxedCommands`:**
-
-* `excludedCommands`: A static list of commands that always bypass the sandbox automatically (e.g., `["docker"]`). The model has no control over this.
-* `allowUnsandboxedCommands`: Lets the model decide at runtime whether to request unsandboxed execution by setting `dangerouslyDisableSandbox: True` in the tool input.
+The following example logs each unsandboxed request and denies it unless your own authorization logic allows it:
 ```python
 import asyncio
 from claude_agent_sdk import (
@@ -3445,12 +3331,6 @@ async def main():
 
 asyncio.run(main())
 ```
-
-This pattern enables you to:
-
-* **Audit model requests**: Log when the model requests unsandboxed execution
-* **Implement allowlists**: Only permit specific commands to run unsandboxed
-* **Add approval workflows**: Require explicit authorization for privileged operations
 
 Commands running with `dangerouslyDisableSandbox: True` have full system access. Ensure your `can_use_tool` handler validates these requests carefully.
 

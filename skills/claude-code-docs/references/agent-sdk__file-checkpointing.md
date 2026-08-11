@@ -22,14 +22,6 @@ Only changes made through the Write, Edit, and NotebookEdit tools are tracked. C
 
 When you enable file checkpointing, the SDK creates backups of files before modifying them through the Write, Edit, or NotebookEdit tools. User messages in the response stream include a checkpoint UUID that you can use as a restore point.
 
-Checkpoint works with these built-in tools that the agent uses to modify files:
-
-| Tool         | Description                                                        |
-| ------------ | ------------------------------------------------------------------ |
-| Write        | Creates a new file or overwrites an existing file with new content |
-| Edit         | Makes targeted edits to specific parts of an existing file         |
-| NotebookEdit | Modifies cells in Jupyter notebooks (`.ipynb` files)               |
-
 File rewinding restores files on disk to a previous state. It does not rewind the conversation itself. The conversation history and context remain intact after calling `rewindFiles()` (TypeScript) or `rewind_files()` (Python).
 
 The checkpoint system tracks:
@@ -651,13 +643,6 @@ This script asks Claude to add doc comments to your utility file, then gives you
       main();
 ```
 
-
-This example demonstrates the complete checkpointing workflow:
-
-1. **Enable checkpointing**: configure the SDK with `enable_file_checkpointing=True` and `permission_mode="acceptEdits"` to auto-approve file edits
-2. **Capture checkpoint data**: as the agent runs, store the first user message UUID (your restore point) and the session ID
-3. **Prompt for rewind**: after the agent finishes, check your utility file to see the doc comments, then decide if you want to undo the changes
-4. **Resume and rewind**: if yes, resume the session with an empty prompt and call `rewind_files()` to restore the original file
 
 
 
