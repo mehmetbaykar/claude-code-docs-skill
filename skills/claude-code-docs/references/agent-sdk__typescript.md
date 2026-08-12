@@ -730,9 +730,13 @@ type SDKMessageOrigin =
       body?: string;
       verifiedPeerPid?: number;
     }
-  | { kind: "task-notification" }
+  | {
+      kind: "task-notification";
+      subkind?: "scheduled-trigger" | "peer-send-message";
+    }
   | { kind: "coordinator" }
-  | { kind: "auto-continuation" };
+  | { kind: "auto-continuation" }
+  | { kind: "unclassified" };
 ```
 ```typescript
 type HookEvent =

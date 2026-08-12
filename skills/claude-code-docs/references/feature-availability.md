@@ -38,7 +38,7 @@ Three of these have provider-specific differences:
 
 * **MCP servers**: [connectors from claude.ai](https://code.claude.com/docs/en/mcp#use-mcp-servers-from-claude-ai) load only when your claude.ai subscription is the active authentication method. [Tool search](https://code.claude.com/docs/en/mcp#configure-tool-search) is off by default when `ANTHROPIC_BASE_URL` points to a non-first-party host, and isn't supported on Google Cloud's Agent Platform models earlier than the Claude 4.5 generation or on Microsoft Foundry [deployments hosted on Azure](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#hosting-options)
 * **Subagents**: the built-in [Explore subagent](https://code.claude.com/docs/en/sub-agents#built-in-subagents) caps its inherited model at Opus on the Claude API, and inherits the main conversation's model directly on any other provider, including Claude Platform on AWS
-* **[Commands](https://code.claude.com/docs/en/commands#all-commands)**: `/design-sync` and `/radio` are unavailable on Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, and Claude Platform on AWS, `/voice` requires a claude.ai account, and `/list-agents` and its alias `/peers` are available only in sessions where [cross-session messaging is enabled](https://code.claude.com/docs/en/cross-session-messaging#availability)
+* **[Commands](https://code.claude.com/docs/en/commands#all-commands)**: `/design-sync`, `/import` with its `claude import` subcommand form, and `/radio` are unavailable on Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, and Claude Platform on AWS, `/voice` requires a claude.ai account, and `/list-agents` and its alias `/peers` are available only in sessions where [cross-session messaging is enabled](https://code.claude.com/docs/en/cross-session-messaging#availability)
 
 ### Features that require a Claude subscription
 
@@ -64,7 +64,7 @@ These features work in the local CLI but depend on a server-side capability that
 | Feature | Claude subscription | Anthropic Console | Amazon Bedrock | Claude Platform on AWS | Google Cloud's Agent Platform | Microsoft Foundry |
 | --- | --- | --- | --- | --- | --- | --- |
 | [Web search](https://code.claude.com/docs/en/tools-reference#websearch-tool-behavior) | ✓ | ✓ | ✗ | ✓ | See note [1](#fn1) | ✓ ([deployments hosted on Anthropic](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#hosting-options)) |
-| [Fast mode](https://code.claude.com/docs/en/fast-mode) | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ |
+| [Fast mode](https://code.claude.com/docs/en/fast-mode) | ✓ ([Owner-enabled](https://code.claude.com/docs/en/fast-mode#enable-fast-mode-for-your-organization) on Team and Enterprise) | ✓ (provisioned organizations) | ✗ | ✗ | ✗ | ✗ |
 | [Auto mode](https://code.claude.com/docs/en/auto-mode-config) | ✓ | ✓ | See note [2](#fn2) | ✓ | See note [2](#fn2) | See note [2](#fn2) |
 | [Advisor](https://code.claude.com/docs/en/advisor) | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ |
 | [Cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging) | ✓ (macOS and Linux) [6](#fn6) | ✓ (macOS and Linux) [6](#fn6) | ✗ | ✗ | ✗ | ✗ |
@@ -94,7 +94,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 
 **Amazon Bedrock**
 
-    **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [web search](https://code.claude.com/docs/en/tools-reference#websearch-tool-behavior), [fast mode](https://code.claude.com/docs/en/fast-mode), [Advisor](https://code.claude.com/docs/en/advisor), [Channels](https://code.claude.com/docs/en/channels), [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging), the [analytics dashboard](https://code.claude.com/docs/en/analytics), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings), and the [`/design-sync` and `/radio` commands](https://code.claude.com/docs/en/commands#all-commands).
+    **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [web search](https://code.claude.com/docs/en/tools-reference#websearch-tool-behavior), [fast mode](https://code.claude.com/docs/en/fast-mode), [Advisor](https://code.claude.com/docs/en/advisor), [Channels](https://code.claude.com/docs/en/channels), [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging), the [analytics dashboard](https://code.claude.com/docs/en/analytics), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings), and the [`/design-sync`, `/import`, and `/radio` commands](https://code.claude.com/docs/en/commands#all-commands).
 
     **Partial support:**
 
@@ -110,7 +110,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 
 **Claude Platform on AWS**
 
-    **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [fast mode](https://code.claude.com/docs/en/fast-mode), [Advisor](https://code.claude.com/docs/en/advisor), [Channels](https://code.claude.com/docs/en/channels), [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging), [GitHub Actions](https://code.claude.com/docs/en/github-actions), the [analytics dashboard](https://code.claude.com/docs/en/analytics), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings), and the [`/design-sync` and `/radio` commands](https://code.claude.com/docs/en/commands#all-commands).
+    **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [fast mode](https://code.claude.com/docs/en/fast-mode), [Advisor](https://code.claude.com/docs/en/advisor), [Channels](https://code.claude.com/docs/en/channels), [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging), [GitHub Actions](https://code.claude.com/docs/en/github-actions), the [analytics dashboard](https://code.claude.com/docs/en/analytics), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings), and the [`/design-sync`, `/import`, and `/radio` commands](https://code.claude.com/docs/en/commands#all-commands).
 
     **Available where Amazon Bedrock is not:** [web search](https://code.claude.com/docs/en/tools-reference#websearch-tool-behavior).
 
@@ -125,7 +125,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 
 **Google Cloud's Agent Platform**
 
-    **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [fast mode](https://code.claude.com/docs/en/fast-mode), [Advisor](https://code.claude.com/docs/en/advisor), [Channels](https://code.claude.com/docs/en/channels), [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging), the [analytics dashboard](https://code.claude.com/docs/en/analytics), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings), and the [`/design-sync` and `/radio` commands](https://code.claude.com/docs/en/commands#all-commands).
+    **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [fast mode](https://code.claude.com/docs/en/fast-mode), [Advisor](https://code.claude.com/docs/en/advisor), [Channels](https://code.claude.com/docs/en/channels), [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging), the [analytics dashboard](https://code.claude.com/docs/en/analytics), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings), and the [`/design-sync`, `/import`, and `/radio` commands](https://code.claude.com/docs/en/commands#all-commands).
 
     **Partial support:**
 
@@ -142,7 +142,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 
 **Microsoft Foundry**
 
-    **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [fast mode](https://code.claude.com/docs/en/fast-mode), [Advisor](https://code.claude.com/docs/en/advisor), [Channels](https://code.claude.com/docs/en/channels), [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging), [GitLab CI/CD](https://code.claude.com/docs/en/gitlab-ci-cd), the [analytics dashboard](https://code.claude.com/docs/en/analytics), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings), and the [`/design-sync` and `/radio` commands](https://code.claude.com/docs/en/commands#all-commands).
+    **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [fast mode](https://code.claude.com/docs/en/fast-mode), [Advisor](https://code.claude.com/docs/en/advisor), [Channels](https://code.claude.com/docs/en/channels), [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging), [GitLab CI/CD](https://code.claude.com/docs/en/gitlab-ci-cd), the [analytics dashboard](https://code.claude.com/docs/en/analytics), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings), and the [`/design-sync`, `/import`, and `/radio` commands](https://code.claude.com/docs/en/commands#all-commands).
 
     **Partial support:**
 
@@ -161,7 +161,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 
     **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription).
 
-Everything in [CLI capabilities that vary by provider](#cli-capabilities-that-vary-by-provider) is available, as are [server-managed settings](https://code.claude.com/docs/en/server-managed-settings) when the API key belongs to a Team or Enterprise organization.
+Everything in [CLI capabilities that vary by provider](#cli-capabilities-that-vary-by-provider) is available, except that [fast mode](https://code.claude.com/docs/en/fast-mode) requires [provisioned access](https://code.claude.com/docs/en/fast-mode#enable-fast-mode-for-your-organization). [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings) are also available when your API key belongs to a Team or Enterprise organization.
 
 
 ## Availability by subscription plan
