@@ -40,8 +40,8 @@
       "title": "Escalate hard decisions with the advisor tool"
     },
     "agent-sdk__agent-loop.md": {
-      "hash": "b7fe70d0c58f02ca92469236d1a172b9d514dc43bd8eaacfb617b3b4ee3d439f",
-      "last_updated": "2026-08-11T02:31:40+00:00",
+      "hash": "9d7aeb1f357b2def2e28c8b922c99892ff710da11293c799315989fba4ae6b05",
+      "last_updated": "2026-08-12T05:09:51+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
       "path": "/docs/en/agent-sdk/agent-loop",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop.md",
@@ -58,8 +58,8 @@
       "title": "Use Claude Code features in the SDK"
     },
     "agent-sdk__cost-tracking.md": {
-      "hash": "2d602c0e397425a784bc905a11cdd1ea606c35d9a7356a511caa146ca3176cc4",
-      "last_updated": "2026-08-08T02:25:28+00:00",
+      "hash": "b1d8891c94ef65bd0f416c153a1d17eefcc3bd3a6f5e673e2f8975282f275e9b",
+      "last_updated": "2026-08-12T05:09:52+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/cost-tracking",
       "path": "/docs/en/agent-sdk/cost-tracking",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/cost-tracking.md",
@@ -103,8 +103,8 @@
       "title": "Intercept and control agent behavior with hooks"
     },
     "agent-sdk__hosting.md": {
-      "hash": "4ea7110449ffcdce3d50d41bad0025602ababe036d63c6cfcb0501296c65fc97",
-      "last_updated": "2026-08-11T02:31:44+00:00",
+      "hash": "07c40049bfb1dda6162ddf037f112a2b6af3556d68f4ce6d6ca5e468bf20e7b2",
+      "last_updated": "2026-08-12T05:09:55+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/hosting",
       "path": "/docs/en/agent-sdk/hosting",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/hosting.md",
@@ -175,8 +175,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "beeff67858cf15d3e58aa83ac4e97e57886bf4eff2ec8545bfc12c63435410b4",
-      "last_updated": "2026-08-11T19:30:23+00:00",
+      "hash": "6f71be229fd05d382c9c06f3b7729f3d4fd65985b6d3c0d1c0ee6b1b1f4876f3",
+      "last_updated": "2026-08-12T05:10:01+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -202,8 +202,8 @@
       "title": "Securely deploying AI agents"
     },
     "agent-sdk__session-storage.md": {
-      "hash": "83e2684e696401bea85e8266f893571741812b18223fb308d142a76d4df14ec9",
-      "last_updated": "2026-08-12T03:00:40+00:00",
+      "hash": "c64c87eb3e188e6edf7466d448b37a3d6bc3678706cc0741e336b5db94477935",
+      "last_updated": "2026-08-12T05:10:03+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/session-storage",
       "path": "/docs/en/agent-sdk/session-storage",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/session-storage.md",
@@ -310,8 +310,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "2d963403ffc789c79c5a462c5742fc5a40a68d88df3f95d8324219207d2d6230",
-      "last_updated": "2026-08-12T03:00:44+00:00",
+      "hash": "2700ce68ed3b4c1c4c46e12b7344547ec2c702b3c4e2de3f167059cc2a19e3f3",
+      "last_updated": "2026-08-12T05:10:07+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/typescript.md",
@@ -769,8 +769,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "7c2f7314262ab2259ade1c0fe5353a3c05cd697fbcff0b7aaf73c951a44360dd",
-      "last_updated": "2026-08-12T03:01:13+00:00",
+      "hash": "1ad494456ab3e4d435bd52e39f4a4af3df6049569ae65e3fee3cc5b9f92dd68d",
+      "last_updated": "2026-08-12T05:10:48+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -778,8 +778,8 @@
       "title": "Error reference"
     },
     "fast-mode.md": {
-      "hash": "12761def07e807c5d2cb8d6c39aed44196b63c4fc337cebee8a93e362e1dd5e4",
-      "last_updated": "2026-08-11T19:31:00+00:00",
+      "hash": "02fd6ca8889131af76d741b8909940290e5c003f54ad31e2082980e190086077",
+      "last_updated": "2026-08-12T05:10:49+00:00",
       "original_url": "https://code.claude.com/docs/en/fast-mode",
       "path": "/docs/en/fast-mode",
       "source_url": "https://code.claude.com/docs/en/fast-mode.md",
@@ -787,8 +787,8 @@
       "title": "Speed up responses with fast mode"
     },
     "feature-availability.md": {
-      "hash": "231844097a38842937059525ea3d0b1f825a10906ada8c12fb5711c86b5c77ea",
-      "last_updated": "2026-08-12T03:01:15+00:00",
+      "hash": "42a0157b59cd808b51814726212844cf4e74d5e40443afa763ab12189c357651",
+      "last_updated": "2026-08-12T05:10:49+00:00",
       "original_url": "https://code.claude.com/docs/en/feature-availability",
       "path": "/docs/en/feature-availability",
       "source_url": "https://code.claude.com/docs/en/feature-availability.md",
@@ -1219,8 +1219,8 @@
       "title": "Continue local sessions from any device with Remote Control"
     },
     "routines.md": {
-      "hash": "534f92b5a6fbfb5cd4c6ba173dcf7438d527b04c35d460534be924c6d3479d95",
-      "last_updated": "2026-08-11T22:10:29+00:00",
+      "hash": "b554a993b0759723ec9cf835cf6c0a1d247687caf2579087458d886ec35fa8f2",
+      "last_updated": "2026-08-12T05:11:23+00:00",
       "original_url": "https://code.claude.com/docs/en/routines",
       "path": "/docs/en/routines",
       "source_url": "https://code.claude.com/docs/en/routines.md",
@@ -1372,8 +1372,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "2f1b850cc2b6866849af4f306590b64f7b31ca1ab968d84f49d6200cf8462d83",
-      "last_updated": "2026-08-12T03:01:53+00:00",
+      "hash": "c7ce836a4e8db6a15306678bae7ff73381f08900064c04bf52a6642d9e3985df",
+      "last_updated": "2026-08-12T05:11:33+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1710,7 +1710,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-12T03:02:11+00:00",
+  "last_updated": "2026-08-12T05:11:55+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
