@@ -22,7 +22,7 @@ Run `/tui fullscreen` inside any Claude Code conversation. The CLI saves the [`t
 
 In [screen reader mode](https://code.claude.com/docs/en/accessibility), Claude Code always uses the classic renderer except in attached [background sessions](https://code.claude.com/docs/en/agent-view), which still render fullscreen. If you run `/tui fullscreen` in any other session, Claude Code prints an explanation instead of switching and doesn't change the saved `tui` setting.
 
-The relaunched session keeps the conversation as it appears on screen. If you ran [`/rewind`](https://code.claude.com/docs/en/checkpointing#rewind-and-summarize) earlier in the session, the relaunch resumes from the rewound point rather than the longer transcript saved on disk. If you rewound to before your first message, the relaunched session starts empty.
+The relaunched session keeps the conversation as it appears on screen. Claude Code also carries over the model you last picked with [`/model`](https://code.claude.com/docs/en/model-config#setting-your-model). If you ran [`/rewind`](https://code.claude.com/docs/en/checkpointing#rewind-and-summarize) earlier in the session, the relaunch resumes from the rewound point rather than the longer transcript saved on disk. If you rewound to before your first message, the relaunched session starts empty.
 
 You can also set the `CLAUDE_CODE_NO_FLICKER` environment variable before starting Claude Code:
 ```bash

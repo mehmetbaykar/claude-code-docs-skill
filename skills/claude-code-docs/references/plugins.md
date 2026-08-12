@@ -179,8 +179,6 @@ The plugin root is the individual plugin's own directory: the one you pass to `-
 
 A plugin that ships exactly one skill can place `SKILL.md` directly at the plugin root instead of creating a `skills/` directory. Claude Code loads it as a single skill and uses the frontmatter `name` field for the invocation name. Use the `skills/` layout for plugins that may grow to more than one skill.
 
-  **Next steps**: Ready to add more features? Jump to [Develop more complex plugins](#develop-more-complex-plugins) to add agents, hooks, MCP servers, and LSP servers. For complete technical specifications of all plugin components, see [Plugins reference](https://code.claude.com/docs/en/plugins-reference).
-
 ## Develop more complex plugins
 
 Once you're comfortable with basic plugins, you can create more sophisticated extensions.
