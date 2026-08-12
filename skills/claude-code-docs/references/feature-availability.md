@@ -83,7 +83,7 @@ Organization-level controls and usage visibility.
 | [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings) | ✓ (Team and Enterprise) | ✓ (Team and Enterprise) | ✗ | ✗ | ✗ | ✗ |
 | [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention) | ✓ (qualified Enterprise accounts) | ✓ (qualified accounts) | See note [4](#fn4) | ✓ (qualified accounts) | See note [4](#fn4) | See note [4](#fn4) |
 
-<sup>6</sup> Requires Claude Code v2.1.224 or later. WSL 2 counts as Linux; native Windows isn't supported. With API key authentication, same-machine messaging only. Reaching your [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) sessions requires [cloud access](https://code.claude.com/docs/en/cross-session-messaging#see-which-sessions-claude-can-reach), and reaching your sessions on other machines requires meeting the [Remote Control requirements](https://code.claude.com/docs/en/remote-control#requirements); both need a claude.ai sign-in. See [Message sessions on other machines](https://code.claude.com/docs/en/cross-session-messaging#message-sessions-on-other-machines).
+<sup>6</sup> Requires Claude Code v2.1.224 or later. WSL 2 counts as Linux; native Windows isn't supported. With API key authentication, same-machine messaging only. Claude can find your [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) sessions and your sessions on other machines only from a session that is connected to [Remote Control](https://code.claude.com/docs/en/remote-control). Connecting needs a claude.ai sign-in and the other [Remote Control requirements](https://code.claude.com/docs/en/remote-control#requirements). See [Message sessions on other machines](https://code.claude.com/docs/en/cross-session-messaging#message-sessions-on-other-machines).
 
 If you authenticate through an [LLM gateway](https://code.claude.com/docs/en/llm-gateway), feature availability matches the underlying provider the gateway forwards to. Some Anthropic-only features such as the [Advisor](https://code.claude.com/docs/en/advisor) work only if the gateway forwards requests intact to the Anthropic API.
 
@@ -101,6 +101,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 * [Desktop](https://code.claude.com/docs/en/desktop): only via [Claude Desktop on 3P](https://claude.com/docs/third-party/claude-desktop/overview)
 * [Auto mode](https://code.claude.com/docs/en/auto-mode-config): Sonnet 5, Opus 4.7 or later, and Fable 5 only
 * [`/loop`](https://code.claude.com/docs/en/scheduled-tasks): explicit intervals only
+* [`/code-review`](https://code.claude.com/docs/en/code-review#let-claude-start-the-review): runs when you type it; Claude doesn't start it on its own
 * [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention): subject to your AWS agreement
 
     **Alternatives:** for scheduling, use [`/loop`](https://code.claude.com/docs/en/scheduled-tasks) with an explicit interval instead of `/schedule`. For cloud sessions, use [GitHub Actions](https://code.claude.com/docs/en/github-actions) or [GitLab CI/CD](https://code.claude.com/docs/en/gitlab-ci-cd). For web lookups, use the [WebFetch tool](https://code.claude.com/docs/en/tools-reference#webfetch-tool-behavior) with a specific URL.
@@ -116,6 +117,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
     **Partial support:**
 
 * [`/loop`](https://code.claude.com/docs/en/scheduled-tasks): explicit intervals only
+* [`/code-review`](https://code.claude.com/docs/en/code-review#let-claude-start-the-review): runs when you type it; Claude doesn't start it on its own
 
     **Alternatives:** for scheduling, use [`/loop`](https://code.claude.com/docs/en/scheduled-tasks) with an explicit interval instead of `/schedule`. For cloud sessions, use [GitLab CI/CD](https://code.claude.com/docs/en/gitlab-ci-cd).
 
@@ -131,6 +133,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 * [Web search](https://code.claude.com/docs/en/tools-reference#websearch-tool-behavior): Claude 4 models and later
 * [Auto mode](https://code.claude.com/docs/en/auto-mode-config): Sonnet 5, Opus 4.7 or later, and Fable 5 only
 * [`/loop`](https://code.claude.com/docs/en/scheduled-tasks): explicit intervals only
+* [`/code-review`](https://code.claude.com/docs/en/code-review#let-claude-start-the-review): runs when you type it; Claude doesn't start it on its own
 * [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention): subject to your Google Cloud agreement
 
     **Alternatives:** for scheduling, use [`/loop`](https://code.claude.com/docs/en/scheduled-tasks) with an explicit interval instead of `/schedule`. For cloud sessions, use [GitHub Actions](https://code.claude.com/docs/en/github-actions) or [GitLab CI/CD](https://code.claude.com/docs/en/gitlab-ci-cd).
@@ -147,6 +150,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 * [Web search](https://code.claude.com/docs/en/tools-reference#websearch-tool-behavior): [deployments hosted on Anthropic](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#hosting-options) only
 * [Auto mode](https://code.claude.com/docs/en/auto-mode-config): Sonnet 5, Opus 4.7 or later, and Fable 5 only
 * [`/loop`](https://code.claude.com/docs/en/scheduled-tasks): explicit intervals only
+* [`/code-review`](https://code.claude.com/docs/en/code-review#let-claude-start-the-review): runs when you type it; Claude doesn't start it on its own
 * [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention): subject to your Azure agreement
 
     **Alternatives:** for scheduling, use [`/loop`](https://code.claude.com/docs/en/scheduled-tasks) with an explicit interval instead of `/schedule`. For cloud sessions, use [GitHub Actions](https://code.claude.com/docs/en/github-actions).

@@ -50,7 +50,7 @@ For [scheduled recurring work](https://code.claude.com/docs/en/desktop-scheduled
 
 Before you send your first message, configure four things in the prompt area:
 
-* **Environment**: choose where Claude runs. Select **Local** for your machine, **Cloud** for cloud sessions, an [**SSH connection**](#ssh-sessions) for a remote machine you manage, or on Windows a [**WSL distribution**](https://code.claude.com/docs/en/desktop-wsl). See [environment configuration](#environment-configuration).
+* **Environment**: choose where Claude runs. Select **Local** for your machine, **Cloud** for a [cloud session](#cloud-sessions) that continues after you close the app, an [**SSH connection**](#ssh-sessions) for a remote machine you manage, or on Windows a [**WSL distribution**](https://code.claude.com/docs/en/desktop-wsl). See [environment configuration](#environment-configuration).
 * **Project folder**: select the folder or repository Claude works in. For cloud sessions, you can add [multiple repositories](#run-long-running-tasks-remotely).
 * **Model**: pick a [model](https://code.claude.com/docs/en/model-config#available-models) from the dropdown next to the send button. You can change this during the session.
 * **Permission mode**: choose how much autonomy Claude has from the [mode selector](#choose-a-permission-mode). You can change this during the session.
@@ -98,7 +98,7 @@ In Enterprise deployments that route Desktop to Google Cloud's Agent Platform, a
 
 Start complex tasks in Plan so Claude maps out an approach before making changes. Once you approve the plan, switch to Accept edits or Manual to execute it. See [explore first, then plan, then code](https://code.claude.com/docs/en/best-practices#explore-first-then-plan-then-code) for more on this workflow.
 
-Cloud sessions support Accept edits, Plan, and Auto. Accept edits corresponds to `default` mode: cloud sessions pre-approve file edits, so the selector shows Accept edits instead of Manual. Bypass permissions is not available in cloud sessions.
+Cloud sessions support Accept edits, Plan, and Auto. Accept edits corresponds to `default` mode: cloud sessions pre-approve file edits, so the selector shows Accept edits instead of Manual. Bypass permissions isn't available in cloud sessions, including sessions in a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments).
 
 Enterprise admins can restrict which permission modes are available. See [enterprise configuration](#enterprise-configuration) for details.
 
@@ -782,7 +782,7 @@ Enterprise organizations can require SSO for all users. See [authentication](htt
 
 ### Data handling
 
-Claude Code processes your code locally in local sessions, or in cloud sessions on Anthropic-managed infrastructure, unless your organization routes them to a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments). Conversations and code context are sent to Anthropic's API for processing. See [data handling](https://code.claude.com/docs/en/data-usage) for details on data retention, privacy, and compliance.
+Claude Code processes your code locally in local sessions, or in cloud sessions on Anthropic-managed infrastructure, unless your organization routes them to a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments). Cloud sessions, including in a self-hosted environment, send conversations and code context to Anthropic's API for processing; local and SSH sessions send them to whichever [model provider](#feature-comparison) your deployment configures, Anthropic's API by default. See [data handling](https://code.claude.com/docs/en/data-usage) for details on data retention, privacy, and compliance.
 
 ### Deployment
 
