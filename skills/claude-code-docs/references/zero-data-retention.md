@@ -29,7 +29,7 @@ ZDR is enabled on a per-organization basis. Each new organization requires ZDR t
 
 ### Route Claude Code traffic to your ZDR organization
 
-ZDR applies to requests that authenticate into a ZDR-enabled organization. If a developer signs in to Claude Code with a personal account or with an API key from a different organization, those sessions are not covered. To restrict login to your ZDR organization, deploy the `forceLoginMethod` and `forceLoginOrgUUID` managed settings; see [Restrict login to your organization](https://code.claude.com/docs/en/authentication#restrict-login-to-your-organization).
+ZDR applies to requests that authenticate into a ZDR-enabled organization. If a developer signs in to Claude Code with a personal account or with an API key from a different organization, those sessions are not covered. To require that developers' claude.ai logins belong to your ZDR organization, deploy the `forceLoginMethod` and `forceLoginOrgUUID` managed settings; see [Restrict login to your organization](https://code.claude.com/docs/en/authentication#restrict-login-to-your-organization), which also explains how these keys treat Claude Console logins.
 
 ### What ZDR covers
 
