@@ -463,8 +463,8 @@
       "title": "Use Claude Code with Chrome"
     },
     "claude-apps-gateway-config.md": {
-      "hash": "4eaa937e78e67b7eae67d9d758e29c718d867a44e7b5671b0803fdd33bb7e740",
-      "last_updated": "2026-08-11T16:14:50+00:00",
+      "hash": "7f7af269383eab1c793b8158ba564ce275ac9c49fca573a1f6c21ab3faa30cae",
+      "last_updated": "2026-08-12T07:57:16+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-config",
       "path": "/docs/en/claude-apps-gateway-config",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-config.md",
@@ -472,8 +472,8 @@
       "title": "Claude apps gateway configuration"
     },
     "claude-apps-gateway-deploy.md": {
-      "hash": "ffe6d9bd4c7a7407d44c7d5f7be0eb06b243ca9b89392b019d44199e238a6517",
-      "last_updated": "2026-08-11T02:32:09+00:00",
+      "hash": "6dae404069c847c18866a095ebd8acfa6caaa3e6c3fdf719bf8879a51af72a7e",
+      "last_updated": "2026-08-12T07:57:17+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-deploy",
       "path": "/docs/en/claude-apps-gateway-deploy",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-deploy.md",
@@ -481,8 +481,8 @@
       "title": "Claude apps gateway deployment and operations"
     },
     "claude-apps-gateway-on-aws.md": {
-      "hash": "53213dbedf7c3a3f1f4bb6d846515d9b040099a693f9b0c446a717258376957f",
-      "last_updated": "2026-08-07T22:00:13+00:00",
+      "hash": "578da3b01b74a17ffd973aa84f0222b4c199e3aec2eef14218407d10a436f32b",
+      "last_updated": "2026-08-12T07:57:17+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-on-aws",
       "path": "/docs/en/claude-apps-gateway-on-aws",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-on-aws.md",
@@ -1057,8 +1057,8 @@
       "title": "Claude Code on mobile"
     },
     "model-config.md": {
-      "hash": "60bbb76fdfd586b6dde062ade4adeedc3cc25512b631f7495b6a124c4f494d76",
-      "last_updated": "2026-08-11T19:31:21+00:00",
+      "hash": "f8b02e12668f0868e885be65534faa3a159c2073e3fa1f4f1358210308869b65",
+      "last_updated": "2026-08-12T07:57:53+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -1710,7 +1710,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-12T05:11:55+00:00",
+  "last_updated": "2026-08-12T07:58:31+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
