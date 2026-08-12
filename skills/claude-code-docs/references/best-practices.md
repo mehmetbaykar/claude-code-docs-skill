@@ -497,7 +497,7 @@ For uninterrupted execution with background safety checks, use [auto mode](https
 claude --permission-mode auto -p "fix all lint errors"
 ```
 
-For non-interactive runs with the `-p` flag, auto mode aborts if the classifier repeatedly blocks actions, since there is no user to fall back to. See [when auto mode falls back](https://code.claude.com/docs/en/permission-modes#when-auto-mode-falls-back) for thresholds.
+When the classifier repeatedly blocks actions in a non-interactive run with the `-p` flag, Claude Code doesn't stop the run. See [when auto mode falls back](https://code.claude.com/docs/en/permission-modes#when-auto-mode-falls-back) for what happens instead and for the thresholds.
 
 ### Add an adversarial review step
 
