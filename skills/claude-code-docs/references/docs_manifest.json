@@ -31,8 +31,8 @@
       "title": "Set up Claude Code for your organization"
     },
     "advisor.md": {
-      "hash": "fb5d835f43a7f552ef025529c13b2ed6a577d2289bc25d955b94b8ff278b3afe",
-      "last_updated": "2026-08-12T03:00:32+00:00",
+      "hash": "eab439773f052b38a5a1aae5353a24a7b7a0fa1cd941099e76b394466e66d7ba",
+      "last_updated": "2026-08-12T22:06:55+00:00",
       "original_url": "https://code.claude.com/docs/en/advisor",
       "path": "/docs/en/advisor",
       "source_url": "https://code.claude.com/docs/en/advisor.md",
@@ -562,8 +562,8 @@
       "title": "Claude Tag"
     },
     "cli-reference.md": {
-      "hash": "378a4193aa1b7aa4ff06e41f15f965b50a52047aa85ac9258491707437cc3959",
-      "last_updated": "2026-08-12T19:32:23+00:00",
+      "hash": "1f06d134cdced000b8b4c0c6b502628c45033ae46a72b2808494d7062ece3eac",
+      "last_updated": "2026-08-12T22:07:41+00:00",
       "original_url": "https://code.claude.com/docs/en/cli-reference",
       "path": "/docs/en/cli-reference",
       "source_url": "https://code.claude.com/docs/en/cli-reference.md",
@@ -589,8 +589,8 @@
       "title": "Code Review"
     },
     "commands.md": {
-      "hash": "b3295f9943a3fcc05fd585d0db214b42cf31b1ace8aac8f84c9016bd77cc1f7f",
-      "last_updated": "2026-08-12T03:00:59+00:00",
+      "hash": "2f8d318b5b4e30e52b71eca9173f5359d5f28cfa278a2d5a5f11a87ed9d67e95",
+      "last_updated": "2026-08-12T22:07:44+00:00",
       "original_url": "https://code.claude.com/docs/en/commands",
       "path": "/docs/en/commands",
       "source_url": "https://code.claude.com/docs/en/commands.md",
@@ -652,8 +652,8 @@
       "title": "Manage costs effectively"
     },
     "cross-session-messaging.md": {
-      "hash": "6ee6592ead3e6a135f3f23f064e902d516481263bd65ab40e5b914007e2fe523",
-      "last_updated": "2026-08-12T03:01:03+00:00",
+      "hash": "6cf6f70c97348be8a3d24be89ea2ea44e5ee6dbde38cb72ae01604bb3ddabd2b",
+      "last_updated": "2026-08-12T22:07:48+00:00",
       "original_url": "https://code.claude.com/docs/en/cross-session-messaging",
       "path": "/docs/en/cross-session-messaging",
       "source_url": "https://code.claude.com/docs/en/cross-session-messaging.md",
@@ -742,8 +742,8 @@
       "title": "Desktop application"
     },
     "devcontainer.md": {
-      "hash": "fb2ff63aaf3873b0e9019c7cad5c6f120f9ebf91b41710fd40822b1ca00306c0",
-      "last_updated": "2026-08-07T19:23:07+00:00",
+      "hash": "852ba3ee9204f9ef08f030a35a57229d000ddbc7c137b0e617c89517344726b1",
+      "last_updated": "2026-08-12T22:07:54+00:00",
       "original_url": "https://code.claude.com/docs/en/devcontainer",
       "path": "/docs/en/devcontainer",
       "source_url": "https://code.claude.com/docs/en/devcontainer.md",
@@ -760,8 +760,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "18eb4727b3a2f3d0bdc2b5cca2d3a95c153b39be9d5c3ea1381bc06a0aed99f4",
-      "last_updated": "2026-08-12T19:32:40+00:00",
+      "hash": "934b48bbc3bdd0ce7554a84a7fae37d1c32ac1052199887c5efc4bd53ed4dbee",
+      "last_updated": "2026-08-12T22:07:55+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -1710,7 +1710,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-12T19:33:45+00:00",
+  "last_updated": "2026-08-12T22:09:06+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
