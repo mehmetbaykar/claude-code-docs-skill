@@ -1715,6 +1715,9 @@ type AgentOutput =
         inference_geo?: string | null;
         speed?: string | null;
         iterations?: unknown;
+        output_tokens_details?: {
+          thinking_tokens?: number | null;
+        } | null;
       };
       toolStats?: {
         readCount: number;

@@ -126,6 +126,8 @@ The following examples iterate over the message stream from a `query()` call and
   asyncio.run(main())
 ```
 
+To bound how much subagents can add to `total_cost_usd`, set the [depth, concurrency, and spend limits](https://code.claude.com/docs/en/agent-sdk/subagents#cap-subagent-depth-concurrency-and-spend) on the query.
+
 ## Track per-step and per-model usage
 
 The examples in this section use TypeScript field names. In Python, the equivalent fields are [`AssistantMessage.usage`](https://code.claude.com/docs/en/agent-sdk/python#assistantmessage) and `AssistantMessage.message_id` for per-step usage, and [`ResultMessage.model_usage`](https://code.claude.com/docs/en/agent-sdk/python#resultmessage) for per-model breakdowns.
