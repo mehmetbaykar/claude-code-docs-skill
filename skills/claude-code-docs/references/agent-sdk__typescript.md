@@ -1771,6 +1771,7 @@ type BashOutput = {
   backgroundedByUser?: boolean;
   timedOutAfterMs?: number;
   backgroundCwdHint?: string;
+  backgroundEndsWithFinalResponse?: true;
   dangerouslyDisableSandbox?: boolean;
   returnCodeInterpretation?: string;
   noOutputExpected?: boolean;
