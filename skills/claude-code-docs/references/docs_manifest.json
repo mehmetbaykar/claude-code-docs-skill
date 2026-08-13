@@ -40,8 +40,8 @@
       "title": "Escalate hard decisions with the advisor tool"
     },
     "agent-sdk__agent-loop.md": {
-      "hash": "37143ec06afb4e55b619a1ca7957c6c569289ea5e4ccde5f475fefcdafc29938",
-      "last_updated": "2026-08-12T19:31:39+00:00",
+      "hash": "67c84fdf112b9035bc33ce22de21cfab6f925b333dddcf03ae1f5a98b720396e",
+      "last_updated": "2026-08-13T03:03:40+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
       "path": "/docs/en/agent-sdk/agent-loop",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop.md",
@@ -166,8 +166,8 @@
       "title": "Configure permissions"
     },
     "agent-sdk__plugins.md": {
-      "hash": "74a9b13f32f879953bb13674d9187d8379f7836d89dc27b317155bc26a4d5c07",
-      "last_updated": "2026-08-11T02:31:48+00:00",
+      "hash": "bda9d5ea7a38f92c52ee87184b8a266a69a34f675bb7063bfb109d4826c8851f",
+      "last_updated": "2026-08-13T03:03:48+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/plugins",
       "path": "/docs/en/agent-sdk/plugins",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/plugins.md",
@@ -220,8 +220,8 @@
       "title": "Work with sessions"
     },
     "agent-sdk__skills.md": {
-      "hash": "ae66a38167c3e3169371643e5a90ba42a4f83cee515ea05fa4548428cdee4cb9",
-      "last_updated": "2026-08-11T02:31:51+00:00",
+      "hash": "709e278df2dc9fb4ad64648b03a74a15a7840c2abba677503453a2beea3d3708",
+      "last_updated": "2026-08-13T03:03:51+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/skills",
       "path": "/docs/en/agent-sdk/skills",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/skills.md",
@@ -229,8 +229,8 @@
       "title": "Agent Skills in the SDK"
     },
     "agent-sdk__slash-commands.md": {
-      "hash": "1ee7d24ddcb9fbd114edf51140b3ae103141ac69ef5e20f74fe2fffed80568b5",
-      "last_updated": "2026-08-11T02:31:52+00:00",
+      "hash": "979c2a81dbc623b3295af6f2c142690de04d1dad6678499558e0809b5797f59a",
+      "last_updated": "2026-08-13T03:03:52+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/slash-commands",
       "path": "/docs/en/agent-sdk/slash-commands",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/slash-commands.md",
@@ -418,8 +418,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "fd9efa70a48334d98e9e9ff3c5355e2002f62f82dfd6cccd04f39f24ec6d1e9f",
-      "last_updated": "2026-08-12T03:00:49+00:00",
+      "hash": "58f32d2f5882bb2f6c3b68a36b953552e099be3a6902fb5d9072577732325153",
+      "last_updated": "2026-08-13T03:04:05+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -1228,8 +1228,8 @@
       "title": "Automate work with routines"
     },
     "sandbox-environments.md": {
-      "hash": "725d66d546ed1f2c1abc59a3ccf1eb53ba1e24a252061aa5931c7fd5962f1ae7",
-      "last_updated": "2026-08-07T19:23:44+00:00",
+      "hash": "fcc9a5315139fd17079629b4d5f081a85fe84e38241b19bff1be1da095855d66",
+      "last_updated": "2026-08-13T03:04:49+00:00",
       "original_url": "https://code.claude.com/docs/en/sandbox-environments",
       "path": "/docs/en/sandbox-environments",
       "source_url": "https://code.claude.com/docs/en/sandbox-environments.md",
@@ -1273,8 +1273,8 @@
       "title": "Security"
     },
     "self-hosted-environments-configuration.md": {
-      "hash": "ed33e9697b2b7b017189ae0f6b4807bd3bb7ae73e1f6384ff171a6b4a3735829",
-      "last_updated": "2026-08-12T03:01:47+00:00",
+      "hash": "6dbd7cf221a3928ebdd09b49975b7dc2cca2dd1dbf6c4a4ca7c2509b0e10b036",
+      "last_updated": "2026-08-13T03:04:52+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-configuration",
       "path": "/docs/en/self-hosted-environments-configuration",
       "source_url": "https://code.claude.com/docs/en/self-hosted-environments-configuration.md",
@@ -1282,8 +1282,8 @@
       "title": "Customize sessions in self-hosted environments"
     },
     "self-hosted-environments-deploy.md": {
-      "hash": "7097b7d0ecc8dbb3e2d098f2d41e93ab87a4ed9a90dae4733800607366bf5481",
-      "last_updated": "2026-08-12T19:33:14+00:00",
+      "hash": "245e6c4cb54414a42357891476ba4f46365ee500fd4152c87ac8e0bdbb789795",
+      "last_updated": "2026-08-13T03:04:53+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-deploy",
       "path": "/docs/en/self-hosted-environments-deploy",
       "source_url": "https://code.claude.com/docs/en/self-hosted-environments-deploy.md",
@@ -1309,8 +1309,8 @@
       "title": "Self-hosted environments quickstart"
     },
     "self-hosted-environments-reference.md": {
-      "hash": "fad6f6bb4dfcfaea92961e351e0eeb73dc47c7de3f0e6e8f7f3f2dcd70efa424",
-      "last_updated": "2026-08-12T19:33:16+00:00",
+      "hash": "7aae8f597900a5b2f332cce75b9d7b36bbf9225f64b50d06aec2539529a3c190",
+      "last_updated": "2026-08-13T03:04:54+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-reference",
       "path": "/docs/en/self-hosted-environments-reference",
       "source_url": "https://code.claude.com/docs/en/self-hosted-environments-reference.md",
@@ -1327,8 +1327,8 @@
       "title": "Test self-hosted environments end to end"
     },
     "self-hosted-environments.md": {
-      "hash": "cfe729a2c73ebf55a587b1a0f9bac358546a293e2ff11897203e3cf8766e58a4",
-      "last_updated": "2026-08-12T19:33:12+00:00",
+      "hash": "7179a5be717c882a023f5e3cc178cbe5360fc2d541809f35f955b661f4282116",
+      "last_updated": "2026-08-13T03:04:51+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments",
       "path": "/docs/en/self-hosted-environments",
       "source_url": "https://code.claude.com/docs/en/self-hosted-environments.md",
@@ -1372,8 +1372,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "0389bf2a5ade7b4d57aaef19b3841b893920fa692a2eaaf400f9d6d3b74e0293",
-      "last_updated": "2026-08-12T19:33:21+00:00",
+      "hash": "aa565017afc212345b201c9b85e38bcb2b594e57cc03a9006f2e0a6ebc4f7af2",
+      "last_updated": "2026-08-13T03:04:57+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1710,7 +1710,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-12T22:09:06+00:00",
+  "last_updated": "2026-08-13T03:05:14+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",

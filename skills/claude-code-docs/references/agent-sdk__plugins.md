@@ -8,18 +8,12 @@ path: /docs/en/agent-sdk/plugins
 
 > Load custom plugins to extend Claude Code with skills, agents, hooks, and MCP servers through the Agent SDK
 
-Plugins allow you to extend Claude Code with custom functionality that can be shared across projects. Through the Agent SDK, you can programmatically load plugins from local directories to add skills, agents, hooks, and MCP servers to your agent sessions.
+Plugins allow you to extend Claude Code with custom functionality that can be shared across projects. Through the Agent SDK, you can programmatically load plugins from local directories to add capabilities to your agent sessions. A plugin can include:
 
-## What are plugins?
-
-Plugins are packages of Claude Code extensions that can include:
-
-* **Skills**: Model-invoked capabilities that Claude uses autonomously (can also be invoked with `/skill-name`)
-* **Agents**: Specialized subagents for specific tasks
-* **Hooks**: Event handlers that respond to tool use and other events
-* **MCP servers**: External tool integrations via Model Context Protocol
-
-The `commands/` directory is a legacy format. Use `skills/` for new plugins. Claude Code continues to support both formats for backward compatibility.
+* **Skills**: capabilities Claude invokes autonomously when relevant. You can also invoke a plugin skill directly with `/plugin-name:skill-name`.
+* **Agents**: specialized subagents for specific tasks
+* **Hooks**: event handlers that respond to tool use and other events
+* **MCP servers**: external tool integrations via Model Context Protocol
 
 For complete information on plugin structure and how to create plugins, see [Plugins](https://code.claude.com/docs/en/plugins).
 
@@ -67,10 +61,10 @@ To use a plugin distributed through a [marketplace](https://code.claude.com/docs
 
 Plugin paths can be:
 
-* **Relative paths**: Resolved relative to your current working directory (for example, `"./plugins/my-plugin"`)
-* **Absolute paths**: Full file system paths (for example, `"/home/user/plugins/my-plugin"`)
+* **Relative paths**: resolved relative to your current working directory (for example, `"./plugins/my-plugin"`)
+* **Absolute paths**: full file system paths (for example, `"/home/user/plugins/my-plugin"`)
 
-The path should point to the plugin's root directory: the parent of `skills/`, `agents/`, `hooks/`, `commands/` (legacy), or `.claude-plugin/`, not a subdirectory.
+The path should point to the plugin's root directory: the parent of `skills/`, `agents/`, `hooks/`, `commands/`, or `.claude-plugin/`.
 
 ## Verifying plugin installation
 
@@ -251,10 +245,10 @@ A plugin directory typically contains a `.claude-plugin/plugin.json` manifest fi
 my-plugin/
 ├── .claude-plugin/
 │   └── plugin.json          # Plugin manifest (optional, components auto-discovered without it)
-├── skills/                   # Agent Skills (invoked autonomously or via /skill-name)
+├── skills/                   # Agent Skills (invoked autonomously or via /plugin-name:skill-name)
 │   └── my-skill/
 │       └── SKILL.md
-├── commands/                 # Legacy: use skills/ instead
+├── commands/                 # Skills as flat .md files
 │   └── custom-cmd.md
 ├── agents/                   # Custom agents
 │   └── specialist.md
@@ -262,6 +256,8 @@ my-plugin/
 │   └── hooks.json
 └── .mcp.json                # MCP server definitions
 ```
+
+The `commands/` directory holds skills as flat Markdown files. Use `skills/` for new plugins. Claude Code supports both locations.
 
 ## Multiple plugin sources
 
@@ -287,7 +283,7 @@ The SDK doesn't expand tilde paths like `~/plugins`. If a plugin path doesn't ex
 
 If your plugin doesn't appear in the init message:
 
-1. **Check the path**: ensure the path points to the plugin root directory, the parent of `skills/`, `agents/`, `hooks/`, `commands/` (legacy), or `.claude-plugin/`
+1. **Check the path**: ensure the path points to the plugin root directory, the parent of `skills/`, `agents/`, `hooks/`, `commands/`, or `.claude-plugin/`
 2. **Validate plugin.json**: if your plugin includes a manifest, ensure it has valid JSON syntax
 3. **Check file permissions**: ensure the plugin directory is readable
 4. **Confirm the directory exists**: the SDK skips a nonexistent path, and the plugin doesn't appear in the init message's `plugins` list
