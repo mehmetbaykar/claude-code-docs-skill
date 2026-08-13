@@ -1273,8 +1273,8 @@
       "title": "Security"
     },
     "self-hosted-environments-configuration.md": {
-      "hash": "6dbd7cf221a3928ebdd09b49975b7dc2cca2dd1dbf6c4a4ca7c2509b0e10b036",
-      "last_updated": "2026-08-13T03:04:52+00:00",
+      "hash": "bb176a7b326cc1d896ebe91be4fa5222a3d6e00ef606390af110abaf1648b46c",
+      "last_updated": "2026-08-13T16:14:39+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-configuration",
       "path": "/docs/en/self-hosted-environments-configuration",
       "source_url": "https://code.claude.com/docs/en/self-hosted-environments-configuration.md",
@@ -1309,8 +1309,8 @@
       "title": "Self-hosted environments quickstart"
     },
     "self-hosted-environments-reference.md": {
-      "hash": "7aae8f597900a5b2f332cce75b9d7b36bbf9225f64b50d06aec2539529a3c190",
-      "last_updated": "2026-08-13T03:04:54+00:00",
+      "hash": "ba9ac281ce4b30d614a8e87cbaee8ef631527f04ba3b9863849f24697e54b14c",
+      "last_updated": "2026-08-13T16:14:41+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-reference",
       "path": "/docs/en/self-hosted-environments-reference",
       "source_url": "https://code.claude.com/docs/en/self-hosted-environments-reference.md",
@@ -1710,7 +1710,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-13T10:33:42+00:00",
+  "last_updated": "2026-08-13T16:16:25+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
