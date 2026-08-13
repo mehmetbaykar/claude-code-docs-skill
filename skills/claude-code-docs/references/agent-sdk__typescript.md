@@ -634,6 +634,7 @@ type SDKSystemMessage = {
   model: string;
   permissionMode: PermissionMode;
   slash_commands: string[];
+  terminal_slash_commands?: string[];
   output_style: string;
   skills: string[];
   plugins: { name: string; path: string }[];
