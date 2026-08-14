@@ -400,8 +400,8 @@
       "title": "Configure auto mode"
     },
     "best-practices.md": {
-      "hash": "b0a83293254ed8a8f14d78b268d86942f79b932a6b10de412cf2f05315500532",
-      "last_updated": "2026-08-12T16:14:28+00:00",
+      "hash": "c84b738a5d6dcdb147c44bc86cb27e10ebd52cd85b9b23ee187d0a45fc0b40ab",
+      "last_updated": "2026-08-14T19:19:08+00:00",
       "original_url": "https://code.claude.com/docs/en/best-practices",
       "path": "/docs/en/best-practices",
       "source_url": "https://code.claude.com/docs/en/best-practices.md",
@@ -760,8 +760,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "7b61ed3900d24d417f580a4c66ef39b7d0f53f03854d67b5d1ba529b5ad34cab",
-      "last_updated": "2026-08-14T03:03:45+00:00",
+      "hash": "910f213ce724ed4f27dee5e50f371483c1ab734904c67870972dbc0a789582bb",
+      "last_updated": "2026-08-14T19:20:12+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -769,8 +769,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "8b9536dd1e62588ca7148464c4a10fb30d4c777d6a42a61e4b52c247b57d3263",
-      "last_updated": "2026-08-14T03:03:45+00:00",
+      "hash": "3d6acdade434d8050869c9ad1b067b20b801da3b42624498b64c0bc65c4807fa",
+      "last_updated": "2026-08-14T19:20:14+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -796,8 +796,8 @@
       "title": "Feature availability"
     },
     "features-overview.md": {
-      "hash": "564d60b1032ce0a37487c57dc2bbb908af710e0620cf0202b57cf5f717e07dc0",
-      "last_updated": "2026-08-07T19:23:11+00:00",
+      "hash": "f1cfe708f287b6d4c7e580ba35b99c8fe4b22b8ae7daed9b25ed01dc20f41b79",
+      "last_updated": "2026-08-14T19:20:18+00:00",
       "original_url": "https://code.claude.com/docs/en/features-overview",
       "path": "/docs/en/features-overview",
       "source_url": "https://code.claude.com/docs/en/features-overview.md",
@@ -913,8 +913,8 @@
       "title": "Hooks reference"
     },
     "how-claude-code-works.md": {
-      "hash": "bbb198bc221b769da4ea0739a41eb1cb942ec25d4f8833ceb1aa97deb6b9b48b",
-      "last_updated": "2026-08-07T17:26:58+00:00",
+      "hash": "246288c0cb94d50a2875723ceaa2bd29a7b830a89390411f55332b96f97cedca",
+      "last_updated": "2026-08-14T19:20:30+00:00",
       "original_url": "https://code.claude.com/docs/en/how-claude-code-works",
       "path": "/docs/en/how-claude-code-works",
       "source_url": "https://code.claude.com/docs/en/how-claude-code-works.md",
@@ -931,8 +931,8 @@
       "title": "Interactive mode"
     },
     "jetbrains.md": {
-      "hash": "8b1d74ce6c0c4cdddd0a1b5469186c840469b0b67a515e4af867fbbda8e6051f",
-      "last_updated": "2026-08-13T19:31:50+00:00",
+      "hash": "992849e91c1d5d585adf3063864f35eb9c26c6bf94a8c42795ab3ef9f3699b04",
+      "last_updated": "2026-08-14T19:20:33+00:00",
       "original_url": "https://code.claude.com/docs/en/jetbrains",
       "path": "/docs/en/jetbrains",
       "source_url": "https://code.claude.com/docs/en/jetbrains.md",
@@ -1165,8 +1165,8 @@
       "title": "Recommend plugins for your org"
     },
     "plugins-reference.md": {
-      "hash": "6b893e7842d0b16b601ef2b9a39c08f836788c2b8cbf2f9e11e27282bc895036",
-      "last_updated": "2026-08-14T03:04:11+00:00",
+      "hash": "fdd702b9780791334238c24c32a38035a9fd268c14de92d0c0f873552ac760fb",
+      "last_updated": "2026-08-14T19:20:52+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins-reference",
       "path": "/docs/en/plugins-reference",
       "source_url": "https://code.claude.com/docs/en/plugins-reference.md",
@@ -1345,8 +1345,8 @@
       "title": "Configure server-managed settings"
     },
     "sessions.md": {
-      "hash": "3c0baa782058683d1f9d74ff3ca6584acc35111ceacfde5f9894dd2a901968c4",
-      "last_updated": "2026-08-14T03:04:21+00:00",
+      "hash": "f47e5a955fd408aa9e85f888eeaec9d21156eb27ef9ae72d018d34f5b7616992",
+      "last_updated": "2026-08-14T19:21:03+00:00",
       "original_url": "https://code.claude.com/docs/en/sessions",
       "path": "/docs/en/sessions",
       "source_url": "https://code.claude.com/docs/en/sessions.md",
@@ -1426,8 +1426,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "53d0d67d5cc45c48b3c83a3d4d935d8de183f7c5e0f0652f3ac7639c761a7cf3",
-      "last_updated": "2026-08-14T03:04:27+00:00",
+      "hash": "c65d3e2bf7ca716eca35bf622d5cbac75cada0a5dc7c18f6b2f10a454288df34",
+      "last_updated": "2026-08-14T19:21:08+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1435,8 +1435,8 @@
       "title": "Tools reference"
     },
     "troubleshoot-install.md": {
-      "hash": "71d3b1f3bf10089843499e70d44900e74b66371a18dcd9ad81d176b68309cb20",
-      "last_updated": "2026-08-12T19:33:27+00:00",
+      "hash": "4e826851797fa475d2282f3fa7dbdae1de703863ce3403953c7740f9b1be9199",
+      "last_updated": "2026-08-14T19:21:09+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshoot-install",
       "path": "/docs/en/troubleshoot-install",
       "source_url": "https://code.claude.com/docs/en/troubleshoot-install.md",
@@ -1462,8 +1462,8 @@
       "title": "Find bugs with ultrareview"
     },
     "voice-dictation.md": {
-      "hash": "9da53cc1fa1078c4e560729989f47926bc5b4e96455df7dda40621dce241eee5",
-      "last_updated": "2026-08-11T19:31:47+00:00",
+      "hash": "107dd5c6a26c3bb2b4e86c52eab88c752d0c88d69e604ba6ef6264d74ff6c987",
+      "last_updated": "2026-08-14T19:21:10+00:00",
       "original_url": "https://code.claude.com/docs/en/voice-dictation",
       "path": "/docs/en/voice-dictation",
       "source_url": "https://code.claude.com/docs/en/voice-dictation.md",
@@ -1710,7 +1710,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-14T03:04:41+00:00",
+  "last_updated": "2026-08-14T19:21:22+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
