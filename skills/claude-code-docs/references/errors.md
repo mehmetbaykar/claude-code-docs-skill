@@ -1011,7 +1011,7 @@ Resuming with `claude --resume` or `claude --continue` reconnects to the [Remote
 * Start a new session with `claude --remote-control` to create a new Remote Control session
 * For other Remote Control startup messages, see [Troubleshoot Remote Control](https://code.claude.com/docs/en/remote-control#troubleshooting)
 
-When the server reports instead that the previous session no longer exists, Claude Code shows [`Remote Control could not resume the previous session under the current login`](https://code.claude.com/docs/en/remote-control#remote-control-could-not-resume-the-previous-session-under-the-current-login) rather than this message and doesn't create a replacement session. Earlier versions created a new Remote Control session instead of showing a message: before v2.1.200 on any reconnection failure, and through v2.1.226 when the server reported the session gone.
+If the server reports instead that the previous session is gone, you don't see this message. Claude Code starts a new session in its place or shows [`Previous session is unavailable — run /remote-control to start a new one`](https://code.claude.com/docs/en/remote-control#previous-session-is-unavailable), depending on [the conversation's reconnection record](https://code.claude.com/docs/en/remote-control#resume-outcomes). From v2.1.227 through v2.1.231, Claude Code showed a message that starts with `Remote Control could not resume the previous session under the current login` instead, and [earlier versions behaved differently again](https://code.claude.com/docs/en/remote-control#reconnect-history).
 
 <h3 id="couldnt-share-the-transcript">
 Couldn't share the transcript
