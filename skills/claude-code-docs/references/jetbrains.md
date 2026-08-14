@@ -192,7 +192,7 @@ When Claude Code runs in a JetBrains IDE in [`acceptEdits` permission mode](http
 
 When running in JetBrains IDEs, consider:
 
-* Using manual approval mode for edits
+* Using Manual mode for edits, because `acceptEdits` and auto mode both approve edits inside your working directory without asking, except in [protected paths](https://code.claude.com/docs/en/permission-modes#protected-paths)
 * Taking extra care to ensure Claude is only used with trusted prompts
 * Being aware of which files Claude Code has access to modify
 
