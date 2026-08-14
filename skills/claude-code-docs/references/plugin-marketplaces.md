@@ -681,7 +681,7 @@ In CI/CD environments, configure a git credential helper before installing plugi
 
 ### Require marketplaces for your team
 
-You can configure your repository so team members are automatically prompted to install your marketplace when they trust the project folder. Add your marketplace to `.claude/settings.json`:
+You can configure your repository so Claude Code adds your marketplace for team members once they [trust the project folder](https://code.claude.com/docs/en/permissions#what-runs-before-you-trust-a-folder), with no separate prompt. Add your marketplace to `.claude/settings.json`:
 ```json
 {
   "extraKnownMarketplaces": {

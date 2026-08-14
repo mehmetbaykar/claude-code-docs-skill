@@ -33,7 +33,7 @@ In a Claude Code session, install from the [official Anthropic marketplace](http
 If the install fails, the fix depends on which message Claude Code reports:
 
 * If it reports `Marketplace "claude-plugins-official" not found`, add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
-* If it reports that it can't find the plugin in the marketplace, check the plugin name for a typo. Claude Code [refreshes a stale marketplace catalog and retries](https://code.claude.com/docs/en/discover-plugins#install-plugins) before reporting this. If you turned off [marketplace auto-update](https://code.claude.com/docs/en/discover-plugins#configure-auto-updates), refresh manually with `/plugin marketplace update claude-plugins-official` and retry the install.
+* If it reports that it [can't find the plugin in the marketplace](https://code.claude.com/docs/en/discover-plugins#install-plugins), check the plugin name for a typo.
 
 Check the install summary. If it reports `Run /reload-plugins to activate.`, apply the pending change without a restart:
 ```text

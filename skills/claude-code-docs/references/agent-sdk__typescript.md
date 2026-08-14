@@ -185,6 +185,10 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
   supportedAgents(): Promise<AgentInfo[]>;
   mcpServerStatus(): Promise<McpServerStatus[]>;
   getContextUsage(): Promise<SDKControlGetContextUsageResponse>;
+  readFile(
+    path: string,
+    options?: { maxBytes?: number; encoding?: 'utf-8' | 'base64' }
+  ): Promise<SDKControlReadFileResponse | null>;
   accountInfo(): Promise<AccountInfo>;
   reconnectMcpServer(serverName: string): Promise<void>;
   toggleMcpServer(serverName: string, enabled: boolean): Promise<void>;
@@ -320,6 +324,14 @@ type SDKControlGetContextUsageResponse = {
     cache_creation_input_tokens: number;
     cache_read_input_tokens: number;
   } | null;
+};
+```
+```typescript
+type SDKControlReadFileResponse = {
+  contents: string;
+  absPath: string;
+  truncated?: boolean;
+  encoding?: 'base64';
 };
 ```
 ```typescript
