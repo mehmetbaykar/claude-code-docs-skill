@@ -49,8 +49,6 @@ If `claude` is installed somewhere your IDE can't find, set the full path in the
 
 Claude Code works with any paid Claude subscription (Pro, Max, Team, or Enterprise) or a Claude Console account, and no API key is required. You'll be prompted to [log in](https://code.claude.com/docs/en/authentication#log-in-to-claude-code) the first time you run `claude`.
 
-After installing the plugin, you may need to restart your IDE completely for it to take effect.
-
 ## Usage
 
 ### From your IDE
