@@ -46,7 +46,7 @@ In a Claude Code session, run:
 If the install fails, match the message Claude Code reports:
 
 * `Marketplace "claude-plugins-official" not found`: add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
-* The plugin is not found in the marketplace: check the plugin name. Claude Code [refreshes a stale marketplace catalog and retries](https://code.claude.com/docs/en/discover-plugins#install-plugins) before reporting this, so if you turned off [marketplace auto-update](https://code.claude.com/docs/en/discover-plugins#configure-auto-updates), refresh manually with `/plugin marketplace update claude-plugins-official` and retry the install.
+* The plugin is [not found in the marketplace](https://code.claude.com/docs/en/discover-plugins#install-plugins): check the plugin name.
 
 Check the install summary: if it reports `Run /reload-plugins to activate.`, run that command.
 
@@ -413,7 +413,7 @@ The resulting `.mcp.json` file follows a standardized format:
 
 For security reasons, Claude Code prompts for approval in interactive sessions before using project-scoped servers from `.mcp.json` files. To reset those approval choices, run `claude mcp reset-project-choices`.
 
-`claude -p` runs, [Agent SDK](https://code.claude.com/docs/en/headless) sessions, and [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) can't show that prompt: Claude Code loads project-scoped servers there without asking. To keep a server out anyway, add it to [`disabledMcpjsonServers`](https://code.claude.com/docs/en/settings#available-settings), which blocks it in every mode, or exclude project settings entirely with [`--setting-sources`](https://code.claude.com/docs/en/cli-reference) or the SDK's `settingSources` option.
+`claude -p` runs, [Agent SDK](https://code.claude.com/docs/en/headless) sessions, and [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) can't show that prompt: Claude Code loads project-scoped servers there without asking. A session you start in `bypassPermissions` mode with [`skipDangerousModePermissionPrompt`](https://code.claude.com/docs/en/settings#permission-settings) set skips the prompt too. To keep a server out anyway, add it to [`disabledMcpjsonServers`](https://code.claude.com/docs/en/settings#available-settings), which blocks it in every mode, or exclude project settings entirely with [`--setting-sources`](https://code.claude.com/docs/en/cli-reference) or the SDK's `settingSources` option. [Project server approvals and workspace trust](#project-server-approvals-and-workspace-trust) covers how approvals committed to the repository interact with workspace trust.
 
 ### User scope
 
@@ -581,7 +581,7 @@ claude mcp login sentry --no-browser
 
 ### Use a fixed OAuth callback port
 
-Some MCP servers require a specific redirect URI registered in advance. By default, Claude Code picks a random available port for the OAuth callback. Use `--callback-port` to fix the port so it matches a pre-registered redirect URI of the form `http://localhost:PORT/callback`.
+Some MCP servers require a specific redirect URI registered in advance. By default, Claude Code picks a random available port for the OAuth callback. Use `--callback-port` to fix the port so it matches a pre-registered redirect URI of the form `http://localhost:PORT/callback`. If sign-in on Claude Code v2.1.229 fails with a redirect URI mismatch, see the version note under [Use pre-configured OAuth credentials](#use-pre-configured-oauth-credentials).
 
 You can use `--callback-port` on its own (with dynamic client registration) or together with `--client-id` (with pre-configured credentials).
 ```bash
@@ -601,6 +601,8 @@ Some MCP servers don't support automatic OAuth setup via Dynamic Client Registra
 Create an app through the server's developer portal and note your client ID and client secret.
 
 Many servers also require a redirect URI. If so, choose a port and register a redirect URI in the format `http://localhost:PORT/callback`. Use that same port with `--callback-port` in the next step.
+
+In v2.1.229, Claude Code sent `http://127.0.0.1:PORT/callback` instead, and servers that exact-match the registered redirect URI rejected the sign-in with a redirect URI mismatch. Claude Code v2.1.231 restored the `localhost` form. To recover on v2.1.229, upgrade Claude Code, or temporarily add the `http://127.0.0.1:PORT/callback` form to the server's registered redirect URIs.
 
 
 
@@ -765,7 +767,7 @@ For a plugin-provided server, the helper also runs with its working directory se
 
 A plugin-provided `headersHelper` can't reference the plugin's [`${user_config.*}`](https://code.claude.com/docs/en/plugins-reference#user-configuration) values, because the command runs through a shell. Claude Code reports the server as misconfigured with an [error](https://code.claude.com/docs/en/errors#plugin-command-references-user-config) and doesn't substitute the value. Put `${user_config.KEY}` in the server's `headers` field instead, which isn't shell-parsed, or have the helper script read the value from its own environment or a config file. Before v2.1.207, `headersHelper` substituted `${user_config.*}` values.
 
-`headersHelper` executes arbitrary shell commands. When defined at project or local scope, it only runs after you accept the workspace trust dialog.
+`headersHelper` executes arbitrary shell commands. When defined at project or local scope, Claude Code runs it under the same [workspace trust rule as hooks in settings files](https://code.claude.com/docs/en/permissions#what-runs-before-you-trust-a-folder), so it runs in a `-p` session in a folder you've never trusted.
 
 ## Add MCP servers from JSON configuration
 
