@@ -40,8 +40,8 @@
       "title": "Escalate hard decisions with the advisor tool"
     },
     "agent-sdk__agent-loop.md": {
-      "hash": "67c84fdf112b9035bc33ce22de21cfab6f925b333dddcf03ae1f5a98b720396e",
-      "last_updated": "2026-08-13T03:03:40+00:00",
+      "hash": "251fdf6c579fcd732b8bc538a0cbef446e29bd75bbd40fc3efabf2a0b9612dae",
+      "last_updated": "2026-08-15T07:02:00+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
       "path": "/docs/en/agent-sdk/agent-loop",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop.md",
@@ -175,8 +175,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "2c07e3ad672683c7e2a3292b92bd6c3186a7e1e504ed7b15fda30949e8018087",
-      "last_updated": "2026-08-13T19:30:49+00:00",
+      "hash": "fd61c6cd0b1be8c28df3d8e3957ef05afd2e2040b239db63d058ce8903ad4d80",
+      "last_updated": "2026-08-15T07:02:10+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -274,8 +274,8 @@
       "title": "Subagents in the SDK"
     },
     "agent-sdk__todo-tracking.md": {
-      "hash": "44e735b56bcddca4a652eb6c9d42914a8daac1cd8ef9e933d45834a463e740b8",
-      "last_updated": "2026-08-11T02:31:55+00:00",
+      "hash": "2eca2dc98d05893bed495089de93d22f1339df758b1390c21629e5ca10897c4a",
+      "last_updated": "2026-08-15T07:02:16+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/todo-tracking",
       "path": "/docs/en/agent-sdk/todo-tracking",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/todo-tracking.md",
@@ -328,8 +328,8 @@
       "title": "Handle approvals and user input"
     },
     "agent-teams.md": {
-      "hash": "3fa33851f6b527f1fc5933cb4d0e798f24a70223aa9b3212374b23a153c06ba4",
-      "last_updated": "2026-08-15T01:53:30+00:00",
+      "hash": "d084b93ac0586504f3c069a8912d98b788d9676d68152d5421d33fd036a27e26",
+      "last_updated": "2026-08-15T07:02:21+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-teams",
       "path": "/docs/en/agent-teams",
       "source_url": "https://code.claude.com/docs/en/agent-teams.md",
@@ -760,8 +760,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "eb9cbc04e881fcca1fb8ecbd7c83f9c35d9c6f06e8058057b5d780053fdb96f1",
-      "last_updated": "2026-08-15T01:54:01+00:00",
+      "hash": "e606b545bc0dea9f5abd77f58dd7b60914e54b4c26a6bad63a273f790c9493bd",
+      "last_updated": "2026-08-15T07:02:55+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -796,8 +796,8 @@
       "title": "Feature availability"
     },
     "features-overview.md": {
-      "hash": "f1cfe708f287b6d4c7e580ba35b99c8fe4b22b8ae7daed9b25ed01dc20f41b79",
-      "last_updated": "2026-08-14T19:20:18+00:00",
+      "hash": "0df8b60e9706eb73d06514e564406cfcddfaae75e4da98dd0bc690046e382975",
+      "last_updated": "2026-08-15T07:02:58+00:00",
       "original_url": "https://code.claude.com/docs/en/features-overview",
       "path": "/docs/en/features-overview",
       "source_url": "https://code.claude.com/docs/en/features-overview.md",
@@ -904,8 +904,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "7f9c7cb66aa0c55fdf8f0bdcdbaf6fa74b77a52473047a2dd59df50019e596f4",
-      "last_updated": "2026-08-14T21:45:24+00:00",
+      "hash": "72165656b711bc117d9ed38ab8f451856aadca3f2e828baf045fd9030c97c57b",
+      "last_updated": "2026-08-15T07:03:05+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -922,8 +922,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "d6284e453a79821f343d3fbadb9fdf511d7c82211deec8dd744b98bce59a3b4b",
-      "last_updated": "2026-08-14T21:45:26+00:00",
+      "hash": "622edd5051588bbca01fc5ee026cf0f2ba899d19edd922826cea03890bac5864",
+      "last_updated": "2026-08-15T07:03:07+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -1399,8 +1399,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "d8321c388fa5d74fc268af6ad141b65fd5b1eb34603e999823af0e0828c6185c",
-      "last_updated": "2026-08-15T01:54:46+00:00",
+      "hash": "5cc7fc64ec03d5eb6c540f633bb80fec975f69cbe131b97b542faab3cb3c764c",
+      "last_updated": "2026-08-15T07:03:47+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1426,8 +1426,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "05e8f1be1ea64fda22ee69ace77d9155243ed0e0794df1f23463fa592602d3b9",
-      "last_updated": "2026-08-15T01:54:47+00:00",
+      "hash": "3e967e101661872c99e81272191d16ffbe8c7f4af8c50914b16bbf7bac9d1cd1",
+      "last_updated": "2026-08-15T07:03:49+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1710,7 +1710,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-15T01:55:04+00:00",
+  "last_updated": "2026-08-15T07:04:06+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
