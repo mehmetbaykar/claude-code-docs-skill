@@ -77,11 +77,11 @@ Claude delegates to general-purpose when the task requires both exploration and 
 
 Claude Code includes additional helper agents for specific tasks. These are typically invoked automatically, so you don't need to use them directly.
 
-    | Agent             | Model    | When Claude uses it                                                                                                                                                                                                                                                                                                                           |
-    | :---------------- | :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | claude            | Inherits | When a task doesn't fit a more specialized agent. A catch-all with every tool [available to subagents](#available-tools). Also the [default agent](https://code.claude.com/docs/en/agent-view#permission-mode-model-and-effort) for a dispatched [background session](https://code.claude.com/docs/en/agent-view), which runs with your settings' permission mode rather than a parent conversation's |
-    | statusline-setup  | Sonnet   | When you run `/statusline` to configure your status line                                                                                                                                                                                                                                                                                      |
-    | claude-code-guide | Haiku    | When you ask questions about Claude Code features                                                                                                                                                                                                                                                                                             |
+    | Agent             | Model    | When Claude uses it                                                                                                                                                                                                                                                                                                                  |
+    | :---------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | claude            | Inherits | When a task doesn't fit a more specialized agent. A catch-all with every tool [available to subagents](#available-tools). Also the default agent for a dispatched [background session](https://code.claude.com/docs/en/agent-view); [which permission mode it starts in](https://code.claude.com/docs/en/agent-view#permission-mode-model-and-effort) depends on how the session was started |
+    | statusline-setup  | Sonnet   | When you run `/statusline` to configure your status line                                                                                                                                                                                                                                                                             |
+    | claude-code-guide | Haiku    | When you ask questions about Claude Code features                                                                                                                                                                                                                                                                                    |
 
 
 Built-in subagents are registered by default in interactive sessions. To restrict them:
@@ -450,11 +450,11 @@ Managed-settings restrictions apply to every subagent regardless of how it is de
 
 #### Permission modes
 
-The `permissionMode` field controls how the subagent handles permission prompts. Subagents inherit the permission context from the main conversation and can override the mode, except in the cases described below.
+Set `permissionMode` to choose the permission mode a subagent runs in. Use the modes' config values, so Manual mode is `default`. If you leave it unset, the subagent inherits the main conversation's mode, which starts as [auto mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode) on Pro, Max, and Team plans unless your settings or your organization change it. Setting it overrides that mode, except in the cases described below.
 
 | Mode                | Behavior                                                                                                                                                                                                                                                                                                                        |
 | :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `default`           | Standard permission checking with prompts                                                                                                                                                                                                                                                                                       |
+| `default`           | Manual mode: prompts for permission                                                                                                                                                                                                                                                                                             |
 | `acceptEdits`       | Auto-accept file edits and common filesystem commands for paths in the working directory or `additionalDirectories`                                                                                                                                                                                                             |
 | `auto`              | [Auto mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode): a background classifier reviews commands and protected-directory writes                                                                                                                                                                                     |
 | `dontAsk`           | Auto-deny permission prompts. Explicitly allowed tools still work; `AskUserQuestion`, connector tools [your organization set to `ask`](https://code.claude.com/docs/en/mcp#organization-controls-on-connector-tools), and MCP tools marked [`requiresUserInteraction`](https://code.claude.com/docs/en/mcp#require-approval-for-a-specific-tool) are denied even if you've allowed them |
@@ -776,6 +776,11 @@ You can also steer this yourself:
 * Where fork mode is off, ask Claude to run a task in the background or in the foreground
 * Press **Ctrl+B** to background a running task
 
+Claude Code clears a background subagent's row from the subagent panel below the prompt input in one of two ways, depending on how the subagent ended:
+
+* When a subagent finishes successfully, Claude Code removes its row immediately and, except in [screen reader mode](https://code.claude.com/docs/en/accessibility), shows `/tasks to see subagents` in the footer for 30 seconds. During those 30 seconds, run [`/tasks`](https://code.claude.com/docs/en/commands) and press `Enter` on the subagent to open its transcript. Before v2.1.232, Claude Code kept the row for 30 seconds after the subagent finished, the same as a failed one, and showed no footer hint.
+* When a subagent fails or you stop it, Claude Code keeps its row for 30 seconds. To clear the row sooner, select it and press `x`.
+
 A background subagent that completes stays listed in [`/tasks`](https://code.claude.com/docs/en/commands), marked done and sorted below running work, until the session cleans up its task list. Its detail view stays open when the subagent finishes. Subagents that fail or that you stop leave the list. Before v2.1.208, a completed subagent left the list the moment it finished and its detail view closed.
 
 ### Subagent names
@@ -871,7 +876,7 @@ With this value, your subagents can delegate to a second layer of their own, and
 
 A nested subagent is configured the same way as a top-level one and resolves from the same [scopes](#choose-the-subagent-scope). To keep one subagent from spawning while nesting is on, such as a reviewer that should stay read-only, omit `Agent` from its [`tools`](#available-tools) list or add it to `disallowedTools`.
 
-The subagent panel below the prompt input shows the full tree: each row displays a `(+N)` count of descendants, and as of v2.1.193, opening a row shows that subagent's siblings and direct children with a path back to `main`.
+Claude Code shows nested subagents as a tree in the subagent panel below the prompt input and marks each row that still has descendants in the panel with a `(+N)` count of them. Open a row to see that subagent's siblings and direct children with a path back to `main`.
 
 Earlier versions used different defaults:
 
@@ -988,14 +993,18 @@ The fork appears in a panel below your prompt and runs in the background while y
 
 ### Observe and steer running forks
 
-Running forks appear in a panel below the prompt input, with one row for the main session and one for each fork. Use these keys to interact with the panel:
+Running forks appear in a panel below the prompt input, with one row for the main session and one for each fork.
 
-| Key       | Action                                                                                                                                                                                                       |
-| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `↑` / `↓` | Move between rows                                                                                                                                                                                            |
-| `Enter`   | Open the selected fork's transcript and send it follow-up messages                                                                                                                                           |
-| `x`       | Dismiss a finished fork or stop a running one. Acts on the selected fork row. On the main session row, or on the row of the fork whose transcript you opened with `Enter`, `x` types into the prompt instead |
-| `Esc`     | Return focus to the prompt input                                                                                                                                                                             |
+When a fork finishes successfully, Claude Code removes its row. Claude Code keeps the row of a fork that failed or that you stopped for 30 seconds, [the same as for any other background subagent](#run-subagents-in-foreground-or-background). Before v2.1.232, Claude Code kept a finished fork's row for 30 seconds as well.
+
+Use these keys to interact with the panel:
+
+| Key       | Action                                                                                                                                                                                                               |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `↑` / `↓` | Move between rows                                                                                                                                                                                                    |
+| `Enter`   | Open the selected fork's transcript and send it follow-up messages                                                                                                                                                   |
+| `x`       | Stop the selected fork if it's running, or dismiss its row if it's no longer running. On the main session row, or on the row of the fork whose transcript you opened with `Enter`, `x` types into the prompt instead |
+| `Esc`     | Return focus to the prompt input                                                                                                                                                                                     |
 
 With a fork's or subagent's transcript open, follow-up messages and [skills](https://code.claude.com/docs/en/skills) go to that agent, but built-in commands still run in your main conversation. As of v2.1.199, typing `/model` or `/fast` in that view shows a notice that it changes the main conversation's model or fast mode, not the viewed agent's, instead of running it silently.
 
