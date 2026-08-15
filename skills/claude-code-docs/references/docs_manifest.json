@@ -67,8 +67,8 @@
       "title": "Track cost and usage"
     },
     "agent-sdk__custom-tools.md": {
-      "hash": "c1fa764161f08dd3aa2e276a17b5e71c33403c08a3d107e344a4d0653b50e88e",
-      "last_updated": "2026-08-12T03:00:34+00:00",
+      "hash": "4b6a7bfebbaa627c09e54e2fa1daf76b81e20c64cf13604989083bf34164885d",
+      "last_updated": "2026-08-15T15:39:51+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/custom-tools",
       "path": "/docs/en/agent-sdk/custom-tools",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/custom-tools.md",
@@ -94,8 +94,8 @@
       "title": "Rewind file changes with checkpointing"
     },
     "agent-sdk__hooks.md": {
-      "hash": "21dbc1d4169e6f5b9ef14455addc53e27e0c1020f3440fc88381e02aeed0c80a",
-      "last_updated": "2026-08-12T03:00:35+00:00",
+      "hash": "7b1cfa3dc4a49ba20b5e340c8023cf65669dffe34270a0a05ac0bcfa5321a70b",
+      "last_updated": "2026-08-15T15:39:52+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/hooks",
       "path": "/docs/en/agent-sdk/hooks",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/hooks.md",
@@ -139,8 +139,8 @@
       "title": "Modifying system prompts"
     },
     "agent-sdk__observability.md": {
-      "hash": "4ab7459eb29fe647d686ad1d5ab7793c5fc94e2a53a2f5c0db0a6ac4f6b45545",
-      "last_updated": "2026-08-07T17:25:52+00:00",
+      "hash": "aa523b239ed026d35958b88ab9626f17d5bd57a984494d3840d8e0d1286bb3b0",
+      "last_updated": "2026-08-15T15:39:54+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/observability",
       "path": "/docs/en/agent-sdk/observability",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/observability.md",
@@ -157,8 +157,8 @@
       "title": "Agent SDK overview"
     },
     "agent-sdk__permissions.md": {
-      "hash": "ad368220d1126e4f552632c5947df655a448fa2635936d72bac0af8b799b27ab",
-      "last_updated": "2026-08-15T01:53:17+00:00",
+      "hash": "ea85e7be9f9bef747bc51a48d88b8750c2b7db668b4895ee5135b78150f6d1c4",
+      "last_updated": "2026-08-15T15:39:55+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/permissions",
       "path": "/docs/en/agent-sdk/permissions",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/permissions.md",
@@ -175,8 +175,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "fd61c6cd0b1be8c28df3d8e3957ef05afd2e2040b239db63d058ce8903ad4d80",
-      "last_updated": "2026-08-15T07:02:10+00:00",
+      "hash": "bbf0e1c6b014eb7eb82e714b4d08b396803b5ab44a91ec14ea5a0dce6627e039",
+      "last_updated": "2026-08-15T15:39:56+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -274,8 +274,8 @@
       "title": "Subagents in the SDK"
     },
     "agent-sdk__todo-tracking.md": {
-      "hash": "2eca2dc98d05893bed495089de93d22f1339df758b1390c21629e5ca10897c4a",
-      "last_updated": "2026-08-15T07:02:16+00:00",
+      "hash": "b7a8d669816b3884fae62223029836bdad293bb41386d627d4a96dda1b88d7f4",
+      "last_updated": "2026-08-15T15:40:01+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/todo-tracking",
       "path": "/docs/en/agent-sdk/todo-tracking",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/todo-tracking.md",
@@ -328,8 +328,8 @@
       "title": "Handle approvals and user input"
     },
     "agent-teams.md": {
-      "hash": "d084b93ac0586504f3c069a8912d98b788d9676d68152d5421d33fd036a27e26",
-      "last_updated": "2026-08-15T07:02:21+00:00",
+      "hash": "1ff8d4c67019f558aa344755286d7da2bc3243f0aecaf215da49e3c643e0cf37",
+      "last_updated": "2026-08-15T15:40:06+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-teams",
       "path": "/docs/en/agent-teams",
       "source_url": "https://code.claude.com/docs/en/agent-teams.md",
@@ -346,8 +346,8 @@
       "title": "Manage multiple agents with agent view"
     },
     "agents.md": {
-      "hash": "ed6f5946b8ed0ac1e727f7c9c953071a7ae3e5cc12cb641ef1b4ffc39f9b30fa",
-      "last_updated": "2026-08-11T02:32:00+00:00",
+      "hash": "7099fe22522891fa4df3600a0c11d03f5dd731a2789a93bf6525aaa7b4c9cadd",
+      "last_updated": "2026-08-15T15:40:07+00:00",
       "original_url": "https://code.claude.com/docs/en/agents",
       "path": "/docs/en/agents",
       "source_url": "https://code.claude.com/docs/en/agents.md",
@@ -517,8 +517,8 @@
       "title": "Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry"
     },
     "claude-code-on-the-web.md": {
-      "hash": "0792812e1c1c8805ba995d387cba0625d23ecceb4cf33a83f0d4c1fbcd39c4c0",
-      "last_updated": "2026-08-13T22:07:43+00:00",
+      "hash": "69f0e25080df8e95334633f32240db00aeb32e9ee7622d65487c31fc5645a708",
+      "last_updated": "2026-08-15T15:40:20+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-code-on-the-web",
       "path": "/docs/en/claude-code-on-the-web",
       "source_url": "https://code.claude.com/docs/en/claude-code-on-the-web.md",
@@ -562,8 +562,8 @@
       "title": "Claude Tag"
     },
     "cli-reference.md": {
-      "hash": "b54072a408b0f5c5103c69f5b1a0e63d6a97470153d1997fe34f256d74043565",
-      "last_updated": "2026-08-15T01:53:46+00:00",
+      "hash": "4e1cf86d41d9b40cebdcae7023775e1dd39c66da0e4e1c43e39c67bafde2430f",
+      "last_updated": "2026-08-15T15:40:24+00:00",
       "original_url": "https://code.claude.com/docs/en/cli-reference",
       "path": "/docs/en/cli-reference",
       "source_url": "https://code.claude.com/docs/en/cli-reference.md",
@@ -769,8 +769,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "80fba397d37d117d0c59e471c80bb540444d7c9ce968bbdbd1571bc873417adc",
-      "last_updated": "2026-08-15T01:54:02+00:00",
+      "hash": "6527514946a0eb85ea2b03d9170f6528d12fa04001803e949297dde8dafaba49",
+      "last_updated": "2026-08-15T15:40:38+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -1057,8 +1057,8 @@
       "title": "Claude Code on mobile"
     },
     "model-config.md": {
-      "hash": "13b83b0b2ff54dd5c9555e9eadf0c778c11011ba48dd06e44318d16f70b83a34",
-      "last_updated": "2026-08-14T21:45:36+00:00",
+      "hash": "f757b2aeded26278a3055ef3e38d51aafdb48c1ac0da0f37cefdc0956417de3d",
+      "last_updated": "2026-08-15T15:40:54+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -1399,8 +1399,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "5cc7fc64ec03d5eb6c540f633bb80fec975f69cbe131b97b542faab3cb3c764c",
-      "last_updated": "2026-08-15T07:03:47+00:00",
+      "hash": "49d8c354537de8d2658f1ab7c8554ade5120dc3d7b76733379b1a166e51e9d48",
+      "last_updated": "2026-08-15T15:41:16+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1710,7 +1710,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-15T07:04:06+00:00",
+  "last_updated": "2026-08-15T15:41:33+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
