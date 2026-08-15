@@ -23,7 +23,7 @@ Extensions plug into different parts of the agentic loop:
 * **[Code intelligence](https://code.claude.com/docs/en/tools-reference#lsp-tool-behavior)** connects Claude to a language server for symbol-level navigation and live type errors
 * **[MCP](https://code.claude.com/docs/en/mcp)** connects Claude to external services and tools
 * **[Subagents](https://code.claude.com/docs/en/sub-agents)** run their own loops in isolated context, returning summaries
-* **[Agent teams](https://code.claude.com/docs/en/agent-teams)** coordinate multiple independent sessions with shared tasks and peer-to-peer messaging
+* **[Agent teams](https://code.claude.com/docs/en/agent-teams)** coordinate multiple independent sessions with peer-to-peer messaging, plus a shared task list for [agents that have the Task tools](https://code.claude.com/docs/en/tools-reference#task-tool-availability)
 * **[Hooks](https://code.claude.com/docs/en/hooks-guide)** run your script, HTTP request, prompt, or subagent when Claude Code reaches a lifecycle event
 * **[Plugins](https://code.claude.com/docs/en/plugins)** and **[marketplaces](https://code.claude.com/docs/en/plugin-marketplaces)** package and distribute these features
 
@@ -134,13 +134,13 @@ Both parallelize work, but they're architecturally different:
 * **Subagents** run inside your session and report results back to your main context
 * **Agent teams** are independent Claude Code sessions that communicate with each other
 
-    | Aspect            | Subagent                                         | Agent team                                          |
-    | ----------------- | ------------------------------------------------ | --------------------------------------------------- |
-    | **Context**       | Own context window; results return to the caller | Own context window; fully independent               |
-    | **Communication** | Reports results back to the main agent only      | Teammates message each other directly               |
-    | **Coordination**  | Main agent manages all work                      | Shared task list with self-coordination             |
-    | **Best for**      | Focused tasks where only the result matters      | Complex work requiring discussion and collaboration |
-    | **Token cost**    | Lower: results summarized back to main context   | Higher: each teammate is a separate Claude instance |
+    | Aspect            | Subagent                                         | Agent team                                                                                                                                    |
+    | ----------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+    | **Context**       | Own context window; results return to the caller | Own context window; fully independent                                                                                                         |
+    | **Communication** | Reports results back to the main agent only      | Teammates message each other directly                                                                                                         |
+    | **Coordination**  | Main agent manages all work                      | Self-coordination through messages, plus a shared task list for [agents that have the Task tools](https://code.claude.com/docs/en/tools-reference#task-tool-availability) |
+    | **Best for**      | Focused tasks where only the result matters      | Complex work requiring discussion and collaboration                                                                                           |
+    | **Token cost**    | Lower: results summarized back to main context   | Higher: each teammate is a separate Claude instance                                                                                           |
 
     **Use a subagent** when you need a quick, focused worker: research a question, verify a claim, review a file. The subagent does the work and returns a summary. Your main conversation stays clean.
 
