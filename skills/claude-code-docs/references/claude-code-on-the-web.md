@@ -203,7 +203,7 @@ Auto-compaction runs automatically when the context window approaches capacity. 
 
 To change the auto-compact window instead, set [`CLAUDE_CODE_AUTO_COMPACT_WINDOW`](https://code.claude.com/docs/en/env-vars) in your environment variables, or run [`/autocompact`](https://code.claude.com/docs/en/commands#all-commands) with a token count in a session where the variable isn't set.
 
-[Subagents](https://code.claude.com/docs/en/sub-agents) work the same way they do locally. Claude can spawn them with the Task tool to offload research or parallel work into a separate context window, keeping the main conversation lighter. Subagents defined in your repo's `.claude/agents/` are picked up automatically.
+[Subagents](https://code.claude.com/docs/en/sub-agents) work the same way they do locally. Claude can spawn them with the Agent tool to offload research or parallel work into a separate context window, keeping the main conversation lighter. Subagents defined in your repo's `.claude/agents/` are picked up automatically.
 
 [Agent teams](https://code.claude.com/docs/en/agent-teams) are off by default but can be enabled by adding `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` to your [environment variables](https://code.claude.com/docs/en/cloud-environments#set-environment-variables).
 
