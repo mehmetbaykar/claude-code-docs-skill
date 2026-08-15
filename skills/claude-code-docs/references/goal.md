@@ -46,7 +46,7 @@ Run `/goal` followed by the condition you want satisfied. If a goal is already a
 
 Setting a goal starts a turn immediately, with the condition itself as the directive. You don't need to send a separate prompt. While the goal is active, a `◎ /goal active` indicator shows how long the goal has been running.
 
-A goal doesn't change permissions. In the default permission mode, Claude still asks before tool calls that your settings don't already allow, such as the test command above. To let goal turns run unattended, pair `/goal` with [auto mode](https://code.claude.com/docs/en/auto-mode-config).
+A goal doesn't change your permission mode. To let goal turns run unattended, run `/goal` in [auto mode](https://code.claude.com/docs/en/auto-mode-config). In [Manual mode](https://code.claude.com/docs/en/permission-modes), Claude still asks before tool calls that your settings don't already allow, such as the test command above.
 
 While the goal is active, the transcript shows each verdict the evaluator returns, and you can press Ctrl+O to see the reason behind it. The status view also shows the most recent reason, so you can see what Claude is working toward next.
 

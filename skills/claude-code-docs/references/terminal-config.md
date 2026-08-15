@@ -210,7 +210,7 @@ Set the input box border color and the accent shown while a permission mode or i
 
   | Token          | Controls                                           |
   | :------------- | :------------------------------------------------- |
-  | `promptBorder` | Input box border in the default permission mode    |
+  | `promptBorder` | Input box border in Manual mode                    |
   | `planMode`     | Plan mode accent and border                        |
   | `autoAccept`   | Accept-edits mode accent and border                |
   | `bashBorder`   | Input box border when entering a `!` shell command |
