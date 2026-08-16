@@ -545,6 +545,7 @@ type SDKAssistantMessage = {
   error?: SDKAssistantMessageError;
   aborted?: true;
   timestamp?: string;
+  context_usage?: SDKContextUsage;
 };
 ```
 ```typescript
@@ -728,6 +729,47 @@ type SDKPermissionDenial = {
   tool_name: string;
   tool_use_id: string;
   tool_input: Record<string, unknown>;
+};
+```
+```typescript
+type SDKContextUsage = {
+  model: string;
+  total_tokens: number;
+  raw_max_tokens: number;
+  percentage: number;
+  over_limit?: {
+    tokens_over: number;
+    kind: "hard_limit" | "compaction_window";
+  };
+  categories: SDKContextUsageCategory[];
+  mcp_tools: {
+    name: string;
+    server_name: string;
+    tokens: number;
+  }[];
+  memory_files: {
+    path: string;
+    type: string;
+    tokens: number;
+  }[];
+  agents: {
+    agent_type: string;
+    source: string;
+    tokens: number;
+  }[];
+  skills?: {
+    name: string;
+    source: string;
+    plugin_name?: string;
+    tokens: number;
+  }[];
+};
+```
+```typescript
+type SDKContextUsageCategory = {
+  name: string;
+  tokens: number;
+  kind: "used" | "free" | "buffer" | "deferred";
 };
 ```
 ```typescript
