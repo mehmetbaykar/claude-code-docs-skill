@@ -116,10 +116,6 @@ When @Claude is invoked in Slack, Claude is given access to the conversation con
 
 ## User interface elements
 
-### App Home
-
-The App Home tab shows your connection status and allows you to connect or disconnect your Claude account from Slack.
-
 ### Message actions
 
 * **View Session**: Opens the full Claude Code session in your browser where you can see all work performed, continue the session, or make additional requests.
