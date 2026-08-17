@@ -45,8 +45,6 @@ With either method, a cloud session can access any repository the connecting Git
 
 Either method works. [`/schedule`](https://code.claude.com/docs/en/routines) checks for either form of access and prompts you to run `/web-setup` if neither is configured. See [Connect from your terminal](https://code.claude.com/docs/en/web-quickstart#connect-from-your-terminal) for the `/web-setup` walkthrough.
 
-The GitHub App is required for [Auto-fix](#auto-fix-pull-requests), which uses the App to receive PR webhooks. If you connect with `/web-setup` and later want Auto-fix, install the App on those repositories.
-
 Team and Enterprise Owners can disable `/web-setup` with the Quick web setup toggle at [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code).
 
 Organizations with [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention) enabled can't use `/web-setup` or other cloud session features.
@@ -85,8 +83,6 @@ In plan mode, Claude reads files, runs commands to explore, and proposes a plan 
 ```bash
 claude --cloud "Execute the migration plan in docs/migration-plan.md"
 ```
-
-This pattern gives you control over the strategy while letting Claude execute autonomously in the cloud.
 
 **Run tasks in parallel**: each `--cloud` command creates its own cloud session that runs independently. You can start multiple tasks and they'll all run simultaneously in separate sessions:
 ```bash

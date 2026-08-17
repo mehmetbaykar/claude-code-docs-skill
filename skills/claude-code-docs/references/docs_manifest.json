@@ -517,8 +517,8 @@
       "title": "Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry"
     },
     "claude-code-on-the-web.md": {
-      "hash": "69f0e25080df8e95334633f32240db00aeb32e9ee7622d65487c31fc5645a708",
-      "last_updated": "2026-08-15T15:40:20+00:00",
+      "hash": "c186da3fb855cd15496ba83227c273a3ec1f569e9e7d80ddff22cf59d1b3417c",
+      "last_updated": "2026-08-17T19:02:52+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-code-on-the-web",
       "path": "/docs/en/claude-code-on-the-web",
       "source_url": "https://code.claude.com/docs/en/claude-code-on-the-web.md",
@@ -571,8 +571,8 @@
       "title": "CLI reference"
     },
     "cloud-environments.md": {
-      "hash": "b7772b8aea41b4240c15671b78f058671dbb5296cc3c13f9824491b773b6a3a5",
-      "last_updated": "2026-08-13T19:31:23+00:00",
+      "hash": "1da23dddf2163f0bea25ec9692ff0971baa216f6dda20874fd18ec90745e1502",
+      "last_updated": "2026-08-17T19:02:56+00:00",
       "original_url": "https://code.claude.com/docs/en/cloud-environments",
       "path": "/docs/en/cloud-environments",
       "source_url": "https://code.claude.com/docs/en/cloud-environments.md",
@@ -733,8 +733,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "e6e563ca2362b536839756e1a9eca743456ba9229c56047c7606067c1bf68bd4",
-      "last_updated": "2026-08-15T01:53:55+00:00",
+      "hash": "d78b3aff373177cc0c76ada35262c56530e2cb7d7e2f5e49e4ce3db742d53edc",
+      "last_updated": "2026-08-17T19:03:04+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -1129,8 +1129,8 @@
       "title": "Platforms and integrations"
     },
     "plugin-dependencies.md": {
-      "hash": "c8977caf46edf76c91427cc33de1e4cb95f10d2a2dfe7ee404c01fcffd3862a2",
-      "last_updated": "2026-08-13T22:08:27+00:00",
+      "hash": "20cedb5c7955eb0d1059099800947ecb2fb1f23b81d6eebe93865c68a653d39b",
+      "last_updated": "2026-08-17T19:04:07+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-dependencies",
       "path": "/docs/en/plugin-dependencies",
       "source_url": "https://code.claude.com/docs/en/plugin-dependencies.md",
@@ -1147,8 +1147,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugin-marketplaces.md": {
-      "hash": "87588fa52db764dec1016df3b1096e25b30b4abbb271427cadcd8d057f040c2d",
-      "last_updated": "2026-08-14T03:04:09+00:00",
+      "hash": "99db98a8065001e21ef8c404bfca8f5b40b4ae87d30c21873e9f8d82b8ee428f",
+      "last_updated": "2026-08-17T19:04:11+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-marketplaces",
       "path": "/docs/en/plugin-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugin-marketplaces.md",
@@ -1165,8 +1165,8 @@
       "title": "Recommend plugins for your org"
     },
     "plugins-reference.md": {
-      "hash": "fdd702b9780791334238c24c32a38035a9fd268c14de92d0c0f873552ac760fb",
-      "last_updated": "2026-08-14T19:20:52+00:00",
+      "hash": "367554236d0eaeef3c98a99bee67b722efb7c601771fee5980ac43fb15f7518d",
+      "last_updated": "2026-08-17T19:04:12+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins-reference",
       "path": "/docs/en/plugins-reference",
       "source_url": "https://code.claude.com/docs/en/plugins-reference.md",
@@ -1210,8 +1210,8 @@
       "title": "Quickstart"
     },
     "remote-control.md": {
-      "hash": "78e421e8a37e899fbc9ff1801610c1cca2fce189055a9757b7ab6f84c9f8cc71",
-      "last_updated": "2026-08-14T21:45:49+00:00",
+      "hash": "17a4e8a9b6f4675d48c69e97d94959d872555535cccdc06cb22159d908e20673",
+      "last_updated": "2026-08-17T19:04:14+00:00",
       "original_url": "https://code.claude.com/docs/en/remote-control",
       "path": "/docs/en/remote-control",
       "source_url": "https://code.claude.com/docs/en/remote-control.md",
@@ -1381,8 +1381,8 @@
       "title": "Extend Claude with skills"
     },
     "slack.md": {
-      "hash": "d9651b6e77708df3892aa45b93806fe0db185ada1bd81e83902672a4a513b474",
-      "last_updated": "2026-08-11T16:15:49+00:00",
+      "hash": "c5454f0aa2484089923cd3ece1512ad451a6cab3248edd633f3c9e9792e241a7",
+      "last_updated": "2026-08-17T19:04:24+00:00",
       "original_url": "https://code.claude.com/docs/en/slack",
       "path": "/docs/en/slack",
       "source_url": "https://code.claude.com/docs/en/slack.md",
@@ -1710,7 +1710,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-16T15:42:19+00:00",
+  "last_updated": "2026-08-17T19:04:43+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
