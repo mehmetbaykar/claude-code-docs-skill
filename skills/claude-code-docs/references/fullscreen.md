@@ -22,7 +22,23 @@ Run `/tui fullscreen` inside any Claude Code conversation. The CLI saves the [`t
 
 In [screen reader mode](https://code.claude.com/docs/en/accessibility), Claude Code always uses the classic renderer except in attached [background sessions](https://code.claude.com/docs/en/agent-view), which still render fullscreen. If you run `/tui fullscreen` in any other session, Claude Code prints an explanation instead of switching and doesn't change the saved `tui` setting.
 
-The relaunched session keeps the conversation as it appears on screen. Claude Code also carries over the model you last picked with [`/model`](https://code.claude.com/docs/en/model-config#setting-your-model). If you ran [`/rewind`](https://code.claude.com/docs/en/checkpointing#rewind-and-summarize) earlier in the session, the relaunch resumes from the rewound point rather than the longer transcript saved on disk. If you rewound to before your first message, the relaunched session starts empty.
+Claude Code carries these into the relaunched session:
+
+* The conversation as it appears on screen. After a [`/rewind`](https://code.claude.com/docs/en/checkpointing#rewind-and-summarize), that means:
+* If you rewound earlier in the session, Claude Code relaunches from the rewound point, not from the longer transcript saved on disk. For example, if you rewound past your last three messages, the relaunched session opens without them
+* If you rewound to before your first message, Claude Code relaunches with an empty conversation
+* Your [permission mode](https://code.claude.com/docs/en/permission-modes) and [effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level)
+* The model you last picked with [`/model`](https://code.claude.com/docs/en/model-config#setting-your-model)
+* Rules you passed with [`--allowed-tools` or `--disallowed-tools`](https://code.claude.com/docs/en/cli-reference#cli-flags)
+
+Claude Code declines to relaunch if the session has a restriction it can't pass to the restarted process. Restrictions it can't pass include:
+
+* Launch flags such as a [`--system-prompt`](https://code.claude.com/docs/en/cli-reference#cli-flags) replacement, a [`--tools`](https://code.claude.com/docs/en/cli-reference#cli-flags) allowlist, or [`--setting-sources`](https://code.claude.com/docs/en/cli-reference#cli-flags)
+* Deny or ask rules that a [hook or SDK permission update](https://code.claude.com/docs/en/hooks#permission-update-entries) added for this session only
+
+In that case Claude Code prints [`Cannot switch renderers in this session`](https://code.claude.com/docs/en/errors#cannot-switch-renderers-in-this-session) with the reasons. It doesn't switch or save anything.
+
+If you first used Claude Code before May 6, 2026 and haven't saved a `tui` setting, Claude Code may open a dialog at startup offering the switch. If you accept, Claude Code saves the setting and relaunches the same way `/tui fullscreen` does, carrying the same session state.
 
 You can also set the `CLAUDE_CODE_NO_FLICKER` environment variable before starting Claude Code:
 ```bash
