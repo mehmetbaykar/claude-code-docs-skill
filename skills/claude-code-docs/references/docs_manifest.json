@@ -4,12 +4,12 @@
     "failed_pages": [],
     "fetch_tool_version": "2.0",
     "pages_failed": 0,
-    "pages_fetched_successfully": 187,
+    "pages_fetched_successfully": 186,
     "pages_skipped": 0,
     "pages_stale": 0,
     "raw_fallback_pages": 0,
     "stale_pages": [],
-    "total_pages_discovered": 187
+    "total_pages_discovered": 186
   },
   "files": {
     "accessibility.md": {
@@ -40,8 +40,8 @@
       "title": "Escalate hard decisions with the advisor tool"
     },
     "agent-sdk__agent-loop.md": {
-      "hash": "251fdf6c579fcd732b8bc538a0cbef446e29bd75bbd40fc3efabf2a0b9612dae",
-      "last_updated": "2026-08-15T07:02:00+00:00",
+      "hash": "a6f2770fda476e7f4e7a99963cd68c3286361677ffb44b16b92a2ffa6d18a163",
+      "last_updated": "2026-08-18T19:01:41+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
       "path": "/docs/en/agent-sdk/agent-loop",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop.md",
@@ -148,8 +148,8 @@
       "title": "Observability with OpenTelemetry"
     },
     "agent-sdk__overview.md": {
-      "hash": "3378d6d4ee664c28ae1a5b79326c3f4ae4b265767836d5f095dc4738eb4d723e",
-      "last_updated": "2026-08-07T17:25:54+00:00",
+      "hash": "ace273bfb4502a7d78ee9f896d30867e42f9a76f82a534fe353011cb05e2d446",
+      "last_updated": "2026-08-18T19:01:48+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/overview",
       "path": "/docs/en/agent-sdk/overview",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/overview.md",
@@ -166,8 +166,8 @@
       "title": "Configure permissions"
     },
     "agent-sdk__plugins.md": {
-      "hash": "bda9d5ea7a38f92c52ee87184b8a266a69a34f675bb7063bfb109d4826c8851f",
-      "last_updated": "2026-08-13T03:03:48+00:00",
+      "hash": "a1493eecc8bab318d8e224e836ad653b396426d1250a5ee37a2bb5d77b19de12",
+      "last_updated": "2026-08-18T19:01:49+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/plugins",
       "path": "/docs/en/agent-sdk/plugins",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/plugins.md",
@@ -220,22 +220,13 @@
       "title": "Work with sessions"
     },
     "agent-sdk__skills.md": {
-      "hash": "709e278df2dc9fb4ad64648b03a74a15a7840c2abba677503453a2beea3d3708",
-      "last_updated": "2026-08-13T03:03:51+00:00",
+      "hash": "c53f392765f337d6efbec061325346c80268e22ff53cf98726f95da985c8f4d4",
+      "last_updated": "2026-08-18T19:01:54+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/skills",
       "path": "/docs/en/agent-sdk/skills",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/skills.md",
       "status": "live",
-      "title": "Agent Skills in the SDK"
-    },
-    "agent-sdk__slash-commands.md": {
-      "hash": "979c2a81dbc623b3295af6f2c142690de04d1dad6678499558e0809b5797f59a",
-      "last_updated": "2026-08-13T03:03:52+00:00",
-      "original_url": "https://code.claude.com/docs/en/agent-sdk/slash-commands",
-      "path": "/docs/en/agent-sdk/slash-commands",
-      "source_url": "https://code.claude.com/docs/en/agent-sdk/slash-commands.md",
-      "status": "live",
-      "title": "Slash Commands in the SDK"
+      "title": "Extend agents with skills"
     },
     "agent-sdk__streaming-output.md": {
       "hash": "cfab2602d065ea9770fcd4877c49a3650cbc8ea23940d8cafb53914128fe585c",
@@ -1372,8 +1363,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "7cfc40c397af84b7f7be58008e577378e6bcdc24398eb7ebc3f930e6a6425a2f",
-      "last_updated": "2026-08-18T01:55:56+00:00",
+      "hash": "b90e5fcef0051f1fcd702e96697bedd14e09a3cef23b36e753a204880796aaf7",
+      "last_updated": "2026-08-18T19:03:32+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1710,7 +1701,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-18T15:52:55+00:00",
+  "last_updated": "2026-08-18T19:03:55+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
