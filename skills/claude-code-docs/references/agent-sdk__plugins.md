@@ -300,6 +300,6 @@ If plugin skills don't work:
 
 * [Plugins](https://code.claude.com/docs/en/plugins) - Complete plugin development guide
 * [Plugins reference](https://code.claude.com/docs/en/plugins-reference) - Technical specifications
-* [Commands](https://code.claude.com/docs/en/agent-sdk/slash-commands) - Using commands in the SDK
+* [Commands](https://code.claude.com/docs/en/agent-sdk/skills#dispatch-commands-by-name) - Dispatching commands in the SDK
 * [Subagents](https://code.claude.com/docs/en/agent-sdk/subagents) - Working with specialized agents
 * [Skills](https://code.claude.com/docs/en/agent-sdk/skills) - Using Agent Skills
