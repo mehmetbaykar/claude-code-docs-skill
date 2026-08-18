@@ -223,16 +223,16 @@ Every feature you add consumes some of Claude's context. Too much can fill up yo
 
 Each feature has a different loading strategy and context cost:
 
-| Feature               | When it loads                  | What loads                                          | Context cost                                 |
-| --------------------- | ------------------------------ | --------------------------------------------------- | -------------------------------------------- |
-| **CLAUDE.md**         | Session start                  | Full content                                        | Every request                                |
-| **Skills**            | Session start + when used      | Descriptions at start, full content when used       | Low (descriptions every request)\*           |
-| **MCP servers**       | Session start                  | Tool names; full schemas on demand                  | Low until a tool is used                     |
-| **Code intelligence** | After file edits and on demand | Diagnostics after edits; symbol locations on lookup | Low; reduces file reads elsewhere            |
-| **Subagents**         | When spawned                   | Fresh context with specified skills                 | Isolated from main session                   |
-| **Hooks**             | On trigger                     | Nothing (runs externally)                           | Zero, unless hook returns additional context |
+| Feature               | When it loads                  | What loads                                                                                                                 | Context cost                                 |
+| --------------------- | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| **CLAUDE.md**         | Session start                  | Full content                                                                                                               | Every request                                |
+| **Skills**            | Session start + when used      | Descriptions at start, full content when used                                                                              | Low (descriptions every request)\*           |
+| **MCP servers**       | Session start                  | Tool names; full schemas on demand                                                                                         | Low until a tool is used                     |
+| **Code intelligence** | After file edits and on demand | Diagnostics after edits; symbol locations on lookup                                                                        | Low; reduces file reads elsewhere            |
+| **Subagents**         | When spawned                   | Fresh context with specified skills, or the parent conversation for a [fork](https://code.claude.com/docs/en/sub-agents#fork-the-current-conversation) | Isolated from main session                   |
+| **Hooks**             | On trigger                     | Nothing (runs externally)                                                                                                  | Zero, unless hook returns additional context |
 
-\*By default, skill descriptions load at session start so Claude can decide when to use them. Set `disable-model-invocation: true` in a skill's frontmatter to hide it from Claude entirely until you invoke it manually. This reduces context cost to zero for skills you only trigger yourself. For a skill you didn't write, set [`skillOverrides`](https://code.claude.com/docs/en/skills#override-skill-visibility-from-settings) in settings to do the same without editing its file.
+\*By default, skill descriptions load at session start so Claude can decide when to use them. Set `disable-model-invocation: true` in a skill's frontmatter to hide it from Claude entirely until you invoke it manually. For a skill you didn't write, set [`skillOverrides`](https://code.claude.com/docs/en/skills#override-skill-visibility-from-settings) in settings to do the same without editing its file.
 
 ### Understand how features load
 
@@ -308,7 +308,9 @@ Skills are extra capabilities in Claude's toolkit. They can be reference materia
 * CLAUDE.md and git status, except the built-in Explore and Plan agents [omit both](https://code.claude.com/docs/en/sub-agents#what-loads-at-startup)
 * Whatever context the lead agent passes in the prompt
 
-    **Context cost:** Isolated from main session. Subagents don't inherit your conversation history or invoked skills.
+For a [fork](https://code.claude.com/docs/en/sub-agents#fork-the-current-conversation), Claude Code loads the parent's conversation so far, system prompt, and tools instead.
+
+    **Context cost:** Isolated from main session.
 
     > [!TIP] Use subagents for work that doesn't need your full conversation context. Their isolation prevents bloating your main session.
 
