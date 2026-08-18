@@ -328,8 +328,8 @@
       "title": "Handle approvals and user input"
     },
     "agent-teams.md": {
-      "hash": "93a40e7c205615cd6b09eae41b79c879dcb348ddb088339be53df623840a9475",
-      "last_updated": "2026-08-18T01:54:57+00:00",
+      "hash": "2ecd78cfa04faf7f159245cfe36fa3ba994be9df4ca315d7d0d7cbf5d723b349",
+      "last_updated": "2026-08-18T15:51:09+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-teams",
       "path": "/docs/en/agent-teams",
       "source_url": "https://code.claude.com/docs/en/agent-teams.md",
@@ -355,8 +355,8 @@
       "title": "Run agents in parallel"
     },
     "amazon-bedrock.md": {
-      "hash": "ab6254f08ab09eea2f0c25c47ae0fd4af13d15f08d86096907c94631e0d64cc5",
-      "last_updated": "2026-08-18T01:54:59+00:00",
+      "hash": "f33b35348fb135139de7ad357aad005ef1842697f42e1ad24fbddba6a2b8af99",
+      "last_updated": "2026-08-18T15:51:11+00:00",
       "original_url": "https://code.claude.com/docs/en/amazon-bedrock",
       "path": "/docs/en/amazon-bedrock",
       "source_url": "https://code.claude.com/docs/en/amazon-bedrock.md",
@@ -589,8 +589,8 @@
       "title": "Code Review"
     },
     "commands.md": {
-      "hash": "30b66f22fe1ea9a60a868bcc476b470a05ba544cf320617f50e0e0ce63fe14f5",
-      "last_updated": "2026-08-18T01:55:13+00:00",
+      "hash": "6296cdab676ca2dbdd4fcee971ad551b48ab4fdcb947fd76da3e35728b71be8c",
+      "last_updated": "2026-08-18T15:51:33+00:00",
       "original_url": "https://code.claude.com/docs/en/commands",
       "path": "/docs/en/commands",
       "source_url": "https://code.claude.com/docs/en/commands.md",
@@ -733,8 +733,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "735228bd2b24d95ff8068592d95be690f7b0332762fbd6f70eba683f8d1b3005",
-      "last_updated": "2026-08-18T04:03:11+00:00",
+      "hash": "79757b235b2bd5d0749ac99f449f8f150135dee36455af328845be211ad6d4d4",
+      "last_updated": "2026-08-18T15:51:40+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -760,8 +760,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "52db27b837f51374d1ba4a7b920157f18b867e93c5432d50cd1464cd5739bcf1",
-      "last_updated": "2026-08-18T04:03:17+00:00",
+      "hash": "a3e7d28650222242bad07e58037a44bbcc8faf9ba553c35bbeddaa6a8681e84b",
+      "last_updated": "2026-08-18T15:51:46+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -868,8 +868,8 @@
       "title": "Glossary"
     },
     "goal.md": {
-      "hash": "1cc8b5d064cbc4b98605595f25a4bc5445d3e65122d70cfe8753c22a047aa7ac",
-      "last_updated": "2026-08-15T01:54:09+00:00",
+      "hash": "6914db4e31af83c0129403698be832255bdb707bb34515215717ddc699261461",
+      "last_updated": "2026-08-18T15:51:53+00:00",
       "original_url": "https://code.claude.com/docs/en/goal",
       "path": "/docs/en/goal",
       "source_url": "https://code.claude.com/docs/en/goal.md",
@@ -1102,8 +1102,8 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "db5c2b681809f48cb52cb11729fab40b7fda9164ca08040e0209a242de7d472c",
-      "last_updated": "2026-08-18T04:03:40+00:00",
+      "hash": "cb8de434195acd888e1f7f13f76645fe671486a5a3ff75afc04566ac6da15f7d",
+      "last_updated": "2026-08-18T15:52:10+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "source_url": "https://code.claude.com/docs/en/permission-modes.md",
@@ -1399,8 +1399,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "7925e494d1847ea95b8b3bb4a61e236c5c7c7601322d5b26507b4d8a87b367df",
-      "last_updated": "2026-08-18T01:55:57+00:00",
+      "hash": "4c97bbdd9b3208961df0c0e459ea1ca669c07fad3b6840bb6e58814e51e11e66",
+      "last_updated": "2026-08-18T15:52:30+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1710,7 +1710,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-18T04:04:24+00:00",
+  "last_updated": "2026-08-18T15:52:55+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
