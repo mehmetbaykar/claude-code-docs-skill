@@ -130,8 +130,8 @@
       "title": "Migrate to Claude Agent SDK"
     },
     "agent-sdk__modifying-system-prompts.md": {
-      "hash": "1a3ef2f38138ee9573c153213bb43063c2a9b7c35daf5b277be61dc4617f620c",
-      "last_updated": "2026-08-12T19:31:45+00:00",
+      "hash": "421417e5fd8d46c5833a9815377c0c1e1f43a6e37e870913b0aedb0d1261b30f",
+      "last_updated": "2026-08-19T15:50:54+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts",
       "path": "/docs/en/agent-sdk/modifying-system-prompts",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts.md",
@@ -751,8 +751,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "2b0312182757b2080014d32a6910f4916bf3f982f45945d064de85fb449a6e8f",
-      "last_updated": "2026-08-19T01:57:36+00:00",
+      "hash": "f471566c229b717e179b7d207892ebaed701e10f4d28b9a425ecd08deb4f77a5",
+      "last_updated": "2026-08-19T15:51:33+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -886,8 +886,8 @@
       "title": "Run Claude Code programmatically"
     },
     "hooks-guide.md": {
-      "hash": "6c4c288c252673ada94c4bf216236fb13eb28f0268a32df87a6d022c15620895",
-      "last_updated": "2026-08-18T01:55:31+00:00",
+      "hash": "bf08dc57cf9029d992388699191a9b84dabb3390d6d0b22514a35f4c6e317e29",
+      "last_updated": "2026-08-19T15:51:46+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks-guide",
       "path": "/docs/en/hooks-guide",
       "source_url": "https://code.claude.com/docs/en/hooks-guide.md",
@@ -895,8 +895,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "f6037d354c005c2dc1fd6783965596b49ed1ad87bfbacc90c1e6ef03dcb7899a",
-      "last_updated": "2026-08-18T01:55:30+00:00",
+      "hash": "5cd003d1455ac7092d90bc86b9202e157916f229464b7bb4e08436292946cd62",
+      "last_updated": "2026-08-19T15:51:45+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -1102,8 +1102,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "5673459a43c8c572a031306743d5bd459b842d237aca47f1485a3f7e2cddd40b",
-      "last_updated": "2026-08-18T01:55:42+00:00",
+      "hash": "ae742eaac4f45d4d27bd8527d5d796c7bf8f12e1a49d164357beeacc1f400841",
+      "last_updated": "2026-08-19T15:52:03+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -1219,8 +1219,8 @@
       "title": "Automate work with routines"
     },
     "sandbox-environments.md": {
-      "hash": "3493b6a5bea51695981bca96347f2cfa8f9f4306fb235fce956a6277686fe03c",
-      "last_updated": "2026-08-17T21:46:28+00:00",
+      "hash": "269f3fd834c5d07cea363f96ad8fc61c2bf330ce15f9dd0926c00fbdc4aeaaf1",
+      "last_updated": "2026-08-19T15:52:13+00:00",
       "original_url": "https://code.claude.com/docs/en/sandbox-environments",
       "path": "/docs/en/sandbox-environments",
       "source_url": "https://code.claude.com/docs/en/sandbox-environments.md",
@@ -1345,8 +1345,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "ef02c85094d82340a27fc9399389246800b54ec732b48276a7e61aef3d311d98",
-      "last_updated": "2026-08-19T01:58:23+00:00",
+      "hash": "451fd4f22097a9ad93813b22ca871a3e84c9852a03f8e9a1b6d519ccba77f123",
+      "last_updated": "2026-08-19T15:52:21+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1701,7 +1701,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-19T01:58:50+00:00",
+  "last_updated": "2026-08-19T15:52:42+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
