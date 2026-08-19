@@ -256,8 +256,8 @@
       "title": "Get structured output from agents"
     },
     "agent-sdk__subagents.md": {
-      "hash": "736228d77893a51c9e09f9523bf2ffeb8ac1cf5a4d8e46198b9991f6c6a831c7",
-      "last_updated": "2026-08-17T21:44:59+00:00",
+      "hash": "8c194f49486cb3090f6c025fee5e5fa05790e7f53f6ef9cb24a96bd70bf80524",
+      "last_updated": "2026-08-19T01:56:52+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/subagents",
       "path": "/docs/en/agent-sdk/subagents",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/subagents.md",
@@ -409,8 +409,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "586ce462c09d301430c67a0c8021958f4cfb120347dbd84a1c833ac72c5f1178",
-      "last_updated": "2026-08-17T21:45:13+00:00",
+      "hash": "d84925af74cc5566aa3edf234f60ee1cc04e864fac13f26158f0d93b05346801",
+      "last_updated": "2026-08-19T01:57:08+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -643,8 +643,8 @@
       "title": "Manage costs effectively"
     },
     "cross-session-messaging.md": {
-      "hash": "50b09e5b317d0e9010952a930ec6d301da4bc6457cba4b0654ebf6e9d784729e",
-      "last_updated": "2026-08-14T03:03:38+00:00",
+      "hash": "69bdd8ab3d009d65d3fa70a8460c143f3eab3fc449c8cbb61b1229da54c37d52",
+      "last_updated": "2026-08-19T01:57:28+00:00",
       "original_url": "https://code.claude.com/docs/en/cross-session-messaging",
       "path": "/docs/en/cross-session-messaging",
       "source_url": "https://code.claude.com/docs/en/cross-session-messaging.md",
@@ -661,8 +661,8 @@
       "title": "Data usage"
     },
     "debug-your-config.md": {
-      "hash": "08c98d374254f0fd5506318e93e00c4a13771058e259032ef0dadb183c5014d2",
-      "last_updated": "2026-08-13T22:07:54+00:00",
+      "hash": "f7b5e4992a8a45993be69caa0ac3a7e9532c3ba1c720a69a434462046acaa633",
+      "last_updated": "2026-08-19T01:57:29+00:00",
       "original_url": "https://code.claude.com/docs/en/debug-your-config",
       "path": "/docs/en/debug-your-config",
       "source_url": "https://code.claude.com/docs/en/debug-your-config.md",
@@ -751,8 +751,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "a3e7d28650222242bad07e58037a44bbcc8faf9ba553c35bbeddaa6a8681e84b",
-      "last_updated": "2026-08-18T15:51:46+00:00",
+      "hash": "2b0312182757b2080014d32a6910f4916bf3f982f45945d064de85fb449a6e8f",
+      "last_updated": "2026-08-19T01:57:36+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -760,8 +760,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "64b078b4e52f316d1cd764d00e31bad8c04b5cdc61752334d561f1337bfddd03",
-      "last_updated": "2026-08-18T04:03:18+00:00",
+      "hash": "1cf6ad53b6e1b06737f0afabd8c8c801e52276c6620738e9b5a8696147361819",
+      "last_updated": "2026-08-19T01:57:37+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -913,8 +913,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "392f76582d79f38457feb842daeebfb4fb18767949c064f5111d54f7d38e4c47",
-      "last_updated": "2026-08-18T01:55:32+00:00",
+      "hash": "7de8a7d5987bb1e288f84f620ee579c1166f343741d91310060ec5bd104e7dcf",
+      "last_updated": "2026-08-19T01:57:49+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -1012,8 +1012,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "fe06140680b7df365d69f27ae32bd45acabbe04a686865bee77cac88326a18cc",
-      "last_updated": "2026-08-18T01:55:37+00:00",
+      "hash": "43bec27aa06b7380b042d288cb984da26d09ebcff9224d2ed74e5f7d229dedb0",
+      "last_updated": "2026-08-19T01:57:56+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -1048,8 +1048,8 @@
       "title": "Claude Code on mobile"
     },
     "model-config.md": {
-      "hash": "e234bf70201c1a17357538dac82d57265429b49969bbb1ccacabe1987a28303f",
-      "last_updated": "2026-08-18T04:03:37+00:00",
+      "hash": "e3314bce3b3e632e0fd8874f26ab4142cc1e6a322fee85c1412b764071191d1c",
+      "last_updated": "2026-08-19T01:57:59+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -1345,8 +1345,8 @@
       "title": "Manage sessions"
     },
     "settings.md": {
-      "hash": "2b711e0f20aa2283159fcf39b311306b5c5a08579bd8426cc84e2c1ed3d6b8be",
-      "last_updated": "2026-08-18T04:03:58+00:00",
+      "hash": "ef02c85094d82340a27fc9399389246800b54ec732b48276a7e61aef3d311d98",
+      "last_updated": "2026-08-19T01:58:23+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1381,8 +1381,8 @@
       "title": "Claude Code in Slack"
     },
     "statusline.md": {
-      "hash": "049edf103af0181aca07b99ccb78f04a66a17d5b1faf0ed06e9da1b498067b42",
-      "last_updated": "2026-08-18T01:55:57+00:00",
+      "hash": "b0c9f487bae622b78b5b8b96942824d29523c174cc378c33a8271399e02fac7c",
+      "last_updated": "2026-08-19T01:58:26+00:00",
       "original_url": "https://code.claude.com/docs/en/statusline",
       "path": "/docs/en/statusline",
       "source_url": "https://code.claude.com/docs/en/statusline.md",
@@ -1390,8 +1390,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "4c97bbdd9b3208961df0c0e459ea1ca669c07fad3b6840bb6e58814e51e11e66",
-      "last_updated": "2026-08-18T15:52:30+00:00",
+      "hash": "3a2da6d4dfac7e0c7f34aabee1dba564cef73f12e321955ff0bb50387c316dd8",
+      "last_updated": "2026-08-19T01:58:27+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1701,7 +1701,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-18T19:03:55+00:00",
+  "last_updated": "2026-08-19T01:58:50+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
