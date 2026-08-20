@@ -387,3 +387,4 @@ The command was named `/simplify` before v2.1.147, when it applied fixes by defa
 * [GitLab CI/CD](https://code.claude.com/docs/en/gitlab-ci-cd): self-hosted Claude integration for GitLab pipelines
 * [Memory](https://code.claude.com/docs/en/memory): how `CLAUDE.md` files work across Claude Code
 * [Analytics](https://code.claude.com/docs/en/analytics): track Claude Code usage beyond code review
+* [How Anthropic secures its AI-native software development lifecycle](https://claude.com/blog/how-anthropic-secures-its-ai-native-software-development-lifecycle): how automated review fits as one layer of Anthropic's secure development process

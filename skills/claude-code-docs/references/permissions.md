@@ -524,11 +524,16 @@ Claude Code shows the trust dialog in interactive sessions only. A `claude -p` r
 
 ### When your local settings file needs trust
 
-`.claude/settings.local.json` is normally your own file, so its allow rules and additional directories apply without the trust step. Claude Code treats the file as repository-supplied instead, and holds its rules until you trust the folder, when the file is tracked in git or `.claude` is a symlink.
+`.claude/settings.local.json` is normally your own file, so Claude Code applies its allow rules and additional directories without the trust step. When the file is tracked in git, or `.claude` is a symlink, Claude Code treats it as repository-supplied instead and holds its rules until you trust the folder.
 
-Claude Code runs git to tell the two apart, and it runs git in a folder only after you accept a trust dialog for that folder or for a parent directory whose trust extends to it, or in a `-p` or SDK session, which counts as accepted. Until then it holds the file's rules like project settings, with one exception: in your own configuration home, meaning your home directory or any directory whose `.claude` subdirectory you've set as [`CLAUDE_CONFIG_DIR`](https://code.claude.com/docs/en/env-vars), the file applies right away without running git. Once the check has run, an untracked file, or one in a directory that isn't inside a git repository, applies even though you haven't trusted that exact folder.
+Claude Code runs git to tell the two apart, and it runs git only once you've trusted the folder: you accepted the trust dialog for it or for a parent directory whose trust extends to it, or you're in a `-p` or SDK session, which counts as accepted. Until then, where you started Claude Code decides what happens to the file's rules:
 
-Versions 2.1.196 through 2.1.199 held the file's rules in your configuration home and outside git repositories too, and printed the [`this workspace has not been trusted`](https://code.claude.com/docs/en/errors#workspace-has-not-been-trusted) warning there. Before v2.1.207, an untracked file applied before you accepted the dialog.
+* **In your configuration home:** Claude Code applies that folder's `.claude/settings.local.json` right away without running git. Your configuration home is your home directory, or a directory whose `.claude` subdirectory you've set as [`CLAUDE_CONFIG_DIR`](https://code.claude.com/docs/en/env-vars#variables). If that `CLAUDE_CONFIG_DIR` directory sits inside a git repository and Claude Code [keeps your local settings at the repository root](https://code.claude.com/docs/en/settings#available-scopes) instead, it holds the rules like anywhere else.
+* **Anywhere else:** Claude Code holds the file's rules like project settings. Once the check has run, Claude Code applies the rules of an untracked file, or of a file in a directory outside any git repository, even though you haven't trusted that exact folder.
+
+The configuration-home exception skips only the trust step. `~/.claude/settings.local.json` is still [local scope](https://code.claude.com/docs/en/settings#available-scopes), so Claude Code reads it only in sessions you start in your home directory itself, not in every project. To apply permission rules across all your projects, add them to your user settings instead: `~/.claude/settings.json`, or `$CLAUDE_CONFIG_DIR/settings.json` when `CLAUDE_CONFIG_DIR` is set.
+
+On versions 2.1.196 through 2.1.199, Claude Code held the file's rules in your configuration home and outside git repositories too, and printed the [`this workspace has not been trusted`](https://code.claude.com/docs/en/errors#workspace-has-not-been-trusted) warning there. Before v2.1.207, Claude Code applied an untracked file's rules before you accepted the dialog.
 
 ### What runs before you trust a folder
 
