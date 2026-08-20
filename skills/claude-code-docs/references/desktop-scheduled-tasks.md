@@ -34,7 +34,7 @@ By default, scheduled tasks run against whatever state your working directory is
 
 ## Create a scheduled task
 
-Click **Routines** in the sidebar, then click **New routine** and choose **Local**. Configure these fields:
+In the [**Code** tab](https://code.claude.com/docs/en/desktop), click **Routines** in the sidebar, then click **New routine** and choose **Local**. Configure these fields:
 
 | Field        | Description                                                                                                                                                                                                                                                                    |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -83,7 +83,7 @@ Connector tools [your organization set to `ask`](https://code.claude.com/docs/en
 
 ## Manage scheduled tasks
 
-Click a task in the **Routines** list to open its detail page. From here you can:
+In the **Code** tab, click a task in the **Routines** list to open its detail page. From here you can:
 
 * **Run now**: start the task immediately without waiting for the next scheduled time
 * **Status**: toggle between Active and Paused to pause or resume scheduled runs without deleting the task

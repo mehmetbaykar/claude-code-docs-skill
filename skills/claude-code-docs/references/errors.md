@@ -1732,7 +1732,7 @@ Each reason the message can show in parentheses:
 
 **What to do:**
 
-* In a session started without those restrictions, run `/tui fullscreen`, or `/tui default` to switch back. Claude Code saves the [`tui` setting](https://code.claude.com/docs/en/settings#available-settings) there and uses it for every later session
+* In a session started without those restrictions, run `/tui fullscreen`, or `/tui default` to switch back. Claude Code saves the [`tui` setting](https://code.claude.com/docs/en/settings#available-settings) there
 
 ## Plugin errors
 
