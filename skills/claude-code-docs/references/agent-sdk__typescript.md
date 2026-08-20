@@ -653,6 +653,7 @@ type SDKSystemMessage = {
   plugins: { name: string; path: string }[];
   fast_mode_state?: FastModeState;
   fast_mode_disabled_reason?: FastModeDisabledReason;
+  effort?: "low" | "medium" | "high" | "xhigh" | "max" | null;
   capabilities?: string[];
 };
 ```
@@ -779,6 +780,7 @@ type SDKMessageOrigin =
   | {
       kind: "peer";
       from: string;
+      fromMode?: "bypass" | "prompting";
       name?: string;
       fromSession?: string;
       senderTaskId?: string;
@@ -1662,6 +1664,8 @@ type ArtifactInput = {
   label?: string;
   url?: string;
   force?: boolean;
+  capabilities?: Record<string, unknown>;
+  contract?: "latest" | string;
 };
 ```
 ```typescript
@@ -1843,13 +1847,13 @@ type BashOutput = {
   staleReadFileStateHint?: string;
   ghRateLimitHint?: string;
   gitOperation?: {
-    commit?: { sha: string; kind: "committed" | "amended" | "cherry-picked" };
+    commit?: { sha: string; kind: "committed" | "amended" | "cherry-picked"; branch?: string };
     push?: { branch: string };
     branch?: { ref: string; action: "merged" | "rebased" };
     pr?: {
       number: number;
       url?: string;
-      action: "created" | "edited" | "merged" | "commented" | "closed" | "ready" | "draft" | "auto-merge-enabled" | "auto-merge-disabled";
+      action: "created" | "edited" | "merged" | "commented" | "closed" | "reopened" | "ready" | "draft" | "auto-merge-enabled" | "auto-merge-disabled";
     };
   };
 };
@@ -2433,7 +2437,16 @@ type PermissionRuleValue = {
 };
 ```
 ```typescript
-type ApiKeySource = "user" | "project" | "org" | "temporary" | "oauth";
+type ApiKeySource =
+  | "ANTHROPIC_API_KEY"
+  | "apiKeyHelper"
+  | "/login managed key"
+  | "none"
+  | "user"
+  | "project"
+  | "org"
+  | "temporary"
+  | "oauth";
 ```
 ```typescript
 type SdkBeta = "context-1m-2025-08-07";
