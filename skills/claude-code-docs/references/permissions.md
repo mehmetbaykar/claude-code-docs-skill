@@ -32,6 +32,21 @@ On a Bash or PowerShell permission prompt, press `Ctrl+E` to show an explanation
 
 To turn the shortcut off, set [`permissionExplainerEnabled`](https://code.claude.com/docs/en/settings#global-config-settings) to `false` in `~/.claude.json`.
 
+### Add a comment when you answer a permission prompt
+
+You can attach a note to Claude when you approve or deny a single action. On most permission prompts, including Bash, PowerShell, file, and MCP tool prompts, move to **Yes** or **No** and press `Tab` to open a comment field on that option. WebFetch and browser prompts don't offer the field. The options that allow the action for the rest of the session or save a rule don't take one either.
+
+With the field open, type the comment and then press one of these keys:
+
+* `Enter`: submits your answer with the comment attached. If you leave the field empty, Claude Code submits the answer without a comment.
+* `Tab`: closes the field without answering. Claude Code keeps the text you typed and still sends it if you answer with that option.
+* `Shift+Tab`: on a file prompt, such as an Edit or Write prompt, closes the field the same as `Tab`. Before v2.1.235, pressing `Shift+Tab` inside the field instead selected the option that allows the action for the rest of the session, so Claude Code approved the action for the rest of the session and discarded the comment.
+
+Claude Code delivers the comment differently depending on how you answered:
+
+* **Yes**: Claude Code runs the action, then sends your comment to Claude after the result.
+* **No**: Claude Code sends your comment to Claude as the reason for the denial, and Claude continues working. If you select **No** without a comment on a prompt from the main conversation, Claude Code stops the turn.
+
 ## Manage permissions
 
 You can view and manage Claude Code's tool permissions with `/permissions`. The dialog lists all permission rules and the `settings.json` file each rule comes from. You can open the dialog while Claude is working: when you add or remove a rule, Claude Code applies the change starting with Claude's next tool call in the same turn. Before v2.1.234, Claude Code queued the command until the turn finished.

@@ -34,7 +34,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `agent-sdk__streaming-vs-single-mode` - [Streaming Input](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode)
 - `agent-sdk__structured-outputs` - [Get structured output from agents](https://code.claude.com/docs/en/agent-sdk/structured-outputs)
 - `agent-sdk__subagents` - [Subagents in the SDK](https://code.claude.com/docs/en/agent-sdk/subagents)
-- `agent-sdk__todo-tracking` - [Todo Lists](https://code.claude.com/docs/en/agent-sdk/todo-tracking)
+- `agent-sdk__todo-tracking` - [Track todos](https://code.claude.com/docs/en/agent-sdk/todo-tracking)
 - `agent-sdk__tool-search` - [Scale to many tools with tool search](https://code.claude.com/docs/en/agent-sdk/tool-search)
 - `agent-sdk__troubleshooting` - [Troubleshooting](https://code.claude.com/docs/en/agent-sdk/troubleshooting)
 - `agent-sdk__typescript-v2-preview` - [TypeScript SDK V2 session API (removed)](https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview)
