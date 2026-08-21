@@ -1254,6 +1254,13 @@ type SyncHookJSONOutput = {
     | {
         hookEventName: "PostToolUse";
         additionalContext?: string;
+        /**
+         * Short note about this tool call's result for the auto mode
+         * permission classifier. Capped at 2000 characters, shared across
+         * all hooks that respond to the same call; honored on synchronous
+         * hook responses only. Don't copy untrusted tool output into it.
+         */
+        classifierContext?: string;
         updatedToolOutput?: unknown;
         /** @deprecated Use `updatedToolOutput`, which works for all tools. */
         updatedMCPToolOutput?: unknown;
