@@ -278,7 +278,7 @@ See [system prompt flags](https://code.claude.com/docs/en/cli-reference#system-p
 
 ### Continue conversations
 
-Use `--continue` to continue the most recent conversation, or `--resume` with a session ID to continue a specific conversation. This example runs a review, then sends follow-up prompts:
+Use `--continue` to continue the most recent conversation, or `--resume` with a session ID to continue a specific conversation. `--continue` skips [background sessions](https://code.claude.com/docs/en/sessions#resume-a-session). This example runs a review, then sends follow-up prompts:
 ```bash
 # First request
 claude -p "Review this codebase for performance issues"

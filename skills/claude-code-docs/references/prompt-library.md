@@ -21,7 +21,7 @@ The prompts above share a few patterns. Recognizing them helps you adapt any pro
 add rate limiting to the public API and make sure existing tests still pass
 ```
 
-**Give it a way to check its own work.** Ask for run, test, compare, or verify in the same prompt so Claude iterates instead of stopping after one attempt.
+**Give it a way to check its own work.** Ask for run, test, compare, or verify in the same prompt so Claude iterates instead of stopping after one attempt. To check the finished change against the running app, run [`/verify`](https://code.claude.com/docs/en/skills#run-and-verify-your-app).
 ```text wrap
 write the migration, run it against the dev database, and confirm the schema matches
 ```

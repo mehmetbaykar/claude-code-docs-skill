@@ -12,7 +12,7 @@ Agent teams are experimental and disabled by default. Enable them by setting `CL
 
 Agent teams let you coordinate multiple Claude Code instances working together. One session acts as the team lead, coordinating work, assigning tasks, and synthesizing results. Teammates work independently, each in its own context window, and communicate directly with each other.
 
-Unlike [subagents](https://code.claude.com/docs/en/sub-agents), which run within a single session and can only report back to the main agent, you can also interact with individual teammates directly without going through the lead.
+Unlike [subagents](https://code.claude.com/docs/en/sub-agents), which run within a single session, you can also interact with individual teammates directly without going through the lead.
 
 This page describes agent teams as of v2.1.178. With `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` set, spawning a teammate no longer needs a setup step, and cleanup happens automatically when the session exits. Before v2.1.178, you asked Claude to create and name a team first, and Claude used the `TeamCreate` and `TeamDelete` tools to set it up and remove it. Both tools no longer exist. The `team_name` input on the Agent tool is accepted but ignored, and the `team_name` field in `TaskCreated`, `TaskCompleted`, and `TeammateIdle` [hook payloads](https://code.claude.com/docs/en/hooks#taskcreated) carries the session-derived name and is deprecated.
 
@@ -29,7 +29,7 @@ Agent teams add coordination overhead and use significantly more tokens than a s
 
 ### Compare with subagents
 
-Both agent teams and [subagents](https://code.claude.com/docs/en/sub-agents) let you parallelize work, but they operate differently. Choose based on whether your workers need to communicate with each other. For separate sessions that pass messages to each other without a team, see [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging).
+Both agent teams and [subagents](https://code.claude.com/docs/en/sub-agents) let you parallelize work, but they operate differently. For separate sessions that pass messages to each other without a team, see [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging).
 
 
 ![](https://mintcdn.com/claude-code/nsvRFSDNfpSU5nT7/images/subagents-vs-agent-teams-light.png?fit=max&auto=format&n=nsvRFSDNfpSU5nT7&q=85&s=2f8db9b4f3705dd3ab931fbe2d96e42a)
@@ -37,13 +37,13 @@ Both agent teams and [subagents](https://code.claude.com/docs/en/sub-agents) let
 
 ![](https://mintcdn.com/claude-code/nsvRFSDNfpSU5nT7/images/subagents-vs-agent-teams-dark.png?fit=max&auto=format&n=nsvRFSDNfpSU5nT7&q=85&s=d573a037540f2ada6a9ae7d8285b46fd)
 
-|                   | Subagents                                        | Agent teams                                                                                                                                   |
-| :---------------- | :----------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Context**       | Own context window; results return to the caller | Own context window; fully independent                                                                                                         |
-| **Communication** | Report results back to the main agent only       | Teammates message each other directly                                                                                                         |
-| **Coordination**  | Main agent manages all work                      | Self-coordination through messages, plus a shared task list for [agents that have the Task tools](https://code.claude.com/docs/en/tools-reference#task-tool-availability) |
-| **Best for**      | Focused tasks where only the result matters      | Complex work requiring discussion and collaboration                                                                                           |
-| **Token cost**    | Lower: results summarized back to main context   | Higher: each teammate is a separate Claude instance                                                                                           |
+|                   | Subagents                                                                                                                                           | Agent teams                                                                                                                                   |
+| :---------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Context**       | Own context window; results return to the caller                                                                                                    | Own context window; fully independent                                                                                                         |
+| **Communication** | Return a result to the caller. Subagents that Claude named when it spawned them can also [message each other](https://code.claude.com/docs/en/sub-agents#what-loads-at-startup) | Teammates message each other directly                                                                                                         |
+| **Coordination**  | Main agent manages all work                                                                                                                         | Self-coordination through messages, plus a shared task list for [agents that have the Task tools](https://code.claude.com/docs/en/tools-reference#task-tool-availability) |
+| **Best for**      | Focused tasks where only the result matters                                                                                                         | Complex work requiring discussion and collaboration                                                                                           |
+| **Token cost**    | Lower: results summarized back to main context                                                                                                      | Higher: each teammate is a separate Claude instance                                                                                           |
 
 Use subagents when you need quick, focused workers that report back. Use agent teams when teammates need to share findings, challenge each other, and coordinate on their own.
 
