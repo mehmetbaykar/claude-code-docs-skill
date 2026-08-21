@@ -71,7 +71,7 @@ When you run `claude` in a directory, Claude Code gains access to:
 * **Your terminal.** Any command you could run: build tools, git, package managers, system utilities, scripts. If you can do it from the command line, Claude can too.
 * **Your git state.** Current branch, uncommitted changes, and recent commit history.
 * **Your [CLAUDE.md](https://code.claude.com/docs/en/memory).** A markdown file where you store project-specific instructions, conventions, and context that Claude should know every session.
-* **[Auto memory](https://code.claude.com/docs/en/memory#auto-memory).** Learnings Claude saves automatically as you work, like project patterns and your preferences. The first 200 lines or 25KB of MEMORY.md, whichever comes first, load at the start of each session.
+* **[Auto memory](https://code.claude.com/docs/en/memory#auto-memory).** Learnings Claude saves automatically as you work, like your preferences. The first 200 lines or 25KB of MEMORY.md, whichever comes first, load at the start of each session.
 * **Extensions you configure.** [MCP servers](https://code.claude.com/docs/en/mcp) for external services, [skills](https://code.claude.com/docs/en/skills) for workflows, [subagents](https://code.claude.com/docs/en/sub-agents) for delegated work, and [Claude in Chrome](https://code.claude.com/docs/en/chrome) for browser interaction.
 
 Because Claude sees your whole project, it can work across it. When you ask Claude to "fix the authentication bug," it searches for relevant files, reads multiple files to understand context, makes coordinated edits across them, runs tests to verify the fix, and commits the changes if you ask. This is different from inline code assistants that only see the current file.
@@ -132,7 +132,7 @@ To control what's preserved during compaction, add a "Compact Instructions" sect
 
 If a single file or tool output is so large that context refills immediately after each summary, Claude Code stops auto-compacting after a few attempts and shows an error instead of looping. See [Auto-compaction stops with a thrashing error](https://code.claude.com/docs/en/troubleshooting#auto-compaction-stops-with-a-thrashing-error) for recovery steps.
 
-Run `/context` to see what's using space. MCP tool definitions are deferred by default and loaded on demand via [tool search](https://code.claude.com/docs/en/mcp#scale-with-mcp-tool-search), so only tool names consume context until Claude uses a specific tool. Run `/mcp` to check per-server costs.
+Run `/context` to see what's using space. MCP tool definitions are deferred by default and loaded on demand via [tool search](https://code.claude.com/docs/en/mcp#scale-with-mcp-tool-search), so only tool names and server instructions consume context until Claude uses a specific tool.
 
 #### Manage context with skills and subagents
 
@@ -249,7 +249,7 @@ You don't need to specify which files to read or what commands to run. Claude fi
 
 **Extend with features**
 
-Add Skills, MCP connections, and custom commands
+Add skills and MCP connections
 
 
 

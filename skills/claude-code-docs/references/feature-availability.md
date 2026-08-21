@@ -67,7 +67,7 @@ These features work in the local CLI but depend on a server-side capability that
 | [Fast mode](https://code.claude.com/docs/en/fast-mode) | ✓ ([Owner-enabled](https://code.claude.com/docs/en/fast-mode#enable-fast-mode-for-your-organization) on Team and Enterprise) | ✓ (provisioned organizations) | ✗ | ✗ | ✗ | ✗ |
 | [Auto mode](https://code.claude.com/docs/en/auto-mode-config) | ✓ | ✓ | See note [2](#fn2) | ✓ | See note [2](#fn2) | See note [2](#fn2) |
 | [Advisor](https://code.claude.com/docs/en/advisor) | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ |
-| [Cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging) | ✓ (macOS and Linux) [6](#fn6) | ✓ (macOS and Linux) [6](#fn6) | ✗ | ✗ | ✗ | ✗ |
+| [Cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging) | ✓ [6](#fn6) | ✓ [6](#fn6) | ✗ | ✗ | ✗ | ✗ |
 | [Channels](https://code.claude.com/docs/en/channels) | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ |
 | [`/loop` scheduled tasks](https://code.claude.com/docs/en/scheduled-tasks) | ✓ | ✓ | See note [3](#fn3) | See note [3](#fn3) | See note [3](#fn3) | See note [3](#fn3) |
 | [GitHub Actions](https://code.claude.com/docs/en/github-actions) | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ |
@@ -83,7 +83,7 @@ Organization-level controls and usage visibility.
 | [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings) | ✓ (Team and Enterprise) | ✓ (Team and Enterprise) | ✗ | ✗ | ✗ | ✗ |
 | [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention) | ✓ (qualified Enterprise accounts) | ✓ (qualified accounts) | See note [4](#fn4) | ✓ (qualified accounts) | See note [4](#fn4) | See note [4](#fn4) |
 
-<sup>6</sup> Requires Claude Code v2.1.224 or later. WSL 2 counts as Linux; native Windows isn't supported. With API key authentication, same-machine messaging only. Claude can find your [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) sessions and your sessions on other machines only from a session that is connected to [Remote Control](https://code.claude.com/docs/en/remote-control). Connecting needs a claude.ai sign-in and the other [Remote Control requirements](https://code.claude.com/docs/en/remote-control#requirements). See [Message sessions on other machines](https://code.claude.com/docs/en/cross-session-messaging#message-sessions-on-other-machines).
+<sup>6</sup> Requires Claude Code v2.1.224 or later on macOS and Linux, including Linux inside WSL 2. On native Windows, requires Claude Code v2.1.234 or later. With API key authentication, same-machine messaging only. Claude can find your [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) sessions and your sessions on other machines only from a session that is connected to [Remote Control](https://code.claude.com/docs/en/remote-control). Connecting needs a claude.ai sign-in and the other [Remote Control requirements](https://code.claude.com/docs/en/remote-control#requirements). See [Message sessions on other machines](https://code.claude.com/docs/en/cross-session-messaging#message-sessions-on-other-machines).
 
 If you authenticate through an [LLM gateway](https://code.claude.com/docs/en/llm-gateway), feature availability matches the underlying provider the gateway forwards to. Some Anthropic-only features such as the [Advisor](https://code.claude.com/docs/en/advisor) work only if the gateway forwards requests intact to the Anthropic API.
 
