@@ -225,6 +225,7 @@ type SDKControlInitializeResponse = {
   account: AccountInfo;
   fast_mode_state?: "off" | "cooldown" | "on";
   fast_mode_disabled_reason?: FastModeDisabledReason;
+  hooks_applied?: boolean;
 };
 ```
 ```typescript
@@ -2743,6 +2744,8 @@ type SDKTaskStartedMessage = {
   tool_use_id?: string;
   description: string;
   task_type?: string;
+  is_backgrounded?: boolean;
+  spawn_depth?: number;
   uuid: UUID;
   session_id: string;
 };
