@@ -244,7 +244,7 @@ You can create pull requests by asking Claude directly ("create a pr for my chan
 ```
 
 
-When Claude creates the PR with `gh pr create` or `glab mr create`, Claude Code links the session to the PR. Claude Code also links the session when Claude [works on an existing PR](https://code.claude.com/docs/en/agent-view#pull-request-status). To find the session later, run `claude --from-pr 1234` with your own PR number, which opens the session picker filtered to sessions linked to that PR, or paste the PR URL into the [`/resume` picker](https://code.claude.com/docs/en/sessions#use-the-session-picker) search.
+To find the session later, run `claude --from-pr 1234` with your own PR number, which opens the session picker filtered to sessions linked to that PR, or paste the PR URL into the [`/resume` picker](https://code.claude.com/docs/en/sessions#use-the-session-picker) search. Claude Code links the session to the PR when Claude creates it with `gh pr create` or `glab mr create`, and when Claude [works on an existing PR](https://code.claude.com/docs/en/agent-view#pull-request-status).
 
 Review Claude's generated PR before submitting and ask Claude to highlight potential risks or considerations.
 
