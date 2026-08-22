@@ -2042,6 +2042,7 @@ type WebFetchOutput = {
   artifactRead?: {
     slug: string;
     ver?: string;
+    seeded?: false;
   };
 };
 ```
