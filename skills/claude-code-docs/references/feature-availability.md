@@ -32,7 +32,7 @@ These work on every provider:
 * [Subagents](https://code.claude.com/docs/en/sub-agents), [hooks](https://code.claude.com/docs/en/hooks-guide), [commands](https://code.claude.com/docs/en/commands), and [skills](https://code.claude.com/docs/en/skills)
 * [CLAUDE.md memory](https://code.claude.com/docs/en/memory), [plugins](https://code.claude.com/docs/en/plugins), and [MCP servers](https://code.claude.com/docs/en/mcp)
 * [Checkpoints](https://code.claude.com/docs/en/checkpointing), [sandboxing](https://code.claude.com/docs/en/sandboxing), and [Workflows](https://code.claude.com/docs/en/workflows)
-* [OpenTelemetry metrics](https://code.claude.com/docs/en/monitoring-usage) and the [managed settings file](https://code.claude.com/docs/en/settings#settings-files)
+* [OpenTelemetry metrics](https://code.claude.com/docs/en/monitoring-usage) and the [managed settings file](https://code.claude.com/docs/en/managed-settings#delivery-mechanisms)
 
 Three of these have provider-specific differences:
 

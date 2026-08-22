@@ -228,7 +228,7 @@ WebSocket servers don't appear in `claude mcp list` output. Use `claude mcp get 
 
 #### Project server approvals and workspace trust
 
-As of v2.1.196, `claude mcp list` and `claude mcp get` read `.mcp.json` approvals only from settings files that aren't checked into the repository until you trust the workspace by running `claude` in it and accepting the workspace trust dialog. A cloned repository can't approve its own servers: [`enableAllProjectMcpServers` or `enabledMcpjsonServers`](https://code.claude.com/docs/en/settings#available-settings) committed to the project's `.claude/settings.json` is ignored in an untrusted folder, and the server stays at `⏸ Pending approval` instead of being connected and health-checked.
+As of v2.1.196, `claude mcp list` and `claude mcp get` read `.mcp.json` approvals only from settings files that aren't checked into the repository until you trust the workspace by running `claude` in it and accepting the workspace trust dialog. A cloned repository can't approve its own servers: [`enableAllProjectMcpServers`](https://code.claude.com/docs/en/settings-reference#enableallprojectmcpservers) or [`enabledMcpjsonServers`](https://code.claude.com/docs/en/settings-reference#enabledmcpjsonservers) committed to the project's `.claude/settings.json` is ignored in an untrusted folder, and the server stays at `⏸ Pending approval` instead of being connected and health-checked.
 
 Approvals from these sources still apply in an untrusted folder:
 
@@ -288,7 +288,7 @@ When you toggle a server, Claude Code records your choice per project in `~/.cla
 
 Claude Code consults exactly one of the two lists for each server, so neither list overrides the other. If you add a regular server to `enabledMcpServers`, or a default-off built-in server to `disabledMcpServers`, Claude Code ignores the entry.
 
-`disabledMcpServers` and `enabledMcpServers` are unrelated to [`enabledMcpjsonServers` and `disabledMcpjsonServers`](https://code.claude.com/docs/en/settings#available-settings), which control approval of servers defined in a project's `.mcp.json` file.
+`disabledMcpServers` and `enabledMcpServers` are unrelated to [`enabledMcpjsonServers`](https://code.claude.com/docs/en/settings-reference#enabledmcpjsonservers) and [`disabledMcpjsonServers`](https://code.claude.com/docs/en/settings-reference#disabledmcpjsonservers), which control approval of servers defined in a project's `.mcp.json` file.
 
 ### MCP client runtimes
 
@@ -463,7 +463,7 @@ MCP servers can be configured at three scopes. The scope you choose controls whi
 
 Local scope is the default. A local-scoped server loads only in the project where you added it and stays private to you. Claude Code stores it in `~/.claude.json` under that project's path, so the same server won't appear in your other projects. Use local scope for personal development servers, experimental configurations, or servers with credentials you don't want in version control.
 
-The term "local scope" for MCP servers differs from general local settings. MCP local-scoped servers are stored in `~/.claude.json` (your home directory), while general local settings use `.claude/settings.local.json` (in the project directory). See [Settings](https://code.claude.com/docs/en/settings#settings-files) for details on settings file locations.
+The term "local scope" for MCP servers differs from general local settings. MCP local-scoped servers are stored in `~/.claude.json` (your home directory), while general local settings use `.claude/settings.local.json` (in the project directory). See [Settings](https://code.claude.com/docs/en/settings#where-settings-live) for details on settings file locations.
 ```bash
 # Add a local-scoped server (default)
 claude mcp add --transport http stripe https://mcp.stripe.com
@@ -510,7 +510,7 @@ The resulting `.mcp.json` file follows a standardized format:
 
 For security reasons, Claude Code prompts for approval in interactive sessions before using project-scoped servers from `.mcp.json` files. To reset those approval choices, run `claude mcp reset-project-choices`.
 
-`claude -p` runs, [Agent SDK](https://code.claude.com/docs/en/headless) sessions, and [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) can't show that prompt: Claude Code loads project-scoped servers there without asking. A session you start in `bypassPermissions` mode with [`skipDangerousModePermissionPrompt`](https://code.claude.com/docs/en/settings#permission-settings) set skips the prompt too. To keep a server out anyway, add it to [`disabledMcpjsonServers`](https://code.claude.com/docs/en/settings#available-settings), which blocks it in every mode, or exclude project settings entirely with [`--setting-sources`](https://code.claude.com/docs/en/cli-reference) or the SDK's `settingSources` option. [Project server approvals and workspace trust](#project-server-approvals-and-workspace-trust) covers how approvals committed to the repository interact with workspace trust.
+`claude -p` runs, [Agent SDK](https://code.claude.com/docs/en/headless) sessions, and [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) can't show that prompt: Claude Code loads project-scoped servers there without asking. A session you start in `bypassPermissions` mode with [`skipDangerousModePermissionPrompt`](https://code.claude.com/docs/en/settings-reference#skipdangerousmodepermissionprompt) set skips the prompt too. To keep a server out anyway, add it to [`disabledMcpjsonServers`](https://code.claude.com/docs/en/settings-reference#disabledmcpjsonservers), which blocks it in every mode, or exclude project settings entirely with [`--setting-sources`](https://code.claude.com/docs/en/cli-reference) or the SDK's `settingSources` option. [Project server approvals and workspace trust](#project-server-approvals-and-workspace-trust) covers how approvals committed to the repository interact with workspace trust.
 
 ### User scope
 
@@ -1023,7 +1023,7 @@ Your organization can set per-tool controls on [claude.ai connectors](https://cl
 
 ### Disable claude.ai connectors
 
-To disable claude.ai MCP servers in Claude Code, set [`disableClaudeAiConnectors`](https://code.claude.com/docs/en/settings#available-settings) to `true` in any settings scope:
+To disable claude.ai MCP servers in Claude Code, set [`disableClaudeAiConnectors`](https://code.claude.com/docs/en/settings-reference#disableclaudeaiconnectors) to `true` in any settings scope:
 ```json
 {
   "disableClaudeAiConnectors": true
@@ -1242,7 +1242,7 @@ Claude Code truncates tool descriptions and server instructions at 2KB each. Kee
 
 Tool search is enabled by default: MCP tools are deferred and discovered on demand. Claude Code disables it when `ANTHROPIC_BASE_URL` points to a non-first-party host, since most proxies don't forward `tool_reference` blocks. Set `ENABLE_TOOL_SEARCH` explicitly to override that fallback.
 
-Setting [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS`](https://code.claude.com/docs/en/env-vars) keeps tool search off. You can't override it by setting `ENABLE_TOOL_SEARCH` yourself. Your organization can keep tool search on through [managed settings](https://code.claude.com/docs/en/settings#settings-files), on Claude Code v2.1.227 or later. [Disable pre-release capabilities](https://code.claude.com/docs/en/llm-gateway-protocol#disable-pre-release-capabilities) covers where the override applies and what the variable strips.
+Setting [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS`](https://code.claude.com/docs/en/env-vars) keeps tool search off. You can't override it by setting `ENABLE_TOOL_SEARCH` yourself. Your organization can keep tool search on through [managed settings](https://code.claude.com/docs/en/managed-settings), on Claude Code v2.1.227 or later. [Disable pre-release capabilities](https://code.claude.com/docs/en/llm-gateway-protocol#disable-pre-release-capabilities) covers where the override applies and what the variable strips.
 
 Tool search requires a model that supports `tool_reference` blocks: Claude Sonnet 4.5, Claude Haiku 4.5, Claude Opus 4.5, and later models. See [model compatibility in the API docs](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool#model-compatibility) for the current list.
 
@@ -1270,7 +1270,7 @@ ENABLE_TOOL_SEARCH=auto:5 claude
 ENABLE_TOOL_SEARCH=false claude
 ```
 
-Or set the value in your [settings.json `env` field](https://code.claude.com/docs/en/settings#available-settings).
+Or set the value in your [settings.json `env` field](https://code.claude.com/docs/en/settings-reference#env).
 
 You can also disable the `ToolSearch` tool specifically:
 ```json

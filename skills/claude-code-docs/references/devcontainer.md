@@ -88,7 +88,7 @@ If the browser sign-in completes but the callback never reaches the container, c
 
 ## Persist authentication and settings across rebuilds
 
-By default, the container's home directory is discarded on rebuild, so engineers must sign in again each time. Claude Code stores its authentication token, user settings, and session history under the [`~/.claude`](https://code.claude.com/docs/en/claude-directory) directory. It stores your OAuth account, personal MCP servers, and per-project trust in [`~/.claude.json`](https://code.claude.com/docs/en/settings#global-config-settings), a separate file outside that directory, so mounting a volume at `~/.claude` alone doesn't keep you signed in. Mount a named volume at `~/.claude` and set [`CLAUDE_CONFIG_DIR`](https://code.claude.com/docs/en/env-vars) to the same path so Claude Code writes `.claude.json` inside the volume.
+By default, the container's home directory is discarded on rebuild, so engineers must sign in again each time. Claude Code stores its authentication token, user settings, and session history under the [`~/.claude`](https://code.claude.com/docs/en/claude-directory) directory. It stores your OAuth account, personal MCP servers, and per-project trust in [`~/.claude.json`](https://code.claude.com/docs/en/settings-reference#global-config-settings), a separate file outside that directory, so mounting a volume at `~/.claude` alone doesn't keep you signed in. Mount a named volume at `~/.claude` and set [`CLAUDE_CONFIG_DIR`](https://code.claude.com/docs/en/env-vars) to the same path so Claude Code writes `.claude.json` inside the volume.
 
 The following example mounts the volume and sets `CLAUDE_CONFIG_DIR` for a container whose `remoteUser` is `node`:
 ```json devcontainer.json
@@ -112,13 +112,13 @@ To carry authentication across codespaces, store `ANTHROPIC_API_KEY` or a `CLAUD
 
 A dev container is a convenient place to apply organization policy, because the same image and configuration run on every engineer's machine.
 
-Claude Code reads `/etc/claude-code/managed-settings.json` on Linux and applies it at the highest precedence in the [settings hierarchy](https://code.claude.com/docs/en/settings#how-scopes-interact), so values there override anything an engineer sets in `~/.claude` or the project's `.claude/` directory. Copy the file into place from your Dockerfile:
+Claude Code reads `/etc/claude-code/managed-settings.json` on Linux and applies it at the highest precedence in the [settings hierarchy](https://code.claude.com/docs/en/settings#settings-precedence), so values there override anything an engineer sets in `~/.claude` or the project's `.claude/` directory. Copy the file into place from your Dockerfile:
 ```dockerfile Dockerfile
 RUN mkdir -p /etc/claude-code
 COPY managed-settings.json /etc/claude-code/managed-settings.json
 ```
 
-Because the Dockerfile lives in the repository, anyone with write access can change or remove this step. For policy that engineers cannot bypass by editing repository files, deliver managed settings through [server-managed settings](https://code.claude.com/docs/en/server-managed-settings) or your MDM instead. See [managed settings files](https://code.claude.com/docs/en/settings#settings-files) for the available keys and the other delivery paths.
+Because the Dockerfile lives in the repository, anyone with write access can change or remove this step. For policy that engineers cannot bypass by editing repository files, deliver managed settings through [server-managed settings](https://code.claude.com/docs/en/server-managed-settings) or your MDM instead. See [managed settings files](https://code.claude.com/docs/en/managed-settings#delivery-mechanisms) for the available keys and the other delivery paths.
 
 To set [environment variables](https://code.claude.com/docs/en/env-vars) that apply to every Claude Code session in the container, add them to `containerEnv` in your `devcontainer.json`. The following example opts out of telemetry and error reporting and prevents Claude Code from auto-updating after install:
 ```json devcontainer.json
@@ -148,7 +148,7 @@ Because the container runs Claude Code as a non-root user and confines command e
 
 Skipping permission prompts removes your opportunity to review tool calls before they run. Claude can still modify any file in the bind-mounted workspace, which appears directly on your host, and reach anything the container's network policy allows. Pair this flag with the [network egress restrictions](#restrict-network-egress) above to limit what a bypassed session can reach.
 
-If you want fewer prompts without disabling safety checks, consider [auto mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode) instead, which has a classifier review actions before they run. To prevent engineers from using `--dangerously-skip-permissions` at all, set `permissions.disableBypassPermissionsMode` to `"disable"` in [managed settings](https://code.claude.com/docs/en/settings#permission-settings).
+If you want fewer prompts without disabling safety checks, consider [auto mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode) instead, which has a classifier review actions before they run. To prevent engineers from using `--dangerously-skip-permissions` at all, set `permissions.disableBypassPermissionsMode` to `"disable"` in [managed settings](https://code.claude.com/docs/en/settings-reference#permission-settings).
 
 ## Try the reference container
 

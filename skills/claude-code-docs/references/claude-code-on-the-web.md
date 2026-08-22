@@ -329,7 +329,7 @@ Before relying on cloud sessions for a workflow, account for these constraints:
 * [Ultrareview](https://code.claude.com/docs/en/ultrareview): run a deep multi-agent code review in a cloud sandbox
 * [Routines](https://code.claude.com/docs/en/routines): automate work on a schedule, via API call, or in response to GitHub events
 * [Hooks configuration](https://code.claude.com/docs/en/hooks): run scripts at session lifecycle events
-* [Settings reference](https://code.claude.com/docs/en/settings): all configuration options
+* [Settings reference](https://code.claude.com/docs/en/settings-reference): all configuration options
 * [Security](https://code.claude.com/docs/en/security): isolation guarantees and data handling
 * [Data usage](https://code.claude.com/docs/en/data-usage): what Anthropic retains from cloud sessions
 * [Claude Tag](https://claude.com/docs/claude-tag/overview): an organization-managed @Claude in Slack that runs on the same cloud infrastructure

@@ -57,7 +57,7 @@ Save it at one of three levels. The file name becomes the style name unless you 
 
 * User: `~/.claude/output-styles`
 * Project: `.claude/output-styles`
-* Managed policy: `.claude/output-styles` inside the [managed settings directory](https://code.claude.com/docs/en/settings#settings-files)
+* Managed policy: `.claude/output-styles` inside the [managed settings directory](https://code.claude.com/docs/en/managed-settings#delivery-mechanisms)
 
 Project output styles load from every `.claude/output-styles/` between the working directory and the repository root. When more than one of these nested directories defines a style with the same name, Claude Code uses the one closest to the working directory.
 

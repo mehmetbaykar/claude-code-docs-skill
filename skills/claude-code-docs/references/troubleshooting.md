@@ -121,7 +121,7 @@ If the Search tool, `@file` mentions, custom agents, or custom skills aren't fin
 ```
 
 
-Then set `USE_BUILTIN_RIPGREP` to `0`, either in your shell [environment](https://code.claude.com/docs/en/env-vars) or in the `env` block of your [`settings.json`](https://code.claude.com/docs/en/settings#available-settings):
+Then set `USE_BUILTIN_RIPGREP` to `0`, either in your shell [environment](https://code.claude.com/docs/en/env-vars) or in the `env` block of your [`settings.json`](https://code.claude.com/docs/en/settings-reference#all-settings):
 ```json
 {
   "env": {
