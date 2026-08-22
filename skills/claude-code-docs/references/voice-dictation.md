@@ -91,7 +91,7 @@ The first tap only starts recording when the prompt input is empty, so you can s
 
 ## Change the dictation language
 
-Voice dictation uses the same [`language` setting](https://code.claude.com/docs/en/settings) that controls Claude's response language. If that setting is empty, dictation defaults to English. In the VS Code extension, if `language` is empty, dictation uses VS Code's `accessibility.voice.speechLanguage` setting before defaulting to English.
+Voice dictation uses the same [`language` setting](https://code.claude.com/docs/en/settings-reference#language) that controls Claude's response language. If that setting is empty, dictation defaults to English. In the VS Code extension, if `language` is empty, dictation uses VS Code's `accessibility.voice.speechLanguage` setting before defaulting to English.
 
 **Supported dictation languages**
 
@@ -198,6 +198,6 @@ Start Claude Code and run `/voice`. macOS prompts for microphone access; allow i
 ## See also
 
 * [Customize keyboard shortcuts](https://code.claude.com/docs/en/keybindings): rebind `voice:pushToTalk` and other CLI keyboard actions
-* [Configure settings](https://code.claude.com/docs/en/settings): full reference for `voice`, `language`, and other settings keys
+* [Settings reference](https://code.claude.com/docs/en/settings-reference#voice): the `voice`, `language`, and other settings keys
 * [Interactive mode](https://code.claude.com/docs/en/interactive-mode): keyboard shortcuts, input modes, and session controls
 * [Commands](https://code.claude.com/docs/en/commands): reference for `/voice`, `/config`, and all other commands

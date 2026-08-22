@@ -23,13 +23,13 @@ Run [hooks](https://code.claude.com/docs/en/agent-sdk/hooks) first. A hook can d
 
 **Deny rules**
 
-Check `deny` rules (from `disallowed_tools` and [settings.json](https://code.claude.com/docs/en/settings#permission-settings)). If a deny rule matches, the tool is blocked, even in `bypassPermissions` mode. Bare-name deny rules like `Bash` remove the tool from Claude's context before this evaluation begins, so only scoped rules like `Bash(rm *)` are checked at this step.
+Check `deny` rules (from `disallowed_tools` and [settings.json](https://code.claude.com/docs/en/settings-reference#permission-settings)). If a deny rule matches, the tool is blocked, even in `bypassPermissions` mode. Bare-name deny rules like `Bash` remove the tool from Claude's context before this evaluation begins, so only scoped rules like `Bash(rm *)` are checked at this step.
 
 
 
 **Ask rules**
 
-Check `ask` rules from [settings.json](https://code.claude.com/docs/en/settings#permission-settings). If an ask rule matches, the call falls through to your [`canUseTool` callback](https://code.claude.com/docs/en/agent-sdk/user-input) for confirmation, even in `bypassPermissions` mode.
+Check `ask` rules from [settings.json](https://code.claude.com/docs/en/settings-reference#permission-settings). If an ask rule matches, the call falls through to your [`canUseTool` callback](https://code.claude.com/docs/en/agent-sdk/user-input) for confirmation, even in `bypassPermissions` mode.
 
 Tools that require user interaction behave the same way: `AskUserQuestion` and MCP tools whose server sets [`_meta["anthropic/requiresUserInteraction"]`](https://code.claude.com/docs/en/mcp#require-approval-for-a-specific-tool) always fall through to the callback, even when an allow rule matches. In `dontAsk` mode both cases are denied instead, because that mode never prompts. The MCP annotation requires Claude Code v2.1.199 or later.
 
@@ -103,7 +103,7 @@ const options = {
 
   **`allowed_tools` does not constrain `bypassPermissions`.** `allowed_tools` pre-approves the tools you list. Other unlisted tools are not matched by any allow rule and fall through to the permission mode, where `bypassPermissions` approves them. Setting `allowed_tools=["Read"]` alongside `permission_mode="bypassPermissions"` still approves every tool, including `Bash`, `Write`, and `Edit`. If you need `bypassPermissions` but want specific tools blocked, use `disallowed_tools`.
 
-You can also configure allow, deny, and ask rules declaratively in `.claude/settings.json`. These rules are read when the `project` setting source is enabled, which it is for default `query()` options. If you set `setting_sources` (TypeScript: `settingSources`) explicitly, include `"project"` for them to apply. See [Permission settings](https://code.claude.com/docs/en/settings#permission-settings) for the rule syntax.
+You can also configure allow, deny, and ask rules declaratively in `.claude/settings.json`. These rules are read when the `project` setting source is enabled, which it is for default `query()` options. If you set `setting_sources` (TypeScript: `settingSources`) explicitly, include `"project"` for them to apply. See [Permission settings](https://code.claude.com/docs/en/settings-reference#permission-settings) for the rule syntax.
 
 ## Permission modes
 
@@ -273,4 +273,4 @@ For the other steps in the permission evaluation flow:
 
 * [Handle approvals and user input](https://code.claude.com/docs/en/agent-sdk/user-input): interactive approval prompts and clarifying questions
 * [Hooks guide](https://code.claude.com/docs/en/agent-sdk/hooks): run custom code at key points in the agent lifecycle
-* [Permission rules](https://code.claude.com/docs/en/settings#permission-settings): declarative allow/deny rules in `settings.json`
+* [Permission rules](https://code.claude.com/docs/en/settings-reference#permission-settings): declarative allow/deny rules in `settings.json`
