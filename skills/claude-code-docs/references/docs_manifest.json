@@ -301,8 +301,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "db04105e9641537c082924e8ea3e9abd2dbb12f0ddc4f19bcdacf81ec47376e3",
-      "last_updated": "2026-08-21T07:12:33+00:00",
+      "hash": "ce17ba84439870048a8b445206be1f0579cf6d4172f5268133b6c69353fb1903",
+      "last_updated": "2026-08-22T07:04:55+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/typescript.md",
@@ -328,8 +328,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "9695f2e7b78518803c489b1237b62614df69d131b35dfb384b7fa5353e3c2328",
-      "last_updated": "2026-08-22T01:54:49+00:00",
+      "hash": "5fbd1b9cc6caad4020b7b53e4c92db4ea8c2ba273b4515a46af639bba2158bef",
+      "last_updated": "2026-08-22T07:04:57+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "source_url": "https://code.claude.com/docs/en/agent-view.md",
@@ -517,8 +517,8 @@
       "title": "Use Claude Code on the web"
     },
     "claude-directory.md": {
-      "hash": "191c28a8beb80f8bf461313a2fe37541017283707ff151035002e0d10df3fdc1",
-      "last_updated": "2026-08-22T01:55:02+00:00",
+      "hash": "4bb413e397e6962cc682d9c486075bed983a24da8d2ca1acddfd12d18ff8b19e",
+      "last_updated": "2026-08-22T07:05:08+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-directory",
       "path": "/docs/en/claude-directory",
       "source_url": "https://code.claude.com/docs/en/claude-directory.md",
@@ -1048,8 +1048,8 @@
       "title": "Claude Code on Microsoft Foundry"
     },
     "mobile.md": {
-      "hash": "b82a7f61283e0791eea05262e408c791e77512d79b2bd7a2539714065130a4be",
-      "last_updated": "2026-08-11T16:15:22+00:00",
+      "hash": "517e7d7ed367d6c5715d10500cf471ff9f2471fc5ad5ff79be4b808e94eb3532",
+      "last_updated": "2026-08-22T07:05:38+00:00",
       "original_url": "https://code.claude.com/docs/en/mobile",
       "path": "/docs/en/mobile",
       "source_url": "https://code.claude.com/docs/en/mobile.md",
@@ -1728,7 +1728,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-22T04:02:13+00:00",
+  "last_updated": "2026-08-22T07:06:18+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
