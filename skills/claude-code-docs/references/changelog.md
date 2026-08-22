@@ -12,6 +12,10 @@ This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anth
 
 Run `claude --version` to check your installed version.
 
+### 2.1.240 (August 22, 2026)
+
+* Bug fixes and reliability improvements
+
 ### 2.1.239 (August 21, 2026)
 
 * Cost estimates (`/cost`, status line, `--max-budget-usd`) now include the 1.1× US-only-inference premium for data-residency workspaces

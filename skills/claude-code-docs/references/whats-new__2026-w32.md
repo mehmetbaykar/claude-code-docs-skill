@@ -36,7 +36,7 @@ Self-hosted environments
 v2.1.224
 
 
-Self-hosted environments run Claude Code cloud sessions on your organization's own infrastructure, in public beta on Team and Enterprise plans. Run `claude self-hosted-runner` on your machines or containers to turn them into runners. When someone picks your environment while starting a session from claude.ai, the mobile or desktop apps, or `claude --cloud`, that session runs inside your network, with access to your internal services. An Owner or admin turns on **Allow self-hosted environments** in [admin settings](https://claude.ai/admin-settings/cloud-environments) first.
+Self-hosted environments run Claude Code cloud sessions on your organization's own infrastructure, in public beta on Team and Enterprise plans. Run `claude self-hosted-runner` on your machines or containers to turn them into runners. When someone picks your environment while starting a session from claude.ai, the mobile or desktop apps, or `claude --cloud`, that session runs inside your network, with access to your internal services. An Owner turns on **Allow self-hosted environments** in [admin settings](https://claude.ai/admin-settings/cloud-environments) first.
 
 
 
@@ -44,7 +44,7 @@ Self-hosted environments run Claude Code cloud sessions on your organization's o
 
 
 
-Signed in as an Owner or admin, run the guided setup, which walks you through creating the environment and starts a runner:
+Signed in as an Owner, run the guided setup, which walks you through creating the environment and starts a runner:
 ```bash
   claude self-hosted-runner setup
 ```
