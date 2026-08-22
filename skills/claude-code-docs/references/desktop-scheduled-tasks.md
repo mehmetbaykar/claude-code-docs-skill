@@ -34,7 +34,7 @@ By default, scheduled tasks run against whatever state your working directory is
 
 ## Create a scheduled task
 
-In the [**Code** tab](https://code.claude.com/docs/en/desktop), click **Routines** in the sidebar, then click **New routine** and choose **Local**. Configure these fields:
+On Claude Desktop before 1.1.5368, local scheduled tasks aren't available. In the [**Code** tab](https://code.claude.com/docs/en/desktop), click **Routines** in the sidebar, then click **New routine** and choose **Local**. If **Routines** is missing from the sidebar, update the Desktop app, and check whether [routines are turned off for your organization](https://code.claude.com/docs/en/routines#routines-are-disabled-by-your-organizations-policy). Configure these fields:
 
 | Field        | Description                                                                                                                                                                                                                                                                    |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

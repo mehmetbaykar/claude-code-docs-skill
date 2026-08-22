@@ -445,8 +445,8 @@
       "title": "Checkpointing"
     },
     "chrome.md": {
-      "hash": "1181a0a6227e1ea337e7100fd62197087b2a722025333a38593db820c2a9c67d",
-      "last_updated": "2026-08-22T01:54:56+00:00",
+      "hash": "1836953b8e2a31af1e2e5e9855dfa9cfca799d10f2e01340c4a6ba524a32e916",
+      "last_updated": "2026-08-22T13:05:21+00:00",
       "original_url": "https://code.claude.com/docs/en/chrome",
       "path": "/docs/en/chrome",
       "source_url": "https://code.claude.com/docs/en/chrome.md",
@@ -562,8 +562,8 @@
       "title": "CLI reference"
     },
     "cloud-environments.md": {
-      "hash": "8ac73cefff813af7912301e0c5e521b64a7ad9ec921a52c0a6f519612aaa796d",
-      "last_updated": "2026-08-22T04:01:10+00:00",
+      "hash": "6d5c937d0093b2ff5a4e2489340793f977ea359d056c43ff7e17613511c175c4",
+      "last_updated": "2026-08-22T13:05:30+00:00",
       "original_url": "https://code.claude.com/docs/en/cloud-environments",
       "path": "/docs/en/cloud-environments",
       "source_url": "https://code.claude.com/docs/en/cloud-environments.md",
@@ -706,8 +706,8 @@
       "title": "Get started with the desktop app"
     },
     "desktop-scheduled-tasks.md": {
-      "hash": "143347d1c2594feb17aea9d8d2b50e3239b40dcfb8fbd09a492fc4ad71638f57",
-      "last_updated": "2026-08-20T21:48:54+00:00",
+      "hash": "dbb68bad24e07cfbf987fd973556d2730f846ab398c273bdf3f97318e61d84fc",
+      "last_updated": "2026-08-22T13:05:39+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-scheduled-tasks",
       "path": "/docs/en/desktop-scheduled-tasks",
       "source_url": "https://code.claude.com/docs/en/desktop-scheduled-tasks.md",
@@ -724,8 +724,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "c642fad865de0711980322dcd8f19b718d7d6c5c4005a9f24790a8667730ee64",
-      "last_updated": "2026-08-22T01:55:15+00:00",
+      "hash": "707ff27114e6dfcd447f3f31c1e7175438cb4d7621d8f521af25277220d54ebf",
+      "last_updated": "2026-08-22T13:05:37+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -760,8 +760,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "795f666449e8e7b9a0abdd457ddf87dd39f554c1ad6d231c8609d9c5df23479f",
-      "last_updated": "2026-08-22T04:01:18+00:00",
+      "hash": "a0ebac1410ac8fd68adf3baf81d58b45a796a878374c7bf04b319f5209219e53",
+      "last_updated": "2026-08-22T13:05:43+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -1165,8 +1165,8 @@
       "title": "Recommend plugins for your org"
     },
     "plugins-reference.md": {
-      "hash": "bd9a0f21374e08d07e98223ff77dcc8a0f0e475c6ffffdce51fff25fd0410c86",
-      "last_updated": "2026-08-22T01:55:57+00:00",
+      "hash": "eb59445d52a46140b8fee91da8747d4ddcb18934771a465519802d0a0e555351",
+      "last_updated": "2026-08-22T13:06:10+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins-reference",
       "path": "/docs/en/plugins-reference",
       "source_url": "https://code.claude.com/docs/en/plugins-reference.md",
@@ -1219,8 +1219,8 @@
       "title": "Continue local sessions from any device with Remote Control"
     },
     "routines.md": {
-      "hash": "878fddd4e1297dabb931eb8c4cad4aa5cca3786a48c00c6cb4f6b0aa150b3662",
-      "last_updated": "2026-08-22T01:56:01+00:00",
+      "hash": "3a565d5673c5e85dbdad3ac712a7e0a2bebd5421e54b1905b97632ea4821df80",
+      "last_updated": "2026-08-22T13:06:13+00:00",
       "original_url": "https://code.claude.com/docs/en/routines",
       "path": "/docs/en/routines",
       "source_url": "https://code.claude.com/docs/en/routines.md",
@@ -1728,7 +1728,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-22T07:06:18+00:00",
+  "last_updated": "2026-08-22T13:06:47+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
