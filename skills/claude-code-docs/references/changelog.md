@@ -12,6 +12,10 @@ This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anth
 
 Run `claude --version` to check your installed version.
 
+### 2.1.241 (August 23, 2026)
+
+* Bug fixes and reliability improvements
+
 ### 2.1.240 (August 22, 2026)
 
 * Bug fixes and reliability improvements
