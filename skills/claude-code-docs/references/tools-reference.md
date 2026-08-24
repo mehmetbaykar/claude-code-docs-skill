@@ -461,7 +461,7 @@ An explicit `WebFetch(domain:...)` rule in `deny`, `ask`, or `allow` takes prece
 
 WebFetch sets a `User-Agent` header beginning with `Claude-User`, and an `Accept` header that prefers Markdown over HTML so servers that support content negotiation can return Markdown directly.
 
-You configure [sandbox](https://code.claude.com/docs/en/sandboxing) network rules separately, so a domain you want a sandboxed process to reach still needs an explicit sandbox permission rule.
+Sandboxed commands don't inherit WebFetch's built-in set of preapproved documentation domains. To let a sandboxed command reach a domain without a prompt, add the domain to [`allowedDomains`](https://code.claude.com/docs/en/settings-reference#sandbox-network-alloweddomains) or allow it with a `WebFetch(domain:...)` rule, which the [sandbox also honors](https://code.claude.com/docs/en/sandboxing#network-isolation).
 
 ## WebSearch tool behavior
 

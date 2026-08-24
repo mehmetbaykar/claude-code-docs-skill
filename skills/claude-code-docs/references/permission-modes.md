@@ -196,14 +196,7 @@ For desktop-specific details, see [Choose a permission mode](https://code.claude
 
 A mode you pick in the mode selector is remembered per folder and takes precedence over `defaultMode` for that folder. Plan is the exception: picking it applies to the current session only.
 
-This example sets Plan mode as the default for new local sessions:
-```json
-    {
-      "permissions": {
-        "defaultMode": "plan"
-      }
-    }
-```
+For where `defaultMode` goes in a settings file, see the example under [Start in a different permission mode](#start-in-a-different-mode).
 
 
 
@@ -267,14 +260,7 @@ Accepting a plan also gives the session a [generated title](https://code.claude.
 
 ### Set plan mode as the default
 
-To make plan mode the default for a project's terminal sessions, set `defaultMode` in `.claude/settings.json`. Conversations the [VS Code extension](https://code.claude.com/docs/en/vs-code) starts don't read project settings for the starting permission mode. There, set `claudeCode.initialPermissionMode` to `plan` in your VS Code user settings instead. This example sets the project default:
-```json
-{
-  "permissions": {
-    "defaultMode": "plan"
-  }
-}
-```
+To make plan mode the default for a project's terminal sessions, set `defaultMode` to `plan` in `.claude/settings.json`, placed as the example under [Start in a different permission mode](#start-in-a-different-mode) shows. Conversations the [VS Code extension](https://code.claude.com/docs/en/vs-code) starts don't read project settings for the starting permission mode. There, set `claudeCode.initialPermissionMode` to `plan` in your VS Code user settings instead.
 
 <h2 id="eliminate-prompts-with-auto-mode">
 Eliminate permission prompts with auto mode

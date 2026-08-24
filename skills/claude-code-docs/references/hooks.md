@@ -261,7 +261,7 @@ Where you define a hook determines its scope:
 | [Skill](https://code.claude.com/docs/en/skills) frontmatter          | The rest of the session once the skill is invoked. See [Hooks in skills and agents](#hooks-in-skills-and-agents) | Yes, defined in the skill file                        |
 | [Subagent](https://code.claude.com/docs/en/sub-agents) frontmatter   | While that subagent is running                                                                                   | Yes, defined in the subagent file                     |
 
-Cloud sessions on [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) don't read your local `~/.claude/settings.json`; hooks there come from the repo and from your organization's server-managed settings. See [what carries over from your setup](https://code.claude.com/docs/en/cloud-environments#what-carries-over-from-your-setup) for which files reach a cloud session.
+Cloud sessions on [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) don't read your local `~/.claude/settings.json`; hooks there come from the repo and from your organization's server-managed settings. In a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments-configuration#permissions-and-tool-approval), Claude Code also runs the hooks the operator seeded from the runner host's `~/.claude/`, and it runs the hooks in the runner image's managed settings file when neither [server-managed settings nor an MDM-delivered Claude Code policy](https://code.claude.com/docs/en/settings#precedence-within-the-managed-tier) supplies the managed tier. See [what carries over from your setup](https://code.claude.com/docs/en/cloud-environments#what-carries-over-from-your-setup) for which files reach a cloud session.
 
 For details on settings file resolution, see [settings](https://code.claude.com/docs/en/settings).
 
@@ -272,6 +272,7 @@ Enterprise administrators can use `allowManagedHooksOnly` to restrict which hook
 * Your user, project, local, and plugin hooks are blocked. Hooks from plugins force-enabled in managed settings `enabledPlugins` are exempt
 * Claude Code also narrows your [`statusLine`](https://code.claude.com/docs/en/statusline), [`fileSuggestion`](https://code.claude.com/docs/en/settings-reference#filesuggestion), and [`subagentStatusLine`](https://code.claude.com/docs/en/statusline#subagent-status-lines) settings to managed settings
 * Claude Code also disables plugins with a [`command` source](https://code.claude.com/docs/en/plugin-marketplaces#command-sources), including plugins force-enabled in managed settings `enabledPlugins`, unless [`disableCommandPluginSources`](https://code.claude.com/docs/en/settings-reference#disablecommandpluginsources) is explicitly set to `false`
+* Claude Code also blocks marketplace [`headersHelper` commands](https://code.claude.com/docs/en/plugin-marketplaces#authenticate-archive-downloads) unless [`disableCommandPluginSources`](https://code.claude.com/docs/en/settings-reference#disablecommandpluginsources) is explicitly set to `false`, except for a marketplace that managed settings themselves declare
 
 See [what runs under `allowManagedHooksOnly`](https://code.claude.com/docs/en/settings-reference#what-runs-under-allowmanagedhooksonly).
 

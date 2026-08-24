@@ -928,7 +928,7 @@ This lets sandboxed commands write to a build directory and your kubeconfig, and
 }
 ```
 
-Claude Code enforces these lists at the OS sandbox boundary, so they apply to every subprocess a sandboxed command starts, such as `kubectl`, `terraform`, or `npm`, not only to Claude's file tools. Your [permission rules](https://code.claude.com/docs/en/sandboxing#permission-rules) feed the same lists: `Edit` allow and deny rules join `allowWrite` and `denyWrite`, `Read` deny rules join `denyRead`, and `WebFetch` allow and deny rules join the [`network`](#sandbox-network) domain lists. Every list merges across settings files. When you edit a list during a session, Claude Code [applies the change to the running session](https://code.claude.com/docs/en/settings#when-edits-take-effect).
+Claude Code enforces these lists at the OS sandbox boundary, so they apply to every subprocess a sandboxed command starts, such as `kubectl`, `terraform`, or `npm`, not only to Claude's file tools. Your [permission rules](https://code.claude.com/docs/en/sandboxing#permission-rules) feed the same lists: `Edit` allow and deny rules join `allowWrite` and `denyWrite`, `Read` deny rules join `denyRead`, and `WebFetch(domain:...)` allow and deny rules join the [`network`](#sandbox-network) domain lists. Every list merges across settings files. When you edit a list during a session, Claude Code [applies the change to the running session](https://code.claude.com/docs/en/settings#when-edits-take-effect).
 
 #### Sandbox path prefixes
 
@@ -2681,6 +2681,7 @@ When you set it to `true`, Claude Code changes which hooks and hook-like command
 * **Force-enabled plugin hooks run**: hooks from plugins your managed settings force-enable through [`enabledPlugins`](#enabledplugins). Claude Code matches on the full `plugin@marketplace` ID, so a plugin with the same name from a different marketplace stays blocked. This lets you distribute vetted hooks through an organization marketplace while blocking everything else
 * **Everything else is blocked**: user, project, and local hooks, hooks from other plugins, and hooks declared in agent frontmatter
 * **Command-sourced plugins are disabled**: Claude Code also disables plugins with a [`command` source](https://code.claude.com/docs/en/plugin-marketplaces#command-sources), including plugins force-enabled in managed `enabledPlugins`, unless you set [`disableCommandPluginSources`](#disablecommandpluginsources) to `false` explicitly
+* **Marketplace `headersHelper` commands are blocked**: Claude Code also blocks marketplace [`headersHelper` commands](https://code.claude.com/docs/en/plugin-marketplaces#authenticate-archive-downloads) unless [`disableCommandPluginSources`](#disablecommandpluginsources) is explicitly set to `false`, except for a marketplace that managed settings themselves declare. Requires Claude Code v2.1.238 or later
 * **Status line and file suggestion narrow to managed settings**: Claude Code reads [`statusLine`](https://code.claude.com/docs/en/statusline), [`fileSuggestion`](#filesuggestion), and [`subagentStatusLine`](https://code.claude.com/docs/en/statusline#subagent-status-lines) from managed settings only, following the [status line and file suggestion gates](#status-line-and-file-suggestion-gates)
 
 The [`/goal`](https://code.claude.com/docs/en/goal) command can't run while this key is set, because it depends on hooks.
@@ -2967,7 +2968,7 @@ To restrict which plugins can register as channels once they're enabled, set [`a
 
 ### `disableCommandPluginSources`
 
-Block the [`command` plugin source](https://code.claude.com/docs/en/plugin-marketplaces#command-sources), which installs a plugin by running a marketplace-declared command on the user's machine. When you set it to `true`, Claude Code never runs the command, doesn't install or update command-sourced plugins, and stops loading the ones already installed. Set it to `false` to allow them explicitly. Requires Claude Code v2.1.229 or later.
+Block the [`command` plugin source](https://code.claude.com/docs/en/plugin-marketplaces#command-sources), which installs a plugin by running a marketplace-declared command on the user's machine. When you set it to `true`, Claude Code never runs the command, doesn't install or update command-sourced plugins, and stops loading the ones already installed. Set it to `false` to allow them explicitly. Whenever it blocks command sources, whether you set it to `true` or leave it unset under [`allowManagedHooksOnly`](#allowmanagedhooksonly), it also blocks marketplace [`headersHelper` commands](https://code.claude.com/docs/en/plugin-marketplaces#authenticate-archive-downloads), except for a marketplace that managed settings themselves declare. Requires Claude Code v2.1.229 or later, and the `headersHelper` block requires v2.1.238 or later.
 
 * **Scope**: [`Managed`](#scopes)
 * **Type**: Boolean
@@ -3049,7 +3050,7 @@ Each entry below shows one allowlist entry per source type and the fields it acc
 
 Three source types carry rules beyond the table:
 
-* **`url`**: a URL marketplace downloads only the `marketplace.json` file, not plugin files, so its plugins must use a [plugin source](https://code.claude.com/docs/en/plugin-marketplaces#plugin-sources) other than a relative path. For plugins with relative paths, use a Git-based marketplace instead. See [Plugins with relative paths fail in URL-based marketplaces](https://code.claude.com/docs/en/plugin-marketplaces#plugins-with-relative-paths-fail-in-url-based-marketplaces).
+* **`url`**: a URL marketplace downloads only the `marketplace.json` file, and Claude Code doesn't fetch plugin files by relative path from that server, so its plugins must use a [plugin source](https://code.claude.com/docs/en/plugin-marketplaces#plugin-sources) other than a relative path, such as an archive URL, which can be on the same host. For plugins with relative paths, use a Git-based marketplace instead. See [Plugins with relative paths fail in URL-based marketplaces](https://code.claude.com/docs/en/plugin-marketplaces#plugins-with-relative-paths-fail-in-url-based-marketplaces).
 * **`hostPattern`**: use it to allow every marketplace on an internal GitHub Enterprise or GitLab server without listing each repository. Claude Code matches `github` sources against `github.com`, takes the hostname from `url` sources, and takes it from `git` sources depending on the [git URL](https://git-scm.com/docs/git-clone#_git_urls)'s form:
 
 * A URL with a scheme, such as `https://` or `ssh://`: the hostname in the URL.
@@ -3284,7 +3285,7 @@ The `source` object takes one of these forms:
 
 * **`github`**: a GitHub repository, with `repo`
 * **`git`**: any git URL, with `url`
-* **`url`**: a direct URL to a `marketplace.json` file, with `url` and optional `headers` for authenticated access
+* **`url`**: a direct URL to a `marketplace.json` file, with `url` and optional `headers` and `headersHelper` for authenticated access. `headersHelper` names a command that prints headers whose values are too short-lived to list in `headers`, and requires Claude Code v2.1.238 or later
 * **`file`**: a local path to a `marketplace.json` file, with `path`
 * **`directory`**: a local filesystem path, with `path`, for development only
 * **`settings`**: an inline marketplace declared directly in the settings file without a hosted repository, with `name` and `plugins`
@@ -3292,6 +3293,13 @@ The `source` object takes one of these forms:
 The `git` source type works with any git hosting service, including self-hosted GitLab and Bitbucket. Claude Code clones the repository with the same authentication that `git clone` would use on that machine: configured credential helpers or SSH keys. A provider token such as `GITHUB_TOKEN` takes effect only through a credential helper that reads it. See [Private repositories](https://code.claude.com/docs/en/plugin-marketplaces#private-repositories) for setup details.
 
 For `github` and `git` sources, set `"skipLfs": true` inside the `source` object, alongside `repo` or `url`, to skip Git LFS downloads when Claude Code clones or updates the marketplace repository. LFS pointer files remain as pointers instead of downloading their content. Use this when the repository contains large LFS objects unrelated to plugin content. Requires Claude Code v2.1.153 or later.
+
+For a `url` source, set `headersHelper` inside the `source` object when the credential in `headers` expires and a command has to produce a fresh one. Requires Claude Code v2.1.238 or later. For what the command must print and where Claude Code runs it, see [Write the headersHelper command](https://code.claude.com/docs/en/plugin-marketplaces#write-the-headershelper-command), and for the cases where Claude Code doesn't run it, see [When Claude Code skips a headersHelper command](https://code.claude.com/docs/en/plugin-marketplaces#when-claude-code-skips-a-headershelper-command-or-drops-its-output). Once you set `headersHelper` on an `https://` marketplace URL, Claude Code runs the command at two points, reusing one run's output for up to 60 seconds:
+
+* Before each fetch of that marketplace's `marketplace.json`, including a later refresh. Claude Code sends the printed headers with that fetch.
+* Before each plugin archive download on the marketplace URL's origin, meaning the same scheme, host, and port. Claude Code sends the output with that download, and no other download gets the headers.
+
+Claude Code ignores any `headersHelper` set in the `.claude/settings.json` or `.claude/settings.local.json` of a directory you add with [`--add-dir`](https://code.claude.com/docs/en/permissions#what-runs-before-you-trust-a-folder), on a `url` source and on an inline plugin entry alike, and sends only the fixed `headers` set in that file. [How users accept a headersHelper command](https://code.claude.com/docs/en/plugin-marketplaces#how-users-accept-a-headershelper-command) covers the other settings files.
 
 Plugins listed in a `settings` source must reference external sources such as GitHub or npm, and the `name` must match the marketplace key. You still enable each plugin separately in `enabledPlugins`. This example declares one plugin inline:
 ```json settings.json
@@ -3315,6 +3323,14 @@ Plugins listed in a `settings` source must reference external sources such as Gi
   }
 }
 ```
+
+A plugin entry under `source: 'settings'` whose own `source` is an [`archive`](https://code.claude.com/docs/en/plugin-marketplaces#zip-archives) can set `headers` for the archive download. If the value you would put in `headers` is short-lived, such as a token your registry mints on request, set a `headersHelper` command instead. An entry may set both. Both fields require Claude Code v2.1.238 or later.
+
+Claude Code sends the entry's `headers`, and whatever the command prints, with that plugin's archive download and with no other download. Claude Code runs the command only when a user [installs or updates that one plugin by itself](https://code.claude.com/docs/en/plugin-marketplaces#how-users-accept-a-headershelper-command). Three further rules depend on which file holds the entry:
+
+* **`strict`**: unlike an entry in a marketplace's `marketplace.json`, an entry in settings doesn't need `"strict": false`, because a settings file carries no manifest fields to inline. See [Strict mode](https://code.claude.com/docs/en/plugin-marketplaces#strict-mode).
+* **Folder trust**: for an entry in a project's `.claude/settings.json` or `.claude/settings.local.json`, Claude Code runs the command only after the user has also [trusted that folder](https://code.claude.com/docs/en/permissions#what-runs-before-you-trust-a-folder).
+* **Header filter**: Claude Code drops [request-routing and client-identity header names](https://code.claude.com/docs/en/plugin-marketplaces#when-claude-code-skips-a-headershelper-command-or-drops-its-output) from an entry in a project's `.claude/settings.json` or `.claude/settings.local.json`, because a repository can supply those files. Claude Code applies the same filter to a catalog entry and to an entry in an `--add-dir` directory's settings, and no filter to an entry in your user settings, a `--settings` file, or managed settings.
 
 #### Marketplace key aliases
 
