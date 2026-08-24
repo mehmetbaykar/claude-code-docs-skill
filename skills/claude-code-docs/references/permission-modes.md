@@ -301,7 +301,7 @@ Auto mode is available only when your account meets all of these requirements:
 
 If Claude Code reports auto mode as unavailable, one of these requirements is unmet; this is not a transient outage. A separate message that names a model and says auto mode "cannot determine the safety" of an action means a classifier request failed; that failure is usually transient, but on Amazon Bedrock it can repeat until your account can invoke the named model. See the [error reference](https://code.claude.com/docs/en/errors#auto-mode-cannot-determine-the-safety-of-an-action) for the causes and what to do.
 
-If you set `defaultMode: "auto"` in [settings](https://code.claude.com/docs/en/settings-reference#all-settings) and a terminal session starts in Manual mode with no error, the setting is likely in `.claude/settings.json` or `.claude/settings.local.json`. In Claude Code v2.1.142 and later, `auto` doesn't take effect from those files. Move it to `~/.claude/settings.json`. For a conversation the VS Code extension started, check the extension's own list in [Switch permission modes](#switch-permission-modes) instead.
+If you set `defaultMode: "auto"` in [settings](https://code.claude.com/docs/en/settings-reference#all-settings) and a terminal session starts in Manual mode with no error, the setting is likely in `.claude/settings.json` or `.claude/settings.local.json`. `auto` doesn't take effect from those files. Move it to `~/.claude/settings.json`. For a conversation the VS Code extension started, check the extension's own list in [Switch permission modes](#switch-permission-modes) instead.
 
 <h3 id="enable-auto-mode-on-bedrock-agent-platform-or-foundry">
 Auto mode on Bedrock, Agent Platform, or Foundry

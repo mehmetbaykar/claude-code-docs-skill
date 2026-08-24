@@ -307,7 +307,7 @@ Claude Code includes bundled `code-review` and `verify` skills. If you name a `.
 
 ## Pre-approve tools for skills
 
-For project and personal skills, the `allowed-tools` frontmatter field applies only when you use the Claude Code CLI directly. In SDK sessions, manage tool approval for these skills through the `allowedTools` option (`allowed_tools` in Python) in your query configuration. Skills [synced from claude.ai](https://code.claude.com/docs/en/skills#how-claude-code-handles-the-frontmatter-of-a-synced-skill) follow their own frontmatter rules.
+For project and personal skills, Claude Code applies the [`allowed-tools`](https://code.claude.com/docs/en/skills#pre-approve-tools-for-a-skill) frontmatter field in SDK sessions. You can also pre-approve tools for these skills through the `allowedTools` option (`allowed_tools` in Python) in your query configuration. Skills [synced from claude.ai](https://code.claude.com/docs/en/skills#how-claude-code-handles-the-frontmatter-of-a-synced-skill) follow their own frontmatter rules.
 
 Skills run with the session's tools. The example below pre-approves `Read`, `Grep`, and `Glob` with `allowedTools` (`allowed_tools` in Python), so Claude can inspect files while running the [security-check skill](#create-and-dispatch-your-first-skill) without stopping for approval:
 ```python Python
@@ -433,6 +433,8 @@ The TypeScript SDK throws an `Error` stating the rule the entry broke. For examp
 
 An empty name reports `Skill names must be non-empty strings.`
 
+Before TypeScript Agent SDK 0.3.221, the SDK didn't run this check.
+
 
 
 **Python**
@@ -444,6 +446,8 @@ The Python SDK raises `ValueError` stating the rule the entry broke. For example
 
 An empty name reports `Skill names must be non-empty strings`.
 
+Before Python Agent SDK 0.2.129, the SDK didn't run this check.
+
 
 ### Additional troubleshooting
 
@@ -451,7 +455,7 @@ For general skills troubleshooting, such as YAML syntax errors and debugging, se
 
 ## Next steps
 
-The [Claude Code skills guide](https://code.claude.com/docs/en/skills) covers authoring in depth. Its guidance applies to SDK sessions, with one exception: for project and personal skills, [Pre-approve tools for skills](#pre-approve-tools-for-skills) replaces the `allowed-tools` frontmatter field with the `allowedTools` option. Start with these sections:
+The [Claude Code skills guide](https://code.claude.com/docs/en/skills) covers authoring in depth. Its guidance applies to SDK sessions. Start with these sections:
 
 * [Frontmatter reference](https://code.claude.com/docs/en/skills#frontmatter-reference): every supported field
 * [Pass arguments to skills](https://code.claude.com/docs/en/skills#pass-arguments-to-skills): `$ARGUMENTS`, `$0`, `$1`, and skill stacking. The [full substitution table](https://code.claude.com/docs/en/skills#available-string-substitutions) adds named arguments and the `${CLAUDE_*}` variables

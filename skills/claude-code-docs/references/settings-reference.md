@@ -724,7 +724,7 @@ Set the [permission mode](https://code.claude.com/docs/en/permission-modes) new 
 }
 ```
 
-Permission rules layer on top of every mode: `deny` rules block in every mode, including `bypassPermissions`. See [Permission modes](https://code.claude.com/docs/en/permission-modes). `manual` names the permission mode labeled Manual in the CLI and the VS Code extension; the alias requires Claude Code v2.1.200 or later. Before v2.1.142, project settings could set `auto`. In Claude Code on the web, Claude Code honors only `acceptEdits`, `plan`, `default`, and `auto` from this key. For conversations the VS Code extension starts, see [which setting the extension reads for the starting permission mode](https://code.claude.com/docs/en/permission-modes#switch-permission-modes).
+Permission rules layer on top of every mode: `deny` rules block in every mode, including `bypassPermissions`. See [Permission modes](https://code.claude.com/docs/en/permission-modes). `manual` names the permission mode labeled Manual in the CLI and the VS Code extension; the alias requires Claude Code v2.1.200 or later. In Claude Code on the web, Claude Code honors only `acceptEdits`, `plan`, `default`, and `auto` from this key. For conversations the VS Code extension starts, see [which setting the extension reads for the starting permission mode](https://code.claude.com/docs/en/permission-modes#switch-permission-modes).
 
 ### `permissions.disableBypassPermissionsMode`
 
@@ -3367,7 +3367,7 @@ Load the [claude.ai connectors](https://code.claude.com/docs/en/mcp#use-mcp-serv
 }
 ```
 
-[`allowedMcpServers`](#allowedmcpservers) and [`deniedMcpServers`](#deniedmcpservers) still apply to the connectors this key loads. Connectors delivered to [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) stay suppressed. See [Allow claude.ai connectors alongside the managed set](https://code.claude.com/docs/en/managed-mcp#allow-claude-ai-connectors-alongside-the-managed-set). Requires Claude Code v2.1.149 or later.
+[`allowedMcpServers`](#allowedmcpservers) and [`deniedMcpServers`](#deniedmcpservers) still apply to the connectors this key loads. Connectors delivered to [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) stay suppressed. See [Allow claude.ai connectors alongside the managed set](https://code.claude.com/docs/en/managed-mcp#allow-claude-ai-connectors-alongside-the-managed-set).
 
 ### `allowedMcpServers`
 
@@ -3678,7 +3678,7 @@ While a sparse worktree exists, git enables `extensions.worktreeConfig` in the r
 
 ### `worktree.bgIsolation`
 
-Choose how [background sessions](https://code.claude.com/docs/en/agent-view#how-file-edits-are-isolated) isolate their file edits. With `"worktree"`, Claude Code blocks `Edit` and `Write` in the main checkout until the session calls `EnterWorktree`; with `"none"`, background jobs edit the working copy directly. Set `"none"` for a repository where git worktrees are impractical. Requires Claude Code v2.1.143 or later.
+Choose how [background sessions](https://code.claude.com/docs/en/agent-view#how-file-edits-are-isolated) isolate their file edits. With `"worktree"`, Claude Code blocks `Edit` and `Write` in the main checkout until the session calls `EnterWorktree`; with `"none"`, background jobs edit the working copy directly. Set `"none"` for a repository where git worktrees are impractical.
 
 * **Scope**: [`Any file`](#scopes)
 * **Type**: string, one of:
