@@ -111,6 +111,7 @@ When two files set the same key, Claude Code combines them by these rules:
 * **Nested blocks**, such as `env` or `sandbox`: the two blocks merge key by key, and each key inside follows these same rules
 * **`fallbackModel`**: the later chain replaces the earlier one whole
 * **[`extraKnownMarketplaces`](https://code.claude.com/docs/en/settings-reference#extraknownmarketplaces)**: a later entry with the same name replaces the earlier one whole
+* **[`modelPicker`](https://code.claude.com/docs/en/settings-reference#modelpicker)**: the later lineup replaces the earlier one whole
 
 ## Which managed source Claude Code uses
 
