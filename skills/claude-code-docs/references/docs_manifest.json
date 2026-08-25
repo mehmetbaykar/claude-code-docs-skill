@@ -580,8 +580,8 @@
       "title": "Code Review"
     },
     "commands.md": {
-      "hash": "8a179898c66e5711b63f16754c37fa5e6e09813fbbb5354ac17b906dc7bc35d4",
-      "last_updated": "2026-08-25T01:57:15+00:00",
+      "hash": "057ea08cdbb99af5726e4a3c4af567c1f4bdff2769fb0420fa337c64afb02be7",
+      "last_updated": "2026-08-25T19:04:21+00:00",
       "original_url": "https://code.claude.com/docs/en/commands",
       "path": "/docs/en/commands",
       "source_url": "https://code.claude.com/docs/en/commands.md",
@@ -724,8 +724,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "d33797b467e99220f5b12fd1097151473f73d29b536f2577776ea69913e360b7",
-      "last_updated": "2026-08-22T18:53:35+00:00",
+      "hash": "0fe73d7ebb57bec3ad4f69383e7dde30f145db53d4098bb5c9238e257796eefb",
+      "last_updated": "2026-08-25T19:04:39+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -769,8 +769,8 @@
       "title": "Error reference"
     },
     "fast-mode.md": {
-      "hash": "f618951e716e6bfb8c7cb675db0c7b270053f1a16ed87b05fe200df4d2edf4c5",
-      "last_updated": "2026-08-22T01:55:25+00:00",
+      "hash": "530d8aba27b3b6fe8359f91d96739e723b593b94545010c58a477e66b05235b1",
+      "last_updated": "2026-08-25T19:04:58+00:00",
       "original_url": "https://code.claude.com/docs/en/fast-mode",
       "path": "/docs/en/fast-mode",
       "source_url": "https://code.claude.com/docs/en/fast-mode.md",
@@ -931,8 +931,8 @@
       "title": "JetBrains IDEs"
     },
     "keybindings.md": {
-      "hash": "9a6bced30dbdae58ba61ff3ce8b25ce1ba3bcad677e781d50c7397ace140080a",
-      "last_updated": "2026-08-21T02:02:28+00:00",
+      "hash": "d19e27552021684ae70aca4e8955cd61338d750c39da2bf50eb4face45cf7d00",
+      "last_updated": "2026-08-25T19:05:10+00:00",
       "original_url": "https://code.claude.com/docs/en/keybindings",
       "path": "/docs/en/keybindings",
       "source_url": "https://code.claude.com/docs/en/keybindings.md",
@@ -1003,8 +1003,8 @@
       "title": "Control MCP server access for your organization"
     },
     "managed-settings.md": {
-      "hash": "e93262aee50f359c451c79a3782b9f9130d25e5fa2fb54c902c01ad14e1c281e",
-      "last_updated": "2026-08-25T01:57:54+00:00",
+      "hash": "abb1420f288020a0f984abe996929a1dd8e65b6046eb829649be3d54f89dfd10",
+      "last_updated": "2026-08-25T19:05:17+00:00",
       "original_url": "https://code.claude.com/docs/en/managed-settings",
       "path": "/docs/en/managed-settings",
       "source_url": "https://code.claude.com/docs/en/managed-settings.md",
@@ -1111,8 +1111,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "115cfe0bd6a2cf462209296b8d1f8b9ecba60fdc004ed5291afa82786e5d72eb",
-      "last_updated": "2026-08-24T21:49:40+00:00",
+      "hash": "f1772b975d4786de5e95d413c63e530c5a018b58f9730537724a9a6c6daeae2e",
+      "last_updated": "2026-08-25T19:05:26+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -1363,8 +1363,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "84d4338bd311e88f25fdc9ac0618259a7d8c5bababe361a25a247720fb9f4e11",
-      "last_updated": "2026-08-25T01:58:24+00:00",
+      "hash": "0766e1a084599a3f9c31d349aab26c581914e4abd25a5323d15897cfb343d1f2",
+      "last_updated": "2026-08-25T19:06:01+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "source_url": "https://code.claude.com/docs/en/settings-reference.md",
@@ -1746,7 +1746,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-25T09:58:20+00:00",
+  "last_updated": "2026-08-25T19:06:27+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
