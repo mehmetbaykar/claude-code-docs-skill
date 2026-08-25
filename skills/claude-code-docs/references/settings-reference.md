@@ -36,6 +36,7 @@ Every key below links to its entry. Scope lists the [files](https://code.claude.
 | [`autoCompactEnabled`](#autocompactenabled)                                                     | Turn [automatic compaction](https://code.claude.com/docs/en/context-window) off or on                                                                                                                                                                   | Memory and context                 | Any file                |
 | [`autoCompactWindow`](#autocompactwindow)                                                       | Set how full the context gets before Claude Code [compacts](https://code.claude.com/docs/en/context-window)                                                                                                                                             | Memory and context                 | Any file                |
 | [`autoConnectIde`](#autoconnectide)                                                             | Connect to a running [VS Code](https://code.claude.com/docs/en/vs-code) or [JetBrains](https://code.claude.com/docs/en/jetbrains#from-external-terminals) IDE automatically from an external terminal                                                                               | Global config settings             | Global config           |
+| [`autoContinueAtUsageLimit`](#autocontinueatusagelimit)                                         | Wait in the open session and [continue the task automatically](https://code.claude.com/docs/en/interactive-mode#wait-for-a-usage-limit-to-reset) after a claude.ai usage limit resets                                                                   | Interface and terminal             | User or managed         |
 | [`autoInstallIdeExtension`](#autoinstallideextension)                                           | Turn off automatic install of the [IDE extension](https://code.claude.com/docs/en/vs-code#install-the-extension) from a VS Code terminal                                                                                                                | Global config settings             | Global config           |
 | [`autoMemoryDirectory`](#automemorydirectory)                                                   | Store [auto memory](https://code.claude.com/docs/en/memory#auto-memory) in a directory you choose                                                                                                                                                       | Memory and context                 | Any file                |
 | [`autoMemoryEnabled`](#automemoryenabled)                                                       | Turn [auto memory](https://code.claude.com/docs/en/memory#auto-memory) off or on                                                                                                                                                                        | Memory and context                 | Any file                |
@@ -110,6 +111,7 @@ Every key below links to its entry. Scope lists the [files](https://code.claude.
 | [`minimumVersion`](#minimumversion)                                                             | Keep [auto-updates](https://code.claude.com/docs/en/setup#pin-a-minimum-version) from installing anything below a version                                                                                                                               | Updates and versioning             | Any file                |
 | [`model`](#model)                                                                               | Change the [model](https://code.claude.com/docs/en/model-config#set-a-default-model-for-new-sessions) Claude Code starts with                                                                                                                           | Model and responses                | Any file                |
 | [`modelOverrides`](#modeloverrides)                                                             | [Map model IDs](https://code.claude.com/docs/en/model-config#override-model-ids-per-version) to your provider's IDs, such as Bedrock ARNs                                                                                                               | Model and responses                | Any file                |
+| [`modelPicker`](#modelpicker)                                                                   | Choose which models the [`/model` picker](https://code.claude.com/docs/en/model-config#available-models) lists, in your own order and with your own labels                                                                                              | Model and responses                | User or managed         |
 | [`otelHeadersHelper`](#otelheadershelper)                                                       | Generate rotating [OpenTelemetry](https://code.claude.com/docs/en/monitoring-usage#dynamic-headers) headers with your own command                                                                                                                       | Authentication and providers       | Any file                |
 | [`outputStyle`](#outputstyle)                                                                   | Change Claude's role, tone, and output format with an [output style](https://code.claude.com/docs/en/output-styles)                                                                                                                                     | Model and responses                | Any file                |
 | [`parentSettingsBehavior`](#parentsettingsbehavior)                                             | Apply or drop restrictions an [SDK or IDE host](https://code.claude.com/docs/en/managed-settings#let-an-embedding-host-add-policy) passes when you deploy [managed settings](https://code.claude.com/docs/en/managed-settings)                                                      | Enterprise and managed settings    | Managed                 |
@@ -132,6 +134,7 @@ Every key below links to its entry. Scope lists the [files](https://code.claude.
 | [`preferredNotifChannel`](#preferrednotifchannel)                                               | Choose a [terminal bell or desktop notification](https://code.claude.com/docs/en/terminal-config#get-a-terminal-bell-or-notification) for task completion                                                                                               | Remote, desktop, and notifications | Any file                |
 | [`prefersReducedMotion`](#prefersreducedmotion)                                                 | [Reduce or turn off](https://code.claude.com/docs/en/accessibility#accessibility-settings) spinner, shimmer, and flash animations                                                                                                                       | Interface and terminal             | Any file                |
 | [`processWrapper`](#processwrapper)                                                             | Run Claude Code's background processes through a [corporate launcher](https://code.claude.com/docs/en/corporate-launcher) on macOS and Linux                                                                                                            | Agents, sessions, and worktrees    | User or managed         |
+| [`promptCacheTtl`](#promptcachettl)                                                             | Choose the [prompt cache lifetime](https://code.claude.com/docs/en/prompt-caching#cache-lifetime) for the main conversation                                                                                                                             | Model and responses                | Any file                |
 | [`promptSuggestionEnabled`](#promptsuggestionenabled)                                           | Hide the grayed-out [prompt suggestions](https://code.claude.com/docs/en/interactive-mode#prompt-suggestions) in the input box                                                                                                                          | Interface and terminal             | Any file                |
 | [`prUrlTemplate`](#prurltemplate)                                                               | Point PR links at an internal code-review tool instead of github.com                                                                                                                                                        | Git and attribution                | Any file                |
 | [`remote.defaultEnvironmentId`](#remote-defaultenvironmentid)                                   | Pick the default [cloud environment](https://code.claude.com/docs/en/cloud-environments) for `claude --cloud`; a self-hosted `ccpool_` ID is read only from user and managed settings and `--settings`                                                  | Remote, desktop, and notifications | Any file                |
@@ -200,6 +203,7 @@ Every key below links to its entry. Scope lists the [files](https://code.claude.
 | [`strictPluginOnlyCustomization.hooks`](#strictpluginonlycustomization-hooks)                   | Lock [hooks](https://code.claude.com/docs/en/hooks) to plugin and managed sources                                                                                                                                                                       | Plugins and skills                 | Managed                 |
 | [`strictPluginOnlyCustomization.mcp`](#strictpluginonlycustomization-mcp)                       | Lock [MCP servers](https://code.claude.com/docs/en/mcp) to plugin and managed sources                                                                                                                                                                   | Plugins and skills                 | Managed                 |
 | [`strictPluginOnlyCustomization.skills`](#strictpluginonlycustomization-skills)                 | Lock [skills](https://code.claude.com/docs/en/skills) to plugin and managed sources                                                                                                                                                                     | Plugins and skills                 | Managed                 |
+| [`subagentPromptCacheTtl`](#subagentpromptcachettl)                                             | Choose the [prompt cache lifetime](https://code.claude.com/docs/en/prompt-caching#cache-lifetime) for subagents and other requests outside the main conversation                                                                                        | Model and responses                | Any file                |
 | [`subagentStatusLine`](#subagentstatusline)                                                     | Rewrite rows in the [subagent](https://code.claude.com/docs/en/sub-agents) task display with your own command                                                                                                                                           | Interface and terminal             | Any file                |
 | [`switchModelsOnFlag`](#switchmodelsonflag)                                                     | Switch models automatically or pause when a [safety classifier](https://code.claude.com/docs/en/model-config#ask-before-switching) flags a request                                                                                                      | Model and responses                | Any file                |
 | [`syncClaudeAiSkills`](#syncclaudeaiskills)                                                     | Stop downloading the [skills enabled on your claude.ai account](https://code.claude.com/docs/en/skills#how-synced-skills-behave) and hide the ones already synced                                                                                       | Plugins and skills                 | User, local, or managed |
@@ -429,6 +433,49 @@ This example routes every call for Opus 4.6 to the named Bedrock inference profi
 
 See [Override model IDs per version](https://code.claude.com/docs/en/model-config#override-model-ids-per-version).
 
+### `modelPicker`
+
+List the models the `/model` picker offers, in the order you write them and under labels you choose, so the picker lists the models your organization runs, after the built-in lineup or instead of it. Each row's `model` is taken verbatim, so it accepts anything `--model` accepts: an alias such as `opus`, an Anthropic model ID, or a provider-format ID for Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, or an LLM gateway. Requires Claude Code v2.1.242 or later.
+
+* **Scope**: [`User or managed`](#scopes). Claude Code reads the key from managed settings, `--settings`, and user settings, and ignores it in project and local settings so a repository you clone can't relabel the picker. The highest of those three that sets the key supplies the whole lineup, and Claude Code never combines lineups from two sources.
+* **Type**: object with an `options` array of rows and an optional `replaceBuiltInOptions` Boolean
+* **Default**: unset, so the picker shows the built-in lineup
+
+This example adds two Bedrock deployments after the built-in lineup, under names your team recognizes:
+```json managed-settings.json
+{
+  "modelPicker": {
+    "options": [
+      { "model": "us.anthropic.claude-opus-4-8", "label": "Opus (production)" },
+      {
+        "model": "us.anthropic.claude-sonnet-4-6",
+        "label": "Sonnet (production)",
+        "description": "Day-to-day work"
+      }
+    ]
+  }
+}
+```
+
+#### Fields for `modelPicker`
+
+The key takes two fields, one for the rows themselves and one for whether they replace the built-in lineup or add to it.
+
+| Field                   | Type                                                                                  | What it does                                                                                                                                                                                                                                                                  |
+| :---------------------- | :------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `options`               | array of rows, each with a required `model` and an optional `label` and `description` | The rows the picker shows, in this order, except that a grayed-out row moves to the bottom. Without a `label`, Claude Code titles the row with the built-in name for a model it knows, or the model ID otherwise, and without a `description` it writes a generic second line |
+| `replaceBuiltInOptions` | Boolean, default `false`                                                              | Set it to `true` to show only these rows, **Default**, and a row for the model the session is already using. Leave it unset to add these rows after the built-in lineup                                                                                                       |
+
+With `replaceBuiltInOptions` on, Claude Code hides every other row: the built-in lineup, the rows it adds for [`availableModels`](#availablemodels) entries, the models [gateway discovery](https://code.claude.com/docs/en/llm-gateway-protocol#model-discovery) found, and [`ANTHROPIC_CUSTOM_MODEL_OPTION`](https://code.claude.com/docs/en/model-config#add-a-custom-model-option). With it off, Claude Code skips a listed model that the built-in lineup already covers. A label changes what the picker shows, not which model Claude Code runs.
+
+An [`availableModels`](#availablemodels) allowlist still applies to these rows. Before you add a listed model to the allowlist, read [Merge behavior](https://code.claude.com/docs/en/model-config#merge-behavior): a specific model ID narrows its family's wildcard entry. Claude Code also checks each row against the session before it shows the picker:
+
+* **Dropped**: a row Claude Code can't serve, such as a retired model or a model your organization has no access to
+* **Grayed out**: a row you can't select yet, shown with the reason
+* **No row survives**: Claude Code keeps the built-in lineup, filtered by the allowlist as usual
+
+Claude Code drops a row it can't parse and keeps the rest. See [Fix a broken settings file](https://code.claude.com/docs/en/settings#fix-a-broken-settings-file).
+
 ### `outputStyle`
 
 Select an [output style](https://code.claude.com/docs/en/output-styles) by name. An output style is a saved set of instructions that Claude Code adds to the system prompt to change Claude's role, tone, and output format, such as the built-in Explanatory and Learning styles or one you wrote yourself.
@@ -446,6 +493,27 @@ This example selects the built-in Explanatory style, which adds educational insi
 }
 ```
 
+### `promptCacheTtl`
+
+Choose how long the [prompt cache](https://code.claude.com/docs/en/prompt-caching) holds the main conversation. This key applies to your interactive, `-p`, and Agent SDK turns, together with the helpers Claude Code runs inline with them. The one-hour lifetime keeps the cache warm across longer breaks, and the API [bills each cache write at a higher rate](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#pricing) than at the five-minute lifetime. Requires Claude Code v2.1.242 or later.
+
+* **Scope**: [`Any file`](#scopes)
+* **Type**: string, one of:
+* `"5m"`: the cache holds for five minutes
+* `"1h"`: the cache holds for an hour
+* **Default**: unset, so each main-conversation request gets [its default lifetime](https://code.claude.com/docs/en/prompt-caching#which-ttl-each-request-gets)
+* **Per-session overrides**: [`FORCE_PROMPT_CACHING_5M`](https://code.claude.com/docs/en/env-vars) takes precedence over everything else, then [`CLAUDE_CODE_PROMPT_CACHE_TTL`](https://code.claude.com/docs/en/env-vars), then this key, and last [`ENABLE_PROMPT_CACHING_1H`](https://code.claude.com/docs/en/env-vars)
+
+This example keeps the main conversation on the one-hour lifetime and leaves subagents on five minutes:
+```json settings.json
+{
+  "promptCacheTtl": "1h",
+  "subagentPromptCacheTtl": "5m"
+}
+```
+
+For what each lifetime costs, see [Cache lifetime](https://code.claude.com/docs/en/prompt-caching#cache-lifetime).
+
 ### `showThinkingSummaries`
 
 See summaries of Claude's [extended thinking](https://code.claude.com/docs/en/model-config#extended-thinking) in interactive sessions. Set it if you want the full summaries when you expand thinking with `Ctrl+O`. When unset or `false`, the Anthropic API redacts thinking blocks and Claude Code shows a collapsed stub; third-party providers don't redact.
@@ -462,6 +530,26 @@ See summaries of Claude's [extended thinking](https://code.claude.com/docs/en/mo
 ```
 
 Redaction only changes what you see, not what the model generates: to reduce thinking spend, [lower the budget or disable thinking](https://code.claude.com/docs/en/model-config#extended-thinking) instead. This setting has no effect in non-interactive mode (`-p`), the Agent SDK, or IDE extensions such as VS Code.
+
+### `subagentPromptCacheTtl`
+
+Choose how long the [prompt cache](https://code.claude.com/docs/en/prompt-caching) holds the requests Claude Code makes outside the main conversation. This key applies to [subagents](https://code.claude.com/docs/en/sub-agents), [workflows](https://code.claude.com/docs/en/workflows), and Claude Code's own background and helper requests, such as compaction and session titles. The one-hour lifetime keeps the cache warm across longer breaks, and the API [bills each cache write at a higher rate](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#pricing) than at the five-minute lifetime. Requires Claude Code v2.1.242 or later.
+
+* **Scope**: [`Any file`](#scopes)
+* **Type**: string, one of:
+* `"5m"`: the cache holds for five minutes
+* `"1h"`: the cache holds for an hour
+* **Default**: unset, so each of these requests gets [its default lifetime](https://code.claude.com/docs/en/prompt-caching#which-ttl-each-request-gets)
+* **Per-session overrides**: [`FORCE_PROMPT_CACHING_5M`](https://code.claude.com/docs/en/env-vars) takes precedence over everything else, then [`CLAUDE_CODE_SUBAGENT_PROMPT_CACHE_TTL`](https://code.claude.com/docs/en/env-vars), then this key, and last [`ENABLE_PROMPT_CACHING_1H`](https://code.claude.com/docs/en/env-vars), which asks for the one-hour lifetime on every request
+
+This example gives subagents and the other requests outside the main conversation the one-hour lifetime:
+```json settings.json
+{
+  "subagentPromptCacheTtl": "1h"
+}
+```
+
+This key covers the requests [`promptCacheTtl`](#promptcachettl) doesn't, so set both to choose a lifetime for every request Claude Code makes. For how a subagent's cache differs from the main conversation's, see [Subagents and the cache](https://code.claude.com/docs/en/prompt-caching#subagents-and-the-cache).
 
 ### `switchModelsOnFlag`
 
@@ -1899,6 +1987,23 @@ Let an unanswered [`AskUserQuestion`](https://code.claude.com/docs/en/tools-refe
 
 Appears in `/config` as **Question auto-continue timeout**, which writes this key to user settings; Claude Code hides the row while managed settings or the `--settings` flag set the key. Requires Claude Code v2.1.200 or later.
 
+### `autoContinueAtUsageLimit`
+
+After a claude.ai usage limit stops your session, wait in the open session and continue the task automatically after the reset. See [Turn automatic continue off](https://code.claude.com/docs/en/interactive-mode#turn-automatic-continue-off). Requires Claude Code v2.1.234 or later.
+
+* **Scope**: [`User or managed`](#scopes). Read from user settings, `--settings`, and managed settings only. When none of those sets the key, a project or local settings file that sets it turns the feature off rather than being ignored.
+* **Type**: Boolean
+* `true`: after a claude.ai usage limit stops your session, Claude Code waits in the open session and continues the task automatically after the reset
+* `false`: Claude Code doesn't start the wait on its own. You can still [start a wait yourself](https://code.claude.com/docs/en/interactive-mode#start-a-wait-yourself) from the usage-limit options menu
+* **Default**: `true`
+```json settings.json
+{
+  "autoContinueAtUsageLimit": false
+}
+```
+
+Appears in `/config` as **Continue automatically at usage limit**, which writes this key to user settings; Claude Code hides the row while managed settings or the `--settings` flag set the key.
+
 ### `autoScrollEnabled`
 
 Follow new output to the bottom of the conversation in [fullscreen rendering](https://code.claude.com/docs/en/fullscreen). Turn it off to stay where you scrolled while Claude keeps working; permission prompts still scroll into view.
@@ -2703,8 +2808,10 @@ Turn off [hooks](https://code.claude.com/docs/en/hooks#disable-or-remove-hooks),
 
 The reach depends on which file carries the key:
 
-* **In managed settings**: Claude Code disables every hook, including managed ones
-* **In any other settings file**: Claude Code disables user, project, local, and plugin hooks; managed hooks and hooks from plugins force-enabled in managed [`enabledPlugins`](#enabledplugins) keep running
+* **In managed settings**: Claude Code disables every configured hook, including managed ones, and keeps running the hooks the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview) registers in process
+* **In any other settings file**: Claude Code disables user, project, local, and plugin hooks; managed hooks, Agent SDK hooks, and hooks from plugins force-enabled in managed [`enabledPlugins`](#enabledplugins) keep running
+
+Keeping Agent SDK hooks running when managed settings set this key requires Claude Code v2.1.242 or later.
 
 The [`/goal`](https://code.claude.com/docs/en/goal) command can't run while hooks are disabled, and the `/hooks` menu shows a notice instead of your hooks.
 

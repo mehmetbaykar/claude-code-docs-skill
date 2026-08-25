@@ -269,13 +269,7 @@ The git-based source types below are `github`, `url`, and `git-subdir`. When bot
 
 On most git hosts, including GitHub, GitLab, and Bitbucket, this means installation succeeds even if the branch or tag named by `ref` has since been deleted upstream, as long as the commit is still reachable from the repository. Some servers, such as AWS CodeCommit, don't support fetching commits by SHA. On those servers the `ref` must still exist and the pinned commit must be reachable from it.
 
-If you distribute this marketplace through [Organization settings > Plugins](https://claude.ai/admin-settings/plugins) on a Team or Enterprise plan, different source rules apply:
-
-* The marketplace repository must be private or internal. Organization sync reads it through the Claude GitHub App or your organization's GitHub Enterprise App.
-* Each plugin source must be of type `github`, `url`, or `git-subdir`, or a [relative path](#relative-paths) within the marketplace repository.
-* A plugin source can be private in two cases: a github.com source that shares the marketplace repository's owner, or a source on your organization's GitHub Enterprise host with the GHE App installed on the repository. Organization sync fetches every other source without credentials, so github.com repositories under a different owner and repositories on other hosts, such as GitLab or Bitbucket, must be public.
-
-To include private plugins, place the plugin folders inside the marketplace repository and reference them with a [relative path](#relative-paths). Organization sync packages each plugin during distribution, so users never need access to a separate source repository. See [Manage plugins for your organization](https://support.claude.com/en/articles/13837433) for the admin workflow.
+If you distribute plugins through **Organization settings > Plugins**, only some source types are allowed. See [Distribute through organization settings](#distribute-through-organization-settings).
 
 ### Relative paths
 
@@ -743,7 +737,7 @@ Any git hosting service works, such as GitLab, Bitbucket, and self-hosted server
 
 ### Private repositories
 
-Claude Code supports installing plugins from private repositories. If you distribute your marketplace through [Organization settings > Plugins](https://claude.ai/admin-settings/plugins) instead, your git credentials aren't involved: organization sync reads the marketplace repository through the Claude GitHub App or your organization's GitHub Enterprise App, and a plugin source it can't authenticate to must be public. The note under [Plugin sources](#plugin-sources) has the full rules.
+Claude Code supports installing plugins from private repositories. If you distribute your marketplace through [**Organization settings > Plugins**](https://claude.ai/admin-settings/plugins) instead, your git credentials aren't involved: organization sync reads the marketplace repository through the Claude GitHub App or your organization's GitHub Enterprise App, and a plugin source it can't authenticate to must be public. See [Distribute through organization settings](#distribute-through-organization-settings) for the full rules.
 
 #### Commands you run
 
@@ -778,6 +772,38 @@ Each provider expects a different username in the rewritten URL, and the same pa
 The rewrite stores the token in plaintext in your gitconfig, so use a token with read-only access to the marketplace repository.
 
 In CI/CD environments, configure a git credential helper before installing plugins from private repositories. On GitHub Actions, export a token with read access to the marketplace repository as `GH_TOKEN`, then run `gh auth setup-git`. The default workflow token can only access the workflow's own repository, so a private marketplace in another repository needs a personal access token or app token. A global URL rewrite configured in the pipeline also authenticates the background pull directly.
+
+### Distribute through organization settings
+
+If you distribute plugins through [**Organization settings > Plugins**](https://claude.ai/admin-settings/plugins) on a Team or Enterprise plan, these source rules apply:
+
+* The marketplace repository must be private or internal. Organization sync reads it through the Claude GitHub App or your organization's GitHub Enterprise App.
+* Each plugin source must be of type `github`, `url`, or `git-subdir`, or a [relative path](#relative-paths) that starts with `./`. If you list a plugin by bare name under `metadata.pluginRoot`, organization sync rejects it as an unsupported source, so write the path out, such as `./plugins/deploy-tools`.
+* A plugin source can be private in two cases:
+* A github.com source that shares the marketplace repository's owner
+* A source on your organization's GitHub Enterprise host with the GHE App installed on the repository
+* Organization sync fetches every other source without credentials, so github.com repositories under a different owner and repositories on other hosts, such as GitLab or Bitbucket, must be public.
+
+See [Manage plugins for your organization](https://support.claude.com/en/articles/13837433) for the admin workflow.
+
+To include private plugins, place the plugin folders inside the marketplace repository and reference them with a [relative path](#relative-paths). Organization sync packages each plugin during distribution, so users never need access to a separate source repository.
+
+For example, this `marketplace.json` plugin entry references a plugin you committed at `plugins/deploy-tools` in the marketplace repository:
+```json
+{
+  "name": "deploy-tools",
+  "source": "./plugins/deploy-tools"
+}
+```
+
+#### Keep executables out of the top-level bin directory
+
+Don't include a top-level `bin/` directory in any plugin you distribute through organization settings. claude.ai rejects a plugin that has one, whether the plugin arrives by marketplace sync or by direct upload:
+
+* **Marketplace sync**: organization sync rejects that plugin and syncs the rest of the marketplace. The error code is `marketplace_sync_bin_directory_not_allowed` and the message starts with `Plugin contains a top-level bin/ directory`.
+* **Direct upload**: if you upload the plugin in [**Organization settings > Plugins**](https://claude.ai/admin-settings/plugins) instead, claude.ai rejects the upload with the same message.
+
+Keep executables in another directory, such as `scripts/`, and reference them as `${CLAUDE_PLUGIN_ROOT}/scripts/<name>` from your [skills, hooks, or MCP server configs](https://code.claude.com/docs/en/plugins-reference#environment-variables).
 
 ### Require marketplaces for your team
 
