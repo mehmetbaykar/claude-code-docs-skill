@@ -117,6 +117,8 @@ Match the message you see to a section below.
 | `thinking.type.enabled is not supported for this model`                                                                                                                                       | [Request errors](#thinking-type-enabled-is-not-supported-for-this-model)                                                      |
 | `max_tokens must be greater than thinking.budget_tokens`                                                                                                                                      | [Request errors](#thinking-budget-exceeds-output-limit)                                                                       |
 | `API Error: 400 due to tool use concurrency issues`                                                                                                                                           | [Request errors](#tool-use-or-thinking-block-mismatch)                                                                        |
+| `[Unsupported tool content removed]`                                                                                                                                                          | [Request errors](#unsupported-tool-content-removed)                                                                           |
+| `server_tool_use.name: Input should be` on every turn of a resumed session                                                                                                                    | [Request errors](#unsupported-tool-content-removed)                                                                           |
 | `<model> can't help with this. Start a new session to continue`                                                                                                                               | [Request errors](#usage-policy-refusal)                                                                                       |
 | `Claude Code is unable to respond to this request, which appears to violate our Usage Policy`                                                                                                 | [Request errors](#usage-policy-refusal)                                                                                       |
 | `<model>'s safeguards flagged this message`                                                                                                                                                   | [Request errors](#safety-measures-flagged-a-cybersecurity-topic)                                                              |
@@ -1519,6 +1521,20 @@ All three variants mean the same thing: the sequence of `tool_use`, `tool_result
 
 * If you are using Opus 4.7 or Opus 4.8, run `claude update` first. Versions before v2.1.156 can trigger this error during normal tool use, and `/rewind` doesn't clear it.
 * Run `/rewind`, or press Esc twice, to step back to a checkpoint before the corrupted turn and continue from there. See [Checkpointing](https://code.claude.com/docs/en/checkpointing) for how checkpoints are created and restored.
+
+### Unsupported tool content removed
+
+When Claude Code connects directly to the Anthropic API and loads or previews a saved session, it removes tool content the Anthropic API doesn't accept and leaves this line where removed content sat between two thinking blocks:
+```text
+[Unsupported tool content removed]
+```
+
+Such content reaches a session file when something other than the Anthropic API answered in the API's format, typically a third-party proxy set through [`ANTHROPIC_BASE_URL`](https://code.claude.com/docs/en/env-vars) that translates another provider's tool calls. Claude Code removes it only when the session connects directly to the Anthropic API, and loads the saved history as it is when the session runs through a proxy or on another provider. Before v2.1.246, Claude Code sent the tool use and its result back to the API, and every turn of the resumed session failed with a 400 error such as `messages.1.content.0.server_tool_use.name: Input should be 'web_search', 'web_fetch', ...`.
+
+**What to do:**
+
+* None needed when you see the placeholder line. The session continues without the removed content.
+* If every turn of a resumed session fails with the 400 error instead, run `claude update` and resume the session again. Versions before v2.1.246 don't remove the content.
 
 ### Usage Policy refusal
 

@@ -760,8 +760,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "9e4d6e3d4cf3b2170c69f31a439ca07d19d54ab552102351ff0eb7617093bb7f",
-      "last_updated": "2026-08-26T02:03:08+00:00",
+      "hash": "80735341f493192f8b284c0162555a3ba15156bc67ed7963c690194d18ac036d",
+      "last_updated": "2026-08-26T16:36:41+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -886,8 +886,8 @@
       "title": "Run Claude Code programmatically"
     },
     "hooks-guide.md": {
-      "hash": "fcd2fa9536df103e054d81029a59d6f256ecdcc362c09912f8bc328ca876d597",
-      "last_updated": "2026-08-25T01:57:47+00:00",
+      "hash": "3f21a4bc21767fb0961ea8f1d64700dde1da96d09200ab35b15d867a398c65de",
+      "last_updated": "2026-08-26T16:36:52+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks-guide",
       "path": "/docs/en/hooks-guide",
       "source_url": "https://code.claude.com/docs/en/hooks-guide.md",
@@ -895,8 +895,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "fc369fd0a97dc6c2402e1e240ccf290a9fa033023f92a65db40063c6a373728d",
-      "last_updated": "2026-08-25T01:57:46+00:00",
+      "hash": "a5052ed0496dfe2a7a872c2dbcbc017428e4a7d3923e814a68f9c047d0ca45f1",
+      "last_updated": "2026-08-26T16:36:51+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -1746,7 +1746,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-26T04:09:22+00:00",
+  "last_updated": "2026-08-26T16:38:02+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
