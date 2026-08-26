@@ -688,8 +688,8 @@
       "title": "Test iOS apps in the simulator"
     },
     "desktop-linux.md": {
-      "hash": "550d37a9947f9aa2cb9b3142bbf829f1f1db8c3e34d8ea743c221e5393d2f9d2",
-      "last_updated": "2026-08-11T16:15:03+00:00",
+      "hash": "1b4527001fa787c6cece47459f98d2e33910174866c9512c7a2c43c6df8a822a",
+      "last_updated": "2026-08-26T04:08:04+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-linux",
       "path": "/docs/en/desktop-linux",
       "source_url": "https://code.claude.com/docs/en/desktop-linux.md",
@@ -1746,7 +1746,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-26T02:04:52+00:00",
+  "last_updated": "2026-08-26T04:09:22+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
