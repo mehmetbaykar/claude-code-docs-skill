@@ -409,8 +409,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "88e0ba742d2d8a467137ddce55452bb130ef30c83124985f28ab01948cc97763",
-      "last_updated": "2026-08-26T02:02:43+00:00",
+      "hash": "a58c712d52d3f480bc34eb91985b6fdc22ab06d05bf891063ca65b0178402ef1",
+      "last_updated": "2026-08-27T14:20:27+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -1021,8 +1021,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "dd0f4586906397310246bcecac98d7eb817b99dccd03631fd7d218272dd903af",
-      "last_updated": "2026-08-27T00:53:33+00:00",
+      "hash": "ade1ca6fcb1de82afcdf7534a30caf0d3ebf5c83bc9218771925f24c9b95813f",
+      "last_updated": "2026-08-27T14:21:28+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -1746,7 +1746,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-27T00:54:37+00:00",
+  "last_updated": "2026-08-27T14:22:34+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
