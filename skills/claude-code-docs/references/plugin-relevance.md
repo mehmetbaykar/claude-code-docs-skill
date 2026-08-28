@@ -12,8 +12,6 @@ If you operate a plugin marketplace for your organization, you can have Claude C
 
 Marketplace-declared suggestions are opt-in per marketplace through [managed settings](https://code.claude.com/docs/en/managed-settings). No marketplace's `relevance` declarations produce suggestions until an administrator adds it to the allowlist, including the official Anthropic marketplace. Claude Code also includes one built-in suggestion that is independent of this allowlist; that tip and all marketplace-declared tips are disabled when [`spinnerTipsEnabled`](https://code.claude.com/docs/en/settings-reference#spinnertipsenabled) is set to `false`.
 
-This feature requires Claude Code v2.1.152 or later. Older clients ignore the `relevance` field.
-
 This page is for marketplace operators and enterprise administrators. If you are looking to install plugins, see [Discover and install plugins](https://code.claude.com/docs/en/discover-plugins).
 
 ## How it works

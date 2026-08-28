@@ -339,13 +339,34 @@ Until the stream reopens, you keep the server's last fetched tools, prompts, and
 
 ### Automatic reconnection
 
-If an HTTP or SSE server disconnects mid-session, Claude Code automatically reconnects with exponential backoff: up to five attempts, starting at a one-second delay and doubling each time. The server appears as pending in `/mcp` while reconnection is in progress. After five failed attempts the server is marked as failed and you can retry manually from `/mcp`. Stdio servers are local processes and are not reconnected automatically.
+Claude Code reconnects a remote server that drops mid-session and retries an HTTP or SSE server's first connection after a transient error. Stdio servers are local processes, and Claude Code doesn't reconnect them automatically.
 
-The same backoff applies when an HTTP or SSE server fails its initial connection at startup. Claude Code retries the initial connection up to three times on transient errors such as a 5xx response, a connection refused, or a timeout, then marks the server as failed if it still can't connect. Authentication and not-found errors are not retried because they require a configuration change to resolve.
+#### Mid-session drops of a remote server
 
-When a configured server fails to connect, Claude Code tells Claude which server failed and its connection error, including in `ToolSearch` results that find no matching tool, so Claude reports the connection failure in its response. Requires [tool search](#scale-with-mcp-tool-search), which is enabled by default. In configurations without tool search, such as a custom `ANTHROPIC_BASE_URL`, `ENABLE_TOOL_SEARCH=false`, or a model that doesn't support tool search, and on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry, Claude Code doesn't report failed server connections to Claude.
+Claude Code reconnects a dropped remote server with exponential backoff: up to five attempts, starting at a one-second delay and doubling it each time. What you see depends on how you're running Claude Code:
 
-The capability discovery requests that run after a successful connection, such as `tools/list`, `prompts/list`, and `resources/list`, also retry transient network and server errors up to three times with short backoff. Authentication errors, 4xx responses, and request timeouts are not retried.
+* **In an interactive session**: `/mcp` shows the server as pending while Claude Code reconnects. After five failed attempts, Claude Code marks the server as failed, or as needing authentication when the server needs authorizing again. You can retry manually from `/mcp`.
+* **In [`claude -p`](https://code.claude.com/docs/en/headless) runs and [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview) sessions**: Claude Code reconnects on the same schedule, with no `/mcp` panel to show the attempts.
+
+#### Failed first connections
+
+When an HTTP or SSE server's first connection fails with a transient error, such as a 5xx response, a connection refused, or a timeout, Claude Code retries up to three times. If the connection still fails, Claude Code marks the server as failed. Claude Code retries this way at startup and when a server is added mid-session. That includes a server Claude Code adds to a [cloud session](https://code.claude.com/docs/en/claude-code-on-the-web) from its configuration and a server you add with the Agent SDK's [`setMcpServers()`](https://code.claude.com/docs/en/agent-sdk/typescript).
+
+Claude Code doesn't retry in these cases:
+
+* A WebSocket server's first connection
+* An authentication or not-found error, because it requires a configuration change to resolve
+
+#### Failed discovery requests
+
+After a server connects, Claude Code sends it capability discovery requests such as `tools/list`, `prompts/list`, and `resources/list`. Claude Code retries those requests up to three times with short backoff after a transient network or server error. It doesn't retry authentication errors, 4xx responses, or request timeouts.
+
+#### How Claude learns that a server failed
+
+Whether Claude Code tells Claude about a configured server that failed to connect depends on [tool search](#scale-with-mcp-tool-search), which is on by default:
+
+* With tool search, Claude Code tells Claude which server failed and its connection error, so Claude reports the connection failure in its response. Claude Code includes the same information in `ToolSearch` results that find no matching tool.
+* In any [configuration without tool search](#configure-tool-search), Claude Code doesn't report failed server connections to Claude.
 
 ### Push messages with channels
 
@@ -438,6 +459,7 @@ Or inline in `plugin.json`:
 * **Automatic lifecycle**: servers connect and disconnect at these points:
 * At session startup, Claude Code connects the servers for enabled plugins automatically. In `/mcp`, a remote (HTTP or SSE) plugin server you've used before can show the [`cached` status](#server-status-detail) instead; Claude Code connects it when Claude first calls one of its tools
 * If you enable or disable a plugin during a session, run `/reload-plugins` to connect or disconnect its MCP servers. When you reload, Claude Code keeps the live connections of plugin servers whose configuration is unchanged, and does the same when you [replace the session's MCP server list](https://code.claude.com/docs/en/agent-sdk/typescript#mcpsetserversresult) from the Agent SDK without naming them
+* When you [move the session with `/cd`](https://code.claude.com/docs/en/permissions#move-the-session-to-another-directory) on v2.1.246 or later, Claude Code connects the servers of plugins the new directory's settings enable and disconnects the servers of plugins that are no longer enabled, so you don't need to run `/reload-plugins` after the move
 * In [web sessions](https://code.claude.com/docs/en/claude-code-on-the-web), an MCP call to a plugin server that isn't connected yet, such as right after an idle session wakes, starts the server on demand and waits for it to connect
 * **Path placeholders**: `${CLAUDE_PLUGIN_ROOT}` resolves to the plugin's installation directory, `${CLAUDE_PLUGIN_DATA}` to its [persistent state](https://code.claude.com/docs/en/plugins-reference#persistent-data-directory) directory, and `${CLAUDE_PROJECT_DIR}` to the stable project root. Substitution applies to:
 * `stdio` servers: `command`, `args`, `env`
@@ -882,12 +904,13 @@ A plugin-provided `headersHelper` can't reference the plugin's [`${user_config.*
 
 #### Where the helper runs
 
-Claude Code picks the `headersHelper` command's working directory from the configuration that declares the server. A `cd` later in the session doesn't move it. Each row below gives the directory that a relative path in your `headersHelper` command resolves against.
+Claude Code picks the `headersHelper` command's working directory from the configuration that declares the server. A `cd` that Claude runs in Bash doesn't move it, and [`/cd`](https://code.claude.com/docs/en/permissions#move-the-session-to-another-directory) moves it only for servers that run from the session's primary working directory. Each row below gives the directory that a relative path in your `headersHelper` command resolves against.
 
 | Where you configured the server                                                                                                                                                                              | Working directory                                                                            |
 | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------- |
 | A [plugin](https://code.claude.com/docs/en/plugins-reference#mcp-servers)                                                                                                                                                                | The plugin's root directory. Requires Claude Code v2.1.195 or later                          |
-| A project `.mcp.json`, a [local-scope](#local-scope) server, an agent file in your project, a server from the SDK's `mcpServers` option or `setMcpServers()` method, or [`--mcp-config`](https://code.claude.com/docs/en/cli-reference)  | The directory you started Claude Code in                                                     |
+| A project `.mcp.json` or a [local-scope](#local-scope) server                                                                                                                                                | The project directory the server is declared in                                              |
+| An agent file in your project, a server from the SDK's `mcpServers` option or `setMcpServers()` method, or [`--mcp-config`](https://code.claude.com/docs/en/cli-reference)                                                               | The session's [primary working directory](https://code.claude.com/docs/en/permissions#working-directories)               |
 | [User scope](#user-scope), [managed MCP](https://code.claude.com/docs/en/managed-mcp), a [claude.ai connector](#use-mcp-servers-from-claude-ai), or an agent file from outside your project, including one from an `--add-dir` directory | Your configuration directory, `~/.claude` unless you set [`CLAUDE_CONFIG_DIR`](https://code.claude.com/docs/en/env-vars) |
 
 Before v2.1.238, Claude Code also ran the helpers of user-scope, managed, and claude.ai connector servers, and of agent files from outside your project, from the directory you started it in.
@@ -905,7 +928,7 @@ When this applies to your helper, have the script read its credential from a fil
 
 #### Trust a folder before its headersHelper runs
 
-Claude Code executes a `headersHelper` as an arbitrary shell command. For a server in a project `.mcp.json` or at [local scope](#local-scope), it runs the helper only after you accept the [trust dialog](https://code.claude.com/docs/en/permissions#project-allow-rules-and-workspace-trust) for the folder you started the session in. Before v2.1.238, a `claude -p` or SDK session ran these helpers without checking trust, and an interactive session ran them once you had trusted a parent folder.
+Claude Code executes a `headersHelper` as an arbitrary shell command. For a server in a project `.mcp.json` or at [local scope](#local-scope), it runs the helper only after you accept the [trust dialog](https://code.claude.com/docs/en/permissions#project-allow-rules-and-workspace-trust) for the project directory the server is declared in. Before v2.1.238, a `claude -p` or SDK session ran these helpers without checking trust, and an interactive session ran them once you had trusted a parent folder.
 
 * **Trust that doesn't count**: a parent folder's trust, and the automatic trust a `claude -p` or SDK session gets for [hooks in settings files](https://code.claude.com/docs/en/permissions#what-runs-before-you-trust-a-folder)
 * **Until you trust the folder**: Claude Code connects the server with its static `headers` alone. In a `claude -p` or SDK session it also prints one [`headersHelper not run`](https://code.claude.com/docs/en/errors#headershelper-not-run) line per server to stderr, telling you how to grant the trust.
@@ -1158,6 +1181,19 @@ Tools with a root-level combinator stay available. Before sending the tool to th
 Your server receives whichever arguments Claude chose, so keep validating the combination server-side.
 
 When Claude Code can't produce a schema the API accepts, or on a deployment that doesn't receive the remote configuration that enables the rewrite, such as an offline machine, it skips that one tool, records the reason in the server's log, and leaves the server's other tools available. Versions earlier than v2.1.195 skip every tool whose input schema has a root-level `anyOf`, `oneOf`, or `allOf`.
+
+## Tools with invalid input schemas
+
+The Claude API checks every tool's input schema in a request and rejects the whole request when any one schema fails, so a single MCP tool with a malformed schema would make every request that includes it fail with a 400 error. Claude Code runs two of the API's checks itself when it loads a server's tools and, on a deployment that receives the remote configuration that enables the exclusion, excludes each tool that would fail them, so the server's other tools keep working:
+
+* Top-level property names must be 1 to 64 characters long and use only ASCII letters and digits, `_`, `.`, and `-`
+* The schema must be valid against the JSON Schema draft 2020-12 meta-schema. Claude Code applies this check to schemas that declare no `$schema` and schemas that declare draft 2020-12. A schema that declares any other dialect skips this check, though the property-name check above still applies
+
+Claude Code runs the checks after the [root-level combinator rewrite](#tool-input-schemas-with-a-root-level-combinator), on the schema it would actually send.
+
+When Claude Code excludes a tool, it records the reason in the server's log and tells Claude which tools it excluded and why, so you can ask Claude why a tool is missing. If you fix the schema on the server, the tool comes back the next time Claude Code loads the server's tools.
+
+On a deployment that doesn't receive the remote configuration that enables the exclusion, Claude Code still runs the checks and records in the server's log which tool would be rejected, but sends the tool anyway: the schema goes to the API, and a request that includes it fails with [a 400 error naming the tool by its position](https://code.claude.com/docs/en/errors#tool-input-schema-is-invalid). The [root-level combinator handling](#tool-input-schemas-with-a-root-level-combinator) is separate and keeps its own behavior on such deployments. Before v2.1.216, no deployment ran these checks.
 
 ## Require approval for a specific tool
 
