@@ -177,7 +177,11 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
   setPermissionMode(mode: PermissionMode): Promise<void>;
   setModel(model?: string): Promise<void>;
   setMaxThinkingTokens(maxThinkingTokens: number | null): Promise<void>;
-  applyFlagSettings(settings: { [K in keyof Settings]?: Settings[K] | null }): Promise<void>;
+  applyFlagSettings(settings: {
+    [K in keyof Settings]?: K extends 'effortLevel'
+      ? 'low' | 'medium' | 'high' | 'xhigh' | 'max' | null
+      : Settings[K] | null;
+  }): Promise<void>;
   initializationResult(): Promise<SDKControlInitializeResponse>;
   reinitialize(): Promise<SDKControlInitializeResponse>;
   supportedCommands(): Promise<SlashCommand[]>;
@@ -189,6 +193,7 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
     path: string,
     options?: { maxBytes?: number; encoding?: 'utf-8' | 'base64' }
   ): Promise<SDKControlReadFileResponse | null>;
+  reloadSkills(): Promise<SDKControlReloadSkillsResponse>;
   accountInfo(): Promise<AccountInfo>;
   reconnectMcpServer(serverName: string): Promise<void>;
   toggleMcpServer(serverName: string, enabled: boolean): Promise<void>;
@@ -333,6 +338,11 @@ type SDKControlReadFileResponse = {
   absPath: string;
   truncated?: boolean;
   encoding?: 'base64';
+};
+```
+```typescript
+type SDKControlReloadSkillsResponse = {
+  skills: SlashCommand[];
 };
 ```
 ```typescript
@@ -547,6 +557,7 @@ type SDKAssistantMessage = {
   aborted?: true;
   timestamp?: string;
   context_usage?: SDKContextUsage;
+  user_message_uuid?: string;
 };
 ```
 ```typescript
@@ -597,6 +608,7 @@ type SDKResultMessage =
       usage: NonNullableUsage;
       modelUsage: { [modelName: string]: ModelUsage };
       permission_denials: SDKPermissionDenial[];
+      queued_turn_count?: number;
       structured_output?: unknown;
       deferred_tool_use?: { id: string; name: string; input: Record<string, unknown> };
       terminal_reason?: TerminalReason;
@@ -622,7 +634,9 @@ type SDKResultMessage =
       usage: NonNullableUsage;
       modelUsage: { [modelName: string]: ModelUsage };
       permission_denials: SDKPermissionDenial[];
+      queued_turn_count?: number;
       errors: string[];
+      user_message_uuid?: string;
       terminal_reason?: TerminalReason;
       fast_mode_state?: FastModeState;
       fast_mode_disabled_reason?: FastModeDisabledReason;
@@ -666,6 +680,7 @@ type SDKPartialAssistantMessage = {
   uuid: UUID;
   session_id: string;
   ttft_ms?: number; // Time to first token in ms, present only on message_start events
+  user_message_uuid?: string; // Present on at most one stream event per turn
 };
 ```
 ```typescript
@@ -1950,6 +1965,14 @@ type FileReadOutput =
         count: number;
         outputDir: string;
       };
+      /** Document page number of the first extracted page; labels the page images in the tool_result content. */
+      firstPage?: number;
+      /** In-process only: the page-image bytes are delivered as image blocks in the tool_result content and aren't retained on the emitted tool_use_result, so this key is absent there. */
+      pages?: {
+        base64: string;
+        mediaType: "image/jpeg" | "image/png" | "image/gif" | "image/webp";
+        error?: string;
+      }[];
     }
   | {
       type: "file_unchanged";
@@ -2653,6 +2676,7 @@ type SDKTaskNotificationMessage = {
   status: "completed" | "failed" | "stopped";
   output_file: string;
   summary: string;
+  ambient?: boolean;
   usage?: {
     total_tokens: number;
     tool_uses: number;
@@ -2754,6 +2778,7 @@ type SDKTaskStartedMessage = {
   task_type?: string;
   is_backgrounded?: boolean;
   spawn_depth?: number;
+  ambient?: boolean;
   uuid: UUID;
   session_id: string;
 };
@@ -2802,6 +2827,7 @@ type SDKBackgroundTasksChangedMessage = {
     task_id: string;
     task_type: string;
     description: string;
+    ambient?: boolean;
   }[];
   uuid: UUID;
   session_id: string;

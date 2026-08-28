@@ -294,6 +294,8 @@ You can load multiple plugins at once by specifying the flag multiple times:
   claude --plugin-dir ./plugin-one --plugin-dir ./plugin-two
 ```
 
+To test a plugin together with a plugin it depends on, see [Test a plugin and its dependency locally](https://code.claude.com/docs/en/plugin-dependencies#test-a-plugin-and-its-dependency-locally).
+
 To test a plugin that is already packaged as a `.zip` archive and hosted at a URL, such as a CI build artifact, use `--plugin-url` instead. Claude Code fetches the archive at startup and loads it for that session only. If Claude Code can't fetch the archive, or the archive is invalid, it starts without the plugin and records a plugin load error that you can review in the `/plugin` manager's **Errors** tab. The same [trust considerations](https://code.claude.com/docs/en/discover-plugins#security) apply as for any plugin source: only point this flag at archives you control or trust.
 
 To load multiple plugins, repeat the flag for each URL:
