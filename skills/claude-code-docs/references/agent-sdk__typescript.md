@@ -814,6 +814,8 @@ type HookEvent =
   | "SubagentStop"
   | "PreCompact"
   | "PostCompact"
+  | "PreModelSwitch"
+  | "PostModelSwitch"
   | "PermissionRequest"
   | "PermissionDenied"
   | "Setup"
@@ -863,6 +865,8 @@ type HookInput =
   | SubagentStopHookInput
   | PreCompactHookInput
   | PostCompactHookInput
+  | PreModelSwitchHookInput
+  | PostModelSwitchHookInput
   | PermissionRequestHookInput
   | SetupHookInput
   | TeammateIdleHookInput
@@ -1049,6 +1053,34 @@ type PostCompactHookInput = BaseHookInput & {
   hook_event_name: "PostCompact";
   trigger: "manual" | "auto";
   compact_summary: string;
+};
+```
+```typescript
+type PreModelSwitchHookInput = BaseHookInput & {
+  hook_event_name: "PreModelSwitch";
+  from_model: string;
+  to_model: string;
+  requested_model: string | null;
+  source: "command" | "picker" | "sdk";
+  context_tokens: number;
+  prompt_cache_warm: boolean;
+  cache_ttl: "5m" | "1h";
+  estimated_cache_write_usd: number;
+  pricing: "configured" | "catalog" | "default";
+};
+```
+```typescript
+type PostModelSwitchHookInput = BaseHookInput & {
+  hook_event_name: "PostModelSwitch";
+  from_model: string;
+  to_model: string;
+  requested_model: string | null;
+  source: "command" | "picker" | "sdk" | "auto" | "resume";
+  context_tokens: number;
+  prompt_cache_warm: boolean;
+  cache_ttl: "5m" | "1h";
+  estimated_cache_write_usd: number;
+  pricing: "configured" | "catalog" | "default";
 };
 ```
 ```typescript
@@ -1246,6 +1278,22 @@ type SyncHookJSONOutput = {
       }
     | {
         hookEventName: "Setup";
+        additionalContext?: string;
+      }
+    | {
+        hookEventName: "PreModelSwitch";
+        /**
+         * Same contract as PreToolUse: "allow" proceeds, "deny" cancels
+         * the switch, "ask" asks the user to confirm. Only /model in an
+         * interactive session shows that prompt; every other surface,
+         * set_model requests included, treats "ask" as a refusal.
+         */
+        permissionDecision?: "allow" | "deny" | "ask";
+        permissionDecisionReason?: string;
+      }
+    | {
+        hookEventName: "PostModelSwitch";
+        /** Reaches the model with the next request the new model serves. */
         additionalContext?: string;
       }
     | {

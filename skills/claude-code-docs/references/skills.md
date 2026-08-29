@@ -734,7 +734,7 @@ With `user-invocable: false`, you can't invoke the skill, but Claude still can. 
 
 ### Override skill visibility from settings
 
-The `skillOverrides` setting controls skill visibility from your [settings](https://code.claude.com/docs/en/settings) instead of the skill's own frontmatter. Use it for skills whose SKILL.md you don't want to edit, such as ones checked into a shared project repo. The `/skills` menu writes it for you: highlight a skill and press `Space` to cycle states, then `Enter` to save to `.claude/settings.local.json`.
+The `skillOverrides` setting controls skill visibility from your [settings](https://code.claude.com/docs/en/settings) instead of the skill's own frontmatter. Use it for skills whose SKILL.md you don't want to edit, such as ones checked into a shared project repo. The `/skills` menu writes it for you: highlight a skill and press `Space` to cycle states, then `Esc` to save to `.claude/settings.local.json`.
 
 Each key is a skill name and each value is one of four states:
 
