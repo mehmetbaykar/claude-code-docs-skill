@@ -10,7 +10,7 @@ path: /docs/en/workflows
 
 Dynamic workflows are available on all paid plans, with Anthropic API access, and on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry. On Pro, turn them on from the Dynamic workflows row in `/config`.
 
-A dynamic workflow is a JavaScript script that orchestrates [subagents](https://code.claude.com/docs/en/sub-agents) at scale. Claude writes the script for the task you describe, and a runtime executes it in the background while your session stays responsive.
+A dynamic workflow is a JavaScript script that orchestrates many [subagents](https://code.claude.com/docs/en/sub-agents) at once. Claude writes the script for the task you describe, and a runtime executes it in the background while your session stays responsive.
 
 Reach for a workflow when a task needs more agents than one conversation can coordinate, or when you want the orchestration codified as a script you can read and rerun. Examples include a codebase-wide bug sweep, a 500-file migration, a research question that needs sources cross-checked against each other, and a hard plan worth drafting from several independent angles before you commit to one.
 
@@ -315,13 +315,7 @@ The workflow runtime executes the script in an isolated environment, separate fr
 
 Every run writes its script to a file under your session's directory in `~/.claude/projects/`. Claude receives the path when the run starts, so you can ask for it. You can open that file to read the orchestration Claude wrote, diff it against a previous run's script, or edit it and ask Claude to relaunch from the edited version.
 
-Claude can start a workflow from a script file only when it can already read that file without a permission prompt, such as:
-
-* The run's own persisted script under `~/.claude/projects/`
-* A file in your working directory or an [additional directory](https://code.claude.com/docs/en/permissions#working-directories)
-* A path your [Read allow rules](https://code.claude.com/docs/en/permissions#read-and-edit) cover
-
-Claude Code refuses a script path Claude can't read that way.
+Claude can start a workflow only from a script file the session is already allowed to read. To run a script kept outside your working directory, add its directory with [`/add-dir`](https://code.claude.com/docs/en/permissions#working-directories) or a [Read allow rule](https://code.claude.com/docs/en/permissions#read-and-edit) first.
 
 The runtime tracks each agent's result as the run progresses, which is what makes a run [resumable](#resume-after-a-pause) within the same session.
 

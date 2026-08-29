@@ -2571,7 +2571,7 @@ A blocked command reports the same cause for its working directory and ends with
 **What to do:**
 
 * Usually nothing: Claude retries with the local spelling the message asks for
-* If the file genuinely lives on a network share, it's outside the session's local workspace; edit it from a regular interactive session instead
+* If the file is on a network share rather than a local file spelled with a network path, it's outside the session's local workspace; edit it from a regular interactive session instead
 
 ### This session has no saved transcript
 

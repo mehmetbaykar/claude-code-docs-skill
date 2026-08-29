@@ -115,9 +115,7 @@ In the [Claude Code VS Code extension](https://code.claude.com/docs/en/vs-code),
     /remote-control
 ```
 
-A banner appears above the prompt box showing connection status. Once connected, click **claude.ai/code** in the banner to go directly to the session, or find it in the session list at [claude.ai/code](https://claude.ai/code). Claude Code also posts the session URL in the conversation.
-
-To disconnect, click the close icon on the banner or run `/remote-control` again.
+While Remote Control is on, Claude Code shows a **Remote Control** indicator in the prompt box footer. Once the session connects, click the indicator to go directly to the session, or find it in the session list at [claude.ai/code](https://claude.ai/code). Claude Code also posts the session URL in the conversation. To disconnect, run `/remote-control` again.
 
 Unlike the CLI, the VS Code command does not accept a name argument or display a QR code. The session title is derived from your conversation history or first prompt.
 
