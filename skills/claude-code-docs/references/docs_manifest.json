@@ -508,8 +508,8 @@
       "title": "Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry"
     },
     "claude-code-on-the-web.md": {
-      "hash": "3282732e5300e78813c0b43354b3f5731fd93c567ca98d19467d061ed2eb95b9",
-      "last_updated": "2026-08-29T10:14:11+00:00",
+      "hash": "390b44fc634dfb7c044255fadd37a312e0a7778992e9a880a1bba7ccb150e285",
+      "last_updated": "2026-08-29T20:59:42+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-code-on-the-web",
       "path": "/docs/en/claude-code-on-the-web",
       "source_url": "https://code.claude.com/docs/en/claude-code-on-the-web.md",
@@ -562,8 +562,8 @@
       "title": "CLI reference"
     },
     "cloud-environments.md": {
-      "hash": "298b334f39f84a597fe2a74c03e4278125281149cc29b20d592909926f699885",
-      "last_updated": "2026-08-29T01:47:43+00:00",
+      "hash": "79592fe6bcc58f547f606c96c5ea67ef0f1825d635f7a3546a2a72b3bd12fc78",
+      "last_updated": "2026-08-29T20:59:45+00:00",
       "original_url": "https://code.claude.com/docs/en/cloud-environments",
       "path": "/docs/en/cloud-environments",
       "source_url": "https://code.claude.com/docs/en/cloud-environments.md",
@@ -1219,8 +1219,8 @@
       "title": "Continue local sessions from any device with Remote Control"
     },
     "routines.md": {
-      "hash": "5df1ed22aaba1c85f639fac4fd6d937d74d185b154bc6fe5d088f3845b7d2909",
-      "last_updated": "2026-08-29T16:48:42+00:00",
+      "hash": "8153724b992d0c52d2c0f2db09a512e8b3a98ebe48f39412fc73b5b72df7e4d1",
+      "last_updated": "2026-08-29T21:00:30+00:00",
       "original_url": "https://code.claude.com/docs/en/routines",
       "path": "/docs/en/routines",
       "source_url": "https://code.claude.com/docs/en/routines.md",
@@ -1282,8 +1282,8 @@
       "title": "Customize sessions in self-hosted environments"
     },
     "self-hosted-environments-deploy.md": {
-      "hash": "9ae7bc6f6d65bfba19f65f91c80930dfe22bf9f76f08126457a06b289f5f58ba",
-      "last_updated": "2026-08-29T01:48:23+00:00",
+      "hash": "a101aa29d559476f2d4e67f94013f0d056bb9ab54b74fa6fb1f618e27594eb8f",
+      "last_updated": "2026-08-29T21:00:34+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-deploy",
       "path": "/docs/en/self-hosted-environments-deploy",
       "source_url": "https://code.claude.com/docs/en/self-hosted-environments-deploy.md",
@@ -1746,7 +1746,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-29T16:49:20+00:00",
+  "last_updated": "2026-08-29T21:00:54+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
