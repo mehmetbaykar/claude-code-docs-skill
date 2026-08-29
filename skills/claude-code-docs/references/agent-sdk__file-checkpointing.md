@@ -236,7 +236,7 @@ If you capture the session ID and checkpoint ID, you can also rewind from the CL
     CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING=true claude -p --resume <session-id> --rewind-files <checkpoint-uuid>
 ```
 
-The `--rewind-files` flag does not appear in `claude --help` output, but the CLI accepts it as shown.
+The `--rewind-files` flag doesn't appear in `claude --help` output, but the CLI accepts it as shown. When the rewind succeeds, the command prints `Files rewound to state at message <checkpoint-uuid>` and exits without sending a prompt.
 
 
 ## Common patterns
