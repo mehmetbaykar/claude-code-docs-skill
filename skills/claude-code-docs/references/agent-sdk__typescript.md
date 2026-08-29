@@ -80,6 +80,7 @@ function createSdkMcpServer(options: {
   instructions?: string;
   tools?: Array<SdkMcpToolDefinition<any>>;
   alwaysLoad?: boolean;
+  timeout?: number;
 }): McpSdkServerConfigWithInstance;
 ```
 ```typescript
@@ -390,22 +391,6 @@ const result = query({
 });
 ```
 ```typescript
-import { query } from "@anthropic-ai/claude-agent-sdk";
-
-// Load project settings to include CLAUDE.md files
-const result = query({
-  prompt: "Add a new feature following project conventions",
-  options: {
-    systemPrompt: {
-      type: "preset",
-      preset: "claude_code" // Use Claude Code's system prompt
-    },
-    settingSources: ["project"], // Loads CLAUDE.md from project directory
-    allowedTools: ["Read", "Write", "Edit"]
-  }
-});
-```
-```typescript
 type PermissionMode =
   | "default" // Standard permission behavior
   | "acceptEdits" // Auto-accept file edits
@@ -484,6 +469,7 @@ type McpHttpServerConfig = {
 type McpSdkServerConfigWithInstance = {
   type: "sdk";
   name: string;
+  timeout?: number;
   instance: McpServer;
 };
 ```
@@ -1625,6 +1611,7 @@ type ScheduleWakeupInput = {
   delaySeconds?: number;
   reason?: string;
   prompt?: string;
+  noop?: boolean;
   stop?: boolean;
 };
 ```
@@ -2562,6 +2549,7 @@ type ModelUsage = {
   maxOutputTokens: number;
   canonicalModel?: string;
   provider?: string;
+  costBasis?: 'list' | 'managed' | 'unknown';
 };
 ```
 ```typescript
