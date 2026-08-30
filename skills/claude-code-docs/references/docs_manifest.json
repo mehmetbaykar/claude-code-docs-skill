@@ -346,8 +346,8 @@
       "title": "Run agents in parallel"
     },
     "amazon-bedrock.md": {
-      "hash": "a9d70c9c9f07a122fd5f829288c5c23685d54e8e2768d9399980e2215392f0fa",
-      "last_updated": "2026-08-29T01:47:33+00:00",
+      "hash": "196d6d9e2b420a9cf1c912f7c0ae070f675c821f11def2ebf5d4fc81265be974",
+      "last_updated": "2026-08-30T21:14:29+00:00",
       "original_url": "https://code.claude.com/docs/en/amazon-bedrock",
       "path": "/docs/en/amazon-bedrock",
       "source_url": "https://code.claude.com/docs/en/amazon-bedrock.md",
@@ -724,8 +724,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "071d524be3c27677a0461e5682124a167ffa63a7a33be6cefed1cbf28cba9a30",
-      "last_updated": "2026-08-29T01:47:48+00:00",
+      "hash": "0f3b4837a5dcdb430e6939724e5b47ddb5c759bdc506cbf02689f66647472856",
+      "last_updated": "2026-08-30T21:14:50+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -751,8 +751,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "5627ae83574367c89fa4f89619088d0c3bd7dc5541ece85df60e59c02c1a1f37",
-      "last_updated": "2026-08-30T16:48:14+00:00",
+      "hash": "212675c3fd0e2a1d816856757dd0ca2cbb654690f0c1e6d9fac758b7762e278e",
+      "last_updated": "2026-08-30T21:14:57+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -1102,8 +1102,8 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "51139981074e15b342d25088ba8da0f28765f03bdaf474aaa82b3f2baa321327",
-      "last_updated": "2026-08-29T16:48:35+00:00",
+      "hash": "7d68659e49468250ffa2bf354f4ed311d654e4f257309e83519e936d0e9c844d",
+      "last_updated": "2026-08-30T21:15:25+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "source_url": "https://code.claude.com/docs/en/permission-modes.md",
@@ -1201,8 +1201,8 @@
       "title": "Prompt library"
     },
     "quickstart.md": {
-      "hash": "2b5cddfe47a0333be6adae1ad04798493a82b9e54bd2e8ba54376050c08e0f42",
-      "last_updated": "2026-08-26T02:03:51+00:00",
+      "hash": "57c2e5265a0919c1d4142799d46b2ba12fce7da6d18043490d97d937626fae7b",
+      "last_updated": "2026-08-30T21:15:31+00:00",
       "original_url": "https://code.claude.com/docs/en/quickstart",
       "path": "/docs/en/quickstart",
       "source_url": "https://code.claude.com/docs/en/quickstart.md",
@@ -1746,7 +1746,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-30T16:49:34+00:00",
+  "last_updated": "2026-08-30T21:16:00+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",

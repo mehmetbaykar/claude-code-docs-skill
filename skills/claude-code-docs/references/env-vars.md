@@ -508,7 +508,9 @@ With fetching off, you can't:
 
 ### First session after an install or upgrade
 
-In your first session after you install Claude Code, or upgrade to a version that adds a feature, a [flag-gated feature](#features-that-need-feature-flag-fetching) can be missing, and a session can start in Manual mode on a plan that otherwise starts in auto mode. Claude Code fetches the flags during that session, so both are there in your next session. After a fresh install, a non-interactive session, such as `claude -p`, the Agent SDK, or the VS Code extension, can pick the flags up before it [chooses its starting permission mode](https://code.claude.com/docs/en/permission-modes#which-mode-a-session-starts-in); an interactive terminal session doesn't.
+In your first session after you install Claude Code, or upgrade to a version that adds a feature, a [flag-gated feature](#features-that-need-feature-flag-fetching) can be missing, and the session can start in Manual mode on a plan that otherwise starts in auto mode. Claude Code fetches the flags during that session, so both are there in your next session.
+
+After a fresh install, in a non-interactive session such as `claude -p`, the Agent SDK, or the VS Code extension, Claude Code can still pick the flags up before it [chooses the starting permission mode](https://code.claude.com/docs/en/permission-modes#which-mode-a-session-starts-in).
 
 ## See also
 
