@@ -44,7 +44,7 @@ On the Mode tab, select auto-allow or regular permissions. Auto-allow runs sandb
 
 **Run a Bash command**
 
-Ask Claude to run a command, such as a build or a test suite. By default, commands inside the sandbox can write only to the working directory, any [directories you've added](https://code.claude.com/docs/en/permissions#additional-directories-grant-file-access-not-configuration) with `--add-dir` or `/add-dir`, and the session temp directory. The first time a command needs a new network domain, Claude Code prompts for approval, or in [auto mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode) sends the request to the classifier.
+Ask Claude to run a command, such as a build or a test suite. By default, commands inside the sandbox can write to the working directory, the session temp directory, and any [directories you've added](https://code.claude.com/docs/en/permissions#additional-directories-grant-file-access-not-configuration) with `--add-dir`, `/add-dir`, or `permissions.additionalDirectories`. The first time a command needs a new network domain, Claude Code prompts for approval, or in [auto mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode) sends the request to the classifier.
 
 Commands that can't run sandboxed fall back to the regular permission flow. Claude Code titles their permission prompt "Bash command (unsandboxed)" instead of "Bash command", so you can tell which commands ran outside the sandbox. To widen or narrow what the sandbox allows, see [Configure sandboxing](#configure-sandboxing).
 
@@ -155,7 +155,7 @@ The session temp directory is writable inside the sandbox by default, alongside 
 
 Customize sandbox behavior through your `settings.json` file. See [Settings](https://code.claude.com/docs/en/settings-reference#sandbox-settings) for the complete configuration reference.
 
-By default, sandboxed commands can write only to the current working directory, any [directories you've added](https://code.claude.com/docs/en/permissions#additional-directories-grant-file-access-not-configuration) with `--add-dir` or `/add-dir`, and the session temp directory. If subprocess commands like `kubectl`, `terraform`, or `npm` need to write outside those directories, use `sandbox.filesystem.allowWrite` to grant access to specific paths:
+By default, sandboxed commands can write to the current working directory, the session temp directory, and any [directories you've added](https://code.claude.com/docs/en/permissions#additional-directories-grant-file-access-not-configuration) with `--add-dir`, `/add-dir`, or `permissions.additionalDirectories`. If subprocess commands like `kubectl`, `terraform`, or `npm` need to write outside those directories, use `sandbox.filesystem.allowWrite` to grant access to specific paths:
 ```json
 {
   "sandbox": {
@@ -449,7 +449,7 @@ Claude Code treats `deny` as `error` whenever the read block wouldn't be enforce
 
 The sandboxed Bash tool restricts file system access to specific directories:
 
-* **Default write behavior**: read and write access to the current working directory and its subdirectories, any directories you've added with `--add-dir` or `/add-dir`, plus the session temp directory that `$TMPDIR` points to
+* **Default write behavior**: read and write access to the current working directory and its subdirectories, any directories you've added with `--add-dir`, `/add-dir`, or [`permissions.additionalDirectories`](https://code.claude.com/docs/en/settings-reference#permissions-additionaldirectories), plus the session temp directory that `$TMPDIR` points to
 * **Default read behavior**: read access to the entire computer, except certain denied directories. Note that this default still allows reading credential files such as `~/.aws/credentials` and `~/.ssh/`. Use [`sandbox.credentials`](#protect-credentials) to block reads of these files and unset secret environment variables, or add the paths to `denyRead`.
 * **Blocked access**: cannot modify files outside the working directory, added directories, and session temp directory without explicit permission, including shell configuration files such as `~/.bashrc` and system binaries in `/bin/`
 * **Git worktrees**: when the working directory is a [linked git worktree](https://code.claude.com/docs/en/worktrees), the sandbox also allows writes to the main repository's shared `.git` directory so commands such as `git commit` can update refs and the index. Writes to `hooks/` and `config` inside that directory remain denied.
