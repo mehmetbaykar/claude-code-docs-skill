@@ -139,8 +139,8 @@
       "title": "Modifying system prompts"
     },
     "agent-sdk__observability.md": {
-      "hash": "658c18895d1fd78c1371d46cf2160974779d8720a4c7a7f60ce64500e346714c",
-      "last_updated": "2026-08-31T14:05:01+00:00",
+      "hash": "715c919c01b47b4fda3306b564be90ceaf5e7ac139803a03f3048fcf15404aa9",
+      "last_updated": "2026-08-31T20:52:59+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/observability",
       "path": "/docs/en/agent-sdk/observability",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/observability.md",
@@ -256,8 +256,8 @@
       "title": "Get structured output from agents"
     },
     "agent-sdk__subagents.md": {
-      "hash": "1ac86beca947c972c484d4782069f6683fdb865b200b9009f07dd27b77c5fe9a",
-      "last_updated": "2026-08-31T14:05:07+00:00",
+      "hash": "fede78d536b4264dd223c1de8f48ac6a30a7579fb694753deeecfedcb09ea803",
+      "last_updated": "2026-08-31T20:53:04+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/subagents",
       "path": "/docs/en/agent-sdk/subagents",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/subagents.md",
@@ -319,8 +319,8 @@
       "title": "Handle approvals and user input"
     },
     "agent-teams.md": {
-      "hash": "6aca0fae8116dfbd5abc430f46967a0474163fa853f590ffc653e56ea9b4bca6",
-      "last_updated": "2026-08-31T14:05:12+00:00",
+      "hash": "a831eb710dbcb005835d21b635c8bbc1a73770e4c01cc8e9548edead5dfd21d0",
+      "last_updated": "2026-08-31T20:53:07+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-teams",
       "path": "/docs/en/agent-teams",
       "source_url": "https://code.claude.com/docs/en/agent-teams.md",
@@ -409,8 +409,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "3398d0790f5c3b30f9b6fd764a807c53cd8bd91dec37468c386684ce306ee1e8",
-      "last_updated": "2026-08-29T01:47:35+00:00",
+      "hash": "94e3a07be3e1f6742d705b969e8d3344c50aa26f7f522e4614e91eac0322dc9a",
+      "last_updated": "2026-08-31T20:53:12+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -463,8 +463,8 @@
       "title": "Claude apps gateway configuration"
     },
     "claude-apps-gateway-deploy.md": {
-      "hash": "a5fba1cacda02e932988167ce4c1f149875258fe55584c9a965542e7ba757f72",
-      "last_updated": "2026-08-31T14:05:22+00:00",
+      "hash": "fc5c0759d5e34466fc15a62a01865b96ae612a7ac462244c28796b9b452d7871",
+      "last_updated": "2026-08-31T20:53:15+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-deploy",
       "path": "/docs/en/claude-apps-gateway-deploy",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-deploy.md",
@@ -751,8 +751,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "ab230c8e7d9862ec14c22083f843d1aa6c5f968c1ff673a64063858a3e77b109",
-      "last_updated": "2026-08-31T14:05:53+00:00",
+      "hash": "1a2e3414a3843c99ce07a80d5e0a4874358689b9b79501d61bdc3bf5d5da5e1f",
+      "last_updated": "2026-08-31T20:53:29+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -805,8 +805,8 @@
       "title": "Fullscreen rendering"
     },
     "gateways.md": {
-      "hash": "d17b1de7e787d347de320a7b13ff563f3c0fb19ae71188f1536895d34c7074ae",
-      "last_updated": "2026-08-31T14:05:56+00:00",
+      "hash": "04e3994c4079578a1abbcaa45e29a6de036f7697b70606e4cec74f4866fbc2ab",
+      "last_updated": "2026-08-31T20:53:31+00:00",
       "original_url": "https://code.claude.com/docs/en/gateways",
       "path": "/docs/en/gateways",
       "source_url": "https://code.claude.com/docs/en/gateways.md",
@@ -895,8 +895,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "85d1ab042134b15bc250499c6f5f0b7b3591db7201c5230452c7ff9c7d490eeb",
-      "last_updated": "2026-08-31T05:47:18+00:00",
+      "hash": "1e9b9fc73f696a564cb4e7cdf6248eccab942eaf6280505ff977f7788e52f8f7",
+      "last_updated": "2026-08-31T20:53:36+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -1066,8 +1066,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "7b3ccdf5babfa81faa3c0a7973e7a29af5531f61465010cab6394849372cf54b",
-      "last_updated": "2026-08-31T14:06:23+00:00",
+      "hash": "e64d4874e6728c28fb49edec0848bf8b52271935c1373b5940fc3df486ff5393",
+      "last_updated": "2026-08-31T20:53:47+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -1417,8 +1417,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "c76721f6035f9ab1a6a19f30b8ea2f4a6f85b5326748e5fbcd0e727f929a0b6c",
-      "last_updated": "2026-08-31T14:06:55+00:00",
+      "hash": "bb2f03cb2de3300d197f22d79d9b0824ce25b602c94a5d938e5b5b5cad7c3eb7",
+      "last_updated": "2026-08-31T20:54:05+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1746,7 +1746,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-31T14:07:07+00:00",
+  "last_updated": "2026-08-31T20:54:23+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
