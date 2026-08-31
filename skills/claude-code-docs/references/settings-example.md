@@ -59,7 +59,7 @@ The same file with a comment above each key. Read it here; copy from the other t
     {
       // Start every session on Sonnet 5
       "model": "claude-sonnet-5",
-      // Reason more deeply than the default high level; /effort saves a new level, and --effort overrides it for one session
+      // Reason more deeply than the default high level on models without a saved level; /effort saves a level per model, and --effort sets one for a single session
       "effortLevel": "xhigh",
       // Vim keybindings in the prompt
       "editorMode": "vim",

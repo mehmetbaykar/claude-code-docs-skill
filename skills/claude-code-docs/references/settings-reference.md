@@ -79,7 +79,7 @@ Every key below links to its entry. Scope lists the [files](https://code.claude.
 | [`disableSkillShellExecution`](#disableskillshellexecution)                                     | Stop [skills](https://code.claude.com/docs/en/skills) and custom commands from running inline shell                                                                                                                                                     | Plugins and skills                 | Any file                |
 | [`disableWorkflows`](#disableworkflows)                                                         | Turn [dynamic workflows](https://code.claude.com/docs/en/workflows) off for everyone; use `enableWorkflows` for yourself                                                                                                                                | Hooks and automation               | Any file                |
 | [`editorMode`](#editormode)                                                                     | Use [vim key bindings](https://code.claude.com/docs/en/interactive-mode#vim-editor-mode) in the input prompt                                                                                                                                            | Interface and terminal             | Any file                |
-| [`effortLevel`](#effortlevel)                                                                   | Save the [`/effort` level](https://code.claude.com/docs/en/model-config#adjust-effort-level) so future sessions reason more or less deeply                                                                                                              | Model and responses                | Any file                |
+| [`effortLevel`](#effortlevel)                                                                   | Set a default [effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) for models without a saved level of their own                                                                                                            | Model and responses                | Any file                |
 | [`emojiCompletionEnabled`](#emojicompletionenabled)                                             | Turn off [`:shortcode:` emoji suggestions and replacement](https://code.claude.com/docs/en/interactive-mode#emoji-shortcodes) in the prompt input                                                                                                       | Interface and terminal             | Any file                |
 | [`enableAllProjectMcpServers`](#enableallprojectmcpservers)                                     | Approve every server in project [`.mcp.json`](https://code.claude.com/docs/en/mcp#project-server-approvals-and-workspace-trust) files without a prompt                                                                                                  | MCP                                | Any file                |
 | [`enableArtifact`](#enableartifact)                                                             | Turn the [Artifact tool](https://code.claude.com/docs/en/artifacts) off with a `false` in any file; no file can turn it back on                                                                                                                         | Remote, desktop, and notifications | Any file                |
@@ -117,6 +117,7 @@ Every key below links to its entry. Scope lists the [files](https://code.claude.
 | [`modelOverrides`](#modeloverrides)                                                             | [Map model IDs](https://code.claude.com/docs/en/model-config#override-model-ids-per-version) to your provider's IDs, such as Bedrock ARNs                                                                                                               | Model and responses                | Any file                |
 | [`modelPicker`](#modelpicker)                                                                   | Choose which models the [`/model` picker](https://code.claude.com/docs/en/model-config#available-models) lists, in your own order and with your own labels                                                                                              | Model and responses                | User or managed         |
 | [`modelPricing`](#modelpricing)                                                                 | Report spend at your organization's contracted rates instead of list price                                                                                                                                                  | Model and responses                | Managed                 |
+| [`modelSettings`](#modelsettings)                                                               | Keep a saved [effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) per model, which Claude Code writes when you run `/effort`                                                                                                | Model and responses                | Any file                |
 | [`otelHeadersHelper`](#otelheadershelper)                                                       | Generate rotating [OpenTelemetry](https://code.claude.com/docs/en/monitoring-usage#dynamic-headers) headers with your own command                                                                                                                       | Authentication and providers       | Any file                |
 | [`outputStyle`](#outputstyle)                                                                   | Change Claude's role, tone, and output format with an [output style](https://code.claude.com/docs/en/output-styles)                                                                                                                                     | Model and responses                | Any file                |
 | [`parentSettingsBehavior`](#parentsettingsbehavior)                                             | Apply or drop restrictions an [SDK or IDE host](https://code.claude.com/docs/en/managed-settings#let-an-embedding-host-add-policy) passes when you deploy [managed settings](https://code.claude.com/docs/en/managed-settings)                                                      | Enterprise and managed settings    | Managed                 |
@@ -297,7 +298,9 @@ See [Restrict model selection](https://code.claude.com/docs/en/model-config#rest
 
 ### `effortLevel`
 
-Keep an [effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) across sessions. Lower levels are faster and cheaper on straightforward tasks, and higher levels reason more deeply on complex problems. Claude Code writes this key to your user settings when you run `/effort low`, `medium`, `high`, or `xhigh` in an interactive session on your machine. In a `-p` run, the Agent SDK, or a session attached to a remote worker, `/effort` applies to that session only. The message `/effort` prints says which happened.
+Set a default [effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) for models you haven't saved a level for. Lower levels are faster and cheaper on straightforward tasks, and higher levels reason more deeply on complex problems.
+
+When you run `/effort low`, `medium`, `high`, or `xhigh` in an interactive session on your machine, Claude Code saves the level for the active model under [`modelSettings`](#modelsettings) rather than writing this key. Within the same settings file, Claude Code uses a model's saved level rather than this key; [`modelSettings`](#modelsettings) states the cross-file precedence. In a `-p` run, the Agent SDK, or a session attached to a remote worker, `/effort` applies to that session only. The message that `/effort` prints says which happened. Before v2.1.251, `/effort` wrote this key.
 
 * **Scope**: [`Any file`](#scopes)
 * **Type**: string, one of:
@@ -313,7 +316,7 @@ Keep an [effort level](https://code.claude.com/docs/en/model-config#adjust-effor
 }
 ```
 
-On Opus 4.7, Opus 4.8, and Fable 5, Claude Code holds that model's default effort until you change effort once with `/effort`, `--effort`, or the `/model` picker. After that, it reads this key. See [Adjust effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level).
+On Opus 4.7, Opus 4.8, and Fable 5, Claude Code holds that model's default effort, organization-set or built-in, until you change effort once, for example with an interactive `/effort`, the `/model` picker's effort slider, or `--effort` at launch. After that, Claude Code resolves effort by the precedence stated at [`modelSettings`](#modelsettings). See [Adjust effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level).
 
 ### `enforceAvailableModels`
 
@@ -525,6 +528,31 @@ Claude Code decides which models a row applies to from the row's key:
 * **Any other key**: a key that isn't a built-in model's ID, such as a gateway model alias. Claude Code applies the row to that one ID only. When a model ID matches one of your keys exactly and also falls under a row keyed by a built-in model's ID, Claude Code uses the exact match.
 * **A Bedrock application inference profile**: once Claude Code has resolved the profile to the model it routes to, through your [`modelOverrides`](#modeloverrides) map or the [`bedrock:GetInferenceProfile` lookup](https://code.claude.com/docs/en/amazon-bedrock#iam-configuration), Claude Code applies that model's row to the profile.
 
+### `modelSettings`
+
+Requires Claude Code v2.1.251 or later. Save an [effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) for each model you use. In an interactive session on your machine, when you run `/effort low`, `medium`, `high`, or `xhigh` or move the `/model` picker's effort slider, Claude Code saves that level here under the model you're using, so you rarely edit this key yourself. The [`effortLevel`](#effortlevel) entry lists the sessions in which `/effort` applies to that session only. Edit the key by hand to change or remove a level you saved.
+
+A model's entry here takes precedence over [`effortLevel`](#effortlevel) in the same settings file. Across files, Claude Code resolves each model separately: the highest-precedence [settings file](https://code.claude.com/docs/en/settings#settings-precedence) that sets either that model's entry or `effortLevel` decides, so an `effortLevel` in managed settings outranks a level you saved in user settings. [Adjust effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) lists what else can override a saved level, such as `--effort` at launch.
+
+* **Scope**: [`Any file`](#scopes)
+* **Type**: object mapping a model name to an object with an `effortLevel` field, one of `"low"`, `"medium"`, `"high"`, or `"xhigh"`
+* **Default**: unset
+
+Claude Code writes each entry under the model's canonical name, such as `claude-opus-5`, and matches that model's alias, date-suffixed, `[1m]`, and recognized provider-specific IDs to the same entry.
+
+This example keeps Opus 5 at `medium` while other models use their own saved or default levels:
+```json settings.json
+{
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "medium"
+    }
+  }
+}
+```
+
+Run `/effort auto` to clear your saved level for the model you're using. Claude Code leaves the other entries and any top-level `effortLevel` in place.
+
 ### `outputStyle`
 
 Select an [output style](https://code.claude.com/docs/en/output-styles) by name. An output style is a saved set of instructions that Claude Code adds to the system prompt to change Claude's role, tone, and output format, such as the built-in Explanatory and Learning styles or one you wrote yourself.
@@ -633,7 +661,7 @@ Start sessions with [ultracode](https://code.claude.com/docs/en/workflows#let-cl
 }
 ```
 
-Ultracode runs the session at `xhigh` effort and takes precedence over `effortLevel`. An Agent SDK `apply_flag_settings` control request also accepts the key.
+Ultracode runs the session at `xhigh` effort and takes precedence over `effortLevel` and [`modelSettings`](#modelsettings) entries. An Agent SDK `apply_flag_settings` control request also accepts the key.
 
 ## Permission settings
 
@@ -941,7 +969,7 @@ This turns the sandbox on, skips permission prompts for sandboxed commands, runs
 }
 ```
 
-Claude Code takes a Boolean key's value from the highest-precedence settings file that sets it, so a managed `enabled` or `failIfUnavailable` overrides anything a developer sets. It merges array keys across every settings file the session loads, so a developer can append entries; see [Keep developers from widening the policy](https://code.claude.com/docs/en/sandboxing#keep-developers-from-widening-the-policy) for the managed-only locks. To require the sandbox for an organization, see [Enforce sandboxing with managed settings](https://code.claude.com/docs/en/sandboxing#enforce-sandboxing-with-managed-settings).
+Claude Code takes a Boolean key's value from the highest-precedence settings scope that sets it, so a managed `enabled` or `failIfUnavailable` overrides anything a developer sets. It merges array keys across every settings scope the session loads, so a developer can append entries; see [Keep developers from widening the policy](https://code.claude.com/docs/en/sandboxing#keep-developers-from-widening-the-policy) for the managed-only locks. To require the sandbox for an organization, see [Enforce sandboxing with managed settings](https://code.claude.com/docs/en/sandboxing#enforce-sandboxing-with-managed-settings).
 
 ### `sandbox.enabled`
 
@@ -1021,7 +1049,7 @@ Name commands that Claude Code always runs outside the sandbox, such as tools th
 }
 ```
 
-Excluded commands still go through the regular permission flow. Exclusion is a convenience, not a security boundary: prefer [`filesystem.allowWrite`](#sandbox-filesystem-allowwrite) when a tool only needs to write somewhere specific. Claude Code merges entries across every settings file the session loads, and there is no managed-only lock for this list, so keep a managed list narrow.
+Excluded commands still go through the regular permission flow. Exclusion is a convenience, not a security boundary: prefer [`filesystem.allowWrite`](#sandbox-filesystem-allowwrite) when a tool only needs to write somewhere specific. Claude Code merges entries across every settings scope the session loads, and there is no managed-only lock for this list, so keep a managed list narrow.
 
 ### `sandbox.allowUnsandboxedCommands`
 
@@ -1109,7 +1137,7 @@ This lets a build write under `/tmp/build` and lets `kubectl` update your kubeco
 }
 ```
 
-Claude Code merges entries across every settings file the session loads: user, project, local, and managed paths combine rather than replace each other, and Claude Code adds the paths from your `Edit(...)` allow permission rules. An `allowWrite` entry can't lift a [protected path](https://code.claude.com/docs/en/sandboxing#protected-paths).
+Claude Code merges entries across every settings scope the session loads: user, project, local, and managed paths combine rather than replace each other, and Claude Code adds the paths from your `Edit(...)` allow permission rules. An `allowWrite` entry can't lift a [protected path](https://code.claude.com/docs/en/sandboxing#protected-paths).
 
 ### `sandbox.filesystem.denyWrite`
 
@@ -1130,7 +1158,7 @@ This keeps sandboxed commands from changing system configuration or installing b
 }
 ```
 
-Claude Code merges entries across every settings file the session loads, and adds the paths from your `Edit(...)` deny permission rules.
+Claude Code merges entries across every settings scope the session loads, and adds the paths from your `Edit(...)` deny permission rules.
 
 ### `sandbox.filesystem.denyRead`
 
@@ -1149,7 +1177,7 @@ Block sandboxed commands from reading specific paths, such as credential files t
 }
 ```
 
-Claude Code merges entries across every settings file the session loads, and adds the paths from your `Read(...)` deny permission rules. When [`filesystem.disabled`](#sandbox-filesystem-disabled) is `true`, Claude Code doesn't enforce these entries.
+Claude Code merges entries across every settings scope the session loads, and adds the paths from your `Read(...)` deny permission rules. When [`filesystem.disabled`](#sandbox-filesystem-disabled) is `true`, Claude Code doesn't enforce these entries.
 
 ### `sandbox.filesystem.allowRead`
 
@@ -1175,12 +1203,12 @@ Place a `.` entry in project settings: it resolves to the project root there and
 
 ### `sandbox.filesystem.allowManagedReadPathsOnly`
 
-Honor only the [`allowRead`](#sandbox-filesystem-allowread) entries that come from managed settings, so developers can't re-open read access to paths your organization blocked. Claude Code still merges `denyRead` entries from every settings file the session loads.
+Honor only the [`allowRead`](#sandbox-filesystem-allowread) entries that come from managed settings, so developers can't re-open read access to paths your organization blocked. Claude Code still merges `denyRead` entries from every settings scope the session loads.
 
 * **Scope**: [`Managed`](#scopes)
 * **Type**: Boolean
 * `true`: Claude Code honors only the `allowRead` entries from managed settings
-* `false`: `allowRead` entries merge from every settings file the session loads
+* `false`: `allowRead` entries merge from every settings scope the session loads
 * **Default**: `false`
 
 This blocks reads of the home directory, re-opens `~/work`, and stops developers from re-opening anything else:
@@ -2874,8 +2902,8 @@ Restrict hook execution to hooks your organization deploys.
 * **Scope**: [`Managed`](#scopes)
 * **Type**: Boolean
 * `true`: only managed hooks run, plus Agent SDK hooks and hooks from plugins your managed settings force-enable. See [What runs under `allowManagedHooksOnly`](#what-runs-under-allowmanagedhooksonly)
-* `false`: hooks from every settings file and plugin run
-* **Default**: unset, so hooks from every settings file and plugin run
+* `false`: hooks from every settings scope and plugin run
+* **Default**: unset, so hooks from every settings scope and plugin run
 ```json managed-settings.json
 {
   "allowManagedHooksOnly": true
@@ -3617,13 +3645,13 @@ A [`deniedMcpServers`](#deniedmcpservers) entry takes precedence, so a server on
 
 ### `allowManagedMcpServersOnly`
 
-Make the managed allowlist the only one that applies. Claude Code then reads [`allowedMcpServers`](#allowedmcpservers) from managed settings alone and ignores allowlists in user, project, and local settings; [`deniedMcpServers`](#deniedmcpservers) still merges from every file, so users can still block servers for themselves. Administrators set it so a user's own settings can't broaden what the managed allowlist permits.
+Make the managed allowlist the only one that applies. Claude Code then reads [`allowedMcpServers`](#allowedmcpservers) from managed settings alone and ignores allowlists in user, project, and local settings; [`deniedMcpServers`](#deniedmcpservers) still merges from every settings scope, so users can still block servers for themselves. Administrators set it so a user's own settings can't broaden what the managed allowlist permits.
 
 * **Scope**: [`Managed`](#scopes)
 * **Type**: Boolean
 * `true`: Claude Code reads `allowedMcpServers` from managed settings alone and ignores allowlists in user, project, and local settings
-* `false`: allowlists from every settings file merge
-* **Default**: `false`, so allowlists from every settings file merge
+* `false`: allowlists from every settings scope merge
+* **Default**: `false`, so allowlists from every settings scope merge
 
 This example locks the allowlist to managed settings and allows only the server named `github`:
 ```json managed-settings.json
@@ -4177,7 +4205,15 @@ Run your own command to produce the credential Claude Code sends with model requ
 }
 ```
 
-Claude Code caches the value and reruns the command after the interval you set with [`CLAUDE_CODE_API_KEY_HELPER_TTL_MS`](https://code.claude.com/docs/en/env-vars). In interactive sessions, when the command comes from project or local settings, Claude Code doesn't run it until you accept the workspace trust prompt. See [Credential management](https://code.claude.com/docs/en/authentication#credential-management).
+Claude Code caches the value and reruns the command in these cases:
+
+* After the cache lifetime, five minutes by default or the interval you set with [`CLAUDE_CODE_API_KEY_HELPER_TTL_MS`](https://code.claude.com/docs/en/env-vars).
+* When a request to the Anthropic API, directly or through an [LLM gateway](https://code.claude.com/docs/en/llm-gateway), fails with `401` or `403`.
+* Before sending a request to the Anthropic API, directly or through an LLM gateway, when the cached output is a JWT that expired after the helper produced it. Requires Claude Code v2.1.246 or later.
+
+The last two cases apply only when the helper's output is the credential Claude Code sends and `ANTHROPIC_AUTH_TOKEN` isn't set.
+
+In interactive sessions, when the command comes from project or local settings, Claude Code doesn't run it until you accept the workspace trust prompt. See [Credential management](https://code.claude.com/docs/en/authentication#credential-management).
 
 ### `awsAuthRefresh`
 
