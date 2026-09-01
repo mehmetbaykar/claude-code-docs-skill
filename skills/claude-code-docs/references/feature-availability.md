@@ -101,7 +101,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
     **Partial support:**
 
 * [Desktop](https://code.claude.com/docs/en/desktop): only via [Claude Desktop on 3P](https://claude.com/docs/third-party/claude-desktop/overview)
-* [Auto mode](https://code.claude.com/docs/en/auto-mode-config): Sonnet 5, Opus 4.7 or later, and Fable 5 only
+* [Auto mode](https://code.claude.com/docs/en/auto-mode-config): Sonnet 5, Opus 4.7 or later, and Fable models only
 * [Cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging): between your sessions on this machine only <sup>[5](#fn5)</sup>
 * [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention): subject to your AWS agreement
 
@@ -131,7 +131,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 
 * [Desktop](https://code.claude.com/docs/en/desktop): via [managed settings](https://claude.com/docs/third-party/claude-desktop/configuration) or [Claude Desktop on 3P](https://claude.com/docs/third-party/claude-desktop/overview)
 * [Web search](https://code.claude.com/docs/en/tools-reference#websearch-tool-behavior): Claude 4 models and later
-* [Auto mode](https://code.claude.com/docs/en/auto-mode-config): Sonnet 5, Opus 4.7 or later, and Fable 5 only
+* [Auto mode](https://code.claude.com/docs/en/auto-mode-config): Sonnet 5, Opus 4.7 or later, and Fable models only
 * [Cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging): between your sessions on this machine only <sup>[5](#fn5)</sup>
 * [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention): subject to your Google Cloud agreement
 
@@ -147,7 +147,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 
 * [Desktop](https://code.claude.com/docs/en/desktop): only via [Claude Desktop on 3P](https://claude.com/docs/third-party/claude-desktop/overview)
 * [Web search](https://code.claude.com/docs/en/tools-reference#websearch-tool-behavior): [deployments hosted on Anthropic](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#hosting-options) only
-* [Auto mode](https://code.claude.com/docs/en/auto-mode-config): Sonnet 5, Opus 4.7 or later, and Fable 5 only
+* [Auto mode](https://code.claude.com/docs/en/auto-mode-config): Sonnet 5, Opus 4.7 or later, and Fable models only
 * [Cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging): between your sessions on this machine only <sup>[5](#fn5)</sup>
 * [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention): subject to your Azure agreement
 
