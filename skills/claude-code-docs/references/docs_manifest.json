@@ -256,8 +256,8 @@
       "title": "Get structured output from agents"
     },
     "agent-sdk__subagents.md": {
-      "hash": "fede78d536b4264dd223c1de8f48ac6a30a7579fb694753deeecfedcb09ea803",
-      "last_updated": "2026-08-31T20:53:04+00:00",
+      "hash": "3d2c080fe25a9ac923599dac9fd771bea637b47e8523f0cb101f3f89f68ac552",
+      "last_updated": "2026-09-01T00:40:44+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/subagents",
       "path": "/docs/en/agent-sdk/subagents",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/subagents.md",
@@ -1746,7 +1746,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-08-31T20:54:23+00:00",
+  "last_updated": "2026-09-01T00:42:22+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
