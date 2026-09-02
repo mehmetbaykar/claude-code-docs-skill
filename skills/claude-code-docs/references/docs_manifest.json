@@ -679,8 +679,8 @@
       "title": "Launch sessions from links"
     },
     "desktop-ios-simulator.md": {
-      "hash": "ccd7bbaf51803f274d8d03f4fe42f3460bafe40f2cd4d6c321b6f5444093dc29",
-      "last_updated": "2026-08-12T03:01:08+00:00",
+      "hash": "64c3993ba0620785dddf73e012fe5d5fd76eb7eefe709f525d38e3fce524a096",
+      "last_updated": "2026-09-02T11:29:31+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-ios-simulator",
       "path": "/docs/en/desktop-ios-simulator",
       "source_url": "https://code.claude.com/docs/en/desktop-ios-simulator.md",
@@ -1746,7 +1746,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-02T04:46:24+00:00",
+  "last_updated": "2026-09-02T11:30:51+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
