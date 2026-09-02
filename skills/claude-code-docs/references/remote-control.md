@@ -110,7 +110,7 @@ The `--verbose`, `--sandbox`, and `--no-sandbox` flags are not available with th
 
 **VS Code**
 
-In the [Claude Code VS Code extension](https://code.claude.com/docs/en/vs-code), type `/remote-control` or `/rc` in the prompt box, or open the command menu with `/` and select it.
+In the [Claude Code VS Code extension](https://code.claude.com/docs/en/vs-code), type `/remote-control` or `/rc` in the prompt box.
 ```text
     /remote-control
 ```

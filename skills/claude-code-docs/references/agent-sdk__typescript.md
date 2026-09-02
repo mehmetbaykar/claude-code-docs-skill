@@ -183,13 +183,19 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
       ? 'low' | 'medium' | 'high' | 'xhigh' | 'max' | null
       : Settings[K] | null;
   }): Promise<void>;
+  updateSettings(
+    source: 'localSettings',
+    settings: Record<string, unknown>,
+  ): Promise<void>;
   initializationResult(): Promise<SDKControlInitializeResponse>;
   reinitialize(): Promise<SDKControlInitializeResponse>;
   supportedCommands(): Promise<SlashCommand[]>;
   supportedModels(): Promise<ModelInfo[]>;
   supportedAgents(): Promise<AgentInfo[]>;
   mcpServerStatus(): Promise<McpServerStatus[]>;
-  getContextUsage(): Promise<SDKControlGetContextUsageResponse>;
+  getContextUsage(opts?: {
+    detail?: 'summary' | 'full';
+  }): Promise<SDKControlGetContextUsageResponse>;
   readFile(
     path: string,
     options?: { maxBytes?: number; encoding?: 'utf-8' | 'base64' }
@@ -2589,6 +2595,7 @@ type AccountInfo = {
 type ModelUsage = {
   inputTokens: number;
   outputTokens: number;
+  thinkingTokens?: number;
   cacheReadInputTokens: number;
   cacheCreationInputTokens: number;
   webSearchRequests: number;
@@ -2623,6 +2630,7 @@ type Usage = {
   speed: "standard" | "fast" | null;
   inference_geo: string | null;
   iterations: BetaIterationsUsage | null;
+  output_tokens_details: BetaOutputTokensDetails | null;
 };
 ```
 ```typescript
@@ -2633,6 +2641,17 @@ type CallToolResult = {
   }>;
   structuredContent?: Record<string, unknown>;
   isError?: boolean;
+};
+```
+```typescript
+type SDKMcpResourceLink = {
+  uri: string;
+  name: string;
+  title?: string;
+  description?: string;
+  mimeType?: string;
+  size?: number;
+  annotations?: Record<string, unknown>;
 };
 ```
 ```typescript
@@ -2718,6 +2737,7 @@ type SDKTaskNotificationMessage = {
     tool_uses: number;
     duration_ms: number;
   };
+  resource_links?: SDKMcpResourceLink[];
   uuid: UUID;
   session_id: string;
 };
