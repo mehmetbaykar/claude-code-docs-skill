@@ -409,8 +409,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "6731aa4d4511a76cdbb102137c1ba90bae5e08864c43fbd0d1d0b95b1f51343a",
-      "last_updated": "2026-09-04T04:43:40+00:00",
+      "hash": "703758d92a549af94b3a7da11409572a90de8c0b4cce9dfec5f4c989307502ef",
+      "last_updated": "2026-09-04T20:51:21+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -580,8 +580,8 @@
       "title": "Code Review"
     },
     "commands.md": {
-      "hash": "dad1bbba998a53ecc0f6a0f25de6972777573e409d3f078d2841f326c1192180",
-      "last_updated": "2026-09-01T18:40:34+00:00",
+      "hash": "c5f15130c3cf8654583bb2059f0b99a225a55de87175fc8483557d4125f71b88",
+      "last_updated": "2026-09-04T20:51:34+00:00",
       "original_url": "https://code.claude.com/docs/en/commands",
       "path": "/docs/en/commands",
       "source_url": "https://code.claude.com/docs/en/commands.md",
@@ -796,8 +796,8 @@
       "title": "Extend Claude Code"
     },
     "fullscreen.md": {
-      "hash": "4c3da8b487f704271de2ec2c0fba3e292fba79b6ea8d0c8cba6d8f6693acc6ec",
-      "last_updated": "2026-09-04T16:29:18+00:00",
+      "hash": "dc93d7074653ac26fbac96257d73fd2c0eadfb1b1cc7cfab2eff876969e8a523",
+      "last_updated": "2026-09-04T20:51:53+00:00",
       "original_url": "https://code.claude.com/docs/en/fullscreen",
       "path": "/docs/en/fullscreen",
       "source_url": "https://code.claude.com/docs/en/fullscreen.md",
@@ -913,8 +913,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "bda0d7693f4b1225844009d8a42a648d4ae6c016f03d9a328f51fb6c85fc1ba3",
-      "last_updated": "2026-09-04T16:30:05+00:00",
+      "hash": "c0a15e02b5aec3dc6d9832ed4f2947b32f317a9d12ad95f7143341f9e6ac5ab6",
+      "last_updated": "2026-09-04T20:52:02+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -931,8 +931,8 @@
       "title": "JetBrains IDEs"
     },
     "keybindings.md": {
-      "hash": "128c58af6f3b0c52d8dd5b6e20fa383e08e9588184166190f51bab3379342690",
-      "last_updated": "2026-09-04T16:30:07+00:00",
+      "hash": "1078260a76b523c07e49eaf2adb0679be88eaf5dbb09737022296206f9b93eff",
+      "last_updated": "2026-09-04T20:52:03+00:00",
       "original_url": "https://code.claude.com/docs/en/keybindings",
       "path": "/docs/en/keybindings",
       "source_url": "https://code.claude.com/docs/en/keybindings.md",
@@ -1746,7 +1746,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-04T16:33:32+00:00",
+  "last_updated": "2026-09-04T20:53:03+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
