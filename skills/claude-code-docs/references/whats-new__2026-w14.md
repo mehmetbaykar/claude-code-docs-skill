@@ -8,7 +8,7 @@ path: /docs/en/whats-new/2026-w14
 
 > Computer use in the CLI, interactive in-product lessons, flicker-free rendering, per-tool MCP result-size overrides, and plugin executables on PATH.
 
-Releases [v2.1.86 → v2.1.91](https://code.claude.com/docs/docs/en/changelog#2-1-86)
+Releases [v2.1.86 → v2.1.91](https://code.claude.com/docs/en/changelog#2-1-86)
 5 features · March 30 – April 3
 
 Computer use in the CLI
@@ -28,7 +28,7 @@ Requires macOS and a Pro or Max plan; otherwise, `computer-use` won't appear in 
   Open the iOS simulator, tap through onboarding, and screenshot each step
 ```
 
-[Computer use guide](https://code.claude.com/docs/docs/en/computer-use)
+[Computer use guide](https://code.claude.com/docs/en/computer-use)
 
     /powerup
 v2.1.90
@@ -47,7 +47,7 @@ Run it:
   /powerup
 ```
 
-[Commands reference](https://code.claude.com/docs/docs/en/commands)
+[Commands reference](https://code.claude.com/docs/en/commands)
 
 Flicker-free rendering
 v2.1.89
@@ -67,7 +67,7 @@ Set the env var and restart Claude Code:
   claude
 ```
 
-[Fullscreen rendering](https://code.claude.com/docs/docs/en/fullscreen)
+[Fullscreen rendering](https://code.claude.com/docs/en/fullscreen)
 
 MCP result-size override
 v2.1.91
@@ -86,7 +86,7 @@ Annotate the tool in your server's `tools/list` response:
   }
 ```
 
-[MCP reference](https://code.claude.com/docs/docs/en/mcp#raise-the-limit-for-a-specific-tool)
+[MCP reference](https://code.claude.com/docs/en/mcp#raise-the-limit-for-a-specific-tool)
 
 Plugin executables on PATH
 v2.1.91
@@ -103,7 +103,7 @@ Add a `bin/` directory at the plugin root:
       └── my-tool
 ```
 
-[Plugins reference](https://code.claude.com/docs/docs/en/plugins-reference#file-locations-reference)
+[Plugins reference](https://code.claude.com/docs/en/plugins-reference#file-locations-reference)
 
 Other wins
 

@@ -8,7 +8,7 @@ path: /docs/en/whats-new/2026-w15
 
 > Ultraplan cloud planning, the Monitor tool with self-pacing /loop, /team-onboarding for packaging your setup, and /autofix-pr from your terminal.
 
-Releases [v2.1.92 → v2.1.101](https://code.claude.com/docs/docs/en/changelog#2-1-92)
+Releases [v2.1.92 → v2.1.101](https://code.claude.com/docs/en/changelog#2-1-92)
 4 features · April 6–10
 
 Ultraplan
@@ -28,7 +28,7 @@ Run the command, or just include the keyword in any prompt:
   /ultraplan migrate the auth service from sessions to JWTs
 ```
 
-[Ultraplan guide](https://code.claude.com/docs/docs/en/ultraplan)
+[Ultraplan guide](https://code.claude.com/docs/en/ultraplan)
 
 Monitor tool
 v2.1.98
@@ -52,7 +52,7 @@ This pairs with `/loop`, which now self-paces: omit the interval and Claude sche
   /loop check CI on my PR
 ```
 
-[Monitor tool reference](https://code.claude.com/docs/docs/en/tools-reference#monitor-tool)
+[Monitor tool reference](https://code.claude.com/docs/en/tools-reference#monitor-tool)
 
     /autofix-pr
 CLI
@@ -71,7 +71,7 @@ Run it from the PR's branch:
   /autofix-pr
 ```
 
-[Auto-fix pull requests](https://code.claude.com/docs/docs/en/claude-code-on-the-web#auto-fix-pull-requests)
+[Auto-fix pull requests](https://code.claude.com/docs/en/claude-code-on-the-web#auto-fix-pull-requests)
 
     /team-onboarding
 v2.1.101
@@ -84,12 +84,12 @@ Run it from a project you've spent real time in:
   /team-onboarding
 ```
 
-[Commands reference](https://code.claude.com/docs/docs/en/commands)
+[Commands reference](https://code.claude.com/docs/en/commands)
 
 Other wins
 
 Focus view: press `Ctrl+O` in flicker-free mode to collapse the view to your last prompt, a one-line tool summary with diffstats, and Claude's final response
-Guided [Amazon Bedrock](https://code.claude.com/docs/docs/en/amazon-bedrock) and [Google Cloud's Agent Platform](https://code.claude.com/docs/docs/en/google-vertex-ai) setup wizards on the login screen: pick "3rd-party platform" for step-by-step auth, region, credential check, and model pinning
+Guided [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock) and [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai) setup wizards on the login screen: pick "3rd-party platform" for step-by-step auth, region, credential check, and model pinning
 `/agents` gets a tabbed layout: a Running tab shows live subagents with a `● N running` count, plus Run agent and View running instance actions in the Library tab
 Default effort level is now `high` for API-key, Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, Team, and Enterprise users (control with `/effort`)
 `/cost` shows a per-model and cache-hit breakdown for subscription users

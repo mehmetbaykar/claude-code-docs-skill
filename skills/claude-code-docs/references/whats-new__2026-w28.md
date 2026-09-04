@@ -8,7 +8,7 @@ path: /docs/en/whats-new/2026-w28
 
 > Browse external sites from the Desktop app's built-in browser, run a full setup checkup with /doctor, and pick up auto mode transcript protections and agent view upgrades.
 
-Releases [v2.1.202 → v2.1.206](https://code.claude.com/docs/docs/en/changelog#2-1-202)
+Releases [v2.1.202 → v2.1.206](https://code.claude.com/docs/en/changelog#2-1-202)
 2 features · July 6–10
 
 In-app browser on Desktop
@@ -23,7 +23,7 @@ Video: https://mintcdn.com/claude-code/x358isu_VzLnyTEN/images/whats-new/desktop
 
 
 
-[Browse external sites](https://code.claude.com/docs/docs/en/desktop#browse-external-sites)
+[Browse external sites](https://code.claude.com/docs/en/desktop#browse-external-sites)
 
     /doctor is a full setup checkup
 v2.1.205
@@ -36,7 +36,7 @@ Run a checkup from any session:
   > /doctor
 ```
 
-[All commands](https://code.claude.com/docs/docs/en/commands#all-commands)
+[All commands](https://code.claude.com/docs/en/commands#all-commands)
 
 Other wins
 

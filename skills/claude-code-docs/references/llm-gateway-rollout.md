@@ -11,7 +11,7 @@ path: /docs/en/llm-gateway-rollout
 This page walks an administrator through rolling out an LLM gateway for Claude Code. It assumes you have a gateway product deployed that meets the [gateway requirements](#gateway-requirements). Deploying or operating any specific product isn't covered here; deploy yours following its vendor's documentation.
 
 * To connect Claude Code on your own machine to an existing gateway, see [Connect Claude Code to an LLM gateway](https://code.claude.com/docs/en/llm-gateway-connect)
-* For what Claude Code sends to a gateway and what to forward, see the [gateway protocol reference](https://code.claude.com/docs/en/llm-gateway-protocol)
+* For what Claude Code sends to a gateway and what to forward, see the [gateway compatibility guide](https://code.claude.com/docs/en/llm-gateway-protocol)
 
 ## Prerequisites
 
@@ -259,12 +259,12 @@ After rollout, three kinds of change reach the gateway over time. Each has a sym
 | New Claude models become available                                           | Developers selecting a new model name get `404`; the `/model` picker doesn't list it                                                                       | Add the model name to the gateway's routing configuration, then re-run the [routing check](#confirm-the-gateway-routes-your-models). If you distribute `ANTHROPIC_MODEL` or the default-model variables, update the managed settings                     |
 | Credentials expire or need rotation                                          | All developer requests start failing with `401` from the upstream                                                                                          | Rotate the gateway's provider credential on its own schedule; developer keys rotate at the gateway, and an [`apiKeyHelper`](https://code.claude.com/docs/en/llm-gateway-connect#rotate-credentials-with-apikeyhelper) handles per-developer rotation without redistributing settings |
 
-When sizing per-key rate limits, account for the client [retrying transient failures](https://code.claude.com/docs/en/errors#automatic-retries), including `429` responses, up to 10 times with backoff, honoring `Retry-After`. Keep the [protocol reference](https://code.claude.com/docs/en/llm-gateway-protocol) as the contract for what each Claude Code release sends.
+When sizing per-key rate limits, account for the client [retrying transient failures](https://code.claude.com/docs/en/errors#automatic-retries), including `429` responses, up to 10 times with backoff, honoring `Retry-After`. Keep the [compatibility guide](https://code.claude.com/docs/en/llm-gateway-protocol) as the reference for what each Claude Code release sends.
 
 ## Related resources
 
 * [Connect Claude Code to an LLM gateway](https://code.claude.com/docs/en/llm-gateway-connect): the developer-facing setup steps, with per-surface configuration and a troubleshooting table you can hand to developers
-* [Gateway protocol reference](https://code.claude.com/docs/en/llm-gateway-protocol): the wire contract for gateway operators, covering endpoints, headers to forward, and the feature pass-through table
+* [Gateway compatibility guide](https://code.claude.com/docs/en/llm-gateway-protocol): the reference for gateway operators, covering endpoints, headers to forward, and the feature pass-through table
 * [Which value Claude Code uses](https://code.claude.com/docs/en/settings#which-value-claude-code-uses): how managed, project, and user settings combine
 * [Delivery mechanisms](https://code.claude.com/docs/en/managed-settings#delivery-mechanisms): where the managed file goes on each platform
 * [Set up Claude Code for your organization](https://code.claude.com/docs/en/admin-setup): the wider rollout this gateway is one part of, including policy enforcement, usage visibility, and data handling
