@@ -121,8 +121,8 @@
       "title": "Connect to external tools with MCP"
     },
     "agent-sdk__migration-guide.md": {
-      "hash": "5d2828cf6a2f1b6bef09a7db676d701dd69353cf5776f0af38430fca07079d2a",
-      "last_updated": "2026-08-29T01:47:23+00:00",
+      "hash": "c7f4d88ff2412696a238af1617cbd79abf16f8082145b05b12f0f58260c22764",
+      "last_updated": "2026-09-04T16:28:21+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/migration-guide",
       "path": "/docs/en/agent-sdk/migration-guide",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/migration-guide.md",
@@ -148,8 +148,8 @@
       "title": "Observability with OpenTelemetry"
     },
     "agent-sdk__overview.md": {
-      "hash": "6b1fcc5fbe53219b3027d7ff085bbc326f0a10abc510fbcd0eec16fff2b12dde",
-      "last_updated": "2026-08-29T10:13:43+00:00",
+      "hash": "885714c5d7c8af7948a35212897e54dea1cc8658504baa734be9e41a43014a7c",
+      "last_updated": "2026-09-04T16:28:23+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/overview",
       "path": "/docs/en/agent-sdk/overview",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/overview.md",
@@ -265,8 +265,8 @@
       "title": "Subagents in the SDK"
     },
     "agent-sdk__todo-tracking.md": {
-      "hash": "c717491a9fd9bdc1b5908d8b6f2ee6a2b1e21d6e86fcdcaa8c9cbb1678945e90",
-      "last_updated": "2026-08-29T01:47:29+00:00",
+      "hash": "905745a475421a25a9f7fcd2ffd3516457a1a3c9cdbb1c362ac3dae5417c4e43",
+      "last_updated": "2026-09-04T16:28:32+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/todo-tracking",
       "path": "/docs/en/agent-sdk/todo-tracking",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/todo-tracking.md",
@@ -283,13 +283,13 @@
       "title": "Scale to many tools with tool search"
     },
     "agent-sdk__troubleshooting.md": {
-      "hash": "5a3bd8e29ff0cdcb8fb7734088e37c849d9865d52f0d03f5933feab24c8035f5",
-      "last_updated": "2026-08-29T01:47:30+00:00",
+      "hash": "beb2fe0d496d4684f7f12a550ec8b0ba72b30baa62e6591bbee611176224b686",
+      "last_updated": "2026-09-04T16:28:33+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/troubleshooting",
       "path": "/docs/en/agent-sdk/troubleshooting",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/troubleshooting.md",
       "status": "live",
-      "title": "Troubleshooting"
+      "title": "Troubleshoot the Agent SDK"
     },
     "agent-sdk__typescript-v2-preview.md": {
       "hash": "a7ab6f319b508f931810c5e5a478438c2240c1254b587e688e858f3dfdf11153",
@@ -382,8 +382,8 @@
       "title": "Authentication"
     },
     "auto-mode-config.md": {
-      "hash": "5c17ca09ea9bc9d3b6d0b3ba9c64afc5aa89229927cec635269a5f9c44cd51dd",
-      "last_updated": "2026-08-28T15:30:05+00:00",
+      "hash": "de70ba7025a1058253bddc285e7d146805274fe114c1e6cc16e790ba389d693b",
+      "last_updated": "2026-09-04T16:28:42+00:00",
       "original_url": "https://code.claude.com/docs/en/auto-mode-config",
       "path": "/docs/en/auto-mode-config",
       "source_url": "https://code.claude.com/docs/en/auto-mode-config.md",
@@ -760,8 +760,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "6da68320a379a5aba3d2bd412e8dad959eac1243987c4074890aba3807855544",
-      "last_updated": "2026-09-04T04:44:08+00:00",
+      "hash": "56a75d40db6092185fb391b8c4ae3a2183ef4ece00f0dbb20dfbbffee43d71a4",
+      "last_updated": "2026-09-04T16:29:14+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -796,8 +796,8 @@
       "title": "Extend Claude Code"
     },
     "fullscreen.md": {
-      "hash": "be73a0b240b63320e51fda57b0faec18977985d9b73cf6dce71a94926e1a5e60",
-      "last_updated": "2026-08-22T04:01:19+00:00",
+      "hash": "4c3da8b487f704271de2ec2c0fba3e292fba79b6ea8d0c8cba6d8f6693acc6ec",
+      "last_updated": "2026-09-04T16:29:18+00:00",
       "original_url": "https://code.claude.com/docs/en/fullscreen",
       "path": "/docs/en/fullscreen",
       "source_url": "https://code.claude.com/docs/en/fullscreen.md",
@@ -913,8 +913,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "348c9c4e8042a51642029aff075d71e73e6700a8111183486343460fa54c3d1a",
-      "last_updated": "2026-09-03T04:41:32+00:00",
+      "hash": "bda0d7693f4b1225844009d8a42a648d4ae6c016f03d9a328f51fb6c85fc1ba3",
+      "last_updated": "2026-09-04T16:30:05+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -931,8 +931,8 @@
       "title": "JetBrains IDEs"
     },
     "keybindings.md": {
-      "hash": "16df68d88c85fc226878b646b12e60d19fc80a9257058e58330c813fec4306f8",
-      "last_updated": "2026-09-02T04:45:39+00:00",
+      "hash": "128c58af6f3b0c52d8dd5b6e20fa383e08e9588184166190f51bab3379342690",
+      "last_updated": "2026-09-04T16:30:07+00:00",
       "original_url": "https://code.claude.com/docs/en/keybindings",
       "path": "/docs/en/keybindings",
       "source_url": "https://code.claude.com/docs/en/keybindings.md",
@@ -1057,8 +1057,8 @@
       "title": "Claude Code on mobile"
     },
     "model-config.md": {
-      "hash": "41ad94c6c4f8b9abab6a53f9c1e23ed2ce235348da2fe6a31fefeb32208ad246",
-      "last_updated": "2026-09-03T04:41:37+00:00",
+      "hash": "d0e42f557daa6389dc6b6f4f6ac4e60f0b9db93aa8da336846d22b34172cb92e",
+      "last_updated": "2026-09-04T16:32:05+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -1102,8 +1102,8 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "32ab138b2c482a2fc5311278c02f7c3b343b985e5b5cc4fceb62b74e3080a537",
-      "last_updated": "2026-09-04T04:44:28+00:00",
+      "hash": "b2523175cd8b2276f3fb0197ca0b48ffe3e290af2482a5aeb4d2f2d914171148",
+      "last_updated": "2026-09-04T16:32:23+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "source_url": "https://code.claude.com/docs/en/permission-modes.md",
@@ -1372,8 +1372,8 @@
       "title": "Claude Code settings reference"
     },
     "settings.md": {
-      "hash": "ebcfb38797f10795b847fa8aa770489ec8d1f86e385082a39634bc9bf8a32443",
-      "last_updated": "2026-09-04T04:44:42+00:00",
+      "hash": "08daa22f7611fe33f12f2bbd4d1f1ba4bab7e3fd2fbe71a9b7cd2af75a5a3398",
+      "last_updated": "2026-09-04T16:32:58+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1746,7 +1746,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-04T04:45:08+00:00",
+  "last_updated": "2026-09-04T16:33:32+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
