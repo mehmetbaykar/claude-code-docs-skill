@@ -8,7 +8,7 @@ path: /docs/en/whats-new/2026-w29
 
 > Pull live data into published artifacts through MCP connectors, and use Claude Code with a screen reader in the new screen reader mode.
 
-Releases [v2.1.207 → v2.1.212](https://code.claude.com/docs/docs/en/changelog#2-1-207)
+Releases [v2.1.207 → v2.1.212](https://code.claude.com/docs/en/changelog#2-1-207)
 2 features · July 13–17
 
 Artifacts call your MCP connectors
@@ -28,7 +28,7 @@ Name the connector and the data you want in your prompt:
   Build a dashboard artifact of open pull requests that pulls the live list through my GitHub connector when the page loads.
 ```
 
-[Pull live data with MCP connectors](https://code.claude.com/docs/docs/en/artifacts#pull-live-data-with-mcp-connectors)
+[Pull live data with MCP connectors](https://code.claude.com/docs/en/artifacts#pull-live-data-with-mcp-connectors)
 
 Screen reader mode
 CLI
@@ -41,17 +41,17 @@ Start a session in screen reader mode:
   claude --ax-screen-reader
 ```
 
-[Turn on screen reader mode](https://code.claude.com/docs/docs/en/accessibility#turn-on-screen-reader-mode)
+[Turn on screen reader mode](https://code.claude.com/docs/en/accessibility#turn-on-screen-reader-mode)
 
 Other wins
 
 `/fork` now copies your conversation into a new background session with its own row in `claude agents` while you keep working; the in-session forked subagent it used to launch is now `/subtask`
-[Auto mode](https://code.claude.com/docs/docs/en/permission-modes#enable-auto-mode-on-bedrock-agent-platform-or-foundry) no longer needs the `CLAUDE\_CODE\_ENABLE\_AUTO\_MODE` opt-in on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry; administrators can turn it off with `disableAutoMode`
+[Auto mode](https://code.claude.com/docs/en/permission-modes#enable-auto-mode-on-bedrock-agent-platform-or-foundry) no longer needs the `CLAUDE\_CODE\_ENABLE\_AUTO\_MODE` opt-in on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry; administrators can turn it off with `disableAutoMode`
 MCP tool calls that run longer than two minutes now move to the background automatically so the session stays usable; tune or disable the threshold with `CLAUDE\_CODE\_MCP\_AUTO\_BACKGROUND\_MS`
 New `claude auto-mode reset` restores the default auto-mode configuration, and `--yes` skips the confirmation prompt
-New [corporate launcher](https://code.claude.com/docs/docs/en/corporate-launcher) support: `CLAUDE\_CODE\_PROCESS\_WRAPPER` or the `processWrapper` setting runs the processes Claude Code starts from its own binary, such as the background service and agent view sessions, through a required wrapper executable
+New [corporate launcher](https://code.claude.com/docs/en/corporate-launcher) support: `CLAUDE\_CODE\_PROCESS\_WRAPPER` or the `processWrapper` setting runs the processes Claude Code starts from its own binary, such as the background service and agent view sessions, through a required wrapper executable
 `vimInsertModeRemaps` setting maps two-key insert-mode sequences such as `jj` to Escape in vim mode
-`--forward-subagent-text` and `CLAUDE\_CODE\_FORWARD\_SUBAGENT\_TEXT` include subagent text and thinking blocks in [stream-json output](https://code.claude.com/docs/docs/en/headless)
+`--forward-subagent-text` and `CLAUDE\_CODE\_FORWARD\_SUBAGENT\_TEXT` include subagent text and thinking blocks in [stream-json output](https://code.claude.com/docs/en/headless)
 Session-wide caps stop runaway loops: WebSearch calls and subagent spawns each default to 200, tunable with `CLAUDE\_CODE\_MAX\_WEB\_SEARCHES\_PER\_SESSION` and `CLAUDE\_CODE\_MAX\_SUBAGENTS\_PER\_SESSION`
     "Always allow" permission rules save at the repository root, so approvals granted in a git worktree persist across sessions and worktrees
 Amazon Bedrock, Google Cloud's Agent Platform, and Claude Platform on AWS now default to Claude Opus 4.8

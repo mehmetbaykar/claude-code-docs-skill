@@ -12,7 +12,7 @@ This section covers using a gateway product your organization already runs, rath
 
 * If you're a developer connecting to an existing gateway: [connect Claude Code to your gateway](https://code.claude.com/docs/en/llm-gateway-connect)
 * If you're an admin rolling out a gateway for your organization: [deploy and distribute a gateway](https://code.claude.com/docs/en/llm-gateway-rollout)
-* If you're configuring a gateway product: the [gateway protocol reference](https://code.claude.com/docs/en/llm-gateway-protocol)
+* If you're configuring a gateway product: the [gateway compatibility guide](https://code.claude.com/docs/en/llm-gateway-protocol)
 
 Any gateway that exposes a [supported API format](https://code.claude.com/docs/en/llm-gateway-protocol#api-formats) works. Anthropic doesn't endorse, maintain, or audit third-party gateway products, and doesn't support routing Claude Code to non-Claude models through any gateway. Deploy the gateway following its own documentation, then complete the Claude Code side with the [rollout steps below](#roll-out-a-gateway).
 
@@ -28,7 +28,7 @@ A gateway gives your organization one place to manage:
 
 All of these except provider switching apply whether the upstream is Anthropic's API or a [cloud provider](https://code.claude.com/docs/en/third-party-integrations). Provider switching without reconfiguring developer machines also depends on the gateway exposing a single [Anthropic-format endpoint](https://code.claude.com/docs/en/llm-gateway-protocol#api-formats) regardless of upstream; a gateway that exposes a provider's own format ties the client configuration to that provider.
 
-The tradeoff is that the gateway becomes infrastructure your organization operates. Claude Code adds capabilities with each release, and a gateway that doesn't forward them breaks the corresponding features, so the gateway product needs to be kept updated as Claude Code evolves. The [gateway protocol reference](https://code.claude.com/docs/en/llm-gateway-protocol) covers what to forward.
+The tradeoff is that the gateway becomes infrastructure your organization operates. Claude Code adds capabilities with each release, and a gateway that doesn't forward them breaks the corresponding features, so the gateway product needs to be kept updated as Claude Code evolves. The [gateway compatibility guide](https://code.claude.com/docs/en/llm-gateway-protocol) covers what to forward.
 
 ## Roll out a gateway
 
@@ -53,4 +53,4 @@ While a [gateway credential variable](https://code.claude.com/docs/en/llm-gatewa
 * [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway): Anthropic's self-hosted gateway with SSO sign-in and OTLP telemetry
 * [Connect Claude Code to an LLM gateway](https://code.claude.com/docs/en/llm-gateway-connect): set the base URL and credential on your own machine, with per-surface configuration and a troubleshooting table
 * [Roll out an LLM gateway for your organization](https://code.claude.com/docs/en/llm-gateway-rollout): the admin checklist for deploying a gateway, issuing developer credentials, and distributing managed settings
-* [Gateway protocol reference](https://code.claude.com/docs/en/llm-gateway-protocol): what Claude Code sends to a gateway, for operators configuring one, covering endpoints, headers to forward, and feature pass-through
+* [Gateway compatibility guide](https://code.claude.com/docs/en/llm-gateway-protocol): what Claude Code sends to a gateway, for operators configuring one, covering endpoints, headers to forward, and feature pass-through

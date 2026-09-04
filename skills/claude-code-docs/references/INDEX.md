@@ -112,7 +112,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `large-codebases` - [Set up Claude Code in a monorepo or large codebase](https://code.claude.com/docs/en/large-codebases)
 - `legal-and-compliance` - [Legal and compliance](https://code.claude.com/docs/en/legal-and-compliance)
 - `llm-gateway-connect` - [Connect Claude Code to an LLM gateway](https://code.claude.com/docs/en/llm-gateway-connect)
-- `llm-gateway-protocol` - [Gateway protocol reference](https://code.claude.com/docs/en/llm-gateway-protocol)
+- `llm-gateway-protocol` - [Claude Code gateway compatibility guide](https://code.claude.com/docs/en/llm-gateway-protocol)
 - `llm-gateway-rollout` - [Roll out an LLM gateway for your organization](https://code.claude.com/docs/en/llm-gateway-rollout)
 - `llm-gateway` - [Other LLM gateways](https://code.claude.com/docs/en/llm-gateway)
 - `managed-mcp` - [Control MCP server access for your organization](https://code.claude.com/docs/en/managed-mcp)

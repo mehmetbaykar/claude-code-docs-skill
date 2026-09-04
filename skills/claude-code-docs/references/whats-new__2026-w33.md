@@ -8,7 +8,7 @@ path: /docs/en/whats-new/2026-w33
 
 > Claude Code Desktop auto-continues after a usage limit resets, fork mode turns on by default, and GitLab merge requests and marketplaces join GitHub.
 
-Releases [v2.1.225 → v2.1.233](https://code.claude.com/docs/docs/en/changelog#2-1-225)
+Releases [v2.1.225 → v2.1.233](https://code.claude.com/docs/en/changelog#2-1-225)
 3 features · August 10–14
 
 Auto-continue after a usage limit on Desktop
@@ -25,7 +25,7 @@ Video: https://mintcdn.com/claude-code/2SnAdpL4dJ18nKb3/images/whats-new/desktop
 
 The next time a session-limit card appears, check **Auto-continue when limits reset** and leave the session open. The card shows `Auto-resuming at` followed by the reset time, and the turn picks up on its own once the limit resets.
 
-[What to do when you hit a usage limit](https://code.claude.com/docs/docs/en/errors#youve-hit-your-session-limit)
+[What to do when you hit a usage limit](https://code.claude.com/docs/en/errors#youve-hit-your-session-limit)
 
 Fork mode on by default
 v2.1.232
@@ -40,7 +40,7 @@ Start a fork yourself with a task that needs everything you've discussed so far:
 
 The fork appears in the panel below your prompt and its result arrives in your conversation when it finishes. To turn fork mode off, set `CLAUDE\_CODE\_FORK\_SUBAGENT=0`.
 
-[Turn fork mode on or off](https://code.claude.com/docs/docs/en/sub-agents#turn-fork-mode-on-or-off)
+[Turn fork mode on or off](https://code.claude.com/docs/en/sub-agents#turn-fork-mode-on-or-off)
 
 GitLab merge requests and marketplaces
 v2.1.232
@@ -55,20 +55,20 @@ Start a session in a worktree branched from a merge request:
 
 When `origin` is on gitlab.com, Claude Code fetches `merge-requests/42/head` and opens the session on that branch in its own worktree.
 
-[Branch a worktree from a pull or merge request](https://code.claude.com/docs/docs/en/worktrees#branch-from-a-pull-request)
+[Branch a worktree from a pull or merge request](https://code.claude.com/docs/en/worktrees#branch-from-a-pull-request)
 
 Other wins
 
-Type `@` in the prompt to [mention another Claude session](https://code.claude.com/docs/docs/en/cross-session-messaging#message-another-session) by name, and Claude messages it directly with `SendMessage`; a bare name that matches exactly one live session now delivers without a confirmation step
-Interactive sessions on one machine keep [unique names](https://code.claude.com/docs/docs/en/cross-session-messaging#see-which-sessions-claude-can-reach): if you start or rename a session with a name another live session already uses, Claude Code gives yours a `name-word-word` variant and tells you
-Plugin marketplaces accept [command sources](https://code.claude.com/docs/docs/en/plugin-marketplaces#command-sources): a local command prints the plugin directory, which Claude Code re-resolves each session and applies without a restart
-On Linux and WSL, set [CLAUDE\_CODE\_TOOL\_MEMORY\_LIMIT](https://code.claude.com/docs/docs/en/tools-reference#memory-limit-on-linux-and-wsl) to a size such as `4G` to cap the memory Bash and PowerShell tool commands can use
-The task-tracking tools, such as `TaskCreate`, `TaskUpdate`, and `TodoWrite`, are [no longer available on Opus 4.8, Sonnet 5, Fable 5, Mythos 5, and later models in those families](https://code.claude.com/docs/docs/en/tools-reference#task-tool-availability); set `CLAUDE\_CODE\_ENABLE\_TODO\_TOOLS=1` to re-enable them
-[/code-review](https://code.claude.com/docs/docs/en/code-review#review-a-diff-locally) at high, xhigh, and max effort now runs in a background agent like the other levels
-[/plugin install plugin\@marketplace](https://code.claude.com/docs/docs/en/discover-plugins#install-plugins) refreshes the marketplace first, so newly published plugins install without a manual marketplace update
-Settings accept [additionalMarketplaces and allowedMarketplaces](https://code.claude.com/docs/docs/en/settings-reference#marketplace-key-aliases) as aliases for `extraKnownMarketplaces` and `strictKnownMarketplaces`
-On newer models, Claude can [overwrite an existing file with the Write tool](https://code.claude.com/docs/docs/en/tools-reference#write-tool-behavior) without reading it first this session, matching the Edit tool's rules; older models require the read
-The VS Code extension can [organize the sessions list into groups](https://code.claude.com/docs/docs/en/vs-code#organize-sessions-into-groups): right-click to create, rename, or delete a group, and Cmd/Ctrl- or Shift-click to move several sessions at once
-If your organization routes Claude Code through a [Claude apps gateway with spend limits](https://code.claude.com/docs/docs/en/claude-apps-gateway-spend-limits), Claude Code shows the limit period, its reset time, and the operator's message when you reach the limit
+Type `@` in the prompt to [mention another Claude session](https://code.claude.com/docs/en/cross-session-messaging#message-another-session) by name, and Claude messages it directly with `SendMessage`; a bare name that matches exactly one live session now delivers without a confirmation step
+Interactive sessions on one machine keep [unique names](https://code.claude.com/docs/en/cross-session-messaging#see-which-sessions-claude-can-reach): if you start or rename a session with a name another live session already uses, Claude Code gives yours a `name-word-word` variant and tells you
+Plugin marketplaces accept [command sources](https://code.claude.com/docs/en/plugin-marketplaces#command-sources): a local command prints the plugin directory, which Claude Code re-resolves each session and applies without a restart
+On Linux and WSL, set [CLAUDE\_CODE\_TOOL\_MEMORY\_LIMIT](https://code.claude.com/docs/en/tools-reference#memory-limit-on-linux-and-wsl) to a size such as `4G` to cap the memory Bash and PowerShell tool commands can use
+The task-tracking tools, such as `TaskCreate`, `TaskUpdate`, and `TodoWrite`, are [no longer available on Opus 4.8, Sonnet 5, Fable 5, Mythos 5, and later models in those families](https://code.claude.com/docs/en/tools-reference#task-tool-availability); set `CLAUDE\_CODE\_ENABLE\_TODO\_TOOLS=1` to re-enable them
+[/code-review](https://code.claude.com/docs/en/code-review#review-a-diff-locally) at high, xhigh, and max effort now runs in a background agent like the other levels
+[/plugin install plugin\@marketplace](https://code.claude.com/docs/en/discover-plugins#install-plugins) refreshes the marketplace first, so newly published plugins install without a manual marketplace update
+Settings accept [additionalMarketplaces and allowedMarketplaces](https://code.claude.com/docs/en/settings-reference#marketplace-key-aliases) as aliases for `extraKnownMarketplaces` and `strictKnownMarketplaces`
+On newer models, Claude can [overwrite an existing file with the Write tool](https://code.claude.com/docs/en/tools-reference#write-tool-behavior) without reading it first this session, matching the Edit tool's rules; older models require the read
+The VS Code extension can [organize the sessions list into groups](https://code.claude.com/docs/en/vs-code#organize-sessions-into-groups): right-click to create, rename, or delete a group, and Cmd/Ctrl- or Shift-click to move several sessions at once
+If your organization routes Claude Code through a [Claude apps gateway with spend limits](https://code.claude.com/docs/en/claude-apps-gateway-spend-limits), Claude Code shows the limit period, its reset time, and the operator's message when you reach the limit
 
 [Full changelog for v2.1.225–v2.1.233 →](https://code.claude.com/docs/en/changelog#2-1-225)

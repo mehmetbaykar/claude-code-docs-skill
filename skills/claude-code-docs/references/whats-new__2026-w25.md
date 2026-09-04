@@ -8,7 +8,7 @@ path: /docs/en/whats-new/2026-w25
 
 > Publish a live, shareable page from your session with Artifacts, match tool parameters in deny and ask rules, and set any setting from the prompt with /config.
 
-Releases [v2.1.178 → v2.1.183](https://code.claude.com/docs/docs/en/changelog#2-1-178)
+Releases [v2.1.178 → v2.1.183](https://code.claude.com/docs/en/changelog#2-1-178)
 3 features · June 15–19
 
 Artifacts
@@ -27,7 +27,7 @@ Ask Claude for a page, then approve the publish prompt:
   Make an artifact that walks through this PR with the diff annotated inline.
 ```
 
-[Create an artifact](https://code.claude.com/docs/docs/en/artifacts#create-an-artifact)
+[Create an artifact](https://code.claude.com/docs/en/artifacts#create-an-artifact)
 
 Match by input parameter
 v2.1.178
@@ -44,7 +44,7 @@ Add a parameter rule to the deny list in `settings.json`:
   }
 ```
 
-[Match by input parameter](https://code.claude.com/docs/docs/en/permissions#match-by-input-parameter)
+[Match by input parameter](https://code.claude.com/docs/en/permissions#match-by-input-parameter)
 
 Set any setting from the prompt
 v2.1.181
@@ -57,7 +57,7 @@ Set the `thinking` setting from the prompt:
   /config thinking=false
 ```
 
-[Commands reference](https://code.claude.com/docs/docs/en/commands#all-commands)
+[Commands reference](https://code.claude.com/docs/en/commands#all-commands)
 
 Other wins
 

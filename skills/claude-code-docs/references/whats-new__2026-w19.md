@@ -8,7 +8,7 @@ path: /docs/en/whats-new/2026-w19
 
 > Load plugins from .zip archives and URLs, search command history across every project with Ctrl+R, branch new worktrees from local HEAD or the remote default, and block actions unconditionally with auto mode hard deny rules.
 
-Releases [v2.1.128 → v2.1.136](https://code.claude.com/docs/docs/en/changelog#2-1-128)
+Releases [v2.1.128 → v2.1.136](https://code.claude.com/docs/en/changelog#2-1-128)
 2 features · May 4–8
 
 Plugins from .zip archives and URLs
@@ -21,7 +21,7 @@ Load a plugin straight from a URL:
   claude --plugin-url https://example.com/my-plugin.zip
 ```
 
-[Plugins guide](https://code.claude.com/docs/docs/en/plugins)
+[Plugins guide](https://code.claude.com/docs/en/plugins)
 
 History search across all your projects
 v2.1.129
@@ -29,7 +29,7 @@ v2.1.129
 
 `Ctrl+R` reverse-search now defaults to all prompts across every project, restoring the behavior from before v2.1.124. Press `Ctrl+S` while searching to narrow back to the current project or session. Handy when you remember a command you ran in another repo last week and don't want to go digging for it.
 
-[Interactive mode: command history](https://code.claude.com/docs/docs/en/interactive-mode#command-history)
+[Interactive mode: command history](https://code.claude.com/docs/en/interactive-mode#command-history)
 
 Other wins
 

@@ -13,7 +13,7 @@ An [LLM gateway](https://code.claude.com/docs/en/llm-gateway) is a proxy your or
 This page is for developers running Claude Code through a gateway their organization operates. It covers two paths: [checking whether your administrator already configured it for you](#check-for-an-existing-configuration), and [configuring it yourself](#configure-claude-code-yourself) when they haven't.
 
 * To deploy a gateway for your organization, see [Roll out an LLM gateway](https://code.claude.com/docs/en/llm-gateway-rollout)
-* For what Claude Code sends to a gateway, see the [gateway protocol reference](https://code.claude.com/docs/en/llm-gateway-protocol)
+* For what Claude Code sends to a gateway, see the [gateway compatibility guide](https://code.claude.com/docs/en/llm-gateway-protocol)
 
 ## Check for an existing configuration
 
@@ -521,6 +521,6 @@ If Claude Code prompts you to log in repeatedly after removing gateway configura
 
 * [LLM gateways overview](https://code.claude.com/docs/en/llm-gateway): what a gateway is and how it interacts with claude.ai subscriptions
 * [Roll out an LLM gateway for your organization](https://code.claude.com/docs/en/llm-gateway-rollout): the admin-facing checklist for deploying and distributing gateway configuration
-* [Gateway protocol reference](https://code.claude.com/docs/en/llm-gateway-protocol): what Claude Code sends to a gateway, including the headers and fields the gateway must forward
+* [Gateway compatibility guide](https://code.claude.com/docs/en/llm-gateway-protocol): what Claude Code sends to a gateway, including the headers and fields the gateway must forward
 * [Settings](https://code.claude.com/docs/en/settings): where settings files live and how the `env` block is read
 * [Authentication](https://code.claude.com/docs/en/authentication): how credential variables, `apiKeyHelper`, and OAuth login interact

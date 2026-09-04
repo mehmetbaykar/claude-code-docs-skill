@@ -589,7 +589,6 @@ Because these settings arrive over the network, the CLI shows each developer a s
 * shell-execution settings such as `apiKeyHelper` and `statusLine`
 * the sandbox binary settings `sandbox.bwrapPath`, `sandbox.socatPath`, and `sandbox.ripgrep`
 * Sandbox settings that intercept traffic, inject credentials, or weaken isolation, such as `sandbox.network.tlsTerminate` and the proxy port settings. [Security approval dialogs](https://code.claude.com/docs/en/server-managed-settings#security-approval-dialogs) lists them all.
-* managed CLAUDE.md content
 
 [Approval memory](https://code.claude.com/docs/en/server-managed-settings#approval-memory) covers how long an approval lasts and when the dialog appears again.
 
