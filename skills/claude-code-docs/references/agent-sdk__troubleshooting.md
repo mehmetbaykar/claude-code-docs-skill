@@ -1,10 +1,10 @@
 ---
-title: "Troubleshooting"
+title: "Troubleshoot the Agent SDK"
 source: https://code.claude.com/docs/en/agent-sdk/troubleshooting
 path: /docs/en/agent-sdk/troubleshooting
 ---
 
-# Troubleshooting
+# Troubleshoot the Agent SDK
 
 > Fix Agent SDK errors by the exact message you see, with the cause and fix for each error in the TypeScript and Python SDKs.
 
