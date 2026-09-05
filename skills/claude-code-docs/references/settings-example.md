@@ -367,9 +367,9 @@ The same file with a comment above each key. Read it here; copy from the other t
           "repo": "acme-corp/approved-plugins"
         }
       ],
-      // Sandbox every command, refuse to start if the sandbox can't be set up, and
-      // never let a blocked command retry outside the sandbox; network limited to
-      // npm and GitHub, and users can't add domains
+      // Sandbox every command Claude runs, refuse to start if the sandbox can't be
+      // set up, and never let a blocked command retry outside the sandbox; network
+      // limited to npm and GitHub, and users can't add domains
       "sandbox": {
         "enabled": true,
         "failIfUnavailable": true,
