@@ -550,6 +550,7 @@ type SDKAssistantMessage = {
   timestamp?: string;
   context_usage?: SDKContextUsage;
   user_message_uuid?: string;
+  user_message_uuids?: string[];
 };
 ```
 ```typescript
@@ -595,7 +596,12 @@ type SDKResultMessage =
       ttft_ms?: number;
       ttft_stream_ms?: number;
       user_message_uuid?: string;
+      user_message_uuids?: string[];
       request_sent_wall_ms?: number;
+      first_content_frame_ms?: number;
+      first_stream_post_ms?: number;
+      first_stream_post_ack_ms?: number;
+      first_stream_post_wall_ms?: number;
       total_cost_usd: number;
       usage: NonNullableUsage;
       modelUsage: { [modelName: string]: ModelUsage };
@@ -629,6 +635,7 @@ type SDKResultMessage =
       queued_turn_count?: number;
       errors: string[];
       user_message_uuid?: string;
+      user_message_uuids?: string[];
       terminal_reason?: TerminalReason;
       fast_mode_state?: FastModeState;
       fast_mode_disabled_reason?: FastModeDisabledReason;
@@ -673,6 +680,7 @@ type SDKPartialAssistantMessage = {
   session_id: string;
   ttft_ms?: number; // Time to first token in ms, present only on message_start events
   user_message_uuid?: string; // Present on at most one stream event per turn
+  user_message_uuids?: string[];
 };
 ```
 ```typescript
@@ -2895,6 +2903,7 @@ type SDKThinkingTokensMessage = {
   subtype: "thinking_tokens";
   estimated_tokens: number;
   estimated_tokens_delta: number;
+  user_message_uuid?: string;
   uuid: UUID;
   session_id: string;
 };
