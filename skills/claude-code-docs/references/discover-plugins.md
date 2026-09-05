@@ -148,12 +148,13 @@ This downloads the marketplace catalog and makes its plugins available to you.
 
 **Browse available plugins**
 
-Run `/plugin` to open the plugin manager. This opens a tabbed interface with four tabs you can cycle through using **Tab**, or **Shift+Tab** to go backward:
+Run `/plugin` to open the plugin manager. This opens a tabbed interface you can cycle through using **Tab**, or **Shift+Tab** to go backward:
 
 * **Discover**: browse available plugins from all your marketplaces
 * **Installed**: view and manage your installed plugins
 * **Marketplaces**: add, remove, or update your added marketplaces
 * **Errors**: view any plugin loading errors
+* **Stats**: see [what each of your skills costs in context and how often it gets used](https://code.claude.com/docs/en/skills#find-unused-skills), in sessions where `/skill-doctor` is available
 
 Go to the **Discover** tab to see plugins from the marketplace you just added. When your administrator has allowlisted the marketplace via the [`pluginSuggestionMarketplaces`](https://code.claude.com/docs/en/settings-reference#pluginsuggestionmarketplaces) managed setting, plugins marked as relevant to your current working directory are pinned at the top with a **suggested for this directory** label.
 

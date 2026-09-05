@@ -166,6 +166,7 @@ Match the message you see to a section below.
 | `Cannot switch renderers while work is running in the background`                                                                                                                                     | [Command-line errors](#cannot-switch-renderers-in-this-session)                                                               |
 | `Couldn't read your Zed keymap` / `Couldn't back up your Zed keymap` / `Couldn't update your Zed keymap`                                                                                              | [Command-line errors](#terminal-setup-left-your-zed-keymap-unchanged)                                                         |
 | `Your Zed keymap isn't a readable list of keybindings`                                                                                                                                                | [Command-line errors](#terminal-setup-left-your-zed-keymap-unchanged)                                                         |
+| `Skill usage reports are not available on this connection.`                                                                                                                                           | [Command-line errors](#skill-usage-reports-are-not-available-on-this-connection)                                              |
 | `Marketplace "<name>" is registered from an untrusted source`                                                                                                                                         | [Plugin errors](#marketplace-is-registered-from-an-untrusted-source)                                                          |
 | `references ${user_config.*} in a shell-form command`                                                                                                                                                 | [Plugin errors](#plugin-command-references-user-config)                                                                       |
 | `Monitor "<name>" from plugin <plugin> references ${user_config.*} in its command`                                                                                                                    | [Plugin errors](#plugin-command-references-user-config)                                                                       |
@@ -211,7 +212,8 @@ Match the message you see to a section below.
 | `exited before it became reachable`                                                                                                                                                                   | [Background session errors](#background-service-exited-before-it-became-reachable)                                            |
 | `Claude Code process exited with code N`                                                                                                                                                              | [Wrapper and IDE errors](#claude-code-process-exited-with-code-n)                                                             |
 | `Could not locate the Claude CLI on PATH`                                                                                                                                                             | [Wrapper and IDE errors](#could-not-locate-the-claude-cli-on-path)                                                            |
-| `Restored the code, but skipped N files`                                                                                                                                                              | [Rewind warnings](#restored-the-code-but-skipped-files)                                                                       |
+| `Restored the code, but skipped N files`                                                                                                                                                              | [Rewind warnings and errors](#restored-the-code-but-skipped-files)                                                            |
+| `No files were restored: N files failed (backup missing, or the file could not be updated)`                                                                                                           | [Rewind warnings and errors](#no-files-were-restored)                                                                         |
 | `Transcript writes are failing (...)`                                                                                                                                                                 | [Session saving warnings](#transcript-writes-are-failing)                                                                     |
 | `Transcript saving is off — CLAUDE_CODE_SKIP_PROMPT_HISTORY is set`                                                                                                                                   | [Session saving warnings](#transcript-saving-is-off-skip-prompt-history)                                                      |
 | `Transcript saving is off — inherited CLAUDE_CODE_CHILD_SESSION marker`                                                                                                                               | [Session saving warnings](#transcript-saving-is-off-child-session-marker)                                                     |
@@ -219,11 +221,14 @@ Match the message you see to a section below.
 | `Claude Code exited after an unrecoverable interface error (...)`                                                                                                                                     | [Configuration warnings](#exited-after-an-unrecoverable-interface-error)                                                      |
 | `Agent descriptions are over the 15.0k-token limit`                                                                                                                                                   | [Configuration warnings](#agent-descriptions-are-over-the-15000-token-limit)                                                  |
 | `Ignoring N permissions.allow entries from ... this workspace has not been trusted`                                                                                                                   | [Configuration warnings](#workspace-has-not-been-trusted)                                                                     |
+| `is a network path, which cannot be added as a working directory`                                                                                                                                     | [Configuration warnings](#working-directory-is-a-network-path)                                                                |
 | `Remote managed settings failed to load (<cause>)`                                                                                                                                                    | [Configuration warnings](#remote-managed-settings-failed-to-load)                                                             |
+| `MCP server <name> is blocked by enterprise managed policy`                                                                                                                                           | [Configuration warnings](#mcp-server-is-blocked-by-enterprise-managed-policy)                                                 |
 | `Managed settings document could not be parsed as a JSON object; none of its settings are in effect. Fix or remove it.`                                                                               | [Configuration warnings](#managed-settings-document-could-not-be-parsed)                                                      |
 | `Managed settings drop-in directory could not be read`                                                                                                                                                | [Configuration warnings](#managed-settings-document-could-not-be-parsed)                                                      |
 | `"crossSessionInbound" must be one of "accept", "hold", "refuse"`                                                                                                                                     | [Configuration warnings](#crosssessioninbound-must-be-one-of-accept-hold-refuse)                                              |
 | `headersHelper not run — this workspace has no persisted trust`                                                                                                                                       | [Configuration warnings](#headershelper-not-run)                                                                              |
+| `Invalid permission rule "..." was skipped: Malformed Tool(content) rule`                                                                                                                             | [Configuration warnings](#malformed-tool-content-rule)                                                                        |
 | `... is not matched by file permission checks`                                                                                                                                                        | [Configuration warnings](#is-not-matched-by-file-permission-checks)                                                           |
 | `... has a wildcard before the rest of the command`                                                                                                                                                   | [Configuration warnings](#has-a-wildcard-before-the-rest-of-the-command)                                                      |
 | `CLAUDE_CODE_DISABLE_1M_CONTEXT is set, but the 200K limit isn't enforced`                                                                                                                            | [Configuration warnings](#the-200k-limit-isnt-enforced)                                                                       |
@@ -2269,6 +2274,17 @@ The first line of the message names the cause:
 
 Before v2.1.247, `/terminal-setup` couldn't parse a Zed keymap that used `//` comments or trailing commas, and it replaced the entire file with only its own binding while reporting the binding as installed. To restore a keymap an earlier version replaced, use the `.bak` backup file described under [Enter multiline prompts](https://code.claude.com/docs/en/terminal-config#enter-multiline-prompts).
 
+### Skill usage reports are not available on this connection
+
+You ran [`/skill-doctor`](https://code.claude.com/docs/en/skills#find-unused-skills) over [Remote Control](https://code.claude.com/docs/en/remote-control), from your phone or browser. Claude Code doesn't send the skill usage report over Remote Control and replies with this message instead:
+```text
+Skill usage reports are not available on this connection.
+```
+
+**What to do:**
+
+* Run `/skill-doctor` in the terminal on the machine where the session is running, or run `claude -p "/skill-doctor"` there
+
 ## Plugin errors
 
 These errors come from [plugin](https://code.claude.com/docs/en/plugins) and [marketplace](https://code.claude.com/docs/en/plugin-marketplaces) configuration. For plugin problems that don't produce one of the messages on this page, such as a marketplace URL that doesn't load or a plugin that installs but doesn't appear, see [Plugin troubleshooting](https://code.claude.com/docs/en/discover-plugins#troubleshooting).
@@ -2339,11 +2355,19 @@ commands path escapes plugin directory: ./../shared.md
 
 In `claude plugin` command output, the same error reads `Path escapes plugin directory: ./../shared.md (commands)`.
 
+Claude Code rejects both a path that points outside the plugin as written, such as `../shared-utils`, and a symlink that leads outside the plugin and isn't one the [marketplace symlink rules](https://code.claude.com/docs/en/plugins-reference#share-files-within-a-marketplace-with-symlinks) allow. For a symlink, the message also says where the path resolves:
+```text
+commands path escapes plugin directory: ./commands/deploy.md — it resolves to /home/user/shared/deploy.md, outside the plugin directory
+```
+
 Before v2.1.251, Claude Code loaded a `commands` path declared in a marketplace entry even when it pointed outside the plugin directory. Claude Code already rejected paths declared in `plugin.json` and the other component paths in a marketplace entry.
+
+Before v2.1.257, the check looked only at the path's spelling, not at where a symlink leads.
 
 **What to do:**
 
 * Move the referenced file inside the plugin directory and point the path at it with a `./` relative path
+* If the path is a symlink to a file outside the plugin, replace the symlink with a copy of the file
 * To share files with other plugins in the same marketplace, link them with a symlink inside the plugin directory, following the [symlink rules](https://code.claude.com/docs/en/plugins-reference#share-files-within-a-marketplace-with-symlinks)
 
 ### Failed to load marketplace configuration
@@ -2893,9 +2917,9 @@ Failed to run Claude Code: Error: Could not locate the Claude CLI on PATH. Launc
 * Set the PATH entry as a user or system environment variable, not in your PowerShell profile. The extension doesn't run your profile, so a PATH edit that lives only there never reaches it.
 * Restart VS Code after changing PATH. The extension checks the PATH that VS Code captured at startup, so a PATH change takes effect only after a restart.
 
-## Rewind warnings
+## Rewind warnings and errors
 
-This warning comes from a [`/rewind`](https://code.claude.com/docs/en/checkpointing) code restore. It reports paths the restore refused to touch; the restore completed for every other tracked file.
+These messages come from a [`/rewind`](https://code.claude.com/docs/en/checkpointing) code restore. `Restored the code, but skipped N files` is a warning that Claude Code skipped some paths. `No files were restored` is an error that means it restored nothing.
 
 <h3 id="restored-the-code-but-skipped-files">
 Restored the code, but skipped files
@@ -2917,6 +2941,26 @@ Restored the code, but skipped 2 files: the tracked path is (or became) a link o
 * Identify which files were skipped so you can handle each one with the steps below. The message gives only a count; the debug log at `~/.claude/debug/<session-id>.txt` names each skipped path as the restore runs, so turn on debug logging with `/debug` before your next restore. On macOS or Linux, you can instead find the links directly: `find . -type l` for symlinks and `find . -type f -links +1` for hard-linked files.
 * If a skipped file is a link you created on purpose, such as a config file managed by a dotfile manager or a file hard-linked by tools like pnpm, the rewind left its contents alone. To undo the session's changes to it, ask Claude to reverse the edit or edit the file yourself
 * If you didn't create the link, inspect the path before trusting its contents: something replaced the file after the checkpoint
+
+<h3 id="no-files-were-restored">
+No files were restored
+</h3>
+
+Claude Code shows this message when you restore code with [`/rewind`](https://code.claude.com/docs/en/checkpointing) and it can't restore any of the files in that checkpoint. For each file, either the backup Claude Code saved before editing it is missing, or Claude Code couldn't write to or delete the file.
+```text
+Failed to restore the code:
+No files were restored: 1 file failed (backup missing, or the file could not be updated)
+```
+
+Claude Code deletes a session's backups in the [retention sweep](https://code.claude.com/docs/en/claude-directory#cleaned-up-automatically), by default about 30 days after the session last saved one. If you resume a session after that, `/rewind` still lists its checkpoints, but rewinding to one of them can fail with this error. If the message also says `N paths were skipped for link safety`, see [Restored the code, but skipped files](#restored-the-code-but-skipped-files) for those paths.
+
+**What to do:**
+
+* Undo the changes another way: ask Claude to reverse its edits, or restore the files from version control. When the backups are gone, running `/rewind` again fails the same way.
+* If Claude Code couldn't write or delete a file, fix what blocks the write, such as file permissions, then run `/rewind` again.
+* To keep backups longer in future sessions, raise [`cleanupPeriodDays`](https://code.claude.com/docs/en/settings-reference#cleanupperioddays).
+
+Before v2.1.260, Claude Code silently skipped files whose backups were missing, and the rewind appeared to succeed.
 
 ## Session saving warnings
 
@@ -3042,6 +3086,29 @@ Ignoring 2 permissions.allow entries from .claude/settings.local.json: this work
 * In [non-interactive mode](https://code.claude.com/docs/en/headless) with `-p` no dialog is shown. Set the `hasTrustDialogAccepted` entry in `~/.claude.json` using the exact `projects` key the message prints.
 * If the message names `.claude/settings.local.json` and you started Claude Code outside a git repository or in your home directory, update to v2.1.200 or later. Versions 2.1.196 through 2.1.199 treated your own `.claude/settings.local.json` as repository-supplied in those workspaces. On v2.1.207 and later, updating isn't enough outside a git repository if you haven't trusted the folder: determining that a folder isn't inside a repository runs git, and Claude Code runs that check only after you accept the trust dialog, so use the first step. Your home directory and any other [configuration home](https://code.claude.com/docs/en/permissions#project-allow-rules-and-workspace-trust) are exempt and don't wait for the dialog. See [Project allow rules and workspace trust](https://code.claude.com/docs/en/permissions#project-allow-rules-and-workspace-trust).
 
+### Working directory is a network path
+
+Claude Code doesn't add network paths as working directories. Looking up a network path can contact the host it names, and on Windows that contact can send the host your credentials, so Claude Code refuses the path without looking it up. You see this message when you run `/add-dir` with such a path, or as a warning at startup. When it appears at startup, Claude Code starts without that directory.
+```text
+\\server\share is a network path, which cannot be added as a working directory. On Windows, map the share to a drive letter and pass it at launch with --add-dir (a drive letter added mid-session does not yet carry remote-read trust).
+```
+
+Paths that Claude Code refuses this way include:
+
+* UNC shares such as `\\server\share`
+* Automount paths such as `/net/<host>`, unless you launched Claude Code from a directory under that host's automount
+* Local paths that reach a network location through a symbolic link or junction
+
+Mapped drive letters and `\\wsl$` paths don't count as network paths.
+
+**What to do:**
+
+* On Windows, map the share to a drive letter, for example with `net use Z: \\server\share`, and pass the drive at launch with `claude --add-dir Z:\`.
+* On macOS or Linux, mount the share at a local path and add that path instead.
+* If the path is in `permissions.additionalDirectories`, remove it from the settings file that lists it.
+
+Before v2.1.257, Claude Code accepted a reachable network path as a working directory.
+
 <h3 id="remote-managed-settings-failed-to-load">
 Remote managed settings failed to load
 </h3>
@@ -3057,6 +3124,29 @@ Your session is eligible for [server-managed settings](https://code.claude.com/d
 * Run `/status` or `claude doctor` for the full diagnostic
 
 Before v2.1.248, Claude Code reported a failed settings fetch only in the debug log.
+
+<h3 id="mcp-server-is-blocked-by-enterprise-managed-policy">
+MCP server is blocked by enterprise managed policy
+</h3>
+
+You selected **Reconnect** on a server in `/mcp`, or turned a disabled server back on there, and a setting that [restricts MCP servers](https://code.claude.com/docs/en/managed-mcp) blocks that server. Claude Code refuses to connect it and shows:
+```text
+MCP server <name> is blocked by enterprise managed policy
+```
+
+Any of these settings can produce the message:
+
+* A [`deniedMcpServers`](https://code.claude.com/docs/en/managed-mcp#policy-based-control-with-allowlists-and-denylists) entry that matches the server, including one in your own `~/.claude/settings.json` or the project's `.claude/settings.json`
+* An [`allowedMcpServers`](https://code.claude.com/docs/en/managed-mcp#policy-based-control-with-allowlists-and-denylists) list that the server doesn't match
+* [`strictPluginOnlyCustomization`](https://code.claude.com/docs/en/settings-reference#strictpluginonlycustomization) with `mcp` locked, which blocks servers configured in `~/.claude.json` and `.mcp.json`
+* [`disableClaudeAiConnectors`](https://code.claude.com/docs/en/mcp#disable-claude-ai-connectors), when the server is a claude.ai connector
+
+**What to do:**
+
+* Check your own user and project settings files for one of these settings and change or remove it
+* If none of your own settings explains the block, ask your administrator which managed setting blocks the server
+
+Before v2.1.257, **Reconnect** and re-enable in `/mcp` could connect a server that a mid-session policy update blocked.
 
 <h3 id="managed-settings-document-could-not-be-parsed">
 Managed settings document could not be parsed
@@ -3102,6 +3192,22 @@ The `projects` key the message prints is the folder [Project allow rules and wor
 * Run `claude` in the folder the message names, accept the trust dialog, then run your `-p` or SDK command again
 * Set the `hasTrustDialogAccepted` entry in `~/.claude.json` yourself, using the exact `projects` key the message prints
 * If you started the session in your home directory, work from a project directory you have trusted. When you accept the trust dialog in your home directory, Claude Code holds that trust for the current session only.
+
+<h3 id="malformed-tool-content-rule">
+Malformed Tool(content) rule
+</h3>
+
+A [permission rule](https://code.claude.com/docs/en/permissions#permission-rule-syntax) in one of your settings files doesn't have the shape `Tool` or `Tool(content)`, for example because text follows the closing parenthesis or one of the parentheses is missing. Claude Code skips the rule and lists it in the invalid-settings dialog when an interactive session starts, and in [`claude doctor`](https://code.claude.com/docs/en/debug-your-config#check-resolved-settings) output:
+```text
+Invalid permission rule "Bash(ls) x" was skipped: Malformed Tool(content) rule. Rules take the form Tool or Tool(content) and must end at the closing ")"; parentheses inside the content are literal
+```
+
+**What to do:**
+
+* In the settings file listed with the message, rewrite the rule so it ends at its closing parenthesis, for example `Bash(ls *)` in place of `Bash(ls) x`
+* Leave parentheses inside the content as they are. They're literal, so a rule such as `Edit(./Finance (2024)/**)` is valid without escaping
+
+Before v2.1.260, Claude Code reported a rule with unmatched parentheses as `Mismatched parentheses`.
 
 ### Is not matched by file permission checks
 

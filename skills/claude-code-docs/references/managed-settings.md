@@ -343,6 +343,8 @@ The table covers the permission, plugin, and delivery controls. For any key not 
 
 On Team and Enterprise plans, an Owner enables or disables [Remote Control](https://code.claude.com/docs/en/remote-control) and [web sessions](https://code.claude.com/docs/en/claude-code-on-the-web) organization-wide in [Claude Code admin settings](https://claude.ai/admin-settings/claude-code). Remote Control can additionally be disabled per device with the [`disableRemoteControl`](https://code.claude.com/docs/en/settings-reference#disableremotecontrol) setting. Web sessions have no per-device managed settings key.
 
+To check whether these organization settings reached a given machine, run `claude doctor` there and read the `Organization policy` line, which says where Claude Code loaded the policy from or why it didn't load. Requires Claude Code v2.1.261 or later. In a running session, `/status` shows the same line when the policy didn't load.
+
 ## Turn telemetry off for your organization
 
 Claude Code sends Anthropic operational [telemetry](https://code.claude.com/docs/en/data-usage#telemetry-services) by default on sessions that use the Anthropic API, whether directly, through an LLM gateway, or through a custom `ANTHROPIC_BASE_URL`; [Default behaviors by API provider](https://code.claude.com/docs/en/data-usage#default-behaviors-by-api-provider) says which providers send it. To turn it off for every developer without relying on each person's shell, deliver `DISABLE_TELEMETRY` through the `env` block of your managed settings. This example sets `DISABLE_TELEMETRY` for everyone the policy reaches:
