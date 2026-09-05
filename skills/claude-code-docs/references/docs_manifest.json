@@ -553,8 +553,8 @@
       "title": "Claude Tag"
     },
     "cli-reference.md": {
-      "hash": "608f29da7b80fc1fbf96d930e1f565d52a285ffa7e2090a1784cd6c13627d93a",
-      "last_updated": "2026-09-05T04:39:17+00:00",
+      "hash": "c3429e417e6261683805983d5c924567ac89d752d14fa7bdf5638a7fb652bea2",
+      "last_updated": "2026-09-05T15:21:16+00:00",
       "original_url": "https://code.claude.com/docs/en/cli-reference",
       "path": "/docs/en/cli-reference",
       "source_url": "https://code.claude.com/docs/en/cli-reference.md",
@@ -751,8 +751,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "4f35b676799002e23386c350076719c36734cf4aee1b141f1d8d9e525afce257",
-      "last_updated": "2026-09-05T04:39:31+00:00",
+      "hash": "1db9094f2ae48ec095556766624c8c2ae6afc43dd933c2ff064e0e6934c83d90",
+      "last_updated": "2026-09-05T15:21:27+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -1417,8 +1417,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "87448f311ec18cf09e0f5b0180639408f3c2484989a72e4baeed263d28b8a213",
-      "last_updated": "2026-09-05T04:40:14+00:00",
+      "hash": "1c10c3d216f1cd386dddeb8616d70cbeb80e081267b937024cf250b0b4918a37",
+      "last_updated": "2026-09-05T15:22:16+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -1746,7 +1746,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-05T10:45:45+00:00",
+  "last_updated": "2026-09-05T15:22:36+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
