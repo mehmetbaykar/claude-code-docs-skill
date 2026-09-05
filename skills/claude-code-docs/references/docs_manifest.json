@@ -760,8 +760,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "fd8ec9928625b4f42e58074215a7a71f2d4c0d749a23e0f5d3b4f3192759de83",
-      "last_updated": "2026-09-05T04:39:31+00:00",
+      "hash": "4ac37b799028b3ee3766157f9ed7a42dc46a813e8ac1f4a17a4de355999f3db4",
+      "last_updated": "2026-09-05T10:44:46+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -877,8 +877,8 @@
       "title": "Claude Code on Google Cloud's Agent Platform"
     },
     "headless.md": {
-      "hash": "777e7b8236d35c7b4ab4c8516768633bb4fb83edb5cd7c82d38a1bdbf19f8466",
-      "last_updated": "2026-09-05T04:39:39+00:00",
+      "hash": "0cca756928eab85950e9c4f6eeca22f3b19c53d85e148389bfaadc19d7f76128",
+      "last_updated": "2026-09-05T10:44:52+00:00",
       "original_url": "https://code.claude.com/docs/en/headless",
       "path": "/docs/en/headless",
       "source_url": "https://code.claude.com/docs/en/headless.md",
@@ -913,8 +913,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "6b1ba4fd1a844ae403a749d31e99f160ab88248c177d71d980e9b5a564172581",
-      "last_updated": "2026-09-05T04:39:40+00:00",
+      "hash": "f31becec08159821b95b06776a1e517f0fdcc76119d838446cbde69988a99917",
+      "last_updated": "2026-09-05T10:44:55+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -1075,8 +1075,8 @@
       "title": "Monitoring"
     },
     "network-config.md": {
-      "hash": "97e5fb28eac5ed56366253b5ed00e552196023eac57bf19f84aee44b3e94c466",
-      "last_updated": "2026-09-04T04:44:26+00:00",
+      "hash": "df170f21d7e6d94bd8f76f706c9e0856e2c338747bb70d74f80f20b081f023d4",
+      "last_updated": "2026-09-05T10:45:04+00:00",
       "original_url": "https://code.claude.com/docs/en/network-config",
       "path": "/docs/en/network-config",
       "source_url": "https://code.claude.com/docs/en/network-config.md",
@@ -1237,8 +1237,8 @@
       "title": "Choose a sandbox environment"
     },
     "sandboxing.md": {
-      "hash": "0b0733287d71e5756033c9d05fce402ed748e27eac8e2a66340d1798789afd26",
-      "last_updated": "2026-09-05T04:40:04+00:00",
+      "hash": "c8ed4fb3c5c3e666f7a274c74d11569e18621c22d7a108e77fff68bf31d3a755",
+      "last_updated": "2026-09-05T10:45:17+00:00",
       "original_url": "https://code.claude.com/docs/en/sandboxing",
       "path": "/docs/en/sandboxing",
       "source_url": "https://code.claude.com/docs/en/sandboxing.md",
@@ -1354,8 +1354,8 @@
       "title": "Manage sessions"
     },
     "settings-example.md": {
-      "hash": "2e77922a54fe6fbb3523f36e7d93144b1087d9e97de46eaacd814b3dab978698",
-      "last_updated": "2026-09-02T04:46:06+00:00",
+      "hash": "07e4a8d7664f67ec4e4b8c722dd5cc5930826e738bd7120c32ac9c5da0672dd1",
+      "last_updated": "2026-09-05T10:45:24+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-example",
       "path": "/docs/en/settings-example",
       "source_url": "https://code.claude.com/docs/en/settings-example.md",
@@ -1363,8 +1363,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "0bbae177af20ec4522f3bf438c3025c54ca12976b480099f23a3ea38bebaa22e",
-      "last_updated": "2026-09-05T04:40:12+00:00",
+      "hash": "ee1016c24447ab24adb615a10901327fe88d938d4936395fa430caa4aa4f4c14",
+      "last_updated": "2026-09-05T10:45:25+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "source_url": "https://code.claude.com/docs/en/settings-reference.md",
@@ -1746,7 +1746,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-05T04:40:34+00:00",
+  "last_updated": "2026-09-05T10:45:45+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
