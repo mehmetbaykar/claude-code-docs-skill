@@ -12,6 +12,10 @@ This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anth
 
 Run `claude --version` to check your installed version.
 
+### 2.1.263 (September 6, 2026)
+
+* Bug fixes and reliability improvements
+
 ### 2.1.261 (September 4, 2026)
 
 * Added an "Organization policy" line to `/status` and `claude doctor` that says why your organization's policy could not be loaded, such as a proxy not passing the endpoint through
