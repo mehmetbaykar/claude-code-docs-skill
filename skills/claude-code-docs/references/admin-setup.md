@@ -162,7 +162,7 @@ If a developer sees "You haven't been added to your organization yet," their sea
 With provider and delivery mechanism chosen, move on to detailed configuration:
 
 * [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings): deliver managed policy from the Claude admin console
-* [Settings reference](https://code.claude.com/docs/en/settings-reference): every setting key, with where it goes and an example
+* [All settings](https://code.claude.com/docs/en/settings-reference): every setting key, with where it goes and an example
 * [Which value Claude Code uses](https://code.claude.com/docs/en/settings#which-value-claude-code-uses): the precedence rules across managed, project, local, and user settings
 * [Monorepos and large repos](https://code.claude.com/docs/en/large-codebases): per-directory configuration patterns for organizations deploying into a monorepo
 * [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock), [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai), [Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry): provider-specific deployment

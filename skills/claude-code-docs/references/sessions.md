@@ -233,6 +233,10 @@ The location, retention, and write behavior are configurable:
 | Suppress transcript writes in all modes                                                                     | [`CLAUDE_CODE_SKIP_PROMPT_HISTORY`](https://code.claude.com/docs/en/env-vars)                                           | Environment variable                             |
 | Suppress writes for one non-interactive run                                                                 | [`--no-session-persistence`](https://code.claude.com/docs/en/cli-reference)                                             | CLI flag with `claude -p`                        |
 
+### Delete session data
+
+Transcripts age out under the [retention sweep rules](https://code.claude.com/docs/en/claude-directory#cleaned-up-automatically). To delete a project's transcripts and related state sooner, run [`claude project purge`](https://code.claude.com/docs/en/claude-directory#clear-local-data). If you delete a [background session](https://code.claude.com/docs/en/agent-view) with [`claude rm <id>`](https://code.claude.com/docs/en/agent-view#what-deleting-a-session-removes), its transcript stays on disk and remains available through `claude --resume`.
+
 ### Name the project directory yourself
 
 By default, Claude Code derives the `<project>` name from the whole working directory path. To choose the name yourself, set `CLAUDE_CODE_PROJECT_DIR_NAME` alongside `CLAUDE_CONFIG_DIR`. Claude Code then stores that session's transcripts and [auto memory](https://code.claude.com/docs/en/memory#auto-memory) under your name. This suits a host that embeds Claude Code and gives each session its own config directory. Requires Claude Code v2.1.234 or later.

@@ -379,4 +379,4 @@ To react to denials programmatically, use the [`PermissionDenied` hook](https://
 * [Permission modes](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode): what auto mode is, what it blocks by default, and which sessions start in it
 * [Managed settings](https://code.claude.com/docs/en/server-managed-settings): deploy `autoMode` configuration across your organization
 * [Permissions](https://code.claude.com/docs/en/permissions): allow, ask, and deny rules that apply before the classifier runs
-* [Settings reference](https://code.claude.com/docs/en/settings-reference#automode): every settings key, including `autoMode`
+* [All settings](https://code.claude.com/docs/en/settings-reference#automode): every settings key, including `autoMode`
