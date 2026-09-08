@@ -142,13 +142,10 @@ You've made your first edit. For the full reference on everything Desktop can do
 
 **Scale up when you're ready.** Open [parallel sessions](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessions) from the sidebar to work on multiple tasks at once, each in its own Git worktree, and open the [tasks pane](https://code.claude.com/docs/en/desktop#watch-background-tasks) to watch the subagents and background commands a session has running. Open a [side chat](https://code.claude.com/docs/en/desktop#ask-a-side-question-without-derailing-the-session) to ask a question without derailing the main thread. Send [long-running work to the cloud](https://code.claude.com/docs/en/desktop#run-long-running-tasks-remotely) so it continues even if you close the app, or [continue a session on the web or in your IDE](https://code.claude.com/docs/en/desktop#continue-in-another-surface) if a task takes longer than expected. [Connect external tools](https://code.claude.com/docs/en/desktop#extend-claude-code) like GitHub, Slack, and Linear to bring your workflow together.
 
-## Coming from the CLI?
-
-Desktop runs the same engine as the CLI with a graphical interface. You can run both simultaneously on the same project, and they share configuration (CLAUDE.md files, MCP servers, hooks, skills, and settings). For a full comparison of features, flag equivalents, and what's not available in Desktop, see [CLI comparison](https://code.claude.com/docs/en/desktop#coming-from-the-cli).
-
 ## What's next
 
 * [Use Claude Code Desktop](https://code.claude.com/docs/en/desktop): permission modes, parallel sessions, diff view, connectors, and enterprise configuration
+* [Coming from the CLI?](https://code.claude.com/docs/en/desktop#coming-from-the-cli): run Desktop and the CLI on the same project, and compare features, flag equivalents, and what's not available in Desktop
 * [Troubleshooting](https://code.claude.com/docs/en/desktop#troubleshooting): solutions to common errors and setup issues
 * [Best practices](https://code.claude.com/docs/en/best-practices): tips for writing effective prompts and getting the most out of Claude Code
 * [Common workflows](https://code.claude.com/docs/en/common-workflows): tutorials for debugging, refactoring, testing, and more
