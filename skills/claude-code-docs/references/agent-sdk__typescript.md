@@ -679,7 +679,7 @@ type SDKPartialAssistantMessage = {
   uuid: UUID;
   session_id: string;
   ttft_ms?: number; // Time to first token in ms, present only on message_start events
-  user_message_uuid?: string; // Present on at most one stream event per turn
+  user_message_uuid?: string;
   user_message_uuids?: string[];
 };
 ```
@@ -1447,7 +1447,7 @@ type AgentInput = {
   run_in_background?: boolean;
   name?: string;
   team_name?: string; // Deprecated; ignored
-  mode?: "acceptEdits" | "auto" | "bypassPermissions" | "default" | "dontAsk" | "plan"; // Deprecated; ignored. Subagents inherit the parent session's permission mode; agent-definition frontmatter may override it
+  mode?: "acceptEdits" | "auto" | "bypassPermissions" | "default" | "dontAsk" | "plan"; // Deprecated; ignored. The subagent inheritance rules decide a subagent's permission mode
   isolation?: "worktree" | "remote";
 };
 ```
