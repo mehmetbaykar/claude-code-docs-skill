@@ -351,9 +351,9 @@ The same file with a comment above each key. Read it here; copy from the other t
       // Ignore permission rules from user, project, and local settings
       "allowManagedPermissionRulesOnly": true,
       // Only the GitHub MCP server, matched by URL rather than by name, since a user can
-      // name any server "github". Servers that don't match don't load, which includes every
-      // stdio server when the list has only URL entries; the lock below makes this managed
-      // list the only allowlist that counts
+      // name any server "github". User-added servers that don't match don't load, including
+      // every stdio server when the list has only URL entries. The allowManagedMcpServersOnly
+      // key below makes this managed list the only allowlist that applies
       "allowedMcpServers": [
         {
           "serverUrl": "https://api.githubcopilot.com/*"
