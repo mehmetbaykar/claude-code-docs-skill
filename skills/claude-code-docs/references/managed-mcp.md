@@ -93,7 +93,7 @@ Any user on the machine can read this file, so don't store API keys or other cre
 When a session receives servers through `--mcp-config` while `managed-mcp.json` is deployed, what the user sees differs between a workstation and a cloud session:
 
 * On a workstation, Claude Code exits at startup with `You cannot dynamically configure MCP servers when an enterprise MCP config is present`.
-* In [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) on a host where the file is deployed, such as a [self-hosted runner](https://code.claude.com/docs/en/self-hosted-environments-configuration#mcp-servers), Claude Code starts with the managed servers only and skips the claude.ai connectors and other servers the cloud host delivers through `--mcp-config`. Nothing in the session tells the user which servers were left out. Claude Code names them in a warning on its stderr, which a self-hosted runner records at the `debug` log level. Before v2.1.229, these sessions exited with the same error a workstation shows.
+* In [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) on a host where the file is deployed, such as a [self-hosted runner](https://code.claude.com/docs/en/self-hosted-environments-configuration#mcp-servers), Claude Code starts with the managed servers only and skips the claude.ai connectors and other servers the cloud host delivers through `--mcp-config`. Nothing in the session tells the user which servers were left out. Claude Code names them in a warning on its stderr, which a self-hosted runner records at the `debug` log level.
 
 If a user passes `--strict-mcp-config`, Claude Code exits at startup on a workstation and in a cloud session alike, because that flag asks to replace the managed set.
 
@@ -171,7 +171,7 @@ Claude Code loads an entry only when it passes every check below. It drops an en
 * No value contains a `${VAR}` reference. Claude Code doesn't expand environment variables in these entries, so write literal values.
 * The server name contains only letters, numbers, hyphens, and underscores, and no key or value contains control or invisible formatting characters.
 
-Claude Desktop has a managed setting with the same name whose value is an array of a different entry shape, so don't copy one into the other. Claude Code doesn't accept the array form and records a notice instead of loading it. Write the server name as the object key and use `type` rather than `transport`.
+Claude Desktop has a managed setting with the same name whose value is an array of a different entry shape, so don't copy one into the other. Claude Code doesn't accept the array form and records a notice instead of loading it.
 
 A Claude apps gateway runs the same checks when it boots; see [MCP servers in a policy](https://code.claude.com/docs/en/claude-apps-gateway-config#mcp-servers-in-a-policy).
 
@@ -186,7 +186,7 @@ These rules decide what loads when a provided server overlaps with another serve
 
 When you haven't also deployed `managed-mcp.json`, the per-run flags keep their meaning:
 
-* A server a user passes with `--mcp-config` under the same name replaces the provided one for that run and is checked against `allowedMcpServers` like any server the user adds.
+* A server a user passes with `--mcp-config` under the same name replaces the provided one for that run and is checked against `allowedMcpServers`.
 * `--strict-mcp-config` leaves provided servers out along with every other configured server.
 
 With `managed-mcp.json` deployed, both flags behave as [Exclusive control with managed-mcp.json](#exclusive-control-with-managed-mcp-json) describes.
@@ -199,13 +199,13 @@ Users can't edit or remove a provided server:
 * When you haven't also deployed `managed-mcp.json`, an entry a user adds under the same name is saved but not used while yours is present.
 * Users can still turn a provided server off for themselves in [`/mcp`](https://code.claude.com/docs/en/mcp#disable-a-server-without-removing-it), which lists provided servers under **Managed MCPs**.
 
-`claude mcp get` and `/mcp` show a provided server's URL as its host only, for example `https://mcp.example.com/…`, and `claude mcp get` shows its header names without their values. That display keeps the values off screens and logs; the settings document on the user's machine still holds them.
+`claude mcp get` and `/mcp` show a provided server's URL as its host only, for example `https://mcp.example.com/…`, and `claude mcp get` shows its header names without their values.
 
 ### Where `managedMcpServers` applies
 
 Claude Code reads `managedMcpServers` from the managed source it selects under [How Claude Code combines managed sources](https://code.claude.com/docs/en/managed-settings#how-claude-code-combines-managed-sources). When that source sets [`managedSourcesBehavior`](https://code.claude.com/docs/en/settings-reference#managedsourcesbehavior) to `"merge"`, Claude Code provides the servers from every admin source instead, and when two sources define the same name, the higher-ranked source's entry applies whole. It never reads the key from the user-writable HKCU registry, from [parent settings an embedding host supplies](https://code.claude.com/docs/en/managed-settings#parent-settings-from-embedding-hosts), or from user, project, or local settings files, where it drops the key with a warning.
 
-Claude Code doesn't read the key in the Claude Desktop app's Code tab on a third-party deployment or in the app's Cowork sessions, because Claude Desktop supplies and locks those sessions' MCP servers itself; on a third-party deployment it does so from its own `managedMcpServers` setting. `/status` and `claude doctor` say so when your managed settings carry the key there. The Code tab of a Claude Desktop signed in to claude.ai reads the key as the terminal does.
+Claude Code doesn't read the key in the Claude Desktop app's Code tab on a third-party deployment or in the app's Cowork sessions, because Claude Desktop supplies and locks those sessions' MCP servers itself. `/status` and `claude doctor` say so when your managed settings carry the key there.
 
 ### When provided servers connect
 

@@ -139,11 +139,12 @@ When you enable a [code intelligence plugin](https://code.claude.com/docs/en/dis
 
 #### When plugin changes apply
 
-Claude Code applies a plugin change when you run [`/reload-plugins`](https://code.claude.com/docs/en/discover-plugins#apply-plugin-changes-without-restarting) or start a new session. You pay the cost, whether appended announcements or a full re-read, on the first turn after the change applies, not when you run `/plugin enable` or `/plugin disable`. Claude Code can also apply a change on its own in three cases:
+A plugin change applies when you run [`/reload-plugins`](https://code.claude.com/docs/en/discover-plugins#apply-plugin-changes-without-restarting) or start a new session, not when you run `/plugin enable` or `/plugin disable`. You pay the cost, whether appended announcements or a full re-read, on the first turn after the change applies. Claude Code can also apply a change on its own:
 
 * For a plugin with a `command` source, Claude Code [can reload the plugin itself](https://code.claude.com/docs/en/plugin-marketplaces#when-claude-code-re-runs-the-command).
 * When you [install a plugin from the `/plugin` interface](https://code.claude.com/docs/en/discover-plugins#install-plugins), Claude Code can activate it during the install. Claude Code tells you in the install summary whether it did or whether to run `/reload-plugins`.
 * When you [move the session with `/cd`](https://code.claude.com/docs/en/permissions#move-the-session-to-another-directory) on v2.1.246 or later, Claude Code applies the plugins the new directory's settings enable as part of the move, without the full re-read warning that holds a `/reload-plugins`.
+* In interactive sessions, when you add or remove a plugin in a [folder of plugins](https://code.claude.com/docs/en/plugins#test-your-plugins-locally) you passed with `--plugin-dir`, the change applies right away. If applying it would trigger a full re-read, Claude Code holds the change instead and shows a notice to run `/reload-plugins`. Requires Claude Code v2.1.265 or later.
 
 When you run `/reload-plugins` and the reload would trigger a full re-read, Claude Code shows a warning and doesn't apply the reload. Rerun it with `--force` to apply the reload anyway.
 
@@ -316,6 +317,7 @@ Other requests can also read a prefix that an earlier request cached:
 
 * **Session copies**: a session you [copy with `/fork`](https://code.claude.com/docs/en/agent-view#copy-the-session-with-%2Ffork) receives its isolation instruction as a message at the end of the copied conversation, so the cache that the original conversation built stays intact.
 * **Compaction**: the summarization call described in [Compacting the conversation](#compacting-the-conversation) uses the same prefix-sharing approach.
+* **Resumed subagents**: when Claude [resumes a subagent](https://code.claude.com/docs/en/sub-agents#resume-subagents), the resumed run's first request can read the cache the original run warmed.
 * **Workflow fan-outs**: in a [workflow fan-out](https://code.claude.com/docs/en/workflows#prompt-caching-in-a-fan-out) of same-prefix agents, Claude Code holds all but the first for up to 5 seconds by default, so their first requests can read the prefix that the first agent cached.
 
 ## Disable prompt caching
