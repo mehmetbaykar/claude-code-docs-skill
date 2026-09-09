@@ -49,7 +49,7 @@ When you switch styles mid-session, Claude uses the new style starting with your
 
 ## Create a custom output style
 
-A custom output style is a Markdown file: frontmatter for metadata, then the instructions to add to the system prompt.
+A custom output style is a Markdown file: frontmatter for metadata, then the instructions to add to the system prompt. In the VS Code extension, you can also create the file from the [**Output styles** menu](https://code.claude.com/docs/en/vs-code#use-the-prompt-box) rather than writing it by hand. This requires Claude Code v2.1.261 or later.
 
 
 **Create a Markdown file**
