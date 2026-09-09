@@ -24,11 +24,11 @@ The API caches by matching the start of each request, called the prefix, against
 
 To get the most out of prefix matching, Claude Code orders each request so content that rarely changes between turns comes first:
 
-| Layer           | Content                                           | Changes when                                                                                    |
-| --------------- | ------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| System prompt   | Core instructions, tool definitions, output style | The set of loaded tool definitions changes, you switch output style, or Claude Code is upgraded |
-| Project context | CLAUDE.md, auto memory, unscoped rules            | Session starts, or after `/clear` or `/compact`                                                 |
-| Conversation    | Your messages, Claude's responses, tool results   | Every turn                                                                                      |
+| Layer           | Content                                         | Changes when                                                          |
+| --------------- | ----------------------------------------------- | --------------------------------------------------------------------- |
+| System prompt   | Core instructions, tool definitions             | The set of loaded tool definitions changes or Claude Code is upgraded |
+| Project context | CLAUDE.md, auto memory, unscoped rules          | Session starts, or after `/clear` or `/compact`                       |
+| Conversation    | Your messages, Claude's responses, tool results | Every turn                                                            |
 
 A change to the conversation layer leaves the system prompt and project context cached. A change to the system prompt invalidates everything, because all later content now sits behind a different prefix. The third column gives common triggers rather than an exhaustive list, and the sections below cover the full set.
 
@@ -164,7 +164,9 @@ Only a deny rule that matches in the tool-name position has this effect: a bare 
 
 ### Changing output style
 
-[Output style](https://code.claude.com/docs/en/output-styles) is part of the system prompt. When you switch styles mid-session with `/config` or the `outputStyle` setting, Claude uses the new style starting with your next message, and that request reads the entire conversation history with no cache hits. To keep that cost small, switch styles before your first message in a session or right after `/clear` or `/compact`, when there is little or no conversation history to re-read.
+When you switch [output styles](https://code.claude.com/docs/en/output-styles) mid-session with `/config` or the `outputStyle` setting, Claude uses the new style starting with your next message. In a conversation that [keeps a recorded system prompt](https://code.claude.com/docs/en/cli-reference#system-prompt-flags-in-resumed-conversations), as sessions signed in with a claude.ai or Console account do by default, Claude Code delivers the new style's instructions as a message in the conversation. That request still reads the system prompt and the earlier conversation from the cache.
+
+In sessions that don't [fetch feature flags](https://code.claude.com/docs/en/env-vars#features-that-need-feature-flag-fetching), such as on Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry, the style's instructions are part of the system prompt, so the request after a switch reads the entire conversation history with no cache hits. There, switch styles before your first message in a session or right after `/clear` or `/compact`, when there is little or no conversation history to re-read.
 
 Before v2.1.251, a mid-session style switch kept the cache but didn't apply until you ran `/clear` or started a new session.
 

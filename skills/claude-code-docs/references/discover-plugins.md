@@ -271,7 +271,7 @@ Add a remote `marketplace.json` file via URL:
 /plugin marketplace add https://example.com/marketplace.json
 ```
 
-URL-based marketplaces have some limitations compared to Git-based marketplaces. If you encounter "path not found" errors when installing plugins, see [Troubleshooting](https://code.claude.com/docs/en/plugin-marketplaces#plugins-with-relative-paths-fail-in-url-based-marketplaces).
+URL-based marketplaces have some limitations compared to Git-based marketplaces. If plugin installs from a URL-based marketplace fail, see [Troubleshooting](https://code.claude.com/docs/en/plugin-marketplaces#plugins-with-relative-paths-fail-in-url-based-marketplaces).
 
 ## Install plugins
 

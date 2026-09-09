@@ -424,7 +424,7 @@ To debug:
 
 If the instruction is something that must run at a specific point, such as before every commit or after each file edit, write it as a [hook](https://code.claude.com/docs/en/hooks-guide) instead. Hooks execute as shell commands at fixed lifecycle events and apply regardless of what Claude decides to do.
 
-For instructions you want at the system prompt level, use [`--append-system-prompt`](https://code.claude.com/docs/en/cli-reference#system-prompt-flags). This must be passed every invocation, so it's better suited to scripts and automation than interactive use.
+For instructions you want at the system prompt level, use [`--append-system-prompt`](https://code.claude.com/docs/en/cli-reference#system-prompt-flags). You pass it at launch, so it's better suited to scripts and automation than interactive use. For how it behaves when you resume a conversation, see [System prompt flags in resumed conversations](https://code.claude.com/docs/en/cli-reference#system-prompt-flags-in-resumed-conversations).
 
 Use the [`InstructionsLoaded` hook](https://code.claude.com/docs/en/hooks#instructionsloaded) to log exactly which instruction files are loaded, when they load, and why. This is useful for debugging path-specific rules or lazy-loaded files in subdirectories.
 

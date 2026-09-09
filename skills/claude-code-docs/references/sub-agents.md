@@ -805,7 +805,7 @@ claude --agent code-reviewer
 
 The subagent's system prompt replaces the default Claude Code system prompt entirely, the same way [`--system-prompt`](https://code.claude.com/docs/en/cli-reference) does. `CLAUDE.md` files and project memory still load through the normal message flow. The agent name appears as `@<name>` in the startup header so you can confirm it's active.
 
-This works with built-in and custom subagents, and the choice persists when you resume the session: Claude Code restores the agent's system prompt, tool restrictions, and model along with the conversation. If the agent no longer exists when you resume, the session continues with the default tools and system prompt and shows a [warning naming the agent](https://code.claude.com/docs/en/errors#session-agent-no-longer-available).
+This works with built-in and custom subagents, and the choice persists when you resume the session: Claude Code restores the agent's tool restrictions and model along with the conversation. If the agent no longer exists when you resume, the session continues with the default tools and shows a [warning naming the agent](https://code.claude.com/docs/en/errors#session-agent-no-longer-available). For the system prompt in either case, see [System prompt flags in resumed conversations](https://code.claude.com/docs/en/cli-reference#system-prompt-flags-in-resumed-conversations).
 
 For a plugin-provided subagent, you can pass only the agent name and Claude Code finds it:
 ```bash

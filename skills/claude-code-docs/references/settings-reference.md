@@ -593,9 +593,9 @@ Run `/effort auto` to clear your saved level for the model you're using. Claude 
 
 ### `outputStyle`
 
-Select an [output style](https://code.claude.com/docs/en/output-styles) by name. An output style is a saved set of instructions that Claude Code adds to the system prompt to change Claude's role, tone, and output format, such as the built-in Explanatory and Learning styles or one you wrote yourself.
+Select an [output style](https://code.claude.com/docs/en/output-styles) by name. An output style is a saved set of instructions that changes Claude's role, tone, and output format, such as the built-in Explanatory and Learning styles or one you wrote yourself.
 
-If you change this key during a session, Claude uses the new style starting with your next message. That message rebuilds the [prompt cache](https://code.claude.com/docs/en/prompt-caching#changing-output-style) once, because the style is part of the system prompt. Before v2.1.251, the edit applied only after you ran `/clear` or started a new session.
+If you change this key during a session, Claude uses the new style starting with your next message. For what that message costs in prompt caching, see [Changing output style](https://code.claude.com/docs/en/prompt-caching#changing-output-style). Before v2.1.251, the edit applied only after you ran `/clear` or started a new session.
 
 * **Scope**: [`Any file`](#scopes)
 * **Type**: string, the name of a [built-in](https://code.claude.com/docs/en/output-styles#built-in-output-styles) or [custom](https://code.claude.com/docs/en/output-styles#create-a-custom-output-style) output style
@@ -4438,9 +4438,13 @@ Restrict which kind of account people can log in with. Set `"claudeai"` to allow
 
 Every first-party login path applies the restriction, including the [VS Code extension](https://code.claude.com/docs/en/vs-code), the Agent SDK, `claude setup-token`, and `/install-github-app`, except the terminal's interactive login screen, reached by `/login` or first-run onboarding, which pre-selects the method without enforcing it. Before v2.1.212, only terminal logins applied it. See [Restrict login to your organization](https://code.claude.com/docs/en/authentication#restrict-login-to-your-organization) for how each login path, environment credentials, and third-party providers are handled.
 
+When a managed source on the machine sets `"gateway"`, Claude Code doesn't use a leftover login, API key, or `apiKeyHelper` credential. See [Administrator policy requires a Cloud gateway sign-in](https://code.claude.com/docs/en/errors#administrator-policy-requires-a-cloud-gateway-sign-in) for the message each one produces. If you select a cloud provider through `CLAUDE_CODE_USE_BEDROCK` or a similar environment variable, the session doesn't need the gateway sign-in. Before v2.1.261, Claude Code used a leftover login on these machines.
+
 ### `forceLoginGatewayUrl`
 
-Set the gateway URL the `/login` Cloud gateway screen connects to, so people reach your [cloud gateway](https://code.claude.com/docs/en/claude-apps-gateway) without typing its address. The screen has no URL field: with this key set, it shows your gateway URL and connects when the person presses Enter; without it, it tells them to contact their IT administrator. When `forceLoginMethod` is unset, this key alone opens the Cloud gateway screen. `forceLoginMethod: "gateway"` also opens it and removes the login-method picker, and a `claudeai` or `console` value there takes precedence over this key. Set both keys so the screen connects instead of showing an error.
+Set the gateway URL the `/login` Cloud gateway screen connects to, so people reach your [cloud gateway](https://code.claude.com/docs/en/claude-apps-gateway) without typing its address. The screen has no URL field: with this key set, it shows your gateway URL and connects when the person presses Enter; without it, it tells them to contact their IT administrator.
+
+Either this key or `forceLoginMethod: "gateway"` makes the machine gateway-only, so `/login` opens on the Cloud gateway screen with no login-method picker. See [Administrator policy requires a Cloud gateway sign-in](https://code.claude.com/docs/en/errors#administrator-policy-requires-a-cloud-gateway-sign-in) for what happens to a leftover first-party login or API key. Set both keys so the screen connects instead of showing an error.
 
 * **Scope**: [`Managed`](#scopes). Read only from a source on the machine: `managed-settings.json`, the macOS plist or Windows HKLM registry, or a policy helper. Claude Code ignores it in HKCU and server-managed settings.
 * **Type**: string, a full URL including the scheme
@@ -4451,7 +4455,7 @@ Set the gateway URL the `/login` Cloud gateway screen connects to, so people rea
 }
 ```
 
-A value that isn't a valid URL is dropped on its own; the rest of the managed settings file still applies. See [Set the gateway URL](https://code.claude.com/docs/en/claude-apps-gateway#set-the-gateway-url).
+If the value isn't a valid URL, the sign-in screen reports it, and the rest of the managed settings file still applies. See [Set the gateway URL](https://code.claude.com/docs/en/claude-apps-gateway#set-the-gateway-url).
 
 ### `forceLoginOrgUUID`
 
@@ -4788,7 +4792,7 @@ Three of those keys add a condition of their own:
 
 * **[`policyHelper`](#policyhelper)**: Claude Code honors it only when the highest source that carries a policy key is an MDM policy or a managed settings file, so under server-managed settings it doesn't apply.
 * **[`modelOverrides`](#modeloverrides)**: pairs with `availableModels`. Claude Code takes `modelOverrides` from the highest source that sets it, unless a higher source sets `availableModels` without `modelOverrides`. In that case it ignores `modelOverrides` from every source.
-* **[`forceLoginGatewayUrl`](#forcelogingatewayurl) and the `"gateway"` value of [`forceLoginMethod`](#forceloginmethod)**: Claude Code honors them only when the highest source is an MDM policy or a managed settings file, so under server-managed settings neither applies.
+* **[`forceLoginGatewayUrl`](#forcelogingatewayurl) and the `"gateway"` value of [`forceLoginMethod`](#forceloginmethod)**: Claude Code reads them only from the managed sources on the machine itself and ignores them in server-managed settings. The machine's values apply even when server-managed settings are also present.
 
 To confirm which sources combined on a machine, run `/status` and [read the `Setting sources` line](https://code.claude.com/docs/en/managed-settings#read-the-source-in-/status).
 
