@@ -1003,8 +1003,8 @@
       "title": "Control MCP server access for your organization"
     },
     "managed-settings.md": {
-      "hash": "0b964c1facc2fe9c95adf11e23f35c913fa9a70b029f6c3efe5b01f33a083de5",
-      "last_updated": "2026-09-09T21:01:05+00:00",
+      "hash": "852ae05d5ca6622ece07e8abf89574a26a3ea9bcff73fdd4423f9e021ed85a41",
+      "last_updated": "2026-09-10T04:54:52+00:00",
       "original_url": "https://code.claude.com/docs/en/managed-settings",
       "path": "/docs/en/managed-settings",
       "source_url": "https://code.claude.com/docs/en/managed-settings.md",
@@ -1282,8 +1282,8 @@
       "title": "Customize sessions in self-hosted environments"
     },
     "self-hosted-environments-deploy.md": {
-      "hash": "5221b7596590b701788a0a75313bb44425d3b5b5b09008e1a52af41c2f053b82",
-      "last_updated": "2026-09-09T21:01:21+00:00",
+      "hash": "1f65c13956dabaedc5fadbbf32029a0917d2447f97781b51015f8f17d9d56c7b",
+      "last_updated": "2026-09-10T04:55:11+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-deploy",
       "path": "/docs/en/self-hosted-environments-deploy",
       "source_url": "https://code.claude.com/docs/en/self-hosted-environments-deploy.md",
@@ -1309,8 +1309,8 @@
       "title": "Self-hosted environments quickstart"
     },
     "self-hosted-environments-reference.md": {
-      "hash": "6feb6292f9fccd50839af97e23d6ad8fa26d7629f29adfd086b4f78c5da4e655",
-      "last_updated": "2026-09-09T21:01:23+00:00",
+      "hash": "9920cfc0580ce4df7c7e415bd8b08f4e2e5445540c90f9e17f77b26aaedef9dc",
+      "last_updated": "2026-09-10T04:55:14+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-reference",
       "path": "/docs/en/self-hosted-environments-reference",
       "source_url": "https://code.claude.com/docs/en/self-hosted-environments-reference.md",
@@ -1336,8 +1336,8 @@
       "title": "Self-hosted environments"
     },
     "server-managed-settings.md": {
-      "hash": "758fca8f90b7ca8f4e69a6dfc403e7e376d6cc5efd9ec8082af652bd60a05c42",
-      "last_updated": "2026-09-09T21:01:24+00:00",
+      "hash": "b132cca3c2770441a7a3356b23362689f2c07e80291ba891e90619ced0936dbf",
+      "last_updated": "2026-09-10T04:55:17+00:00",
       "original_url": "https://code.claude.com/docs/en/server-managed-settings",
       "path": "/docs/en/server-managed-settings",
       "source_url": "https://code.claude.com/docs/en/server-managed-settings.md",
@@ -1363,8 +1363,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "5321be8fa77f56ee9f417142857860ab1cb02ffc6e5d60ae4c83e99ed1b4918a",
-      "last_updated": "2026-09-09T23:22:05+00:00",
+      "hash": "ef4d4c3ad75b1959c6c202e5b950611414e66c609bf6be0d86ed921d38fd8089",
+      "last_updated": "2026-09-10T04:55:21+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "source_url": "https://code.claude.com/docs/en/settings-reference.md",
@@ -1746,7 +1746,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-09T23:22:31+00:00",
+  "last_updated": "2026-09-10T04:55:45+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
