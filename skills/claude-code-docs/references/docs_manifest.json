@@ -796,8 +796,8 @@
       "title": "Extend Claude Code"
     },
     "fullscreen.md": {
-      "hash": "dfebe49c7a11b8075d13292b7b3e96acdefb9abe98b7cb4508de74d2b735e7ad",
-      "last_updated": "2026-09-09T21:00:54+00:00",
+      "hash": "f491d03e468f4202cebb96bc72fd382abac209ff6f79744fc9400e98f7209497",
+      "last_updated": "2026-09-10T16:32:26+00:00",
       "original_url": "https://code.claude.com/docs/en/fullscreen",
       "path": "/docs/en/fullscreen",
       "source_url": "https://code.claude.com/docs/en/fullscreen.md",
@@ -1057,8 +1057,8 @@
       "title": "Claude Code on mobile"
     },
     "model-config.md": {
-      "hash": "5ec48e420dd855cf50e1c3d8b62860612f69adebe57a9fa9d26f12824d1d405c",
-      "last_updated": "2026-09-09T21:01:07+00:00",
+      "hash": "569a7955bc7d6b5ebf14c762111132aa76777c8541deb58734cc2c7226cbe1e6",
+      "last_updated": "2026-09-10T16:32:43+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -1147,8 +1147,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugin-marketplaces.md": {
-      "hash": "ac2842fa06122186a66730ac0eea57e1ef74e821a7cca6c75bd008beb574280c",
-      "last_updated": "2026-09-09T23:21:47+00:00",
+      "hash": "0a69a745228381e9d26a4f2b93ffe32339eb098f1efe45150ce5643a623223b9",
+      "last_updated": "2026-09-10T16:32:49+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-marketplaces",
       "path": "/docs/en/plugin-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugin-marketplaces.md",
@@ -1705,8 +1705,8 @@
       "title": "Week 34 \u00b7 August 17\u201321, 2026"
     },
     "workflows.md": {
-      "hash": "68f1f2660497b823297aacd151364fcd1326b2327594e9b3c4d50db393ca9cdf",
-      "last_updated": "2026-09-09T21:01:48+00:00",
+      "hash": "c8038d31538255371c9a8eb36c8460a6a108fb5df6ec4a752b88f564865a4e15",
+      "last_updated": "2026-09-10T16:33:25+00:00",
       "original_url": "https://code.claude.com/docs/en/workflows",
       "path": "/docs/en/workflows",
       "source_url": "https://code.claude.com/docs/en/workflows.md",
@@ -1746,7 +1746,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-10T04:55:45+00:00",
+  "last_updated": "2026-09-10T16:33:26+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
