@@ -371,7 +371,7 @@ You can also use subagents for verification after Claude implements something. S
 
 ### Rewind with checkpoints
 
-Every prompt you send creates a checkpoint. You can restore conversation, code, or both to any previous checkpoint.
+Every prompt you send that starts a turn creates a checkpoint. You can restore conversation, code, or both to any previous checkpoint.
 
 Claude automatically snapshots files before each change so a checkpoint can restore them. Double-tap `Escape` or run `/rewind` to open the rewind menu. You can restore conversation only, restore code only, restore both, or summarize from a selected message. See [Checkpointing](https://code.claude.com/docs/en/checkpointing) for details.
 
