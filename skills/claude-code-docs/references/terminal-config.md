@@ -209,12 +209,12 @@ Control the primary brand accent and the foreground text shades used throughout 
 
 Signal success, failure, and warning states across messages and indicators.
 
-  | Token     | Controls                                             |
-  | :-------- | :--------------------------------------------------- |
-  | `success` | Success messages and passing checks                  |
-  | `error`   | Error messages and failures                          |
-  | `warning` | Warnings, caution messages, and the auto mode border |
-  | `merged`  | Merged pull request status                           |
+  | Token     | Controls                                                |
+  | :-------- | :------------------------------------------------------ |
+  | `success` | Success messages and passing checks                     |
+  | `error`   | Error messages and failures                             |
+  | `warning` | Warnings, caution messages, and the auto mode indicator |
+  | `merged`  | Merged pull request status                              |
 
 #### Input box and mode indicators
 
@@ -222,9 +222,9 @@ Set the input box border color and the accent shown while a permission mode or i
 
   | Token          | Controls                                                                                                                                                                             |
   | :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | `promptBorder` | Input box border in Manual mode                                                                                                                                                      |
-  | `planMode`     | Plan mode accent and border                                                                                                                                                          |
-  | `autoAccept`   | Accept-edits mode accent and border                                                                                                                                                  |
+  | `promptBorder` | Input box border                                                                                                                                                                     |
+  | `planMode`     | Plan mode accent, plan messages, and plan-mode dialogs                                                                                                                               |
+  | `autoAccept`   | Accept-edits mode accent                                                                                                                                                             |
   | `bashBorder`   | Input box border when entering a `!` shell command                                                                                                                                   |
   | `ide`          | IDE connection indicator                                                                                                                                                             |
   | `fastMode`     | Fast mode indicator                                                                                                                                                                  |
