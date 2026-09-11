@@ -4,12 +4,12 @@
     "failed_pages": [],
     "fetch_tool_version": "2.0",
     "pages_failed": 0,
-    "pages_fetched_successfully": 191,
+    "pages_fetched_successfully": 192,
     "pages_skipped": 0,
     "pages_stale": 0,
     "raw_fallback_pages": 0,
     "stale_pages": [],
-    "total_pages_discovered": 191
+    "total_pages_discovered": 192
   },
   "files": {
     "accessibility.md": {
@@ -409,8 +409,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "d48457834b9824f412214b87d111fa3e7a5ccd543f0b1669f592e1ac4963e2c9",
-      "last_updated": "2026-09-10T20:57:35+00:00",
+      "hash": "ff48a7750ac7320ba7693cf7b809f7e28336f6ac3d6929f3b39c472f56a9fabd",
+      "last_updated": "2026-09-11T21:03:32+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -760,8 +760,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "f0783831d9bdc844b01f0740835a6878508b6dc4bf71ff358ee76174c0a19979",
-      "last_updated": "2026-09-11T16:36:14+00:00",
+      "hash": "b466312efce989139557b1cd875352902128a9c5239fac8cc8efeae288b6aff1",
+      "last_updated": "2026-09-11T21:03:49+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -1137,6 +1137,15 @@
       "status": "live",
       "title": "Constrain plugin dependency versions"
     },
+    "plugin-evals.md": {
+      "hash": "1f4f032fa1e95fd984505362a5b69e34272bdf843b093ab60b9ea016fbe09951",
+      "last_updated": "2026-09-11T21:04:06+00:00",
+      "original_url": "https://code.claude.com/docs/en/plugin-evals",
+      "path": "/docs/en/plugin-evals",
+      "source_url": "https://code.claude.com/docs/en/plugin-evals.md",
+      "status": "live",
+      "title": "Test plugins with evals"
+    },
     "plugin-hints.md": {
       "hash": "0562ba997912cc49205859dfe1eade988e3d8ec564cfe0f4fe313b52a60cdfe9",
       "last_updated": "2026-09-10T20:58:33+00:00",
@@ -1147,8 +1156,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugin-marketplaces.md": {
-      "hash": "1136cfffc4a04d0b74d87ed13f9e9d6ee8da86297761d806e13e5b13ab748b65",
-      "last_updated": "2026-09-10T23:15:55+00:00",
+      "hash": "730c6751909e93090076d115ff2811f573438d99cf0fb31adffaae543ff75a9b",
+      "last_updated": "2026-09-11T21:04:07+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-marketplaces",
       "path": "/docs/en/plugin-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugin-marketplaces.md",
@@ -1165,8 +1174,8 @@
       "title": "Recommend plugins for your org"
     },
     "plugins-reference.md": {
-      "hash": "19b91d82f52b99ade444e19d925b1d59718394dcda98789d7e3ef667895f5f18",
-      "last_updated": "2026-09-10T23:15:57+00:00",
+      "hash": "c09977b55150577bf822263fd54eae0dfe88175819bd3d3055146649cddcd388",
+      "last_updated": "2026-09-11T21:04:08+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins-reference",
       "path": "/docs/en/plugins-reference",
       "source_url": "https://code.claude.com/docs/en/plugins-reference.md",
@@ -1174,8 +1183,8 @@
       "title": "Plugins reference"
     },
     "plugins.md": {
-      "hash": "9ee4464311e511e9ee4b0c656e25fe95db6b9e8096681356a5f64a0216754580",
-      "last_updated": "2026-09-10T23:15:57+00:00",
+      "hash": "43d5db9820898d305bc9af63525069191e5394bda3743b022cd9247632b01443",
+      "last_updated": "2026-09-11T21:04:08+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins",
       "path": "/docs/en/plugins",
       "source_url": "https://code.claude.com/docs/en/plugins.md",
@@ -1390,8 +1399,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "180fdf6d9647f4764a7d022f0cdf02412af77a70f44dd991728e4f3e23f3847f",
-      "last_updated": "2026-09-11T16:36:44+00:00",
+      "hash": "eb6f4bde2f4e9fc4b6293f0512e7439ca9b01273fad71d7798a92e4d5f95e0ae",
+      "last_updated": "2026-09-11T21:04:19+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1489,8 +1498,8 @@
       "title": "Voice dictation"
     },
     "vs-code.md": {
-      "hash": "c526db6992dbfb1e8f5ad727d2c21639b2e572b5a83b9e2fd6cda221e76e7150",
-      "last_updated": "2026-09-10T23:16:21+00:00",
+      "hash": "7f5222922a2398f1ffd94e09ba2c94716822c12148fba356ddf0407885c8e233",
+      "last_updated": "2026-09-11T21:04:23+00:00",
       "original_url": "https://code.claude.com/docs/en/vs-code",
       "path": "/docs/en/vs-code",
       "source_url": "https://code.claude.com/docs/en/vs-code.md",
@@ -1746,7 +1755,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-11T16:36:59+00:00",
+  "last_updated": "2026-09-11T21:04:34+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",

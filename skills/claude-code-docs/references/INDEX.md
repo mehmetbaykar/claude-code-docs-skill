@@ -131,6 +131,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `permissions` - [Configure permissions](https://code.claude.com/docs/en/permissions)
 - `platforms` - [Platforms and integrations](https://code.claude.com/docs/en/platforms)
 - `plugin-dependencies` - [Constrain plugin dependency versions](https://code.claude.com/docs/en/plugin-dependencies)
+- `plugin-evals` - [Test plugins with evals](https://code.claude.com/docs/en/plugin-evals)
 - `plugin-hints` - [Recommend your plugin from your CLI](https://code.claude.com/docs/en/plugin-hints)
 - `plugin-marketplaces` - [Create and distribute a plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces)
 - `plugin-relevance` - [Recommend plugins for your org](https://code.claude.com/docs/en/plugin-relevance)
