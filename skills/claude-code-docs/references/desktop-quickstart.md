@@ -68,7 +68,7 @@ With the Code tab open, choose a project and give Claude something to do.
 Select **Local** to run Claude on your machine using your files directly. Click **Select folder** and choose your project directory.
 
 
-Start with a small project you know well. It's the fastest way to see what Claude Code can do. On Windows, [Git](https://git-scm.com/downloads/win) must be installed for local sessions to work. Most Macs include Git by default.
+Start with a small project you know well. It's the fastest way to see what Claude Code can do.
 
 
 You can also select:
@@ -93,7 +93,7 @@ Type what you want Claude to do:
 * `Add tests for the main function`
 * `Create a CLAUDE.md with instructions for this codebase`
 
-A [session](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessions) is a conversation with Claude about your code. Each session tracks its own context and changes, so you can work on multiple tasks without them interfering with each other.
+A [session](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessions) is a conversation with Claude about your code. Each session tracks its own context and changes.
 
 
 
@@ -140,7 +140,7 @@ You've made your first edit. For the full reference on everything Desktop can do
 
 **Put Claude on a schedule.** Set up [scheduled tasks](https://code.claude.com/docs/en/desktop-scheduled-tasks) to run Claude automatically on a recurring basis: a daily code review every morning, a weekly dependency audit, or a briefing that pulls from your connected tools.
 
-**Scale up when you're ready.** Open [parallel sessions](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessions) from the sidebar to work on multiple tasks at once, each in its own Git worktree, and open the [tasks pane](https://code.claude.com/docs/en/desktop#watch-background-tasks) to watch the subagents and background commands a session has running. Open a [side chat](https://code.claude.com/docs/en/desktop#ask-a-side-question-without-derailing-the-session) to ask a question without derailing the main thread. Send [long-running work to the cloud](https://code.claude.com/docs/en/desktop#run-long-running-tasks-remotely) so it continues even if you close the app, or [continue a session on the web or in your IDE](https://code.claude.com/docs/en/desktop#continue-in-another-surface) if a task takes longer than expected. [Connect external tools](https://code.claude.com/docs/en/desktop#extend-claude-code) like GitHub, Slack, and Linear to bring your workflow together.
+**Scale up when you're ready.** Open [parallel sessions](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessions) from the sidebar to work on multiple tasks at once, optionally each in its own Git worktree, and open the [tasks pane](https://code.claude.com/docs/en/desktop#watch-background-tasks) to watch the subagents and background commands a session has running. Open a [side chat](https://code.claude.com/docs/en/desktop#ask-a-side-question-without-derailing-the-session) to ask a question without derailing the main thread. Send [long-running work to the cloud](https://code.claude.com/docs/en/desktop#run-long-running-tasks-remotely) so it continues even if you close the app, or [continue a session on the web or in your IDE](https://code.claude.com/docs/en/desktop#continue-in-another-surface) if a task takes longer than expected. [Connect external tools](https://code.claude.com/docs/en/desktop#extend-claude-code) like GitHub, Slack, and Linear to bring your workflow together.
 
 ## What's next
 
