@@ -61,7 +61,7 @@ To use a plugin distributed through a [marketplace](https://code.claude.com/docs
 
 Plugin paths can be:
 
-* **Relative paths**: resolved relative to your current working directory (for example, `"./plugins/my-plugin"`)
+* **Relative paths**: resolved relative to the `cwd` option (for example, `"./plugins/my-plugin"`)
 * **Absolute paths**: full file system paths (for example, `"/home/user/plugins/my-plugin"`)
 
 The path should point to the plugin's root directory: the parent of `skills/`, `agents/`, `hooks/`, `commands/`, or `.claude-plugin/`.
