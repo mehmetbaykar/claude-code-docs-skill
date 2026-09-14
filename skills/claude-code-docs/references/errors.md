@@ -973,7 +973,6 @@ Your saved login is no longer valid. A revoked token means you signed out everyw
 Both messages report a rejection the API returned for a request Claude Code sent. When the saved login has already been cleared after a failed refresh, you see [Login expired](#login-expired) instead. If you authenticate with a long-lived token in [`CLAUDE_CODE_OAUTH_TOKEN`](https://code.claude.com/docs/en/env-vars), you see the same messages when that token expires or is revoked.
 ```text
 OAuth token revoked · Please run /login
-OAuth token has expired · Please run /login
 API Error: 401 ... authentication_error
 ```
 
@@ -1573,7 +1572,7 @@ See [Explore the context window](https://code.claude.com/docs/en/context-window)
 Context exceeds the 200k-token limit by 94k tokens — run /compact or /clear to continue.
 ```
 
-When the limit you exceeded is a compaction window smaller than the model's context window, such as the 200K boundary on 1M-context models, the warning reads differently. Requests still succeed past a compaction window; run the named command to bring usage back under it.
+When the limit you exceeded is a compaction window, such as the 200K boundary on 1M-context models, the warning reads differently. A compaction window can sit below the model's context window, so requests past it can still succeed.
 ```text
 Context is 94k tokens past the 200k-token compaction window — run /compact to reduce usage.
 ```
