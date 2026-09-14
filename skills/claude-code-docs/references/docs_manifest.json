@@ -409,8 +409,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "e20b9e9b51a43d5c758236bce07bd0ef0327a1d53d673f9fd35eb039667ee31e",
-      "last_updated": "2026-09-12T20:39:48+00:00",
+      "hash": "15e1ede7894248d425cf6902b58212e56e964998132ef684078f94e9f6ff0d54",
+      "last_updated": "2026-09-14T23:54:09+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -760,8 +760,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "6a2969756366aa15564f2f984e28c4468f5308363a05e95389361c963cb2b7cf",
-      "last_updated": "2026-09-14T19:52:55+00:00",
+      "hash": "41887f284f64b5e21d53a4eb8c5b8ca0eeaf358e62ef7bb39bb3cb83f86b5ac9",
+      "last_updated": "2026-09-14T23:54:23+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -1066,8 +1066,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "0dd7ade1d016afe7160e856eef935392952326e3aa33bb91771e97b5d9086f9d",
-      "last_updated": "2026-09-12T04:44:05+00:00",
+      "hash": "5423d30dd2b63bd525f6496ed7f64b5cf62710cb32091ab5d124eb4f7c48cbd5",
+      "last_updated": "2026-09-14T23:54:35+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -1111,8 +1111,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "9548b94e437b5b910bedc4c8f7f4f30af9aa9aad847169bc94ecff1232ae38d5",
-      "last_updated": "2026-09-11T23:21:42+00:00",
+      "hash": "19dd689e58001827a80bf783c3474947aec42be5921111d22c330291f49eaba0",
+      "last_updated": "2026-09-14T23:54:37+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -1192,8 +1192,8 @@
       "title": "Create plugins"
     },
     "prompt-caching.md": {
-      "hash": "9dd96903110184e7074ef722650527db9a5a0cbeda3b5e7e669a2673fcf9b17b",
-      "last_updated": "2026-09-11T16:36:33+00:00",
+      "hash": "16f7a1d8ab6a443bb3fbf3f39404bd4a3014981d1d0a7f2fa890658cbfd07682",
+      "last_updated": "2026-09-14T23:54:40+00:00",
       "original_url": "https://code.claude.com/docs/en/prompt-caching",
       "path": "/docs/en/prompt-caching",
       "source_url": "https://code.claude.com/docs/en/prompt-caching.md",
@@ -1219,8 +1219,8 @@
       "title": "Quickstart"
     },
     "remote-control.md": {
-      "hash": "8b9786f66ddade2c88035da5a6c900fad6896f2828f16289cf59ccaf8df8fc53",
-      "last_updated": "2026-09-14T19:53:16+00:00",
+      "hash": "0628254324d5a81d40649227524bc1e1c736905250ae17960cf05c8c83ac7aed",
+      "last_updated": "2026-09-14T23:54:41+00:00",
       "original_url": "https://code.claude.com/docs/en/remote-control",
       "path": "/docs/en/remote-control",
       "source_url": "https://code.claude.com/docs/en/remote-control.md",
@@ -1399,8 +1399,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "f4eff194f772eb4c62fcd1ece5c8f7df274a7f0471cfa304e17cf123d0811f66",
-      "last_updated": "2026-09-13T20:57:19+00:00",
+      "hash": "87674e654372d4d6e000f29d78782af71b181ddb8b53525d53e4a30aa47397fa",
+      "last_updated": "2026-09-14T23:54:48+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1755,7 +1755,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-14T19:53:39+00:00",
+  "last_updated": "2026-09-14T23:55:02+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
