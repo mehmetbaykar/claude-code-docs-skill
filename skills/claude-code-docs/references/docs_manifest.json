@@ -724,8 +724,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "1346a653013781d6ba0f565152004ce74866a7d3c9e6d1d9425806a18a1a843d",
-      "last_updated": "2026-09-13T20:56:45+00:00",
+      "hash": "273125c2cde2ed142734bbbaac09363df6cf6849c6d4a5434451f7ff7b4efc8c",
+      "last_updated": "2026-09-14T13:00:58+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -1755,7 +1755,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-13T20:57:34+00:00",
+  "last_updated": "2026-09-14T13:01:42+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
