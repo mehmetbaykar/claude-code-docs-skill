@@ -157,8 +157,8 @@
       "title": "Agent SDK overview"
     },
     "agent-sdk__permissions.md": {
-      "hash": "cfafc1275f3a8a6c4cd0b911d55ff3ad4d3301c50670fc4fe6526c3003999388",
-      "last_updated": "2026-09-11T16:35:41+00:00",
+      "hash": "76de48777f60c91053fc6c2426113872942d7575e9d1c9e26618518bf228f9ff",
+      "last_updated": "2026-09-15T17:07:29+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/permissions",
       "path": "/docs/en/agent-sdk/permissions",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/permissions.md",
@@ -643,8 +643,8 @@
       "title": "Manage costs effectively"
     },
     "cross-session-messaging.md": {
-      "hash": "7cdff58d257bbd721491e85ed4cbed71d99dd11f46d6b5a693834d42f0dcbec9",
-      "last_updated": "2026-09-15T05:02:45+00:00",
+      "hash": "616a8217116b8ac34fc10ce6a3e34ec0e98395ff113a5d39a9ccbba538803754",
+      "last_updated": "2026-09-15T17:07:46+00:00",
       "original_url": "https://code.claude.com/docs/en/cross-session-messaging",
       "path": "/docs/en/cross-session-messaging",
       "source_url": "https://code.claude.com/docs/en/cross-session-messaging.md",
@@ -1102,8 +1102,8 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "abe86df5938492ccedc767125d1351dd9ba65960c802107587bf4a2c2c0c98fc",
-      "last_updated": "2026-09-11T16:36:30+00:00",
+      "hash": "35745a015b71de87955660aa939448b26449895b9421c7333030d9b4817c5069",
+      "last_updated": "2026-09-15T17:08:03+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "source_url": "https://code.claude.com/docs/en/permission-modes.md",
@@ -1111,8 +1111,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "19dd689e58001827a80bf783c3474947aec42be5921111d22c330291f49eaba0",
-      "last_updated": "2026-09-14T23:54:37+00:00",
+      "hash": "f87bfbd116fa3313d9ee999cab43a057a4ee6e109e0111fd7e11bd9432d51511",
+      "last_updated": "2026-09-15T17:08:04+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -1156,8 +1156,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugin-marketplaces.md": {
-      "hash": "0934407644050495d59e1e503c1f78b257e0a914df16a1bf2c9bdb7450288d54",
-      "last_updated": "2026-09-15T05:03:09+00:00",
+      "hash": "8ed7922834de0fbb49c961af645309b4d2c652fc666e58a21c0b50feb44eabf0",
+      "last_updated": "2026-09-15T17:08:05+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-marketplaces",
       "path": "/docs/en/plugin-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugin-marketplaces.md",
@@ -1372,8 +1372,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "680856dc9f3b7b27cecbe24ad28dcdced670305ee7851a181765e8d10e5548f9",
-      "last_updated": "2026-09-15T05:03:19+00:00",
+      "hash": "cecc27ffe2dade95289cd4557b8ca60cb06b6366286825ce8c1a084ef8a0265f",
+      "last_updated": "2026-09-15T17:08:13+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "source_url": "https://code.claude.com/docs/en/settings-reference.md",
@@ -1782,7 +1782,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-15T05:03:36+00:00",
+  "last_updated": "2026-09-15T17:08:25+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
