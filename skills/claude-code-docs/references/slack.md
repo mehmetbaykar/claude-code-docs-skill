@@ -49,7 +49,7 @@ A workspace administrator must install the Claude app from the Slack App Marketp
 After the app is installed, authenticate your individual Claude account:
 
 1. Open the Claude app in Slack by clicking on "Claude" in your Apps section
-2. Navigate to the App Home tab
+2. Open the App Home tab
 3. Click "Connect" to link your Slack account with your Claude account
 4. Complete the authentication flow in your browser
 
@@ -67,7 +67,7 @@ Ensure your Claude Code on the web is properly configured:
 
 **Choose your routing mode**
 
-After connecting your accounts, configure how Claude handles your messages in Slack. Navigate to the Claude App Home in Slack to find the **Routing Mode** setting.
+After connecting your accounts, configure how Claude handles your messages in Slack. Open the Claude App Home in Slack to find the **Routing Mode** setting.
 
     | Mode            | Behavior                                                                                                                                                                                                                                 |
     | :-------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -121,7 +121,7 @@ When @Claude is invoked in Slack, Claude is given access to the conversation con
 * **View Session**: Opens the full Claude Code session in your browser where you can see all work performed, continue the session, or make additional requests.
 * **Create PR**: Creates a pull request directly from the session's changes.
 * **Retry as Code**: If Claude initially responds as a chat assistant but you wanted a coding session, click this button to retry the request as a Claude Code task.
-* **Change Repo**: Allows you to select a different repository if Claude chose incorrectly.
+* **Change Repo**: Lets you select a different repository if Claude chose incorrectly.
 
 ### Repository selection
 
@@ -168,12 +168,12 @@ for more details.
 
 * **Be specific**: Include file names, function names, or error messages when relevant.
 * **Provide context**: Mention the repository or project if it's not clear from the conversation.
-* **Define success**: Explain what "done" looks like—should Claude write tests? Update documentation? Create a PR?
+* **Define success**: Explain what "done" looks like. Should Claude write tests? Update documentation? Create a PR?
 * **Use threads**: Reply in threads when discussing bugs or features so Claude can gather the full context.
 
 ### When to use Slack vs. web
 
-**Use Slack when**: Context already exists in a Slack discussion, you want to kick off a task asynchronously, or you're collaborating with teammates who need visibility.
+**Use Slack when**: Context already exists in a Slack discussion, you want to start a task asynchronously, or you're collaborating with teammates who need visibility.
 
 **Use the web directly when**: You need to upload files, want real-time interaction during development, or are working on longer, more complex tasks.
 

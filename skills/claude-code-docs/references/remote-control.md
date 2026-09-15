@@ -43,7 +43,7 @@ You can start a Remote Control session from the CLI or the VS Code extension. Th
 
 **Server mode**
 
-Navigate to your project directory and run:
+In your project directory, run:
 ```bash
     claude remote-control
 ```
@@ -357,7 +357,7 @@ Claude Code skips mobile push notifications while you are typing in or focused o
 
 You're not signed in with a claude.ai account, or another credential is taking precedence over your login. The message takes one of these forms:
 
-* Signed out, from `/remote-control` or `--remote-control`: `Remote Control requires a claude.ai subscription.`
+* Signed out, from `/remote-control` or `--remote-control`: `Remote Control requires a claude.ai subscription.` or `/remote-control requires a claude.ai subscription.`
 * Signed out, from `claude remote-control`: `You must be logged in to use Remote Control. Remote Control is only available with claude.ai subscriptions.`
 * Signed in, but an API key or token is in use: `Remote Control requires claude.ai subscription auth.` followed by the credential in use, such as `ANTHROPIC_API_KEY is set, so this session is using API-key auth`. An `apiKeyHelper` setting and `ANTHROPIC_AUTH_TOKEN` are named the same way.
 

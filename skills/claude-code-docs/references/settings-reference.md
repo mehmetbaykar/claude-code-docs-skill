@@ -49,6 +49,7 @@ Every key below links to its entry. Scope lists the [files](https://code.claude.
 | [`awsAuthRefresh`](#awsauthrefresh)                                                                   | Refresh expired [Bedrock credentials](https://code.claude.com/docs/en/amazon-bedrock#advanced-credential-configuration) in `.aws` with your own command                                                                                                 | Authentication and providers       | Any file                |
 | [`awsCredentialExport`](#awscredentialexport)                                                         | Supply [Bedrock credentials](https://code.claude.com/docs/en/amazon-bedrock#advanced-credential-configuration) as JSON from your own command                                                                                                            | Authentication and providers       | Any file                |
 | [`axScreenReader`](#axscreenreader)                                                                   | Render [screen-reader friendly output](https://code.claude.com/docs/en/accessibility)                                                                                                                                                                   | Interface and terminal             | Any file                |
+| [`bashEditDiffEnabled`](#basheditdiffenabled)                                                         | Record the [files a Bash command changed](https://code.claude.com/docs/en/hooks#bash) in every permission mode                                                                                                                                          | Interface and terminal             | User or managed         |
 | [`bashOutputMaxChars`](#bashoutputmaxchars)                                                           | Set how much of a successful command's [output](https://code.claude.com/docs/en/tools-reference#output-limits) Claude receives inline                                                                                                                   | Memory and context                 | Any file                |
 | [`blockedMarketplaces`](#blockedmarketplaces)                                                         | Block [plugin marketplace](https://code.claude.com/docs/en/plugin-marketplaces) sources for your organization                                                                                                                                           | Plugins and skills                 | Managed                 |
 | [`browserExternalPageTools`](#browserexternalpagetools)                                               | Keep Claude's tools off external pages in the [desktop](https://code.claude.com/docs/en/desktop) Browser pane                                                                                                                                           | Tools                              | Managed                 |
@@ -104,6 +105,7 @@ Every key below links to its entry. Scope lists the [files](https://code.claude.
 | [`forceLoginMethod`](#forceloginmethod)                                                               | [Restrict login](https://code.claude.com/docs/en/authentication#restrict-login-to-your-organization) to claude.ai, Claude Console, or a [cloud gateway](https://code.claude.com/docs/en/claude-apps-gateway)                                                                        | Authentication and providers       | Any file                |
 | [`forceLoginOrgUUID`](#forceloginorguuid)                                                             | [Pin claude.ai logins to your organization](https://code.claude.com/docs/en/authentication#restrict-login-to-your-organization); only a managed source enforces it                                                                                      | Authentication and providers       | Any file                |
 | [`forceRemoteSettingsRefresh`](#forceremotesettingsrefresh)                                           | Block startup until [server-managed settings](https://code.claude.com/docs/en/server-managed-settings) are freshly fetched                                                                                                                              | Enterprise and managed settings    | Managed                 |
+| [`gatewayInternalNetworks`](#gatewayinternalnetworks)                                                 | Let `/login` reach a [cloud gateway](https://code.claude.com/docs/en/claude-apps-gateway#allow-a-gateway-on-public-address-space-you-own) on public IPv4 space your organization uses internally                                                        | Authentication and providers       | Managed                 |
 | [`gcpAuthRefresh`](#gcpauthrefresh)                                                                   | Refresh [Google Cloud credentials](https://code.claude.com/docs/en/google-vertex-ai#advanced-credential-configuration) with your own command                                                                                                            | Authentication and providers       | Any file                |
 | [`hooks`](#hooks)                                                                                     | Run your own commands as [hooks](https://code.claude.com/docs/en/hooks) at points in Claude Code's lifecycle                                                                                                                                            | Hooks and automation               | Any file                |
 | [`httpHookAllowedEnvVars`](#httphookallowedenvvars)                                                   | Limit which env vars [HTTP hooks](https://code.claude.com/docs/en/hooks) can put in headers                                                                                                                                                             | Hooks and automation               | Any file                |
@@ -2242,6 +2244,22 @@ Render screen-reader friendly output: flat text without decorative borders or an
 ```
 
 Requires Claude Code v2.1.181 or later.
+
+### `bashEditDiffEnabled`
+
+Choose whether Claude Code records the files a Bash command changes in a Git repository. When it records them, you see their diff in the terminal after the command, and your [PostToolUse Bash hooks](https://code.claude.com/docs/en/hooks#bash) receive the changed-file list.
+
+Set the key to `true` to record them in every permission mode. Requires Claude Code v2.1.269 or later.
+
+* **Scope**: [`User or managed`](#scopes). A `true` counts only from your user settings, JSON passed with `--settings`, or [managed settings](https://code.claude.com/docs/en/managed-settings), so a `true` in a repository's `.claude/settings.json` or `.claude/settings.local.json` can't turn the recording on. A `false` in either repository file still turns it off unless a [higher-precedence](https://code.claude.com/docs/en/settings#settings-precedence) file sets `true`.
+* **Type**: Boolean
+* **Default**: unset, so Claude Code records changes in auto mode and `bypassPermissions` mode when it directs Claude to edit files through Bash
+* **Per-session overrides**: [`CLAUDE_CODE_BASH_EDIT_DIFF`](https://code.claude.com/docs/en/env-vars) takes precedence over this key for one session
+```json settings.json
+{
+  "bashEditDiffEnabled": true
+}
+```
 
 ### `companyAnnouncements`
 
@@ -4488,6 +4506,25 @@ If a managed source sets an empty array, or a value Claude Code can't parse, Cla
 
 See [Restrict login to your organization](https://code.claude.com/docs/en/authentication#restrict-login-to-your-organization) for how Claude Code treats Claude Console logins, the other login paths, and environment credentials.
 
+### `gatewayInternalNetworks`
+
+Declare the public IPv4 blocks that your organization numbers its internal network from, so `/login` accepts a [cloud gateway](https://code.claude.com/docs/en/claude-apps-gateway) there. Requires Claude Code v2.1.268 or later.
+
+Without this key, `/login` connects to any gateway on a private address and nothing else. With it, `/login` also accepts a gateway inside a listed block, over a direct connection only. The machine's own address on that connection must also be inside the same block.
+
+* **Scope**: [`Managed`](#scopes). Read only from a source on the machine: `managed-settings.json`, the macOS plist or Windows HKLM registry, or a policy helper. Claude Code ignores it in HKCU and server-managed settings.
+* **Type**: array of strings, at most four IPv4 CIDR blocks, each `/8` to `/32`, not overlapping one another, and none overlapping private space.
+* **Default**: unset, so `/login` accepts only gateways on private addresses
+```json managed-settings.json
+{
+  "gatewayInternalNetworks": ["203.0.113.0/24"]
+}
+```
+
+Replace the documentation range in the example with your own block. Claude Code refuses the documentation ranges, the ranges that VPN and NAT64 clients use locally, and reserved space that no network is numbered from, such as multicast.
+
+If an entry is invalid, or the value isn't a list of strings, `/login` names the problem and refuses every new gateway sign-in on the machine until you fix the value. Existing sign-ins keep working. See [Allow a gateway on public address space you own](https://code.claude.com/docs/en/claude-apps-gateway#allow-a-gateway-on-public-address-space-you-own) for the full rules and what developers see.
+
 ### `gcpAuthRefresh`
 
 Run your own command to refresh Google Cloud Application Default Credentials when Claude Code finds they've expired or can't be loaded, so [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai) requests keep working without you re-authenticating by hand.
@@ -4804,7 +4841,7 @@ A few keys add a condition that the table doesn't show:
 
 * **[`policyHelper`](#policyhelper)**: Claude Code honors it only when the highest source that carries a policy key is an MDM policy or a managed settings file, so under server-managed settings it doesn't apply.
 * **[`modelOverrides`](#modeloverrides)**: pairs with `availableModels`. Claude Code takes `modelOverrides` from the highest source that sets it, unless a higher source sets `availableModels` without `modelOverrides`. In that case it ignores `modelOverrides` from every source.
-* **[`forceLoginGatewayUrl`](#forcelogingatewayurl) and the `"gateway"` value of [`forceLoginMethod`](#forceloginmethod)**: Claude Code never reads either from server-managed settings, so a value there neither applies nor hides one set in an MDM policy or managed settings file. Among the admin sources on the machine, only the highest-ranked one that carries a policy key supplies them, whether or not server-managed settings are also present.
+* **[`forceLoginGatewayUrl`](#forcelogingatewayurl), [`gatewayInternalNetworks`](#gatewayinternalnetworks), and the `"gateway"` value of [`forceLoginMethod`](#forceloginmethod)**: Claude Code never reads any of them from server-managed settings, so a value there neither applies nor hides one set in an MDM policy or managed settings file. Among the admin sources on the machine, only the highest-ranked one that carries a policy key supplies them, whether or not server-managed settings are also present.
 
 To confirm which sources combined on a machine, run `/status` and [read the `Setting sources` line](https://code.claude.com/docs/en/managed-settings#read-the-source-in-/status).
 

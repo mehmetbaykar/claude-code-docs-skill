@@ -66,7 +66,7 @@ exit 0
 
 ### Before you start the runner
 
-Two things the hook depends on:
+The hook has these requirements:
 
 * Install it before you start the runner. The runner snapshots `~/.claude/` once at startup, so a hook added to a running runner takes effect only after a restart.
 * Export `E2E_REPLY_DIR` to the runner process. The hook is a no-op when the variable is unset or the directory doesn't exist, so set it wherever you start the runner, such as the systemd unit, pod spec, or CI step. The test script below requires it too.

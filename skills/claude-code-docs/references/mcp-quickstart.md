@@ -109,7 +109,7 @@ The `claude mcp add` command writes the server's details to a configuration file
 
 `claude mcp add` works the same in every shell, including PowerShell and Command Prompt. Inside a `claude` session, use the `/mcp` command to check and manage servers you've already added.
 
-There are other ways to add a server, each covered later on this page:
+There are other ways to add a server, each with its own section:
 
 * [Add a local server](#add-a-local-server): run a program on your machine instead of connecting to a URL.
 * [Edit `.mcp.json` directly](#edit-mcp-json-directly): write the JSON entry yourself instead of using the command.

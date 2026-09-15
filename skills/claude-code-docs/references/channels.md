@@ -210,7 +210,9 @@ If the install fails, match the message Claude Code reports:
 * `Marketplace "claude-plugins-official" not found`: add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
 * The plugin is [not found in the marketplace](https://code.claude.com/docs/en/discover-plugins#install-plugins): check the plugin name.
 
-When the install asks for an installation scope, choose the user scope option so the plugin is available across all your projects. If the install summary reports `Run /reload-plugins to activate.`, you can skip that here, because restarting in the next step picks up the plugin.
+When the install asks for an installation scope, choose the user scope option so the plugin is available across all your projects.
+
+If the install summary reports `Run /reload-plugins to activate.`, you don't need to act on it here, because restarting in the next step picks up the plugin.
 
 
 
@@ -268,7 +270,9 @@ If the install fails, match the message Claude Code reports:
 * `Marketplace "claude-plugins-official" not found`: add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
 * The plugin is [not found in the marketplace](https://code.claude.com/docs/en/discover-plugins#install-plugins): check the plugin name.
 
-When the install asks for an installation scope, choose the user scope option so the plugin is available across all your projects. If the install summary reports `Run /reload-plugins to activate.`, you can skip that here, because restarting in the next step picks up the plugin.
+When the install asks for an installation scope, choose the user scope option so the plugin is available across all your projects.
+
+If the install summary reports `Run /reload-plugins to activate.`, you don't need to act on it here, because restarting in the next step picks up the plugin.
 
 
 
