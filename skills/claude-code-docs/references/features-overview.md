@@ -295,7 +295,7 @@ Skills are extra capabilities in Claude's toolkit. They can be reference materia
 
 * The agent's own system prompt, not the Claude Code system prompt
 * Full content of skills listed in the agent's `skills:` field
-* CLAUDE.md and git status, except the built-in Explore and Plan agents [omit both](https://code.claude.com/docs/en/sub-agents#what-loads-at-startup)
+* CLAUDE.md and git status, except the built-in Explore and Plan agents [omit both](https://code.claude.com/docs/en/sub-agents#what-loads-at-startup), and an agent whose definition sets [`omitClaudeMd`](https://code.claude.com/docs/en/sub-agents#supported-frontmatter-fields) skips the user, project, and local CLAUDE.md files
 * Whatever context the lead agent passes in the prompt
 
 For a [fork](https://code.claude.com/docs/en/sub-agents#fork-the-current-conversation), Claude Code loads the parent's conversation so far, system prompt, and tools instead.

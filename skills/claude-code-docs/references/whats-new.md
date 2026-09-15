@@ -10,6 +10,24 @@ path: /docs/en/whats-new
 
 The weekly dev digest highlights the features most likely to change how you work. Each entry includes runnable code, a short demo, and a link to the full docs. For every bug fix and minor improvement, see the [changelog](https://code.claude.com/docs/en/changelog).
 
+  **`claude plugin eval`**: run your plugin against a suite of test cases, score the results, and compare against a no-plugin baseline. `claude plugin eval init` drafts the cases and graders for you.
+
+Also this week: pop any **Claude Code Desktop pane** out into its own window and dock it back later; the **`maxEffortLevel`** setting caps the effort level on every provider; and a page that **WebFetch** hasn't finished downloading within five minutes fails instead of hanging.
+
+[Read the Week 37 digest →](https://code.claude.com/docs/en/whats-new/2026-w37)
+
+  **Claude Fable 5.1**: available in Claude Code with a 1M-token context window.
+
+Also this week: on Pro and Max plans, **computer use in the Desktop app** works in the background on macOS while you keep working; in fullscreen rendering, **`/diff`** opens a live panel beside the conversation that refreshes as Claude edits; and **`/skill-doctor`** shows what each of your skills costs in context and how often it gets used.
+
+[Read the Week 36 digest →](https://code.claude.com/docs/en/whats-new/2026-w36)
+
+  **Resume terminal sessions in the Desktop app**: type `/resume` in the Claude Code Desktop prompt box to pick up any session you started from the CLI, with the full conversation and context intact.
+
+Also this week: **Claude-drafted feedback** has Claude write up a feedback report when something goes wrong in a session, which you review and send from `/feedback`; **`--restricted`** starts a session without the command-running tools or your user and project settings, for evaluation harnesses on shared machines; and the **`modelPicker`** setting controls which models the `/model` picker lists.
+
+[Read the Week 35 digest →](https://code.claude.com/docs/en/whats-new/2026-w35)
+
   **`/design`**: a research preview that brings Claude Design's artboard workflow into the CLI and Claude Code Desktop, built on artifacts, so Claude drafts editable artboards for your UI and implements the one you pick.
 
 Also this week: the built-in **Concise output style** makes Claude lead with the result and skip preamble; any machine running `claude remote-control` shows up as a **device card** on your phone so you can start a session on it from the Code tab; and **`ANTHROPIC_DEFAULT_MODEL`** sets the model new sessions start on.
