@@ -364,6 +364,7 @@ type AgentDefinition = {
   initialPrompt?: string;
   maxTurns?: number;
   background?: boolean;
+  omitClaudeMd?: boolean;
   memory?: "user" | "project" | "local";
   effort?: "low" | "medium" | "high" | "xhigh" | "max" | number;
   permissionMode?: PermissionMode;
@@ -1475,14 +1476,13 @@ type BashInput = {
 ```
 ```typescript
 type MonitorInput = {
+  description: string;
+  timeout_ms: number;
   command?: string;
   ws?: {
     url: string;
     protocols?: string[];
   };
-  description: string;
-  timeout_ms: number;
-  persistent: boolean;
 };
 ```
 ```typescript
