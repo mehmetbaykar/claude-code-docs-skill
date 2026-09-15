@@ -239,7 +239,12 @@ If `/web-setup` says your GitHub CLI token doesn't have the `workflow` scope, yo
 
 If you typed it inside Claude Code and the command menu shows `No commands match "/web-setup"`, or submitting it returns `Unknown command: /web-setup`, the command is hidden because a requirement isn't met. The cause is usually that you're authenticated with an API key or third-party provider instead of a claude.ai subscription. Run `/login` to sign in with your claude.ai account.
 
-On Team and Enterprise plans, the command is hidden by default: the [Quick web setup toggle](https://code.claude.com/docs/en/claude-code-on-the-web#github-authentication-options) is off until an Owner turns it on. While it's off, [connect GitHub from the browser](#connect-github) instead. The command is also hidden when an administrator has disabled Claude Code on the web for your organization, or when your Enterprise organization has [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention) enabled, which makes Claude Code on the web unavailable.
+On Team and Enterprise plans, the command is hidden by default: the [Quick web setup toggle](https://code.claude.com/docs/en/claude-code-on-the-web#github-authentication-options) is off until an Owner turns it on. While it's off, [connect GitHub from the browser](#connect-github) instead.
+
+The command is also hidden in two other cases:
+
+* An administrator has disabled Claude Code on the web for your organization. In this case, submitting `/web-setup` returns [`Cloud sessions are disabled by your organization's policy`](https://code.claude.com/docs/en/errors#cloud-sessions-are-disabled-by-your-organizations-policy). Before v2.1.268, this case also returned `Unknown command: /web-setup`.
+* Your Enterprise organization has [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention) enabled, which makes Claude Code on the web unavailable.
 
 ### "Could not create a cloud environment" or "No cloud environment available" when using `--cloud`
 

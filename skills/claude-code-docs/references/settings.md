@@ -62,7 +62,7 @@ Some of what you commit waits until each teammate [trusts the folder](https://co
 
 To change a setting for yourself in one project without changing it for your teammates, save it in `.claude/settings.local.json` inside the project. Claude Code applies that file over the committed `.claude/settings.json`, so if your team's file sets `"model": "claude-sonnet-5"` and you want Opus, put `"model": "claude-opus-4-8"` in your local file and only your sessions change.
 
-Three things to know about the local file:
+Claude Code also writes to this file, keeps it out of your commits, and applies its allow rules without the trust step:
 
 * **Claude Code writes it too.** When Claude asks permission to run a Bash command and you choose "Yes, and don't ask again", Claude Code saves that [permission approval](https://code.claude.com/docs/en/permissions#permission-system) here as an `allow` rule.
 * **You don't need to gitignore it yourself, unless you created it by hand.** The first time Claude Code writes the file in a git repository that doesn't already ignore it, it adds `**/.claude/settings.local.json` to your global git excludes file, so the file stays out of your commits in every repository. That file is `core.excludesFile` when your global git config sets it to an absolute or `~`-prefixed path; otherwise it's `$XDG_CONFIG_HOME/git/ignore`, or `~/.config/git/ignore` when `XDG_CONFIG_HOME` is unset. If you created the file by hand and Claude Code hasn't written to it yet, add it to `.gitignore` yourself.
@@ -267,7 +267,7 @@ Managed sources reach a running session on the schedule in the [delivery table](
 
 Two things keep a key in `.claude/settings.json` from applying for everyone who clones it:
 
-* **Claude Code ignores the key in a repository file.** Look for `User, local, or managed`, `User or managed`, `Managed`, or `Global config` in the Scope column of the [settings index](https://code.claude.com/docs/en/settings-reference#settings-index); those keys never apply from the shared file, apart from [`autoContinueAtUsageLimit`](https://code.claude.com/docs/en/settings-reference#autocontinueatusagelimit), which a repository file can still switch off: while the file sets the key and no user, `--settings`, or managed value does, Claude Code reads the setting as off. `Global config` keys apply only from `~/.claude.json`.
+* **Claude Code ignores the key in a repository file.** Look for `User, local, or managed`, `User or managed`, `Managed`, or `Global config` in the Scope column of the [settings index](https://code.claude.com/docs/en/settings-reference#settings-index). Those keys never apply from the shared file, apart from a few that a repository file can still switch off. Each of those entries says so on its Scope line. `Global config` keys apply only from `~/.claude.json`.
 * **The key waits for trust.** `permissions.allow` rules, `permissions.additionalDirectories`, `extraKnownMarketplaces`, and most [`env`](https://code.claude.com/docs/en/settings-reference#env) values apply only after each teammate [trusts the folder](https://code.claude.com/docs/en/permissions#project-allow-rules-and-workspace-trust). Until then they still see prompts and don't get plugins from a marketplace the file declares. `deny` and `ask` rules apply right away.
 
 #### Permission rules combine differently than you expected

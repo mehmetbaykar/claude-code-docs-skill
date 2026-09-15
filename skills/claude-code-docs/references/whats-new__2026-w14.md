@@ -110,7 +110,7 @@ Other wins
 Auto mode follow-ups: new `PermissionDenied` hook fires on classifier denials (return `retry: true` to let Claude try a different approach), and `/permissions` → Recently denied lets you retry manually with `r`
 New `defer` value for `permissionDecision` in `PreToolUse` hooks: `-p` sessions pause at a tool call and exit with a `deferred\_tool\_use` payload so an SDK app or custom UI can surface it, then resume with `--resume`
 `/buddy`: hatch a small creature that watches you code. An April Fools' joke, no longer available
-`disableSkillShellExecution` setting blocks inline shell from skills, slash commands, and plugin commands
+`disableSkillShellExecution` setting blocks inline shell from skills, custom commands, and plugin commands
 Edit tool now works on files viewed via `cat` or `sed -n` without a separate Read
 Hook output over 50K saved to disk with a path + preview instead of injected into context
 Thinking summaries off by default in interactive sessions (`showThinkingSummaries: true` to restore)

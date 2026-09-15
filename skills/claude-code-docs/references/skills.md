@@ -651,9 +651,13 @@ Which commands get the carveout depends on the shell:
 
 With the default `bash` shell, append `|| true` to any other command you expect to exit non-zero. A check script that exits 1 when it finds problems is one example.
 
-Injected commands never prompt for permission. When a command's permission check returns anything other than allow, Claude Code aborts the invocation. This includes a rule that would normally ask you. The abort shows `Shell command permission check failed for pattern "..."`.
+#### Permission checks on injected commands
 
-To keep an unmatched command from aborting here, pre-approve it with [`allowed-tools`](#pre-approve-tools-for-a-skill). A matching ask or deny rule still aborts the invocation regardless of `allowed-tools`. See [Manage permissions](https://code.claude.com/docs/en/permissions#manage-permissions).
+Injected commands never prompt for permission while the skill renders. Claude Code checks each one against your [permission rules](https://code.claude.com/docs/en/permissions) first. A command a deny rule matches aborts the invocation with `Shell command permission check failed for pattern "..."`.
+
+Outside [auto mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode), when a command's permission check returns anything other than allow, Claude Code aborts the invocation with the same error. This includes a rule that would normally ask you. To keep an unmatched command from aborting here, pre-approve it with [`allowed-tools`](#pre-approve-tools-for-a-skill). Deny and ask rules still override `allowed-tools`. See [Manage permissions](https://code.claude.com/docs/en/permissions#manage-permissions).
+
+In auto mode, a command that would otherwise need your approval doesn't abort the invocation. The skill loads with an instruction telling Claude to run the command first, and Claude's own call then goes through [auto mode's usual checks](https://code.claude.com/docs/en/permission-modes#how-the-classifier-evaluates-actions). The invocation still aborts in a [forked skill](#run-skills-in-a-subagent) that sets `agent`, and in a session where Claude doesn't have the [shell tool that runs injected commands](#how-injected-commands-run).
 
 ### Run skills in a subagent
 
@@ -787,7 +791,7 @@ The report covers the skills in your session other than bundled skills and enter
 
 ## Evaluate and iterate on a skill
 
-Seeing a skill trigger tells you Claude found it, not that it did what you intended. To know a skill is working, measure two things separately: whether Claude invokes it on the prompts it should, and whether the output matches what you expect when it does.
+Seeing a skill trigger tells you Claude found it, not that it did what you intended. To know a skill is working, measure separately whether Claude invokes it on the prompts it should, and whether the output matches what you expect when it does.
 
 The check for both is a baseline comparison. Collect a few realistic prompts, run each one in a fresh session with the skill available and again with it [disabled](#override-skill-visibility-from-settings), and compare the results. A fresh session matters because leftover context from authoring the skill will mask gaps in the written instructions.
 

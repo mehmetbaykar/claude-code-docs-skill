@@ -133,7 +133,7 @@ For example:
 
 Without `--`, Claude Code would try to parse the server's flags, like `--port` above, as its own options.
 
-`--env` accepts multiple `KEY=value` pairs. If the server name comes directly after `--env`, the CLI reads the name as another pair and rejects it, so place at least one other option between `--env` and the server name, as in the examples above.
+`--env` accepts multiple `KEY=value` pairs. If the server name comes directly after `--env`, the CLI reads the name as another pair and rejects it, so place at least one other option, such as `--transport stdio`, between `--env` and the server name.
 
 ### Option 4: Add a remote WebSocket server
 
@@ -149,7 +149,7 @@ The `type: "ws"` entry accepts the same `url`, `headers`, `headersHelper`, `time
 
 ### Add a server from setup instructions written for another client
 
-MCP servers aren't specific to Claude Code, so a server's setup instructions may be written for Claude Desktop, Cursor, or another MCP client and give no `claude mcp add` command. To add the server anyway, look in those instructions for one of these three things:
+MCP servers aren't specific to Claude Code, so a server's setup instructions may be written for Claude Desktop, Cursor, or another MCP client and give no `claude mcp add` command. To add the server anyway, look in those instructions for a URL, a launch command, or a JSON block:
 
 * **A URL** such as `https://mcp.example.com/mcp`: the server is remote.
 * **A launch command** such as `npx -y @example/mcp-server`: the server runs on your machine.
@@ -584,12 +584,13 @@ If you open a local session in the [Desktop app's Code tab](https://code.claude.
 
 Claude Code supports environment variable expansion in `.mcp.json` files, allowing teams to share configurations while maintaining flexibility for machine-specific paths and sensitive values like API keys.
 
-**Supported syntax:**
+#### Supported syntax
 
 * `${VAR}`: expands to the value of environment variable `VAR`
 * `${VAR:-default}`: expands to `VAR` if set, otherwise uses `default`
 
-**Expansion locations:**
+#### Expansion locations
+
 Environment variables can be expanded in:
 
 * `command`: the server executable path
@@ -598,7 +599,7 @@ Environment variables can be expanded in:
 * `url`: for HTTP server types
 * `headers`: for HTTP server authentication
 
-**Example with variable expansion:**
+#### Example with variable expansion
 ```json
 {
   "mcpServers": {
@@ -612,6 +613,8 @@ Environment variables can be expanded in:
   }
 }
 ```
+
+#### Unset variables without a default
 
 If a referenced environment variable isn't set and has no default value, the config still loads: Claude Code reports a missing-variable warning for that server in `claude mcp list` output and uses the unexpanded `${VAR}` text as-is. Set the variable or add a `:-default` fallback so the server starts with the value you intend. In a remote server's `url` and `headers`, some credential variables [read as empty](#credential-variables-that-read-as-empty) instead, with no warning.
 
@@ -630,6 +633,19 @@ A covered name reads as empty whether or not you have set the variable, and a `:
 A name outside this set, such as `API_KEY`, expands as written. To give the server one of the covered credentials, copy it into a variable with a name of your own and reference that name instead.
 
 When a remote server's `url` or `headers` references a covered variable you have set, Claude Code names it in a debug-log line. To read the line, run `claude --debug-file /tmp/claude-debug.log` and search that file for `never expanded toward a remote server`.
+
+#### How references appear in `/mcp` and CLI output
+
+For a server in the local, project, or user [scope](#mcp-installation-scopes), the following surfaces show a `${VAR}` reference by name rather than as its resolved value:
+
+* The URL or command line in a server's `/mcp` detail view
+* `claude mcp list` and `claude mcp get` output
+
+The `/mcp` detail view shows references this way in Claude Code v2.1.268 or later.
+
+For a server your organization provides through the `managedMcpServers` setting, these surfaces show [the URL's host only](https://code.claude.com/docs/en/managed-mcp#what-users-can-see-and-change).
+
+To check what `claude mcp list`, `claude mcp get`, and `/mcp` show when a connection fails, see [Server status detail](#server-status-detail).
 
 ## Practical examples
 
@@ -693,6 +709,8 @@ When the server rejects the stored refresh token, Claude Code immediately shows 
 A custom server that returns a `WWW-Authenticate` header pointing to its authorization server gets the same automatic discovery as any other remote server.
 
 Claude Code also shows a startup notice when one or more configured servers need authentication, so you don't have to open `/mcp` to discover which servers need sign-in. The notice requires Claude Code v2.1.193 or later. It counts only servers you can sign in to from Claude Code. Before v2.1.218, it also counted [claude.ai connectors](#use-mcp-servers-from-claude-ai) that weren't connected in claude.ai, which you can connect only from claude.ai settings.
+
+The notice announces each server once and leaves it out of the count at later launches until that server has connected and needs sign-in again. `/mcp` still lists every server that needs sign-in.
 
 In non-interactive mode there's no `/mcp` panel, so Claude Code can't run the OAuth flow for you. As of v2.1.196, when a configured server needs authentication during a `claude -p` or Agent SDK run with [tool search](#scale-with-mcp-tool-search) enabled, which is the default, Claude Code tells Claude that the server's tools are unavailable until you authorize it. Claude can then name the server that needs sign-in instead of responding as if the server weren't configured. Complete the sign-in from an interactive session with `/mcp` or `claude mcp login <name>`.
 

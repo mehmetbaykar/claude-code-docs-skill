@@ -244,7 +244,7 @@ The tool never prompts for permission, and [PreToolUse hooks](https://code.claud
 
 [Subagents](https://code.claude.com/docs/en/sub-agents) never get the tool. Background tasks that share the main conversation's tool list see it, but calling it there ends nothing.
 
-The tool appears only when all of the following hold:
+The tool appears only when all of the following are true:
 
 * **Version**: Claude Code v2.1.213 or later.
 * **Model**: the session's model is Claude Opus 4.8, Claude Sonnet 5, Claude Fable 5, or a later version of one of those families.

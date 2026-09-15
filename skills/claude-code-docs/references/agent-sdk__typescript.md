@@ -218,7 +218,7 @@ const q = query({ prompt: messageStream });
 // Override the model for the rest of the session
 await q.applyFlagSettings({ model: "claude-opus-4-6" });
 
-// Later: clear the override and fall back to lower-precedence settings
+// Later: clear the override; the model resets to Claude Code's default
 await q.applyFlagSettings({ model: null });
 ```
 ```typescript

@@ -66,7 +66,7 @@ Setting `"type": "module"` in `package.json` lets your agent script use top-leve
 
 **Python (uv)**
 
-[uv](https://docs.astral.sh/uv/) is a fast Python package manager that handles virtual environments automatically:
+[Install uv](https://docs.astral.sh/uv/), a fast Python package manager that handles virtual environments automatically. Then initialize a project and add the SDK:
 ```bash
         uv init
         uv add claude-agent-sdk
@@ -329,6 +329,8 @@ You can modify your agent's behavior by changing the options. Here are a few exa
 
 With `Bash` enabled, try: `"Write unit tests for utils.py, run them, and fix any failures"`
 
+Each of these snippets sets fields on the same options object. For more information, see [Configure your agent](https://code.claude.com/docs/en/agent-sdk/configuration).
+
 ## Key concepts
 
 **Tools** control what your agent can do:
@@ -345,6 +347,7 @@ With `Bash` enabled, try: `"Write unit tests for utils.py, run them, and fix any
 
 Now that you've created your first agent, learn how to extend its capabilities and tailor it to your use case:
 
+* **[Configure your agent](https://code.claude.com/docs/en/agent-sdk/configuration)**: compose the options object and find the page that covers each setting
 * **[Permissions](https://code.claude.com/docs/en/agent-sdk/permissions)**: control what your agent can do and when it needs approval
 * **[Hooks](https://code.claude.com/docs/en/agent-sdk/hooks)**: run custom code before or after tool calls
 * **[Sessions](https://code.claude.com/docs/en/agent-sdk/sessions)**: build multi-turn agents that maintain context

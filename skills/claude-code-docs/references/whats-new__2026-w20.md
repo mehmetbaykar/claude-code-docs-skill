@@ -75,7 +75,7 @@ New hook `args: string\[]` exec form spawns the command directly without a shell
 New `continueOnBlock` config option for `PostToolUse` hooks feeds the hook's rejection reason back to Claude and continues the turn instead of ending it
 New `terminalSequence` field in hook JSON output lets hooks emit desktop notifications, window titles, and bells without a controlling terminal
 The Rewind menu added "Summarize up to here" to compress earlier context while keeping recent turns intact
-Remote Control, `/schedule`, Claude.ai MCP connectors, and notification preferences are now disabled when `ANTHROPIC\_API\_KEY`, `apiKeyHelper`, or `ANTHROPIC\_AUTH\_TOKEN` is set, even alongside a Claude.ai login; unset the API key to use these features
+Remote Control, `/schedule`, claude.ai MCP connectors, and notification preferences are now disabled when `ANTHROPIC\_API\_KEY`, `apiKeyHelper`, or `ANTHROPIC\_AUTH\_TOKEN` is set, even alongside a claude.ai login; unset the API key to use these features
 MCP stdio servers now receive `CLAUDE\_PROJECT\_DIR` in their environment, matching hooks, and plugin configs can reference `\${"{"}CLAUDE\_PROJECT\_DIR{"}"}` in commands
 `claude plugin details \<name>` shows a plugin's component inventory and projected per-session token cost, and the `/plugin` details pane now also lists the LSP servers a plugin provides
 Plugins with a root-level `SKILL.md` and no `skills/` subdirectory are now surfaced as a skill

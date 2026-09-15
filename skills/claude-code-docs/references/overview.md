@@ -107,7 +107,7 @@ Or search for "Claude Code" in the Extensions view (`Cmd+Shift+X` on Mac, `Ctrl+
 
 **Desktop app**
 
-A standalone app for running Claude Code outside your IDE or terminal. Review diffs visually, run multiple sessions side by side, schedule recurring tasks, and kick off cloud sessions.
+A standalone app for running Claude Code outside your IDE or terminal. Review diffs visually, run multiple sessions side by side, schedule recurring tasks, and start cloud sessions.
 
 Download and install:
 
@@ -232,7 +232,7 @@ Sessions aren't tied to a single surface. Move work between them as your context
 
 * Step away from your desk and keep working from your phone or any browser with [Remote Control](https://code.claude.com/docs/en/remote-control)
 * Message [Dispatch](https://code.claude.com/docs/en/desktop#sessions-from-dispatch) a task from your phone and open the Desktop session it creates
-* Kick off a long-running task on the [web](https://code.claude.com/docs/en/claude-code-on-the-web) or the [Claude mobile app](https://code.claude.com/docs/en/mobile), then pull it into your terminal with `claude --teleport`. Teleport requires a claude.ai subscription.
+* Start a long-running task on the [web](https://code.claude.com/docs/en/claude-code-on-the-web) or the [Claude mobile app](https://code.claude.com/docs/en/mobile), then pull it into your terminal with `claude --teleport`. Teleport requires a claude.ai subscription.
 * Run `/desktop` to continue your current terminal session in the [Desktop app](https://code.claude.com/docs/en/desktop), where you can review diffs visually. The `/desktop` handoff requires a claude.ai subscription. Available on macOS and x64 Windows.
 * Route tasks from team chat: mention `@Claude` in [Slack](https://code.claude.com/docs/en/slack) with a bug report and get a pull request back
 

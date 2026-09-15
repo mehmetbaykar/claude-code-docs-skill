@@ -1116,7 +1116,9 @@ The matcher value corresponds to how the session was initiated:
 
 Before v2.1.214, forked sessions reported source `"resume"`.
 
-When you run `/clear` in an interactive session, the matching SessionStart hooks run in the background and the prompt accepts input again right away. Claude's first response still waits for the hooks to finish, so their context reaches Claude. If you run `/clear` again or switch to another conversation with a command such as `/resume` while those hooks are still running, Claude Code cancels them and discards their output.
+When you start an interactive session, resume a conversation at launch with `--continue` or `--resume`, or run `/clear`, SessionStart hooks run in the background. You can type right away, and a conversation you resumed appears without waiting for the hooks. Claude's first response still waits for the hooks to finish, so their context reaches Claude.
+
+When you switch conversations with `/resume` inside a session, the switch waits for the hooks to finish instead. If you run `/clear` or switch to another conversation while background hooks are still running, nothing they return applies to the session.
 
 The same wait applies at launch, including a resumed session: a prompt you send while SessionStart hooks are still running doesn't reach Claude until they finish.
 
@@ -1579,6 +1581,8 @@ A `Write` call on Windows delivers:
 
 The `tool_input` fields depend on the tool:
 
+<a id="bash" />
+
 ##### Bash
 
 Executes shell commands.
@@ -1589,6 +1593,23 @@ Executes shell commands.
 | `description`       | string  | `"Run test suite"` | Optional description of what the command does                                                                                                        |
 | `timeout`           | number  | `120000`           | Optional timeout in milliseconds. Values above the [maximum](https://code.claude.com/docs/en/tools-reference#bash-tool-behavior) are reduced to the maximum rather than rejected |
 | `run_in_background` | boolean | `false`            | Whether to run the command in background                                                                                                             |
+
+When a Bash command changes files in a Git repository, Claude Code can record what changed. It records the changes in every permission mode when the [`bashEditDiffEnabled`](https://code.claude.com/docs/en/settings-reference#basheditdiffenabled) setting turns recording on; that setting's entry says which files can set it. Otherwise it records them only in auto mode and `bypassPermissions` mode, and only when Claude Code directs Claude to edit files through Bash. Set `bashEditDiffEnabled` to `false` to turn the recording off. Background commands and read-only commands carry no diff.
+
+Your [PostToolUse hook](#posttooluse) then receives the changed files in `tool_response.bashEditDiff`. The list covers what changed under the repository while the command ran. Files that Git ignores and files in submodules aren't listed. Requires Claude Code v2.1.269 or later.
+
+The list is best effort and in public beta. Claude Code can miss a change, include a file that another process changed at the same time, or stop at its size limits. The field shape may change. Use the list to find what to review, not to enforce a policy.
+
+`changedFiles` and `files` list what the command changed; the remaining fields say how complete and how reliable that list is.
+
+| Field          | Type    | Example                                                 | Description                                                                                                                                      |
+| :------------- | :------ | :------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `changedFiles` | array   | `["/path/to/src/app.ts"]`                               | Absolute paths of the files the command changed, at most 200. Present whenever `files` holds a diff or `moreFiles` is above zero                 |
+| `files`        | array   | `[{"filePath": "/path/to/src/app.ts", "hunks": [...]}]` | Diffs of up to 5 changed files, for display. `created` or `deleted` is `true` for a file the command added or removed                            |
+| `moreFiles`    | number  | `2`                                                     | Count of changed files with no diff in `files`                                                                                                   |
+| `unavailable`  | boolean | `true`                                                  | Set when the diff is incomplete or couldn't be taken                                                                                             |
+| `skipped`      | boolean | `true`                                                  | Set for a Git command that moves the working tree, such as `git checkout` or `git stash`, so Claude Code takes no diff                           |
+| `shared`       | boolean | `true`                                                  | Set when another Bash tool call, such as a subagent's, ran in the same repository at the same time, so some listed changes may be that command's |
 
 <a id="powershell" />
 
@@ -3211,10 +3232,17 @@ In addition to the [common input fields](#common-input-fields), SessionEnd hooks
 
 SessionEnd hooks have no decision control. They can't block session termination but can perform cleanup tasks. Claude Code discards their [JSON output fields](#json-output), such as `systemMessage`.
 
-SessionEnd hooks have a default timeout of 1.5 seconds. This applies to session exit, `/clear`, and switching sessions via interactive `/resume`. If a hook needs more time, set a per-hook `timeout` in the hook configuration. The overall budget is automatically raised to the highest per-hook timeout configured in settings files, up to 60 seconds. Timeouts set on plugin-provided hooks don't raise the budget. To override the budget explicitly, set the `CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS` environment variable in milliseconds.
+SessionEnd hooks have a default timeout of 1.5 seconds. It applies when you exit, run `/clear`, or switch sessions with interactive `/resume`. You can give a hook more time in two ways:
+
+* **Per-hook `timeout`**: set `timeout` in that hook's configuration. The overall budget rises automatically to match the highest per-hook `timeout` in your settings files, up to 60 seconds. If you raise the budget this way, a hook without its own `timeout` still keeps the default. Timeouts set on plugin-provided hooks don't raise the budget.
+* **`CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS`**: set this environment variable in milliseconds to override the budget explicitly. The value you set also becomes the timeout for each hook without its own `timeout`.
+
+This example sets the budget to 5 seconds:
 ```bash
 CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS=5000 claude
 ```
+
+Before v2.1.268, `CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS` raised only the overall budget, and a hook without its own `timeout` was still canceled after 1.5 seconds.
 
 ### Elicitation
 

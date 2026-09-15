@@ -14,7 +14,7 @@ This changes how you work. Instead of writing code yourself and asking Claude to
 
 But this autonomy still comes with a learning curve. Claude works within certain constraints you need to understand.
 
-This guide covers patterns that have proven effective across Anthropic's internal teams and for engineers using Claude Code across various codebases, languages, and environments. For how the agentic loop works under the hood, see [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works).
+This guide covers patterns that have proven effective across Anthropic's internal teams and for engineers using Claude Code across various codebases, languages, and environments. For how the agentic loop works, see [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works).
 
 ***
 
