@@ -13,7 +13,7 @@ path: /docs/en/github-actions
 Several products share the Claude Code name. This page covers the `claude-code-action` workflow integration, which you configure with workflow files in your repository. For the related products, see:
 
 * [Code Review](https://code.claude.com/docs/en/code-review): automatic review on every pull request, without writing a workflow
-* [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web): Claude Code sessions from your browser or phone
+* [Claude Code in the cloud](https://code.claude.com/docs/en/claude-code-on-the-web): Claude Code sessions that run on cloud infrastructure instead of your machine
 * [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview): custom automation outside GitHub Actions. The Claude Code GitHub Action is built on the SDK
 * [GitHub Enterprise Server](https://code.claude.com/docs/en/github-enterprise-server): Claude Code with self-hosted GitHub
 
@@ -121,7 +121,7 @@ If you configured a [cloud provider](https://code.claude.com/docs/en/github-acti
 
 ### GitHub App permissions
 
-The [Claude GitHub App](https://github.com/apps/claude) is shared by every Claude feature that integrates with GitHub, including the Claude Code GitHub Action, [Code Review](https://code.claude.com/docs/en/code-review), and [auto-fix for pull requests](https://code.claude.com/docs/en/claude-code-on-the-web#auto-fix-pull-requests) on Claude Code on the web. A GitHub App has a single permission set covering all of its features, so the set includes some permissions that the Claude Code GitHub Action doesn't use.
+The [Claude GitHub App](https://github.com/apps/claude) is shared by every Claude feature that integrates with GitHub, including the Claude Code GitHub Action, [Code Review](https://code.claude.com/docs/en/code-review), and [auto-fix for pull requests](https://code.claude.com/docs/en/claude-code-on-the-web#auto-fix-pull-requests) in cloud sessions. A GitHub App has a single permission set covering all of its features, so the set includes some permissions that the Claude Code GitHub Action doesn't use.
 
 When you install the app, you grant the following permissions:
 

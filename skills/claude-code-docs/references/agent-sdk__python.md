@@ -2355,15 +2355,15 @@ Launches a new agent to handle complex, multi-step tasks autonomously.
 ```python
 {
     "status": "remote_launched",
-    "taskId": str,  # ID of the remote task
-    "sessionUrl": str,  # Link to the remote cloud session
+    "taskId": str,  # ID of the dispatched task
+    "sessionUrl": str,  # Link to the cloud session
     "description": str,  # The task description
     "prompt": str,  # The prompt the agent runs
     "outputFile": str,  # File path where the agent's output is written
 }
 ```
 
-Returns the result from the subagent. The output is discriminated on the `status` field: `"completed"` for finished tasks, `"async_launched"` for background tasks, and `"remote_launched"` for tasks Claude Code dispatched to a remote cloud session, where `sessionUrl` links to that session and `taskId` identifies it. If Claude Code [kept the subagent's isolated worktree](https://code.claude.com/docs/en/worktrees#isolate-subagents-with-worktrees), `worktreePath` on the `completed` variant is where to find it, and `worktreeBranch` is its branch when Claude Code created the worktree with git.
+Returns the result from the subagent. The output is discriminated on the `status` field: `"completed"` for finished tasks, `"async_launched"` for background tasks, and `"remote_launched"` for tasks Claude Code dispatched to a cloud session, where `sessionUrl` links to that session and `taskId` identifies it. If Claude Code [kept the subagent's isolated worktree](https://code.claude.com/docs/en/worktrees#isolate-subagents-with-worktrees), `worktreePath` on the `completed` variant is where to find it, and `worktreeBranch` is its branch when Claude Code created the worktree with git.
 
 On the `completed` variant, `resolvedModel` names the model the subagent started on, which can differ from the requested `model` input when [`availableModels`](https://code.claude.com/docs/en/model-config#restrict-model-selection) or another override applies. This field requires Claude Code v2.1.174 or later. On the `async_launched` variant, `resolvedModel` names the model in use when the agent moved to the background, so a swap that happened before backgrounding is reflected there. The `modelsUsed` field on both variants lists the models used in order, with consecutive repeats collapsed; it's set only when the model was swapped mid-run. `modelsUsed` and the backgrounding-time `resolvedModel` behavior require Claude Code v2.1.212 or later.
 

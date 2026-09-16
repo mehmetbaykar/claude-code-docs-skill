@@ -10,7 +10,7 @@ path: /docs/en/errors
 
 This page lists runtime errors Claude Code displays and how to recover from each one, plus what to check when responses seem off without an error. For installation errors such as `command not found` or TLS failures during setup, see [Troubleshoot installation and login](https://code.claude.com/docs/en/troubleshoot-install).
 
-Except for [Wrapper and IDE errors](#wrapper-and-ide-errors), which the launching program prints rather than Claude Code itself, these errors and recovery commands apply across the CLI, the [Desktop app](https://code.claude.com/docs/en/desktop), and [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web), since all three wrap the same Claude Code CLI. For other surface-specific issues, see the troubleshooting section on that surface's page.
+Except for [Wrapper and IDE errors](#wrapper-and-ide-errors), which the launching program prints rather than Claude Code itself, these errors and recovery commands apply across the CLI, the [Desktop app](https://code.claude.com/docs/en/desktop), and [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web), since all three wrap the same Claude Code CLI. For other surface-specific issues, see the troubleshooting section on that surface's page.
 
 Claude Code calls the Claude API for model responses, so most runtime errors map to an underlying API error code. This page covers what each error means inside Claude Code and how to recover. For the raw HTTP status code definitions, see the [Claude Platform error reference](https://platform.claude.com/docs/en/api/errors).
 
@@ -1789,7 +1789,7 @@ Claude Opus is not available with the Claude Pro plan. If you have updated your 
 **What to do:**
 
 * Run `/model` and select a model your plan includes
-* If you upgraded your plan recently and still see this, run `/logout` then `/login`. The stored token reflects your plan at the time you signed in, so upgrading on the web does not take effect in an existing session until you re-authenticate.
+* If you upgraded your plan recently and still see this, run `/logout` then `/login`. The stored token reflects your plan at the time you signed in, so upgrading on claude.ai does not take effect in an existing session until you re-authenticate.
 * See [claude.com/pricing](https://claude.com/pricing) for which models each plan includes
 
 ### Claude Code does not support this model
@@ -2060,7 +2060,7 @@ When there are more than 20 problem lines, Claude Code prints the first 20 and r
 Cloud sessions cannot be created from a --restricted session
 </h3>
 
-When you start a session with [`--restricted`](https://code.claude.com/docs/en/cli-reference#cli-flags), Claude Code refuses to create [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web#from-terminal-to-web) from it, because the new session would run outside the restricted process and wouldn't enforce restricted mode. Claude Code refuses on the client, before contacting the server, so no cloud session is created:
+When you start a session with [`--restricted`](https://code.claude.com/docs/en/cli-reference#cli-flags), Claude Code refuses to create [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web#from-terminal-to-cloud) from it, because the new session would run outside the restricted process and wouldn't enforce restricted mode. Claude Code refuses on the client, before contacting the server, so no cloud session is created:
 ```text
 Cloud sessions cannot be created from a --restricted session: they would not enforce it.
 ```
@@ -2076,12 +2076,12 @@ Before v2.1.248, Claude Code had no `--restricted` flag; earlier versions reject
 Cloud sessions are disabled by your organization's policy
 </h3>
 
-Your organization's `allow_remote_sessions` policy is off, so [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) and the commands that use it aren't available:
+Your organization's `allow_remote_sessions` policy is off, so [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) and the commands that use them aren't available:
 ```text
 Cloud sessions are disabled by your organization's policy. Contact your organization admin to enable them.
 ```
 
-The message appears when you [create a cloud session from the terminal](https://code.claude.com/docs/en/claude-code-on-the-web#from-terminal-to-web) and when you submit a command that needs cloud sessions, such as `/teleport`, `/remote-env`, or `/web-setup`. Before v2.1.268, submitting one of those commands returned [`Unknown command`](#unknown-command) instead.
+The message appears when you [create a cloud session from the terminal](https://code.claude.com/docs/en/claude-code-on-the-web#from-terminal-to-cloud) and when you submit a command that needs cloud sessions, such as `/teleport`, `/remote-env`, or `/web-setup`. Before v2.1.268, submitting one of those commands returned [`Unknown command`](#unknown-command) instead.
 
 This is a server-side organization policy, so it can't be overridden from local settings, environment variables, or CLI flags.
 
