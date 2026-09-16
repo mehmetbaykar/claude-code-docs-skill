@@ -526,8 +526,8 @@
       "title": "Use Claude Code in the cloud"
     },
     "claude-directory.md": {
-      "hash": "c59a4f344e2cfc723d1754bfac91e6b7dff16c421efd9d3c5ca077aa56369692",
-      "last_updated": "2026-09-15T21:29:17+00:00",
+      "hash": "17b143278098d0adc4d5d79eeeb3085936f45513d3e9e2016aef70dfd6272b95",
+      "last_updated": "2026-09-16T11:47:35+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-directory",
       "path": "/docs/en/claude-directory",
       "source_url": "https://code.claude.com/docs/en/claude-directory.md",
@@ -760,8 +760,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "162dc6653230efef4c84ebe251371a9f765a3a4c72b20322d166b272cfec3c7c",
-      "last_updated": "2026-09-16T04:57:45+00:00",
+      "hash": "6a6265370523c7711bf40d0259cb6065e8aca16732a18eb7417fc4323030ab26",
+      "last_updated": "2026-09-16T11:47:43+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -904,8 +904,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "66b34f3b6f0036a6591e77b4fd925cfc6afaca0115277ca4b00207d7e6cef705",
-      "last_updated": "2026-09-16T04:57:50+00:00",
+      "hash": "94724945ffe8187f5ac9b2215bedbdbb1edb3b410bc1988c8fa7b05a098ce4d4",
+      "last_updated": "2026-09-16T11:47:48+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -1165,8 +1165,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugin-marketplaces.md": {
-      "hash": "9a596b59a74ba6c38a8258bbbb61569c6037608798eea96a1255a5b521725951",
-      "last_updated": "2026-09-16T04:57:58+00:00",
+      "hash": "841be44c8b4b47205beaf0fbd719fa069d9e57de9d46503e356ae0beb29c31c0",
+      "last_updated": "2026-09-16T11:47:57+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-marketplaces",
       "path": "/docs/en/plugin-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugin-marketplaces.md",
@@ -1183,8 +1183,8 @@
       "title": "Recommend plugins for your org"
     },
     "plugins-reference.md": {
-      "hash": "13cd4ea86be41334e891de14a8104560435d43d64182702d7bdf107cdd6f336c",
-      "last_updated": "2026-09-15T21:29:49+00:00",
+      "hash": "d9ef9b365c3ceaa95dcc59da38459b8d9e51078f17b0c5581d0c4a1c6cdf5985",
+      "last_updated": "2026-09-16T11:47:57+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins-reference",
       "path": "/docs/en/plugins-reference",
       "source_url": "https://code.claude.com/docs/en/plugins-reference.md",
@@ -1192,8 +1192,8 @@
       "title": "Plugins reference"
     },
     "plugins.md": {
-      "hash": "43d5db9820898d305bc9af63525069191e5394bda3743b022cd9247632b01443",
-      "last_updated": "2026-09-11T21:04:08+00:00",
+      "hash": "de52e0251e8e0c2532082ccc509ce574152aa93174709e0fb1aabfd72c309469",
+      "last_updated": "2026-09-16T11:47:57+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins",
       "path": "/docs/en/plugins",
       "source_url": "https://code.claude.com/docs/en/plugins.md",
@@ -1791,7 +1791,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-16T04:58:17+00:00",
+  "last_updated": "2026-09-16T11:48:16+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
