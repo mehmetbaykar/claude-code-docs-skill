@@ -20,7 +20,7 @@ For most organizations, Claude for Teams or Claude for Enterprise provides the b
 
 Learn more about [Team plans](https://support.claude.com/en/articles/9266767-what-is-the-team-plan) and [Enterprise plans](https://support.claude.com/en/articles/9797531-what-is-the-enterprise-plan).
 
-The deployment options compared below cover where model inference runs. To run [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web) sessions on compute your organization operates, see [self-hosted environments](https://code.claude.com/docs/en/self-hosted-environments).
+The deployment options compared below cover where model inference runs. To run Claude Code [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) on compute your organization operates, see [self-hosted environments](https://code.claude.com/docs/en/self-hosted-environments).
 
 If your organization has specific infrastructure requirements, compare the options below:
 

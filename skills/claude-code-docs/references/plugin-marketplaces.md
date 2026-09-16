@@ -813,7 +813,7 @@ For example, this `marketplace.json` plugin entry references a plugin you commit
 
 #### Sync a GitLab-hosted marketplace
 
-To sync a marketplace from gitlab.com or a self-managed GitLab instance, an [Owner](https://code.claude.com/docs/en/server-managed-settings#access-control) first adds a GitLab configuration for that host at [**Organization settings > Claude Code**](https://claude.ai/admin-settings/claude-code). GitLab configurations are in public beta and apply only to plugin marketplace sync. Adding one doesn't make GitLab repositories available in [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web#limitations). See [Manage plugins for your organization](https://support.claude.com/en/articles/13837433) for the setup steps.
+To sync a marketplace from gitlab.com or a self-managed GitLab instance, an [Owner](https://code.claude.com/docs/en/server-managed-settings#access-control) first adds a GitLab configuration for that host at [**Organization settings > Claude Code**](https://claude.ai/admin-settings/claude-code). GitLab configurations are in public beta and apply only to plugin marketplace sync. Adding one doesn't make GitLab repositories available to [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web#limitations). See [Manage plugins for your organization](https://support.claude.com/en/articles/13837433) for the setup steps.
 
 When you add the marketplace, enter the project's HTTPS URL, such as `https://gitlab.example.com/platform/claude-plugins`. Projects in nested subgroups work. Organization sync reads the project's default branch. If you turn on **Sync automatically**, only pushes to the default branch start a sync.
 

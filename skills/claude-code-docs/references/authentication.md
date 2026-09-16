@@ -232,7 +232,7 @@ If you have an active Claude subscription but also have `ANTHROPIC_API_KEY` set 
 
 Run `unset ANTHROPIC_API_KEY` to fall back to your subscription, and check `/status` to confirm which method is active. When a login and an API key are both configured, `/status` marks the credential that isn't in use.
 
-[Claude Code on the Web](https://code.claude.com/docs/en/claude-code-on-the-web) always uses your subscription credentials. If you set `ANTHROPIC_API_KEY` or `ANTHROPIC_AUTH_TOKEN` in the sandbox environment, it doesn't override your subscription credentials.
+[Cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) always use your subscription credentials. If you set `ANTHROPIC_API_KEY` or `ANTHROPIC_AUTH_TOKEN` in the cloud environment, it doesn't override your subscription credentials.
 
 #### Anthropic profiles and federation credentials
 

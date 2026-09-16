@@ -175,7 +175,7 @@ When the conversation you resume ended in plan mode, Claude Code restores plan m
 
 ### Resume cloud sessions from Claude.ai
 
-If you use [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web), you can resume those cloud sessions directly in VS Code. This requires signing in with **Claude.ai Subscription**, not Anthropic Console.
+If you run [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web), you can resume them directly in VS Code. This requires signing in with **Claude.ai Subscription**, not Anthropic Console.
 
 
 **Open session history**
@@ -195,7 +195,7 @@ The dialog shows two tabs: Local and Web. Click **Web** to see sessions from cla
 Browse or search your cloud sessions. Click any session to download it and continue the conversation locally.
 
 
-Only web sessions started with a GitHub repository appear in the Web tab. Resuming loads the conversation history locally; changes are not synced back to claude.ai.
+Only cloud sessions started with a GitHub repository appear in the Web tab. Resuming loads the conversation history locally; changes are not synced back to claude.ai.
 
 ### Check account and usage
 

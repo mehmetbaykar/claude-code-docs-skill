@@ -2142,7 +2142,7 @@ type WorkflowOutput = {
   summary?: string;
   transcriptDir?: string;
   scriptPath?: string;
-  sessionUrl?: string; // set when the workflow launched as a remote session
+  sessionUrl?: string; // set when the workflow launched as a cloud session
   warning?: string;
   error?: string;
 };

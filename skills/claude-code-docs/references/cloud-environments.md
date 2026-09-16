@@ -8,11 +8,11 @@ path: /docs/en/cloud-environments
 
 > Configure cloud environments for Claude Code cloud sessions: network access levels, environment variables, setup scripts, and environment caching.
 
-Cloud environments require [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web), which is in research preview for Pro, Max, and Team users, and for Enterprise users with [premium seats or Chat + Claude Code seats](https://support.claude.com/en/articles/11845131-use-claude-code-with-your-team-or-enterprise-plan).
+Cloud environments apply to [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web), which are in research preview for Pro, Max, and Team users, and for Enterprise users with [premium seats or Chat + Claude Code seats](https://support.claude.com/en/articles/11845131-use-claude-code-with-your-team-or-enterprise-plan).
 
 Each [cloud session](https://code.claude.com/docs/en/claude-code-on-the-web) runs in a cloud environment. You can configure an environment to allow or deny [network access](#access-levels), [set environment variables](#set-environment-variables) for the session, on Pro and Max plans store [API credentials](#add-api-credentials) that sessions use without seeing them, and run a [setup script](#setup-scripts) before Claude starts working.
 
-The same environments apply wherever you start a cloud session: [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web), the terminal with [`claude --cloud`](https://code.claude.com/docs/en/claude-code-on-the-web#from-terminal-to-web), [Claude Tag](https://claude.com/docs/claude-tag/overview), [routines](https://code.claude.com/docs/en/routines), the [Claude mobile app](https://code.claude.com/docs/en/mobile), and the [Desktop app](https://code.claude.com/docs/en/desktop). Each of these surfaces can also route to a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments). [Availability and limitations](https://code.claude.com/docs/en/self-hosted-environments#availability-and-limitations) covers what Claude can't use yet when a Claude Tag session runs in one.
+The same environments apply wherever you start a cloud session: the [Desktop app](https://code.claude.com/docs/en/desktop), the [Claude mobile app](https://code.claude.com/docs/en/mobile), your browser at [claude.ai/code](https://claude.ai/code), the terminal with [`claude --cloud`](https://code.claude.com/docs/en/claude-code-on-the-web#from-terminal-to-cloud), [routines](https://code.claude.com/docs/en/routines), and [Claude Tag](https://claude.com/docs/claude-tag/overview). Each of these surfaces can also route to a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments). [Availability and limitations](https://code.claude.com/docs/en/self-hosted-environments#availability-and-limitations) covers what Claude can't use yet when a Claude Tag session runs in one.
 
 [Remote Control](https://code.claude.com/docs/en/remote-control) sessions connect the web and mobile interfaces to a session on your own machine, which uses your machine's network and files, not a cloud environment. Claude Tag channel sessions use organization-level environments only, either [shared environments](#organization-shared-environments) or [self-hosted environments](https://code.claude.com/docs/en/self-hosted-environments).
 
@@ -31,7 +31,7 @@ If you don't have an environment yet, onboarding sets up the **Default** environ
 
 With only **Default** available, every session runs in it. When you have more than one environment, sessions choose one per surface:
 
-* On the web, the Desktop app, and the mobile app, sessions use the environment shown in the [selector](#configure-your-environment). An [organization default](#organization-shared-environments) set by an Owner fills the selection when you haven't picked one.
+* In the Desktop app, the mobile app, and at claude.ai/code, sessions use the environment shown in the [selector](#configure-your-environment). An [organization default](#organization-shared-environments) set by an Owner fills the selection when you haven't picked one.
 * From the CLI, Claude Code uses your [`/remote-env` pick](#select-an-environment-from-the-cli), or falls back to the Anthropic-hosted environment when your list has one, and otherwise to the first environment in your list that isn't a bridge environment, an entry [Remote Control](https://code.claude.com/docs/en/remote-control) registers to represent your own machine rather than a cloud environment. For a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments), passing `--environment <environment-id>` with its `ccpool_` ID [when you dispatch a session](https://code.claude.com/docs/en/self-hosted-environments-testing#run-the-test-loop) overrides the `/remote-env` pick and the fallback for that invocation. Claude Code rejects Anthropic-hosted `env_` IDs passed to the flag, so use `/remote-env` to target those. The flag requires Claude Code v2.1.224 or later.
 
 Configure an environment when the default isn't enough: when Claude needs to reach domains outside the [default allowlist](#default-allowed-domains), needs environment variables set for its sessions, or needs dependencies installed before it starts working.
@@ -77,7 +77,7 @@ DATABASE_URL=postgres://localhost:5432/myapp
 
 Each session copies the environment's values once, at startup, into ordinary environment variables that any command Claude runs can read. Because running sessions don't re-read the configuration, editing or adding variables affects sessions you start afterward; sessions already running keep the values they started with.
 
-Claude Code on the web also sets some variables itself when it starts a session. For [`CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`](https://code.claude.com/docs/en/claude-code-on-the-web#manage-context), the value Claude Code on the web sets overrides one you add here, so adding that key here has no effect.
+A cloud session also sets some variables itself when it starts. For [`CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`](https://code.claude.com/docs/en/claude-code-on-the-web#manage-context), the value the session sets overrides one you add here, so adding that key here has no effect.
 
 Anyone who uses the environment can read the values. On Pro and Max plans, use an [API credential](#add-api-credentials) instead for a key the agent proxy can attach to a request. The [requests that never get a credential](#requests-that-never-get-the-credential) are listed there.
 
@@ -143,7 +143,7 @@ The agent proxy never attaches a credential you add to these requests:
 
 ### Select an environment from the CLI
 
-Run `/remote-env` in your terminal to choose the default environment for cloud sessions you create from the CLI, such as [`claude --cloud`](https://code.claude.com/docs/en/claude-code-on-the-web#from-terminal-to-web). The command opens a picker of your existing environments and saves your choice to the `remote.defaultEnvironmentId` key in your [user settings](https://code.claude.com/docs/en/settings#where-settings-live), so it applies in every project on your machine until you change it, unless the same key is set at a higher-precedence [settings layer](https://code.claude.com/docs/en/settings#settings-precedence), such as a repo's project settings.
+Run `/remote-env` in your terminal to choose the default environment for cloud sessions you create from the CLI, such as [`claude --cloud`](https://code.claude.com/docs/en/claude-code-on-the-web#from-terminal-to-cloud). The command opens a picker of your existing environments and saves your choice to the `remote.defaultEnvironmentId` key in your [user settings](https://code.claude.com/docs/en/settings#where-settings-live), so it applies in every project on your machine until you change it, unless the same key is set at a higher-precedence [settings layer](https://code.claude.com/docs/en/settings#settings-precedence), such as a repo's project settings.
 
 A [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments) ID, which has the form `ccpool_...`, follows a stricter source rule. See [`remote.defaultEnvironmentId`](https://code.claude.com/docs/en/settings-reference#remote-defaultenvironmentid) for the settings layers Claude Code honors it from.
 
@@ -751,8 +751,8 @@ With **Trusted** network access, sessions can reach the following domains by def
 
 ## Related resources
 
-* [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web): start, manage, and share cloud sessions
-* [Web quickstart](https://code.claude.com/docs/en/web-quickstart): connect GitHub and start your first cloud session
+* [Cloud sessions reference](https://code.claude.com/docs/en/claude-code-on-the-web): start, manage, and share cloud sessions
+* [Cloud sessions quickstart](https://code.claude.com/docs/en/web-quickstart): connect GitHub and start your first cloud session
 * [Claude Tag](https://claude.com/docs/claude-tag/overview): sessions Claude starts from Slack run in the same environments
 * [Routines](https://code.claude.com/docs/en/routines): scheduled runs use the same environments and network access levels
 * [Remote Control](https://code.claude.com/docs/en/remote-control): run sessions on your own machine's network and files instead
