@@ -373,8 +373,8 @@
       "title": "Track team usage with analytics"
     },
     "artifacts.md": {
-      "hash": "ab68241b92b3419299e4c04db467f84405330e9884e38c4675e7a98b7b403d80",
-      "last_updated": "2026-09-15T21:29:11+00:00",
+      "hash": "fc168aeb1b6610ec2925e36d64a199d18193a9b45167c4890a1e416e54cf8421",
+      "last_updated": "2026-09-16T23:41:25+00:00",
       "original_url": "https://code.claude.com/docs/en/artifacts",
       "path": "/docs/en/artifacts",
       "source_url": "https://code.claude.com/docs/en/artifacts.md",
@@ -1791,7 +1791,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-16T21:26:02+00:00",
+  "last_updated": "2026-09-16T23:42:26+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
