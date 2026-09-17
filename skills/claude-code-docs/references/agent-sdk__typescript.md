@@ -414,6 +414,7 @@ type CanUseTool = (
     signal: AbortSignal;
     suggestions?: PermissionUpdate[];
     blockedPath?: string;
+    mcpServer?: { name: string; source: string };
     decisionReason?: string;
     toolUseID: string;
     agentID?: string;
@@ -635,6 +636,7 @@ type SDKResultMessage =
       permission_denials: SDKPermissionDenial[];
       queued_turn_count?: number;
       errors: string[];
+      startup_failure_reason?: SDKStartupFailureReason;
       user_message_uuid?: string;
       user_message_uuids?: string[];
       terminal_reason?: TerminalReason;
@@ -642,6 +644,25 @@ type SDKResultMessage =
       fast_mode_disabled_reason?: FastModeDisabledReason;
       origin?: SDKMessageOrigin;
     };
+```
+```typescript
+type SDKStartupFailureReason =
+  | "org_pin_api_key_conflict"
+  | "org_verify_failed"
+  | "org_pin_mismatch"
+  | "managed_settings_invalid"
+  | "remote_settings_required_unavailable"
+  | "gateway_signin_required"
+  | "gateway_access_denied"
+  | "proxy_invalid"
+  | "temp_dir_unusable"
+  | "cwd_unavailable"
+  | "shell_tool_missing"
+  | "session_held_by_background"
+  | "worktree_resume_refused"
+  | "worktree_unverified"
+  | "cli_version_too_old"
+  | "bypass_root";
 ```
 ```typescript
 type SDKSystemMessage = {
@@ -658,6 +679,7 @@ type SDKSystemMessage = {
   mcp_servers: {
     name: string;
     status: string;
+    source?: string;
   }[];
   model: string;
   permissionMode: PermissionMode;
@@ -916,6 +938,7 @@ type PreToolUseHookInput = BaseHookInput & {
   tool_name: string;
   tool_input: unknown;
   tool_use_id: string;
+  mcp_server?: McpServerProvenance;
 };
 ```
 ```typescript
@@ -926,6 +949,7 @@ type PostToolUseHookInput = BaseHookInput & {
   tool_response: unknown;
   tool_use_id: string;
   duration_ms?: number;
+  mcp_server?: McpServerProvenance;
 };
 ```
 ```typescript
@@ -937,6 +961,7 @@ type PostToolUseFailureHookInput = BaseHookInput & {
   error: string;
   is_interrupt?: boolean;
   duration_ms?: number;
+  mcp_server?: McpServerProvenance;
 };
 ```
 ```typescript
@@ -959,6 +984,7 @@ type PermissionDeniedHookInput = BaseHookInput & {
   tool_input: unknown;
   tool_use_id: string;
   reason: string;
+  mcp_server?: McpServerProvenance;
 };
 ```
 ```typescript
@@ -1104,6 +1130,7 @@ type PermissionRequestHookInput = BaseHookInput & {
   tool_name: string;
   tool_input: unknown;
   permission_suggestions?: PermissionUpdate[];
+  mcp_server?: McpServerProvenance;
 };
 ```
 ```typescript
@@ -2561,6 +2588,12 @@ type AgentInfo = {
 };
 ```
 ```typescript
+type McpServerProvenance = {
+  name: string;
+  source: string;
+};
+```
+```typescript
 type McpServerStatus = {
   name: string;
   status: "connected" | "failed" | "needs-auth" | "pending" | "disabled";
@@ -2571,6 +2604,7 @@ type McpServerStatus = {
   error?: string;
   config?: McpServerStatusConfig;
   scope?: string;
+  source?: string;
   tools?: {
     name: string;
     description?: string;
