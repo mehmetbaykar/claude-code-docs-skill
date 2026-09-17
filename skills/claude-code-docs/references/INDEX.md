@@ -65,6 +65,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `claude-code-on-the-web` - [Use Claude Code in the cloud](https://code.claude.com/docs/en/claude-code-on-the-web)
 - `claude-directory` - [Explore the .claude directory](https://code.claude.com/docs/en/claude-directory)
 - `claude-platform-on-aws` - [Claude Code on Claude Platform on AWS](https://code.claude.com/docs/en/claude-platform-on-aws)
+- `claude-projects` - [Let Claude coordinate ongoing work with Projects](https://code.claude.com/docs/en/claude-projects)
 - `claude-security` - [Scan your codebase for vulnerabilities](https://code.claude.com/docs/en/claude-security)
 - `claude-tag` - [Claude Tag](https://code.claude.com/docs/en/claude-tag)
 - `cli-reference` - [CLI reference](https://code.claude.com/docs/en/cli-reference)

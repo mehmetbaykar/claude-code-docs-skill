@@ -20,7 +20,7 @@ You can start a cloud session from any of these surfaces:
 * **Terminal**: [`claude --cloud`](#from-terminal-to-cloud)
 * **Routines**: [scheduled and triggered runs](https://code.claude.com/docs/en/routines) each run as a cloud session
 
-A session in your terminal, your IDE, or the Desktop app with **Local** selected runs on your own machine instead. To steer one of those local sessions from your phone or browser, use [Remote Control](https://code.claude.com/docs/en/remote-control).
+To have Claude start and keep track of many cloud sessions for one body of work, use a [project](https://code.claude.com/docs/en/claude-projects). A session in your terminal, your IDE, or the Desktop app with **Local** selected runs on your own machine instead. To steer one of those local sessions from your phone or browser, use [Remote Control](https://code.claude.com/docs/en/remote-control).
 
 New to cloud sessions? Start with [Get started](https://code.claude.com/docs/en/web-quickstart) to connect your GitHub account and submit your first task.
 
@@ -52,6 +52,8 @@ Cloud sessions need access to your GitHub repositories to clone code and push br
 | **`/web-setup`** | Run `/web-setup` in your terminal to send your local `gh` CLI token to your Claude account | Any repository your `gh` token can access, whether or not the App is installed             | Individual developers who already use `gh`                              |
 
 Installing the Claude GitHub App on a repository also enables [Auto-fix](#auto-fix-pull-requests) for pull requests in it.
+
+Threads in a [project](https://code.claude.com/docs/en/claude-projects) need the App installed on each repository they clone, whichever method you connected with. See [Set up GitHub access](https://code.claude.com/docs/en/claude-projects#set-up-github-access).
 
 For how `/schedule` checks repository access before creating a routine, see [Repositories and branch permissions](https://code.claude.com/docs/en/routines#repositories-and-branch-permissions). See [Connect from your terminal](https://code.claude.com/docs/en/web-quickstart#connect-from-your-terminal) for the `/web-setup` walkthrough, including what `/web-setup` stores and how to remove it.
 
@@ -345,6 +347,7 @@ Before relying on cloud sessions for a workflow, account for these constraints:
 ## Related resources
 
 * [Cloud environments](https://code.claude.com/docs/en/cloud-environments): configure network access, environment variables, and setup scripts for cloud sessions
+* [Projects](https://code.claude.com/docs/en/claude-projects): one conversation where Claude coordinates parallel cloud sessions on your repositories and reports back
 * [Ultrareview](https://code.claude.com/docs/en/ultrareview): run a deep multi-agent code review in a cloud sandbox
 * [Routines](https://code.claude.com/docs/en/routines): automate work on a schedule, via API call, or in response to GitHub events
 * [Hooks configuration](https://code.claude.com/docs/en/hooks): run scripts at session lifecycle events
