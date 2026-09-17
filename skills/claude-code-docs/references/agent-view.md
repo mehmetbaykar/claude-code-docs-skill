@@ -18,7 +18,7 @@ Use agent view when you have several independent tasks Claude can work on withou
 
 When you want to work more directly in any agent's session, attach to the row to enter the full conversation.
 
-To compare agent view with subagents, agent teams, and worktrees, see [Run agents in parallel](https://code.claude.com/docs/en/agents).
+To compare agent view with subagents, agent teams, and worktrees, see [Run agents in parallel](https://code.claude.com/docs/en/agents). Agent view runs sessions on your machine and you dispatch each one; to have Claude start and track parallel sessions in the cloud from one conversation instead, see [Projects](https://code.claude.com/docs/en/claude-projects).
 
 Agent view is in research preview. The interface and keyboard shortcuts may change as the feature evolves.
 
@@ -919,6 +919,7 @@ For other ways to run Claude in parallel, and for passing findings between the s
 * [Cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging): have your sessions pass findings to each other
 * [Agent teams](https://code.claude.com/docs/en/agent-teams): coordinate multiple sessions that message each other
 * [Use Claude Code in the cloud](https://code.claude.com/docs/en/claude-code-on-the-web): run sessions in a managed cloud environment instead of locally
+* [Projects](https://code.claude.com/docs/en/claude-projects): have Claude coordinate parallel cloud sessions from one conversation and tell you which need you
 
 ## Version history
 
