@@ -418,8 +418,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "1c0d505f07890f81592f4500370ec53f4d9aa7170eb6b476ef3a747e02072928",
-      "last_updated": "2026-09-15T21:29:13+00:00",
+      "hash": "3af4be1f50603c3e9cb5c68ab130a822ceb7164f3e50363fe850d8a2967cf795",
+      "last_updated": "2026-09-17T05:00:53+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -760,8 +760,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "3c78d27bc89e8640d5f12231be373e10892361ddd2a690af1d12847e5435edba",
-      "last_updated": "2026-09-16T21:25:23+00:00",
+      "hash": "d97eb86caf00b0ecd9e650dc8d94b45111585b14daf4d4862935997172ead957",
+      "last_updated": "2026-09-17T05:01:05+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -1030,8 +1030,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "efef8916404274cd2cf1498e4c8a92bd3742926d43202db5e791152db5623606",
-      "last_updated": "2026-09-16T04:57:54+00:00",
+      "hash": "6849f3c251180c813cd8fc964012d4229187579b38a72b2026bbf572b56bc427",
+      "last_updated": "2026-09-17T05:01:14+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -1075,8 +1075,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "9f9ee4067daa5eecbeb086ac58524cfe96c62e1b6b9f70aa6946ec23a9109e9c",
-      "last_updated": "2026-09-16T21:25:35+00:00",
+      "hash": "89f0210d10f345fc0f03e9255dc53fbf720d57e6379acfd1a05660d60adf6a26",
+      "last_updated": "2026-09-17T05:01:16+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -1165,8 +1165,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugin-marketplaces.md": {
-      "hash": "4c25c2737fbba22ad465d0402aba0230f36665f5d9419daff602ec862c3ee3e3",
-      "last_updated": "2026-09-16T21:25:39+00:00",
+      "hash": "e0ea116df021adba3fd3f00905eb5d75a05b82172c7754d09247613d3a86a286",
+      "last_updated": "2026-09-17T05:01:19+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-marketplaces",
       "path": "/docs/en/plugin-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugin-marketplaces.md",
@@ -1381,8 +1381,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "eb1ead429bd338be0042fee6c7f15e36f0fae0cdbd50052bef0e3faccfdc82e9",
-      "last_updated": "2026-09-16T21:25:47+00:00",
+      "hash": "2511843a5c6c861903959e2d85c038e9516c4111862534df4c4d6efdf5053423",
+      "last_updated": "2026-09-17T05:01:26+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "source_url": "https://code.claude.com/docs/en/settings-reference.md",
@@ -1759,8 +1759,8 @@
       "title": "Orchestrate subagents at scale with dynamic workflows"
     },
     "worktrees.md": {
-      "hash": "d18089bc926a79e7b0e22988bb609b04ff92077b8e2aaa487ba032c8f53d36a3",
-      "last_updated": "2026-09-12T04:44:32+00:00",
+      "hash": "158c81599d98e7eae18a9694b610a06e2fca067e9c4d747e4662bd245f22e930",
+      "last_updated": "2026-09-17T05:01:37+00:00",
       "original_url": "https://code.claude.com/docs/en/worktrees",
       "path": "/docs/en/worktrees",
       "source_url": "https://code.claude.com/docs/en/worktrees.md",
@@ -1791,7 +1791,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-16T23:42:26+00:00",
+  "last_updated": "2026-09-17T05:01:38+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
