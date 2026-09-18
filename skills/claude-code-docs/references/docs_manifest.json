@@ -913,8 +913,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "b617d22ef39a849969cb0cd6f5734f25b31371dc3c0b69a667d9651bbfe05aee",
-      "last_updated": "2026-09-17T21:30:10+00:00",
+      "hash": "4db2d6d3773c929aec7f5ef861ea1e686a7729598908a3fd9e52c8a57e96d497",
+      "last_updated": "2026-09-18T16:32:52+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -1471,8 +1471,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "a6269dba93beb505138c59fa3d3ea1c23e452c2dd7469dffd0dd68d591d30290",
-      "last_updated": "2026-09-18T04:53:59+00:00",
+      "hash": "ab724a6bc121b1aafa3b1c0dba38a7b20c6d1a8c343515160833a65b233a7c42",
+      "last_updated": "2026-09-18T16:33:10+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1800,7 +1800,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-18T04:54:11+00:00",
+  "last_updated": "2026-09-18T16:33:20+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
