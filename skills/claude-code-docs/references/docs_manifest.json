@@ -769,8 +769,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "1dcdff428f08e25a115880704a38855003676d04001111c540c356d70e1bff4a",
-      "last_updated": "2026-09-18T20:59:59+00:00",
+      "hash": "2e6c94b493e4bc4785259d57b4f69daac421c9a19a4155923993ba104208f484",
+      "last_updated": "2026-09-18T23:22:56+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -778,8 +778,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "f077613a9d5eb13e254a11f0ebc83a9dea5f264c03c9c3c10b5e4b51323e584d",
-      "last_updated": "2026-09-18T04:53:33+00:00",
+      "hash": "f88469b3884efe41822a734f2d53fee08b6d2bfe6e7386cb528dc1fcd209b94d",
+      "last_updated": "2026-09-18T23:22:57+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -796,8 +796,8 @@
       "title": "Speed up responses with fast mode"
     },
     "feature-availability.md": {
-      "hash": "035f85f2ea0a520e5d68383e6a39e73fab008c449e7bf4b76eb6eed820dde9f0",
-      "last_updated": "2026-09-18T21:00:01+00:00",
+      "hash": "8f2f287a4cea41992fafba7344e527bac1254a208c3702b106532cf9b76d25db",
+      "last_updated": "2026-09-18T23:22:58+00:00",
       "original_url": "https://code.claude.com/docs/en/feature-availability",
       "path": "/docs/en/feature-availability",
       "source_url": "https://code.claude.com/docs/en/feature-availability.md",
@@ -985,8 +985,8 @@
       "title": "Connect Claude Code to an LLM gateway"
     },
     "llm-gateway-protocol.md": {
-      "hash": "321fc870e75f5925af9796d22473321b8237e7ef58145d63000521f59c7dc75e",
-      "last_updated": "2026-09-18T04:53:41+00:00",
+      "hash": "dd2f53a32ddd8e72a50be587b0ac71c664e42af302014dd36e5c1304f758bcad",
+      "last_updated": "2026-09-18T23:23:07+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-protocol",
       "path": "/docs/en/llm-gateway-protocol",
       "source_url": "https://code.claude.com/docs/en/llm-gateway-protocol.md",
@@ -994,8 +994,8 @@
       "title": "Claude Code gateway compatibility guide"
     },
     "llm-gateway-rollout.md": {
-      "hash": "f388922f10d01fedc75405c85345d9a8527fbbd029426f5cabdf2958d29746a8",
-      "last_updated": "2026-09-15T21:29:40+00:00",
+      "hash": "96aede1827f03fa0680766a95c295406d05cc561921f4b1ef9da416af507cf1b",
+      "last_updated": "2026-09-18T23:23:07+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-rollout",
       "path": "/docs/en/llm-gateway-rollout",
       "source_url": "https://code.claude.com/docs/en/llm-gateway-rollout.md",
@@ -1003,8 +1003,8 @@
       "title": "Roll out an LLM gateway for your organization"
     },
     "llm-gateway.md": {
-      "hash": "eedd5b9acfa2feac14389586332e9a2c89e937ff4d5e53e5fd76f4cf34384569",
-      "last_updated": "2026-09-04T04:44:19+00:00",
+      "hash": "f780aa80a140d7c107991b5f53a0a9f7a53f0bc9256b310e886e8b035747002a",
+      "last_updated": "2026-09-18T23:23:06+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway",
       "path": "/docs/en/llm-gateway",
       "source_url": "https://code.claude.com/docs/en/llm-gateway.md",
@@ -1048,8 +1048,8 @@
       "title": "Connect Claude Code to tools via MCP"
     },
     "memory.md": {
-      "hash": "5315bd3f26945e87e26261bf93b106de6ad5e6518c2d4b5b281c004e25d6cd64",
-      "last_updated": "2026-09-18T21:00:17+00:00",
+      "hash": "bdb90ea6908cf4758acd130264f2b39a6d4209512eb0b47c8649930007b65110",
+      "last_updated": "2026-09-18T23:23:09+00:00",
       "original_url": "https://code.claude.com/docs/en/memory",
       "path": "/docs/en/memory",
       "source_url": "https://code.claude.com/docs/en/memory.md",
@@ -1120,8 +1120,8 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "c966713b582bb18823fab4305a78f3befe53fb94d6ebec4380ea5ee2cfaee996",
-      "last_updated": "2026-09-18T04:53:46+00:00",
+      "hash": "4f9534bcb25c84e462a95ea6e1585d249f61b6b6c664da20de023e3fe132ca2b",
+      "last_updated": "2026-09-18T23:23:12+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "source_url": "https://code.claude.com/docs/en/permission-modes.md",
@@ -1800,7 +1800,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-18T21:00:49+00:00",
+  "last_updated": "2026-09-18T23:23:43+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
