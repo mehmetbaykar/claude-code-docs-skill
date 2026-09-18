@@ -32,11 +32,12 @@ There are four additional built-in output styles:
 
 Pick a style in one of these ways:
 
+* **`/output-style` command**: run `/output-style <style>` to switch, for example `/output-style concise`. With no argument, the command lists the styles you can pick and marks the current one. Claude Code saves your selection to `.claude/settings.local.json` at the [local project level](https://code.claude.com/docs/en/settings).
+
+The command also works in [non-interactive mode](https://code.claude.com/docs/en/headless) and Agent SDK sessions, and from the mobile app or web via [Remote Control](https://code.claude.com/docs/en/remote-control#limitations), where you can list and select only [built-in styles](#built-in-output-styles). Requires Claude Code v2.1.269 or later.
 * **Terminal**: run `/config` and select **Output style** to pick a style from a menu. Claude Code saves your selection to `.claude/settings.local.json` at the [local project level](https://code.claude.com/docs/en/settings).
 * **VS Code extension**: open the [command menu](https://code.claude.com/docs/en/vs-code#use-the-prompt-box) with `/` and select **Output styles** to pick a style, including your custom styles. Claude Code saves your selection to `.claude/settings.local.json`, the same file the terminal menu writes. Requires Claude Code v2.1.257 or later.
 * **Desktop app**: set the `outputStyle` field in a settings file, for example `.claude/settings.local.json`, the file the terminal menu writes. When you run `/config` there, Claude Code [opens **Settings > Claude Code**](https://code.claude.com/docs/en/desktop#what’s-not-available-in-desktop) rather than a menu.
-
-> [!NOTE] The standalone `/output-style` command was deprecated in v2.1.73 and removed in v2.1.91. Use `/config` or edit the `outputStyle` setting directly.
 
 To set a style without the menu, edit the `outputStyle` field directly in a settings file:
 ```json
@@ -89,7 +90,7 @@ This example leads every explanation with a diagram while keeping Claude's codin
 
 **Switch to your style**
 
-Run `/config` in the terminal and select your style under **Output style**. Claude uses the new style starting with your next message. In the terminal, Claude Code reads style files when it starts, so if you create or edit one during a running session, restart Claude Code to pick up the change.
+Run `/output-style <style>` in the terminal, or run `/config` and select your style under **Output style**. Claude uses the new style starting with your next message. In the terminal, Claude Code reads style files when it starts, so if you create or edit one during a running session, restart Claude Code to pick up the change.
 
 
 [Plugins](https://code.claude.com/docs/en/plugins-reference) can also ship output styles in an `output-styles/` directory.

@@ -351,7 +351,7 @@ Claude Code reconnects a remote server that drops mid-session and retries an HTT
 
 Claude Code reconnects a dropped remote server with exponential backoff: up to five attempts, starting at a one-second delay and doubling it each time. What you see depends on how you're running Claude Code:
 
-* **In an interactive session**: `/mcp` shows the server as pending while Claude Code reconnects. After five failed attempts, Claude Code marks the server as failed, or as needing authentication when the server needs authorizing again. You can retry manually from `/mcp`.
+* **In an interactive session**: `/mcp` shows the server as pending while Claude Code reconnects. After five failed attempts, Claude Code marks the server as failed, or as needing authentication when the server needs authorizing again. When it marks the server as failed, you see an `MCP server "<name>" disconnected · open /mcp to reconnect` notification. You can retry manually from `/mcp`.
 * **In [`claude -p`](https://code.claude.com/docs/en/headless) runs and [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview) sessions**: Claude Code reconnects on the same schedule, with no `/mcp` panel to show the attempts.
 
 #### Failed first connections
