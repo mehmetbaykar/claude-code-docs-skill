@@ -183,7 +183,11 @@ When a thread changes code, this is what it does unless you tell it otherwise:
 * **Pull request**: opens one when you ask, and can open one on its own for a bug fix or another concrete change.
 * **After it opens**: watches the pull request with [auto-fix](https://code.claude.com/docs/en/claude-code-on-the-web#auto-fix-pull-requests) turned on, whether or not auto-fix is on for your other cloud sessions. It pushes fixes when CI fails, addresses review comments, and replies in the thread when checks pass and the pull request is ready for you.
 
-The thread's card in the conversation shows a button for the pull request's next step when there is one, such as **Resolve conflicts**, **Fix CI**, **Address comments**, or **Merge it**. Clicking it sends that instruction to the thread as a message from you, so you can prompt the thread yourself instead of waiting for it to react to the pull request. **Review PR** opens the pull request on GitHub.
+When a thread has pushed a branch or opened a pull request, its card in the conversation can show a button for the next step:
+
+* **Resolve conflicts**, **Fix CI**, **Address comments**, and **Merge it** send that instruction to the thread as a message from you, so you can prompt the thread yourself instead of waiting for it to react to the pull request.
+* **Review PR** opens the pull request on GitHub.
+* **Create PR** appears when an idle thread has pushed a branch but hasn't opened a pull request. Clicking it creates the pull request from that branch directly rather than sending the thread an instruction to open one.
 
 To change when threads open pull requests, for example only when you ask, or which branch they start from, say so in the task or in [project instructions](#write-project-instructions).
 
@@ -320,7 +324,7 @@ Threads are cloud sessions, so they don't have the skills, MCP servers, plugins,
 * MCP servers: threads get their MCP tools from the connectors on your claude.ai account, which are MCP servers you connect once at [claude.ai/customize/connectors](https://claude.ai/customize/connectors) or through the **Manage connectors** link in **Project settings > Environment**. Every thread can use all of them with no per-project setup. The project conversation itself has no connectors, so send work that needs one as a task for a thread. In a project with one repository, threads also load MCP servers from that repository's [`.mcp.json`](https://code.claude.com/docs/en/cloud-environments#what-carries-over-from-your-setup). [How connectors reach Claude Code](https://code.claude.com/docs/en/mcp#how-connectors-reach-claude-code) lists the rules for cloud sessions and the settings that turn connectors off.
 * Command-line tools and packages: install them in the environment's [setup script](https://code.claude.com/docs/en/cloud-environments#setup-scripts).
 
-To see which connectors a running thread has at claude.ai/code, open the thread and select **Connectors** from the **+** menu beside its message box. Turning a connector off there removes it from that thread, and it stays off for threads started later until you turn it back on. A thread picks up a connector you add or reconnect after the next message you send it.
+To see which connectors a running thread has at claude.ai/code, open the thread and select **Connectors** from the **+** menu beside its message box. Turning a connector off there removes it from that thread and saves that as your account default, so new threads and claude.ai chats start without it until you turn it back on. A thread picks up a connector you add or reconnect after the next message you send it.
 
 ## Project settings reference
 
