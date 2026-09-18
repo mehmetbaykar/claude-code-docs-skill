@@ -293,7 +293,7 @@ Command support differs in `-p` mode:
 * User-invoked [skills](https://code.claude.com/docs/en/skills) and custom commands work. Include `/skill-name` in the prompt string and Claude Code expands it before running.
 * Built-in commands that only run in the terminal interface, such as `/login`, aren't available.
 * `/model`, `/effort`, `/fast`, `/color`, and `/rename` accept the value as an argument, for example `/model sonnet`, and `/mcp` with no argument prints a text summary of server status. These forms require Claude Code v2.1.205 or later and follow each command's [availability notes](https://code.claude.com/docs/en/commands#all-commands).
-* To change a setting, pass `key=value` to `/config`, for example `/config thinking=false`. Requires Claude Code v2.1.181 or later.
+* To change a setting, pass `key=value` to `/config`, for example `/config thinking=false`.
 * `/output-style <style>` switches [output styles](https://code.claude.com/docs/en/output-styles) and `/output-style` alone lists them. Requires Claude Code v2.1.269 or later.
 
 ### Customize the system prompt
