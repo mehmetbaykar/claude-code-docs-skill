@@ -373,8 +373,8 @@
       "title": "Track team usage with analytics"
     },
     "artifacts.md": {
-      "hash": "931c131f83051c508a2984ae87d81ae7b675ff69c81f7c8fb46b931f3a6d40e2",
-      "last_updated": "2026-09-18T20:59:42+00:00",
+      "hash": "1c0f1d95e423eca97216f3e1e0e164bcacbcc8bae9c39b874383294ce07b259b",
+      "last_updated": "2026-09-20T20:55:22+00:00",
       "original_url": "https://code.claude.com/docs/en/artifacts",
       "path": "/docs/en/artifacts",
       "source_url": "https://code.claude.com/docs/en/artifacts.md",
@@ -598,8 +598,8 @@
       "title": "Code Review"
     },
     "commands.md": {
-      "hash": "9e0d1f4d40c108c24405d7882d6ddccd78679d5af0304ad2363f18df3b68c817",
-      "last_updated": "2026-09-18T20:59:51+00:00",
+      "hash": "e706ea64cdf566fd3616e95c9130d84c2d02f80612b2b1db29193013844de022",
+      "last_updated": "2026-09-20T20:55:29+00:00",
       "original_url": "https://code.claude.com/docs/en/commands",
       "path": "/docs/en/commands",
       "source_url": "https://code.claude.com/docs/en/commands.md",
@@ -1800,7 +1800,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-19T04:46:21+00:00",
+  "last_updated": "2026-09-20T20:56:09+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
