@@ -769,8 +769,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "2e6c94b493e4bc4785259d57b4f69daac421c9a19a4155923993ba104208f484",
-      "last_updated": "2026-09-18T23:22:56+00:00",
+      "hash": "6d046aa3ef0be1503070c129a0dea67f86d9e3c9fc7bc927a94d5b5c26d53436",
+      "last_updated": "2026-09-21T20:02:00+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -1075,8 +1075,8 @@
       "title": "Claude Code on mobile"
     },
     "model-config.md": {
-      "hash": "41ad741bc7d3e2a69d47ad4df840b330a64130785bb45c65ef2b78c2e64d4850",
-      "last_updated": "2026-09-16T04:57:55+00:00",
+      "hash": "fa542c9f812ae8a5c4cadb936fba3c50e4bbec421b2b8cad10911775f851cfab",
+      "last_updated": "2026-09-21T20:02:15+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -1390,8 +1390,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "8f154035105c987298f51700b97bc5185a02483bc8f67bf21737caa6bce7c05a",
-      "last_updated": "2026-09-18T21:00:32+00:00",
+      "hash": "f959db7f76582732fb99d593f965f205af8bf53255c1e74f5fc8d593ecceae2b",
+      "last_updated": "2026-09-21T20:02:26+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "source_url": "https://code.claude.com/docs/en/settings-reference.md",
@@ -1800,7 +1800,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-21T13:01:15+00:00",
+  "last_updated": "2026-09-21T20:02:38+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
