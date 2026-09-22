@@ -307,7 +307,7 @@ You can use any of these methods:
 
 1. Drag and drop an image into the Claude Code window
 2. Copy an image and paste it into the CLI with `Ctrl+V`, or with [`Alt+V` on Windows and WSL](https://code.claude.com/docs/en/interactive-mode#general-controls)
-3. Provide an image path to Claude. E.g., "Analyze this image: /path/to/your/image.png"
+3. Provide an image path to Claude, for example "Analyze this image: /path/to/your/image.png"
 
 
 

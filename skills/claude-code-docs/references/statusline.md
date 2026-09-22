@@ -70,7 +70,7 @@ The optional `hideVimModeIndicator` field suppresses the built-in `-- INSERT --`
 
 ### Disable the status line
 
-Run `/statusline` and ask it to remove or clear your status line (e.g., `/statusline delete`, `/statusline clear`, `/statusline remove it`). You can also manually delete the `statusLine` field from your settings.json.
+Run `/statusline` and ask it to remove or clear your status line (for example, `/statusline delete`, `/statusline clear`, `/statusline remove it`). You can also manually delete the `statusLine` field from your settings.json.
 
 ## Build a status line step by step
 
@@ -220,7 +220,7 @@ Your status line command receives this JSON structure via stdin:
     "prompt_id": "550e8400-e29b-41d4-a716-446655440000",
     "transcript_path": "/path/to/transcript.jsonl",
     "model": {
-      "id": "claude-opus-5",
+      "id": "claude-opus-5-5",
       "display_name": "Opus"
     },
     "workspace": {
