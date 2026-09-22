@@ -138,8 +138,8 @@ Actions available in the `Confirmation` context:
 
 | Action                  | Default     | Description                                                                                                                                                                                                                                                                           |
 | :---------------------- | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `confirm:yes`           | Y, Enter    | Confirm action                                                                                                                                                                                                                                                                        |
-| `confirm:no`            | N, Escape   | Decline action                                                                                                                                                                                                                                                                        |
+| `confirm:yes`           | Enter       | Confirm action                                                                                                                                                                                                                                                                        |
+| `confirm:no`            | Escape      | Decline action                                                                                                                                                                                                                                                                        |
 | `confirm:previous`      | Up          | Previous option                                                                                                                                                                                                                                                                       |
 | `confirm:next`          | Down        | Next option                                                                                                                                                                                                                                                                           |
 | `confirm:nextField`     | Tab         | Next field                                                                                                                                                                                                                                                                            |
@@ -150,6 +150,25 @@ Actions available in the `Confirmation` context:
 \*On Windows without VT mode (Node \<24.2.0/\<22.17.0, Bun \<1.2.23), defaults to Meta+M.
 
 Before v2.1.257, a `confirm:toggleExplanation` action, bound to `Ctrl+E` by default, showed a model-generated explanation of the command on Bash and PowerShell permission prompts.
+
+Dialogs use `confirm:yes` and `confirm:no` to accept and cancel even when they don't ask a yes-or-no question. If you bind a bare letter such as `y` or `n` in this context, the letter also acts on dialogs that never show it as a key. A dialog that shows `y` and `n` as its keys reads those letters itself and needs no binding.
+
+This example binds `y` to `confirm:yes` and `n` to `confirm:no`:
+```json
+{
+  "bindings": [
+    {
+      "context": "Confirmation",
+      "bindings": {
+        "y": "confirm:yes",
+        "n": "confirm:no"
+      }
+    }
+  ]
+}
+```
+
+Before v2.1.280, `y` was also bound to `confirm:yes` and `n` to `confirm:no` by default. If you created your `keybindings.json` with `/keybindings` before v2.1.280, the file lists both bindings and they stay in effect until you delete those two lines.
 
 ### Permission actions
 
@@ -329,7 +348,9 @@ Actions available in the `Select` context:
 | `select:accept`   | Enter           | Accept selection              |
 | `select:cancel`   | Escape          | Cancel selection              |
 
-Claude Code applies your `select:pageUp`, `select:pageDown`, `select:first`, and `select:last` bindings in the `/skills` menu. In most other lists, such as the `/model` picker, Claude Code pages with PageUp and PageDown regardless of your bindings and ignores Home and End.
+Claude Code applies your `select:pageUp`, `select:pageDown`, `select:first`, and `select:last` bindings in the `/skills` menu. In most other lists, such as the `/model` picker, your `select:first` and `select:last` bindings apply. PageUp and PageDown page through the options in those lists regardless of your bindings.
+
+Before v2.1.280, those other lists ignored Home, End, and your `select:first` and `select:last` bindings.
 
 ### Plugin actions
 

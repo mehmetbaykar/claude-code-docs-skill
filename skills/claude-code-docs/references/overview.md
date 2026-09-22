@@ -243,7 +243,7 @@ Each [surface](https://code.claude.com/docs/en/glossary#surface) connects to the
 
 Beyond the [Terminal](https://code.claude.com/docs/en/quickstart), [VS Code](https://code.claude.com/docs/en/vs-code), [JetBrains](https://code.claude.com/docs/en/jetbrains), [Desktop](https://code.claude.com/docs/en/desktop), and [Web](https://code.claude.com/docs/en/claude-code-on-the-web) surfaces above, Claude Code integrates with CI/CD, chat, and browser workflows:
 
-| I want to...                                                                    | Best option                                                                                                     |
+| What I want to do                                                               | Best option                                                                                                     |
 | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | Continue a local session from my phone or another device                        | [Remote Control](https://code.claude.com/docs/en/remote-control)                                                                            |
 | Push events from Telegram, Discord, iMessage, or my own webhooks into a session | [Channels](https://code.claude.com/docs/en/channels)                                                                                        |

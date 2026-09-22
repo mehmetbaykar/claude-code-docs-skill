@@ -29,7 +29,9 @@ Save this as `~/.claude/settings.json`. It's valid JSON with no comments, so you
 ```json ~/.claude/settings.json
     {
       "model": "claude-sonnet-5",
-      "effortLevel": "xhigh",
+      "modelSettings": {
+        "claude-sonnet-5": { "effortLevel": "xhigh" }
+      },
       "editorMode": "vim",
       "theme": "light-daltonized",
       "statusLine": {
@@ -59,8 +61,10 @@ The same file with a comment above each key. Read it here; copy from the other t
     {
       // Start every session on Sonnet 5
       "model": "claude-sonnet-5",
-      // Reason more deeply than the default high level on models without a saved level; /effort saves a level per model, and --effort sets one for a single session
-      "effortLevel": "xhigh",
+      // Run Sonnet 5 above its default high level; /effort saves a level per model, and --effort sets one for a single session
+      "modelSettings": {
+        "claude-sonnet-5": { "effortLevel": "xhigh" }
+      },
       // Vim keybindings in the prompt
       "editorMode": "vim",
       // The colorblind-friendly light theme

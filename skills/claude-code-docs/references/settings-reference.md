@@ -261,7 +261,7 @@ You don't usually edit this key by hand. Run `/advisor` to open a picker that sh
 If your account requires the [usage-credits consent](https://code.claude.com/docs/en/advisor#fable-advisor-and-usage-credits), accept it first by running `/model fable`. Until you do, picking Fable in `/advisor` saves nothing and Claude Code tells you to run `/model fable` first.
 
 * **Scope**: [`Any file`](#scopes)
-* **Type**: string, one of the aliases `"fable"`, `"opus"`, or `"sonnet"`, which resolve to Claude Code's current default version of that model family, or a full model ID such as `"claude-opus-5"`
+* **Type**: string, one of the aliases `"fable"`, `"opus"`, or `"sonnet"`, which resolve to Claude Code's current default version of that model family, or a full model ID such as `"claude-opus-5-5"`
 * **Default**: unset, so the advisor is off
 * **Per-session overrides**: `--advisor` takes precedence over this key for one session. [`CLAUDE_CODE_DISABLE_ADVISOR_TOOL`](https://code.claude.com/docs/en/env-vars) turns the advisor off, and this key can't turn it back on
 ```json settings.json
@@ -276,7 +276,7 @@ The key has no effect on providers where the advisor [isn't available](https://c
 
 Turn [extended thinking](https://code.claude.com/docs/en/model-config#extended-thinking) off for every session by setting this to `false`. Thinking is on by default, so `true` changes nothing. Most people set this through `/config` rather than by editing the file.
 
-On models that always think, such as the Fable models, `false` has no effect. On [third-party providers](https://code.claude.com/docs/en/third-party-integrations) Claude Code omits the `thinking` parameter instead of turning thinking off, so adaptive-reasoning models may still think. With thinking turned off on the Anthropic API, Claude Code sends effort `high` instead of a higher level to models it knows [don't accept that combination](https://code.claude.com/docs/en/errors#effort-isnt-available-with-thinking-turned-off), such as Opus 5.
+On models that always think, such as Opus 5.5 and the Fable models, `false` has no effect. On [third-party providers](https://code.claude.com/docs/en/third-party-integrations) Claude Code omits the `thinking` parameter instead of turning thinking off, so adaptive-reasoning models may still think. With thinking turned off on the Anthropic API, Claude Code sends effort `high` instead of a higher level to models it knows [don't accept that combination](https://code.claude.com/docs/en/errors#effort-isnt-available-with-thinking-turned-off), such as Opus 5.
 
 * **Scope**: [`Any file`](#scopes)
 * **Type**: Boolean
@@ -315,7 +315,7 @@ When you run `/effort low`, `medium`, `high`, or `xhigh` in an interactive sessi
 
 Within the same settings file, Claude Code uses a model's saved level rather than this key. [`modelSettings`](#modelsettings) states the cross-file precedence.
 
-In a session attached to a remote worker, `/effort` applies to that session only. In a `-p` run or the Agent SDK it also applies to that session only, [unless a hold on the model's default effort is in effect](https://code.claude.com/docs/en/model-config#non-interactive-effort). [Adjust effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) lists the interactive picks that also apply to that session only. The message that `/effort` prints says which happened.
+In a session attached to a remote worker, in a `-p` run, and in the Agent SDK, `/effort` applies to that session only. [Adjust effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) lists the interactive picks that also apply to that session only. The message that `/effort` prints says which happened.
 
 * **Scope**: [`Any file`](#scopes)
 * **Type**: string, one of:
@@ -331,7 +331,7 @@ In a session attached to a remote worker, `/effort` applies to that session only
 }
 ```
 
-On Opus 4.7, Opus 4.8, and Fable 5, Claude Code holds that model's default effort, organization-set or built-in; [Adjust effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) states which ways of setting a level end the hold and which leave it in place. Once the hold ends, Claude Code resolves effort by the precedence stated at [`modelSettings`](#modelsettings).
+In your user settings file, `~/.claude/settings.json`, this key is the older form `/effort` wrote before it saved levels per model, and it keeps applying where it applied before, on Opus 5, Fable 5.1, and earlier models. Opus 5.5 and models released after it ignore it and start at their own default until you save a level for them, which `/effort` writes under [`modelSettings`](#modelsettings). In project, local, and managed settings, and with `--settings`, this key applies to every model.
 
 ### `enforceAvailableModels`
 
@@ -377,7 +377,7 @@ Unlike most array settings, this key doesn't merge across settings files: the hi
 
 ### `fastMode`
 
-Turn [fast mode](https://code.claude.com/docs/en/fast-mode) on for sessions where it's available, for interactive work like rapid iteration or live debugging where you want speed at a higher cost per token. You don't usually edit this key by hand: running `/fast` writes `fastMode: true` to `~/.claude/settings.json`, and running it again to turn fast mode off removes the key. Fast mode runs only on Opus 5 and Opus 4.8: turning it on from another model switches you to Opus, and switching to an unsupported model turns it off. See [Switch models while fast mode is on](https://code.claude.com/docs/en/fast-mode#switch-models-while-fast-mode-is-on).
+Turn [fast mode](https://code.claude.com/docs/en/fast-mode) on for sessions where it's available, for interactive work like rapid iteration or live debugging where you want speed at a higher cost per token. You don't usually edit this key by hand: running `/fast` writes `fastMode: true` to `~/.claude/settings.json`, and running it again to turn fast mode off removes the key. Fast mode runs only on Opus 5.5, Opus 5, and Opus 4.8: turning it on from another model switches you to Opus, and switching to an unsupported model turns it off. See [Switch models while fast mode is on](https://code.claude.com/docs/en/fast-mode#switch-models-while-fast-mode-is-on).
 
 * **Scope**: [`Any file`](#scopes)
 * **Type**: Boolean
@@ -581,7 +581,7 @@ In an interactive session on your machine, when you save `low`, `medium`, `high`
 
 Edit the key by hand to change or remove a level you saved.
 
-A model's `effortLevel` here takes precedence over the top-level [`effortLevel`](#effortlevel) in the same settings file. Across files, Claude Code resolves each model separately: the highest-precedence [settings file](https://code.claude.com/docs/en/settings#settings-precedence) that sets either an `effortLevel` for that model or the top-level `effortLevel` decides, so an `effortLevel` in managed settings outranks a level you saved in user settings. [Adjust effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) lists what else can override a saved level, such as `--effort` at launch.
+A model's `effortLevel` here takes precedence over the top-level [`effortLevel`](#effortlevel) in the same settings file. Across files, Claude Code resolves each model separately: the highest-precedence [settings file](https://code.claude.com/docs/en/settings#settings-precedence) that sets either an `effortLevel` for that model or a top-level `effortLevel` that [applies to that model](#effortlevel) decides, so an `effortLevel` in managed settings outranks a level you saved in user settings. [Adjust effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) lists what else can override a saved level, such as `--effort` at launch.
 
 To cap one model's effort rather than set its level, add a [`maxEffortLevel`](#maxeffortlevel) field to that model's entry. The field requires Claude Code v2.1.267 or later.
 
@@ -589,14 +589,14 @@ To cap one model's effort rather than set its level, add a [`maxEffortLevel`](#m
 * **Type**: object mapping a model name to an object with an `effortLevel` field, one of `"low"`, `"medium"`, `"high"`, or `"xhigh"`, a [`maxEffortLevel`](#maxeffortlevel) field, or both
 * **Default**: unset
 
-Claude Code writes each entry under the model's canonical name, such as `claude-opus-5`, and matches that model's alias, date-suffixed, `[1m]`, and recognized provider-specific IDs to the same entry.
+Claude Code writes each entry under the model's canonical name, such as `claude-opus-5-5`, and matches that model's alias, date-suffixed, `[1m]`, and recognized provider-specific IDs to the same entry.
 
-This example keeps Opus 5 at `medium` while other models use their own saved or default levels:
+This example keeps Opus 5.5 at `high` while other models use their own saved or default levels:
 ```json settings.json
 {
   "modelSettings": {
-    "claude-opus-5": {
-      "effortLevel": "medium"
+    "claude-opus-5-5": {
+      "effortLevel": "high"
     }
   }
 }
