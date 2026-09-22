@@ -184,7 +184,7 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
       : Settings[K] | null;
   }): Promise<void>;
   updateSettings(
-    source: 'localSettings',
+    source: 'localSettings' | 'userSettings',
     settings: Record<string, unknown>,
   ): Promise<void>;
   initializationResult(): Promise<SDKControlInitializeResponse>;
@@ -561,6 +561,7 @@ type SDKUserMessage = {
   uuid?: UUID;
   session_id?: string;
   message: MessageParam; // From Anthropic SDK
+  pasted_content?: MessageParam["content"][];
   parent_tool_use_id: string | null;
   isSynthetic?: boolean;
   shouldQuery?: boolean;
@@ -1451,14 +1452,12 @@ type ToolInputSchemas =
   | ReadMcpResourceInput
   | RefreshMcpToolsInput
   | RemoteTriggerInput
-  | REPLInput
   | ReportFindingsInput
   | ScheduleWakeupInput
   | ShowOnboardingRolePickerInput
   | TaskCreateInput
   | TaskGetInput
   | TaskListInput
-  | TaskOutputInput
   | TaskStopInput
   | TaskUpdateInput
   | TodoWriteInput
@@ -1510,13 +1509,6 @@ type MonitorInput = {
     url: string;
     protocols?: string[];
   };
-};
-```
-```typescript
-type TaskOutputInput = {
-  task_id: string;
-  block: boolean;
-  timeout: number;
 };
 ```
 ```typescript
@@ -1730,13 +1722,6 @@ type PushNotificationInput = {
 };
 ```
 ```typescript
-type REPLInput = {
-  code: string;
-  description?: string;
-  timeout?: number;
-};
-```
-```typescript
 type ReportFindingsInput = {
   level?: "low" | "medium" | "high" | "xhigh" | "max";
   findings: Array<{
@@ -1756,6 +1741,7 @@ type ArtifactInput = {
   action?: "publish" | "list";
   file_path?: string;
   favicon?: string;
+  icon?: string;
   limit?: number;
   scope?: "mine" | "shared" | "all";
   title?: string;
@@ -1830,7 +1816,6 @@ type ToolOutputSchemas =
   | ReadMcpResourceOutput
   | RefreshMcpToolsOutput
   | RemoteTriggerOutput
-  | REPLOutput
   | ReportFindingsOutput
   | ScheduleWakeupOutput
   | ShowOnboardingRolePickerOutput
@@ -2337,25 +2322,6 @@ type PushNotificationOutput = {
 };
 ```
 ```typescript
-type REPLOutput = {
-  code: string;
-  result: {
-    [k: string]: unknown;
-  };
-  stdout: string;
-  stderr: string;
-  error?: string;
-  registeredTools?: string[];
-  images?: {
-    base64: string;
-    mediaType: string;
-  }[];
-  documents?: {
-    base64: string;
-  }[];
-};
-```
-```typescript
 type ReportFindingsOutput = {
   count: number;
   level?: "low" | "medium" | "high" | "xhigh" | "max";
@@ -2565,6 +2531,7 @@ type SlashCommand = {
   description: string;
   argumentHint: string;
   aliases?: string[];
+  builtin?: boolean;
 };
 ```
 ```typescript

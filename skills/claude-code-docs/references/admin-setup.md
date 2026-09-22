@@ -153,7 +153,7 @@ Share these resources to help developers get started:
 
 * [Quickstart](https://code.claude.com/docs/en/quickstart): first-session walkthrough from install to working with a project
 * [Common workflows](https://code.claude.com/docs/en/common-workflows): patterns for everyday tasks like code review, refactoring, and debugging
-* [Claude 101](https://anthropic.skilljar.com/claude-101) and [Claude Code in Action](https://anthropic.skilljar.com/claude-code-in-action): self-paced Anthropic Academy courses
+* [Claude Code 101](https://academy.claude.com/courses/claude-code-101) and [Claude Code in Action](https://academy.claude.com/courses/claude-code-in-action): free self-paced courses on [Claude Academy](https://academy.claude.com/)
 
 For login issues, point developers to [authentication troubleshooting](https://code.claude.com/docs/en/troubleshoot-install#login-and-authentication). The most common fixes are:
 
