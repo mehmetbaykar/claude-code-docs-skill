@@ -82,7 +82,7 @@ To get the most from Fable:
 
 Fable 5.1 requires Claude Code v2.1.257 or later. If a request for it from an older version fails, see [Claude Code does not support this model](https://code.claude.com/docs/en/errors#claude-code-does-not-support-this-model). Run `claude update` to upgrade. For availability under zero data retention, see [Model availability under ZDR](https://code.claude.com/docs/en/zero-data-retention#model-availability-under-zdr).
 
-On the Anthropic API, the `/model` picker lists a Fable model only after the server reports it available for your organization. When you type `/model fable` or a Fable model ID, Claude Code checks availability with the server directly, so a typed selection can succeed even when the picker doesn't list the entry.
+On the Anthropic API, a Fable model appears in the `/model` picker unless [`availableModels`](#restrict-model-selection) or [organization model restrictions](#organization-model-restrictions) exclude it. When your organization can't use Fable at all, for example under [zero data retention](https://code.claude.com/docs/en/zero-data-retention#model-availability-under-zdr), the row stays in the picker grayed out, with a note on why.
 
 #### Fable and usage credits
 

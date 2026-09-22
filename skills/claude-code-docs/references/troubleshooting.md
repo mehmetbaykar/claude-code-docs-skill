@@ -39,6 +39,10 @@ Claude Code is designed to work with most development environments, but may cons
 3. Consider adding large build directories to your `.gitignore` file
 4. Restart with [`claude --safe-mode`](https://code.claude.com/docs/en/cli-reference#cli-flags) to check whether a plugin, MCP server, or hook is the source. It disables all customizations for the session; if usage drops, see [Debug your configuration](https://code.claude.com/docs/en/debug-your-config#test-against-a-clean-configuration) to find which one
 
+If a session's heap memory passes 2.5GB, a critical memory usage warning appears. To free the memory, restart Claude Code and run [`claude --continue`](https://code.claude.com/docs/en/cli-reference#cli-flags) to resume the conversation in a fresh process.
+
+Outside [fullscreen rendering](https://code.claude.com/docs/en/fullscreen), running `/compact` frees memory too. The warning disappears once memory use drops back below 2.5GB.
+
 If memory usage stays high after these steps, run `/heapdump` to write two files to `~/Desktop`: a JavaScript heap snapshot named `<session-id>.heapsnapshot` and a memory breakdown named `<session-id>-diagnostics.json`. Claude Code [hides the command from the command menu](https://code.claude.com/docs/en/commands#how-the-command-menu-matches-what-you-type); type it in full. On Linux without a Desktop folder, the files are written to your home directory.
 
 The `.heapsnapshot` file contains every string in the process, including your full conversation and credentials. Don't attach it to a public issue or share it.
@@ -92,7 +96,7 @@ When [sandboxing](https://code.claude.com/docs/en/sandboxing) is on, clipboard u
 
 To put Claude's output on your clipboard, ask Claude to print the content in its response, then run [`/copy`](https://code.claude.com/docs/en/commands). `/copy` writes to the clipboard from the Claude Code process itself rather than from a sandboxed command, so sandboxing doesn't block it. It can copy a single code block instead of the whole response, and it also writes what it copied to a file and prints the path, which gives you a fallback when the clipboard write doesn't reach your terminal, for example over SSH.
 
-To let a piped command reach the clipboard directly instead, add `pbcopy *`, `wl-copy *`, or `xclip *` to [`excludedCommands`](https://code.claude.com/docs/en/settings-reference#sandbox-excludedcommands) so the command runs outside the sandbox.
+When Claude pipes text to one of these tools, adding `pbcopy *`, `wl-copy *`, or `xclip *` to [`excludedCommands`](https://code.claude.com/docs/en/settings-reference#sandbox-excludedcommands) doesn't take that call out of the sandbox on its own.
 
 ### Copied text doesn't reach your local clipboard over SSH
 
