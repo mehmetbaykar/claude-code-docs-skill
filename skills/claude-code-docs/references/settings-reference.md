@@ -412,7 +412,7 @@ See [Require per-session opt-in](https://code.claude.com/docs/en/fast-mode#requi
 
 ### `language`
 
-Have Claude respond in a language other than English by default. There is no fixed list for responses: Claude Code adds the value verbatim to the system prompt as an instruction to always respond in that language, so any language name Claude can read works. Claude Code doesn't check the value, so a misspelled name reaches Claude as written rather than producing an error. The same value sets the language for [voice dictation](https://code.claude.com/docs/en/voice-dictation#change-the-dictation-language), which does have a fixed list of [supported dictation languages](https://code.claude.com/docs/en/voice-dictation#change-the-dictation-language), and for auto-generated session titles.
+Have Claude respond in a language other than English by default. There is no fixed list for responses: Claude Code passes the value verbatim to Claude as an instruction to always respond in that language, so any language name Claude can read works. Claude Code doesn't check the value, so a misspelled name reaches Claude as written rather than producing an error. The same value sets the language for [voice dictation](https://code.claude.com/docs/en/voice-dictation#change-the-dictation-language), which does have a fixed list of [supported dictation languages](https://code.claude.com/docs/en/voice-dictation#change-the-dictation-language), and for auto-generated session titles.
 
 * **Scope**: [`Any file`](#scopes)
 * **Type**: string, any language name, such as `"japanese"`, `"spanish"`, or `"french"`; Claude Code doesn't validate it
@@ -1193,7 +1193,7 @@ This lets sandboxed commands write to a build directory and your kubeconfig, and
 }
 ```
 
-Claude Code enforces these lists at the OS sandbox boundary, so they apply to every subprocess a sandboxed command starts, such as `kubectl`, `terraform`, or `npm`, not only to Claude's file tools. Claude Code adds your [permission rules](https://code.claude.com/docs/en/sandboxing#permission-rules) to the same lists: `Edit` allow and deny rules to `allowWrite` and `denyWrite`, `Read` deny rules to `denyRead`, and `WebFetch(domain:...)` allow and deny rules to the [`network`](#sandbox-network) domain lists.
+Claude Code enforces these lists at the OS sandbox boundary, so they apply to every subprocess a sandboxed command starts, such as `kubectl`, `terraform`, or `npm`. Claude Code adds your [permission rules](https://code.claude.com/docs/en/sandboxing#permission-rules) to the same lists: `Edit` allow and deny rules to `allowWrite` and `denyWrite`, `Read` deny rules to `denyRead`, and `WebFetch(domain:...)` allow and deny rules to the [`network`](#sandbox-network) domain lists.
 
 Unless a managed-only lock is set, Claude Code merges every list across the settings files the session loads. [`allowManagedReadPathsOnly`](#sandbox-filesystem-allowmanagedreadpathsonly) limits `allowRead` to entries from managed settings, and [`allowManagedDomainsOnly`](#sandbox-network-allowmanageddomainsonly) does the same for allowed domains.
 
@@ -3492,7 +3492,6 @@ Each entry below shows one allowlist entry per source type and the fields it acc
 | `github`      | `{ "source": "github", "repo": "acme-corp/plugins", "ref": "main", "path": "marketplace" }`                                     | `repo` required; `ref` is a branch or tag; `path` is a subdirectory                            |
 | `git`         | `{ "source": "git", "url": "https://gitlab.example.com/tools/plugins.git", "ref": "production" }`                               | `url` required; `ref` and `path` as for `github`                                               |
 | `url`         | `{ "source": "url", "url": "https://plugins.example.com/marketplace.json", "headers": { "Authorization": "Bearer ${TOKEN}" } }` | `url` required; `headers` adds HTTP headers for authenticated access                           |
-| `npm`         | `{ "source": "npm", "package": "@acme-corp/claude-plugins" }`                                                                   | `package` required, the npm package that contains `marketplace.json`                           |
 | `file`        | `{ "source": "file", "path": "/opt/acme-corp/plugins/marketplace.json" }`                                                       | `path` required, the absolute path to a `marketplace.json` file                                |
 | `directory`   | `{ "source": "directory", "path": "/opt/acme-corp/approved-marketplaces" }`                                                     | `path` required, the absolute path to a directory containing `.claude-plugin/marketplace.json` |
 | `hostPattern` | `{ "source": "hostPattern", "hostPattern": "^github\\.example\\.com$" }`                                                        | `hostPattern` required, a regex matched against the marketplace host                           |

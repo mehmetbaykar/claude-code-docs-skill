@@ -205,6 +205,7 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
   reconnectMcpServer(serverName: string): Promise<void>;
   toggleMcpServer(serverName: string, enabled: boolean): Promise<void>;
   setMcpServers(servers: Record<string, McpServerConfig>): Promise<McpSetServersResult>;
+  readMcpResource(serverName: string, uri: string): Promise<SDKControlMcpReadResourceResponse>;
   streamInput(stream: AsyncIterable<SDKUserMessage>): Promise<void>;
   stopTask(taskId: string): Promise<void>;
   close(): void;
@@ -350,6 +351,17 @@ type SDKControlReadFileResponse = {
 ```typescript
 type SDKControlReloadSkillsResponse = {
   skills: SlashCommand[];
+};
+```
+```typescript
+type SDKControlMcpReadResourceResponse = {
+  contents: {
+    uri: string;
+    mimeType?: string;
+    text?: string;
+    blob?: string;
+    _meta?: Record<string, unknown>;
+  }[];
 };
 ```
 ```typescript
@@ -567,6 +579,7 @@ type SDKUserMessage = {
   shouldQuery?: boolean;
   tool_use_result?: unknown;
   origin?: SDKMessageOrigin;
+  inline_pastes?: string[];
 };
 ```
 ```typescript
@@ -830,6 +843,7 @@ type SDKMessageOrigin =
   | {
       kind: "task-notification";
       subkind?: "scheduled-trigger" | "peer-send-message";
+      fireReason?: string;
     }
   | { kind: "coordinator" }
   | { kind: "auto-continuation" }
@@ -2580,6 +2594,7 @@ type McpServerStatus = {
       destructive?: boolean;
       openWorld?: boolean;
     };
+    _meta?: Record<string, unknown>;
   }[];
 };
 ```

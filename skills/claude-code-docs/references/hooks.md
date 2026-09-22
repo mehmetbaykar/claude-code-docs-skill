@@ -3391,7 +3391,7 @@ Events that support all five hook types (`command`, `http`, `mcp_tool`, `prompt`
 * `UserPromptExpansion`
 * `UserPromptSubmit`
 
-`PermissionRequest` supports `command`, `http`, `mcp_tool`, and `prompt` hooks but not `agent` hooks. If you configure an agent hook on this event, Claude Code skips it and the permission flow proceeds unchanged. The first time this happens in a session, the transcript shows a hook error notice that says `agent-type hooks are not supported for PermissionRequest events`. To allow or deny from a hook, return the [decision object](#permissionrequest-decision-control) from a command or HTTP hook.
+`PermissionRequest` supports `command`, `http`, `mcp_tool`, and `prompt` hooks but not `agent` hooks. If you configure an agent hook on this event, Claude Code skips it and the permission flow proceeds unchanged. To allow or deny from a hook, return the [decision object](#permissionrequest-decision-control) from a command or HTTP hook.
 
 Events that support `command`, `http`, and `mcp_tool` hooks but not `prompt` or `agent`:
 

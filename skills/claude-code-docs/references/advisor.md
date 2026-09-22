@@ -168,7 +168,7 @@ The advisor model's own read of the conversation is not cached. Each advisor cal
 
 The advisor tool requires all of the following:
 
-* **Anthropic API only**: the advisor is a server-executed tool. It is not available on Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, or Microsoft Foundry. Through an [LLM gateway](https://code.claude.com/docs/en/llm-gateway) configured with `ANTHROPIC_BASE_URL`, availability depends on whether the gateway forwards the request intact to the Anthropic API.
+* **Anthropic API only**: the advisor is a server-executed tool. It is not available on Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, or Microsoft Foundry. Through an [LLM gateway](https://code.claude.com/docs/en/llm-gateway) configured with `ANTHROPIC_BASE_URL`, availability depends on whether the gateway forwards the request intact to the Anthropic API. If the gateway or its upstream doesn't recognize the advisor tool, see [Automatic retry and error forwarding](https://code.claude.com/docs/en/llm-gateway-protocol#automatic-retry-and-error-forwarding) for how Claude Code responds.
 * **Supported main model**: Fable, Opus 4.6 or later, Sonnet 4.6 or later, or Haiku 4.5. See [Choose an advisor model](#choose-an-advisor-model) for which advisors each accepts.
 * **Feature-flag fetching**: Claude Code turns the advisor on through a feature flag it fetches from Anthropic. In a session where a variable that turns flag fetching off is set, such as `DISABLE_TELEMETRY`, the advisor stays off. See [Features that need feature-flag fetching](https://code.claude.com/docs/en/env-vars#features-that-need-feature-flag-fetching).
 
