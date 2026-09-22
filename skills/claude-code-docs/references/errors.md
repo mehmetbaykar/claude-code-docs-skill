@@ -3075,6 +3075,7 @@ Before v2.1.265, Claude Code treated a default component folder it couldn't chec
 The plugin's [marketplace entry](https://code.claude.com/docs/en/plugin-marketplaces#plugin-entries) declares a source path that Claude Code can't resolve to a location inside the marketplace's own directory, so the plugin doesn't install or load. The refusal covers:
 
 * An entry path that is absolute, climbs out of the marketplace with `..`, or is spelled like a network path
+* On macOS and Linux, an entry path that contains a backslash anywhere after the leading `./`
 * An entry in a marketplace fetched from a remote source, such as git or a URL, that reaches its target through a symlink resolving outside the marketplace directory
 * A relative entry in a marketplace added from a direct URL to its `marketplace.json`: Claude Code downloads only that file, so no local plugin files exist for the path to name. See [Plugins with relative paths fail in URL-based marketplaces](https://code.claude.com/docs/en/plugin-marketplaces#plugins-with-relative-paths-fail-in-url-based-marketplaces)
 
@@ -3090,7 +3091,7 @@ Plugin source path refused: ./my-plugin does not stay inside its marketplace dir
 
 **What to do:**
 
-* If you maintain the marketplace, write the entry's `source` as a plain relative path such as `./plugins/my-plugin`, and keep any symlink it crosses pointed inside the marketplace directory
+* If you maintain the marketplace, write the entry's `source` as a plain relative path with forward slashes, such as `./plugins/my-plugin`, and keep any symlink it crosses pointed inside the marketplace directory
 * If you added the marketplace from a direct URL, relative entries can't resolve. Ask the marketplace author to use [another plugin source](https://code.claude.com/docs/en/plugin-marketplaces#plugin-sources), or add the marketplace from its git repository instead
 
 ### Failed to load marketplace configuration
