@@ -418,8 +418,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "23cbab0ae9e4c04c8fe199bc151916d5a0a4d73f509c832ac74b0fe6508f2b28",
-      "last_updated": "2026-09-22T17:03:24+00:00",
+      "hash": "51807776382a64c8103a9b328b03c2433836b7ed3e78448d7bf5765582b08d0b",
+      "last_updated": "2026-09-23T21:35:35+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -517,8 +517,8 @@
       "title": "Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry"
     },
     "claude-code-on-the-web.md": {
-      "hash": "3e34759a60b38edfd394480785c1b0a36e744e524d586d6dd751efcf179ac369",
-      "last_updated": "2026-09-22T17:03:28+00:00",
+      "hash": "71f8c27a905b0dd805d93c0efe7e422a296fe5e9b443a44ecad23733fa165958",
+      "last_updated": "2026-09-23T21:35:39+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-code-on-the-web",
       "path": "/docs/en/claude-code-on-the-web",
       "source_url": "https://code.claude.com/docs/en/claude-code-on-the-web.md",
@@ -580,8 +580,8 @@
       "title": "CLI reference"
     },
     "cloud-environments.md": {
-      "hash": "fefc24144dccb4a43b70d8e66acb11dcb6687de7b2e25e436a21fd862116ab0f",
-      "last_updated": "2026-09-22T05:08:51+00:00",
+      "hash": "5ca6b94beee2d6b5ff99b6f027187d15c90f3e76d9b71123d6c03282ade8d405",
+      "last_updated": "2026-09-23T21:35:42+00:00",
       "original_url": "https://code.claude.com/docs/en/cloud-environments",
       "path": "/docs/en/cloud-environments",
       "source_url": "https://code.claude.com/docs/en/cloud-environments.md",
@@ -769,8 +769,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "623ffdfd9db0569ba5216fcca1deb4a16e162d8bbb20f1647daa32f1ce9e9671",
-      "last_updated": "2026-09-23T04:53:39+00:00",
+      "hash": "0b7eab072df2a3102d082cb7479e62c4729688fe7bf01db4c482d39ba6e8cc61",
+      "last_updated": "2026-09-23T21:35:51+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -796,8 +796,8 @@
       "title": "Speed up responses with fast mode"
     },
     "feature-availability.md": {
-      "hash": "8f2f287a4cea41992fafba7344e527bac1254a208c3702b106532cf9b76d25db",
-      "last_updated": "2026-09-18T23:22:58+00:00",
+      "hash": "27c7d669af42ade6c985db9d8c6e9d513d30cd08c543edfb08254e9b85eeb8f3",
+      "last_updated": "2026-09-23T21:35:52+00:00",
       "original_url": "https://code.claude.com/docs/en/feature-availability",
       "path": "/docs/en/feature-availability",
       "source_url": "https://code.claude.com/docs/en/feature-availability.md",
@@ -868,8 +868,8 @@
       "title": "Claude Code GitLab CI/CD"
     },
     "glossary.md": {
-      "hash": "14fc6108fcf870a3aca34f41a0d5fdb4f882f6a17129b20f12d296579ddce223",
-      "last_updated": "2026-09-22T21:27:27+00:00",
+      "hash": "2b4da32ed31a36619d4904d0e541281d80fb22e0076e7e70ec1ab846682e08b0",
+      "last_updated": "2026-09-23T21:35:55+00:00",
       "original_url": "https://code.claude.com/docs/en/glossary",
       "path": "/docs/en/glossary",
       "source_url": "https://code.claude.com/docs/en/glossary.md",
@@ -1048,8 +1048,8 @@
       "title": "Connect Claude Code to tools via MCP"
     },
     "memory.md": {
-      "hash": "2c4b1c08e5afe690bae54c2995c34c997539f75211a31f56d6ca0ec14f38741c",
-      "last_updated": "2026-09-22T21:27:34+00:00",
+      "hash": "8e3d1986908ff1b5cd82b105094dd052dd45c43fa95b30bc4ababd049dfff707",
+      "last_updated": "2026-09-23T21:36:03+00:00",
       "original_url": "https://code.claude.com/docs/en/memory",
       "path": "/docs/en/memory",
       "source_url": "https://code.claude.com/docs/en/memory.md",
@@ -1525,8 +1525,8 @@
       "title": "Use Claude Code in VS Code"
     },
     "web-quickstart.md": {
-      "hash": "4139eda3c28cdc76a553a9b10a7cc4d4d84715ebc4ae10ae2d60b4b4f41a3033",
-      "last_updated": "2026-09-19T04:46:11+00:00",
+      "hash": "ca795e7fd7ead464ea156b6d2045aac1671836cffed0d3f366d443a75d2b13d1",
+      "last_updated": "2026-09-23T21:36:24+00:00",
       "original_url": "https://code.claude.com/docs/en/web-quickstart",
       "path": "/docs/en/web-quickstart",
       "source_url": "https://code.claude.com/docs/en/web-quickstart.md",
@@ -1800,7 +1800,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-23T04:54:17+00:00",
+  "last_updated": "2026-09-23T21:36:34+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
