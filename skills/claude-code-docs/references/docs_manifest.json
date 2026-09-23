@@ -373,8 +373,8 @@
       "title": "Track team usage with analytics"
     },
     "artifacts.md": {
-      "hash": "00b2cec00d3c2af9217435e1bc9a0170c9184c3969fb630fc4082494a839510b",
-      "last_updated": "2026-09-22T05:08:44+00:00",
+      "hash": "87881f2163bc3f0a5053694c931bb3274e1a1c17833c9183b68504868f890801",
+      "last_updated": "2026-09-23T04:53:23+00:00",
       "original_url": "https://code.claude.com/docs/en/artifacts",
       "path": "/docs/en/artifacts",
       "source_url": "https://code.claude.com/docs/en/artifacts.md",
@@ -769,8 +769,8 @@
       "title": "Discover and install prebuilt plugins through marketplaces"
     },
     "env-vars.md": {
-      "hash": "aef977edd84ad9775d93bb03e1720ce5083ded993a4f97f548ae7932dcae9a6b",
-      "last_updated": "2026-09-22T17:03:38+00:00",
+      "hash": "623ffdfd9db0569ba5216fcca1deb4a16e162d8bbb20f1647daa32f1ce9e9671",
+      "last_updated": "2026-09-23T04:53:39+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -1039,8 +1039,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "8b8e7e0710c958bb395b7c7483052dbd040ffe4d5664a8a310ea1c33023b9258",
-      "last_updated": "2026-09-18T04:53:42+00:00",
+      "hash": "3c66495eb8b31e12b496ae45f3813966e51404c2d8c0043ca8094bf3cdc6af00",
+      "last_updated": "2026-09-23T04:53:49+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -1084,8 +1084,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "bfabdcf9b059cc18c77702344ee673f2a71a1e10894fa598439ef092c90d87db",
-      "last_updated": "2026-09-22T05:09:09+00:00",
+      "hash": "137c1a3ee9b9453cc1343d8bfe45d623c0f422db0c8aa17ed5b0127912c98a8c",
+      "last_updated": "2026-09-23T04:53:51+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -1174,8 +1174,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugin-marketplaces.md": {
-      "hash": "b5dd5c9584566c5fd2adbbd0d69761295ab68c331f8341af073130f041d3882a",
-      "last_updated": "2026-09-22T17:03:56+00:00",
+      "hash": "aec48b6c1fa97768396f555f37615011257b0976b7e38f8e198ffcf175a2a107",
+      "last_updated": "2026-09-23T04:53:54+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-marketplaces",
       "path": "/docs/en/plugin-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugin-marketplaces.md",
@@ -1201,8 +1201,8 @@
       "title": "Plugins reference"
     },
     "plugins.md": {
-      "hash": "de52e0251e8e0c2532082ccc509ce574152aa93174709e0fb1aabfd72c309469",
-      "last_updated": "2026-09-16T11:47:57+00:00",
+      "hash": "005d87be9405b94f14251e328f2f04fdbe1fc71a38bec67dfe0a6a4736997ce3",
+      "last_updated": "2026-09-23T04:53:54+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins",
       "path": "/docs/en/plugins",
       "source_url": "https://code.claude.com/docs/en/plugins.md",
@@ -1210,8 +1210,8 @@
       "title": "Create plugins"
     },
     "prompt-caching.md": {
-      "hash": "46565659872b7397a70e25c1f022631153b5f5d28e2372fac44c5db0b8c2478b",
-      "last_updated": "2026-09-22T17:03:58+00:00",
+      "hash": "a6c9031a60c0823fc163bc5b220f7fcba28008e467cba9f38fcda56052fb9616",
+      "last_updated": "2026-09-23T04:53:55+00:00",
       "original_url": "https://code.claude.com/docs/en/prompt-caching",
       "path": "/docs/en/prompt-caching",
       "source_url": "https://code.claude.com/docs/en/prompt-caching.md",
@@ -1417,8 +1417,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "adfee500f744b8554ed5d27bdce79f1357fbc24757bef8362042e61f4a656c9d",
-      "last_updated": "2026-09-22T21:27:47+00:00",
+      "hash": "2b34ca192a4c2ee3c02753bd69e802b4251516c58efadd35e239a3a6e6a20b89",
+      "last_updated": "2026-09-23T04:54:03+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1498,8 +1498,8 @@
       "title": "Troubleshooting"
     },
     "ultrareview.md": {
-      "hash": "9c06b1fc01f3f4509ead89db4642fe95d9cdc3492e39adca1c0a54e8ec9e2944",
-      "last_updated": "2026-09-22T05:09:24+00:00",
+      "hash": "5decaf16e1cb7e9304bf650472a6c450186a08035fc1c07f5c7df6782d8ac3de",
+      "last_updated": "2026-09-23T04:54:06+00:00",
       "original_url": "https://code.claude.com/docs/en/ultrareview",
       "path": "/docs/en/ultrareview",
       "source_url": "https://code.claude.com/docs/en/ultrareview.md",
@@ -1507,8 +1507,8 @@
       "title": "Find bugs with ultrareview"
     },
     "voice-dictation.md": {
-      "hash": "820fa59f8a53ed0d0788cff59217194e5777d6261f01ec8ca2297b2b53e62a0c",
-      "last_updated": "2026-09-16T04:58:09+00:00",
+      "hash": "8e015998980f72b298955f8573c2709bdcb5b583212548e12ceefa598f9138df",
+      "last_updated": "2026-09-23T04:54:07+00:00",
       "original_url": "https://code.claude.com/docs/en/voice-dictation",
       "path": "/docs/en/voice-dictation",
       "source_url": "https://code.claude.com/docs/en/voice-dictation.md",
@@ -1516,8 +1516,8 @@
       "title": "Voice dictation"
     },
     "vs-code.md": {
-      "hash": "5e338a3b1b4fccaff640e5a6ae97d5fd40a957cc001594b1d71015be9ad9afe3",
-      "last_updated": "2026-09-22T17:04:09+00:00",
+      "hash": "5465c6355e1b4bc4e407a3b4c58bdaf45e433789ddd80bbab3c074fdfaa3bcf9",
+      "last_updated": "2026-09-23T04:54:07+00:00",
       "original_url": "https://code.claude.com/docs/en/vs-code",
       "path": "/docs/en/vs-code",
       "source_url": "https://code.claude.com/docs/en/vs-code.md",
@@ -1800,7 +1800,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-22T21:27:59+00:00",
+  "last_updated": "2026-09-23T04:54:17+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
