@@ -418,8 +418,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "51807776382a64c8103a9b328b03c2433836b7ed3e78448d7bf5765582b08d0b",
-      "last_updated": "2026-09-23T21:35:35+00:00",
+      "hash": "1f0d60bcf98bfb1f645279ab03282fe8f36540e11b867f4cda808455ab7d45c0",
+      "last_updated": "2026-09-24T21:36:36+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -652,8 +652,8 @@
       "title": "Run Claude Code behind a corporate launcher"
     },
     "costs.md": {
-      "hash": "17fd76452f321d6286f5ea9c6563c9097c2bfde393ba085e67e330bcae36b68b",
-      "last_updated": "2026-09-22T17:03:33+00:00",
+      "hash": "e82844064c1853e8343eb6e7b4bef29470668aaa16f4d8e1dca9c460c618010e",
+      "last_updated": "2026-09-24T21:36:47+00:00",
       "original_url": "https://code.claude.com/docs/en/costs",
       "path": "/docs/en/costs",
       "source_url": "https://code.claude.com/docs/en/costs.md",
@@ -931,8 +931,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "a0357b75a5a394a4a509ffb2e9f10a3f6ac51f1a0a602be7d0ae8274a3eb2c94",
-      "last_updated": "2026-09-22T21:27:30+00:00",
+      "hash": "cf518f914dc200a09196b1c7d9ae4f978fd93b559ab88d6ab96e89f6ea740914",
+      "last_updated": "2026-09-24T21:37:01+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -1021,8 +1021,8 @@
       "title": "Control MCP server access for your organization"
     },
     "managed-settings.md": {
-      "hash": "c99aa558fa1f7bf7c68ea2b96b0f3921c0af313f489c451a5d780529bbaa5eca",
-      "last_updated": "2026-09-22T05:09:07+00:00",
+      "hash": "956f57e8646804d4b222471a61d509490322d5ca87a6ad4bf568631b3d41a58c",
+      "last_updated": "2026-09-24T21:37:05+00:00",
       "original_url": "https://code.claude.com/docs/en/managed-settings",
       "path": "/docs/en/managed-settings",
       "source_url": "https://code.claude.com/docs/en/managed-settings.md",
@@ -1174,8 +1174,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugin-marketplaces.md": {
-      "hash": "aec48b6c1fa97768396f555f37615011257b0976b7e38f8e198ffcf175a2a107",
-      "last_updated": "2026-09-23T04:53:54+00:00",
+      "hash": "dc95e96fdee176f8bcb64b30f6825c3efc1321e5fef15c7530537e98436215d1",
+      "last_updated": "2026-09-24T21:37:12+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-marketplaces",
       "path": "/docs/en/plugin-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugin-marketplaces.md",
@@ -1363,8 +1363,8 @@
       "title": "Self-hosted environments"
     },
     "server-managed-settings.md": {
-      "hash": "dc9f0fe7e95251b8c806149134e830aab5174a30900952e208f1fbfc25ea3d57",
-      "last_updated": "2026-09-22T00:11:32+00:00",
+      "hash": "c653a0170c0ca7f582f2e1a1229e194d0e46bd588c6810316691fec03891506b",
+      "last_updated": "2026-09-24T21:37:21+00:00",
       "original_url": "https://code.claude.com/docs/en/server-managed-settings",
       "path": "/docs/en/server-managed-settings",
       "source_url": "https://code.claude.com/docs/en/server-managed-settings.md",
@@ -1390,8 +1390,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "4efbca20bd35992aca86eb4732e694e259b30f3883f85fc2231893b6da667661",
-      "last_updated": "2026-09-22T21:27:46+00:00",
+      "hash": "eb7b2e785221735c1d49f2eae9bfae14d301da7c16dcafe0d50c4c77ea397dd3",
+      "last_updated": "2026-09-24T21:37:22+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "source_url": "https://code.claude.com/docs/en/settings-reference.md",
@@ -1800,7 +1800,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-24T17:20:40+00:00",
+  "last_updated": "2026-09-24T21:37:40+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
