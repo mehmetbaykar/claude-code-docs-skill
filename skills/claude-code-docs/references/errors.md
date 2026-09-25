@@ -67,6 +67,7 @@ Match the message you see to a section below.
 | `signed-in claude.ai account or organization changed on this machine`                                                                                                                                                                                                | [Authentication](#remote-control-stopped-because-the-signed-in-account-changed)                                               |
 | `Remote Control stopped — the app running this session is now signed in to a different Claude account`                                                                                                                                                               | [Authentication](#remote-control-stopped-because-the-app-running-the-session-signed-out-or-switched-accounts)                 |
 | `Remote Control stopped — the app running this session is signed out of Claude`                                                                                                                                                                                      | [Authentication](#remote-control-stopped-because-the-app-running-the-session-signed-out-or-switched-accounts)                 |
+| `Couldn't verify your organization's policy for remote control`                                                                                                                                                                                                      | [Troubleshoot Remote Control](https://code.claude.com/docs/en/remote-control#couldnt-verify-your-organizations-policy-for-remote-control)                 |
 | `OAuth token revoked` / `OAuth token has expired`                                                                                                                                                                                                                    | [Authentication](#oauth-token-revoked-or-expired)                                                                             |
 | `API Error: 401 Invalid authentication credentials`                                                                                                                                                                                                                  | [Authentication](#api-error-401-invalid-authentication-credentials)                                                           |
 | `Login expired · Please run /login`                                                                                                                                                                                                                                  | [Authentication](#login-expired)                                                                                              |
@@ -289,6 +290,7 @@ Match the message you see to a section below.
 | `Claude Code's fullscreen renderer didn't finish starting last time on this machine` / `Claude Code's fullscreen renderer has repeatedly failed to start on this machine`                                                                                            | [Configuration warnings](#fullscreen-failed-start-notice)                                                                     |
 | `Claude Code exited after an unrecoverable interface error (...)`                                                                                                                                                                                                    | [Configuration warnings](#exited-after-an-unrecoverable-interface-error)                                                      |
 | `Agent descriptions are over the 15.0k-token limit`                                                                                                                                                                                                                  | [Configuration warnings](#agent-descriptions-are-over-the-15000-token-limit)                                                  |
+| `Not loaded: rename <path>, then restart — its name uses "<name>", a name reserved for the skills synced from your claude.ai account`                                                                                                                                | [Configuration warnings](#a-skill-command-or-workflow-wasnt-loaded-because-its-name-is-reserved)                              |
 | `Ignoring N permissions.allow entries from ... this workspace has not been trusted`                                                                                                                                                                                  | [Configuration warnings](#workspace-has-not-been-trusted)                                                                     |
 | `is a network path, which cannot be added as a working directory`                                                                                                                                                                                                    | [Configuration warnings](#working-directory-is-a-network-path)                                                                |
 | `Remote managed settings failed to load (<cause>)`                                                                                                                                                                                                                   | [Configuration warnings](#remote-managed-settings-failed-to-load)                                                             |
@@ -4081,6 +4083,25 @@ Agent descriptions are over the 15.0k-token limit (~16.2k tokens) · ask Claude 
 
 * Shorten the `description` frontmatter of your agent files, or ask Claude to trim them for you.
 * Remove agent files you no longer use.
+
+<h3 id="a-skill-command-or-workflow-wasnt-loaded-because-its-name-is-reserved">
+A skill, command, or workflow wasn't loaded because its name is reserved
+</h3>
+
+A skill folder, a frontmatter `name`, a file or subfolder in `.claude/commands/`, or a [saved workflow](https://code.claude.com/docs/en/workflows#save-the-workflow-for-reuse) uses the name `anthropic-skills` or a name that starts with `anthropic-skills:`. Claude Code [reserves that name for skills synced from claude.ai](https://code.claude.com/docs/en/skills#names-reserved-for-synced-skills) and doesn't load that item.
+
+Claude Code shows this warning as a startup notice in the conversation view rather than on stderr:
+```text
+Not loaded: rename .claude/skills/anthropic-skills, then restart — its name uses "anthropic-skills", a name reserved for the skills synced from your claude.ai account
+```
+
+The notice names what to change for the first item it refused: a folder or file to rename, a `name:` line to edit, or a workflow to rename. When more than one item was refused, the notice ends with a count such as `· 2 more`, and the [debug log](https://code.claude.com/docs/en/debug-your-config) names each one.
+
+**What to do:**
+
+* Rename the item the notice names, or edit the `name:` line it points to, then restart the session.
+
+Before v2.1.282, Claude Code loaded skills and commands with these names.
 
 ### Workspace has not been trusted
 

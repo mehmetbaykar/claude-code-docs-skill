@@ -118,8 +118,8 @@
       "title": "Intercept and control agent behavior with hooks"
     },
     "agent-sdk__hosting.md": {
-      "hash": "836edb601aeecf4afba078bdffb8da65e5a6d13394cf4c303a6e444f04aeb850",
-      "last_updated": "2026-09-22T00:10:50+00:00",
+      "hash": "28773312c4e2f6de8f8a65c1702e0f686b8367e757bdbdb361a2d79d736c009d",
+      "last_updated": "2026-09-25T21:40:39+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/hosting",
       "path": "/docs/en/agent-sdk/hosting",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/hosting.md",
@@ -316,8 +316,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "4616bd26cacc3a89a67e7c35fce452be3b5dcf2f80caf19574e96ee652f7df7b",
-      "last_updated": "2026-09-22T21:27:06+00:00",
+      "hash": "832a340a3a74bdb9471b0ca6ce1b02b6b0ec3d47d66f97bd426b98b3574f437b",
+      "last_updated": "2026-09-25T21:40:47+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/typescript.md",
@@ -388,8 +388,8 @@
       "title": "Share session output as artifacts"
     },
     "authentication.md": {
-      "hash": "a7df44e9b467f04e5e3afa3ed4c9877e781207ef1502b5bb16cb569fbd0ee53f",
-      "last_updated": "2026-09-22T05:08:45+00:00",
+      "hash": "9ed752be9455adf06a8fdd3f43b9def825b96566c82fc66428f9a1bd03c91d85",
+      "last_updated": "2026-09-25T21:40:51+00:00",
       "original_url": "https://code.claude.com/docs/en/authentication",
       "path": "/docs/en/authentication",
       "source_url": "https://code.claude.com/docs/en/authentication.md",
@@ -433,8 +433,8 @@
       "title": "Claude Code changelog"
     },
     "channels-reference.md": {
-      "hash": "83d2f53c66370979c59eb3a2186df23f6494e34bcfa0e1cb7fc4f6ee4535b625",
-      "last_updated": "2026-09-25T05:05:59+00:00",
+      "hash": "a18abff457b09fe03b245ed817a646e6b529d75a8e7b43fcd231ed47056171b5",
+      "last_updated": "2026-09-25T21:40:54+00:00",
       "original_url": "https://code.claude.com/docs/en/channels-reference",
       "path": "/docs/en/channels-reference",
       "source_url": "https://code.claude.com/docs/en/channels-reference.md",
@@ -469,8 +469,8 @@
       "title": "Use Claude Code with Chrome"
     },
     "claude-apps-gateway-config.md": {
-      "hash": "96f0c83e58a37c48eeeec7f65c0ff78ade7aa69963f53c26af64554f6ae1e781",
-      "last_updated": "2026-09-25T05:06:00+00:00",
+      "hash": "1e7edcd2ee268b51ed8c846f1d973350ef42501b1571a9907fba0d7ed700c3b2",
+      "last_updated": "2026-09-25T21:40:55+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-config",
       "path": "/docs/en/claude-apps-gateway-config",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-config.md",
@@ -478,8 +478,8 @@
       "title": "Claude apps gateway configuration"
     },
     "claude-apps-gateway-deploy.md": {
-      "hash": "675e84b0129d9067041dcc497813f2db2b0f5f543b31994ecf1c97db92e99c71",
-      "last_updated": "2026-09-25T05:06:01+00:00",
+      "hash": "f2b19dfbe0e4e456ce54b08f6d7073d2cef60af7924bd3244779ec7a17cab228",
+      "last_updated": "2026-09-25T21:40:56+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-deploy",
       "path": "/docs/en/claude-apps-gateway-deploy",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-deploy.md",
@@ -775,8 +775,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "f1e5a710d64c0b0c9d2dd1c2d343b6bfbfd289ca2e80f47b27f8618f9a535697",
-      "last_updated": "2026-09-25T05:06:11+00:00",
+      "hash": "8211d02ba35b1803de5244b3348d4d24e52fc13b4ef8161a98e8669f91260384",
+      "last_updated": "2026-09-25T21:41:09+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -982,8 +982,8 @@
       "title": "Connect Claude Code to an LLM gateway"
     },
     "llm-gateway-protocol.md": {
-      "hash": "dd47f01cffde251b12c1025d5f322dd96f372b2959361b559eaa1af3edce0e69",
-      "last_updated": "2026-09-22T21:27:32+00:00",
+      "hash": "d3cdd8cd06ef99a01bd4b144cc713f273e20e54951d9128f76b2a0eb38ba50e0",
+      "last_updated": "2026-09-25T21:41:18+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-protocol",
       "path": "/docs/en/llm-gateway-protocol",
       "source_url": "https://code.claude.com/docs/en/llm-gateway-protocol.md",
@@ -1036,8 +1036,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "e7f915555d66ca2d429ae5428de88e72ba1980aa00ce2da4a710ca59d63c102c",
-      "last_updated": "2026-09-25T05:06:19+00:00",
+      "hash": "922b55bc3b5809183773255b88fa3659fa09fd77e976dde9e919b3c17b4f31e7",
+      "last_updated": "2026-09-25T21:41:20+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -1117,8 +1117,8 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "8afe885eea89be2cabd7a4f0d6f0627d5fbf2ec7dd12531d8020873dcff4f2e8",
-      "last_updated": "2026-09-25T05:06:22+00:00",
+      "hash": "a233ea43e8b46e1f45440ed6142b72a1cdb0feb191f715e94f0bd1db2f3f79e9",
+      "last_updated": "2026-09-25T21:41:24+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "source_url": "https://code.claude.com/docs/en/permission-modes.md",
@@ -1144,8 +1144,8 @@
       "title": "Platforms and integrations"
     },
     "plugin-evals.md": {
-      "hash": "d41b56028b5f4b1b43ad0e0e5dbd59324b8ea6e3e527c10f70a0644d03dcc1b6",
-      "last_updated": "2026-09-25T05:06:22+00:00",
+      "hash": "e67296ef504c98cd5f2707367c09f58ca615ef0e61ecdaebe23b9aa027f0f356",
+      "last_updated": "2026-09-25T21:41:25+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-evals",
       "path": "/docs/en/plugin-evals",
       "source_url": "https://code.claude.com/docs/en/plugin-evals.md",
@@ -1153,8 +1153,8 @@
       "title": "Test plugins with evals"
     },
     "plugins__anthropic-marketplaces.md": {
-      "hash": "614dc17c1ab0f0819646ab4b7327e12da5281e2c49720bb2ffa8dada76802219",
-      "last_updated": "2026-09-25T05:06:23+00:00",
+      "hash": "295bece49ce7a247686b8670c6ffbe463d66b37fc21270cded6678f2bb1e9598",
+      "last_updated": "2026-09-25T21:41:26+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/anthropic-marketplaces",
       "path": "/docs/en/plugins/anthropic-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugins/anthropic-marketplaces.md",
@@ -1162,8 +1162,8 @@
       "title": "Anthropic's marketplaces"
     },
     "plugins__cli-hints.md": {
-      "hash": "530bc7d4e8e5bd7e21ffe0a4093e539a00767a2b1c44801f6c29a6ade70f80b1",
-      "last_updated": "2026-09-25T05:06:23+00:00",
+      "hash": "62780cb9e528ff0f2e1a02c9d38ddce1d1ff4e84210a2d84150dbb1f2944fef6",
+      "last_updated": "2026-09-25T21:41:26+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/cli-hints",
       "path": "/docs/en/plugins/cli-hints",
       "source_url": "https://code.claude.com/docs/en/plugins/cli-hints.md",
@@ -1189,8 +1189,8 @@
       "title": "Code intelligence plugins"
     },
     "plugins__components.md": {
-      "hash": "39c42f13dbe38f0f2dd71599c186cff740e2eef0bad48d587197b59171626b86",
-      "last_updated": "2026-09-25T05:06:24+00:00",
+      "hash": "1289e71b5a511c73f655265aeb0073818c7b6b9b0518dddc5db868b1cfe4784e",
+      "last_updated": "2026-09-25T21:41:27+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/components",
       "path": "/docs/en/plugins/components",
       "source_url": "https://code.claude.com/docs/en/plugins/components.md",
@@ -1198,8 +1198,8 @@
       "title": "Add components to a plugin"
     },
     "plugins__create-marketplace.md": {
-      "hash": "2565724aaa9623b5d505e61ab416123f841adc73ff83a163f66bb7f1d58624d4",
-      "last_updated": "2026-09-25T05:06:24+00:00",
+      "hash": "ec5a6aa63dae53127d240710c3b18d12fe1f14ece20c9788f79ae3aa00bf5d5c",
+      "last_updated": "2026-09-25T21:41:28+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/create-marketplace",
       "path": "/docs/en/plugins/create-marketplace",
       "source_url": "https://code.claude.com/docs/en/plugins/create-marketplace.md",
@@ -1207,8 +1207,8 @@
       "title": "Create a marketplace"
     },
     "plugins__create.md": {
-      "hash": "30519b4829724e7843a0020838574c936894bcee980384e7ef0990b6097f563a",
-      "last_updated": "2026-09-25T05:06:24+00:00",
+      "hash": "085a2139b752318a809b3708347887dc51ceb1587a6ef2ca50b487e16949ba25",
+      "last_updated": "2026-09-25T21:41:28+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/create",
       "path": "/docs/en/plugins/create",
       "source_url": "https://code.claude.com/docs/en/plugins/create.md",
@@ -1225,8 +1225,8 @@
       "title": "Plugin dependencies"
     },
     "plugins__host-marketplace.md": {
-      "hash": "acd2d7d523fec3f6879b0aaf7b7e7825e98d37d5b4e366d65717b2bea6f930e8",
-      "last_updated": "2026-09-25T05:06:25+00:00",
+      "hash": "a6564e75f92d0d0d5dc0d4835653980cd099f8c8dbe31ddec537a13caa7efdca",
+      "last_updated": "2026-09-25T21:41:29+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/host-marketplace",
       "path": "/docs/en/plugins/host-marketplace",
       "source_url": "https://code.claude.com/docs/en/plugins/host-marketplace.md",
@@ -1234,8 +1234,8 @@
       "title": "Host and maintain a marketplace"
     },
     "plugins__install.md": {
-      "hash": "57b30644ba729f7fa9431aa3ef9a3a55fc31903b8048772208cdce572ff68566",
-      "last_updated": "2026-09-25T05:06:25+00:00",
+      "hash": "66d49f4aa4600be1b55dd77c5edeca8cf166b2d6105038c1c92854aad90beec6",
+      "last_updated": "2026-09-25T21:41:29+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/install",
       "path": "/docs/en/plugins/install",
       "source_url": "https://code.claude.com/docs/en/plugins/install.md",
@@ -1243,8 +1243,8 @@
       "title": "Install and manage plugins"
     },
     "plugins__loading.md": {
-      "hash": "9e2514c668d0e9c74efed5abe24bfc2c8e8a47d310b151eabd252e5943e34d58",
-      "last_updated": "2026-09-25T05:06:25+00:00",
+      "hash": "b4585087aae677e1f5272012b3f06d6baf08932a7d5b9b7d55272ad8c5bfcd96",
+      "last_updated": "2026-09-25T21:41:29+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/loading",
       "path": "/docs/en/plugins/loading",
       "source_url": "https://code.claude.com/docs/en/plugins/loading.md",
@@ -1252,8 +1252,8 @@
       "title": "Plugin loading reference"
     },
     "plugins__manifest-reference.md": {
-      "hash": "da5bb3170af6c29326e1d7acbe372871432469d2c4327b6d8cab16ad91cd1099",
-      "last_updated": "2026-09-25T05:06:26+00:00",
+      "hash": "d2d785ac369ccd9cb340a0ffb046648609baaf23d26827660cc844c80ab5bea1",
+      "last_updated": "2026-09-25T21:41:30+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/manifest-reference",
       "path": "/docs/en/plugins/manifest-reference",
       "source_url": "https://code.claude.com/docs/en/plugins/manifest-reference.md",
@@ -1270,8 +1270,8 @@
       "title": "Marketplace reference"
     },
     "plugins__measure.md": {
-      "hash": "064d71698c762802090d3f088f13dc21e725a413a16748add332b23774339a67",
-      "last_updated": "2026-09-25T05:06:26+00:00",
+      "hash": "dede0ab1f709201e137a01069ce42494f924f37a08bee0ffd9e1edeb51501a16",
+      "last_updated": "2026-09-25T21:41:31+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/measure",
       "path": "/docs/en/plugins/measure",
       "source_url": "https://code.claude.com/docs/en/plugins/measure.md",
@@ -1279,8 +1279,8 @@
       "title": "Measure plugin cost and usage"
     },
     "plugins__org.md": {
-      "hash": "99555ec8811764088c245aec82a209278d2af598048d92e229215ea67d8e8e3a",
-      "last_updated": "2026-09-25T05:06:26+00:00",
+      "hash": "614416a7d774aa53a04cedd2014ddac4c64869df828c3ff57714c56cd0bc750e",
+      "last_updated": "2026-09-25T21:41:31+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/org",
       "path": "/docs/en/plugins/org",
       "source_url": "https://code.claude.com/docs/en/plugins/org.md",
@@ -1288,8 +1288,8 @@
       "title": "Manage Claude Code plugins for your organization"
     },
     "plugins__overview.md": {
-      "hash": "a12857c8e930ff3c3fd5db6a165eda688619a993d2a51cf32a7012d5c27599c7",
-      "last_updated": "2026-09-25T05:06:27+00:00",
+      "hash": "192322b10264df34a17a4e3d1c2a5f22c9e0ba8b9f064ed22a139db70b040188",
+      "last_updated": "2026-09-25T21:41:31+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/overview",
       "path": "/docs/en/plugins/overview",
       "source_url": "https://code.claude.com/docs/en/plugins/overview.md",
@@ -1297,8 +1297,8 @@
       "title": "Plugins overview"
     },
     "plugins__publish.md": {
-      "hash": "c1ddc7e761fd7eab97c00bf67e491c78e9232f7439ebd45163a7ec2a9094b49e",
-      "last_updated": "2026-09-25T05:06:27+00:00",
+      "hash": "9d39e22d48446566e707cf991d498607728cafa7a654ee57e88f9b547e88b6ff",
+      "last_updated": "2026-09-25T21:41:32+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/publish",
       "path": "/docs/en/plugins/publish",
       "source_url": "https://code.claude.com/docs/en/plugins/publish.md",
@@ -1360,8 +1360,8 @@
       "title": "Quickstart"
     },
     "remote-control.md": {
-      "hash": "c5fda3612f71c9250a0f2fe55517601df8098cab860edfd760371593c21a5197",
-      "last_updated": "2026-09-25T05:06:29+00:00",
+      "hash": "5d4c922f786251e06da7b86092c265b8b472fed1281138564f74ab5955242292",
+      "last_updated": "2026-09-25T21:41:34+00:00",
       "original_url": "https://code.claude.com/docs/en/remote-control",
       "path": "/docs/en/remote-control",
       "source_url": "https://code.claude.com/docs/en/remote-control.md",
@@ -1513,8 +1513,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "07b1f063c108d9f1e32f8471d394dba9baafec71a347386c12e8343588751e9a",
-      "last_updated": "2026-09-25T05:06:34+00:00",
+      "hash": "356aa703c30902c0f0debcf30d384e2b61da00d87118dfb3915eacbbaabf2ba2",
+      "last_updated": "2026-09-25T21:41:41+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "source_url": "https://code.claude.com/docs/en/settings-reference.md",
@@ -1540,8 +1540,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "f906f853bbda18b27ab929618c2cc223c09f43bc594ccd4ec70c9191d00d7c73",
-      "last_updated": "2026-09-25T05:06:35+00:00",
+      "hash": "e714b810dd5ff16ff19fc2dd1a369fec4b5cd0b3d8a32119fe6d998fb7a5e98c",
+      "last_updated": "2026-09-25T21:41:42+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1576,8 +1576,8 @@
       "title": "Create custom subagents"
     },
     "terminal-config.md": {
-      "hash": "c90a8d87f602d89dd13dae0be9a7d21f25857277acedb33bbcf7d8934f26ea14",
-      "last_updated": "2026-09-25T05:06:36+00:00",
+      "hash": "8fcb82e9819ffd8cb7b4384cb7a9856a9575216aecbb58cf351cac3dab81e291",
+      "last_updated": "2026-09-25T21:41:44+00:00",
       "original_url": "https://code.claude.com/docs/en/terminal-config",
       "path": "/docs/en/terminal-config",
       "source_url": "https://code.claude.com/docs/en/terminal-config.md",
@@ -1603,8 +1603,8 @@
       "title": "Tools reference"
     },
     "troubleshoot-install.md": {
-      "hash": "dafe533b66b87629a88c676b58ccd7348bc163f18e320a9d82e91b477fda2afd",
-      "last_updated": "2026-09-22T05:09:23+00:00",
+      "hash": "641a5c70f85fe64fe85e711c60b781331c9994cf8632043ed76367969fa113b4",
+      "last_updated": "2026-09-25T21:41:45+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshoot-install",
       "path": "/docs/en/troubleshoot-install",
       "source_url": "https://code.claude.com/docs/en/troubleshoot-install.md",
@@ -1923,7 +1923,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-25T05:06:45+00:00",
+  "last_updated": "2026-09-25T21:41:58+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",

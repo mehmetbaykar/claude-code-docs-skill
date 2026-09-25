@@ -1438,6 +1438,8 @@ Setting `alwaysLoad: true` also makes startup wait for the server's tools, cappe
 
 MCP servers can expose prompts that become available as commands in Claude Code.
 
+Prompts from a server named `anthropic-skills` don't appear, because Claude Code [reserves that name](https://code.claude.com/docs/en/skills#names-reserved-for-synced-skills) for skills synced from claude.ai. The server's tools still work. Rename the server in your MCP configuration to list its prompts.
+
 ### Execute MCP prompts
 
 

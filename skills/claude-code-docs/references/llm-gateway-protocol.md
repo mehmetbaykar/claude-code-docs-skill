@@ -233,7 +233,9 @@ The retry logic matches on the upstream's error wording, so forward error respon
 
 ### Disable pre-release capabilities
 
-`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` stops Claude Code from sending pre-release capabilities and their body fields on every provider, including context management and the beta tool fields. The variable doesn't affect adaptive reasoning, which is selected by model rather than by beta. It never suppresses the OAuth capability that subscription authentication requires.
+`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1` stops Claude Code from sending pre-release capabilities and their body fields, including context management and the beta tool fields. The variable doesn't affect adaptive reasoning, which is selected by model rather than by beta. It never suppresses the OAuth capability that subscription authentication requires.
+
+When a host platform that embeds Claude Code sets [`CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST`](https://code.claude.com/docs/en/env-vars), `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS` doesn't stop auto mode sessions on Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, or a [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway) from asking the server for [classifier review](https://code.claude.com/docs/en/permission-modes#server-side-classifier-review). That review adds an `anthropic-beta` value and a `safeguards` request field. Set `CLAUDE_CODE_AUTO_MODE_SERVER=0` to stop it there.
 
 On Claude Code v2.1.227 or later, your organization can keep [MCP tool search](https://code.claude.com/docs/en/mcp#scale-with-mcp-tool-search) on under this variable through [managed settings](https://code.claude.com/docs/en/managed-settings). What Claude Code sends with that override in place depends on how you connect:
 

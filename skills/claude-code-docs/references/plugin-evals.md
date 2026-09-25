@@ -18,7 +18,7 @@ Use evals to:
 * Catch regressions when you change the plugin or a new model is released
 * See what the plugin contributes compared with no plugin
 
-This page is for plugin and skill authors who have a working plugin and want to test its behavior, and for teams that gate plugin changes in CI. Its case format is separate from the `evals/evals.json` file the [skill-creator plugin](https://code.claude.com/docs/en/skills#run-evals-with-skill-creator) uses. To create a plugin, see [Create a plugin](https://code.claude.com/docs/en/plugins/create); to check a plugin's files for syntax and schema errors rather than its behavior, use [`claude plugin validate`](https://code.claude.com/docs/en/plugins/cli-reference#plugin-validate).
+This page is for plugin and skill authors who have a working plugin and want to test its behavior, and for teams that gate plugin changes in CI. For iterating on one skill inside a Claude Code conversation, the [skill-creator plugin](https://code.claude.com/docs/en/skills#run-evals-with-skill-creator) runs a similar comparison with its own `evals/evals.json` format, and neither tool reads the other's case files. To create a plugin, see [Create a plugin](https://code.claude.com/docs/en/plugins/create); to check a plugin's files for syntax and schema errors rather than its behavior, use [`claude plugin validate`](https://code.claude.com/docs/en/plugins/cli-reference#plugin-validate).
 
 Every eval run and every judge grader is a real model call on your account, counted against your plan's usage or your API bill, so check the [requirements](#requirements) first. Then [create your first eval suite](#create-your-first-eval-suite), or go to [Run evals in CI](#run-evals-in-ci) if you already have one.
 
@@ -404,7 +404,7 @@ The job's exit code tells you what happened:
 | 130       | Interrupted. Partial results are written                                                                                                                                                                       |
 | 143       | Terminated, such as by a CI timeout                                                                                                                                                                            |
 
-Problems writing or publishing the HTML report never change the exit code.
+The with-minus-without delta is reported but never changes the exit code, and neither do problems writing or publishing the HTML report.
 
 To see why a case scored low, run it locally without `--json` so the per-run progress and grader lines print.
 

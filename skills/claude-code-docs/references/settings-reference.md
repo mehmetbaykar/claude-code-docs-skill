@@ -118,6 +118,7 @@ Every key below links to its entry. Scope lists the [files](https://code.claude.
 | [`managedMcpServers`](#managedmcpservers)                                                             | Provide remote [MCP servers](https://code.claude.com/docs/en/managed-mcp#provide-servers-through-managed-settings) to every user alongside the ones they add                                                                                            | MCP                                | Managed                 |
 | [`managedSourcesBehavior`](#managedsourcesbehavior)                                                   | Compose every [managed source](https://code.claude.com/docs/en/managed-settings#how-claude-code-combines-managed-sources) you deploy instead of using the highest-priority one alone                                                                    | Enterprise and managed settings    | Managed                 |
 | [`maxEffortLevel`](#maxeffortlevel)                                                                   | Cap the [effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) for every model or per model, on every provider                                                                                                                | Model and responses                | Any file                |
+| [`maxProseWidth`](#maxprosewidth)                                                                     | Cap how wide the prose in Claude's responses runs in a wide terminal                                                                                                                                                        | Interface and terminal             | Any file                |
 | [`minimumVersion`](#minimumversion)                                                                   | Keep [auto-updates](https://code.claude.com/docs/en/setup#pin-a-minimum-version) from installing anything below a version                                                                                                                               | Updates and versioning             | Any file                |
 | [`model`](#model)                                                                                     | Change the [model](https://code.claude.com/docs/en/model-config#set-a-default-model-for-new-sessions) Claude Code starts with                                                                                                                           | Model and responses                | Any file                |
 | [`modelOverrides`](#modeloverrides)                                                                   | [Map model IDs](https://code.claude.com/docs/en/model-config#override-model-ids-per-version) to your provider's IDs, such as Bedrock ARNs                                                                                                               | Model and responses                | Any file                |
@@ -2457,6 +2458,19 @@ In v2.1.238 through v2.1.260, setting it to `"readline"` made `Ctrl+W` delete ba
 * **Scope**: [`Any file`](#scopes)
 * **Type**: string, `"classic"` or `"readline"`
 * **Default**: unset
+
+### `maxProseWidth`
+
+Cap the width of the prose in Claude's responses so lines stay readable in a wide terminal. Paragraphs, headings, lists, and blockquotes wrap within this many columns, while tables and code blocks keep the full terminal width. Requires Claude Code v2.1.282 or later.
+
+* **Scope**: [`Any file`](#scopes)
+* **Type**: number of terminal columns, a whole number, minimum `40`. Claude Code ignores any other value
+* **Default**: unset, so prose wraps at the terminal edge
+```json settings.json
+{
+  "maxProseWidth": 80
+}
+```
 
 ### `prefersReducedMotion`
 
