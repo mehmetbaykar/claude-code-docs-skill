@@ -155,7 +155,7 @@ This example leads every explanation with a diagram while keeping Claude's codin
 Run `/output-style <style>` in the terminal, or run `/config` and select your style under **Output style**. Claude uses the new style starting with your next message. In the terminal, Claude Code reads style files when it starts, so if you create or edit one during a running session, restart Claude Code to pick up the change.
 
 
-[Plugins](https://code.claude.com/docs/en/plugins-reference) can also ship output styles in an `output-styles/` directory.
+[Plugins](https://code.claude.com/docs/en/plugins/manifest-reference) can also ship output styles in an `output-styles/` directory.
 
 <h3 id="frontmatter">
 Frontmatter reference
@@ -204,5 +204,5 @@ The built-in Explanatory and Learning styles produce longer responses than Defau
 
 * [Settings](https://code.claude.com/docs/en/settings): where the `outputStyle` field lives and how settings precedence works
 * [Permission modes](https://code.claude.com/docs/en/permission-modes): how the Proactive style compares to auto mode
-* [Plugins](https://code.claude.com/docs/en/plugins): package and distribute output styles alongside skills, hooks, and agents
+* [Plugins](https://code.claude.com/docs/en/plugins/overview): package and distribute output styles alongside skills, hooks, and agents
 * [Debug your configuration](https://code.claude.com/docs/en/debug-your-config): diagnose why an output style isn't taking effect

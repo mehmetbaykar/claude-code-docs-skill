@@ -92,7 +92,7 @@ Default [effort level](https://code.claude.com/docs/en/model-config#adjust-effor
 Native macOS and Linux builds replace the `Glob` and `Grep` tools with embedded `bfs` and `ugrep` available through Bash, for faster searches without a separate tool round-trip
 `--from-pr` now accepts GitLab merge request, Bitbucket pull request, and GitHub Enterprise PR URLs in addition to github.com
 Auto mode: include `"\$defaults"` in [autoMode.allow, soft\_deny, or environment](https://code.claude.com/docs/en/auto-mode-config) to add custom rules alongside the built-in list instead of replacing it
-New [claude plugin tag](https://code.claude.com/docs/en/plugin-dependencies#tag-plugin-releases-for-version-resolution) command creates release git tags for plugins with version validation
+New [claude plugin tag](https://code.claude.com/docs/en/plugins/dependencies#tag-plugin-releases-for-version-resolution) command creates release git tags for plugins with version validation
 Opus 4.7 sessions now compute against the model's native 1M context window, fixing inflated `/context` percentages and premature autocompaction
 `/resume` on large sessions is up to 67% faster and now offers to summarize stale, large sessions before re-reading them
 

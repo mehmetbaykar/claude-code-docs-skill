@@ -177,7 +177,7 @@ Deny rules don't cover subprocesses that open files themselves. For the full pat
 
 ### Reduce file reads with code intelligence
 
-In a large codebase, finding where a symbol is defined or used can cost many file reads and grep calls. [Code intelligence plugins](https://code.claude.com/docs/en/discover-plugins#code-intelligence) connect Claude to a language server so it can jump to definitions, find references, and surface type errors directly instead of scanning the tree.
+In a large codebase, finding where a symbol is defined or used can cost many file reads and grep calls. [Code intelligence plugins](https://code.claude.com/docs/en/plugins/code-intelligence) connect Claude to a language server so it can jump to definitions, find references, and surface type errors directly instead of scanning the tree.
 
 The official marketplace has plugins for TypeScript, Python, Go, Rust, and other common languages. Run the command below inside a Claude Code session to install the TypeScript plugin:
 ```shell
@@ -187,11 +187,11 @@ The official marketplace has plugins for TypeScript, Python, Go, Rust, and other
 If the install fails, match the message Claude Code reports:
 
 * `Marketplace "claude-plugins-official" not found`: add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
-* The plugin is [not found in the marketplace](https://code.claude.com/docs/en/discover-plugins#install-plugins): check the plugin name.
+* The plugin is [not found in the marketplace](https://code.claude.com/docs/en/plugins/install#install-a-plugin): check the plugin name.
 
 To enable a plugin for everyone in the repository rather than installing it yourself, add it to the [`enabledPlugins` project setting](https://code.claude.com/docs/en/settings-reference#plugin-settings).
 
-Code intelligence plugins require the language's language server binary on each developer's machine. See [which binary each language requires](https://code.claude.com/docs/en/discover-plugins#code-intelligence). Installing from the official marketplace requires network access to GitHub, where the marketplace is hosted. On a restricted network, [add the marketplace from an internal Git host or local path](https://code.claude.com/docs/en/discover-plugins#add-from-other-git-hosts) instead.
+Code intelligence plugins require the language's language server binary on each developer's machine. See [which binary each language requires](https://code.claude.com/docs/en/plugins/code-intelligence). Installing from the official marketplace requires network access to GitHub, where the marketplace is hosted. On a restricted network, [add the marketplace from an internal Git host or local path](https://code.claude.com/docs/en/plugins/install#add-a-marketplace) instead.
 
 This pairs well with `claudeMdExcludes` and the `Read` deny rules above. Those keep irrelevant content out of context, and code intelligence keeps Claude from reading through what remains to locate a definition.
 
@@ -350,7 +350,7 @@ Which skills are in scope depends on where you start Claude:
 
 Names always load, but [when there are many, some skills lose their descriptions entirely](https://code.claude.com/docs/en/skills#skill-descriptions-are-cut-short), which can strip the keywords Claude uses to decide whether a skill applies. Keep descriptions short and lead with words a request would contain, like "writing or modifying tests in `packages/api/`".
 
-For skills that many directories share, such as PR conventions or a deploy checklist, place them in the repository root's `.claude/skills/` so they load from any starting directory. When shared skills need their own version history or must work across repositories, package them as a [plugin](https://code.claude.com/docs/en/plugins) instead. Plugin skills use a `plugin-name:skill-name` namespace, so they never collide with per-directory skills. A platform team can version and update them in one place.
+For skills that many directories share, such as PR conventions or a deploy checklist, place them in the repository root's `.claude/skills/` so they load from any starting directory. When shared skills need their own version history or must work across repositories, package them as a [plugin](https://code.claude.com/docs/en/plugins/overview) instead. Plugin skills use a `plugin-name:skill-name` namespace, so they never collide with per-directory skills. A platform team can version and update them in one place.
 
 To find which skills go unused, enable the OpenTelemetry [logs exporter](https://code.claude.com/docs/en/monitoring-usage) and set `OTEL_LOG_TOOL_DETAILS=1` so skill names are recorded verbatim instead of redacted. The [`skill_activated` event](https://code.claude.com/docs/en/monitoring-usage#skill-activated-event) records every invocation in its `skill.name` attribute, and `invocation_trigger` records whether a command, Claude, or a nested skill invoked it, which tells you what to consolidate or retire.
 
@@ -361,7 +361,7 @@ Per-directory CLAUDE.md files can become hard to govern as the codebase grows. C
 Move conventions and reference content out of always-loaded CLAUDE.md and into mechanisms that load on demand:
 
 * [Skills](https://code.claude.com/docs/en/skills): reference material Claude loads only when relevant to the task
-* [Plugins](https://code.claude.com/docs/en/plugins): versioned bundles of skills, hooks, and commands that a platform team owns centrally
+* [Plugins](https://code.claude.com/docs/en/plugins/overview): versioned bundles of skills, hooks, and commands that a platform team owns centrally
 * [MCP servers](https://code.claude.com/docs/en/mcp): if your organization already runs a code search or RAG index over the repository, expose it as an MCP tool so Claude queries it instead of reading files directly
 
 See [server-managed or endpoint-managed settings](https://code.claude.com/docs/en/server-managed-settings#choose-between-server-managed-and-endpoint-managed-settings) for how platform teams can enforce these centrally.

@@ -49,9 +49,9 @@ Video: https://mintcdn.com/claude-code/f9HTZGyMtxIFOUgt/images/whats-new/desktop
 Other wins
 
 Set [maxEffortLevel](https://code.claude.com/docs/en/settings-reference#maxeffortlevel) at the top level or per model under `modelSettings` to cap the effort level on every provider, including Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry; any higher level runs at the cap
-Point `--plugin-dir` at a folder of plugins to [load each immediate subfolder that has a manifest](https://code.claude.com/docs/en/plugins#test-your-plugins-locally)
+Point `--plugin-dir` at a folder of plugins to [load each immediate subfolder that has a manifest](https://code.claude.com/docs/en/plugins/create#load-a-directory-or-archive-for-one-session)
 If WebFetch hasn't finished downloading a page within five minutes, [the fetch fails with a deadline error](https://code.claude.com/docs/en/tools-reference#webfetch-tool-behavior) instead of hanging; set `CLAUDE\_CODE\_WEBFETCH\_DEADLINE\_MS` to change the deadline, or to `0` to remove the limit
-Pass `--json` to `claude plugin install`, `uninstall`, `update`, `enable`, or `disable` to print the result as [one JSON object on the last line of stdout](https://code.claude.com/docs/en/plugins-reference#plugin-json-result)
+Pass `--json` to `claude plugin install`, `uninstall`, `update`, `enable`, or `disable` to print the result as [one JSON object on the last line of stdout](https://code.claude.com/docs/en/plugins/cli-reference#plugin-json-result)
 When the auto mode classifier blocks an action, the reason Claude receives [usually names the rule that matched](https://code.claude.com/docs/en/auto-mode-config#fix-a-denial-with-an-allow-rule-an-environment-entry-or-a-retry), such as `\[Data Exfiltration]`
 When you type `/` partway through a prompt, you can now pick from [a list of matching commands](https://code.claude.com/docs/en/interactive-mode#complete-a-command-mid-prompt) instead of a single suggestion. The list opens as you type in fullscreen rendering. A plugin skill also matches on its name without the plugin prefix
 In the VS Code extension, click the agent count at the bottom of the prompt box to open the [agent map](https://code.claude.com/docs/en/vs-code#use-the-prompt-box), where you can open a subagent's read-only transcript or stop it

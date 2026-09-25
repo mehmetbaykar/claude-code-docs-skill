@@ -253,17 +253,17 @@ This page uses specific terms for each level: **hook event** for the lifecycle p
 
 Where you define a hook determines its scope:
 
-| Location                                 | Scope                                                                                                            | Shareable                                             |
-| :--------------------------------------- | :--------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------- |
-| `~/.claude/settings.json`                | All your projects                                                                                                | No, local to your machine                             |
-| `.claude/settings.json`                  | Single project                                                                                                   | Yes, can be committed to the repo                     |
-| `.claude/settings.local.json`            | Single project                                                                                                   | No, gitignored when Claude Code saves a setting to it |
-| Managed policy settings                  | Organization-wide                                                                                                | Yes, admin-controlled                                 |
-| [Plugin](https://code.claude.com/docs/en/plugins) `hooks/hooks.json` | When plugin is enabled                                                                                           | Yes, bundled with the plugin                          |
-| [Skill](https://code.claude.com/docs/en/skills) frontmatter          | The rest of the session once the skill is invoked. See [Hooks in skills and agents](#hooks-in-skills-and-agents) | Yes, defined in the skill file                        |
-| [Subagent](https://code.claude.com/docs/en/sub-agents) frontmatter   | While that subagent is running                                                                                   | Yes, defined in the subagent file                     |
+| Location                                          | Scope                                                                                                            | Shareable                                             |
+| :------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------- |
+| `~/.claude/settings.json`                         | All your projects                                                                                                | No, local to your machine                             |
+| `.claude/settings.json`                           | Single project                                                                                                   | Yes, can be committed to the repo                     |
+| `.claude/settings.local.json`                     | Single project                                                                                                   | No, gitignored when Claude Code saves a setting to it |
+| Managed policy settings                           | Organization-wide                                                                                                | Yes, admin-controlled                                 |
+| [Plugin](https://code.claude.com/docs/en/plugins/overview) `hooks/hooks.json` | When plugin is enabled                                                                                           | Yes, bundled with the plugin                          |
+| [Skill](https://code.claude.com/docs/en/skills) frontmatter                   | The rest of the session once the skill is invoked. See [Hooks in skills and agents](#hooks-in-skills-and-agents) | Yes, defined in the skill file                        |
+| [Subagent](https://code.claude.com/docs/en/sub-agents) frontmatter            | While that subagent is running                                                                                   | Yes, defined in the subagent file                     |
 
-[Cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) don't read your local `~/.claude/settings.json`; hooks there come from the repo's `.claude/settings.json` in a session with one repository, from the plugins [synced from your claude.ai account](https://code.claude.com/docs/en/plugins-reference#synced-plugins), and from your organization's server-managed settings. In a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments-configuration#permissions-and-tool-approval), Claude Code also runs the hooks the operator seeded from the runner host's `~/.claude/`, and it runs the hooks in the runner image's managed settings file when that file is among the [managed sources Claude Code applies](https://code.claude.com/docs/en/managed-settings#how-claude-code-combines-managed-sources), which by default means only when neither server-managed settings nor an MDM-delivered Claude Code policy supplies the managed tier. See [what carries over from your setup](https://code.claude.com/docs/en/cloud-environments#what-carries-over-from-your-setup) for which files reach a cloud session.
+[Cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) don't read your local `~/.claude/settings.json`. In a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments-configuration#permissions-and-tool-approval), Claude Code also runs the hooks the operator seeded from the runner host's `~/.claude/`, and it runs the hooks in the runner image's managed settings file when that file is among the [managed sources Claude Code applies](https://code.claude.com/docs/en/managed-settings#how-claude-code-combines-managed-sources), which by default means only when neither server-managed settings nor an MDM-delivered Claude Code policy supplies the managed tier. See [what carries over from your setup](https://code.claude.com/docs/en/cloud-environments#what-carries-over-from-your-setup) for which settings files and plugins, and so which hooks, reach a cloud session.
 
 For details on settings file resolution, see [settings](https://code.claude.com/docs/en/settings).
 
@@ -273,8 +273,8 @@ Enterprise administrators can use `allowManagedHooksOnly` to restrict which hook
 
 * Your user, project, local, and plugin hooks are blocked. Hooks from plugins force-enabled in managed settings `enabledPlugins` are exempt
 * Claude Code also narrows your [`statusLine`](https://code.claude.com/docs/en/statusline), [`fileSuggestion`](https://code.claude.com/docs/en/settings-reference#filesuggestion), and [`subagentStatusLine`](https://code.claude.com/docs/en/statusline#subagent-status-lines) settings to managed settings
-* Claude Code also disables plugins with a [`command` source](https://code.claude.com/docs/en/plugin-marketplaces#command-sources), including plugins force-enabled in managed settings `enabledPlugins`, unless [`disableCommandPluginSources`](https://code.claude.com/docs/en/settings-reference#disablecommandpluginsources) is explicitly set to `false`. `command` sources require Claude Code v2.1.229 or later
-* Claude Code also blocks marketplace [`headersHelper` commands](https://code.claude.com/docs/en/plugin-marketplaces#authenticate-archive-downloads) unless [`disableCommandPluginSources`](https://code.claude.com/docs/en/settings-reference#disablecommandpluginsources) is explicitly set to `false`, except for a marketplace that managed settings themselves declare
+* Claude Code also disables plugins with a [`command` source](https://code.claude.com/docs/en/plugins/marketplace-reference#command-plugin-source), including plugins force-enabled in managed settings `enabledPlugins`, unless [`disableCommandPluginSources`](https://code.claude.com/docs/en/settings-reference#disablecommandpluginsources) is explicitly set to `false`. `command` sources require Claude Code v2.1.229 or later
+* Claude Code also blocks marketplace [`headersHelper` commands](https://code.claude.com/docs/en/plugins/host-marketplace#authenticate-archive-downloads) unless [`disableCommandPluginSources`](https://code.claude.com/docs/en/settings-reference#disablecommandpluginsources) is explicitly set to `false`, except for a marketplace that managed settings themselves declare
 
 See [what runs under `allowManagedHooksOnly`](https://code.claude.com/docs/en/settings-reference#what-runs-under-allowmanagedhooksonly).
 
@@ -296,8 +296,6 @@ The `matcher` field filters when hooks fire. How a matcher is evaluated depends 
 | Contains any other character                          | JavaScript regular expression, unanchored                                                            | `^Notebook` matches any tool whose name starts with `Notebook`; `mcp__memory__.*` matches every tool from the `memory` server                   |
 
 A matcher on the regular-expression path is tested with JavaScript's `RegExp.prototype.test`, which succeeds on a match anywhere in the value. `Edit.*` matches both `Edit` and `NotebookEdit`; wrap the pattern in `^` and `$`, as in `^Edit$`, when you need a whole-string match.
-
-Comma separators and the surrounding whitespace tolerance require Claude Code v2.1.191 or later.
 
 Hyphens in the exact-match set require Claude Code v2.1.195 or later. On earlier versions a hyphenated name like `code-reviewer` is evaluated as an unanchored regular expression, so it also fires for `senior-code-reviewer`; anchor it as `^code-reviewer$` on those versions to match only that name.
 
@@ -493,7 +491,7 @@ The equivalent shell form needs quoting to handle paths with spaces or special c
 
 Both forms support the same [path placeholders](#reference-scripts-by-path), and both export them as the environment variables `CLAUDE_PROJECT_DIR`, `CLAUDE_PLUGIN_ROOT`, and `CLAUDE_PLUGIN_DATA` on the spawned process, so a script can read `process.env.CLAUDE_PLUGIN_ROOT` regardless of how it was launched.
 
-Plugin hooks additionally substitute [`${user_config.*}`](https://code.claude.com/docs/en/plugins-reference#user-configuration) values, in exec form only: the value is substituted into `command` and into each `args` element as a plain string, so no shell re-parses it.
+Plugin hooks additionally substitute [`${user_config.*}`](https://code.claude.com/docs/en/plugins/manifest-reference#user-configuration) values, in exec form only: the value is substituted into `command` and into each `args` element as a plain string, so no shell re-parses it.
 
 A shell-form plugin hook whose `command` references `${user_config.*}` fails with an [error](https://code.claude.com/docs/en/errors#plugin-command-references-user-config) instead of running. To use an option value from a shell-form hook, read the `$CLAUDE_PLUGIN_OPTION_` environment variable, such as `$CLAUDE_PLUGIN_OPTION_WEBHOOK_URL` for a `webhook_url` option, or set `args` to switch the hook to exec form. Before v2.1.207, shell-form plugin hook commands also substituted `${user_config.*}`.
 
@@ -611,8 +609,8 @@ In addition to the [common fields](#common-fields), prompt and agent hooks accep
 Use these placeholders to reference hook scripts relative to the project or plugin root, regardless of the working directory when the hook runs:
 
 * `${CLAUDE_PROJECT_DIR}`: the project root where the session started. Claude Code also sets this variable in the environment of [stdio MCP servers](https://code.claude.com/docs/en/mcp#option-3-add-a-local-stdio-server) and plugin LSP servers.
-* `${CLAUDE_PLUGIN_ROOT}`: the plugin's installation directory, for scripts bundled with a [plugin](https://code.claude.com/docs/en/plugins). See [plugin environment variables](https://code.claude.com/docs/en/plugins-reference#environment-variables) for how the path behaves across updates.
-* `${CLAUDE_PLUGIN_DATA}`: the plugin's [persistent data directory](https://code.claude.com/docs/en/plugins-reference#persistent-data-directory), for dependencies and state that should survive plugin updates.
+* `${CLAUDE_PLUGIN_ROOT}`: the plugin's installation directory, for scripts bundled with a [plugin](https://code.claude.com/docs/en/plugins/overview). See [plugin environment variables](https://code.claude.com/docs/en/plugins/manifest-reference#environment-variables) for how the path behaves across updates.
+* `${CLAUDE_PLUGIN_DATA}`: the plugin's [persistent data directory](https://code.claude.com/docs/en/plugins/components#path-variables-and-persistent-data), for dependencies and state that should survive plugin updates.
 
   **Worktrees are different.** If Claude enters a [worktree](https://code.claude.com/docs/en/worktrees) during the session, Claude Code keeps `${CLAUDE_PROJECT_DIR}` where it was and passes the worktree path to your hooks a different way:
 
@@ -672,7 +670,7 @@ This example runs a formatting script bundled with the plugin:
     }
 ```
 
-See the [plugin components reference](https://code.claude.com/docs/en/plugins-reference#hooks) for details on creating plugin hooks.
+See the [plugin components reference](https://code.claude.com/docs/en/plugins/components#hooks) for details on creating plugin hooks.
 
 
 ### Hooks in skills and agents
@@ -1253,7 +1251,7 @@ When you start or continue a conversation with `-p`, you also need to supply a p
 
 On success, `--init-only` prints nothing to the terminal. To confirm the hooks ran, start with `claude --debug-file <path> --init-only`, replacing `<path>` with a log file location, and check the log for the Setup and SessionStart hook entries.
 
-Because Setup doesn't fire on every launch, a plugin that needs a dependency installed can't rely on Setup alone. The practical pattern is to check for the dependency on first use and install on miss, for example a hook or skill that tests for `${CLAUDE_PLUGIN_DATA}/node_modules` and runs `npm install` if absent. See the [persistent data directory](https://code.claude.com/docs/en/plugins-reference#persistent-data-directory) for where to store installed dependencies. If you distribute your plugin through a marketplace, you may not need this pattern: Claude Code [installs eligible Node.js package dependencies automatically](https://code.claude.com/docs/en/plugins-reference#node-js-package-dependencies) when it caches the plugin.
+Because Setup doesn't fire on every launch, a plugin that needs a dependency installed can't rely on Setup alone. The practical pattern is to check for the dependency on first use and install on miss, for example a hook or skill that tests for `${CLAUDE_PLUGIN_DATA}/node_modules` and runs `npm install` if absent. See the [persistent data directory](https://code.claude.com/docs/en/plugins/components#path-variables-and-persistent-data) for where to store installed dependencies. If you distribute your plugin through a marketplace, you may not need this pattern: Claude Code [installs eligible Node.js package dependencies automatically](https://code.claude.com/docs/en/plugins/loading#node-js-package-dependencies) when it caches the plugin.
 
 #### Setup input
 
@@ -2287,7 +2285,7 @@ Notification hooks can't block or modify notifications. Claude Code discards the
 
 Runs when Claude spawns a subagent with the Agent tool, when Claude [resumes a subagent](https://code.claude.com/docs/en/sub-agents#resume-subagents), and each time an in-process [agent team](https://code.claude.com/docs/en/agent-teams) teammate handles a new message. Supports matchers to filter by agent type name. For built-in agents, this is the agent name like `general-purpose`, `Explore`, or `Plan`. For [custom subagents](https://code.claude.com/docs/en/sub-agents), this is the `name` field from the agent's frontmatter, not the filename.
 
-For subagents shipped by a [plugin](https://code.claude.com/docs/en/plugins), the agent type is the plugin-scoped identifier such as `my-plugin:reviewer`, not the bare frontmatter name. The colon places a plugin-scoped name on the regular-expression path, so anchor the matcher with `^` and `$` for an exact match: `^my-plugin:reviewer$`.
+For subagents shipped by a [plugin](https://code.claude.com/docs/en/plugins/overview), the agent type is the plugin-scoped identifier such as `my-plugin:reviewer`, not the bare frontmatter name. The colon places a plugin-scoped name on the regular-expression path, so anchor the matcher with `^` and `$` for an exact match: `^my-plugin:reviewer$`.
 
 #### SubagentStart input
 

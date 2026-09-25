@@ -27,7 +27,7 @@ Extensions plug into different parts of the agentic loop:
 * **[Dynamic workflows](https://code.claude.com/docs/en/workflows)** run many subagents from a script Claude writes, returning one result
 * **[Cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging)** lets Claude pass a message from one of your sessions to another
 * **[Hooks](https://code.claude.com/docs/en/hooks-guide)** run your script, HTTP request, MCP tool call, prompt, or subagent when Claude Code reaches a lifecycle event
-* **[Plugins](https://code.claude.com/docs/en/plugins)** and **[marketplaces](https://code.claude.com/docs/en/plugin-marketplaces)** package and distribute these features
+* **[Plugins](https://code.claude.com/docs/en/plugins/overview)** and **[marketplaces](https://code.claude.com/docs/en/plugins/overview)** package and distribute these features
 
 [Skills](https://code.claude.com/docs/en/skills) are the most flexible extension. A skill is a markdown file containing knowledge, workflows, or instructions. You can invoke skills with a command like `/deploy`, or Claude can load them automatically when relevant. Skills can run in your current conversation or in an isolated context via subagents.
 
@@ -48,23 +48,23 @@ Features range from always-on context that Claude sees every session, to on-dema
 | **Hook**                                                       | Script, HTTP request, MCP tool call, prompt, or subagent triggered by events       | Automation that must run on every matching event                                                                     | Run ESLint after every file edit                                                                                  |
 | **[Artifact](https://code.claude.com/docs/en/artifacts)**                                  | Publish session output as a private, interactive web page                          | Output you want to see or share visually rather than as terminal text                                                | An incident timeline that updates as Claude investigates                                                          |
 
-**[Plugins](https://code.claude.com/docs/en/plugins)** are the packaging layer. A plugin bundles skills, hooks, subagents, and MCP servers into a single installable unit. Plugin skills are namespaced (like `/my-plugin:review`) so multiple plugins can coexist. Use plugins when you want to reuse the same setup across multiple repositories or distribute to others via a **[marketplace](https://code.claude.com/docs/en/plugin-marketplaces)**.
+**[Plugins](https://code.claude.com/docs/en/plugins/overview)** are the packaging layer. A plugin bundles skills, hooks, subagents, and MCP servers into a single installable unit. Plugin skills are namespaced (like `/my-plugin:review`) so multiple plugins can coexist. Use plugins when you want to reuse the same setup across multiple repositories or distribute to others via a **[marketplace](https://code.claude.com/docs/en/plugins/overview)**.
 
 ### Build your setup over time
 
 You don't need to configure everything up front. Each feature has a recognizable trigger, and most teams add them in roughly this order:
 
-| Trigger                                                                          | Add                                                                                            |
-| :------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------- |
-| Claude gets a convention or command wrong twice                                  | Add it to [CLAUDE.md](https://code.claude.com/docs/en/memory)                                                              |
-| You keep asking Claude to be shorter, explain more, or answer in the same format | Set an [output style](https://code.claude.com/docs/en/output-styles)                                                       |
-| You keep typing the same prompt to start a task                                  | Save it as a user-invocable [skill](https://code.claude.com/docs/en/skills)                                                |
-| You paste the same playbook or multi-step procedure into chat for the third time | Capture it as a [skill](https://code.claude.com/docs/en/skills)                                                            |
-| You keep copying data from a browser tab Claude can't see                        | Connect that system as an [MCP server](https://code.claude.com/docs/en/mcp)                                                |
-| Claude reads many files to find where a symbol is defined or used                | Install a [code intelligence plugin](https://code.claude.com/docs/en/discover-plugins#code-intelligence) for your language |
-| A side task floods your conversation with output you won't reference again       | Route it through a [subagent](https://code.claude.com/docs/en/sub-agents)                                                  |
-| You want something to happen every time without asking                           | Write a [hook](https://code.claude.com/docs/en/hooks-guide)                                                                |
-| A second repository needs the same setup                                         | Package it as a [plugin](https://code.claude.com/docs/en/plugins)                                                          |
+| Trigger                                                                          | Add                                                                                   |
+| :------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------ |
+| Claude gets a convention or command wrong twice                                  | Add it to [CLAUDE.md](https://code.claude.com/docs/en/memory)                                                     |
+| You keep asking Claude to be shorter, explain more, or answer in the same format | Set an [output style](https://code.claude.com/docs/en/output-styles)                                              |
+| You keep typing the same prompt to start a task                                  | Save it as a user-invocable [skill](https://code.claude.com/docs/en/skills)                                       |
+| You paste the same playbook or multi-step procedure into chat for the third time | Capture it as a [skill](https://code.claude.com/docs/en/skills)                                                   |
+| You keep copying data from a browser tab Claude can't see                        | Connect that system as an [MCP server](https://code.claude.com/docs/en/mcp)                                       |
+| Claude reads many files to find where a symbol is defined or used                | Install a [code intelligence plugin](https://code.claude.com/docs/en/plugins/code-intelligence) for your language |
+| A side task floods your conversation with output you won't reference again       | Route it through a [subagent](https://code.claude.com/docs/en/sub-agents)                                         |
+| You want something to happen every time without asking                           | Write a [hook](https://code.claude.com/docs/en/hooks-guide)                                                       |
+| A second repository needs the same setup                                         | Package it as a [plugin](https://code.claude.com/docs/en/plugins/overview)                                        |
 
 The same triggers tell you when to update what you already have. A repeated mistake or a recurring review comment is a CLAUDE.md edit, not a one-off correction in chat. A workflow you keep tweaking by hand is a skill that needs another revision.
 
@@ -209,7 +209,7 @@ Claude Code runs a hook at a lifecycle event; it loads a skill into context for 
 Features can be defined at multiple levels: user-wide, per-project, via plugins, or through managed policies. You can also nest CLAUDE.md files in subdirectories or place skills in specific packages of a monorepo. When the same feature exists at multiple levels, here's how they layer:
 
 * **CLAUDE.md files** are additive: all levels contribute content to Claude's context simultaneously. Files from your working directory and above load at launch; subdirectories load as you work in them. When instructions conflict, Claude uses judgment to reconcile them. See [how CLAUDE.md files load](https://code.claude.com/docs/en/memory#how-claude-md-files-load).
-* **Skills and subagents** override by name: when the same name exists at multiple levels, one definition wins based on priority (managed > user > project for skills; managed > CLI flag > project > user > plugin for subagents). Plugin skills are [namespaced](https://code.claude.com/docs/en/plugins#add-skills-to-your-plugin) to avoid conflicts. See [skill discovery](https://code.claude.com/docs/en/skills#resolve-skills-that-share-a-name) and [subagent scope](https://code.claude.com/docs/en/sub-agents#choose-the-subagent-scope).
+* **Skills and subagents** override by name: when the same name exists at multiple levels, one definition wins based on priority (managed > user > project for skills; managed > CLI flag > project > user > plugin for subagents). Plugin skills are [namespaced](https://code.claude.com/docs/en/plugins/components#skills) to avoid conflicts. See [skill discovery](https://code.claude.com/docs/en/skills#resolve-skills-that-share-a-name) and [subagent scope](https://code.claude.com/docs/en/sub-agents#choose-the-subagent-scope).
 * **MCP servers** override by name: local > project > user. See [MCP scope](https://code.claude.com/docs/en/mcp#scope-hierarchy-and-precedence).
 * **Hooks** merge: all registered hooks fire for their matching events regardless of source. See [hooks](https://code.claude.com/docs/en/hooks).
 
@@ -305,7 +305,7 @@ Skills are extra capabilities in Claude's toolkit. They can be reference materia
 
     **Context cost:** Low. Symbol lookups often replace broad file reads, so net context use can go down.
 
-    > [!TIP] The LSP tool is inactive until you install a [code intelligence plugin](https://code.claude.com/docs/en/discover-plugins#code-intelligence) for your language.
+    > [!TIP] The LSP tool is inactive until you install a [code intelligence plugin](https://code.claude.com/docs/en/plugins/code-intelligence) for your language.
 
 
 
