@@ -269,9 +269,27 @@ claude setup-token
 ```
 
 The command opens the same browser authorization flow as `/login`, and the token prints to the terminal after you approve access in the browser. It does not save the token anywhere; copy it and set it as the `CLAUDE_CODE_OAUTH_TOKEN` environment variable wherever you want to authenticate:
+
+
+**macOS, Linux, WSL**
 ```bash
-export CLAUDE_CODE_OAUTH_TOKEN=your-token
+    export CLAUDE_CODE_OAUTH_TOKEN=your-token
 ```
+
+
+
+**Windows PowerShell**
+```powershell
+    $env:CLAUDE_CODE_OAUTH_TOKEN = "your-token"
+```
+
+
+
+**Windows CMD**
+```batch
+    set CLAUDE_CODE_OAUTH_TOKEN=your-token
+```
+
 
 This token authenticates with your Claude subscription and requires a Pro, Max, Team, or Enterprise plan. It can only make model requests, so it can't establish [Remote Control](https://code.claude.com/docs/en/remote-control) sessions or fetch [claude.ai connectors](https://code.claude.com/docs/en/mcp#use-mcp-servers-from-claude-ai). MCP servers you configure locally still work.
 

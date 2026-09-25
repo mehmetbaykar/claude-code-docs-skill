@@ -51,6 +51,34 @@ for await (const message of warm.query("What files are here?")) {
 }
 ```
 ```typescript
+function prewarm(params?: {
+  options?: Options;
+  initializeTimeoutMs?: number;
+}): Promise<SpareProcess>;
+```
+```typescript
+import { prewarm } from "@anthropic-ai/claude-agent-sdk";
+
+// On application boot, before the session's folder is known
+const spare = await prewarm({ options: { maxTurns: 3 } });
+
+// Later, when the user starts a session in a folder
+const claimedQuery = spare.claim({
+  prompt: "What files are here?",
+  options: { cwd: "/path/to/project" },
+});
+
+spare.claimed.catch((error: Error) => {
+  // Unless the message starts with "option_not_applied", the prompt didn't run:
+  // start this session with query() instead
+  console.error("Claim failed:", error.message);
+});
+
+for await (const message of claimedQuery) {
+  console.log(message);
+}
+```
+```typescript
 function tool<Schema extends AnyZodRawShape>(
   name: string,
   description: string,
@@ -225,6 +253,17 @@ await q.applyFlagSettings({ model: null });
 ```typescript
 interface WarmQuery extends AsyncDisposable {
   query(prompt: string | AsyncIterable<SDKUserMessage>): Query;
+  close(): void;
+}
+```
+```typescript
+interface SpareProcess extends AsyncDisposable {
+  claim(params: {
+    prompt: string | AsyncIterable<SDKUserMessage>;
+    options: ClaimOptions;
+  }): Query;
+  readonly claimed: Promise<{ cwd: string; sessionId: string; parkedMs?: number; sdkMcpSettled: boolean }>;
+  readonly exited: Promise<void>;
   close(): void;
 }
 ```

@@ -125,7 +125,8 @@ Where you save a skill decides which sessions load it. Save it under your home d
 Skill folders also follow these rules:
 
 * **Symlinked folders**: a `<skill-name>` entry in the enterprise, personal, or project location can be a symlink to a directory elsewhere on disk. Claude Code reads `SKILL.md` from the target and loads the skill once even if several locations point at the same target. Plugin skills [handle symlinks differently](https://code.claude.com/docs/en/plugins/host-marketplace#share-files-within-a-marketplace-with-symlinks).
-* **Reserved name**: don't name a skill folder `synced`, in any capitalization. Claude Code uses `~/.claude/skills/synced/` for [skills downloaded from claude.ai](#where-synced-skills-load) and skips a skill you author at that name in the enterprise, personal, and project locations.
+* **Reserved name `synced`**: don't name a skill folder `synced`, in any capitalization. Claude Code uses `~/.claude/skills/synced/` for [skills downloaded from claude.ai](#where-synced-skills-load) and skips a skill you author at that name in the enterprise, personal, and project locations.
+* **Reserved name `anthropic-skills`**: outside a plugin, a skill folder or command file whose name is `anthropic-skills` or starts with `anthropic-skills:` doesn't load. See [Names reserved for synced skills](#names-reserved-for-synced-skills).
 * **Command files**: a Markdown file in `.claude/commands/` is the older format and still works. It supports the same [frontmatter](#frontmatter-reference) except `name` and `paths`. To find the name you type to invoke it, see [How a skill gets its command name](#how-a-skill-gets-its-command-name). Prefer a skill for new work, since skills also support [supporting files](#add-supporting-files).
 * **Skill folder as a plugin**: add a `.claude-plugin/plugin.json` to a skill folder and it loads as a [plugin](https://code.claude.com/docs/en/plugins/loading#plugins-shared-through-a-repository) named `<name>@skills-dir`, so it can bundle agents, hooks, and MCP servers. In a project's `.claude/skills/`, this requires accepting the workspace trust dialog first.
 
@@ -158,14 +159,14 @@ These loads depend on the `project` [setting source](https://code.claude.com/doc
 
 When two skills share a name, where each one came from decides which one `/name` runs. The table covers the enterprise, personal, project, nested, plugin, and claude.ai locations, bundled skills, and command files:
 
-| Same name in                                                                                 | Which one runs                                                                                                                                                                                   |
-| :------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Two of enterprise, personal, and project                                                     | Enterprise over personal, and personal over project. With `deploy` in both `~/.claude/skills/` and the project's `.claude/skills/`, `/deploy` runs the personal one                              |
-| Any of those locations and a [bundled skill](#bundled-skills)                                | Your skill replaces the bundled command, but not its aliases. A project `code-review` skill replaces `/code-review`, and the bundled alias `/review` never runs your skill                       |
-| A skill and a file in `.claude/commands/`                                                    | The skill                                                                                                                                                                                        |
-| A project-root skill and a nested skill                                                      | Both load. See [monorepos and subdirectories](#discovery-from-parent-and-nested-directories)                                                                                                     |
-| A plugin skill and a skill at any of the locations above                                     | Both load, because plugin skills are namespaced as `/plugin-name:skill-name`                                                                                                                     |
-| Any of the above and a skill [synced from your claude.ai account](#how-synced-skills-behave) | The other skill or command. The synced skill still runs as `/anthropic-skills:<name>`. See [When a synced skill name matches another command](#when-a-synced-skill-name-matches-another-command) |
+| Same name in                                                                                                   | Which one runs                                                                                                                                                                                   |
+| :------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Two of enterprise, personal, and project                                                                       | Enterprise over personal, and personal over project. With `deploy` in both `~/.claude/skills/` and the project's `.claude/skills/`, `/deploy` runs the personal one                              |
+| Any of those locations and a [bundled skill](#bundled-skills)                                                  | Your skill replaces the bundled command, but not its aliases. A project `code-review` skill replaces `/code-review`, and the bundled alias `/review` never runs your skill                       |
+| A skill and a file in `.claude/commands/`                                                                      | The skill                                                                                                                                                                                        |
+| A project-root skill and a nested skill                                                                        | Both load. See [monorepos and subdirectories](#discovery-from-parent-and-nested-directories)                                                                                                     |
+| A plugin skill and a skill at any of the locations above                                                       | Both load, because plugin skills are namespaced as `/plugin-name:skill-name`                                                                                                                     |
+| Any of the above and the short name of a skill [synced from your claude.ai account](#how-synced-skills-behave) | The other skill or command. The synced skill still runs as `/anthropic-skills:<name>`. See [When a synced skill name matches another command](#when-a-synced-skill-name-matches-another-command) |
 
 <h3 id="skills-in-cowork-and-cloud-sessions">
 Use skills in Cowork and cloud sessions
@@ -233,6 +234,16 @@ Claude Code labels synced skills so you can tell where they came from. The `/ski
 When it compares names, Claude Code ignores case, spacing, and invisible characters, and treats compatibility forms such as fullwidth letters and dash variants as their plain equivalents. For example, a synced skill named `Commit` and a local skill named `commit` count as the same name, so `/commit` keeps running your local skill.
 
 A name that differs only by a look-alike letter from another alphabet counts as a different name, and the `claude.ai sync` label is how you tell the two apart. These checks and labels require Claude Code v2.1.228 or later.
+
+<h4 id="names-reserved-for-synced-skills">
+Names reserved for synced skills
+</h4>
+
+Claude Code reserves the name `anthropic-skills`, and every name inside that namespace such as `anthropic-skills:pdf`, for skills synced from claude.ai, so a synced skill's full name never runs anything else. The name is reserved in every session, whether or not you sign in with a claude.ai account.
+
+* **A skill folder, a frontmatter `name`, a file or subfolder in `.claude/commands/`, or a [saved workflow](https://code.claude.com/docs/en/workflows#save-the-workflow-for-reuse)**: it doesn't load. A [startup notice](https://code.claude.com/docs/en/errors#a-skill-command-or-workflow-wasnt-loaded-because-its-name-is-reserved) names the first item to rename or edit.
+* **A plugin named `anthropic-skills`**: it loads. When one of its skills and a synced skill are both named `<name>`, `/anthropic-skills:<name>` runs the synced skill.
+* **An MCP server named `anthropic-skills`**: it connects and its tools work, but [its prompts don't appear as commands](https://code.claude.com/docs/en/mcp#use-mcp-prompts-as-commands). Rename the server in your MCP configuration to list them.
 
 #### How Claude Code handles the frontmatter of a synced skill
 
@@ -740,11 +751,13 @@ Skill(review-pr *)
 Skill(deploy *)
 ```
 
-Permission syntax: `Skill(name)` for exact match, `Skill(name *)` for prefix match with any arguments.
+Permission syntax: `Skill(name)` for exact match, `Skill(name *)` for prefix match with any arguments. In an `allow` rule, a prefix outside the [namespace reserved for synced skills](#names-reserved-for-synced-skills) doesn't match the names inside it: `Skill(anthropic *)` doesn't cover `anthropic-skills:pdf`.
 
 If your `deny` rule names an alias or an unqualified name rather than the skill's own name, Claude Code still blocks the skill: with `Skill(review)` it blocks the bundled `/code-review` through its `/review` alias, and with `Skill(deploy)` it blocks a [nested skill](#where-skills-live) listed as `apps/web:deploy` through its unqualified name. Before v2.1.260, Claude Code didn't block a nested skill listed under its qualified name when the deny rule named only the unqualified name.
 
 Claude Code matches an `allow` rule only against the skill's own name and the name in Claude's invocation.
+
+To approve a [synced skill](#how-synced-skills-behave) without a prompt, name it inside its [reserved namespace](#names-reserved-for-synced-skills): `Skill(anthropic-skills:pdf)` approves the synced `pdf` skill, and `Skill(anthropic-skills *)` approves every synced skill.
 
 **Hide individual skills** by adding `disable-model-invocation: true` to their frontmatter. This removes the skill from Claude's context entirely.
 

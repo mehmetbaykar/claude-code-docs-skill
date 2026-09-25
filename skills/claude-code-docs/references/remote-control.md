@@ -64,6 +64,7 @@ Available flags:
     | `--capacity `                                | Maximum number of concurrent sessions. Default is 32. Cannot be used with `--spawn=session`.                                                                                                                                                                                                                                                                                                                                                                                       |
     | `--[no-]create-session-in-dir`                  | Pre-create one session in the current directory when the server starts, so you have somewhere to type immediately. In `worktree` mode this session stays in the current directory while on-demand sessions get isolated worktrees. On by default. If you pass `--no-create-session-in-dir` to start with none, Claude Code archives the server's sessions when you stop it, so there's nothing to [resume](#resume-sessions-after-stopping-the-server).                            |
     | `--permission-mode <mode>`                      | Set the starting [permission mode](https://code.claude.com/docs/en/permission-modes) for the server's sessions, such as `acceptEdits`. Accepts `manual` as an alias for `default`; an unrecognized mode stops the server at startup and lists the valid modes.                                                                                                                                                                                                                                                 |
+    | `-d`, `--debug[=<filter>]`                      | Turn on debug logging for the server, optionally filtered by category. Pass a filter only in the `=` form, such as `--debug=api,hooks`. Requires Claude Code v2.1.282 or later; earlier versions reject the flag as an unknown argument.                                                                                                                                                                                                                                           |
     | `--debug-file <path>`                           | Write debug logs to the given file.                                                                                                                                                                                                                                                                                                                                                                                                                                                |
     | `--verbose`                                     | Show detailed connection and session logs.                                                                                                                                                                                                                                                                                                                                                                                                                                         |
     | `--sandbox` / `--no-sandbox`                    | Enable or disable [sandboxing](https://code.claude.com/docs/en/sandboxing) for filesystem and network isolation. Off by default.                                                                                                                                                                                                                                                                                                                                                                               |
@@ -386,7 +387,7 @@ Before v2.1.239, this message read "Remote Control is not yet enabled for your a
 
 ### "Couldn't verify Remote Control eligibility"
 
-Claude Code could not reach the feature-flag service to check whether Remote Control is enabled for your account, typically because you are offline or a proxy is blocking the request. Retry once you have network access, or run `claude doctor` for details. The related message "Couldn't verify your organization's Remote Control policy" means Claude Code couldn't read that policy, and has the same fix. Both messages were added in v2.1.178.
+Claude Code could not reach the feature-flag service to check whether Remote Control is enabled for your account, typically because you are offline or a proxy is blocking the request. Retry once you have network access, or run `claude doctor` for details. The related message "Couldn't verify your organization's Remote Control policy" means Claude Code hit an error reading that policy, and has the same fix; when the policy hasn't loaded at all, you see [`Couldn't verify your organization's policy for remote control`](#couldnt-verify-your-organizations-policy-for-remote-control) instead. Both messages were added in v2.1.178.
 
 ### "Remote Control requires feature-flag evaluation"
 
@@ -400,13 +401,29 @@ The message names what routed the session away from the Anthropic API, such as `
 
 ### "Remote Control is disabled by your organization's policy"
 
-A policy blocks Remote Control, or Claude Code couldn't load your organization's policy on this machine and keeps Remote Control off in the meantime. Check these causes in order:
+A policy blocks Remote Control. Check these causes in order:
 
 * **The error mentions `disableRemoteControl`**: your IT administrator has disabled Remote Control on this device through [managed settings](https://code.claude.com/docs/en/managed-settings), independent of the organization-wide toggle and of how you're signed in.
 * **Your claude.ai plan is Pro or Max**: Claude Code is still signed in under a Team or Enterprise organization from an earlier login, so it checks that organization's Remote Control policy. Run `/status` to see which plan and organization your sign-in uses. Run `claude auth logout` then `claude auth login` to sign in again under your current plan.
-* **The organization policy didn't load on this machine**: run `claude doctor` and read the `Organization policy` line. If the line shows the policy isn't loaded, that is what's keeping Remote Control off. Before v2.1.261, `claude doctor` didn't print this line.
 * **The message doesn't say to contact your organization admin**: your organization has a HIPAA configuration that is incompatible with Remote Control, and `/status` lists `HIPAA` in its `Compliance` row. In this state the admin panel's Remote Control toggle is grayed out, so an Owner can't change it there. Contact Anthropic support to discuss options. Before v2.1.267, this case showed "Remote Control isn't available for your organization due to its compliance policy" instead.
 * **Otherwise, an Owner hasn't enabled it for your organization**: Remote Control is off by default on Team and Enterprise plans. An Owner can enable it at [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code) by turning on the **Remote Control** toggle. This toggle is a server-side organization setting.
+
+Before v2.1.281, this message also appeared when Claude Code hadn't loaded your organization's policy on this machine, for example after starting offline. Later versions report that state as [`Couldn't verify your organization's policy for remote control`](#couldnt-verify-your-organizations-policy-for-remote-control) instead.
+
+<h3 id="couldnt-verify-your-organizations-policy-for-remote-control">
+  "Couldn't verify your organization's policy for remote control"
+</h3>
+
+Claude Code couldn't fetch your organization's policy and has no saved copy on this machine to use instead, so it keeps Remote Control off until it can confirm that your organization allows it. This usually happens when you start Claude Code offline or before a VPN connects, or when a proxy interferes with the request. On a slow connection it can also appear while the first request is still in flight.
+
+The message takes one of these forms:
+
+* From `/remote-control`, `claude remote-control`, or `claude --remote-control`: `Couldn't verify your organization's policy for remote control. Check your network connection and try again.`
+* From [auto-connect](#enable-remote-control-for-all-sessions) when a session starts: `couldn't verify your organization's policy — check your network connection and try again`, prefixed with `Remote Control failed` in the notification and `Remote Control disconnected` in the conversation. The session then leaves Remote Control off.
+
+Restore your network connection, then run `/remote-control` or run the command again. Each attempt checks for the policy again, so you don't need to restart Claude Code. If the message keeps appearing, run `claude doctor` and read its `Organization policy` line, which says why the policy didn't load.
+
+Before v2.1.281, this state showed `Remote Control is disabled by your organization's policy` instead.
 
 ### "Remote credentials fetch failed"
 

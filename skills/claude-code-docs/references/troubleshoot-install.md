@@ -131,10 +131,16 @@ For Zsh, the default on macOS:
     source ~/.zshrc
 ```
 
-For Bash, the default on most Linux distributions:
+For Bash on Linux, where it's the default on most distributions:
 ```bash
     echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
     source ~/.bashrc
+```
+
+For Bash on macOS, add the line to `~/.bash_profile` instead. Terminal on macOS starts Bash as a login shell, which ignores `~/.bashrc` and reads only the first of `~/.bash_profile`, `~/.bash_login`, or `~/.profile` that exists. If you already have a `~/.bash_login` or `~/.profile` and no `~/.bash_profile`, put the line in that file rather than creating `~/.bash_profile`:
+```bash
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bash_profile
+    source ~/.bash_profile
 ```
 
 Alternatively, close and reopen your terminal.
