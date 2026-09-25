@@ -31,14 +31,14 @@ You can mix surfaces on the same project. Configuration, project memory, and MCP
 
 Integrations let Claude work with services outside your codebase.
 
-| Integration                          | What it does                                                                       | Use it for                                                                          |
-| :----------------------------------- | :--------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- |
-| [Chrome](https://code.claude.com/docs/en/chrome)                 | Controls your browser with your logged-in sessions                                 | Testing web apps, filling forms, automating sites without an API                    |
-| [GitHub Actions](https://code.claude.com/docs/en/github-actions) | Runs Claude in your CI pipeline                                                    | Automated PR reviews, issue triage, scheduled maintenance                           |
-| [GitLab CI/CD](https://code.claude.com/docs/en/gitlab-ci-cd)     | Same as GitHub Actions for GitLab                                                  | CI-driven automation on GitLab                                                      |
-| [Code Review](https://code.claude.com/docs/en/code-review)       | Reviews every PR automatically                                                     | Catching bugs before human review                                                   |
-| [Slack](https://code.claude.com/docs/en/slack)                   | Responds to `@Claude` mentions in your channels                                    | Turning bug reports into pull requests from team chat                               |
-| [Claude Tag](https://code.claude.com/docs/en/claude-tag)         | Runs `@Claude` as your organization's shared identity with admin-configured access | Shared team access on Team and Enterprise plans, instead of per-user Slack sessions |
+| Integration                                      | What it does                                                                       | Use it for                                                                          |
+| :----------------------------------------------- | :--------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- |
+| [Chrome](https://code.claude.com/docs/en/chrome)                             | Controls your browser with your logged-in sessions                                 | Testing web apps, filling forms, automating sites without an API                    |
+| [GitHub Actions](https://code.claude.com/docs/en/github-actions)             | Runs Claude in your CI pipeline                                                    | Automated PR reviews, issue triage, scheduled maintenance                           |
+| [GitLab CI/CD](https://code.claude.com/docs/en/gitlab-ci-cd)                 | Same as GitHub Actions for GitLab                                                  | CI-driven automation on GitLab                                                      |
+| [Code Review](https://code.claude.com/docs/en/code-review)                   | Reviews every PR automatically                                                     | Catching bugs before human review                                                   |
+| [Slack](https://code.claude.com/docs/en/slack)                               | Responds to `@Claude` mentions in your channels                                    | Turning bug reports into pull requests from team chat                               |
+| [Claude Tag](https://claude.com/docs/claude-tag) | Runs `@Claude` as your organization's shared identity with admin-configured access | Shared team access on Team and Enterprise plans, instead of per-user Slack sessions |
 
 For integrations not listed here, [MCP servers](https://code.claude.com/docs/en/mcp) and [connectors](https://code.claude.com/docs/en/desktop#connect-external-tools) let you connect almost anything: Linear, Notion, Google Drive, or your own internal APIs.
 
@@ -77,7 +77,7 @@ If you're not sure where to start, [install the CLI](https://code.claude.com/doc
 * [GitLab CI/CD](https://code.claude.com/docs/en/gitlab-ci-cd): the same for GitLab
 * [Code Review](https://code.claude.com/docs/en/code-review): automatic review on every pull request
 * [Slack](https://code.claude.com/docs/en/slack): send tasks from team chat, get PRs back
-* [Claude Tag](https://code.claude.com/docs/en/claude-tag): run `@Claude` as your organization's shared identity on Team and Enterprise plans
+* [Claude Tag](https://claude.com/docs/claude-tag): run `@Claude` as your organization's shared identity on Team and Enterprise plans
 
 ### Remote access
 

@@ -64,7 +64,7 @@ Learn more: [Eliminate prompts with auto mode](https://code.claude.com/docs/en/p
 
 ### Bare mode
 
-With `--bare`, Claude Code starts without loading hooks, skills, custom commands, subagents, plugins, MCP servers, auto memory, or CLAUDE.md, apart from skills in a directory you pass with `--add-dir`. Recommended for CI and scripted calls where you need the same result on every machine.
+With `--bare`, Claude Code starts without loading hooks, skills, custom commands, subagents, installed plugins, MCP servers, auto memory, or CLAUDE.md, apart from skills in a directory you pass with `--add-dir`. Recommended for CI and scripted calls where you need the same result on every machine.
 
 Learn more: [Start faster with bare mode](https://code.claude.com/docs/en/headless#start-faster-with-bare-mode)
 
@@ -244,9 +244,9 @@ Learn more: [Analyze before you edit with plan mode](https://code.claude.com/doc
 
 ### Plugin
 
-A bundle of skills, hooks, subagents, and MCP servers packaged as a single installable unit. Plugin skills are namespaced as `plugin-name:skill-name` so multiple plugins coexist. Distribute plugins across teams via a [marketplace](https://code.claude.com/docs/en/plugin-marketplaces).
+A bundle of skills, hooks, subagents, and MCP servers packaged as a single installable unit. Plugin skills are namespaced as `plugin-name:skill-name` so multiple plugins coexist. Distribute plugins across teams via a [marketplace](https://code.claude.com/docs/en/plugins/overview).
 
-Learn more: [Plugins](https://code.claude.com/docs/en/plugins)
+Learn more: [Plugins](https://code.claude.com/docs/en/plugins/overview)
 
 ### Project trust
 

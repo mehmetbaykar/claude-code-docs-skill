@@ -21,7 +21,7 @@ Load a plugin straight from a URL:
   claude --plugin-url https://example.com/my-plugin.zip
 ```
 
-[Plugins guide](https://code.claude.com/docs/en/plugins)
+[Plugins guide](https://code.claude.com/docs/en/plugins/overview)
 
 History search across all your projects
 v2.1.129

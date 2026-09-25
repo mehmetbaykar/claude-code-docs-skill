@@ -103,7 +103,7 @@ Add a `bin/` directory at the plugin root:
       └── my-tool
 ```
 
-[Plugins reference](https://code.claude.com/docs/en/plugins-reference#file-locations-reference)
+[Plugins reference](https://code.claude.com/docs/en/plugins/manifest-reference#standard-layout)
 
 Other wins
 

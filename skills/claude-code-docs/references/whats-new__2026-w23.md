@@ -48,7 +48,7 @@ List the plugins that are currently turned on:
   > /plugin list --enabled
 ```
 
-[Plugin commands](https://code.claude.com/docs/en/plugins-reference#plugin-list)
+[Plugin commands](https://code.claude.com/docs/en/plugins/cli-reference#plugin-list)
 
 Version requirements for managed deployments
 v2.1.163

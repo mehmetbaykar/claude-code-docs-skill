@@ -30,7 +30,7 @@ These work on every provider:
 * [CLI](https://code.claude.com/docs/en/quickstart) and [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview)
 * [VS Code](https://code.claude.com/docs/en/vs-code) and [JetBrains](https://code.claude.com/docs/en/jetbrains) extensions
 * [Subagents](https://code.claude.com/docs/en/sub-agents), [hooks](https://code.claude.com/docs/en/hooks-guide), [commands](https://code.claude.com/docs/en/commands), and [skills](https://code.claude.com/docs/en/skills)
-* [CLAUDE.md memory](https://code.claude.com/docs/en/memory), [plugins](https://code.claude.com/docs/en/plugins), and [MCP servers](https://code.claude.com/docs/en/mcp)
+* [CLAUDE.md memory](https://code.claude.com/docs/en/memory), [plugins](https://code.claude.com/docs/en/plugins/overview), and [MCP servers](https://code.claude.com/docs/en/mcp)
 * [Checkpoints](https://code.claude.com/docs/en/checkpointing), [sandboxing](https://code.claude.com/docs/en/sandboxing), and [Workflows](https://code.claude.com/docs/en/workflows)
 * [OpenTelemetry metrics](https://code.claude.com/docs/en/monitoring-usage) and the [managed settings file](https://code.claude.com/docs/en/managed-settings#delivery-mechanisms)
 
