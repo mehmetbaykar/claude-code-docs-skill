@@ -523,8 +523,8 @@
       "title": "Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry"
     },
     "claude-code-on-the-web.md": {
-      "hash": "1c9358673ff0123c6d33698d29b192ba3b82ba9124d850b1adf51c220535ccdf",
-      "last_updated": "2026-09-26T05:09:12+00:00",
+      "hash": "3eda315276657d87a3e3466864a65d67bf61289f1e931ecb8b8e327606eab749",
+      "last_updated": "2026-09-26T11:33:59+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-code-on-the-web",
       "path": "/docs/en/claude-code-on-the-web",
       "source_url": "https://code.claude.com/docs/en/claude-code-on-the-web.md",
@@ -676,8 +676,8 @@
       "title": "Message your other Claude Code sessions"
     },
     "data-usage.md": {
-      "hash": "7c6fc4ad186ae301a33c321fb3948f2a121377d2075a45daf9ddf4314d9f9af0",
-      "last_updated": "2026-09-16T04:57:42+00:00",
+      "hash": "84ab311c0e75ddd4857e175fd6c02f11c68b5a393c947a19626dfb2762541638",
+      "last_updated": "2026-09-26T11:34:04+00:00",
       "original_url": "https://code.claude.com/docs/en/data-usage",
       "path": "/docs/en/data-usage",
       "source_url": "https://code.claude.com/docs/en/data-usage.md",
@@ -775,8 +775,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "1a33db8ad72005796770aff0713a8692bb7faca411d57c991cbbc62597ca1e16",
-      "last_updated": "2026-09-26T05:09:24+00:00",
+      "hash": "c902f07c02965392937319c79228da17385fb390fe0269bb0948d8c458f91ee1",
+      "last_updated": "2026-09-26T11:34:08+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -1414,8 +1414,8 @@
       "title": "Catch security issues as Claude writes code"
     },
     "security.md": {
-      "hash": "1c80f342683a282d7dd960e3b2164ede3fff6ab6d657fbf707f54f95fccb76ce",
-      "last_updated": "2026-09-16T04:58:02+00:00",
+      "hash": "1786105ecb62bf90f96b290c1b8297e923f3f1cfe007759b3bc914f00bad5cbc",
+      "last_updated": "2026-09-26T11:34:27+00:00",
       "original_url": "https://code.claude.com/docs/en/security",
       "path": "/docs/en/security",
       "source_url": "https://code.claude.com/docs/en/security.md",
@@ -1923,7 +1923,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-26T05:10:10+00:00",
+  "last_updated": "2026-09-26T11:34:42+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
