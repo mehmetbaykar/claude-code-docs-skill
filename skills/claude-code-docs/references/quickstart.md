@@ -23,7 +23,7 @@ This guide covers the terminal CLI. Claude Code is also available on the [web](h
 
 ## Step 1: Install Claude Code
 
-To install Claude Code, use one of the following methods:
+To install Claude Code, open a terminal and run the command for your system. If you haven't used a terminal before, the [terminal guide](https://code.claude.com/docs/en/terminal-guide) shows how to open one and paste the command.
 
 
 **Native Install (Recommended)**
@@ -42,6 +42,8 @@ To install Claude Code, use one of the following methods:
 ```batch
     curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 ```
+
+When the installer finishes, open a new terminal window and run `claude --version`. A working installation prints a version number. If your shell says `claude` isn't found or isn't recognized, the install directory isn't on your PATH yet: see [Fix your PATH](https://code.claude.com/docs/en/troubleshoot-install#command-not-found-claude-after-installation).
 
 If you see `The token '&&' is not a valid statement separator`, you're in PowerShell, not CMD. If you see `'irm' is not recognized as an internal or external command`, you're in CMD, not PowerShell. Your prompt shows `PS C:\` when you're in PowerShell and `C:\` without the `PS` when you're in CMD.
 
@@ -160,7 +162,7 @@ add a hello world function to the main file
 
 Claude Code finds the appropriate file and shows you the change. If it asks before making the change, select **Yes** to approve.
 
-Auto mode is the [built-in starting permission mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode) for interactive terminal sessions on Pro, Max, and Team plans: a classifier reviews actions instead of you, and Claude edits most files and runs most commands without asking you. On other plans, Manual mode is the built-in starting permission mode. For the session you start right after installing, see [First session after an install or upgrade](https://code.claude.com/docs/en/env-vars#first-session-after-an-install-or-upgrade).
+With Claude Code v2.1.283 or later, auto mode is the [built-in starting permission mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode) for interactive terminal sessions: a classifier reviews actions instead of you, and Claude edits most files and runs most commands without asking you. On earlier versions, auto mode is the built-in starting permission mode only on Pro, Max, and Team plans. For the session you start right after installing, see [First session after an install or upgrade](https://code.claude.com/docs/en/env-vars#first-session-after-an-install-or-upgrade).
 
 Your settings or your organization can set a different starting permission mode. [Which permission mode a session starts in](https://code.claude.com/docs/en/permission-modes#which-mode-a-session-starts-in) lists what does. Press `Shift+Tab` at any time to switch the permission mode of the session you're in.
 

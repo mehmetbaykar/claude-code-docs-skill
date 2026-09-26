@@ -616,6 +616,7 @@ type SDKUserMessage = {
   parent_tool_use_id: string | null;
   isSynthetic?: boolean;
   shouldQuery?: boolean;
+  client_composed?: true;
   tool_use_result?: unknown;
   origin?: SDKMessageOrigin;
   inline_pastes?: string[];
@@ -629,6 +630,7 @@ type SDKUserMessageReplay = {
   message: MessageParam;
   parent_tool_use_id: string | null;
   isSynthetic?: boolean;
+  client_composed?: true;
   tool_use_result?: unknown;
   origin?: SDKMessageOrigin;
   isReplay: true;
@@ -741,6 +743,12 @@ type SDKSystemMessage = {
   output_style: string;
   skills: string[];
   plugins: { name: string; path: string }[];
+  plugin_errors?: {
+    plugin: string;
+    type: string;
+    message: string;
+    path?: string;
+  }[];
   fast_mode_state?: FastModeState;
   fast_mode_disabled_reason?: FastModeDisabledReason;
   effort?: "low" | "medium" | "high" | "xhigh" | "max" | null;
@@ -3021,6 +3029,9 @@ type SDKConversationResetMessage = {
   new_conversation_id: UUID;
   uuid: UUID;
   session_id: string;
+  trigger?: "clear" | "plan_mode_exit" | "fresh_session" | "onboarding";
+  user_message_uuid?: string;
+  timestamp?: string;
 };
 ```
 ```typescript
