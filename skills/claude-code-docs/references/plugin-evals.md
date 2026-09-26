@@ -27,6 +27,7 @@ Every eval run and every judge grader is a real model call on your account, coun
 To run plugin evals you need:
 
 * Claude Code v2.1.269 or later. Run `claude --version` to check and `claude update` to upgrade.
+* Git 2.31 or later, if git is installed. Run `git --version` to check. With an older git, `claude plugin eval` [stops before running any case](#git-is-too-old-for-claude-plugin-eval). Without git, it runs normally.
 * A plugin directory with a `plugin.json` or `.claude-plugin/plugin.json` manifest, or a [skills-directory plugin](https://code.claude.com/docs/en/plugins/loading#plugins-shared-through-a-repository).
 * The same authentication and model provider your normal Claude Code sessions use. Eval runs, judge-scored graders, and `claude plugin eval init` call the model with your credentials, so they count against your plan's usage limits or your API bill. When the command reports a cost, the figure is a [list-price estimate](https://code.claude.com/docs/en/costs) of those calls.
 
@@ -624,6 +625,19 @@ Anthropic has switched the command off server-side. Nothing on your machine turn
 ### "is not a trusted plugin directory, and this run cannot stop to ask you about it"
 
 This is the first run against a directory Claude Code doesn't trust yet, and it can't ask you because stdin or stdout isn't a terminal, you passed `--json`, or the `CI` environment variable is set to a true value such as `true`. Run `claude plugin eval <dir>` once in a terminal and answer the prompt, or pass `--trust-plugin` if you trust the plugin's code and suite. See [What a run can access](#security).
+
+<h3 id="git-is-too-old-for-claude-plugin-eval">
+  "is too old for claude plugin eval"
+</h3>
+
+The `git` on your `PATH` is older than 2.31, so `claude plugin eval` stopped before running any case and exited 1 with a message naming your version:
+```text
+git 2.30 is too old for claude plugin eval: it ignores the environment configuration (GIT_CONFIG_COUNT, added in git 2.31) that switches off the repository's git hooks and helper programs for the run. Install git 2.31 or newer.
+```
+
+For each run, Claude Code switches off git hooks, credential helpers, and other programs a repository's git configuration can start. It does so through environment configuration that git reads only from version 2.31. An older git ignores that configuration, so the suite stops rather than scoring runs where those programs could execute. Install git 2.31 or later and run the suite again.
+
+Before v2.1.283, `claude plugin eval` didn't check the git version, and on an older git the suite ran with those programs left on.
 
 ### "No eval cases found"
 
