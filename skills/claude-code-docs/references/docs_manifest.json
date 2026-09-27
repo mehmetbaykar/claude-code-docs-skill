@@ -775,8 +775,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "c902f07c02965392937319c79228da17385fb390fe0269bb0948d8c458f91ee1",
-      "last_updated": "2026-09-26T11:34:08+00:00",
+      "hash": "a4ed8680d02b5717a89826b73282e9aa1cab6fd9a331f36d2dfe7d20dd3d317b",
+      "last_updated": "2026-09-27T17:04:07+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -901,8 +901,8 @@
       "title": "Run Claude Code programmatically"
     },
     "hooks-guide.md": {
-      "hash": "df4e393ed4827223aab1509248e3dd5c1ce898a560230dc99950d954e7915880",
-      "last_updated": "2026-09-25T05:06:15+00:00",
+      "hash": "1123342c7a18d259f6873e44895e16cc298bd2b843904a58972ccfc6ebdc7cb5",
+      "last_updated": "2026-09-27T17:04:11+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks-guide",
       "path": "/docs/en/hooks-guide",
       "source_url": "https://code.claude.com/docs/en/hooks-guide.md",
@@ -910,8 +910,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "1b4e8f4b1486e8f069fb363be9b435222ec9555e198d0825d02bb2647b66e292",
-      "last_updated": "2026-09-26T05:09:29+00:00",
+      "hash": "d1d4d426d9b726a409c0104d4186f70ea295465b3b8db1b26662d47e21974abb",
+      "last_updated": "2026-09-27T17:04:11+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -1171,8 +1171,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugins__cli-reference.md": {
-      "hash": "9042fb2227bb681d3329d69c01b50a7f6a03c52cb657da45436cf57058f185a1",
-      "last_updated": "2026-09-25T05:06:23+00:00",
+      "hash": "2ff2bd74709eac95ec77ddc4e887d999953e0d07cb8ec19125c9cd8ddfa045b4",
+      "last_updated": "2026-09-27T17:04:20+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/cli-reference",
       "path": "/docs/en/plugins/cli-reference",
       "source_url": "https://code.claude.com/docs/en/plugins/cli-reference.md",
@@ -1207,8 +1207,8 @@
       "title": "Create a marketplace"
     },
     "plugins__create.md": {
-      "hash": "f18d9d270694cdd91a24ebc9e8841a33d33ed641b1d0e72e6cb8a52bceb1bfff",
-      "last_updated": "2026-09-26T05:09:41+00:00",
+      "hash": "2191c80178b22409769a13c0b96b4e11bdfb9ab44b7be68bad0a4975303bb351",
+      "last_updated": "2026-09-27T17:04:21+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/create",
       "path": "/docs/en/plugins/create",
       "source_url": "https://code.claude.com/docs/en/plugins/create.md",
@@ -1243,8 +1243,8 @@
       "title": "Install and manage plugins"
     },
     "plugins__loading.md": {
-      "hash": "b4585087aae677e1f5272012b3f06d6baf08932a7d5b9b7d55272ad8c5bfcd96",
-      "last_updated": "2026-09-25T21:41:29+00:00",
+      "hash": "e799e108251f4a1b0fd2d4a8d1283a16aad501875444c744f50e885650be80b6",
+      "last_updated": "2026-09-27T17:04:22+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/loading",
       "path": "/docs/en/plugins/loading",
       "source_url": "https://code.claude.com/docs/en/plugins/loading.md",
@@ -1252,8 +1252,8 @@
       "title": "Plugin loading reference"
     },
     "plugins__manifest-reference.md": {
-      "hash": "458d449b2453b96fe05a299f92d4e35a9ad8a3f381d7a7316f5f7ff348aa4f67",
-      "last_updated": "2026-09-26T05:09:43+00:00",
+      "hash": "56e7efa226a36e98022fa02135f3a6aa964b70f462a1ccdd752fab4f055aa957",
+      "last_updated": "2026-09-27T17:04:22+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/manifest-reference",
       "path": "/docs/en/plugins/manifest-reference",
       "source_url": "https://code.claude.com/docs/en/plugins/manifest-reference.md",
@@ -1261,8 +1261,8 @@
       "title": "Plugin manifest reference"
     },
     "plugins__marketplace-reference.md": {
-      "hash": "2a979c20ba3376c4caf81e3aa99659883dfa7ac6b71499415144a0f42b000d19",
-      "last_updated": "2026-09-25T05:06:26+00:00",
+      "hash": "9b1caf0cf4ac7ba754532867af3fdf253fd852408a5397e62bd54fdd247222fa",
+      "last_updated": "2026-09-27T17:04:23+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/marketplace-reference",
       "path": "/docs/en/plugins/marketplace-reference",
       "source_url": "https://code.claude.com/docs/en/plugins/marketplace-reference.md",
@@ -1315,8 +1315,8 @@
       "title": "Recommend plugins for your org"
     },
     "plugins__security.md": {
-      "hash": "da353df53dec03bd674fac1cf85c8f711300eafcac97afbd996d7ad2cad507f1",
-      "last_updated": "2026-09-25T05:06:27+00:00",
+      "hash": "c88a5ffd8e453b985643d0a04e80898bfe7cf71f8c3f012a8c8c2e73d7c58753",
+      "last_updated": "2026-09-27T17:04:24+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/security",
       "path": "/docs/en/plugins/security",
       "source_url": "https://code.claude.com/docs/en/plugins/security.md",
@@ -1324,8 +1324,8 @@
       "title": "Plugin security and trust"
     },
     "plugins__troubleshooting.md": {
-      "hash": "bc91bcc773f31880085cf98f63b50abd3caf1ca91f9843ba7392d245abb44d6c",
-      "last_updated": "2026-09-25T05:06:28+00:00",
+      "hash": "bede95b205dcab34304da01d053ede6e5de59ba752503da217d043e97c981713",
+      "last_updated": "2026-09-27T17:04:25+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/troubleshooting",
       "path": "/docs/en/plugins/troubleshooting",
       "source_url": "https://code.claude.com/docs/en/plugins/troubleshooting.md",
@@ -1923,7 +1923,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-26T21:18:20+00:00",
+  "last_updated": "2026-09-27T17:04:44+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",

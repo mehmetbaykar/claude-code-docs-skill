@@ -116,7 +116,7 @@ After you install a plugin, run `claude plugin details <plugin name>` in your sh
 
 In your shell, run [`claude plugin uninstall <plugin>`](https://code.claude.com/docs/en/plugins/cli-reference#plugin-uninstall) with the `--scope` you installed it at. Then check what the uninstall removed and what it left:
 
-* **Persistent data**: when that was the last scope the plugin was installed at, uninstalling also deletes the plugin's persistent data directory, unless you pass `--keep-data`.
+* **Persistent data**: by default, when that was the last scope the plugin was installed at, uninstalling also deletes the plugin's persistent data directory. For `--keep-data` and the other cases where it stays, see [plugin uninstall](https://code.claude.com/docs/en/plugins/cli-reference#plugin-uninstall).
 * **Cached files**: the plugin's files stay on disk under `~/.claude/plugins/cache/` for 14 days before a [background sweep removes them](https://code.claude.com/docs/en/plugins/loading#cleanup-of-previous-versions). After you uninstall your last plugin, orphaned directories stay until you install another. To delete the files now, remove the plugin's directory under `~/.claude/plugins/cache/<marketplace>/<plugin>/` yourself.
 * **The marketplace**: if you don't trust the marketplace's owner either, [remove the marketplace](https://code.claude.com/docs/en/plugins/install#manage-marketplaces) too, which uninstalls every plugin you installed from it.
 
