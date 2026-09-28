@@ -175,6 +175,8 @@ The example below uses the internal-load-balancer-in-front-of-Cloud-Run values.
 
     store:
       postgres_url: ${GATEWAY_POSTGRES_URL}          # GKE: ${file:/secrets/postgres-url}
+      # readiness_grace_seconds: 300                 # keep passing the readiness probe
+                                                     # through a Cloud SQL failover
 
     upstreams:
       - provider: vertex
