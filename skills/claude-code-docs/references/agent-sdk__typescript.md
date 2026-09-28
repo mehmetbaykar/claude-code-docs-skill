@@ -228,7 +228,11 @@ interface Query extends AsyncGenerator<SDKMessage, void> {
     path: string,
     options?: { maxBytes?: number; encoding?: 'utf-8' | 'base64' }
   ): Promise<SDKControlReadFileResponse | null>;
+  reloadPlugins(options?: {
+    holdOnCacheImpact?: boolean;
+  }): Promise<SDKControlReloadPluginsResponse>;
   reloadSkills(): Promise<SDKControlReloadSkillsResponse>;
+  reloadOutputStyles(): Promise<SDKControlReloadOutputStylesResponse>;
   accountInfo(): Promise<AccountInfo>;
   reconnectMcpServer(serverName: string): Promise<void>;
   toggleMcpServer(serverName: string, enabled: boolean): Promise<void>;
@@ -293,6 +297,7 @@ type SDKControlGetContextUsageResponse = {
     tokens: number;
     color: string;
     isDeferred?: boolean;
+    kind: "used" | "free" | "buffer" | "deferred";
   }[];
   totalTokens: number;
   maxTokens: number;
@@ -388,8 +393,33 @@ type SDKControlReadFileResponse = {
 };
 ```
 ```typescript
+type SDKControlReloadPluginsResponse = {
+  commands: SlashCommand[];
+  agents: AgentInfo[];
+  plugins: {
+    name: string;
+    path: string;
+    source?: string;
+    version?: string;
+  }[];
+  mcpServers: McpServerStatus[];
+  error_count: number;
+  held?: boolean;
+  cache_impact?: {
+    mcp_servers_added: string[];
+    mcp_servers_removed: string[];
+    lsp_tool_change: ("adds" | "may-add" | "removes" | "may-remove") | null;
+  };
+};
+```
+```typescript
 type SDKControlReloadSkillsResponse = {
   skills: SlashCommand[];
+};
+```
+```typescript
+type SDKControlReloadOutputStylesResponse = {
+  available_output_styles: string[];
 };
 ```
 ```typescript
@@ -467,6 +497,8 @@ type CanUseTool = (
     blockedPath?: string;
     mcpServer?: { name: string; source: string };
     decisionReason?: string;
+    defaultToNo?: boolean;
+    suppressAlwaysAllowRule?: boolean;
     toolUseID: string;
     agentID?: string;
     requestId: string;
@@ -604,6 +636,7 @@ type SDKAssistantMessage = {
   context_usage?: SDKContextUsage;
   user_message_uuid?: string;
   user_message_uuids?: string[];
+  resume_reason?: string;
 };
 ```
 ```typescript
@@ -654,6 +687,8 @@ type SDKResultMessage =
       ttft_stream_ms?: number;
       user_message_uuid?: string;
       user_message_uuids?: string[];
+      resume_reason?: string;
+      local_command?: string;
       request_sent_wall_ms?: number;
       first_content_frame_ms?: number;
       first_stream_post_ms?: number;
@@ -667,6 +702,7 @@ type SDKResultMessage =
       structured_output?: unknown;
       deferred_tool_use?: { id: string; name: string; input: Record<string, unknown> };
       terminal_reason?: TerminalReason;
+      result_index?: number;
       fast_mode_state?: FastModeState;
       fast_mode_disabled_reason?: FastModeDisabledReason;
       origin?: SDKMessageOrigin;
@@ -694,7 +730,9 @@ type SDKResultMessage =
       startup_failure_reason?: SDKStartupFailureReason;
       user_message_uuid?: string;
       user_message_uuids?: string[];
+      resume_reason?: string;
       terminal_reason?: TerminalReason;
+      result_index?: number;
       fast_mode_state?: FastModeState;
       fast_mode_disabled_reason?: FastModeDisabledReason;
       origin?: SDKMessageOrigin;
@@ -765,6 +803,7 @@ type SDKPartialAssistantMessage = {
   ttft_ms?: number; // Time to first token in ms, present only on message_start events
   user_message_uuid?: string;
   user_message_uuids?: string[];
+  resume_reason?: string;
 };
 ```
 ```typescript
