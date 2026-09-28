@@ -358,6 +358,8 @@ The text beneath the call tells you whether there is anything to fix. Text that 
 
 You can add the environment entry or `allow` rule from the `/permissions` dialog's [**Auto mode** tab](#edit-rules-from-permissions).
 
+The text in square brackets, such as `[Data Exfiltration]`, is the name of the rule the classifier matched. To read that rule's full wording, see [Inspect the defaults and your effective config](#inspect-the-defaults-and-your-effective-config).
+
 ### Fix repeated denials
 
 Repeated denials for the same destination usually mean the classifier is missing context. Add that destination to `autoMode.environment`, or [run `/auto-mode-setup`](#generate-environment-entries) to have Claude Code draft the entries, then run `claude auto-mode config` to confirm the change took effect.
