@@ -50,10 +50,10 @@ These rules match commands that begin with `git push` or `gh pr create`. A push 
 
 Pick the mechanism that matches how firm the boundary needs to be:
 
-| Boundary                          | Mechanism                                                  | Behavior in auto mode                                                                                                                                                                                           |
-| :-------------------------------- | :--------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Prompt before the action          | `permissions.ask`                                          | Always prompts for a command that matches a content-scoped rule like the recipe above. The classifier cannot auto-approve a matching action.                                                                    |
-| Never run the action              | `permissions.deny`                                         | Blocks before the classifier is consulted. Neither the classifier nor user intent can override it.                                                                                                              |
+| Boundary | Mechanism | Behavior in auto mode |
+| :- | :- | :- |
+| Prompt before the action | `permissions.ask` | Always prompts for a command that matches a content-scoped rule like the recipe above. The classifier cannot auto-approve a matching action. |
+| Never run the action | `permissions.deny` | Blocks before the classifier is consulted. Neither the classifier nor user intent can override it. |
 | One-off boundary for this session | State it in conversation, like "don't push until I review" | The classifier blocks matching actions, but the boundary can be lost if [context compaction](https://code.claude.com/docs/en/costs#reduce-token-usage) removes the message that stated it. Use an ask or deny rule for a durable guarantee. |
 
 ## Where the classifier reads configuration
@@ -62,11 +62,11 @@ The classifier reads the same [CLAUDE.md](https://code.claude.com/docs/en/memory
 
 For rules that apply across projects, such as trusted infrastructure or organization-wide deny rules, use the `autoMode` settings block. The classifier reads `autoMode` from the following scopes:
 
-| Scope                          | File                                            | Use for                                              |
-| :----------------------------- | :---------------------------------------------- | :--------------------------------------------------- |
-| One developer                  | `~/.claude/settings.json`                       | Personal trusted infrastructure                      |
-| Organization-wide              | [Managed settings](https://code.claude.com/docs/en/server-managed-settings) | Trusted infrastructure distributed to all developers |
-| `--settings` flag or Agent SDK | Inline JSON                                     | Per-invocation overrides for automation              |
+| Scope | File | Use for |
+| :- | :- | :- |
+| One developer | `~/.claude/settings.json` | Personal trusted infrastructure |
+| Organization-wide | [Managed settings](https://code.claude.com/docs/en/server-managed-settings) | Trusted infrastructure distributed to all developers |
+| `--settings` flag or Agent SDK | Inline JSON | Per-invocation overrides for automation |
 
 The classifier doesn't read `autoMode` from project settings in `.claude/settings.json` or `.claude/settings.local.json`. Both files live in the repo directory, so a checked-in repo or a build step could otherwise inject its own allow rules. Move any `autoMode` block in `.claude/settings.local.json` to `~/.claude/settings.json`.
 

@@ -18,14 +18,14 @@ Reach for a workflow when a task needs more agents than one conversation can coo
 
 [Subagents](https://code.claude.com/docs/en/sub-agents), [skills](https://code.claude.com/docs/en/skills), [agent teams](https://code.claude.com/docs/en/agent-teams), and workflows can all run a multi-step task. The difference is who holds the plan:
 
-|                                 | Subagents                      | Skills                       | Agent teams                            | Workflows                            |
-| :------------------------------ | :----------------------------- | :--------------------------- | :------------------------------------- | :----------------------------------- |
-| What it is                      | A worker Claude spawns         | Instructions Claude follows  | A lead agent supervising peer sessions | A script the runtime executes        |
-| Who decides what runs next      | Claude, turn by turn           | Claude, following the prompt | The lead agent, turn by turn           | The script                           |
-| Where intermediate results live | Claude's context window        | Claude's context window      | A shared task list                     | Script variables                     |
-| What's repeatable               | The worker definition          | The instructions             | The team definition                    | The orchestration itself             |
-| Scale                           | A few delegated tasks per turn | Same as subagents            | A handful of long-running peers        | Dozens to hundreds of agents per run |
-| Interruption                    | Restarts the turn              | Restarts the turn            | Teammates keep running                 | Resumable in the same session        |
+| | Subagents | Skills | Agent teams | Workflows |
+| :- | :- | :- | :- | :- |
+| What it is | A worker Claude spawns | Instructions Claude follows | A lead agent supervising peer sessions | A script the runtime executes |
+| Who decides what runs next | Claude, turn by turn | Claude, following the prompt | The lead agent, turn by turn | The script |
+| Where intermediate results live | Claude's context window | Claude's context window | A shared task list | Script variables |
+| What's repeatable | The worker definition | The instructions | The team definition | The orchestration itself |
+| Scale | A few delegated tasks per turn | Same as subagents | A handful of long-running peers | Dozens to hundreds of agents per run |
+| Interruption | Restarts the turn | Restarts the turn | Teammates keep running | Resumable in the same session |
 
 A workflow moves the plan into code. With subagents, skills, and agent teams, Claude is the orchestrator: it decides turn by turn what to spawn or assign next, and every result goes into a context window. A workflow script holds the loop, the branching, and the intermediate results itself, so Claude's context holds only the final answer.
 
@@ -77,8 +77,8 @@ To run a workflow for your own task, [have Claude write one](#have-claude-write-
 
 Claude Code includes `/deep-research` as a built-in workflow:
 
-| Command                     | What it does                                                                                                                                                                                                                                                                                                      |
-| :-------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Command | What it does |
+| :- | :- |
 | `/deep-research <question>` | Fans out web searches on a question across several angles, fetches and cross-checks the sources it finds, votes on each claim, and returns a cited report with claims that didn't survive cross-checking filtered out. Requires the [WebSearch tool](https://code.claude.com/docs/en/tools-reference#websearch-tool-behavior) to be available |
 
 `/deep-research` runs only when you invoke it.
@@ -91,17 +91,17 @@ Workflows run in the background, so the session stays responsive while agents wo
 
 The progress view shows each phase with its agent counts, token totals, and elapsed time. The footer lists the key for each action:
 
-| Key            | Action                                                                                                                      |
-| :------------- | :-------------------------------------------------------------------------------------------------------------------------- |
-| `↑` / `↓`      | Select a phase or agent                                                                                                     |
-| `Enter` or `→` | Drill into the selected phase, then into an agent's detail. In the detail, `Enter` expands or collapses it                  |
-| `Esc` or `←`   | Back out one level. In v2.1.203 through v2.1.205, `←` didn't step back out of a phase or agent; use `Esc` on those versions |
-| `j` / `k`      | Scroll within the agent detail when it overflows                                                                            |
-| `f`            | Filter the agent list in the selected phase by status. Press again to cycle                                                 |
-| `p`            | Pause or resume the run                                                                                                     |
-| `x`            | Stop the selected agent, or stop the whole workflow when focus is on the run                                                |
-| `r`            | Restart the selected running agent                                                                                          |
-| `s`            | [Save](#save-the-workflow-for-reuse) the run's script as a command                                                          |
+| Key | Action |
+| :- | :- |
+| `↑` / `↓` | Select a phase or agent |
+| `Enter` or `→` | Drill into the selected phase, then into an agent's detail. In the detail, `Enter` expands or collapses it |
+| `Esc` or `←` | Back out one level. In v2.1.203 through v2.1.205, `←` didn't step back out of a phase or agent; use `Esc` on those versions |
+| `j` / `k` | Scroll within the agent detail when it overflows |
+| `f` | Filter the agent list in the selected phase by status. Press again to cycle |
+| `p` | Pause or resume the run |
+| `x` | Stop the selected agent, or stop the whole workflow when focus is on the run |
+| `r` | Restart the selected running agent |
+| `s` | [Save](#save-the-workflow-for-reuse) the run's script as a command |
 
 The agent detail lists the agent's prompt, its recent tool calls, and its result. Each call shows its state, such as still running or failed. When the agent keeps a task list of its own, the detail shows it too, with each task's status.
 
@@ -176,12 +176,12 @@ In the CLI, the per-run prompt shows the planned phases and these options:
 
 Whether you see this prompt depends on your [permission mode](https://code.claude.com/docs/en/permission-modes):
 
-| Permission mode        | When you're prompted                                                                                                                                    |
-| :--------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Auto                   | First launch only. Any **Yes** records consent in your user settings, and later launches start without prompting. Skipped entirely when ultracode is on |
-| Manual, accept edits   | Every run, unless you've selected **Yes, and don't ask again** for that workflow in this project                                                        |
-| Bypass permissions     | Claude Code doesn't prompt you. The run starts immediately                                                                                              |
-| `claude -p`, Agent SDK | Claude Code doesn't prompt you                                                                                                                          |
+| Permission mode | When you're prompted |
+| :- | :- |
+| Auto | First launch only. Any **Yes** records consent in your user settings, and later launches start without prompting. Skipped entirely when ultracode is on |
+| Manual, accept edits | Every run, unless you've selected **Yes, and don't ask again** for that workflow in this project |
+| Bypass permissions | Claude Code doesn't prompt you. The run starts immediately |
+| `claude -p`, Agent SDK | Claude Code doesn't prompt you |
 
 In `claude -p` and the Agent SDK, Claude Code never shows this prompt. It runs the Workflow tool call through the same [permission evaluation](https://code.claude.com/docs/en/agent-sdk/permissions#how-permissions-are-evaluated) as the rest of the session, so deny rules, ask rules, and `dontAsk` mode apply to the launch as they apply to every tool call. To let the workflow start in these runs, use one of these:
 
@@ -349,15 +349,15 @@ When a fan-out starts several matching agents at once, Claude Code holds all but
 
 The runtime applies the following constraints:
 
-| Constraint                                                                                                                                                                                                                                                                                               | Why                                                                                                                                                                                    |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| No mid-run user input                                                                                                                                                                                                                                                                                    | A run pauses on its own only for agent permission prompts and a [usage-limit wait](#when-a-run-hits-your-usage-limit). For sign-off between stages, run each stage as its own workflow |
-| No direct filesystem or shell access from the workflow itself                                                                                                                                                                                                                                            | Agents read, write, and run commands. The script coordinates the agents                                                                                                                |
-| No module loading: a script that contains `import()` fails before the run starts                                                                                                                                                                                                                         | The script body is plain JavaScript. Put work that needs a library in an agent's task                                                                                                  |
-| Up to 16 concurrent agents by default, fewer when Claude Code has fewer CPUs available, including inside a CPU-limited container. To change the limit, set [`CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS`](https://code.claude.com/docs/en/env-vars#variables) to a value from 1 to 256, which requires Claude Code v2.1.269 or later | Bounds local resource use                                                                                                                                                              |
-| In a fan-out, agents that share the first agent's prompt-cache prefix start up to 5 seconds after it by default                                                                                                                                                                                          | All but the first read the [prefix the first agent cached](#prompt-caching-in-a-fan-out) instead of each processing it uncached                                                        |
-| Up to 4,096 items in a single `parallel()` or `pipeline()` call: the runtime rejects a longer list with an error                                                                                                                                                                                         | A silent cap would drop part of the workload without telling the script                                                                                                                |
-| 1,000 agents total per run                                                                                                                                                                                                                                                                               | Prevents runaway loops                                                                                                                                                                 |
+| Constraint | Why |
+| :- | :- |
+| No mid-run user input | A run pauses on its own only for agent permission prompts and a [usage-limit wait](#when-a-run-hits-your-usage-limit). For sign-off between stages, run each stage as its own workflow |
+| No direct filesystem or shell access from the workflow itself | Agents read, write, and run commands. The script coordinates the agents |
+| No module loading: a script that contains `import()` fails before the run starts | The script body is plain JavaScript. Put work that needs a library in an agent's task |
+| Up to 16 concurrent agents by default, fewer when Claude Code has fewer CPUs available, including inside a CPU-limited container. To change the limit, set [`CLAUDE_CODE_WORKFLOW_MAX_CONCURRENT_AGENTS`](https://code.claude.com/docs/en/env-vars#variables) to a value from 1 to 256, which requires Claude Code v2.1.269 or later | Bounds local resource use |
+| In a fan-out, agents that share the first agent's prompt-cache prefix start up to 5 seconds after it by default | All but the first read the [prefix the first agent cached](#prompt-caching-in-a-fan-out) instead of each processing it uncached |
+| Up to 4,096 items in a single `parallel()` or `pipeline()` call: the runtime rejects a longer list with an error | A silent cap would drop part of the workload without telling the script |
+| 1,000 agents total per run | Prevents runaway loops |
 
 ## Manage runs
 
@@ -427,12 +427,12 @@ A size guideline tells Claude how many agents to aim for when it writes a dynami
 
 Each value maps to an agent count:
 
-| Value          | Agent count Claude aims for                         |
-| :------------- | :-------------------------------------------------- |
+| Value | Agent count Claude aims for |
+| :- | :- |
 | `unrestricted` | No guideline: Claude sizes the workflow to the task |
-| `small`        | Fewer than 5 agents                                 |
-| `medium`       | Fewer than 10 agents                                |
-| `large`        | Fewer than 50 agents                                |
+| `small` | Fewer than 5 agents |
+| `medium` | Fewer than 10 agents |
+| `large` | Fewer than 50 agents |
 
 The default is `medium`, or `small` when you're signed in on a Pro plan with Claude Code v2.1.271 or later. Until you choose a value, the `/config` row marks the value as the default, and the workflow's `Running in background` line names the size in force. Requires Claude Code v2.1.219 or later; earlier versions default to `unrestricted`.
 

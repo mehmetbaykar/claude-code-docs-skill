@@ -27,26 +27,26 @@ For guidance on which model and effort level fit different kinds of work, see [C
 
 Use a model alias to select model settings without remembering exact version numbers:
 
-| Model alias      | Behavior                                                                                                                                                                                                                                                                                                                                                   |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`default`**    | Special value that clears any model override and reverts to the [runtime default for your account](#default-model-setting). Not itself a model alias                                                                                                                                                                                                       |
-| **`best`**       | Uses the model the [`fable` alias resolves to](#fable-alias-resolution) where Fable is available to you, otherwise the same model as `opus`                                                                                                                                                                                                                |
-| **`fable`**      | Uses the [Fable model for your provider](#fable-alias-resolution) for your hardest and longest-running tasks                                                                                                                                                                                                                                               |
-| **`sonnet`**     | Uses the latest Sonnet model for daily coding tasks                                                                                                                                                                                                                                                                                                        |
-| **`opus`**       | Uses the latest Opus model for complex reasoning tasks                                                                                                                                                                                                                                                                                                     |
-| **`haiku`**      | Uses the fast and efficient Haiku model for simple tasks                                                                                                                                                                                                                                                                                                   |
+| Model alias | Behavior |
+| - | - |
+| **`default`** | Special value that clears any model override and reverts to the [runtime default for your account](#default-model-setting). Not itself a model alias |
+| **`best`** | Uses the model the [`fable` alias resolves to](#fable-alias-resolution) where Fable is available to you, otherwise the same model as `opus` |
+| **`fable`** | Uses the [Fable model for your provider](#fable-alias-resolution) for your hardest and longest-running tasks |
+| **`sonnet`** | Uses the latest Sonnet model for daily coding tasks |
+| **`opus`** | Uses the latest Opus model for complex reasoning tasks |
+| **`haiku`** | Uses the fast and efficient Haiku model for simple tasks |
 | **`sonnet[1m]`** | Uses Sonnet with a [1 million token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#context-window-sizes-by-model) for long sessions. No effect when `sonnet` already resolves to Sonnet 5.5 or Sonnet 5 with their native 1M window; behind an [LLM gateway](https://code.claude.com/docs/en/llm-gateway), selects the 1M window for that model |
-| **`opus[1m]`**   | Uses Opus with a [1 million token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#context-window-sizes-by-model) for long sessions                                                                                                                                                                                   |
-| **`opusplan`**   | Special mode that uses `opus` during plan mode, then switches to `sonnet` for execution                                                                                                                                                                                                                                                                    |
+| **`opus[1m]`** | Uses Opus with a [1 million token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#context-window-sizes-by-model) for long sessions |
+| **`opusplan`** | Special mode that uses `opus` during plan mode, then switches to `sonnet` for execution |
 
 The version that the `opus` and `sonnet` aliases resolve to depends on the provider:
 
-| Provider                                             | `opus`   | `sonnet`   |
-| :--------------------------------------------------- | :------- | :--------- |
-| Anthropic API                                        | Opus 5.5 | Sonnet 5.5 |
+| Provider | `opus` | `sonnet` |
+| :- | :- | :- |
+| Anthropic API | Opus 5.5 | Sonnet 5.5 |
 | [Claude Platform on AWS](https://code.claude.com/docs/en/claude-platform-on-aws) | Opus 5.5 | Sonnet 4.6 |
-| Amazon Bedrock, Google Cloud's Agent Platform        | Opus 5.5 | Sonnet 4.5 |
-| Microsoft Foundry                                    | Opus 4.6 | Sonnet 4.5 |
+| Amazon Bedrock, Google Cloud's Agent Platform | Opus 5.5 | Sonnet 4.5 |
+| Microsoft Foundry | Opus 4.6 | Sonnet 4.5 |
 
 Unless you set `ANTHROPIC_DEFAULT_FABLE_MODEL`, the `fable` alias resolves to Fable 5.1, except in [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway) sessions, where `fable` and `best` resolve to Fable 5.
 
@@ -261,10 +261,10 @@ Model changes that Claude Code makes on your behalf are checked the same way:
 
 Every surface enforces the allowlist it receives. Which delivery mechanism reaches each surface differs:
 
-| Delivery mechanism                                                            | CLI and IDE | Desktop local sessions | Web, mobile, and cloud sessions                                                                                                                                                                                                                           | Agent SDK and non-interactive | Cowork                  |
-| :---------------------------------------------------------------------------- | :---------- | :--------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------- | :---------------------- |
-| [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings) from the admin console | Enforced    | Enforced               | Enforced                                                                                                                                                                                                                                                  | Enforced                      | Not delivered           |
-| [MDM or managed settings files](https://code.claude.com/docs/en/managed-settings#delivery-mechanisms)     | Enforced    | Enforced               | Not delivered in Anthropic-hosted environments; in [self-hosted environments](https://code.claude.com/docs/en/self-hosted-environments), enforced from the runner image per [how Claude Code combines managed sources](https://code.claude.com/docs/en/managed-settings#how-claude-code-combines-managed-sources) | Enforced                      | Enforced where deployed |
+| Delivery mechanism | CLI and IDE | Desktop local sessions | Web, mobile, and cloud sessions | Agent SDK and non-interactive | Cowork |
+| :- | :- | :- | :- | :- | :- |
+| [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings) from the admin console | Enforced | Enforced | Enforced | Enforced | Not delivered |
+| [MDM or managed settings files](https://code.claude.com/docs/en/managed-settings#delivery-mechanisms) | Enforced | Enforced | Not delivered in Anthropic-hosted environments; in [self-hosted environments](https://code.claude.com/docs/en/self-hosted-environments), enforced from the runner image per [how Claude Code combines managed sources](https://code.claude.com/docs/en/managed-settings#how-claude-code-combines-managed-sources) | Enforced | Enforced where deployed |
 
 * [Cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web), including those you start from the Desktop app, run on Anthropic-managed VMs by default: settings deployed to your device do not reach them, so deliver the allowlist through server-managed settings. Sessions your organization routes to a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments) run on your own compute and also read the managed settings file in the runner image. [How Claude Code combines managed sources](https://code.claude.com/docs/en/managed-settings#how-claude-code-combines-managed-sources) says when that file applies. A mid-session model switch in a cloud session is rejected when the requested model is excluded by the allowlist. When the `availableModels` list in your server-managed settings is non-empty, the server rejects a user's request to start a cloud session on a model the list excludes.
 * Cowork, the agentic-work tab in the Claude Desktop app, runs its sessions on Claude Code but, by design, does not receive server-managed settings from the claude.ai admin console. A managed settings file applies to Cowork sessions when it is present where the session runs; remote Cowork sessions run on Anthropic-managed VMs, where a device-deployed file is not present.
@@ -546,11 +546,11 @@ This is expected routing for these domains, not an account flag. If your organiz
 
 The available effort levels depend on the model. Models not listed here do not support effort:
 
-| Model                                                          | Levels                                  |
-| :------------------------------------------------------------- | :-------------------------------------- |
-| Fable 5.1 and Fable 5                                          | `low`, `medium`, `high`, `xhigh`, `max` |
+| Model | Levels |
+| :- | :- |
+| Fable 5.1 and Fable 5 | `low`, `medium`, `high`, `xhigh`, `max` |
 | Opus 5.5, Sonnet 5.5, Opus 5, Sonnet 5, Opus 4.8, and Opus 4.7 | `low`, `medium`, `high`, `xhigh`, `max` |
-| Opus 4.6 and Sonnet 4.6                                        | `low`, `medium`, `high`, `max`          |
+| Opus 4.6 and Sonnet 4.6 | `low`, `medium`, `high`, `max` |
 
 If you set a level the active model does not support, Claude Code falls back to the highest supported level at or below the one you set. For example, `xhigh` runs as `high` on Opus 4.6. Your organization or your own settings can also cap the levels a model offers; see [Organization effort limits](#organization-effort-limits).
 
@@ -600,14 +600,14 @@ In those cases `--effort ultracode` starts the session with ultracode off, at th
 
 Each level trades token spend against capability. The default suits most coding tasks; adjust when you want a different balance.
 
-| Level       | When to use it                                                                                                                                                                                                                              |
-| :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `low`       | Quick exchanges where you review each result, such as brainstorming, a first sketch, or a small change like a rename                                                                                                                        |
-| `medium`    | The default on Opus 5.5 and Sonnet 5.5, where it fits day-to-day engineering work with a clear scope, such as implementing a new feature. On other models, reduces token usage for cost-sensitive work that can trade off some intelligence |
-| `high`      | Work where verification matters or edge cases are likely, such as fixing a bug in an existing codebase. The default on every model except Opus 5.5, Sonnet 5.5, and Opus 4.7                                                                |
-| `xhigh`     | Deeper reasoning at higher token spend. The default on Opus 4.7                                                                                                                                                                             |
-| `max`       | Hard problems you want Claude to work through without you, such as finding security vulnerabilities. `max` may show diminishing returns and is prone to overthinking, so test before adopting it broadly                                    |
-| `ultracode` | A Claude Code setting that plans a [dynamic workflow](https://code.claude.com/docs/en/workflows) for each substantive task with `xhigh` per-message reasoning                                                                                                           |
+| Level | When to use it |
+| :- | :- |
+| `low` | Quick exchanges where you review each result, such as brainstorming, a first sketch, or a small change like a rename |
+| `medium` | The default on Opus 5.5 and Sonnet 5.5, where it fits day-to-day engineering work with a clear scope, such as implementing a new feature. On other models, reduces token usage for cost-sensitive work that can trade off some intelligence |
+| `high` | Work where verification matters or edge cases are likely, such as fixing a bug in an existing codebase. The default on every model except Opus 5.5, Sonnet 5.5, and Opus 4.7 |
+| `xhigh` | Deeper reasoning at higher token spend. The default on Opus 4.7 |
+| `max` | Hard problems you want Claude to work through without you, such as finding security vulnerabilities. `max` may show diminishing returns and is prone to overthinking, so test before adopting it broadly |
+| `ultracode` | A Claude Code setting that plans a [dynamic workflow](https://code.claude.com/docs/en/workflows) for each substantive task with `xhigh` per-message reasoning |
 
 In tests on Opus 5.5 and Fable 5.1, Claude at a higher level tested more edge cases and verified more of its work before answering. It also made more choices on its own. At a lower level, Claude returned a starting point sooner, which fits work where you review each result and steer the next step. To see the same tasks run at each level, read [Using Claude Code: Spending your effort](https://claude.dev/blog/spending-your-effort/) on the blog.
 
@@ -649,10 +649,10 @@ On Opus 4.6 and Sonnet 4.6, you can set `CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING=1
 
 Extended thinking is the reasoning Claude emits before responding. On models that support [adaptive reasoning](#adjust-effort-level), the effort level is the primary control for how much thinking happens; the settings below turn thinking on or off and control how it displays. With thinking turned off on the Anthropic API, Claude Code sends effort `high` instead of a higher level to models it knows [don't accept that combination](https://code.claude.com/docs/en/errors#effort-isnt-available-with-thinking-turned-off), such as Opus 5.
 
-| Control                                 | How to set it                                                                                                                                                                                                                                                                                                                                                                                                    |
-| :-------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Toggle for the current session          | Press `Option+T` on macOS or `Alt+T` on Windows and Linux                                                                                                                                                                                                                                                                                                                                                        |
-| Set the global default                  | Run `/config` and toggle thinking mode. Saved as `alwaysThinkingEnabled` in `~/.claude/settings.json`                                                                                                                                                                                                                                                                                                            |
+| Control | How to set it |
+| :- | :- |
+| Toggle for the current session | Press `Option+T` on macOS or `Alt+T` on Windows and Linux |
+| Set the global default | Run `/config` and toggle thinking mode. Saved as `alwaysThinkingEnabled` in `~/.claude/settings.json` |
 | Disable through an environment variable | Set [`MAX_THINKING_TOKENS=0`](https://code.claude.com/docs/en/env-vars), which turns thinking off on the Anthropic API except on Opus 5.5, Sonnet 5.5, and Fable models. On [third-party providers](https://code.claude.com/docs/en/third-party-integrations), Claude Code omits the `thinking` parameter instead, and adaptive-reasoning models may still think. Other values apply only with a [fixed thinking budget](#adaptive-reasoning-and-fixed-thinking-budgets) |
 
 You can't turn thinking off on Opus 5.5, Sonnet 5.5, or the Fable models. The session toggle, `alwaysThinkingEnabled`, and `MAX_THINKING_TOKENS=0` have no effect there, and the model decides per step how much to think based on the effort level.
@@ -667,11 +667,11 @@ On the Anthropic API, Fable 5.1, Fable 5, Sonnet 5 and later, and Opus 4.7 and l
 
 Opus 4.6 and Sonnet 4.6 reach 1M only through their `[1m]` variant, and access to that variant depends on your plan. On Max, Team, and Enterprise plans, including both Team Standard and Team Premium seats, Opus 4.6 with 1M context is included with your subscription. Sonnet 4.6 with 1M context requires [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) on every subscription plan, including Max.
 
-| Plan                      | Opus 4.6 with 1M context                                                                                    | Sonnet 4.6 with 1M context                                                                                  |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Max, Team, and Enterprise | Included with subscription                                                                                  | Requires [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) |
-| Pro                       | Requires [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) | Requires [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) |
-| API and pay-as-you-go     | Full access                                                                                                 | Full access                                                                                                 |
+| Plan | Opus 4.6 with 1M context | Sonnet 4.6 with 1M context |
+| - | - | - |
+| Max, Team, and Enterprise | Included with subscription | Requires [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) |
+| Pro | Requires [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) | Requires [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) |
+| API and pay-as-you-go | Full access | Full access |
 
 Claude Code checks these plan requirements only when it connects to the Anthropic API directly. If you point `ANTHROPIC_BASE_URL` at an [LLM gateway](https://code.claude.com/docs/en/llm-gateway#subscriptions-and-gateways) and your saved claude.ai login stays the active credential, Claude Code doesn't check your plan's usage credits. The `[1m]` options stay available in `/model`, and the gateway decides whether the request succeeds. Before v2.1.229, Claude Code rejected `/model sonnet[1m]` in that configuration when it couldn't confirm usage credits on the account.
 
@@ -790,13 +790,13 @@ A custom ID that embeds a family name, such as `my-gateway/claude-opus-5-5`, cou
 
 Use the following environment variables to control the model names that the aliases map to. Each value must be a full model name, or the equivalent identifier for your API provider. To choose the model your sessions start on, set [`ANTHROPIC_DEFAULT_MODEL`](#set-a-default-model-for-new-sessions), which this table omits.
 
-| Environment variable             | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ANTHROPIC_DEFAULT_FABLE_MODEL`  | The model to use for `fable`, and the model ID Claude Code recognizes as a Fable model for [automatic model fallback](#automatic-model-fallback) on third-party providers                                                                                                                                                                                                                                                                                                             |
-| `ANTHROPIC_DEFAULT_OPUS_MODEL`   | The model to use for `opus`, or for `opusplan` when Plan Mode is active.                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `ANTHROPIC_DEFAULT_SONNET_MODEL` | The model to use for `sonnet`, or for `opusplan` when Plan Mode is not active.                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `ANTHROPIC_DEFAULT_HAIKU_MODEL`  | The model to use for `haiku`, or [background functionality](https://code.claude.com/docs/en/costs#background-token-usage)                                                                                                                                                                                                                                                                                                                                                                                         |
-| `CLAUDE_CODE_SUBAGENT_MODEL`     | The default model for [subagents](https://code.claude.com/docs/en/sub-agents#choose-a-model), [agent team](https://code.claude.com/docs/en/agent-teams#specify-teammates-and-models) teammates, and [workflow](https://code.claude.com/docs/en/workflows) agents that aren't assigned a model another way. Accepts an alias such as `haiku` or a full model name. A per-invocation model or a definition's `model` field, including `inherit`, takes precedence. To change that, set [`CLAUDE_CODE_SUBAGENT_MODEL_FORCE`](https://code.claude.com/docs/en/sub-agents#run-every-subagent-on-one-model) |
+| Environment variable | Description |
+| - | - |
+| `ANTHROPIC_DEFAULT_FABLE_MODEL` | The model to use for `fable`, and the model ID Claude Code recognizes as a Fable model for [automatic model fallback](#automatic-model-fallback) on third-party providers |
+| `ANTHROPIC_DEFAULT_OPUS_MODEL` | The model to use for `opus`, or for `opusplan` when Plan Mode is active. |
+| `ANTHROPIC_DEFAULT_SONNET_MODEL` | The model to use for `sonnet`, or for `opusplan` when Plan Mode is not active. |
+| `ANTHROPIC_DEFAULT_HAIKU_MODEL` | The model to use for `haiku`, or [background functionality](https://code.claude.com/docs/en/costs#background-token-usage) |
+| `CLAUDE_CODE_SUBAGENT_MODEL` | The default model for [subagents](https://code.claude.com/docs/en/sub-agents#choose-a-model), [agent team](https://code.claude.com/docs/en/agent-teams#specify-teammates-and-models) teammates, and [workflow](https://code.claude.com/docs/en/workflows) agents that aren't assigned a model another way. Accepts an alias such as `haiku` or a full model name. A per-invocation model or a definition's `model` field, including `inherit`, takes precedence. To change that, set [`CLAUDE_CODE_SUBAGENT_MODEL_FORCE`](https://code.claude.com/docs/en/sub-agents#run-every-subagent-on-one-model) |
 
 On third-party providers, [Customize pinned model display and capabilities](#customize-pinned-model-display-and-capabilities) describes what a pinned model's row in the `/model` picker shows.
 
@@ -815,11 +815,11 @@ Set the model environment variables to specific version IDs as part of your init
 
 Use the following environment variables with version-specific model IDs for your provider:
 
-| Provider                      | Example                                                              |
-| :---------------------------- | :------------------------------------------------------------------- |
-| Amazon Bedrock                | `export ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-4-8'` |
-| Google Cloud's Agent Platform | `export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-8'`              |
-| Microsoft Foundry             | `export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-8'`              |
+| Provider | Example |
+| :- | :- |
+| Amazon Bedrock | `export ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-4-8'` |
+| Google Cloud's Agent Platform | `export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-8'` |
+| Microsoft Foundry | `export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-8'` |
 
 Apply the same pattern for `ANTHROPIC_DEFAULT_FABLE_MODEL`, `ANTHROPIC_DEFAULT_SONNET_MODEL`, and `ANTHROPIC_DEFAULT_HAIKU_MODEL`. For current and legacy model IDs across all providers, see [Models overview](https://platform.claude.com/docs/en/about-claude/models/overview). To upgrade users to a new model version, update these environment variables and redeploy.
 
@@ -851,24 +851,24 @@ Claude Code may also not recognize which features a pinned model supports. You c
 
 These variables take effect on third-party providers such as Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry. The `_NAME` and `_DESCRIPTION` variables also take effect when `ANTHROPIC_BASE_URL` points to an [LLM gateway](https://code.claude.com/docs/en/llm-gateway). They have no effect when connecting directly to `api.anthropic.com`.
 
-| Environment variable                                  | Description                                                                                                                                                                      |
-| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ANTHROPIC_DEFAULT_OPUS_MODEL_NAME`                   | Display name for the pinned Opus model in the `/model` picker. When not set, the row shows the model's name if Claude Code recognizes the pinned ID, and the pinned ID otherwise |
-| `ANTHROPIC_DEFAULT_OPUS_MODEL_DESCRIPTION`            | Display description for the pinned Opus model in the `/model` picker. When not set, the row shows a default description that begins `Custom Opus model`                          |
-| `ANTHROPIC_DEFAULT_OPUS_MODEL_SUPPORTED_CAPABILITIES` | Comma-separated list of capabilities the pinned Opus model supports                                                                                                              |
+| Environment variable | Description |
+| - | - |
+| `ANTHROPIC_DEFAULT_OPUS_MODEL_NAME` | Display name for the pinned Opus model in the `/model` picker. When not set, the row shows the model's name if Claude Code recognizes the pinned ID, and the pinned ID otherwise |
+| `ANTHROPIC_DEFAULT_OPUS_MODEL_DESCRIPTION` | Display description for the pinned Opus model in the `/model` picker. When not set, the row shows a default description that begins `Custom Opus model` |
+| `ANTHROPIC_DEFAULT_OPUS_MODEL_SUPPORTED_CAPABILITIES` | Comma-separated list of capabilities the pinned Opus model supports |
 
 The same `_NAME`, `_DESCRIPTION`, and `_SUPPORTED_CAPABILITIES` suffixes are available for `ANTHROPIC_DEFAULT_SONNET_MODEL`, `ANTHROPIC_DEFAULT_HAIKU_MODEL`, `ANTHROPIC_DEFAULT_FABLE_MODEL`, and `ANTHROPIC_CUSTOM_MODEL_OPTION`.
 
 Claude Code enables features like [effort levels](#adjust-effort-level) and [extended thinking](#extended-thinking) by matching the model ID against known patterns. Provider-specific IDs such as Amazon Bedrock ARNs or custom deployment names often don't match these patterns, leaving supported features disabled. Set `_SUPPORTED_CAPABILITIES` to tell Claude Code which features the model actually supports:
 
-| Capability value       | Enables                                                                         |
-| ---------------------- | ------------------------------------------------------------------------------- |
-| `effort`               | [Effort levels](#adjust-effort-level) and the `/effort` command                 |
-| `xhigh_effort`         | The `xhigh` effort level                                                        |
-| `max_effort`           | The `max` effort level                                                          |
-| `thinking`             | [Extended thinking](#extended-thinking)                                         |
-| `adaptive_thinking`    | Adaptive reasoning that dynamically allocates thinking based on task complexity |
-| `interleaved_thinking` | Thinking between tool calls                                                     |
+| Capability value | Enables |
+| - | - |
+| `effort` | [Effort levels](#adjust-effort-level) and the `/effort` command |
+| `xhigh_effort` | The `xhigh` effort level |
+| `max_effort` | The `max` effort level |
+| `thinking` | [Extended thinking](#extended-thinking) |
+| `adaptive_thinking` | Adaptive reasoning that dynamically allocates thinking based on task complexity |
+| `interleaved_thinking` | Thinking between tool calls |
 
 When `_SUPPORTED_CAPABILITIES` is set, Claude Code enables the listed capabilities and disables the unlisted ones for the matching pinned model. When the variable is unset, Claude Code falls back to built-in detection based on the model ID.
 
@@ -917,13 +917,13 @@ When `availableModels` is set in [managed settings](https://code.claude.com/docs
 
 Claude Code automatically uses [prompt caching](https://code.claude.com/docs/en/prompt-caching) to optimize performance and reduce costs. You can disable prompt caching globally or for specific model tiers:
 
-| Environment variable            | Description                                                                                                   |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `DISABLE_PROMPT_CACHING`        | Set to `1` to disable prompt caching for all models. Takes precedence over the per-model settings             |
-| `DISABLE_PROMPT_CACHING_HAIKU`  | Set to `1` to disable prompt caching for the [default Haiku model](https://code.claude.com/docs/en/prompt-caching#disable-prompt-caching) |
-| `DISABLE_PROMPT_CACHING_SONNET` | Set to `1` to disable prompt caching for Sonnet models only                                                   |
-| `DISABLE_PROMPT_CACHING_OPUS`   | Set to `1` to disable prompt caching for Opus models only                                                     |
-| `DISABLE_PROMPT_CACHING_FABLE`  | Set to `1` to disable prompt caching for Fable models only                                                    |
+| Environment variable | Description |
+| - | - |
+| `DISABLE_PROMPT_CACHING` | Set to `1` to disable prompt caching for all models. Takes precedence over the per-model settings |
+| `DISABLE_PROMPT_CACHING_HAIKU` | Set to `1` to disable prompt caching for the [default Haiku model](https://code.claude.com/docs/en/prompt-caching#disable-prompt-caching) |
+| `DISABLE_PROMPT_CACHING_SONNET` | Set to `1` to disable prompt caching for Sonnet models only |
+| `DISABLE_PROMPT_CACHING_OPUS` | Set to `1` to disable prompt caching for Opus models only |
+| `DISABLE_PROMPT_CACHING_FABLE` | Set to `1` to disable prompt caching for Fable models only |
 
 To choose the cache TTL for the main conversation and for subagents separately, see [choose the TTL yourself](https://code.claude.com/docs/en/prompt-caching#choose-the-ttl-yourself). For what triggers a cache miss, see [How Claude Code uses prompt caching](https://code.claude.com/docs/en/prompt-caching).
 
@@ -931,13 +931,13 @@ To choose the cache TTL for the main conversation and for subagents separately, 
 
 This table lists the Claude Code version at which each model alias changed the model it resolves to, newest first.
 
-| Version  | Change                                                                                                                                                    |
-| :------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| v2.1.284 | `sonnet` resolves to Sonnet 5.5 on the Anthropic API                                                                                                      |
-| v2.1.280 | `opus` resolves to Opus 5.5 on the Anthropic API, Claude Platform on AWS, Amazon Bedrock, and Google Cloud's Agent Platform                               |
-| v2.1.257 | `fable` resolves to Fable 5.1, except in Claude apps gateway sessions                                                                                     |
-| v2.1.219 | `opus` resolves to Opus 5 on the Anthropic API, Claude Platform on AWS, Amazon Bedrock, and Agent Platform                                                |
-| v2.1.207 | `opus` resolves to Opus 4.8 on Claude Platform on AWS, Amazon Bedrock, and Agent Platform                                                                 |
-| v2.1.197 | `sonnet` resolves to Sonnet 5 on the Anthropic API                                                                                                        |
-| v2.1.154 | `opus` resolves to Opus 4.8 on the Anthropic API                                                                                                          |
-| Earlier  | `opus` resolves to Opus 4.7 on Claude Platform on AWS and to Opus 4.6 on Amazon Bedrock and Agent Platform. `fable` resolves to Fable 5 on every provider |
+| Version | Change |
+| :- | :- |
+| v2.1.284 | `sonnet` resolves to Sonnet 5.5 on the Anthropic API |
+| v2.1.280 | `opus` resolves to Opus 5.5 on the Anthropic API, Claude Platform on AWS, Amazon Bedrock, and Google Cloud's Agent Platform |
+| v2.1.257 | `fable` resolves to Fable 5.1, except in Claude apps gateway sessions |
+| v2.1.219 | `opus` resolves to Opus 5 on the Anthropic API, Claude Platform on AWS, Amazon Bedrock, and Agent Platform |
+| v2.1.207 | `opus` resolves to Opus 4.8 on Claude Platform on AWS, Amazon Bedrock, and Agent Platform |
+| v2.1.197 | `sonnet` resolves to Sonnet 5 on the Anthropic API |
+| v2.1.154 | `opus` resolves to Opus 4.8 on the Anthropic API |
+| Earlier | `opus` resolves to Opus 4.7 on Claude Platform on AWS and to Opus 4.6 on Amazon Bedrock and Agent Platform. `fable` resolves to Fable 5 on every provider |

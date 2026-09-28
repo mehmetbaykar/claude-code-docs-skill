@@ -168,23 +168,23 @@ Everything in [CLI capabilities that vary by provider](#cli-capabilities-that-va
 
 If you authenticate through Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, or an Anthropic Console API key, this section does not apply to you. When you sign in with a claude.ai account, your plan determines which of the features below are available.
 
-| Feature                                                                     | Pro | Max | Team          | Enterprise                        |
-| :-------------------------------------------------------------------------- | :-- | :-- | :------------ | :-------------------------------- |
-| [Cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web)                                | ✓   | ✓   | ✓             | ✓ <sup>[6](#fn6)</sup> |
-| [Routines](https://code.claude.com/docs/en/routines)                                                    | ✓   | ✓   | ✓             | ✓                                 |
-| [Remote Control](https://code.claude.com/docs/en/remote-control)                                        | ✓   | ✓   | Admin-enabled | Admin-enabled                     |
-| [Channels](https://code.claude.com/docs/en/channels)                                                    | ✓   | ✓   | Admin-enabled | Admin-enabled                     |
-| [Computer use](https://code.claude.com/docs/en/computer-use)                                            | ✓   | ✓   | ✗             | ✗                                 |
-| Dispatch ([Desktop](https://code.claude.com/docs/en/desktop#sessions-from-dispatch))                    | ✓   | ✓   | ✗             | ✗                                 |
-| [Code Review](https://code.claude.com/docs/en/code-review)                                              | ✗   | ✗   | ✓             | ✓                                 |
-| [Artifacts](https://code.claude.com/docs/en/artifacts)                                                  | ✓   | ✓   | ✓             | Admin-enabled                     |
-| [Analytics dashboard and contribution metrics](https://code.claude.com/docs/en/analytics)               | ✗   | ✗   | ✓             | ✓                                 |
-| [Enterprise Analytics API](https://code.claude.com/docs/en/analytics#access-data-programmatically)      | ✗   | ✗   | ✗             | ✓                                 |
-| [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings)                      | ✗   | ✗   | ✓             | ✓                                 |
-| [SSO](https://support.claude.com/en/articles/9266767-what-is-the-team-plan) | ✗   | ✗   | ✓             | ✓                                 |
-| SCIM                                                                        | ✗   | ✗   | ✗             | ✓                                 |
-| [Compliance API](https://platform.claude.com/docs/en/api/compliance)        | ✗   | ✗   | ✗             | ✓                                 |
-| [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention)                              | ✗   | ✗   | ✗             | ✓ <sup>[7](#fn7)</sup> |
+| Feature | Pro | Max | Team | Enterprise |
+| :- | :- | :- | :- | :- |
+| [Cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) | ✓ | ✓ | ✓ | ✓ <sup>[6](#fn6)</sup> |
+| [Routines](https://code.claude.com/docs/en/routines) | ✓ | ✓ | ✓ | ✓ |
+| [Remote Control](https://code.claude.com/docs/en/remote-control) | ✓ | ✓ | Admin-enabled | Admin-enabled |
+| [Channels](https://code.claude.com/docs/en/channels) | ✓ | ✓ | Admin-enabled | Admin-enabled |
+| [Computer use](https://code.claude.com/docs/en/computer-use) | ✓ | ✓ | ✗ | ✗ |
+| Dispatch ([Desktop](https://code.claude.com/docs/en/desktop#sessions-from-dispatch)) | ✓ | ✓ | ✗ | ✗ |
+| [Code Review](https://code.claude.com/docs/en/code-review) | ✗ | ✗ | ✓ | ✓ |
+| [Artifacts](https://code.claude.com/docs/en/artifacts) | ✓ | ✓ | ✓ | Admin-enabled |
+| [Analytics dashboard and contribution metrics](https://code.claude.com/docs/en/analytics) | ✗ | ✗ | ✓ | ✓ |
+| [Enterprise Analytics API](https://code.claude.com/docs/en/analytics#access-data-programmatically) | ✗ | ✗ | ✗ | ✓ |
+| [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings) | ✗ | ✗ | ✓ | ✓ |
+| [SSO](https://support.claude.com/en/articles/9266767-what-is-the-team-plan) | ✗ | ✗ | ✓ | ✓ |
+| SCIM | ✗ | ✗ | ✗ | ✓ |
+| [Compliance API](https://platform.claude.com/docs/en/api/compliance) | ✗ | ✗ | ✗ | ✓ |
+| [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention) | ✗ | ✗ | ✗ | ✓ <sup>[7](#fn7)</sup> |
 
 <sup>7</sup> Not included in the standard Enterprise plan. Requires separate enablement by Anthropic for qualified accounts. See [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention).
 

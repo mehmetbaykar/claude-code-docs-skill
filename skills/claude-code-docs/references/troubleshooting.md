@@ -10,20 +10,20 @@ path: /docs/en/troubleshooting
 
 This page covers performance, stability, and search problems once Claude Code is running. For other issues, start with the page that matches where you're stuck:
 
-| Symptom                                                                                                                                              | Go to                                                                                    |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------- |
-| `command not found`, install fails, PATH issues, `EACCES`, TLS errors                                                                                | [Troubleshoot installation and login](https://code.claude.com/docs/en/troubleshoot-install)                          |
-| Update or install download fails with `The connection dropped while downloading the update` or `aborted`                                             | [Error reference](https://code.claude.com/docs/en/errors#the-connection-dropped-while-downloading-the-update)        |
+| Symptom | Go to |
+| :- | :- |
+| `command not found`, install fails, PATH issues, `EACCES`, TLS errors | [Troubleshoot installation and login](https://code.claude.com/docs/en/troubleshoot-install) |
+| Update or install download fails with `The connection dropped while downloading the update` or `aborted` | [Error reference](https://code.claude.com/docs/en/errors#the-connection-dropped-while-downloading-the-update) |
 | Login loops, OAuth errors, `403 Forbidden`, "organization disabled", Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry credentials | [Troubleshoot installation and login](https://code.claude.com/docs/en/troubleshoot-install#login-and-authentication) |
-| Settings not applying, hooks not firing, MCP servers not loading                                                                                     | [Debug your configuration](https://code.claude.com/docs/en/debug-your-config)                                        |
-| Session started in auto mode, or Claude edits files and runs commands without asking                                                                 | [Which mode a session starts in](https://code.claude.com/docs/en/permission-modes#which-mode-a-session-starts-in)    |
-| `API Error: 5xx`, `529 Overloaded`, `429`, request validation errors                                                                                 | [Error reference](https://code.claude.com/docs/en/errors)                                                            |
-| `model not found` or `you may not have access to it`                                                                                                 | [Error reference](https://code.claude.com/docs/en/errors#theres-an-issue-with-the-selected-model)                    |
-| A command Claude runs fails with `Your disk quota is full`, `is full (ENOSPC)`, or `Command output was lost`                                         | [Error reference](https://code.claude.com/docs/en/errors#disk-quota-or-temp-filesystem-is-full)                      |
-| VS Code extension not connecting or detecting Claude                                                                                                 | [VS Code integration](https://code.claude.com/docs/en/vs-code#fix-common-issues)                                     |
-| `Claude Code process exited with code 1` in VS Code or an SDK app                                                                                    | [Error reference](https://code.claude.com/docs/en/errors#claude-code-process-exited-with-code-n)                     |
-| JetBrains plugin or IDE not detected                                                                                                                 | [JetBrains integration](https://code.claude.com/docs/en/jetbrains#troubleshooting)                                   |
-| High CPU or memory, slow responses, hangs, search not finding files                                                                                  | [Performance and stability](#performance-and-stability) below                            |
+| Settings not applying, hooks not firing, MCP servers not loading | [Debug your configuration](https://code.claude.com/docs/en/debug-your-config) |
+| Session started in auto mode, or Claude edits files and runs commands without asking | [Which mode a session starts in](https://code.claude.com/docs/en/permission-modes#which-mode-a-session-starts-in) |
+| `API Error: 5xx`, `529 Overloaded`, `429`, request validation errors | [Error reference](https://code.claude.com/docs/en/errors) |
+| `model not found` or `you may not have access to it` | [Error reference](https://code.claude.com/docs/en/errors#theres-an-issue-with-the-selected-model) |
+| A command Claude runs fails with `Your disk quota is full`, `is full (ENOSPC)`, or `Command output was lost` | [Error reference](https://code.claude.com/docs/en/errors#disk-quota-or-temp-filesystem-is-full) |
+| VS Code extension not connecting or detecting Claude | [VS Code integration](https://code.claude.com/docs/en/vs-code#fix-common-issues) |
+| `Claude Code process exited with code 1` in VS Code or an SDK app | [Error reference](https://code.claude.com/docs/en/errors#claude-code-process-exited-with-code-n) |
+| JetBrains plugin or IDE not detected | [JetBrains integration](https://code.claude.com/docs/en/jetbrains#troubleshooting) |
+| High CPU or memory, slow responses, hangs, search not finding files | [Performance and stability](#performance-and-stability) below |
 
 If you're not sure which applies, run `/doctor` inside Claude Code for an automated check of your installation, settings, extensions, and context usage; it proposes fixes it can apply after you confirm. If `claude` won't start at all, run `claude doctor` from your shell instead. Run `/mcp` to check MCP server status.
 

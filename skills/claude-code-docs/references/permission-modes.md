@@ -16,14 +16,14 @@ With Claude Code v2.1.283 or later, auto mode is the built-in starting permissio
 
 Each mode makes a different tradeoff between convenience and oversight. The table below shows what Claude can do without a permission prompt in each mode. Manual mode appears under its config value, `default`.
 
-| Mode                                                                | What runs without asking                                                                                  | Best for                                        |
-| :------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------------- | :---------------------------------------------- |
-| `default`                                                           | Reads only                                                                                                | Reviewing every action yourself, sensitive work |
-| [`acceptEdits`](#auto-approve-file-edits-with-acceptedits-mode)     | Reads, file edits, and common filesystem commands (`mkdir`, `touch`, `mv`, `cp`, etc.)                    | Iterating on code you're reviewing              |
-| [`plan`](#analyze-before-you-edit-with-plan-mode)                   | Reads, plus classifier-approved commands when [auto mode](#eliminate-prompts-with-auto-mode) is available | Exploring a codebase before changing it         |
-| [`auto`](#eliminate-prompts-with-auto-mode)                         | Everything, with background safety checks                                                                 | Long tasks, reducing prompt fatigue             |
-| [`dontAsk`](#allow-only-pre-approved-tools-with-dontask-mode)       | Reads and pre-approved tools; anything that would prompt is denied                                        | Locked-down CI and scripts                      |
-| [`bypassPermissions`](#skip-all-checks-with-bypasspermissions-mode) | Everything                                                                                                | Isolated containers and VMs only                |
+| Mode | What runs without asking | Best for |
+| :- | :- | :- |
+| `default` | Reads only | Reviewing every action yourself, sensitive work |
+| [`acceptEdits`](#auto-approve-file-edits-with-acceptedits-mode) | Reads, file edits, and common filesystem commands (`mkdir`, `touch`, `mv`, `cp`, etc.) | Iterating on code you're reviewing |
+| [`plan`](#analyze-before-you-edit-with-plan-mode) | Reads, plus classifier-approved commands when [auto mode](#eliminate-prompts-with-auto-mode) is available | Exploring a codebase before changing it |
+| [`auto`](#eliminate-prompts-with-auto-mode) | Everything, with background safety checks | Long tasks, reducing prompt fatigue |
+| [`dontAsk`](#allow-only-pre-approved-tools-with-dontask-mode) | Reads and pre-approved tools; anything that would prompt is denied | Locked-down CI and scripts |
+| [`bypassPermissions`](#skip-all-checks-with-bypasspermissions-mode) | Everything | Isolated containers and VMs only |
 
 The mode that reviews every action is named **Manual** in the CLI, in `claude --help`, in the VS Code and JetBrains extensions, and in the desktop app. Its config value is `default`, which is what hooks and SDK integrations use. The CLI accepts `manual` as an alias wherever you type the value, for example `claude --permission-mode manual` or `"defaultMode": "manual"`. The Manual label and the `manual` alias require Claude Code v2.1.200 or later. The desktop app's label doesn't depend on your CLI version.
 
@@ -50,14 +50,14 @@ A command the shell parser can't trace, such as one that changes directory more 
 
 Permission modes decide whether Claude asks before an action, and the [Bash sandbox](https://code.claude.com/docs/en/sandboxing) and outer [isolation boundaries](https://code.claude.com/docs/en/sandbox-environments) decide what an action can reach once it runs. Each row below pairs a goal with the flags or settings that get you there and the isolation it needs, as a starting point. [Available modes](#available-modes) lists what runs without a prompt in each mode.
 
-| You want to                                              | Start with                                                                                                                                                          | Isolation needed                                                                                                                                                                             | Notes                                                                                                                                                                                                                               |
-| :------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Review every action yourself                             | Manual mode: `claude --permission-mode default`                                                                                                                     | None                                                                                                                                                                                         | Sensitive work, unfamiliar code                                                                                                                                                                                                     |
-| Iterate locally with fewer prompts, without a classifier | Manual mode plus the Bash sandbox in [auto-allow mode](https://code.claude.com/docs/en/sandboxing#sandbox-modes): `claude --permission-mode default`, then run `/sandbox` and select auto-allow | The built-in Bash sandbox, on macOS, Linux, and WSL2                                                                                                                                         | Deny rules still apply, and ask rules that name a command, such as `Bash(git push *)`, still prompt. To turn the sandbox on from a settings file instead, set [`sandbox.enabled`](https://code.claude.com/docs/en/settings-reference#sandbox-enabled) to `true` |
-| Explore before changing anything                         | `claude --permission-mode plan`                                                                                                                                     | None                                                                                                                                                                                         | Claude Code blocks edits until you [approve a plan](#review-and-approve-a-plan)                                                                                                                                                     |
-| Work hands-off in auto mode                              | `claude --permission-mode auto`, the [built-in starting permission mode](#which-mode-a-session-starts-in) with v2.1.283 or later                                    | None; a sandbox or container adds defense in depth                                                                                                                                           | Requires a [supported model](#eliminate-prompts-with-auto-mode), and your organization can [turn auto mode off](#eliminate-prompts-with-auto-mode)                                                                                  |
-| Run in CI with an exact allowlist                        | `claude -p "run the test suite" --permission-mode dontAsk --allowedTools "Bash(npm test)" "Read"`                                                                   | None beyond what your CI runner provides                                                                                                                                                     | [Cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) ignore `dontAsk` from settings files                                                                                                                                                   |
-| Run fully unattended inside a container                  | `claude -p "<prompt>" --dangerously-skip-permissions`                                                                                                               | Required: a container, VM, or the [sandbox runtime](https://code.claude.com/docs/en/sandbox-environments#sandbox-runtime); on Linux and macOS, run it as a [non-root user](#skip-all-checks-with-bypasspermissions-mode) | Cloud sessions ignore this mode from settings files. In this `-p` run, the [few calls that would still prompt](#skip-all-checks-with-bypasspermissions-mode) are denied instead                                                     |
+| You want to | Start with | Isolation needed | Notes |
+| :- | :- | :- | :- |
+| Review every action yourself | Manual mode: `claude --permission-mode default` | None | Sensitive work, unfamiliar code |
+| Iterate locally with fewer prompts, without a classifier | Manual mode plus the Bash sandbox in [auto-allow mode](https://code.claude.com/docs/en/sandboxing#sandbox-modes): `claude --permission-mode default`, then run `/sandbox` and select auto-allow | The built-in Bash sandbox, on macOS, Linux, and WSL2 | Deny rules still apply, and ask rules that name a command, such as `Bash(git push *)`, still prompt. To turn the sandbox on from a settings file instead, set [`sandbox.enabled`](https://code.claude.com/docs/en/settings-reference#sandbox-enabled) to `true` |
+| Explore before changing anything | `claude --permission-mode plan` | None | Claude Code blocks edits until you [approve a plan](#review-and-approve-a-plan) |
+| Work hands-off in auto mode | `claude --permission-mode auto`, the [built-in starting permission mode](#which-mode-a-session-starts-in) with v2.1.283 or later | None; a sandbox or container adds defense in depth | Requires a [supported model](#eliminate-prompts-with-auto-mode), and your organization can [turn auto mode off](#eliminate-prompts-with-auto-mode) |
+| Run in CI with an exact allowlist | `claude -p "run the test suite" --permission-mode dontAsk --allowedTools "Bash(npm test)" "Read"` | None beyond what your CI runner provides | [Cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) ignore `dontAsk` from settings files |
+| Run fully unattended inside a container | `claude -p "<prompt>" --dangerously-skip-permissions` | Required: a container, VM, or the [sandbox runtime](https://code.claude.com/docs/en/sandbox-environments#sandbox-runtime); on Linux and macOS, run it as a [non-root user](#skip-all-checks-with-bypasspermissions-mode) | Cloud sessions ignore this mode from settings files. In this `-p` run, the [few calls that would still prompt](#skip-all-checks-with-bypasspermissions-mode) are denied instead |
 
 The Bash sandbox and auto mode work independently and combine, with the exceptions listed under [Sandbox modes](https://code.claude.com/docs/en/sandboxing#sandbox-modes). For the full interaction, see [How sandboxing relates to permissions and permission modes](https://code.claude.com/docs/en/sandboxing#how-sandboxing-relates-to-permissions-and-permission-modes) and [How isolation relates to permission modes](https://code.claude.com/docs/en/sandbox-environments#how-isolation-relates-to-permission-modes).
 
@@ -81,10 +81,10 @@ The built-in `auto` default requires Claude Code v2.1.228 or later on macOS, Lin
 
 The built-in default depends on how you run Claude Code. The first row that matches your session applies. The table covers sessions you start in a terminal or through the VS Code extension; for the desktop app and claude.ai, see the Desktop and Web tabs in [Switch permission modes](#switch-permission-modes).
 
-| How you run Claude Code                                       | Built-in starting permission mode                                                                                                                                                                                        |
-| :------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Any settings file sets `disableAutoMode` to `"disable"`       | `default`                                                                                                                                                                                                                |
-| `claude -p` or the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/permissions)     | `default`                                                                                                                                                                                                                |
+| How you run Claude Code | Built-in starting permission mode |
+| :- | :- |
+| Any settings file sets `disableAutoMode` to `"disable"` | `default` |
+| `claude -p` or the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/permissions) | `default` |
 | In a terminal or through the [VS Code extension](https://code.claude.com/docs/en/vs-code) | `auto` with Claude Code v2.1.283 or later; on earlier versions, `auto` on Pro, Max, or Team plans in sessions that [fetch feature flags](https://code.claude.com/docs/en/env-vars#features-that-need-feature-flag-fetching), and `default` otherwise |
 
 In your [first session after an install or upgrade](https://code.claude.com/docs/en/env-vars#first-session-after-an-install-or-upgrade), Claude Code can choose the starting permission mode before its feature flags arrive. That session can start in a different permission mode than the table gives, and your next session matches the table.
@@ -104,12 +104,12 @@ Start in a different permission mode
 
 You can set the starting permission mode for one session, or as a default for every session on a machine, in a project, or in an organization. When more than one settings file sets `permissions.defaultMode`, [settings precedence](https://code.claude.com/docs/en/settings#settings-precedence) decides, so a project or managed value outranks `~/.claude/settings.json`. To change the permission mode of a session that's already running, see [Switch permission modes](#switch-permission-modes).
 
-| To set the starting permission mode for          | Do this                                                                                                                                                                                                                                                                                                                                                        |
-| :----------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| One session you're about to start                | Pass the permission mode as a flag, for example `claude --permission-mode default`                                                                                                                                                                                                                                                                             |
-| Every terminal session you start on this machine | Set `permissions.defaultMode` in `~/.claude/settings.json`. For what the VS Code extension reads, see [Switch permission modes](#switch-permission-modes)                                                                                                                                                                                                      |
-| Every terminal session you start in one project  | Set `permissions.defaultMode` in the project's `.claude/settings.json`. Sessions you start in a terminal honor every value except `auto` and `bypassPermissions`; sessions the VS Code extension starts don't read project settings for the starting permission mode                                                                                           |
-| Every terminal session in your organization      | Set `permissions.defaultMode` in [managed settings](https://code.claude.com/docs/en/managed-settings). Terminal sessions start in that mode and people can still switch to auto mode; for what the VS Code extension reads, see [Switch permission modes](#switch-permission-modes). To remove auto mode so nobody can select it, set `permissions.disableAutoMode` to `"disable"` instead |
+| To set the starting permission mode for | Do this |
+| :- | :- |
+| One session you're about to start | Pass the permission mode as a flag, for example `claude --permission-mode default` |
+| Every terminal session you start on this machine | Set `permissions.defaultMode` in `~/.claude/settings.json`. For what the VS Code extension reads, see [Switch permission modes](#switch-permission-modes) |
+| Every terminal session you start in one project | Set `permissions.defaultMode` in the project's `.claude/settings.json`. Sessions you start in a terminal honor every value except `auto` and `bypassPermissions`; sessions the VS Code extension starts don't read project settings for the starting permission mode |
+| Every terminal session in your organization | Set `permissions.defaultMode` in [managed settings](https://code.claude.com/docs/en/managed-settings). Terminal sessions start in that mode and people can still switch to auto mode; for what the VS Code extension reads, see [Switch permission modes](#switch-permission-modes). To remove auto mode so nobody can select it, set `permissions.disableAutoMode` to `"disable"` instead |
 
 This example makes every terminal session on your machine start in Manual mode, whose config value is `default`. Save it in `~/.claude/settings.json`:
 ```json
@@ -158,12 +158,12 @@ The same `--permission-mode` flag works with `-p` for [non-interactive runs](htt
 
     **During a session**: click the mode indicator at the bottom of the prompt box. It uses these labels for the modes on this page:
 
-    | UI label           | Mode                |
-    | :----------------- | :------------------ |
-    | Manual             | `default`           |
-    | Edit automatically | `acceptEdits`       |
-    | Plan               | `plan`              |
-    | Auto               | `auto`              |
+    | UI label | Mode |
+    | :- | :- |
+    | Manual | `default` |
+    | Edit automatically | `acceptEdits` |
+    | Plan | `plan` |
+    | Auto | `auto` |
     | Bypass permissions | `bypassPermissions` |
 
     **As a default**: to pin the permission mode conversations start in, set `claudeCode.initialPermissionMode` in your VS Code user settings to `default`, `manual`, `acceptEdits`, `plan`, or `bypassPermissions`. The setting doesn't accept `auto`; to start in Auto, leave it unset and pick **Auto** from the mode indicator once, as item 2 below describes. The extension starts each new conversation in the first of these that applies:
@@ -590,13 +590,13 @@ The check is skipped automatically inside a recognized sandbox. To run autonomou
 
 Writes to a small set of paths are never auto-approved, except in `bypassPermissions` mode and in interactive terminal sessions in plan mode with [bypass permissions](#skip-all-checks-with-bypasspermissions-mode) available. This prevents accidental corruption of repository state and Claude's own configuration.
 
-| Mode                     | Protected-path writes                                                                                                                                                                                                                                                        |
-| :----------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `default`, `acceptEdits` | Prompted                                                                                                                                                                                                                                                                     |
-| `plan`                   | Allowed in interactive terminal sessions with [bypass permissions](#skip-all-checks-with-bypasspermissions-mode) available. Otherwise, routed to the classifier when [auto mode](#eliminate-prompts-with-auto-mode) is available during planning, and prompted when it isn't |
-| `auto`                   | Routed to the classifier                                                                                                                                                                                                                                                     |
-| `dontAsk`                | Denied                                                                                                                                                                                                                                                                       |
-| `bypassPermissions`      | Allowed                                                                                                                                                                                                                                                                      |
+| Mode | Protected-path writes |
+| :- | :- |
+| `default`, `acceptEdits` | Prompted |
+| `plan` | Allowed in interactive terminal sessions with [bypass permissions](#skip-all-checks-with-bypasspermissions-mode) available. Otherwise, routed to the classifier when [auto mode](#eliminate-prompts-with-auto-mode) is available during planning, and prompted when it isn't |
+| `auto` | Routed to the classifier |
+| `dontAsk` | Denied |
+| `bypassPermissions` | Allowed |
 
 In a session started with [`--restricted`](https://code.claude.com/docs/en/cli-reference#cli-flags), which requires Claude Code v2.1.248 or later, the classifier can't approve protected-path writes.
 
@@ -638,13 +638,13 @@ Claude Code never lets a [`permissions.allow`](https://code.claude.com/docs/en/p
 
 What happens instead depends on your permission mode:
 
-| Mode                     | What Claude Code does with a critical-path removal                                                                                                                                            |
-| :----------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `default`, `acceptEdits` | Asks you to approve it                                                                                                                                                                        |
-| `plan`                   | Asks you to approve it. When [the classifier reviews commands during planning](#analyze-before-you-edit-with-plan-mode) and no bypass permissions are available, handles it as in `auto` mode |
-| `auto`                   | Asks you to approve it in the terminal, with a time limit. Elsewhere, denies it                                                                                                               |
-| `dontAsk`                | Denies it                                                                                                                                                                                     |
-| `bypassPermissions`      | Asks you to approve it, with a time limit in the terminal                                                                                                                                     |
+| Mode | What Claude Code does with a critical-path removal |
+| :- | :- |
+| `default`, `acceptEdits` | Asks you to approve it |
+| `plan` | Asks you to approve it. When [the classifier reviews commands during planning](#analyze-before-you-edit-with-plan-mode) and no bypass permissions are available, handles it as in `auto` mode |
+| `auto` | Asks you to approve it in the terminal, with a time limit. Elsewhere, denies it |
+| `dontAsk` | Denies it |
+| `bypassPermissions` | Asks you to approve it, with a time limit in the terminal |
 
 If an explicit [ask rule](https://code.claude.com/docs/en/permissions#manage-permissions) matches the command, Claude Code asks you instead, even in `auto` mode and without a time limit. In modes that ask, a [`PermissionRequest` hook](https://code.claude.com/docs/en/hooks#permissionrequest) can answer the prompt.
 
