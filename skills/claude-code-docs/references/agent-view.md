@@ -249,7 +249,7 @@ Claude Code doesn't background the session while you have unsent text in the pro
 
 Pressing `←` creates the session's row even when the conversation has no messages yet, so `→` still returns to it.
 
-You can turn this shortcut off with the `leftArrowOpensAgents` setting in `/config`.
+You can turn this shortcut off for foreground sessions with the [`leftArrowOpensAgents`](https://code.claude.com/docs/en/settings-reference#leftarrowopensagents) setting in `/config`.
 
 ### Organize the list
 

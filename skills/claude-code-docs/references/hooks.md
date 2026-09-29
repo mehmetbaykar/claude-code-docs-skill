@@ -587,7 +587,7 @@ In addition to the [common fields](#common-fields), prompt and agent hooks accep
 | Field | Required | Description |
 | :- | :- | :- |
 | `prompt` | yes | Prompt text to send to the model. Use `$ARGUMENTS` as a placeholder for the hook input JSON. Escape with a backslash to include literal text: `\$1.00` renders as `$1.00` |
-| `model` | no | Model to use for evaluation. Defaults to a fast model |
+| `model` | no | Model to use for evaluation. Defaults to the model Claude Code uses for [background functionality](https://code.claude.com/docs/en/costs#background-token-usage) |
 
 ### Reference scripts by path
 
@@ -729,7 +729,7 @@ Hook events receive these fields as JSON, in addition to event-specific fields d
 | `cwd` | Current working directory when the hook is invoked |
 | `scratchpad_dir` | Path to the session's [scratchpad directory](https://code.claude.com/docs/en/claude-directory#session-scratchpad-directory), where Claude keeps temporary working files. Absent when the session has no scratchpad or the temp directory is unavailable. Requires Claude Code v2.1.257 or later |
 | `permission_mode` | Current [permission mode](https://code.claude.com/docs/en/permissions#permission-modes): `"default"`, `"plan"`, `"acceptEdits"`, `"auto"`, `"dontAsk"`, or `"bypassPermissions"`. The mode labeled **Manual** arrives as `"default"`, never as `"manual"`, so scripts that match `"default"` keep working. Not all events receive this field. Check the JSON example in each [hook event](#hook-events) section |
-| `effort` | Object with a `level` field holding the [effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) in effect when the hook runs: `"low"`, `"medium"`, `"high"`, `"xhigh"`, or `"max"`. If you set a level the active model doesn't support, `level` reports the level Claude Code ran instead; [Adjust effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) says how it picks that level. Ultracode is not a distinct level and reports as `"xhigh"`. The object matches the [status line](https://code.claude.com/docs/en/statusline#available-data) `effort` field. Present for events that fire within a tool-use context, such as `PreToolUse`, `PostToolUse`, `Stop`, and `SubagentStop`, when the current model supports the effort parameter. The level is also available to hook commands and the Bash tool as the `$CLAUDE_EFFORT` environment variable. |
+| `effort` | Object with a `level` field holding the [effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) in effect when the hook runs: `"low"`, `"medium"`, `"high"`, `"xhigh"`, or `"max"`. If you set a level the active model doesn't support, `level` reports the level Claude Code ran instead; [Adjust effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) says how it picks that level. The object matches the [status line](https://code.claude.com/docs/en/statusline#available-data) `effort` field. Present for events that fire within a tool-use context, such as `PreToolUse`, `PostToolUse`, `Stop`, and `SubagentStop`, when the current model supports the effort parameter. The level is also available to hook commands and the Bash tool as the `$CLAUDE_EFFORT` environment variable. |
 | `hook_event_name` | Name of the event that fired |
 
 When running with `--agent` or inside a subagent, two additional fields are included:
@@ -1755,7 +1755,7 @@ In `PostToolUse`, `tool_response` is an object with `plan` and `filePath` fields
 | Field | Description |
 | :- | :- |
 | `permissionDecision` | `"allow"` skips the permission prompt, except for the [actions no mode auto-approves](https://code.claude.com/docs/en/permission-modes#actions-no-mode-auto-approves) and for `AskUserQuestion` and `ExitPlanMode`, which need [`updatedInput` paired with it](#allow-with-updatedinput). `"deny"` prevents the tool call. `"ask"` prompts the user to confirm. `"defer"` exits gracefully so the tool can be resumed later. [Deny and ask rules](https://code.claude.com/docs/en/permissions#manage-permissions) are still evaluated regardless of what the hook returns |
-| `permissionDecisionReason` | For `"allow"` and `"ask"`, shown to the user but not Claude. For `"deny"`, shown to Claude. For `"defer"`, ignored |
+| `permissionDecisionReason` | For `"ask"`, shown to the user but not Claude. For `"deny"`, shown to Claude. For `"allow"` and `"defer"`, written to the [debug log](#debug-hooks) only |
 | `updatedInput` | Modifies the tool's input parameters before execution. Replaces the entire input object, so include unchanged fields alongside modified ones. Claude Code evaluates permission rules and a Bash command's [auto-background eligibility](https://code.claude.com/docs/en/tools-reference#background-commands) against the input your hook returns, not the input Claude sent. Combine with `"allow"` to auto-approve, or `"ask"` to show the modified input to the user. For `"defer"`, ignored |
 | `additionalContext` | String added to Claude's context alongside the tool result. Ignored when `permissionDecision` is `"defer"`. See [Add context for Claude](#add-context-for-claude) |
 
@@ -2096,13 +2096,13 @@ In addition to the [common input fields](#common-input-fields), PostToolBatch ho
       "tool_name": "Read",
       "tool_input": {"file_path": "/.../ledger/accounts.py"},
       "tool_use_id": "toolu_01...",
-      "tool_response": "     1\tfrom __future__ import annotations\n     2\t..."
+      "tool_response": "1\tfrom __future__ import annotations\n2\t..."
     },
     {
       "tool_name": "Read",
       "tool_input": {"file_path": "/.../ledger/transactions.py"},
       "tool_use_id": "toolu_02...",
-      "tool_response": "     1\tfrom __future__ import annotations\n     2\t..."
+      "tool_response": "1\tfrom __future__ import annotations\n2\t..."
     }
   ]
 }
@@ -3403,7 +3403,7 @@ Events that support `command`, `http`, and `mcp_tool` hooks but not `prompt` or 
 
 Instead of executing a Bash command, prompt-based hooks:
 
-1. Send the hook input and your prompt to a Claude model, Haiku by default
+1. Send the hook input and your prompt to a Claude model, by default the one Claude Code uses for [background functionality](https://code.claude.com/docs/en/costs#background-token-usage)
 2. The LLM responds with structured JSON containing a decision
 3. Claude Code processes the decision automatically
 
@@ -3433,7 +3433,7 @@ This `Stop` hook asks the LLM to evaluate whether all tasks are complete before 
 | :- | :- | :- |
 | `type` | yes | Must be `"prompt"` |
 | `prompt` | yes | The prompt text to send to the LLM. Use `$ARGUMENTS` as a placeholder for the hook input JSON. If `$ARGUMENTS` is not present, input JSON is appended to the prompt |
-| `model` | no | Model to use for evaluation. Defaults to a fast model |
+| `model` | no | Model to use for evaluation. Defaults to the model Claude Code uses for [background functionality](https://code.claude.com/docs/en/costs#background-token-usage) |
 | `timeout` | no | Timeout in seconds. Default: 30 |
 | `continueOnBlock` | no | On the events it applies to, `true` feeds an `ok: false` reason back to Claude and continues instead of ending the turn. Default: `false`. See [Response schema](#response-schema) for per-event behavior |
 

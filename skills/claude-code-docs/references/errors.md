@@ -29,7 +29,7 @@ Match the message you see to a section below.
 | `Connection lost mid-response` / `Your computer went to sleep mid-response` / `The response stopped arriving` | [Server errors](#the-response-above-may-be-incomplete) |
 | `Connection closed mid-response` / `Response stalled mid-stream` | [Server errors](#the-response-above-may-be-incomplete) |
 | `Part of the response never arrived` / `The response stream was malformed` | [Server errors](#the-response-above-may-be-incomplete) |
-| `API Error: Content block not found` / `API Error: Content block already closed` | [Server errors](#the-response-above-may-be-incomplete) |
+| `API Error: Content block not found` / `API Error: Content block already closed` / `API Error: Stream event unreadable` | [Server errors](#the-response-above-may-be-incomplete) |
 | `Connection lost before a response was produced` / `Your computer went to sleep before a response was produced` / `The response stalled before a response was produced` | [Automatic retries](#automatic-retries) |
 | `Connection closed while thinking` / `Response stalled while thinking` | [Automatic retries](#automatic-retries) |
 | `Connection lost while your computer was asleep` | [Automatic retries](#automatic-retries) |
@@ -491,15 +491,15 @@ API Error: The response stream was malformed. The response above may be incomple
 * `Connection lost mid-response`: the connection dropped. You also see this variant when a proxy or gateway ends the response body cleanly before the response has finished.
 * `Your computer went to sleep mid-response`: Claude Code detected that your computer went to sleep while the response was streaming. Once your computer wakes, Claude Code treats the connection as broken and stops reading from it.
 * `Part of the response never arrived`: a stream event was dropped between the API and Claude Code, so a later event referenced content that never arrived. Before v2.1.281, this case ended the turn with `API Error: Content block not found`.
-* `The response stream was malformed`: an event arrived for a content block that had already finished.
+* `The response stream was malformed`: an event arrived for a content block that had already finished, or an event arrived damaged. A damaged event is one whose data isn't valid JSON, whose content is missing, or whose content doesn't match the event's type. Before v2.1.284, the parser's raw error, such as one beginning `API Error: JSON Parse error`, appeared instead when an event with invalid JSON arrived after Claude had completed its thinking, a block of text, or a tool call.
 * `The response stopped arriving`: the connection stayed open but stopped delivering data, so the streaming idle watchdog aborted it. Before v2.1.222, Claude Code could also report this failure on [gateway](https://code.claude.com/docs/en/gateways) connections reached through `ANTHROPIC_BASE_URL` or `ANTHROPIC_AWS_BASE_URL` while the server's keep-alive pings were still arriving, because it counted only parsed response events there; upgrading stops those spurious timeouts on those routes. Gateways reached through a provider base URL such as `ANTHROPIC_BEDROCK_BASE_URL` aren't wrapped by the byte watchdog; see [Streaming idle watchdogs](https://code.claude.com/docs/en/network-config#streaming-idle-watchdogs).
 
 Before v2.1.227, `Connection lost mid-response` read `Connection closed mid-response` and `The response stopped arriving` read `Response stalled mid-stream`.
 
-When a dropped or duplicated stream event arrives before Claude has started any text or tool call, you don't see this notice:
+When a dropped, duplicated, or damaged stream event arrives before Claude has started any text or tool call, you don't see this notice:
 
 * If Claude had completed only its thinking, Claude Code re-issues the request. When the re-issued streams break the same way, the turn ends with `Part of the response never arrived and no response was produced. Try again.` or `The response stream was malformed and no response was produced. Try again.`
-* If nothing had completed, Claude Code re-sends the request without streaming instead. If you turned that fallback off with [`CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK`](https://code.claude.com/docs/en/env-vars), the turn ends with `API Error: Content block not found` for a dropped event or `API Error: Content block already closed` for a duplicated one.
+* If nothing had completed, Claude Code re-sends the request without streaming instead. If you turned that fallback off with [`CLAUDE_CODE_DISABLE_NONSTREAMING_FALLBACK`](https://code.claude.com/docs/en/env-vars), the turn ends with `API Error: Content block not found` for a dropped event or `API Error: Content block already closed` for a duplicated one. For a damaged event with the fallback off, the turn ends with `API Error: Stream event unreadable` or the parser's raw error.
 
 In four cases, Claude Code handles the failure without showing this notice right away:
 
@@ -2634,20 +2634,26 @@ Before v2.1.261, this message also appeared for every `/add-dir <subdirectory>` 
 
 ### Workspace not trusted when starting Remote Control
 
-You started [Remote Control](https://code.claude.com/docs/en/remote-control) server mode with `claude remote-control` or its `claude rc` alias in a directory you haven't trusted. The command doesn't show the workspace trust dialog itself, so it exits with code 1 and names the fix:
+You started [Remote Control](https://code.claude.com/docs/en/remote-control) server mode with `claude remote-control` or its `claude rc` alias in a directory you haven't trusted, and the command couldn't ask you whether to trust it. This message appears when the command's standard input or standard output isn't a terminal, for example because one of them is redirected or piped. The command exits with code 1:
 ```text
 Error: Workspace not trusted. Please run `claude` in /Users/you/project first to review and accept the workspace trust dialog.
 ```
+
+Two variants that also begin with `Error: Workspace not trusted.` appear in a terminal too small to show what trusting the directory turns on, or one that didn't report its size. Enlarge the window or switch to a normal terminal window, then run `claude rc` again.
 
 In your home directory the message is different, because the workspace trust dialog never saves trust for the home directory, so accepting it there can't satisfy this check. Before v2.1.214, the home directory showed the message above, whose advice can't succeed there.
 ```text
 Error: Workspace not trusted. /Users/you is your home directory, and for security home-directory trust is never saved, so running `claude` here first won't help. Run `claude rc` from a project directory instead (run `claude` there once to accept the trust dialog).
 ```
 
+If you answer `n` or press Enter at the [`Trust <directory>?` question](https://code.claude.com/docs/en/remote-control#requirements), the command prints a `Remote Control did not start` message that names the directory and exits with code 1. Run `claude rc` again to answer `y`.
+
 **What to do:**
 
-* Run `claude` in the directory, accept the [workspace trust dialog](https://code.claude.com/docs/en/permissions#project-allow-rules-and-workspace-trust), then run `claude remote-control` again
+* Trust the directory from a terminal first: run `claude rc` there and answer `y`, or run `claude` there and accept the [workspace trust dialog](https://code.claude.com/docs/en/permissions#project-allow-rules-and-workspace-trust), then run your original command again
 * In your home directory, change to a project directory and start Remote Control there
+
+Before v2.1.284, the command never asked, even in a terminal.
 
 <h3 id="not-carried-over-to-the-sessions-remote-control-starts">
 Not carried over to the sessions Remote Control starts

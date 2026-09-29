@@ -117,7 +117,7 @@ On machines with managed settings, see [How managed settings lock the OTLP desti
 | `OTEL_LOGS_EXPORT_INTERVAL` | Logs export interval in milliseconds (default: 5000) | `1000`, `10000` |
 | `OTEL_LOG_USER_PROMPTS` | Enable logging of user prompt content (default: disabled) | `1` to enable |
 | `OTEL_LOG_ASSISTANT_RESPONSES` | Enable logging of assistant response text on `assistant_response` events (default: disabled). When unset, falls back to the value of `OTEL_LOG_USER_PROMPTS`. Requires Claude Code v2.1.193 or later | `1` to enable, `0` to keep redacted |
-| `OTEL_LOG_TOOL_DETAILS` | Enable logging of tool parameters and input arguments in tool events and trace span attributes: Bash commands, MCP server and tool names, skill names, user-authored workflow names, and tool input. Also enables custom, plugin, and MCP command names on `user_prompt` events (default: disabled). For Claude Desktop's built-in servers, in sessions Claude Desktop owns, `mcp_server_name`/`mcp_tool_name` emit on `tool_decision`/`tool_result` even with the flag off. The exception requires Claude Code v2.1.214 or later | `1` to enable |
+| `OTEL_LOG_TOOL_DETAILS` | Enable logging of tool parameters and input arguments in tool events and trace span attributes: Bash commands, MCP server and tool names, skill names, user-authored workflow names, and tool input. Also enables custom, plugin, and MCP command names on `user_prompt` events, and real agent, skill, plugin, and MCP server and tool names on the [cost and token counters](#cost-counter) (default: disabled). For Claude Desktop's built-in servers, in sessions Claude Desktop owns, `mcp_server_name`/`mcp_tool_name` emit on `tool_decision`/`tool_result` even with the flag off. The exception requires Claude Code v2.1.214 or later | `1` to enable |
 | `OTEL_LOG_TOOL_CONTENT` | Enable logging of tool content in the [`tool.output` span event](#tool-output-span-event) (default: disabled). Span attributes carry tool content under [their own gates](#new-context-gates). Requires [tracing](#traces-beta). Content is truncated at the content limit (60 KB by default) | `1` to enable |
 | `OTEL_LOG_MANAGED_SETTINGS` | Add the redacted managed settings, and a SHA-256 digest of the settings before redaction, to [managed settings resolved](#managed-settings-resolved-event) events (default: disabled). A value in project or local settings doesn't turn it on. Requires Claude Code v2.1.274 or later | `1` to enable |
 | `OTEL_LOG_RAW_API_BODIES` | Emit the full Anthropic Messages API request and response JSON as `api_request_body` / `api_response_body` log events (default: disabled). Bodies include the entire conversation history. Enabling this implies consent to everything `OTEL_LOG_USER_PROMPTS`, `OTEL_LOG_TOOL_DETAILS`, and `OTEL_LOG_TOOL_CONTENT` would reveal | `1` for inline bodies truncated at the content limit (60 KB by default), or `file:<dir>` for untruncated bodies on disk with a `body_ref` pointer in the event |
@@ -507,7 +507,7 @@ Events additionally include the following attributes. These are never attached t
 
 Set `OTEL_METRICS_INCLUDE_REPOSITORY=true` to tag metrics and events with the identity of the session's repository, so a shared collector can attribute usage per repository. Requires Claude Code v2.1.269 or later.
 
-Claude Code derives these attributes once per session from the repository's `origin` remote. The HTTPS and SSH remotes of one repository produce identical values:
+Claude Code derives these attributes once per session from the repository's `origin` remote. When the HTTPS and SSH remotes of a repository name the same host and the same path, as they do on GitHub, GitLab, and Bitbucket Cloud, both produce identical values:
 
 | Attribute | Value |
 | - | - |
@@ -518,7 +518,11 @@ Claude Code derives these attributes once per session from the repository's `ori
 
 Values are lowercased, and credentials, query strings, and fragments from the remote URL never appear in them. The attributes are omitted when the session has no `origin` remote, when the remote isn't URL-shaped, or when the only enclosing repository is your home directory.
 
+To get these attributes from a [cloud session](https://code.claude.com/docs/en/claude-code-on-the-web), set the telemetry variables, including `OTEL_METRICS_INCLUDE_REPOSITORY`, on its [cloud environment](https://code.claude.com/docs/en/cloud-environments#set-environment-variables). Also allow your collector's domain in the environment's [network access](https://code.claude.com/docs/en/cloud-environments#network-access).
+
 A `vcs.*` key you declare in [`OTEL_RESOURCE_ATTRIBUTES`](#multi-team-organization-support) replaces the derived value for that key. If you declare `vcs.repository.url.full`, Claude Code never reads the remote and reports only the keys you declare.
+
+If HTTPS and SSH clones of one repository report different values, such as on a self-hosted install whose HTTPS clone URL carries a path prefix the SSH URL lacks, declare `vcs.repository.url.full` in `OTEL_RESOURCE_ATTRIBUTES` along with every other `vcs.*` key you want reported. Every clone then reports the identity you declare.
 
 The attributes flow only to your own exporters; Anthropic's telemetry drops every `vcs.*` key.
 
@@ -582,6 +586,8 @@ Incremented when creating git commits via Claude Code.
 
 Incremented after each API request.
 
+The `agent.name`, `skill.name`, `plugin.name`, `mcp_server.name`, and `mcp_tool.name` attributes each redact some names to a `"custom"` or `"third-party"` placeholder by default. If you set `OTEL_LOG_TOOL_DETAILS=1`, they carry the real names instead. Before v2.1.273, the cost and token counters and the `api_request`, `api_error`, and `api_refusal` events carried the redacted values even with `OTEL_LOG_TOOL_DETAILS=1` set.
+
 **Attributes**:
 
 * All [standard attributes](#standard-attributes)
@@ -589,11 +595,11 @@ Incremented after each API request.
 * `query_source`: Category of the subsystem that issued the request. One of `"main"`, `"subagent"`, or `"auxiliary"`
 * `speed`: `"fast"` when the request used fast mode. Absent otherwise
 * `effort`: [Effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) applied to the request: `"low"`, `"medium"`, `"high"`, `"xhigh"`, or `"max"`. Absent when Claude Code sends no effort level, for example on a model that doesn't support effort.
-* `agent.name`: Subagent type that issued the request. Built-in agent names and agents from official-marketplace plugins appear verbatim. Other user-defined agent names are replaced with `"custom"` unless `OTEL_LOG_TOOL_DETAILS=1` is set. Absent when the request was not issued by a named subagent type.
-* `skill.name`: Skill active for the request, set by the Skill tool, a `/` command, or inherited by a spawned subagent. Built-in, bundled, user-defined, and official-marketplace plugin skill names appear verbatim. Third-party plugin skill names are replaced with `"third-party"` unless `OTEL_LOG_TOOL_DETAILS=1` is set. Absent when no skill is active.
-* `plugin.name`: Owning plugin when the active skill or subagent is provided by a plugin. Official-marketplace plugin names appear verbatim. Third-party plugin names are replaced with `"third-party"` unless `OTEL_LOG_TOOL_DETAILS=1` is set. Absent when neither the skill nor the subagent has an owning plugin.
-* `marketplace.name`: Marketplace the owning plugin was installed from. Only emitted for official-marketplace plugins. Absent otherwise.
-* `mcp_server.name`: MCP server whose tool result this request consumed. Built-in, claude.ai-proxied, and official-registry server names appear verbatim. User-configured server names are replaced with `"custom"` unless `OTEL_LOG_TOOL_DETAILS=1` is set. Absent when the request consumed no MCP tool result. Before v2.1.222, Claude Code set this attribute on every request after an MCP tool call, not only on requests that consumed a tool result, so dashboards that aggregate it show a step down after you upgrade.
+* `agent.name`: Subagent type that issued the request. Built-in agent names and agents from official-marketplace plugins appear verbatim. Other user-defined agent names are replaced with `"custom"`. Absent when the request was not issued by a named subagent type.
+* `skill.name`: Skill active for the request, set by the Skill tool or a `/` command, or inherited by a spawned subagent. Built-in, bundled, user-defined, and official-marketplace plugin skill names appear verbatim. Third-party plugin skill names are replaced with `"third-party"`. Absent when no skill is active.
+* `plugin.name`: Owning plugin when the active skill or subagent is provided by a plugin. Official-marketplace plugin names appear verbatim. Third-party plugin names are replaced with `"third-party"`. Absent when neither the skill nor the subagent has an owning plugin.
+* `marketplace.name`: Marketplace the owning plugin was installed from. Only emitted for official-marketplace plugins, even with `OTEL_LOG_TOOL_DETAILS=1` set. Absent otherwise.
+* `mcp_server.name`: MCP server whose tool result this request consumed. Built-in, claude.ai-proxied, and official-registry server names appear verbatim. User-configured server names are replaced with `"custom"`. Absent when the request consumed no MCP tool result. Before v2.1.222, Claude Code set this attribute on every request after an MCP tool call, not only on requests that consumed a tool result, so dashboards that aggregate it show a step down after you upgrade.
 * `mcp_tool.name`: MCP tool whose result this request consumed, with the same redaction and version behavior as `mcp_server.name`. Absent when the request consumed no MCP tool result.
 
 #### Token counter
@@ -1462,6 +1468,7 @@ For a comprehensive guide on measuring return on investment for Claude Code, inc
 * `tool_result` and `tool_decision` events include a `tool_parameters` attribute with Bash commands, MCP server and tool names, and skill names. Fields such as `full_command` are emitted untruncated
 * `tool_result` events additionally include a `tool_input` attribute with file paths, URLs, search patterns, and other arguments. Individual values over 512 characters are truncated and the total is bounded to \~4 K characters
 * `user_prompt` events include the verbatim `command_name` for custom, plugin, and MCP commands
+* The [cost and token counters](#cost-counter) and the `api_request`, `api_error`, and `api_refusal` events carry real agent, skill, plugin, and MCP server and tool names in their attribution attributes
 * Trace spans include the same `tool_input` attribute and input-derived attributes such as `file_path`, with the same truncation as `tool_input`
 * Tool content is not logged in trace spans by default. To include it, set `OTEL_LOG_TOOL_CONTENT=1`. The `claude_code.tool` span then carries a [`tool.output` span event](#tool-output-span-event) with raw file contents, Bash command output, and what MCP tools, WebFetch, and WebSearch return, truncated at the content limit (60 KB by default) per attribute. Results from MCP tools, WebFetch, and WebSearch require Claude Code v2.1.283 or later. Tool content also reaches spans through [`new_context`, whose gate differs per span](#new-context-gates). Configure your telemetry backend to filter or redact these attributes as needed
 * Raw Anthropic Messages API request and response bodies are not logged by default. To include them, set `OTEL_LOG_RAW_API_BODIES` in your shell, user settings, or managed settings. It's ignored in [project and local settings](https://code.claude.com/docs/en/settings-reference#variables-claude-code-ignores-in-env). The bodies contain the full conversation history, including the system prompt, every prior user and assistant turn, and tool results, so enabling this implies consent to everything the other `OTEL_LOG_*` content flags would reveal. Claude Code always redacts Claude's extended-thinking content from these bodies, regardless of other settings. The value you set determines how Claude Code delivers the bodies:
