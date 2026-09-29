@@ -108,10 +108,10 @@ The cost applies once per conversation. After the first fast mode turn, Claude C
 
 ### Connecting or removing an MCP server
 
-Tool definitions sit in the system prompt layer, so the cache invalidates when the set of tool definitions in the request changes between turns. Toggling the [advisor tool](https://code.claude.com/docs/en/advisor) is an exception: its definition sits after the cache breakpoint, so enabling or disabling `/advisor` keeps the cached prefix intact. Whether an [MCP server](https://code.claude.com/docs/en/mcp) change does this depends on whether its tools are deferred by [tool search](https://code.claude.com/docs/en/mcp#scale-with-mcp-tool-search) or loaded into the prefix:
+Tool definitions sit in the system prompt layer, so the cache invalidates when the set of tool definitions in the request changes between turns. Toggling the [advisor tool](https://code.claude.com/docs/en/advisor) is an exception: its definition sits after the cache breakpoint, so enabling or disabling `/advisor` keeps the cached prefix intact. Whether an [MCP server](https://code.claude.com/docs/en/mcp) change does this depends on whether [tool search](https://code.claude.com/docs/en/mcp#scale-with-mcp-tool-search) defers the session's MCP tools, the default on supported models:
 
-* **Deferred tools**, the default on supported models: a server connecting, disconnecting, or changing its tool list only appends new content and doesn't disturb anything already cached.
-* **Tools loaded into the prefix**: adding a definition invalidates the cache, and so does removing one on purpose. This is the case when [tool search is unavailable or disabled](https://code.claude.com/docs/en/mcp#configure-tool-search), such as on Google Cloud's Agent Platform models earlier than the Claude 4.5 generation, with a custom `ANTHROPIC_BASE_URL` gateway, or on a Microsoft Foundry [deployment hosted on Azure](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#hosting-options) once Claude Code detects that the deployment rejects tool search.
+* **Tools deferred**: Claude Code keeps the tool list from the conversation's first request for the whole conversation, so a server connecting or disconnecting mid-session doesn't disturb anything already cached. A server that finishes connecting after the first request supplies its tools as deferred definitions that Claude loads on demand.
+* **Tools loaded upfront**: adding a definition invalidates the cache, and so does removing one on purpose. This applies when tool search is [below its `auto` threshold, disabled, or unavailable](https://code.claude.com/docs/en/mcp#configure-tool-search), such as on Google Cloud's Agent Platform models earlier than the Claude 4.5 generation, with a custom `ANTHROPIC_BASE_URL` gateway, or on a Microsoft Foundry [deployment hosted on Azure](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#hosting-options) once Claude Code detects that the deployment rejects tool search.
 
 Without tool search, whether a mid-session server change invalidates the cache depends on what changed. For each change, this table gives whether the cache is kept and what happens to the tool definitions in the next request.
 
@@ -136,10 +136,7 @@ Claude Code never invalidates the cache for a plugin's skills, commands, agents,
 
 #### Plugins that provide MCP servers
 
-When you enable or disable a plugin that provides [MCP servers](https://code.claude.com/docs/en/plugins/components#mcp-servers), Claude Code follows the same rules as when you [connect or remove an MCP server](#connecting-or-removing-an-mcp-server):
-
-* If Claude Code defers the server's tools, it keeps the cache.
-* If Claude Code loads them into the prefix, the next request re-reads the entire conversation.
+When you enable or disable a plugin that provides [MCP servers](https://code.claude.com/docs/en/plugins/components#mcp-servers), Claude Code follows the same rules as when you [connect or remove an MCP server](#connecting-or-removing-an-mcp-server).
 
 #### Code intelligence plugins
 
@@ -299,11 +296,11 @@ Through an LLM gateway you set with `ANTHROPIC_BASE_URL`, part of the one-hour r
 
 ## Cache scope
 
-In Claude Code, the cache is effectively scoped to one machine and directory. Each conversation carries the working directory, platform, shell, and OS version, and the system prompt names your auto memory paths, so two sessions in different directories build different prefixes and miss each other's cache. That includes worktrees of the same repository, since each worktree has its own working directory.
+In Claude Code, the cache is effectively scoped to one machine and directory. The system prompt embeds your auto memory paths, and the conversation opens with an announcement of the working directory, platform, shell, and OS version. Two sessions in different directories therefore build different prefixes and miss each other's cache.
 
 Sessions you run in parallel in the same directory build matching prefixes and read each other's cache. Sequential sessions share the prefix only when the git status snapshot taken at startup matches, since each conversation also carries the branch and recent commits from that snapshot.
 
-The underlying API cache is broader. Caches are isolated between organizations, and on some providers, [between workspaces within an organization](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#cache-storage-and-sharing). Within those boundaries, any two requests with the same model and prefix read the same cache. For Agent SDK callers running fleets of automated processes, see [improve prompt caching across users and machines](https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts#improve-prompt-caching-across-users-and-machines) to suppress the per-machine sections of the system prompt and share the cache across machines.
+The underlying API cache is broader. Caches are isolated between organizations, and on some providers, [between workspaces within an organization](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#cache-storage-and-sharing). Within those boundaries, any two requests with the same model and prefix read the same cache. For Agent SDK callers running fleets of automated processes, see [improve prompt caching across users and machines](https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts#improve-prompt-caching-across-users-and-machines) to move the auto memory location out of the system prompt and share the system prompt's cache entry across users and machines.
 
 ## Check cache performance
 

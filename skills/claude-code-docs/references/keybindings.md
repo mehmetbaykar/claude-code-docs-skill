@@ -346,10 +346,13 @@ Actions available in the `ModelPicker` context:
 
 ### Effort slider actions
 
-Actions available in the `EffortSlider` context, the slider that opens when you run `/effort` with no arguments. The slider's Left, Right, Enter, and Escape keys can't be rebound.
+Actions available in the `EffortSlider` context, the slider that opens when you run `/effort` with no arguments. The slider's Enter and Escape keys can't be rebound.
 
 | Action | Default | Description |
 | :- | :- | :- |
+| `effortSlider:decreaseEffort` | Left | Move the slider to the next lower effort level. Requires v2.1.284 or later |
+| `effortSlider:increaseEffort` | Right | Move the slider to the next higher effort level. Requires v2.1.284 or later |
+| `effortSlider:toggleUltracode` | Tab | Turn [ultracode](https://code.claude.com/docs/en/workflows#let-claude-decide-with-ultracode) on or off for this session, when the slider [offers it](https://code.claude.com/docs/en/model-config#when-ultracode-is-available). Requires v2.1.284 or later |
 | `effortSlider:thisSessionOnly` | s | Apply the focused [effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) to this session only. Requires v2.1.257 or later |
 
 ### Select actions
