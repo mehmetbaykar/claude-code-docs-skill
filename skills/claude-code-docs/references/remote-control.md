@@ -405,7 +405,7 @@ An [environment variable](https://code.claude.com/docs/en/env-vars#features-that
 
 ### "Remote Control is only available when using Claude via api.anthropic.com"
 
-The session isn't talking to the Anthropic API directly, so there is no claude.ai backend to pair with. This happens on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry. It also happens when [`ANTHROPIC_BASE_URL`](https://code.claude.com/docs/en/env-vars) points at a host other than `api.anthropic.com`, such as an [LLM gateway](https://code.claude.com/docs/en/llm-gateway) or proxy, even if you sign in with claude.ai. See the [error reference](https://code.claude.com/docs/en/errors#remote-control-requires-the-anthropic-api) for the full cause list.
+The session isn't talking to the Anthropic API directly, which Remote Control requires. This happens on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry. It also happens when [`ANTHROPIC_BASE_URL`](https://code.claude.com/docs/en/env-vars) points at a host other than `api.anthropic.com`, such as an [LLM gateway](https://code.claude.com/docs/en/llm-gateway) or proxy, even if you sign in with claude.ai. See the [error reference](https://code.claude.com/docs/en/errors#remote-control-requires-the-anthropic-api) for the full cause list.
 
 The message names what routed the session away from the Anthropic API, such as `CLAUDE_CODE_USE_BEDROCK` or a custom `ANTHROPIC_BASE_URL`. If you have an eligible claude.ai login, unset the named variable, remove it from the `env` key in [settings](https://code.claude.com/docs/en/settings) if you set it there, and restart the session.
 
