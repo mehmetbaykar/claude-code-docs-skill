@@ -178,11 +178,11 @@ Match the message you see to a section below.
 | `Installation was killed before it could finish (exit code 137)` | [Installation errors](#installation-was-killed-before-it-could-finish) |
 | `The connection dropped while downloading the update` | [Installation errors](#the-connection-dropped-while-downloading-the-update) |
 | `Download timed out: exceeded the total deadline` | [Installation errors](#the-connection-dropped-while-downloading-the-update) |
-| `--bg and --print conflict` | [Command-line errors](#command-line-errors) |
+| `--bg and --print conflict` | [Command-line errors](#conflict-between-bg-and-print) |
 | `Cloud sessions cannot be created from a --restricted session` | [Command-line errors](#cloud-sessions-cannot-be-created-from-a-restricted-session) |
 | `Cloud sessions are disabled by your organization's policy` | [Command-line errors](#cloud-sessions-are-disabled-by-your-organizations-policy) |
 | `Couldn't verify your organization's policy for cloud sessions` | [Command-line errors](#cloud-sessions-are-disabled-by-your-organizations-policy) |
-| `Error: --json-schema is not a valid JSON Schema` | [Command-line errors](#command-line-errors) |
+| `Error: --json-schema is not a valid JSON Schema` | [Command-line errors](#the-json-schema-value-is-not-a-valid-json-schema) |
 | `Error: Invalid --agents configuration:` | [Command-line errors](#invalid-agents-configuration) |
 | `Error: --agents takes a JSON object, or a file path only with --print (-p)` | [Command-line errors](#invalid-agents-configuration) |
 | `Error: --agents file not found` | [Command-line errors](#invalid-agents-configuration) |
@@ -2438,7 +2438,9 @@ A proxy or gateway can close a long transfer before it finishes, and the Claude 
 
 These errors come from the `claude` command line and its subcommands, from a command name you submit at the prompt, and from commands such as `/security-review` that gather context by running shell commands before their prompt runs. They also come from `/tui`, which relaunches the CLI.
 
-### Conflict between --bg and --print
+<h3 id="conflict-between-bg-and-print">
+Conflict between `--bg` and `--print`
+</h3>
 
 This message requires Claude Code v2.1.198 or later. You combined `--bg` with `-p` or `--print` in the same `claude` invocation. `--bg` starts a [background session](https://code.claude.com/docs/en/agent-view#from-your-shell) that you later attach to with `claude agents`, while `--print` runs [non-interactively](https://code.claude.com/docs/en/headless) and never starts the interactive session that `claude agents` attaches to. Before v2.1.198 this combination silently created a background job that could never be attached to.
 ```text
@@ -2451,7 +2453,7 @@ This message requires Claude Code v2.1.198 or later. You combined `--bg` with `-
 * To run the prompt non-interactively and print the result instead of creating a background session, drop `--bg` and run `claude -p "<task>"`
 
 <h3 id="invalid-agents-configuration">
-Invalid --agents configuration
+Invalid `--agents` configuration
 </h3>
 
 The value you passed to `--agents` is invalid, so `claude` exits with code 1 instead of starting the session. When you pass `--safe-mode` or set [`CLAUDE_CODE_SAFE_MODE`](https://code.claude.com/docs/en/env-vars#variables), Claude Code ignores `--agents` entirely. With `--resume` or `--continue`, an inline JSON value isn't checked and the session starts; a value read from a file is checked on every launch. Before v2.1.242, Claude Code started the session anyway.
@@ -2478,7 +2480,7 @@ With `--print`, `--agents` also accepts [the path to a JSON file](https://code.c
 * Fix each problem the message lists, then run the command again. See [the fields a CLI-defined subagent takes](https://code.claude.com/docs/en/sub-agents#choose-the-subagent-scope).
 
 <h3 id="cloud-sessions-cannot-be-created-from-a-restricted-session">
-Cloud sessions cannot be created from a --restricted session
+Cloud sessions cannot be created from a `--restricted` session
 </h3>
 
 When you start a session with [`--restricted`](https://code.claude.com/docs/en/cli-reference#cli-flags), Claude Code refuses to create [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web#from-terminal-to-cloud) from it, because the new session would run outside the restricted process and wouldn't enforce restricted mode. Claude Code refuses on the client, before contacting the server, so no cloud session is created:
@@ -2513,7 +2515,9 @@ If Claude Code hasn't loaded your organization's policy yet or can't fetch it, t
 * Ask an [Owner](https://code.claude.com/docs/en/server-managed-settings#access-control) in your organization to enable cloud sessions in the Claude Code admin settings at [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code)
 * If the message says it couldn't verify the policy, check your network connection, then restart Claude Code and try again
 
-### The --json-schema value is not a valid JSON Schema
+<h3 id="the-json-schema-value-is-not-a-valid-json-schema">
+The `--json-schema` value is not a valid JSON Schema
+</h3>
 
 The schema you passed to [`--json-schema`](https://code.claude.com/docs/en/cli-reference#cli-flags) in [non-interactive mode](https://code.claude.com/docs/en/headless#get-structured-output) failed JSON Schema compilation, so `claude` exits with code 1 instead of running the prompt. Before v2.1.205, an invalid schema produced unstructured output with no error, and any schema that used the `format` keyword was treated as invalid.
 ```text
@@ -2824,7 +2828,7 @@ Claude Code shows the same error for any skill that [injects dynamic context](ht
 * If the repository has no remote, add one with `git remote add origin <url>` and fetch before creating the ref. If the remote is empty, push your branch first with `git push -u origin HEAD` and name that branch in the set-head command; `origin/HEAD` then points at the branch you just pushed, so `/security-review` sees an empty diff until the branch diverges from it.
 
 <h3 id="input-must-be-provided-when-using-print">
-Input must be provided when using --print
+Input must be provided when using `--print`
 </h3>
 
 Bare `claude` needs stdout to be a terminal to start the interactive UI. When stdout is redirected, or the console isn't a real terminal, such as PowerShell ISE and some IDE output panes, `claude` runs [non-interactively](https://code.claude.com/docs/en/headless) instead. That is the same mode as `claude -p`, which requires a prompt, so the message names `--print` even when you didn't pass the flag. Passing `-p`/`--print` with no prompt and nothing piped on stdin produces the same error anywhere.

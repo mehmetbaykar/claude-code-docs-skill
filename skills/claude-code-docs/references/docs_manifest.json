@@ -523,8 +523,8 @@
       "title": "Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry"
     },
     "claude-code-on-the-web.md": {
-      "hash": "f96b9fd96638317d6bf51601b2c7f0232f3735e5b5cbbf94b3aa82618fc0d0af",
-      "last_updated": "2026-09-28T21:30:28+00:00",
+      "hash": "56fc67a12f5ca0e75fb2d00f1086c7660c1e7ba19d542c3017993485d1d3965e",
+      "last_updated": "2026-09-29T18:40:04+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-code-on-the-web",
       "path": "/docs/en/claude-code-on-the-web",
       "source_url": "https://code.claude.com/docs/en/claude-code-on-the-web.md",
@@ -703,8 +703,8 @@
       "title": "Launch sessions from links"
     },
     "desktop-ios-simulator.md": {
-      "hash": "9f672525e7b1dfe65f2b87ed856d624f87e745f7a0e2e81d660730cec772a4e1",
-      "last_updated": "2026-09-16T04:57:43+00:00",
+      "hash": "61d61b7f98682d7051785f7ba499fc79c9707ac9bdda5012b8bc341bcabb4d69",
+      "last_updated": "2026-09-29T18:40:12+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-ios-simulator",
       "path": "/docs/en/desktop-ios-simulator",
       "source_url": "https://code.claude.com/docs/en/desktop-ios-simulator.md",
@@ -712,8 +712,8 @@
       "title": "Test iOS apps in the simulator"
     },
     "desktop-linux.md": {
-      "hash": "3e52103c7bd62aadacb3d111e982c3273f3378a5bf0aebf228a231c9ecb94cc6",
-      "last_updated": "2026-09-22T05:08:56+00:00",
+      "hash": "7a0a48f1517717829fc246c0e40ec19fba7f002576494a3f314f7a0818ba925f",
+      "last_updated": "2026-09-29T18:40:12+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-linux",
       "path": "/docs/en/desktop-linux",
       "source_url": "https://code.claude.com/docs/en/desktop-linux.md",
@@ -775,8 +775,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "3c2610f7c6f72d97455b9fffb6cf6da04b87d7effc47f0a296628850984c3608",
-      "last_updated": "2026-09-29T15:34:22+00:00",
+      "hash": "41e3ed669fe8a33d796ed6ef9bc6575c71424003be665bbe92ad481352d85b04",
+      "last_updated": "2026-09-29T18:40:14+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -1144,8 +1144,8 @@
       "title": "Platforms and integrations"
     },
     "plugin-evals.md": {
-      "hash": "e2d079c2187fe6613bef7b6ecc212cef74a1e0e3871dd24bfcf9e699f0f0eb1a",
-      "last_updated": "2026-09-28T21:30:48+00:00",
+      "hash": "1e9eac34dadc32700b50e2deca2e38eb774b6f5e788889dc52acfb47bd729d6f",
+      "last_updated": "2026-09-29T18:40:29+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-evals",
       "path": "/docs/en/plugin-evals",
       "source_url": "https://code.claude.com/docs/en/plugin-evals.md",
@@ -1729,8 +1729,8 @@
       "title": "Week 19 \u00b7 May 4\u20138, 2026"
     },
     "whats-new__2026-w20.md": {
-      "hash": "8b90c21f98eda28ccdcc1d468666d2668d8d13ba9904ca5acbe3d6666df6c108",
-      "last_updated": "2026-09-15T21:30:07+00:00",
+      "hash": "14d48ef6c48d3fe7213206a6ac2ada7c2202ec167ff0ddc3d418edaa0709a2b9",
+      "last_updated": "2026-09-29T18:40:52+00:00",
       "original_url": "https://code.claude.com/docs/en/whats-new/2026-w20",
       "path": "/docs/en/whats-new/2026-w20",
       "source_url": "https://code.claude.com/docs/en/whats-new/2026-w20.md",
@@ -1923,7 +1923,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-29T15:35:00+00:00",
+  "last_updated": "2026-09-29T18:40:59+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
