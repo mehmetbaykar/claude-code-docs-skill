@@ -388,8 +388,8 @@
       "title": "Share session output as artifacts"
     },
     "authentication.md": {
-      "hash": "78320e112bb9fdb2bdd6971f961d8e49a5db882ed0b9e0ca68d4fe282ca67062",
-      "last_updated": "2026-09-29T01:10:37+00:00",
+      "hash": "92663d29511d7d39188eb447164908ac731b6f026065b6b8621138f5bbbb58d9",
+      "last_updated": "2026-09-29T06:50:59+00:00",
       "original_url": "https://code.claude.com/docs/en/authentication",
       "path": "/docs/en/authentication",
       "source_url": "https://code.claude.com/docs/en/authentication.md",
@@ -1923,7 +1923,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-29T01:11:25+00:00",
+  "last_updated": "2026-09-29T06:52:06+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
