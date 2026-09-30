@@ -418,8 +418,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "5b4704c48fb796490e9f4e1e1dc9503ea110506211133c31eddf044965995b4e",
-      "last_updated": "2026-09-29T21:32:41+00:00",
+      "hash": "fc75385efebd273067bb059c5200e0057f8742afe353eac0160ae0e27c670e46",
+      "last_updated": "2026-09-30T21:33:08+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -463,8 +463,8 @@
       "title": "Use Claude Code with Chrome"
     },
     "claude-apps-gateway-config.md": {
-      "hash": "851a3d2f9618ea837b9a2ec548157d800ab127394cc4295571a89b4c0d8b4b6b",
-      "last_updated": "2026-09-30T06:51:21+00:00",
+      "hash": "9714fa9ffa87b34be5ecd4a33249262e28964f9389b568cc1197a4d0bb167f57",
+      "last_updated": "2026-09-30T21:33:10+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-config",
       "path": "/docs/en/claude-apps-gateway-config",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-config.md",
@@ -481,8 +481,8 @@
       "title": "Claude apps gateway deployment and operations"
     },
     "claude-apps-gateway-on-aws.md": {
-      "hash": "304e71e6e943409994543cd1352d647b601e4be7717eb8b62db59a040119a7a9",
-      "last_updated": "2026-09-30T03:39:51+00:00",
+      "hash": "b269e2799779d0518f420b3e8dc1d42923a91eb20e123fa8f6fda7fe691b2781",
+      "last_updated": "2026-09-30T21:33:11+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-on-aws",
       "path": "/docs/en/claude-apps-gateway-on-aws",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-on-aws.md",
@@ -499,8 +499,8 @@
       "title": "Deploy Claude apps gateway on Google Cloud"
     },
     "claude-apps-gateway-spend-limits.md": {
-      "hash": "938070509c73f3d36744f661b8804ccbcdc6c3957f3719f9b66b63f06f98fac2",
-      "last_updated": "2026-09-28T21:30:28+00:00",
+      "hash": "2ee96a9911e6847981ba3a9a894d27f74775be907301e4f3849659a966cdbc5a",
+      "last_updated": "2026-09-30T21:33:11+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-spend-limits",
       "path": "/docs/en/claude-apps-gateway-spend-limits",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-spend-limits.md",
@@ -562,8 +562,8 @@
       "title": "Scan your codebase for vulnerabilities"
     },
     "claude-tag.md": {
-      "hash": "2cbc4b5327916a6040f1ca996e6c55f54e1bba78012c668db084dba356cd62a3",
-      "last_updated": "2026-09-30T01:12:17+00:00",
+      "hash": "36bf9ff8e8f80d5f074eab1a5e23f1c15ed1b95de6b0396b0c889b3000d66d59",
+      "last_updated": "2026-09-30T21:33:14+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-tag",
       "path": "/docs/en/claude-tag",
       "source_url": "https://code.claude.com/docs/en/claude-tag.md",
@@ -859,8 +859,8 @@
       "title": "Claude Code GitLab CI/CD"
     },
     "glossary.md": {
-      "hash": "971890fc1f9056ef18356c3680bca3db3adc566b6269ae02158f8b7610ddec13",
-      "last_updated": "2026-09-30T03:40:07+00:00",
+      "hash": "03770075dca63075705d4b3c4ae5c126df68434ee0d48c5d008a2b6d5e96f498",
+      "last_updated": "2026-09-30T21:33:27+00:00",
       "original_url": "https://code.claude.com/docs/en/glossary",
       "path": "/docs/en/glossary",
       "source_url": "https://code.claude.com/docs/en/glossary.md",
@@ -1390,8 +1390,8 @@
       "title": "Configure the sandboxed Bash tool"
     },
     "scheduled-tasks.md": {
-      "hash": "dbcb614cd5376621f6c93aa6804566d044dc59bc878bee018e7f89bba701a708",
-      "last_updated": "2026-09-28T21:30:55+00:00",
+      "hash": "58d59f8945a1a463d6ba7ca486d35c162e6a779aca379009c7470dd0541a4320",
+      "last_updated": "2026-09-30T21:33:49+00:00",
       "original_url": "https://code.claude.com/docs/en/scheduled-tasks",
       "path": "/docs/en/scheduled-tasks",
       "source_url": "https://code.claude.com/docs/en/scheduled-tasks.md",
@@ -1534,8 +1534,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "3d16ba1bbfeba58af53cad506c3f5b3fb25b143a2cddebdecd99c5f41bdf3ae1",
-      "last_updated": "2026-09-30T18:39:52+00:00",
+      "hash": "a9314c76fc010244ed19285b57eb38576640ddc83861120716a84cb00a4ce237",
+      "last_updated": "2026-09-30T21:33:56+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1917,7 +1917,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-30T18:40:07+00:00",
+  "last_updated": "2026-09-30T21:34:11+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
