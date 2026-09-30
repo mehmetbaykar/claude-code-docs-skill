@@ -251,6 +251,7 @@ Match the message you see to a section below.
 | `Plugin "<name>@synced" is required by your organization and can't be disabled here` | [Plugin errors](#plugin-is-required-by-your-organization) |
 | `"<plugin>" was not uninstalled: it is still switched on in <file>` | [Plugin errors](#plugin-was-not-uninstalled) |
 | `"<plugin>" was not uninstalled: <file> is there and could not be read` | [Plugin errors](#plugin-was-not-uninstalled) |
+| `Plugin "<plugin>" was not uninstalled: installed_plugins.json` | [Plugin troubleshooting](https://code.claude.com/docs/en/plugins/troubleshooting#installed-plugins-json-holds-a-record-this-version-cannot-read) |
 | `would be spawned with zero tools — refusing` | [Tool errors](#agent-would-be-spawned-with-zero-tools) |
 | `File is covered by a Read deny rule in your permission settings` | [Tool errors](#file-is-covered-by-a-read-deny-rule) |
 | `cannot contain null bytes (\0)` | [Tool errors](#path-cannot-contain-null-bytes) |
@@ -3510,7 +3511,7 @@ When you try to disable a plugin that a required plugin depends on, Claude Code 
 Plugin was not uninstalled
 </h3>
 
-You ran [`claude plugin uninstall`](https://code.claude.com/docs/en/plugins/cli-reference#plugin-uninstall), or chose **Uninstall** in the `/plugin` **Installed** tab, and the uninstall stopped with a message starting `"<plugin>" was not uninstalled:`.
+You ran [`claude plugin uninstall`](https://code.claude.com/docs/en/plugins/cli-reference#plugin-uninstall), or chose **Uninstall** in the `/plugin` **Installed** tab, and the uninstall stopped with a message starting `"<plugin>" was not uninstalled:`. If the text after that colon starts with `installed_plugins.json` instead of naming a settings file, the cause is content in `installed_plugins.json` that this version of Claude Code can't read. For that form, see [`installed_plugins.json` holds a record this version can't read](https://code.claude.com/docs/en/plugins/troubleshooting#installed-plugins-json-holds-a-record-this-version-cannot-read).
 
 When Claude Code removed the plugin's entry from `enabledPlugins` and read that scope's settings files back, either the plugin was still switched on there, or a file that could switch it on couldn't be read or checked. Deleting the plugin's saved options, secrets, and data while a settings entry could switch it back on would lose them, so the uninstall stops instead: the plugin stays installed and nothing it saved is deleted.
 ```text

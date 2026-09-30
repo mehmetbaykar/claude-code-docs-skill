@@ -149,7 +149,7 @@ claude plugin uninstall formatter@my-marketplace --scope project
 
 Claude Code prints `Successfully uninstalled plugin: formatter (scope: project)`. When the plugin isn't installed at that scope, the command prints a line that starts `Failed to uninstall plugin "formatter@my-marketplace":` and exits `1`.
 
-If the failure line continues with `"formatter" was not uninstalled:`, Claude Code couldn't confirm that the scope's settings no longer switch the plugin on, so the plugin stays installed with everything it saved. With `--json`, the result carries `failureCode: "settings_still_on"`. This settings check requires Claude Code v2.1.282 or later.
+If the failure line continues with `"formatter" was not uninstalled:` and names a settings file, Claude Code couldn't confirm that the scope's settings no longer switch the plugin on, so the plugin stays installed with everything it saved. With `--json`, the result carries `failureCode: "settings_still_on"`. This settings check requires Claude Code v2.1.282 or later.
 
 #### What an uninstall deletes and keeps
 
@@ -635,7 +635,9 @@ The `--json` output covers configured marketplaces only and leaves the section o
 
 Remove a marketplace's declaration from your settings. `rm` is an alias for `remove`.
 
-When you remove a marketplace from the last scope that declares it, Claude Code also deletes its cache and uninstalls every plugin you installed from it. Without `--scope`, the command removes the declaration from every scope. To refresh a marketplace without losing its plugins, run `plugin marketplace update` instead.
+When you remove a marketplace from the last scope that declares it, Claude Code also deletes its cache and uninstalls every plugin you installed from it. It also deletes their saved [options and secrets](https://code.claude.com/docs/en/plugins/manifest-reference#user-configuration) and [data](https://code.claude.com/docs/en/plugins/components#path-variables-and-persistent-data) where it can.
+
+To refresh a marketplace without losing its plugins, run `plugin marketplace update` instead.
 ```bash
 claude plugin marketplace remove <name> [options]
 ```
@@ -651,7 +653,9 @@ Remove a marketplace from every scope:
 claude plugin marketplace remove your-marketplace
 ```
 
-Claude Code prints `Successfully removed marketplace: your-marketplace`, adding `(from project settings)` when you scoped it. If you scope to a settings file that doesn't declare the marketplace, the command fails with `Marketplace 'your-marketplace' is not declared in project settings. Omit --scope to remove it from all scopes.`
+Claude Code prints `Successfully removed marketplace: your-marketplace`. When the command uninstalls plugins, the output lists them under a line such as `Also uninstalled 2 plugins from this marketplace:`. To use one of them again, add the marketplace back and reinstall the plugin.
+
+If you scope to a settings file that doesn't declare the marketplace, the command fails with `Marketplace 'your-marketplace' is not declared in project settings. Omit --scope to remove it from all scopes.`
 
 ### plugin marketplace update
 

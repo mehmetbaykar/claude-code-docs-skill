@@ -177,7 +177,7 @@ If you authenticate through Amazon Bedrock, Google Cloud's Agent Platform, Micro
 | [Computer use](https://code.claude.com/docs/en/computer-use) | ✓ | ✓ | ✗ | ✗ |
 | Dispatch ([Desktop](https://code.claude.com/docs/en/desktop#sessions-from-dispatch)) | ✓ | ✓ | ✗ | ✗ |
 | [Code Review](https://code.claude.com/docs/en/code-review) | ✗ | ✗ | ✓ | ✓ |
-| [Artifacts](https://code.claude.com/docs/en/artifacts) | ✓ | ✓ | ✓ | Admin-enabled |
+| [Artifacts](https://code.claude.com/docs/en/artifacts) | ✓ | ✓ | ✓ | ✓ |
 | [Analytics dashboard and contribution metrics](https://code.claude.com/docs/en/analytics) | ✗ | ✗ | ✓ | ✓ |
 | [Enterprise Analytics API](https://code.claude.com/docs/en/analytics#access-data-programmatically) | ✗ | ✗ | ✗ | ✓ |
 | [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings) | ✗ | ✗ | ✓ | ✓ |
