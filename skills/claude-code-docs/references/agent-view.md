@@ -69,9 +69,33 @@ This step needs a running session. If you followed the earlier steps you don't h
 To move a session you already have open into agent view, run `/bg` inside it, or press `←` on an empty prompt to background it and open agent view in one step. In a fresh session with no messages yet, `/bg` asks you to send a message first, while `←` works right away. The session keeps running and appears as a row alongside the ones you dispatched.
 
 
-You can use `claude agents` as your primary entry point instead of `claude`: dispatch every task from agent view, attach when you want the full conversation, and press `←` to return to the table.
-
 Inside a regular `claude` session, the prompt footer's `←` hint counts the background agents that are waiting on you, such as `← 2 agents`, and returns to `← for agents` when none need input. Counts above 99 show as `99+`. The count refreshes about every ten seconds while the terminal is focused and immediately when focus returns. It briefly changes color when it moves and when an agent completes, and when a background session finishes while none need your input it briefly shows the number completed, such as `← 2 done`. Both flashes are off when the [`prefersReducedMotion` setting](https://code.claude.com/docs/en/settings-reference#prefersreducedmotion) is on, and the hint is hidden in [screen reader mode](https://code.claude.com/docs/en/accessibility).
+
+### Open agent view by default
+
+To have `claude` with no arguments open agent view instead of a new conversation, turn on a `/config` setting.
+
+
+**Turn on the setting**
+
+In a regular `claude` session, run `/config` and turn on **Open agents view by default**. To skip the menu, set the [`defaultToAgentsView`](https://code.claude.com/docs/en/settings-reference#defaulttoagentsview) key directly:
+```text
+    /config defaultToAgentsView=true
+```
+
+
+
+**Start Claude Code**
+
+Exit the session, then run `claude` with no arguments:
+```bash
+    claude
+```
+
+Agent view opens in place of a new conversation.
+
+
+To start a regular session while the setting is on, pass a prompt: `claude "fix the login test"`. To turn the setting off, run `/config defaultToAgentsView=false` in a regular session or in one you attach to from agent view.
 
 ## Monitor sessions with agent view
 
