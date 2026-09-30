@@ -245,7 +245,7 @@ Claude Code fetches the package with your npm client. The package's install scri
 
 ### archive plugin source
 
-`url` must use `https://` and can't point at a loopback, link-local, or cloud-metadata host.
+`url` must use `https://` and can't point at a loopback, link-local, or cloud-metadata host. For the size, timeout, redirect, and extraction limits on the download, see [Stay within the download limits for hosted files](https://code.claude.com/docs/en/plugins/host-marketplace#stay-within-the-download-limits-for-hosted-files).
 
 The plugin root may be at the top of the zip or one directory down.
 
@@ -338,7 +338,7 @@ The table lists every marketplace source type with its fields, the `claude plugi
 | :- | :- | :- | :- | :- | :- |
 | `url` | `url`, `headers`, `headersHelper` | An `http://` or `https://` URL that doesn't match a git form | Loads | Allows the same URL | Blocks the same URL |
 | `github` | `repo`, `ref`, `path`, `sparsePaths` | `owner/repo`, `owner/repo@ref`, or `owner/repo#ref` | Loads | Allows the same `repo`, `ref`, and `path`. `repo` may be `owner/*` | Blocks the same, and a `git` URL to the same repository |
-| `git` | `url`, `ref`, `path`, `sparsePaths` | A `user@host:path` URL, or an `https://` URL that ends in `.git`, contains `/_git/`, or names a github.com or gitlab.com repository. `#ref` pins a ref | Loads | Allows the same URL, `ref`, and `path` | Blocks the same, and other spellings of the same github.com repository |
+| `git` | `url`, `ref`, `path`, `sparsePaths` | A `user@host:path` URL, or an `http://` or `https://` URL that ends in `.git`, contains `/_git/`, or names a github.com or gitlab.com repository. `#ref` pins a ref | Loads | Allows the same URL, `ref`, and `path` | Blocks the same, and other spellings of the same github.com repository |
 | `npm` | `package` | Not produced | Fails to load: `NPM marketplace sources not yet implemented` | Parses but matches nothing, because nothing registers an `npm` marketplace | Parses but matches nothing |
 | `file` | `path` | A path to a `.json` file | Loads | Allows the same path | Blocks the same path |
 | `directory` | `path` | A path to a directory | Loads | Allows the same path | Blocks the same path |
@@ -353,7 +353,7 @@ The table lists each marketplace source field that has a default, a constraint, 
 
 | Field | Types | Description |
 | :- | :- | :- |
-| `url` | `url` | Link to the `marketplace.json` file. Claude Code downloads only that file, so the marketplace's plugins can't use [relative-path sources](#relative-path-plugin-source) |
+| `url` | `url` | Link to the `marketplace.json` file. Claude Code downloads only that file, so the marketplace's plugins can't use [relative-path sources](#relative-path-plugin-source). See [Stay within the download limits for hosted files](https://code.claude.com/docs/en/plugins/host-marketplace#stay-within-the-download-limits-for-hosted-files) for the size, timeout, and redirect limits |
 | `url` | `git` | The git repository to clone |
 | `headers` | `url` | Map of HTTP headers Claude Code sends with the fetch, for authenticated hosts |
 | `headersHelper` | `url` | Command that prints headers whose values are too short-lived to list in `headers`. Requires Claude Code v2.1.238 or later. See [Authenticate archive downloads](https://code.claude.com/docs/en/plugins/host-marketplace#authenticate-archive-downloads) |

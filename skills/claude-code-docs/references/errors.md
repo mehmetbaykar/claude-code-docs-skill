@@ -157,6 +157,7 @@ Match the message you see to a section below.
 | `Claude Code ... is older than the minimum version required by your organization's policy` | [Request errors](#claude-code-does-not-support-this-model) |
 | `Model ... is restricted by your organization's settings` | [Request errors](#model-is-restricted-by-your-organizations-settings) |
 | `Model ... is not available. Your organization restricts model selection.` | [Request errors](#model-is-restricted-by-your-organizations-settings) |
+| `Can't switch to the default model` | [Request errors](#cant-switch-to-the-default-model) |
 | `Model switch ... blocked by a PreModelSwitch hook` | [Request errors](#model-switch-was-blocked-by-a-premodelswitch-hook) |
 | `couldn't save it as your default` / `couldn't confirm it was saved as your default` | [Request errors](#couldnt-save-it-as-your-default) |
 | `thinking.type.enabled is not supported for this model` | [Request errors](#thinking-type-enabled-is-not-supported-for-this-model) |
@@ -218,6 +219,7 @@ Match the message you see to a section below.
 | `Ultrareview clones <owner>/<repo> in the cloud with the GitHub account connected to your Claude account, and none is connected` | [Command-line errors](#no-github-account-is-connected-to-your-claude-account) |
 | `Your connected GitHub account can't see <owner>/<repo>` | [Command-line errors](#your-connected-github-account-cant-see-the-repository) |
 | `The GitHub App preflight failed transiently (network or service hiccup) — retry in a moment to start from GitHub instead` | [Command-line errors](#the-github-app-preflight-failed-transiently) |
+| `Not uploading this working tree` with `the upload cannot follow that setting` | [Command-line errors](#the-repository-upload-cant-follow-a-git-setting) |
 | `GitHub isn't connected to your Claude account, so this repository can't be cloned in the cloud` | [Command-line errors](#github-isnt-connected-to-your-claude-account) |
 | `Single sign-on authorization needed` | [Command-line errors](#single-sign-on-authorization-needed) |
 | `Failed to resume the conversation` | [Command-line errors](#failed-to-resume-the-conversation) |
@@ -2235,6 +2237,29 @@ Claude Code treats a model family alias, one of `opus`, `sonnet`, `haiku`, or `f
 * If the restricted model was set in `--model`, `ANTHROPIC_MODEL`, the `model` field of a settings file, or the `model` frontmatter of a [subagent](https://code.claude.com/docs/en/sub-agents#choose-a-model), skill, or command, remove or update that value so the notice doesn't recur
 * If you need access to the restricted model, ask your organization admin to enable it. See [Organization model restrictions](https://code.claude.com/docs/en/model-config#organization-model-restrictions).
 
+<h3 id="cant-switch-to-the-default-model">
+Can't switch to the default model
+</h3>
+
+You picked the Default model, for example by selecting the Default row in the `/model` picker or typing `/model default`. Claude Code refused the switch, so the session keeps its current model.
+```text
+Can't switch to the default model: your organization's managed settings block it (claude-opus-4-6) in "deniedModels", and none of the models they allow can be used as the default instead. Ask your administrator to update "deniedModels" or "availableModels".
+```
+
+The wording after the colon names what blocked the switch:
+
+* **`your organization's managed settings block it ... in "deniedModels"`**: a managed deny list blocks the model the Default option resolves to
+* **`your organization allows only the models listed in "availableModels"`**: a managed [`availableModels`](https://code.claude.com/docs/en/model-config#restrict-model-selection) allowlist with [`availableModelsMatch`](https://code.claude.com/docs/en/settings-reference#availablemodelsmatch) set to `"exact"` leaves out the model the Default option resolves to
+* **`Claude Code couldn't read your organization's managed settings to check which models they allow`**: the [managed settings](https://code.claude.com/docs/en/managed-settings) couldn't be read, and Claude Code refuses the switch rather than apply it unchecked
+
+**What to do:**
+
+* For the [`deniedModels`](https://code.claude.com/docs/en/settings-reference#deniedmodels) and `availableModels` wordings, run `/model` and pick a model your organization allows by name
+* Ask your administrator to update the managed setting the message names
+* For the `couldn't read` wording, restart Claude Code; if it keeps happening, ask your administrator to check the managed settings
+
+If a session instead fails to start with a `Claude Code can't start` message under these managed settings, see [Managed settings block the default model](#managed-settings-block-the-default-model).
+
 ### Model switch was blocked by a PreModelSwitch hook
 
 A [PreModelSwitch hook](https://code.claude.com/docs/en/hooks#premodelswitch) didn't approve the model switch you or a client requested, so the session keeps its current model. When the switch came from an [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview) host or [Remote Control](https://code.claude.com/docs/en/remote-control) rather than a command you typed, the message reads `Model switch blocked by a PreModelSwitch hook` without naming the target model.
@@ -3052,6 +3077,23 @@ Could not upload repo bundle (<error>). The GitHub App preflight failed transien
 * If retries keep failing, the start of the message names what stopped the upload. When that cause is something you can fix, fix it so the session can start from your local repository instead
 
 Before v2.1.251, Claude Code ended the message with `Please set up GitHub on https://claude.ai/code` even when the GitHub check failed only transiently, and setup advice can't clear a transient failure.
+
+<h3 id="the-repository-upload-cant-follow-a-git-setting">
+The repository upload can't follow a git setting
+</h3>
+
+You started a [cloud session that uploads your local repository](https://code.claude.com/docs/en/claude-code-on-the-web#send-local-repositories-without-github), or an [ultrareview](https://code.claude.com/docs/en/ultrareview) of a branch, and the upload can't follow one of the git settings that decide which attribute rules apply to your files. If the upload went ahead and missed a rule, a file that git transforms before storing it, such as one a clean filter encrypts, could reach the cloud as it is on disk. Claude Code refuses the upload instead, and nothing is uploaded:
+```text
+Not uploading this working tree: core.ignoreCase (which decides whether .gitattributes patterns match file names regardless of letter case) is set in <file>, and the upload cannot follow that setting, so a file git would change before storing it (to encrypt it, for example) could be uploaded as it is on disk. Move the core.ignoreCase line into this repository’s .git/config or directly into your ~/.gitconfig, then retry.
+```
+
+The message names the setting and where it's set, and ends with the fix for the case you hit. The same refusal appears for `core.attributesFile` and `attr.tree`, each with its own fix.
+
+The message can name a config file that your git configuration pulls in through an `include` or `includeIf` directive, even when that directive's condition doesn't apply to this repository.
+
+**What to do:**
+
+* Apply the fix in the message's final sentence
 
 <h3 id="github-isnt-connected-to-your-claude-account">
 GitHub isn't connected to your Claude account
