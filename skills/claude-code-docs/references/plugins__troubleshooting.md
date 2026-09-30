@@ -138,7 +138,10 @@ The same string also appears in the `/plugin` **Errors** tab, the panel's list o
 `Marketplace "<name>" not found`
 </h3>
 
-You ran `/plugin install <plugin>@<name>` in a session, often from an install line someone sent you, and Claude Code reported that it has no marketplace by that name.
+You ran `/plugin install` in a session and Claude Code reported that it has no marketplace by that name. Two forms of the command reach this message:
+
+* **`/plugin install <plugin>@<name>`**: the install line, often one someone sent you, names a marketplace you haven't added. The rest of this entry covers finding and adding it.
+* **`/plugin install <source>` with a path, URL, or `owner/repo`**: this form reports the message instead of installing, even for a source you've already added. To install from a source in one command, see [Add a marketplace and install in one command](https://code.claude.com/docs/en/plugins/install#add-a-marketplace-and-install-in-one-command).
 
 If the name starts with `claudeai-`, the marketplace is hosted on claude.ai, and you add it by name from your shell with `claude plugin marketplace add --claudeai <name>`. See [Add a marketplace from claude.ai](https://code.claude.com/docs/en/plugins/install#add-from-claude-ai).
 
