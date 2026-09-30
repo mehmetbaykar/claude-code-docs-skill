@@ -4,17 +4,11 @@
     "failed_pages": [],
     "fetch_tool_version": "2.0",
     "pages_failed": 0,
-    "pages_fetched_successfully": 209,
+    "pages_fetched_successfully": 210,
     "pages_skipped": 0,
-    "pages_stale": 1,
+    "pages_stale": 0,
     "raw_fallback_pages": 0,
-    "stale_pages": [
-      {
-        "error": "HTTPError: 403 Client Error: Forbidden for url: https://code.claude.com/docs/en/claude-tag.md",
-        "path": "/docs/en/claude-tag",
-        "url": "https://code.claude.com/docs/en/claude-tag"
-      }
-    ],
+    "stale_pages": [],
     "total_pages_discovered": 210
   },
   "files": {
@@ -568,13 +562,13 @@
       "title": "Scan your codebase for vulnerabilities"
     },
     "claude-tag.md": {
-      "hash": "8f3dacc641569ead2e216cec3e8f791d99598a5ebbfb3253594a11c1d187d1d1",
-      "last_updated": "2026-08-10T22:02:31+00:00",
+      "hash": "2cbc4b5327916a6040f1ca996e6c55f54e1bba78012c668db084dba356cd62a3",
+      "last_updated": "2026-09-30T01:12:17+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-tag",
       "path": "/docs/en/claude-tag",
       "source_url": "https://code.claude.com/docs/en/claude-tag.md",
-      "status": "stale",
-      "title": "Claude Tag"
+      "status": "live",
+      "title": "Work with Claude Tag"
     },
     "cli-reference.md": {
       "hash": "9ff823df8b7b192eb5ddd2fceee36bbb96aa409a8cc1dc04cff9c83fb1f20cb2",
@@ -748,8 +742,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "360ab04daf1803732215b4e5f8c132baa149033ca3712af18b5473efa7f5c7cb",
-      "last_updated": "2026-09-29T21:32:54+00:00",
+      "hash": "2c70d30a88191b2c9b3fbc52827e383212c6436676f457e5e04c9a381721d6a8",
+      "last_updated": "2026-09-30T01:12:23+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -910,8 +904,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "4e0c2da9a4eb7a110a88f40330cd948d6dbf1cd6b72e37ad16d5da2eabce068b",
-      "last_updated": "2026-09-29T21:33:06+00:00",
+      "hash": "a505a3f73a52af7954abea7f64fda57df1c0e3adb305339d987b18ddd2510a38",
+      "last_updated": "2026-09-30T01:12:30+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -1081,8 +1075,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "94d56fc305fbfd0081757f7edfb0cbef40fb5cf45ef248d0383a6c7733c33ce0",
-      "last_updated": "2026-09-29T15:34:34+00:00",
+      "hash": "2e61fe860074078ca79219107cc765afb5e45992d5b0ece0cb04254a65094a59",
+      "last_updated": "2026-09-30T01:12:36+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -1243,8 +1237,8 @@
       "title": "Install and manage plugins"
     },
     "plugins__loading.md": {
-      "hash": "ed26b5e09b5240f17e86fe3f3e0985f7b6dd217f46d0d8758dc47387b30a3a02",
-      "last_updated": "2026-09-28T21:30:51+00:00",
+      "hash": "b2fb847a780bfd787379acf946f5d523553b8e05ea74277146b71c492bf072a8",
+      "last_updated": "2026-09-30T01:12:42+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/loading",
       "path": "/docs/en/plugins/loading",
       "source_url": "https://code.claude.com/docs/en/plugins/loading.md",
@@ -1360,8 +1354,8 @@
       "title": "Quickstart"
     },
     "remote-control.md": {
-      "hash": "9711065d7ad2550e9e6f1717bd661b7077881bae7bf78e4f6987b0fee7a559e5",
-      "last_updated": "2026-09-29T21:33:41+00:00",
+      "hash": "7f5cd340b04592a060c35f86fb0ab066a327e310f0c6ab2d9cf998e407dc3ee5",
+      "last_updated": "2026-09-30T01:12:47+00:00",
       "original_url": "https://code.claude.com/docs/en/remote-control",
       "path": "/docs/en/remote-control",
       "source_url": "https://code.claude.com/docs/en/remote-control.md",
@@ -1603,8 +1597,8 @@
       "title": "Tools reference"
     },
     "troubleshoot-install.md": {
-      "hash": "c50757de3af4db40de90b7a944964c650a80ca4107dffd1661a8e752f543c45f",
-      "last_updated": "2026-09-28T21:31:02+00:00",
+      "hash": "1ab0e700fa8bd995d141662fb99c5d01b2f53abe5f2606c471651783656e7638",
+      "last_updated": "2026-09-30T01:12:56+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshoot-install",
       "path": "/docs/en/troubleshoot-install",
       "source_url": "https://code.claude.com/docs/en/troubleshoot-install.md",
@@ -1923,7 +1917,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-29T21:34:05+00:00",
+  "last_updated": "2026-09-30T01:13:07+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
