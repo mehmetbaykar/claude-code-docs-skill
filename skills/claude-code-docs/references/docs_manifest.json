@@ -382,8 +382,8 @@
       "title": "Share session output as artifacts"
     },
     "authentication.md": {
-      "hash": "cf88d9611d1380543c3a23e7c1ea62db1e72353025cd196e0ba886551c588cc7",
-      "last_updated": "2026-09-29T15:34:09+00:00",
+      "hash": "0a59e4ce0b18ec21de293af7805975105b4b584acda53fe049424b7856ae5388",
+      "last_updated": "2026-09-30T09:36:36+00:00",
       "original_url": "https://code.claude.com/docs/en/authentication",
       "path": "/docs/en/authentication",
       "source_url": "https://code.claude.com/docs/en/authentication.md",
@@ -598,8 +598,8 @@
       "title": "Code Review"
     },
     "commands.md": {
-      "hash": "4161bce7c2c1fa16ff6154821266f8c9dae0fbc35e013eae1803d7e2b358eeaa",
-      "last_updated": "2026-09-30T06:51:26+00:00",
+      "hash": "4b7dcf4ceae8e9e9c151e54af670af0e9a717c11d65345b6437e71c9de166091",
+      "last_updated": "2026-09-30T09:36:45+00:00",
       "original_url": "https://code.claude.com/docs/en/commands",
       "path": "/docs/en/commands",
       "source_url": "https://code.claude.com/docs/en/commands.md",
@@ -769,8 +769,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "5b0de083d1c6e67656672fe49c94ce8a668662bea4adaebbf27b07e907081b98",
-      "last_updated": "2026-09-30T06:51:32+00:00",
+      "hash": "bcda16683c48f230b49b0ca14677d328a405f598077909eb7d36618c1cb02431",
+      "last_updated": "2026-09-30T09:36:52+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -1039,8 +1039,8 @@
       "title": "Connect Claude Code to tools via MCP"
     },
     "memory.md": {
-      "hash": "87a97a94df7e624b118be01775cf18d463f8d5e6e67e15d406c64432c1e5bb3f",
-      "last_updated": "2026-09-29T21:33:24+00:00",
+      "hash": "f7dad90ea9d5ba1d4ae1cbf5fe22877394422e887b496dd166fe2d231e01486e",
+      "last_updated": "2026-09-30T09:37:03+00:00",
       "original_url": "https://code.claude.com/docs/en/memory",
       "path": "/docs/en/memory",
       "source_url": "https://code.claude.com/docs/en/memory.md",
@@ -1066,8 +1066,8 @@
       "title": "Claude Code on mobile"
     },
     "model-config.md": {
-      "hash": "489d94f723d66612eee21ef96a09dfabf10152e1222d780330a247ed479e70fe",
-      "last_updated": "2026-09-30T06:51:42+00:00",
+      "hash": "f19125daae22c6202f4479824b834c6966350fe618809fd637d9abcb97a06844",
+      "last_updated": "2026-09-30T09:37:04+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -1165,8 +1165,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugins__cli-reference.md": {
-      "hash": "1c440e4d50bff546809ab053cb058330cece220f7550ce95f614760520a853e5",
-      "last_updated": "2026-09-30T06:51:45+00:00",
+      "hash": "951e9ab8b7f875d5ee9c0568c2f3edd3aca22a816a2db23526517d0dfac5a7e2",
+      "last_updated": "2026-09-30T09:37:08+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/cli-reference",
       "path": "/docs/en/plugins/cli-reference",
       "source_url": "https://code.claude.com/docs/en/plugins/cli-reference.md",
@@ -1183,8 +1183,8 @@
       "title": "Code intelligence plugins"
     },
     "plugins__components.md": {
-      "hash": "6d6c569c3fa8fc78f6489cf3d38a2950788b52b18f57d6d8120e6dca30649da3",
-      "last_updated": "2026-09-28T21:30:49+00:00",
+      "hash": "26588658775060b8a2a70c12f5bb981fc8ed33fea5ae490ec0f6e2f0937de90c",
+      "last_updated": "2026-09-30T09:37:09+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/components",
       "path": "/docs/en/plugins/components",
       "source_url": "https://code.claude.com/docs/en/plugins/components.md",
@@ -1372,8 +1372,8 @@
       "title": "Automate work with routines"
     },
     "sandbox-environments.md": {
-      "hash": "bc7db1b3d6037cba74196f2916affc54f25f1026b3ac078a0abec819a614b53a",
-      "last_updated": "2026-09-28T21:30:55+00:00",
+      "hash": "0fa9d8d4c323b4b3295061c9eb729c1640c84fe48388a1a93b03eeb0d94e33fd",
+      "last_updated": "2026-09-30T09:37:17+00:00",
       "original_url": "https://code.claude.com/docs/en/sandbox-environments",
       "path": "/docs/en/sandbox-environments",
       "source_url": "https://code.claude.com/docs/en/sandbox-environments.md",
@@ -1534,8 +1534,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "7cb2d4b8e75198483275c6dd9192234b7d6e78a4c7315e593cec0dbed54b0473",
-      "last_updated": "2026-09-30T03:40:38+00:00",
+      "hash": "7dd8b24fbaa1a40b4fda6b0b62b0b42ad6f906a41e24c0a7bbb5143d154623ed",
+      "last_updated": "2026-09-30T09:37:59+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -1597,8 +1597,8 @@
       "title": "Tools reference"
     },
     "troubleshoot-install.md": {
-      "hash": "1ab0e700fa8bd995d141662fb99c5d01b2f53abe5f2606c471651783656e7638",
-      "last_updated": "2026-09-30T01:12:56+00:00",
+      "hash": "7620c198f4385594e439406f60372ce63e6b996f1ac52cf81e8d078d116174f8",
+      "last_updated": "2026-09-30T09:38:05+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshoot-install",
       "path": "/docs/en/troubleshoot-install",
       "source_url": "https://code.claude.com/docs/en/troubleshoot-install.md",
@@ -1917,7 +1917,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-09-30T06:52:10+00:00",
+  "last_updated": "2026-09-30T09:38:17+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
