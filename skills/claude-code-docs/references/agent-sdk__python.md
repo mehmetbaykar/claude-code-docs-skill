@@ -442,7 +442,7 @@ class ClaudeSDKClient:
 | `rewind_files(user_message_id)` | Restore files to their state at the specified user message. Requires `enable_file_checkpointing=True`. See [File checkpointing](https://code.claude.com/docs/en/agent-sdk/file-checkpointing) |
 | `get_mcp_status()` | Get the status of all configured MCP servers. Returns [`McpStatusResponse`](#mcpstatusresponse) |
 | `reconnect_mcp_server(server_name)` | Retry connecting to an MCP server that failed or was disconnected |
-| `toggle_mcp_server(server_name, enabled)` | Enable or disable an MCP server mid-session. Disabling removes its tools |
+| `toggle_mcp_server(server_name, enabled)` | Enable or disable an MCP server mid-session. Disabling a stdio, SSE, or HTTP server removes its tools |
 | `stop_task(task_id)` | Stop a running background task. A [`TaskNotificationMessage`](#tasknotificationmessage) with status `"stopped"` follows in the message stream |
 | `get_server_info()` | Get the server's initialization info, including available commands and output styles |
 | `disconnect()` | Disconnect from Claude |

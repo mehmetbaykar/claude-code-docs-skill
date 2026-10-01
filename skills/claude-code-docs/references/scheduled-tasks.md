@@ -71,7 +71,7 @@ In a session where the [Monitor tool is available](https://code.claude.com/docs/
 
 A dynamically scheduled loop appears in your [scheduled task list](#manage-scheduled-tasks) like any other task, so you can list or cancel it the same way. The [jitter rules](#jitter) don't apply to it, but the [seven-day expiry](#seven-day-expiry) does.
 
-Dynamically chosen intervals and the [built-in maintenance prompt](#run-the-built-in-maintenance-prompt) work on every provider, and with [feature-flag fetching](https://code.claude.com/docs/en/env-vars#features-that-need-feature-flag-fetching) turned off. On Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, and Microsoft Foundry, or with fetching turned off, both require Claude Code v2.1.248 or later. In those cases, on earlier versions, a prompt with no interval runs on a fixed 10-minute schedule, and a `/loop` with no prompt prints the usage message.
+Dynamically chosen intervals and the [built-in maintenance prompt](#run-the-built-in-maintenance-prompt) work on every provider, and with [feature-flag fetching](https://code.claude.com/docs/en/env-vars#features-that-need-feature-flag-fetching) turned off. On Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, and Microsoft Foundry, or with fetching turned off, both require Claude Code v2.1.248 or later.
 
 ### Run the built-in maintenance prompt
 
