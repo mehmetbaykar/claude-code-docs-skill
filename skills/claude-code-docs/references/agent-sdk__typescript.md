@@ -741,6 +741,7 @@ type SDKResultMessage =
 ```typescript
 type SDKStartupFailureReason =
   | "org_pin_api_key_conflict"
+  | "provider_not_allowed"
   | "org_verify_failed"
   | "org_pin_mismatch"
   | "managed_settings_invalid"
