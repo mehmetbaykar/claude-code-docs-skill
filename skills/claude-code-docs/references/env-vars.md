@@ -55,7 +55,7 @@ To set it for every session, run `[Environment]::SetEnvironmentVariable("API_TIM
 To set it for every session, run `setx API_TIMEOUT_MS "1200000"` and open a new terminal.
 
 
-The assignment line prints nothing on success, so confirm the variable is set by printing it in the same shell before you run `claude`:
+The assignment line prints nothing on success. To confirm the variable is set, print it in the same shell:
 
 
 **macOS, Linux, WSL**
@@ -119,7 +119,7 @@ Claude Code reads shell environment variables at startup, so changes to them tak
 
 Numeric variables such as timeouts, token budgets, and retry counts accept scientific notation and digit-separator spellings in addition to plain digits, except where a variable's row notes it takes plain digits only. For example, Claude Code reads `2e3` as 2000 and `64_000` as 64000. Before v2.1.211, these spellings could silently set a much smaller value, such as `1e6` setting a timeout to 1.
 
-For variables that turn a behavior on or off, set `1` or `true` to turn it on and `0` or `false` to turn it off, in any casing.
+For variables that turn a behavior on or off, set `1`, `true`, `yes`, or `on` to turn it on and `0`, `false`, `no`, or `off` to turn it off, in any casing.
 
 Some variables read only whether you set them at all, so any non-empty value including `0` turns the behavior on, and you turn the behavior off by unsetting the variable or setting it to an empty value. These variables work that way:
 
