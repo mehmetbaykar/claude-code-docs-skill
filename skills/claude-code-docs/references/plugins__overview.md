@@ -28,9 +28,10 @@ A plugin is a directory of components, usually with a manifest. The manifest, a 
 * [**Skills**](https://code.claude.com/docs/en/plugins/components#skills): `SKILL.md` instructions Claude loads when relevant, and that you can also run as a command
 * [**Agents**](https://code.claude.com/docs/en/plugins/components#agents): subagent definitions Claude can delegate to
 * [**Hooks**](https://code.claude.com/docs/en/plugins/components#hooks): commands Claude Code runs at points in its lifecycle, such as after every edit
+* [**A hooks module**](https://code.claude.com/docs/en/plugins/mods/overview): hooks written as JavaScript functions, which can also draw panes and add commands. A plugin that has one is called a mod
 * [**MCP servers**](https://code.claude.com/docs/en/plugins/components#mcp-servers): tool servers Claude Code connects to while the plugin is enabled
 
-This diagram shows a plugin named `my-plugin` that holds one of each of those components, and what you get from each file once the plugin loads.
+This diagram shows a plugin named `my-plugin` that holds a skill, an agent, hooks, and an MCP server, and what you get from each file once the plugin loads.
 
 ![](https://mintcdn.com/claude-code/2Q_GtOEovg5qaBem/images/plugin-directory.svg?fit=max&auto=format&n=2Q_GtOEovg5qaBem&q=85&s=f623b64e82713b830e48174f0a922888)
 
