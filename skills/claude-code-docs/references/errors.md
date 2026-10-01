@@ -288,6 +288,9 @@ Match the message you see to a section below.
 | `Reading a local file from outside this session's connected folders, or through a link, needs the approval card` | [Tool errors](#reading-a-local-file-from-outside-the-connected-folders) |
 | `cannot read file_path (...) — the file could not be examined, and no one can answer the approval card` | [Tool errors](#reading-a-local-file-from-outside-the-connected-folders) |
 | `WebFetch cannot fetch localhost or other hostnames without a dot` | [Tool errors](#webfetch-cannot-fetch-localhost) |
+| `The safety check for domain ... is rate-limited` | [Tool errors](#webfetch-domain-safety-check-failed) |
+| `The safety check for domain ... is temporarily rate-limited` | [Tool errors](#webfetch-domain-safety-check-failed) |
+| `Unable to verify if domain ... is safe to fetch` | [Tool errors](#webfetch-domain-safety-check-failed) |
 | `Can't open MCP settings while no terminal is attached to this background session` | [Background session errors](#commands-refused-in-a-background-session) |
 | `Can't open MCP settings in a background session` | [Background session errors](#commands-refused-in-a-background-session) |
 | `blocked because the path is spelled in a form that cannot be safely resolved` | [Background session errors](#write-or-command-blocked-because-the-path-cannot-be-safely-resolved) |
@@ -3993,6 +3996,23 @@ WebFetch cannot fetch localhost or other hostnames without a dot. To reach a loc
 * Usually nothing: the message points Claude at `curl` through the Bash tool, which can reach local and intranet servers
 
 Before v2.1.268, WebFetch reported these URLs with a generic `Invalid URL` error.
+
+<h3 id="webfetch-domain-safety-check-failed">
+WebFetch domain safety check failed
+</h3>
+
+Before fetching a URL, WebFetch sends the URL's hostname to `api.anthropic.com` to check it against Anthropic's [domain safety blocklist](https://code.claude.com/docs/en/data-usage#webfetch-domain-safety-check). If the check can't complete, WebFetch can't confirm that the domain is safe, so it doesn't fetch the page and the tool result carries one of these messages instead:
+```text wrap
+The safety check for domain example.com is rate-limited (too many domain checks from this network; the limit is shared and can stay exhausted for minutes). Do not retry WebFetch in a loop or sleep to wait it out; continue without this page and report that its safety check was rate-limited. A single later attempt is fine; if that is rate-limited too, stop.
+
+Unable to verify if domain example.com is safe to fetch. This may be due to network restrictions or enterprise security policies blocking claude.ai.
+```
+
+* `rate-limited`: the check endpoint answered with HTTP `429`. The message tells Claude to continue without the page and to try again at most once later. Claude Code doesn't cache a failed check, so a later fetch of that domain runs the check again. If sessions on your network hit this often, you can skip the check with [`skipWebFetchPreflight: true`](https://code.claude.com/docs/en/settings-reference#skipwebfetchpreflight) in settings.
+* `Unable to verify`: the check request failed, timed out, or got another error status. If your network blocks `api.anthropic.com`, allowlist that domain, or skip the check with [`skipWebFetchPreflight: true`](https://code.claude.com/docs/en/settings-reference#skipwebfetchpreflight) in settings.
+
+Before v2.1.286, the rate-limited message read `The safety check for domain example.com is temporarily rate-limited (too many domain checks from this network). Retry after about a minute; retrying sooner will fail the same way.`.
+Before v2.1.285, a rate-limited check was reported with the `Unable to verify` message instead.
 
 ## Background session errors
 

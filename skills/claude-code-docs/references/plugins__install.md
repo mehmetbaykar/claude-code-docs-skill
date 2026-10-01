@@ -41,7 +41,7 @@ Run `/plugin install` with the plugin's name and marketplace. In a session, this
         /plugin install commit-commands@claude-plugins-official
 ```
 
-To browse instead, run `/plugin` with no plugin name: the panel opens on the **Discover** tab, which lists plugins from every marketplace you've added, and you can type to search, then press **Enter** on a plugin to open its details.
+To browse instead, run `/plugin` with no plugin name: the panel opens on the **Discover** tab, which lists the plugins from your marketplaces, and you can type to search, then press **Enter** on a plugin to open its details.
 
 
 

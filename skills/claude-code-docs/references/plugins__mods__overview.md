@@ -165,7 +165,8 @@ A mod's hooks run in every kind of session that loads the plugin. Drawing is nar
 | Where you run Claude Code | Hooks run | What the mod draws appears |
 | :- | :- | :- |
 | `claude` in a terminal, including an editor's integrated terminal and the JetBrains plugin | Yes | Yes |
-| The Code tab of the Desktop app | Yes | Yes, except elements the [elements table](https://code.claude.com/docs/en/plugins/mods/reference#elements) marks terminal-only |
+| The Code tab of the Desktop app, except in a WSL session | Yes | Yes, except elements the [elements table](https://code.claude.com/docs/en/plugins/mods/reference#elements) marks terminal-only |
+| A [WSL session](https://code.claude.com/docs/en/desktop-wsl) in the Desktop app | No, because plugins aren't available in WSL sessions | No |
 | The VS Code extension's chat panel | Yes | No |
 | `claude -p` and the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview) | Yes | No |
 | [Remote Control](https://code.claude.com/docs/en/remote-control) from claude.ai or the mobile app | Yes, in the session on your machine | In the terminal on your machine |

@@ -661,12 +661,7 @@ Claude Code now runs your `ui.render` hook once a second. The timer stops when t
 
 ### How often a site can redraw
 
-Claude Code limits how often it redraws, so your mod can call `$.ui.invalidate` as often as its data changes:
-
-| Site | Redraws a second, at most |
-| :- | :- |
-| The visible pane and the band | 30 |
-| Every other site | 10 |
+Claude Code limits how often it redraws a site, so your mod can call `$.ui.invalidate` as often as its data changes. The visible pane and the band have a higher limit than other sites, and the [limits table](https://code.claude.com/docs/en/plugins/mods/reference#limits) has the numbers.
 
 Calls that come faster than the limit are combined into one redraw. That redraw runs your hook once, and the hook reads your data as it is at that moment, so the latest value shows and the values in between don't. An animation can't run faster than the limit.
 
