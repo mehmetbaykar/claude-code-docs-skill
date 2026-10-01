@@ -418,8 +418,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "912b03a09012d15678a6dcc4543aa3c53018a0faf30623127dd0c8960b82f725",
-      "last_updated": "2026-10-01T18:40:52+00:00",
+      "hash": "148bd5246d9f14c70b417eb2d1a72d33a832fd52a1b449cfe119aa145388a1e8",
+      "last_updated": "2026-10-01T21:31:59+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -760,8 +760,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "a0f90e74caaef6e5f4a6ca0635532bc1b4fb8b1cd35512afbce0784707aaec62",
-      "last_updated": "2026-10-01T06:52:39+00:00",
+      "hash": "78de6379e0cc97fad5c0bb62f5e961a3e44121bd65af89146eb119865eac8b1d",
+      "last_updated": "2026-10-01T21:32:14+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -769,8 +769,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "4dc45c563a2f9cbd651f236c141d13b891a4d14e8fed058e89e4265db193d027",
-      "last_updated": "2026-10-01T03:44:12+00:00",
+      "hash": "ae31590f03e7d4abc6517cd0443bed8d47448a2d85eb119bde80e9f55727e514",
+      "last_updated": "2026-10-01T21:32:15+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -1147,8 +1147,8 @@
       "title": "Test plugins with evals"
     },
     "plugins__anthropic-marketplaces.md": {
-      "hash": "8662ed822d2595546e602f5c158692abcd54584b5d384fe0c8abb5eb5d108faa",
-      "last_updated": "2026-09-28T21:30:48+00:00",
+      "hash": "c9ea921ce059cb9da6f84813e9caf025becb97fdb60da320ed011a2edbc92cc5",
+      "last_updated": "2026-10-01T21:32:31+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/anthropic-marketplaces",
       "path": "/docs/en/plugins/anthropic-marketplaces",
       "source_url": "https://code.claude.com/docs/en/plugins/anthropic-marketplaces.md",
@@ -1228,8 +1228,8 @@
       "title": "Host and maintain a marketplace"
     },
     "plugins__install.md": {
-      "hash": "1074087eff9e7a8cb1edbe29352b4a7d4d11ba15dfd235fbf4f96f469358b26e",
-      "last_updated": "2026-10-01T01:19:36+00:00",
+      "hash": "0565da176ebc1a399422c6f31d47732cc7eb68c782d9ab8e9f53fa797cc34850",
+      "last_updated": "2026-10-01T21:32:34+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/install",
       "path": "/docs/en/plugins/install",
       "source_url": "https://code.claude.com/docs/en/plugins/install.md",
@@ -1291,8 +1291,8 @@
       "title": "Use the mods API"
     },
     "plugins__mods__create.md": {
-      "hash": "88fe1bf283b22bbd5c02d49c3a2e56d499736127f70d01fec90cf79b75946905",
-      "last_updated": "2026-10-01T18:41:21+00:00",
+      "hash": "f3ef3244473ebe9be7e3a3ad659471cc279d92d632005490c25143696f1ac6eb",
+      "last_updated": "2026-10-01T21:32:37+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/create",
       "path": "/docs/en/plugins/mods/create",
       "source_url": "https://code.claude.com/docs/en/plugins/mods/create.md",
@@ -1309,8 +1309,8 @@
       "title": "React to events with a mod"
     },
     "plugins__mods__interface.md": {
-      "hash": "b07297aec0070b752387c4592334a769fd323b17f5a8bdf28ad6e18f9cfc8c5f",
-      "last_updated": "2026-10-01T18:41:22+00:00",
+      "hash": "7cd27a3ddbcb73a2c5ae415ff723f10dae4753984b65320870437ed177cdec1a",
+      "last_updated": "2026-10-01T21:32:37+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/interface",
       "path": "/docs/en/plugins/mods/interface",
       "source_url": "https://code.claude.com/docs/en/plugins/mods/interface.md",
@@ -1318,8 +1318,8 @@
       "title": "Draw in the interface with a mod"
     },
     "plugins__mods__overview.md": {
-      "hash": "c2276c00b6b06a7c8f14f10a90b21f01e48734e18942580b555e0c300cd80ee6",
-      "last_updated": "2026-10-01T18:41:22+00:00",
+      "hash": "4aee2b6ba75fb859aabce5dd859544f68d8802ee9d1811bf96a43cff06019411",
+      "last_updated": "2026-10-01T21:32:38+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/overview",
       "path": "/docs/en/plugins/mods/overview",
       "source_url": "https://code.claude.com/docs/en/plugins/mods/overview.md",
@@ -1327,8 +1327,8 @@
       "title": "Mods overview"
     },
     "plugins__mods__reference.md": {
-      "hash": "33e9d4e9e2ac296e9f4d720b1967217d2dbce988c9a233217ad6a67596db6766",
-      "last_updated": "2026-10-01T18:41:23+00:00",
+      "hash": "4edae19c35bce2ab0dc4d95437a002e90ced500e6b41db1648c2c06414cd479f",
+      "last_updated": "2026-10-01T21:32:38+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/reference",
       "path": "/docs/en/plugins/mods/reference",
       "source_url": "https://code.claude.com/docs/en/plugins/mods/reference.md",
@@ -1363,8 +1363,8 @@
       "title": "Manage Claude Code plugins for your organization"
     },
     "plugins__overview.md": {
-      "hash": "0dee93c836456004037d924798d9091213198a5766bdda4a1626fbc9c658c36d",
-      "last_updated": "2026-10-01T18:41:24+00:00",
+      "hash": "c95ce93c5cc2ab1adde3b550d51952b1930654cef1422cb09dd313c019f76323",
+      "last_updated": "2026-10-01T21:32:40+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/overview",
       "path": "/docs/en/plugins/overview",
       "source_url": "https://code.claude.com/docs/en/plugins/overview.md",
@@ -1669,8 +1669,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "e54a03e0f9df6f7e85307db129fa82b4beabcca06d51782484200406498cd0a0",
-      "last_updated": "2026-10-01T03:44:48+00:00",
+      "hash": "228b6ddfff6fa8f1e4f196c46c515e4bce317b020347a4a98804424b1733d33b",
+      "last_updated": "2026-10-01T21:32:52+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1998,7 +1998,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-01T18:41:44+00:00",
+  "last_updated": "2026-10-01T21:33:05+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
