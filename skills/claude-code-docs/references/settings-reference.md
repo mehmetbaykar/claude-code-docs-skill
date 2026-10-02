@@ -181,7 +181,7 @@ Every key below links to its entry. Scope lists the [files](https://code.claude.
 | [`sandbox.credentials.sigv4`](#sandbox-credentials-sigv4) | Choose whether streaming, presigned, or [SigV4A AWS requests](https://code.claude.com/docs/en/sandboxing#re-sign-aws-requests) fail or pass through | Sandbox settings | User or managed |
 | [`sandbox.enabled`](#sandbox-enabled) | Turn on [Bash sandboxing](https://code.claude.com/docs/en/sandboxing#get-started) on macOS, Linux, and WSL2 | Sandbox settings | Any file |
 | [`sandbox.enableWeakerNestedSandbox`](#sandbox-enableweakernestedsandbox) | Run the Linux [sandbox](https://code.claude.com/docs/en/sandboxing) inside an unprivileged container | Sandbox settings | Any file |
-| [`sandbox.enableWeakerNetworkIsolation`](#sandbox-enableweakernetworkisolation) | Let `gh`, `gcloud`, and `terraform` verify TLS behind a MITM proxy inside the [sandbox](https://code.claude.com/docs/en/sandboxing#troubleshooting) on macOS | Sandbox settings | Any file |
+| [`sandbox.enableWeakerNetworkIsolation`](#sandbox-enableweakernetworkisolation) | Let `gh`, `gcloud`, and `terraform` verify TLS behind a MITM proxy inside the [sandbox](https://code.claude.com/docs/en/sandboxing#go-based-clis-fail-tls-verification-on-macos) on macOS | Sandbox settings | Any file |
 | [`sandbox.excludedCommands`](#sandbox-excludedcommands) | Name commands Claude Code can run outside the [sandbox](https://code.claude.com/docs/en/sandboxing) | Sandbox settings | Any file |
 | [`sandbox.failIfUnavailable`](#sandbox-failifunavailable) | Refuse to start when the [sandbox](https://code.claude.com/docs/en/sandboxing) can't, instead of running unsandboxed | Sandbox settings | Any file |
 | [`sandbox.filesystem`](#sandbox-filesystem) | Control which paths [sandboxed](https://code.claude.com/docs/en/sandboxing#filesystem-isolation) commands can read and write | Sandbox settings | Any file |
@@ -1488,7 +1488,7 @@ Run the Linux sandbox inside an unprivileged Docker container, where bubblewrap 
 }
 ```
 
-Linux and WSL2 only. See [Bubblewrap fails to start inside a container](https://code.claude.com/docs/en/sandboxing#troubleshooting).
+Linux and WSL2 only. See [Bubblewrap fails to start inside a container](https://code.claude.com/docs/en/sandboxing#bubblewrap-fails-to-start-inside-a-container).
 
 ### `sandbox.enableWeakerNetworkIsolation`
 
@@ -1508,7 +1508,7 @@ Let sandboxed commands on macOS reach the system TLS trust service, `com.apple.t
 }
 ```
 
-If you don't use a MITM proxy, list the failing tools in [`excludedCommands`](#sandbox-excludedcommands) instead; see [Go-based CLIs fail TLS verification on macOS](https://code.claude.com/docs/en/sandboxing#troubleshooting).
+If you don't use a MITM proxy, list the failing tools in [`excludedCommands`](#sandbox-excludedcommands) instead; see [Go-based CLIs fail TLS verification on macOS](https://code.claude.com/docs/en/sandboxing#go-based-clis-fail-tls-verification-on-macos).
 
 ### `sandbox.allowAppleEvents`
 
@@ -1639,7 +1639,7 @@ This hides your AWS credentials file and masks the `gh` hosts file, substituting
 
 Paths use the same [prefixes](#sandbox-path-prefixes) as the `sandbox.filesystem.*` settings, and Claude Code merges the arrays from every settings scope the session loads. [Protect credentials](https://code.claude.com/docs/en/sandboxing#protect-credentials) covers what still applies from sources you exclude with `--setting-sources`. `mask` entries require Claude Code v2.1.221 or later.
 
-`mask` substitution runs only through the sandbox proxy, so set [`sandbox.network.tlsTerminate`](#sandbox-network-tlsterminate), or [`allowPlaintextInject`](#sandbox-credentials-allowplaintextinject) for plain-HTTP test networks. `mask` applies to a single file, so list each credential file individually. Claude Code accepts but ignores the `mask` fields on a `deny` entry. [Mask credential files](https://code.claude.com/docs/en/sandboxing#mask-credential-files) covers which settings sources are honored and when an entry falls back to `deny`.
+`mask` substitution runs only through the sandbox proxy, so set [`sandbox.network.tlsTerminate`](#sandbox-network-tlsterminate), or [`allowPlaintextInject`](#sandbox-credentials-allowplaintextinject) for plain-HTTP test networks. `mask` applies to a single file, so list each credential file individually. Claude Code accepts but ignores the `mask` fields on a `deny` entry. [Mask credentials](https://code.claude.com/docs/en/sandboxing#mask-credentials) covers which settings sources are honored, and [Mask credential files](https://code.claude.com/docs/en/sandboxing#mask-credential-files) covers when an entry falls back to `deny`.
 
 #### Mask fields for files
 
@@ -1698,7 +1698,7 @@ This removes `NPM_TOKEN` from sandboxed commands and masks `GITHUB_TOKEN`, subst
 
 The `name` must start with a letter or underscore and contain only letters, digits, and underscores. Claude Code merges the arrays from every settings scope the session loads, and applies `deny` when the same variable appears with both modes. [Protect credentials](https://code.claude.com/docs/en/sandboxing#protect-credentials) covers what still applies from sources you exclude with `--setting-sources`. `mask` entries require Claude Code v2.1.199 or later.
 
-`mask` substitution runs only through the sandbox proxy, so set [`sandbox.network.tlsTerminate`](#sandbox-network-tlsterminate), or [`allowPlaintextInject`](#sandbox-credentials-allowplaintextinject) for plain-HTTP test networks; see [Mask environment variables](https://code.claude.com/docs/en/sandboxing#mask-environment-variables). Claude Code accepts but ignores the `mask` fields on a `deny` entry.
+`mask` substitution runs only through the sandbox proxy, so set [`sandbox.network.tlsTerminate`](#sandbox-network-tlsterminate), or [`allowPlaintextInject`](#sandbox-credentials-allowplaintextinject) for plain-HTTP test networks; see [Mask credentials](https://code.claude.com/docs/en/sandboxing#mask-credentials). Claude Code accepts but ignores the `mask` fields on a `deny` entry.
 
 #### Mask fields for environment variables
 
@@ -1782,7 +1782,11 @@ This links three custom-named variables into one AWS credential for re-signing:
 }
 ```
 
-Each named variable must be a whole-value `mask` entry in [`sandbox.credentials.envVars`](#sandbox-credentials-envvars), without `extract` or `decode`, and can fill only one slot across all pairs.
+Each named variable must be a whole-value `mask` entry in [`sandbox.credentials.envVars`](#sandbox-credentials-envvars), without `extract` or `decode`, and can fill only one slot across all pairs. These rules also apply:
+
+* The proxy re-signs requests on the hosts listed in the access key ID entry's `injectHosts`
+* When `sessionTokenVar` is set, the proxy sends the real token as `x-amz-security-token` on re-signed requests
+* Naming any of the conventional variables in a pair replaces the automatic pairing
 
 ### `sandbox.credentials.sigv4`
 
