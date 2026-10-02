@@ -418,8 +418,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "148bd5246d9f14c70b417eb2d1a72d33a832fd52a1b449cfe119aa145388a1e8",
-      "last_updated": "2026-10-01T21:31:59+00:00",
+      "hash": "7023906d6771f178225ff556e2db9af6913efc1fd236e19cdc53c356c29d1e7a",
+      "last_updated": "2026-10-02T21:31:26+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -562,8 +562,8 @@
       "title": "Scan your codebase for vulnerabilities"
     },
     "claude-tag.md": {
-      "hash": "654a4234fb14d75c513adf7b07df10b9c4b074fb1f8e3bb6a80c84c5f09452ad",
-      "last_updated": "2026-10-02T18:39:31+00:00",
+      "hash": "28be822731a4a34a8ce0c39749fe59fb1c62f319707608ea107b206ff46dbaed",
+      "last_updated": "2026-10-02T21:31:34+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-tag",
       "path": "/docs/en/claude-tag",
       "source_url": "https://code.claude.com/docs/en/claude-tag.md",
@@ -760,8 +760,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "a85a2fe0fa01173361211c99b64ae06145f1fca969a2b935a62c0473b60fcb87",
-      "last_updated": "2026-10-02T15:35:05+00:00",
+      "hash": "104ab4792e3c87107b381d9e6547931224013cef6722eb928fe045ff5f49a77c",
+      "last_updated": "2026-10-02T21:31:43+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -859,8 +859,8 @@
       "title": "Claude Code GitLab CI/CD"
     },
     "glossary.md": {
-      "hash": "03770075dca63075705d4b3c4ae5c126df68434ee0d48c5d008a2b6d5e96f498",
-      "last_updated": "2026-09-30T21:33:27+00:00",
+      "hash": "02a6491eef138f8608b40c594d740b4b491ea6d870d90d74dada3fdc44fc983c",
+      "last_updated": "2026-10-02T21:32:31+00:00",
       "original_url": "https://code.claude.com/docs/en/glossary",
       "path": "/docs/en/glossary",
       "source_url": "https://code.claude.com/docs/en/glossary.md",
@@ -922,8 +922,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "174467d515a971aec38bb074456413a64bedb4fb530c63c651ce93c4ed0644b4",
-      "last_updated": "2026-10-02T15:35:11+00:00",
+      "hash": "b7d2b340e7cd45ab9d77bae538a99dbd99eb7063e570f7f65c5ef8327ed0f882",
+      "last_updated": "2026-10-02T21:32:34+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -1039,8 +1039,8 @@
       "title": "Connect Claude Code to tools via MCP"
     },
     "memory.md": {
-      "hash": "f0132b5975e3bf1c92e703c9f3f664925d16546503f12821a856a3c3f551977b",
-      "last_updated": "2026-10-02T15:35:16+00:00",
+      "hash": "982f3fb61198b038022a8224c957cee6215254055fcf45719325b4e42d98318c",
+      "last_updated": "2026-10-02T21:32:45+00:00",
       "original_url": "https://code.claude.com/docs/en/memory",
       "path": "/docs/en/memory",
       "source_url": "https://code.claude.com/docs/en/memory.md",
@@ -1678,8 +1678,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "5627168c16a9ac2ecb61e978c726442100e7cd296910c9319882ebd3c8e1421f",
-      "last_updated": "2026-10-02T15:35:40+00:00",
+      "hash": "e5b2235aeee9618cc5d3bc73149804ccd15c693dc944a40ac4f93304d8fa08bf",
+      "last_updated": "2026-10-02T21:33:12+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1723,8 +1723,8 @@
       "title": "Voice dictation"
     },
     "vs-code.md": {
-      "hash": "2fcf9a2b08ba4ab617f69e6869c6e30e3326f0846a4e46f9c493908252188054",
-      "last_updated": "2026-10-02T15:35:41+00:00",
+      "hash": "ac58c3f9d5f3df136423eb135344aaf41f133cabec239d71723fe259b7c765ec",
+      "last_updated": "2026-10-02T21:33:14+00:00",
       "original_url": "https://code.claude.com/docs/en/vs-code",
       "path": "/docs/en/vs-code",
       "source_url": "https://code.claude.com/docs/en/vs-code.md",
@@ -2007,7 +2007,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-02T18:40:32+00:00",
+  "last_updated": "2026-10-02T21:33:25+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
