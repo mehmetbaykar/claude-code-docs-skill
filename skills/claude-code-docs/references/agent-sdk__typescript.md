@@ -651,8 +651,18 @@ type SDKUserMessage = {
   shouldQuery?: boolean;
   client_composed?: true;
   tool_use_result?: unknown;
+  priority?: "now" | "next" | "later";
   origin?: SDKMessageOrigin;
   inline_pastes?: string[];
+};
+```
+```typescript
+const message: SDKUserMessage = {
+  type: "user",
+  message: { role: "user", content: "Skip the integration tests and summarize what you have so far" },
+  parent_tool_use_id: null,
+  priority: "now",
+  origin: { kind: "human" },
 };
 ```
 ```typescript
@@ -693,7 +703,13 @@ type SDKResultMessage =
       first_content_frame_ms?: number;
       first_stream_post_ms?: number;
       first_stream_post_ack_ms?: number;
+      first_stream_post_queue_wait_ms?: number;
+      first_stream_post_queued_behind?: "durable_post" | "ephemeral_post" | "retry_backoff" | "hold" | "none";
       first_stream_post_wall_ms?: number;
+      first_text_post_ms?: number;
+      first_text_post_queue_wait_ms?: number;
+      first_text_post_queued_behind?: "durable_post" | "ephemeral_post" | "retry_backoff" | "hold" | "none";
+      first_text_post_wall_ms?: number;
       total_cost_usd: number;
       usage: NonNullableUsage;
       modelUsage: { [modelName: string]: ModelUsage };
