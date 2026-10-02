@@ -205,7 +205,7 @@ Two [environment variables](https://code.claude.com/docs/en/env-vars) raise thes
 
 When a foreground command reaches its timeout without finishing, Claude Code moves it to the background instead of stopping it, unless the command starts with `sleep`. A moved command's [time limit](#time-limit-for-background-commands) counts from the move, and a foreground subagent's moved command still stops when that subagent's run ends.
 
-Setting [`CLAUDE_CODE_DISABLE_BACKGROUND_TASKS=1`](https://code.claude.com/docs/en/env-vars#variables) disables auto-backgrounding along with the rest of the background task functionality.
+Setting [`CLAUDE_CODE_DISABLE_BACKGROUND_TASKS=1`](https://code.claude.com/docs/en/env-vars#variables) or running in [bare mode](https://code.claude.com/docs/en/headless#start-faster-with-bare-mode) disables auto-backgrounding along with the rest of the background task functionality, so a command that reaches its timeout stops instead.
 
 The result of a command moved to the background states what happened:
 

@@ -150,6 +150,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `plugins__mods__api` - [Use the mods API](https://code.claude.com/docs/en/plugins/mods/api)
 - `plugins__mods__create` - [Create a mod](https://code.claude.com/docs/en/plugins/mods/create)
 - `plugins__mods__events` - [React to events with a mod](https://code.claude.com/docs/en/plugins/mods/events)
+- `plugins__mods__gallery` - [Interface gallery for mods](https://code.claude.com/docs/en/plugins/mods/gallery)
 - `plugins__mods__interface` - [Draw in the interface with a mod](https://code.claude.com/docs/en/plugins/mods/interface)
 - `plugins__mods__overview` - [Mods overview](https://code.claude.com/docs/en/plugins/mods/overview)
 - `plugins__mods__reference` - [Mods reference](https://code.claude.com/docs/en/plugins/mods/reference)
