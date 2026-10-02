@@ -562,8 +562,8 @@
       "title": "Scan your codebase for vulnerabilities"
     },
     "claude-tag.md": {
-      "hash": "dbda0a416082c4913e8f53079d57646d98446fb4cd38e54fd6b215808a99bb7e",
-      "last_updated": "2026-10-02T06:50:43+00:00",
+      "hash": "654a4234fb14d75c513adf7b07df10b9c4b074fb1f8e3bb6a80c84c5f09452ad",
+      "last_updated": "2026-10-02T18:39:31+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-tag",
       "path": "/docs/en/claude-tag",
       "source_url": "https://code.claude.com/docs/en/claude-tag.md",
@@ -2007,7 +2007,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-02T15:35:51+00:00",
+  "last_updated": "2026-10-02T18:40:32+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
