@@ -103,8 +103,8 @@
       "title": "Rewind file changes with checkpointing"
     },
     "agent-sdk__hooks.md": {
-      "hash": "2fd65417c7c99bdb03b924291c50a807249bdd51feba9cc682657f0ee308357e",
-      "last_updated": "2026-10-02T01:09:01+00:00",
+      "hash": "f156d92748a80d2ef004186c6cf48b8bfc7a01dd997b88e57abbe40dda201d78",
+      "last_updated": "2026-10-03T06:55:49+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/hooks",
       "path": "/docs/en/agent-sdk/hooks",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/hooks.md",
@@ -184,8 +184,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "fce360926f725c62c29d13fa90ac68c7be1559f032e9bb1b380cff2ce130ec94",
-      "last_updated": "2026-10-02T01:09:04+00:00",
+      "hash": "8346f406608db97e736d3904089e05d85cb0c2274a2be6d146f578ef6af0abbd",
+      "last_updated": "2026-10-03T06:55:53+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -895,8 +895,8 @@
       "title": "Run Claude Code programmatically"
     },
     "hooks-guide.md": {
-      "hash": "ec00e6be497349ddf31f4e03b3ffe9dcce0070f6b26200527d2523d29dcd65bd",
-      "last_updated": "2026-10-03T01:06:34+00:00",
+      "hash": "1a6cef10ec58fb8039fc8aebc840d6221e1f8e59fedc8c59d1e977a32dda69de",
+      "last_updated": "2026-10-03T06:56:24+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks-guide",
       "path": "/docs/en/hooks-guide",
       "source_url": "https://code.claude.com/docs/en/hooks-guide.md",
@@ -904,8 +904,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "6878abbee9a00994aada35a76ea3bc2477031446b8aca99182b04cf2988abed8",
-      "last_updated": "2026-10-03T03:51:29+00:00",
+      "hash": "2da256211aaf50bf3f88b88662d59e293ee0c200ec5c5156dabd6c19be328258",
+      "last_updated": "2026-10-03T06:56:23+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -1075,8 +1075,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "a76d90dcc0ef9ccbcb906fdc63c86de9c506dedefdc836e98fd16a31945e5074",
-      "last_updated": "2026-10-02T15:35:17+00:00",
+      "hash": "cbd9d79f6032de5e84d264ad2cbcd2a6cea5a119167d3ea97353fa4f3c6e639e",
+      "last_updated": "2026-10-03T06:56:31+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -2007,7 +2007,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-03T03:52:07+00:00",
+  "last_updated": "2026-10-03T06:57:08+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
