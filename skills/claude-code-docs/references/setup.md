@@ -226,9 +226,13 @@ Configure this via `/config` → **Auto-update channel**, or add it to your [set
 }
 ```
 
+A newly launched model can require a Claude Code version newer than the stable channel serves. To run the model now, move to the latest channel.
+
 For enterprise deployments, you can enforce a consistent release channel across your organization using [managed settings](https://code.claude.com/docs/en/managed-settings).
 
 Homebrew installations choose a channel by cask name instead of this setting: `claude-code` tracks stable and `claude-code@latest` tracks latest.
+
+Installations from the apt, dnf, and apk repositories choose a channel by repository instead of this setting. To switch one, follow [Install with Linux package managers](#install-with-linux-package-managers).
 
 ### Pin a minimum version
 
