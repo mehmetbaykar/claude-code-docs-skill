@@ -589,8 +589,8 @@
       "title": "Configure cloud environments"
     },
     "code-review.md": {
-      "hash": "a064adf6cbece984954109738ecd6bbc4d21af217f5613a73c19b4237fae618d",
-      "last_updated": "2026-10-03T01:06:23+00:00",
+      "hash": "991996fc2482f8d47cf6b230359c9d4a15061294324e711edfd8dfaa9a5de303",
+      "last_updated": "2026-10-03T22:18:19+00:00",
       "original_url": "https://code.claude.com/docs/en/code-review",
       "path": "/docs/en/code-review",
       "source_url": "https://code.claude.com/docs/en/code-review.md",
@@ -1723,8 +1723,8 @@
       "title": "Voice dictation"
     },
     "vs-code.md": {
-      "hash": "ac58c3f9d5f3df136423eb135344aaf41f133cabec239d71723fe259b7c765ec",
-      "last_updated": "2026-10-02T21:33:14+00:00",
+      "hash": "0ea1dd02b6093cdd5f6ce5dd65797d0851ca6d54aaeef629f22d7c7e68703eb3",
+      "last_updated": "2026-10-03T22:19:07+00:00",
       "original_url": "https://code.claude.com/docs/en/vs-code",
       "path": "/docs/en/vs-code",
       "source_url": "https://code.claude.com/docs/en/vs-code.md",
@@ -2007,7 +2007,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-03T19:11:01+00:00",
+  "last_updated": "2026-10-03T22:19:19+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
