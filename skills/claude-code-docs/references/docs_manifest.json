@@ -328,8 +328,8 @@
       "title": "Handle approvals and user input"
     },
     "agent-teams.md": {
-      "hash": "c99a7b84b5201f206da862c0ae888d9f4c1e3904c825b31ac3068598df95dbef",
-      "last_updated": "2026-10-03T03:51:09+00:00",
+      "hash": "063dd71f38370f5032ebc56ce06175344a09af7c67e5967f9e3f50c26af77a96",
+      "last_updated": "2026-10-03T16:45:23+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-teams",
       "path": "/docs/en/agent-teams",
       "source_url": "https://code.claude.com/docs/en/agent-teams.md",
@@ -2007,7 +2007,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-03T06:57:08+00:00",
+  "last_updated": "2026-10-03T16:46:15+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
