@@ -625,8 +625,8 @@
       "title": "Communications kit"
     },
     "computer-use.md": {
-      "hash": "a9b29a743f170de6c70e15fa0e0f8a91a48e9f760d10a2602beee455b6321d8e",
-      "last_updated": "2026-09-28T21:30:31+00:00",
+      "hash": "ec50d34c2202f80615fd048242fcbcbadc14507e12627bf3b4a3ae527ff362b6",
+      "last_updated": "2026-10-03T19:10:06+00:00",
       "original_url": "https://code.claude.com/docs/en/computer-use",
       "path": "/docs/en/computer-use",
       "source_url": "https://code.claude.com/docs/en/computer-use.md",
@@ -724,8 +724,8 @@
       "title": "Get started with the desktop app"
     },
     "desktop-scheduled-tasks.md": {
-      "hash": "8a5ded95ba74b529ac2c067978dc7610f9225d55865be79d68caf3b659b7c397",
-      "last_updated": "2026-09-28T21:30:35+00:00",
+      "hash": "5906b0db2a436c3930ad524642a0a263cf3f0adde53053fd5685bca3ba0c5c5e",
+      "last_updated": "2026-10-03T19:10:10+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-scheduled-tasks",
       "path": "/docs/en/desktop-scheduled-tasks",
       "source_url": "https://code.claude.com/docs/en/desktop-scheduled-tasks.md",
@@ -742,8 +742,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "490755c15d0d6e53713e8c5cc234e8a6d3e28dce2932dc01ab91a8e1c45654a7",
-      "last_updated": "2026-10-02T15:35:03+00:00",
+      "hash": "164c35c0fb6d3f2fece08d3437fa59eef4bc1afb70dd3828c279e08cdf782799",
+      "last_updated": "2026-10-03T19:10:08+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -2007,7 +2007,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-03T16:46:15+00:00",
+  "last_updated": "2026-10-03T19:11:01+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
