@@ -51,7 +51,7 @@ You can start sessions, pipe content, resume conversations, and manage updates w
 
 If you mistype a subcommand, Claude Code suggests the closest match and exits without starting a session. For example, `claude udpate` prints `Did you mean claude update?`.
 
-As of v2.1.199, `claude --dangerously-skip-permissions daemon <subcommand>` runs the `daemon` subcommand. Earlier versions treated `daemon <subcommand>` as the prompt for a new interactive session, so the subcommand never ran when the flag came first, a common setup when `claude` is aliased to include the flag. Only a leading `--dangerously-skip-permissions` or `--allow-dangerously-skip-permissions` routes to `daemon` this way; any other leading flag still starts an interactive session.
+`claude --dangerously-skip-permissions daemon <subcommand>` runs the `daemon` subcommand, so the subcommand works when `claude` is aliased to include the flag. Only a leading `--dangerously-skip-permissions` or `--allow-dangerously-skip-permissions` routes to `daemon` this way; with any other flag ahead of `daemon`, the subcommand doesn't run.
 
 ## CLI flags
 
