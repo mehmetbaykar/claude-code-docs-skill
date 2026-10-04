@@ -282,6 +282,14 @@ type SDKControlInitializeResponse = {
   fast_mode_state?: "off" | "cooldown" | "on";
   fast_mode_disabled_reason?: FastModeDisabledReason;
   hooks_applied?: boolean;
+  sdk_mcp_manifests_parked?: Record<
+    string,
+    | "parked"
+    | "already_connected"
+    | "protocol_version_mismatch"
+    | "malformed"
+    | "not_honoured"
+  >;
 };
 ```
 ```typescript
