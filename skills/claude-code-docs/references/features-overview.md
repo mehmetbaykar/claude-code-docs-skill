@@ -244,7 +244,7 @@ Each feature has a different loading strategy and context cost:
 | **Subagents** | When spawned | Fresh context with specified skills, or the parent conversation for a [fork](https://code.claude.com/docs/en/sub-agents#fork-the-current-conversation) | Isolated from main session |
 | **Hooks** | On trigger | Nothing (runs externally) | Zero, unless hook returns additional context |
 
-\*By default, skill descriptions load at session start so Claude can decide when to use them. Set `disable-model-invocation: true` in a skill's frontmatter to hide it from Claude entirely until you invoke it manually. For a skill you didn't write, set [`skillOverrides`](https://code.claude.com/docs/en/skills#override-skill-visibility-from-settings) in settings to do the same without editing its file.
+\*Set [`disable-model-invocation: true`](https://code.claude.com/docs/en/skills#control-who-invokes-a-skill) in a skill's frontmatter to keep its description out of Claude's context. For a skill you didn't write, set [`skillOverrides`](https://code.claude.com/docs/en/skills#override-skill-visibility-from-settings) in settings to do the same without editing its file.
 
 ### Understand how features load
 
@@ -275,13 +275,13 @@ Skills are extra capabilities in Claude's toolkit. They can be reference materia
 
     **What loads:** For model-invocable skills, Claude sees names and descriptions in every request. When you invoke a skill with `/<name>` or Claude loads it automatically, the full content loads into your conversation.
 
-    **How Claude chooses skills:** Claude matches your task against skill descriptions to decide which are relevant. If descriptions are vague or overlap, Claude may load the wrong skill or miss one that would help. To tell Claude to use a specific skill, invoke it with `/<name>`. Skills with `disable-model-invocation: true` are invisible to Claude until you invoke them.
+    **How Claude chooses skills:** Claude matches your task against skill descriptions to decide which are relevant. If descriptions are vague or overlap, Claude may load the wrong skill or miss one that would help. To tell Claude to use a specific skill, invoke it with `/<name>`.
 
     **Context cost:** Low until used. User-only skills have zero cost until invoked.
 
     **In subagents:** Skills work differently in subagents. Instead of on-demand loading, skills listed in the subagent's `skills` field are fully preloaded into its context at launch. Subagents can still discover and invoke unlisted project, user, and plugin skills through the Skill tool.
 
-    > [!TIP] Use `disable-model-invocation: true` for skills with side effects. This saves context and ensures only you trigger them.
+    > [!TIP] Use `disable-model-invocation: true` for skills with side effects. This saves context and ensures they run only when you name them.
 
 
 

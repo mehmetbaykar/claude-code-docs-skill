@@ -67,7 +67,7 @@ Organizations with [Zero Data Retention](https://code.claude.com/docs/en/zero-da
 
 These workflows require the [Claude Code CLI](https://code.claude.com/docs/en/quickstart) signed in to the same claude.ai account. You can start new cloud sessions from your terminal, or pull cloud sessions into your terminal to continue locally. Cloud sessions persist even if you close your laptop, and you can monitor them from anywhere including the Claude mobile app.
 
-From the CLI, session handoff is one-way: you can pull cloud sessions into your terminal with `--teleport`, but you can't push an existing terminal session to the cloud. The `--cloud` flag with a task description creates a new cloud session for your current repository; with `-p` and a session ID or claude.ai/code URL it instead [queues a message into that existing session](https://code.claude.com/docs/en/claude-code-on-the-web#send-follow-ups-from-the-cli). The [Desktop app](https://code.claude.com/docs/en/desktop#continue-in-another-surface) provides a **Continue in** menu that can send a local session to the cloud.
+From the CLI, session handoff is one-way: you can pull cloud sessions into your terminal with `--teleport`, but you can't push an existing terminal session to the cloud. The `--cloud` flag with a task description creates a new cloud session for your current repository; with `-p` and a session ID or claude.ai/code URL it instead [queues a message into that existing session](https://code.claude.com/docs/en/claude-code-on-the-web#send-follow-ups-from-the-cli). The [Desktop app](https://code.claude.com/docs/en/desktop#continue-in-another-surface) can send a local session in its Code tab to the cloud from its **Open in** menu.
 
 ### From terminal to cloud
 
