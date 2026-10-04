@@ -97,7 +97,7 @@ Then create `my-first-plugin/skills/hello/SKILL.md` with this content:
     Greet the user warmly and ask how you can help them today.
 ```
 
-The `disable-model-invocation: true` line means Claude doesn't run the skill on its own, so only you trigger it. Remove that line from a skill you want Claude to run on its own. The skill's command combines the plugin name and the skill's name, so you run this one as `/my-first-plugin:hello`. For the other frontmatter fields, see the [skill frontmatter reference](https://code.claude.com/docs/en/skills#frontmatter-reference).
+The `disable-model-invocation: true` line means Claude doesn't run the skill on its own. Remove that line from a skill you want Claude to run on its own. The skill's command combines the plugin name and the skill's name, so you run this one as `/my-first-plugin:hello`. For the other frontmatter fields, see the [skill frontmatter reference](https://code.claude.com/docs/en/skills#frontmatter-reference).
 
 
 

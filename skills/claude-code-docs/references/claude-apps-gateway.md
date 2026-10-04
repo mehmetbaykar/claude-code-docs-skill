@@ -420,14 +420,17 @@ Each lock makes Claude Code ignore the developer's own entries for that setting,
 
 #### Settings the locks don't cover
 
-Six parent-supplied settings pass the filter even with all five locks set. Under the default first-wins setting, an admin value blocks the parent's only when it sits in the highest-priority admin source, except for `allowedMcpServers` while the [MCP server lock](#lock-behavior-across-sources) is on. Under the `managedSourcesBehavior` merge opt-in, [how Claude Code combines managed sources](https://code.claude.com/docs/en/managed-settings#how-claude-code-combines-managed-sources) says which source's value applies instead.
+These parent-supplied settings pass the filter even with all five locks set:
 
 * **`forceLoginOrgUUID`**: Claude Code honors a parent-supplied value when the highest-priority admin source doesn't set an org UUID. Gateway sign-in doesn't check this key. An org UUID in the highest-priority admin source blocks the parent's value and is the one Claude Code enforces.
 * **`allowedMcpServers`**: Claude Code honors a parent-supplied allowlist when no admin list is in force. `allowManagedMcpServersOnly` doesn't block it, because the lock enforces whichever list wins as the managed value, including a parent-supplied one when no admin source supplies a list. A list in the highest-priority admin source blocks the parent's and is the list Claude Code enforces, so set `allowedMcpServers` there, next to the lock. Before v2.1.223, a value for either key in any admin source blocked the parent's.
 * **`availableModels`**: Claude Code honors a parent-supplied model list when the winning managed source doesn't set one. If your fleet restricts models, set `availableModels` in the winning source.
+* **`allowedProviders`**: Claude Code honors a parent-supplied API provider allowlist when the winning managed source doesn't set one. If your fleet restricts which API providers developers can use, set `allowedProviders` in the winning source. Requires Claude Code v2.1.285 or later.
 * **`strictKnownMarketplaces`**: Claude Code honors a parent-supplied plugin marketplace allowlist when the winning managed source doesn't set one. Claude Desktop 2.16120.0 or later sends one when its managed configuration turns user-added plugin marketplaces off. If your fleet restricts marketplaces, set `strictKnownMarketplaces` in the winning source. Requires Claude Code v2.1.282 or later.
 * **`blockedMarketplaces`**: a parent-supplied marketplace blocklist passes and adds to any blocklist that a managed source sets, since a blocklist can only restrict further. Requires Claude Code v2.1.282 or later.
 * **`strictPluginOnlyCustomization`**: this key passes the filter regardless of any lock, and it makes Claude Code ignore the developer's own customization, including protective hooks. No lock blocks it.
+
+Under the default first-wins setting, an admin value blocks the parent's only when it sits in the highest-priority admin source, except for `allowedMcpServers` while the [MCP server lock](#lock-behavior-across-sources) is on. Under the `managedSourcesBehavior` merge opt-in, [how Claude Code combines managed sources](https://code.claude.com/docs/en/managed-settings#how-claude-code-combines-managed-sources) says which source's value applies instead.
 
 ### Connect Claude Desktop
 
