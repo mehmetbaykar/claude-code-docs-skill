@@ -22,8 +22,8 @@
       "title": "Use Claude Code with a screen reader"
     },
     "admin-setup.md": {
-      "hash": "d6991210d5caa80a3496dae3013e65d4bec9f37d6cea3600673a58030b98b484",
-      "last_updated": "2026-10-02T06:50:26+00:00",
+      "hash": "e1d9f2daa2882d6eb44607f1a8725a6b57192304f9c94013fbd0c5ca2c4480b7",
+      "last_updated": "2026-10-04T16:54:28+00:00",
       "original_url": "https://code.claude.com/docs/en/admin-setup",
       "path": "/docs/en/admin-setup",
       "source_url": "https://code.claude.com/docs/en/admin-setup.md",
@@ -436,8 +436,8 @@
       "title": "Channels reference"
     },
     "channels.md": {
-      "hash": "cad2a67c3d97cae5684e1f11b1da1095717f3338fc7ddbb3abf80eaa53c1144c",
-      "last_updated": "2026-10-03T03:51:12+00:00",
+      "hash": "e0fc919ff46fb42c0846e5d4dab55c8910dc4825ad0b597fd573f7c17ed515e1",
+      "last_updated": "2026-10-04T16:54:44+00:00",
       "original_url": "https://code.claude.com/docs/en/channels",
       "path": "/docs/en/channels",
       "source_url": "https://code.claude.com/docs/en/channels.md",
@@ -463,8 +463,8 @@
       "title": "Use Claude Code with Chrome"
     },
     "claude-apps-gateway-config.md": {
-      "hash": "6a0dc1442ec1ea76ae3c01e7b7b42daedb794e3d985b758a86d42ac6166a8b38",
-      "last_updated": "2026-10-04T08:28:24+00:00",
+      "hash": "c8a6b775ff566b812584c11c7d20e8c5c701166a832a8c32873c2a577b535e13",
+      "last_updated": "2026-10-04T16:54:46+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-config",
       "path": "/docs/en/claude-apps-gateway-config",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-config.md",
@@ -517,8 +517,8 @@
       "title": "Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry"
     },
     "claude-code-on-the-web.md": {
-      "hash": "01ba58cca82f78073bff68fc61453c41c8e79c1aba557a7b3d9535b0d39c8c6e",
-      "last_updated": "2026-10-04T08:28:26+00:00",
+      "hash": "297daf28d0782b891f0b3067caca243e331bfc0d71cadad90fc9219aab4f6d3a",
+      "last_updated": "2026-10-04T16:54:47+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-code-on-the-web",
       "path": "/docs/en/claude-code-on-the-web",
       "source_url": "https://code.claude.com/docs/en/claude-code-on-the-web.md",
@@ -580,8 +580,8 @@
       "title": "CLI reference"
     },
     "cloud-environments.md": {
-      "hash": "03ad7e4cf1bded25fb6f6587b19892b67580023efb8204960dc1604eba76375c",
-      "last_updated": "2026-10-04T08:28:28+00:00",
+      "hash": "a10d8e006f0192ea73b5f82d8fefe9ac59940002dda937f51953245e85350a9c",
+      "last_updated": "2026-10-04T16:54:51+00:00",
       "original_url": "https://code.claude.com/docs/en/cloud-environments",
       "path": "/docs/en/cloud-environments",
       "source_url": "https://code.claude.com/docs/en/cloud-environments.md",
@@ -652,8 +652,8 @@
       "title": "Run Claude Code behind a corporate launcher"
     },
     "costs.md": {
-      "hash": "a9906b925856bca9da8c0c2afedacce2204f0d2fbfca051efd4f26adad98ffad",
-      "last_updated": "2026-10-02T01:09:19+00:00",
+      "hash": "cab4502888c3c94ce779a10d64db83b3fa26f066df566d57d59e243c2b2d23f2",
+      "last_updated": "2026-10-04T16:54:54+00:00",
       "original_url": "https://code.claude.com/docs/en/costs",
       "path": "/docs/en/costs",
       "source_url": "https://code.claude.com/docs/en/costs.md",
@@ -697,8 +697,8 @@
       "title": "Launch sessions from links"
     },
     "desktop-ios-simulator.md": {
-      "hash": "61d61b7f98682d7051785f7ba499fc79c9707ac9bdda5012b8bc341bcabb4d69",
-      "last_updated": "2026-09-29T18:40:12+00:00",
+      "hash": "435a9fd0aa66c7cac02d834d10b2f5e957ddd5125c1d7021fd6b4b3adc2dc84d",
+      "last_updated": "2026-10-04T16:54:56+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-ios-simulator",
       "path": "/docs/en/desktop-ios-simulator",
       "source_url": "https://code.claude.com/docs/en/desktop-ios-simulator.md",
@@ -742,8 +742,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "f238f95623551eda014bf4b9bc4519bf021fbeef9ccca79e359172d739238d18",
-      "last_updated": "2026-10-04T04:50:12+00:00",
+      "hash": "64ccc892dc0b4d020c8c2df7559d24dc36655121414c8835c87c0d0c44333ff1",
+      "last_updated": "2026-10-04T16:54:55+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -769,8 +769,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "46925a6eab50f15fad898bd9bc0e2fdb3229ffefe6be702a59ec1d7f04596911",
-      "last_updated": "2026-10-04T08:28:34+00:00",
+      "hash": "9fba2baa68026e1c8f17567cbe7f0c65002cac932b1656b99708befc7fe79cc6",
+      "last_updated": "2026-10-04T16:54:58+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -778,8 +778,8 @@
       "title": "Error reference"
     },
     "fast-mode.md": {
-      "hash": "f1545a7e2e17751de61164309bf0b267ebda801b6741bbf7dfa9f8b58892d80a",
-      "last_updated": "2026-09-29T21:32:58+00:00",
+      "hash": "9d109529ff14c614cbc8a185ead72ee202dc7310e60e012aab579fe6a128bc32",
+      "last_updated": "2026-10-04T16:54:59+00:00",
       "original_url": "https://code.claude.com/docs/en/fast-mode",
       "path": "/docs/en/fast-mode",
       "source_url": "https://code.claude.com/docs/en/fast-mode.md",
@@ -1570,8 +1570,8 @@
       "title": "Self-hosted environments"
     },
     "server-managed-settings.md": {
-      "hash": "918e1968f203702fa6d781f233818e390a99d4e7ebd50600c4e325413111011c",
-      "last_updated": "2026-10-01T01:19:45+00:00",
+      "hash": "ce7f5656b48a3896aa30171cfdcf569d0a828aa109497fb4fcbb06b532dbef61",
+      "last_updated": "2026-10-04T16:55:31+00:00",
       "original_url": "https://code.claude.com/docs/en/server-managed-settings",
       "path": "/docs/en/server-managed-settings",
       "source_url": "https://code.claude.com/docs/en/server-managed-settings.md",
@@ -1732,8 +1732,8 @@
       "title": "Use Claude Code in VS Code"
     },
     "web-quickstart.md": {
-      "hash": "8de042e25ea4bbe32be01153a5131ea804b0cd38eb1a8d2c4b55f9d3dc1b1833",
-      "last_updated": "2026-10-04T08:29:03+00:00",
+      "hash": "f74caad8e346451ee3b8d24de7992d7c5c4261e5dff3efa3923bb90e5dc46d64",
+      "last_updated": "2026-10-04T16:55:37+00:00",
       "original_url": "https://code.claude.com/docs/en/web-quickstart",
       "path": "/docs/en/web-quickstart",
       "source_url": "https://code.claude.com/docs/en/web-quickstart.md",
@@ -2007,7 +2007,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-04T08:29:11+00:00",
+  "last_updated": "2026-10-04T16:55:47+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
