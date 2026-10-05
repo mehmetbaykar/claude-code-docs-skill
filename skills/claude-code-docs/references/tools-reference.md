@@ -536,7 +536,7 @@ The report carries:
 
 Claude Code keeps your working directory in the local draft so it can find the transcript, and doesn't send the directory.
 
-In [organizations with zero data retention](https://code.claude.com/docs/en/zero-data-retention#features-disabled-under-zdr), Claude Code leaves the tool out, as it does for `/feedback`. If a session in such an organization still offers the tool, drafts stay on your machine, and sending fails with `Feedback collection is not available for organizations with custom data retention policies.`
+In [organizations with Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention#features-disabled-under-zdr), and in organizations with the [HIPAA configuration](https://code.claude.com/docs/en/hipaa-setup) applied, Claude Code leaves the tool out, as it does for `/feedback`. If a session in an organization with Zero Data Retention still offers the tool, drafts stay on your machine, and sending fails with `Feedback collection is not available for organizations with custom data retention policies.`
 
 ### Discard or keep a draft
 
@@ -554,7 +554,7 @@ Claude Code includes the tool in interactive terminal sessions on your own machi
 * [Cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web), which can't write to the queue on your machine
 * Sessions on [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock), [Claude Platform on AWS](https://code.claude.com/docs/en/claude-platform-on-aws), [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai), or [Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry)
 * Sessions where you set [`CLAUDE_CODE_SEND_FEEDBACK=0`](https://code.claude.com/docs/en/env-vars) or [`DISABLE_FEEDBACK_COMMAND=1`](https://code.claude.com/docs/en/env-vars), set `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` to any non-empty value, or turned off [feature-flag fetching](https://code.claude.com/docs/en/env-vars#features-that-need-feature-flag-fetching)
-* Organizations that have turned off product feedback, and [organizations with zero data retention](https://code.claude.com/docs/en/zero-data-retention#features-disabled-under-zdr)
+* Organizations that have turned off product feedback, [organizations with Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention#features-disabled-under-zdr), and organizations with the [HIPAA configuration](https://code.claude.com/docs/en/hipaa-setup) applied
 
 ## Task tool availability
 

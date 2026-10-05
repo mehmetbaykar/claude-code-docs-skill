@@ -104,6 +104,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `goal` - [Keep Claude working toward a goal](https://code.claude.com/docs/en/goal)
 - `google-vertex-ai` - [Claude Code on Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai)
 - `headless` - [Run Claude Code programmatically](https://code.claude.com/docs/en/headless)
+- `hipaa-setup` - [Set up Claude Code (local mode) for a HIPAA-ready organization](https://code.claude.com/docs/en/hipaa-setup)
 - `hooks-guide` - [Automate actions with hooks](https://code.claude.com/docs/en/hooks-guide)
 - `hooks` - [Hooks reference](https://code.claude.com/docs/en/hooks)
 - `how-claude-code-works` - [How Claude Code works](https://code.claude.com/docs/en/how-claude-code-works)
