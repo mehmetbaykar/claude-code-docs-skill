@@ -3040,6 +3040,15 @@ type SDKThinkingTokensMessage = {
 };
 ```
 ```typescript
+type SDKSessionStateChangedMessage = {
+  type: "system";
+  subtype: "session_state_changed";
+  state: "idle" | "running" | "requires_action";
+  uuid: UUID;
+  session_id: string;
+};
+```
+```typescript
 type SDKFilesPersistedEvent = {
   type: "system";
   subtype: "files_persisted";
