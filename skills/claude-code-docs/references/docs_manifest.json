@@ -4,12 +4,12 @@
     "failed_pages": [],
     "fetch_tool_version": "2.0",
     "pages_failed": 0,
-    "pages_fetched_successfully": 220,
+    "pages_fetched_successfully": 221,
     "pages_skipped": 0,
     "pages_stale": 0,
     "raw_fallback_pages": 0,
     "stale_pages": [],
-    "total_pages_discovered": 220
+    "total_pages_discovered": 221
   },
   "files": {
     "accessibility.md": {
@@ -22,8 +22,8 @@
       "title": "Use Claude Code with a screen reader"
     },
     "admin-setup.md": {
-      "hash": "e1d9f2daa2882d6eb44607f1a8725a6b57192304f9c94013fbd0c5ca2c4480b7",
-      "last_updated": "2026-10-04T16:54:28+00:00",
+      "hash": "3b99d89fd2a1ab1d074b537596504776905299091842b18db603848a0d4a8282",
+      "last_updated": "2026-10-05T18:41:23+00:00",
       "original_url": "https://code.claude.com/docs/en/admin-setup",
       "path": "/docs/en/admin-setup",
       "source_url": "https://code.claude.com/docs/en/admin-setup.md",
@@ -454,8 +454,8 @@
       "title": "Checkpointing"
     },
     "chrome.md": {
-      "hash": "f659f8b139c83df80bd1bee0057e8f65591c02614af1b1cb014e4dec6d1f8070",
-      "last_updated": "2026-10-03T01:06:17+00:00",
+      "hash": "6ae2bbd221f861c0a352f40af38a9249a1cb492f3d8ad741f8fd335dac862049",
+      "last_updated": "2026-10-05T18:41:43+00:00",
       "original_url": "https://code.claude.com/docs/en/chrome",
       "path": "/docs/en/chrome",
       "source_url": "https://code.claude.com/docs/en/chrome.md",
@@ -517,8 +517,8 @@
       "title": "Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry"
     },
     "claude-code-on-the-web.md": {
-      "hash": "297daf28d0782b891f0b3067caca243e331bfc0d71cadad90fc9219aab4f6d3a",
-      "last_updated": "2026-10-04T16:54:47+00:00",
+      "hash": "d8dccb98d6d10b4336a709ffbafbaa1b81018804736fc267ecac887b6eceadbc",
+      "last_updated": "2026-10-05T18:41:46+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-code-on-the-web",
       "path": "/docs/en/claude-code-on-the-web",
       "source_url": "https://code.claude.com/docs/en/claude-code-on-the-web.md",
@@ -526,8 +526,8 @@
       "title": "Use Claude Code in the cloud"
     },
     "claude-directory.md": {
-      "hash": "9eb68a6fe9323e613622048cd3c72520f27a67c49698cb9178b5e33ff510f1a3",
-      "last_updated": "2026-10-04T04:50:04+00:00",
+      "hash": "cefaf9cfabb45833cd14a6d11b5ab1d135c903e1cc6c074f98b072a17a8cb518",
+      "last_updated": "2026-10-05T18:41:46+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-directory",
       "path": "/docs/en/claude-directory",
       "source_url": "https://code.claude.com/docs/en/claude-directory.md",
@@ -589,8 +589,8 @@
       "title": "Configure cloud environments"
     },
     "code-review.md": {
-      "hash": "991996fc2482f8d47cf6b230359c9d4a15061294324e711edfd8dfaa9a5de303",
-      "last_updated": "2026-10-03T22:18:19+00:00",
+      "hash": "79f9b604c5e8b0ff5540cc4d58d4bbbf47c33ae3cc48368a230252c9fc0cbb36",
+      "last_updated": "2026-10-05T18:41:50+00:00",
       "original_url": "https://code.claude.com/docs/en/code-review",
       "path": "/docs/en/code-review",
       "source_url": "https://code.claude.com/docs/en/code-review.md",
@@ -742,8 +742,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "64ccc892dc0b4d020c8c2df7559d24dc36655121414c8835c87c0d0c44333ff1",
-      "last_updated": "2026-10-04T16:54:55+00:00",
+      "hash": "dab7deae4f538738c194218319bafd164c746b3cad81378f35d93dcfe52f6de4",
+      "last_updated": "2026-10-05T18:41:55+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -787,8 +787,8 @@
       "title": "Speed up responses with fast mode"
     },
     "feature-availability.md": {
-      "hash": "9f6eb2c5aa3a9757581691c8aa476387d43030e27bab4fe2d1bb35b39973b408",
-      "last_updated": "2026-10-02T06:50:50+00:00",
+      "hash": "8248b05c984f89a8b704dccd6deaeea2da4516a0f0be00ba2dd541a65d4c6e64",
+      "last_updated": "2026-10-05T18:41:59+00:00",
       "original_url": "https://code.claude.com/docs/en/feature-availability",
       "path": "/docs/en/feature-availability",
       "source_url": "https://code.claude.com/docs/en/feature-availability.md",
@@ -841,8 +841,8 @@
       "title": "Claude Code GitHub Actions"
     },
     "github-enterprise-server.md": {
-      "hash": "e6bc78b057e5990bf12d23af04b51c3450277af16f7047ae0853be6afb9f1af3",
-      "last_updated": "2026-09-30T03:40:07+00:00",
+      "hash": "5da4f4d0f80e735cae966f5c619b9a1d4d4b0f44e580044278729e9c53818f4b",
+      "last_updated": "2026-10-05T18:42:02+00:00",
       "original_url": "https://code.claude.com/docs/en/github-enterprise-server",
       "path": "/docs/en/github-enterprise-server",
       "source_url": "https://code.claude.com/docs/en/github-enterprise-server.md",
@@ -894,6 +894,15 @@
       "status": "live",
       "title": "Run Claude Code programmatically"
     },
+    "hipaa-setup.md": {
+      "hash": "16ac3f64fc560d3c848668424e5f4f8f1d7df889ae2fe0161d59ec943892d690",
+      "last_updated": "2026-10-05T18:42:04+00:00",
+      "original_url": "https://code.claude.com/docs/en/hipaa-setup",
+      "path": "/docs/en/hipaa-setup",
+      "source_url": "https://code.claude.com/docs/en/hipaa-setup.md",
+      "status": "live",
+      "title": "Set up Claude Code (local mode) for a HIPAA-ready organization"
+    },
     "hooks-guide.md": {
       "hash": "4eea511fcf538e199d4655df5aacbafa522925e05620fc99a95e7c2a77b915c9",
       "last_updated": "2026-10-05T01:15:10+00:00",
@@ -904,8 +913,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "0cfcec252ab7aaf7133d2ba320be4b11f223d29214ed5c1f5d7122c0885ab422",
-      "last_updated": "2026-10-05T01:15:09+00:00",
+      "hash": "8c00bdb4896d62b7937d88e6765c02d461f8eef17d534fc1871bfe5c84d604b2",
+      "last_updated": "2026-10-05T18:42:05+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -958,8 +967,8 @@
       "title": "Set up Claude Code in a monorepo or large codebase"
     },
     "legal-and-compliance.md": {
-      "hash": "a9871b73db6ff0cce54f48ef176d2aeb5c2c2f07f6bf90bd7b803c86bc00a451",
-      "last_updated": "2026-08-22T01:55:39+00:00",
+      "hash": "afecd0736fb7eb7dac2b060557223c31a5b236742b7fde3f5f1223a23deec0fe",
+      "last_updated": "2026-10-05T18:42:07+00:00",
       "original_url": "https://code.claude.com/docs/en/legal-and-compliance",
       "path": "/docs/en/legal-and-compliance",
       "source_url": "https://code.claude.com/docs/en/legal-and-compliance.md",
@@ -1408,8 +1417,8 @@
       "title": "Plugin security and trust"
     },
     "plugins__troubleshooting.md": {
-      "hash": "a7586c5cf54d23fcba37e0e8b017874c6ee05a12bfb3bf5a009db1d3d296fdba",
-      "last_updated": "2026-10-04T04:50:41+00:00",
+      "hash": "2a6471fa410ffa5b0b7e4c83a1d8cd0071df9b76073fbb4a40a04cbeb8cf0040",
+      "last_updated": "2026-10-05T18:42:29+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/troubleshooting",
       "path": "/docs/en/plugins/troubleshooting",
       "source_url": "https://code.claude.com/docs/en/plugins/troubleshooting.md",
@@ -1444,8 +1453,8 @@
       "title": "Quickstart"
     },
     "remote-control.md": {
-      "hash": "5f6faf7e52b9ebd164c77c8fd032046c9bb3dd19c65c7158d6016d4f3f26be85",
-      "last_updated": "2026-10-02T06:51:10+00:00",
+      "hash": "16d15c366953302b9fa4773c5a1bbaaa659fc72e1eac6325b9ccad86950fbc41",
+      "last_updated": "2026-10-05T18:42:30+00:00",
       "original_url": "https://code.claude.com/docs/en/remote-control",
       "path": "/docs/en/remote-control",
       "source_url": "https://code.claude.com/docs/en/remote-control.md",
@@ -1516,8 +1525,8 @@
       "title": "Customize sessions in self-hosted environments"
     },
     "self-hosted-environments-deploy.md": {
-      "hash": "0731f2eb495c533c1f3eae4eef0d02dedc0208aafc3c710e64bad57808cdb7e2",
-      "last_updated": "2026-10-04T08:28:57+00:00",
+      "hash": "d15207742ec99e791127d447eb8464da838a43a4b0cbea904060c27ff634e613",
+      "last_updated": "2026-10-05T18:42:34+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-deploy",
       "path": "/docs/en/self-hosted-environments-deploy",
       "source_url": "https://code.claude.com/docs/en/self-hosted-environments-deploy.md",
@@ -1561,8 +1570,8 @@
       "title": "Test self-hosted environments end to end"
     },
     "self-hosted-environments.md": {
-      "hash": "fb281c75d90c79b003820e5a4c69a8c668ded2db7253f6d49739e72592cd57ca",
-      "last_updated": "2026-10-03T01:06:57+00:00",
+      "hash": "d3039fd3c7955a18faba6793837576823f94fd668eef4075566ff6db0f73f57b",
+      "last_updated": "2026-10-05T18:42:33+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments",
       "path": "/docs/en/self-hosted-environments",
       "source_url": "https://code.claude.com/docs/en/self-hosted-environments.md",
@@ -1597,8 +1606,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "b447a3c87b312dce0bcec09794572c6432ba1435e334bdf4000e090348c3aae6",
-      "last_updated": "2026-10-05T01:15:33+00:00",
+      "hash": "5452970d7bd57b372581e1076c7c86353d8d75d146da3469ad8268645a96c889",
+      "last_updated": "2026-10-05T18:42:38+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "source_url": "https://code.claude.com/docs/en/settings-reference.md",
@@ -1678,8 +1687,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "2f830b2739591529adeff5b8eb5503af0731cb95f757e8c1e196ff30e15ed258",
-      "last_updated": "2026-10-04T08:29:02+00:00",
+      "hash": "5e0daa0ac0cc82322e39c55df69d0b9f7441d3433c81d5f672e3f711d379d6fa",
+      "last_updated": "2026-10-05T18:42:41+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -1687,8 +1696,8 @@
       "title": "Tools reference"
     },
     "troubleshoot-install.md": {
-      "hash": "5ce2d668c2ff1d0c87247f163fd95c1002032a71ad94b491f5f1fbe7db14c7d4",
-      "last_updated": "2026-10-02T06:51:18+00:00",
+      "hash": "31f1a48d81d563ee582caf8f1f43f7487b29f15ecf75a8e0710114df1905ffab",
+      "last_updated": "2026-10-05T18:42:42+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshoot-install",
       "path": "/docs/en/troubleshoot-install",
       "source_url": "https://code.claude.com/docs/en/troubleshoot-install.md",
@@ -1705,8 +1714,8 @@
       "title": "Troubleshooting"
     },
     "ultrareview.md": {
-      "hash": "465d195f765e5c63b185f39f153f5a0601c33372e8576421dac388206b9d48a0",
-      "last_updated": "2026-10-03T01:07:05+00:00",
+      "hash": "1cd92b98b8d2699d3c30803dc52df53608a20bd64761491779530a5a7afd7a1b",
+      "last_updated": "2026-10-05T18:42:42+00:00",
       "original_url": "https://code.claude.com/docs/en/ultrareview",
       "path": "/docs/en/ultrareview",
       "source_url": "https://code.claude.com/docs/en/ultrareview.md",
@@ -1732,8 +1741,8 @@
       "title": "Use Claude Code in VS Code"
     },
     "web-quickstart.md": {
-      "hash": "f74caad8e346451ee3b8d24de7992d7c5c4261e5dff3efa3923bb90e5dc46d64",
-      "last_updated": "2026-10-04T16:55:37+00:00",
+      "hash": "332e906cfe00cdcfa0df8406d12bb5778039070c829d3d8ceb3bb2ffee8b1f3b",
+      "last_updated": "2026-10-05T18:42:44+00:00",
       "original_url": "https://code.claude.com/docs/en/web-quickstart",
       "path": "/docs/en/web-quickstart",
       "source_url": "https://code.claude.com/docs/en/web-quickstart.md",
@@ -1984,8 +1993,8 @@
       "title": "Run parallel sessions with worktrees"
     },
     "zero-data-retention.md": {
-      "hash": "9adb9c6396069756f68fc894372a82b7a573430304aad728c869e56778c70094",
-      "last_updated": "2026-09-28T21:31:11+00:00",
+      "hash": "e85ecade9b37e9e6333c496f7674aa6a863148abb10f1d4f6dc5c46b5f6b5c9f",
+      "last_updated": "2026-10-05T18:42:55+00:00",
       "original_url": "https://code.claude.com/docs/en/zero-data-retention",
       "path": "/docs/en/zero-data-retention",
       "source_url": "https://code.claude.com/docs/en/zero-data-retention.md",
@@ -2007,7 +2016,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-05T15:36:36+00:00",
+  "last_updated": "2026-10-05T18:42:55+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",

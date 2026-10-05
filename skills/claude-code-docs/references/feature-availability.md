@@ -168,6 +168,8 @@ Everything in [CLI capabilities that vary by provider](#cli-capabilities-that-va
 
 If you authenticate through Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, or an Anthropic Console API key, this section does not apply to you. When you sign in with a claude.ai account, your plan determines which of the features below are available.
 
+In Enterprise organizations with the [HIPAA configuration](https://code.claude.com/docs/en/hipaa-setup) applied, some features in this table are turned off.
+
 | Feature | Pro | Max | Team | Enterprise |
 | :- | :- | :- | :- | :- |
 | [Cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) | ✓ | ✓ | ✓ | ✓ <sup>[6](#fn6)</sup> |
