@@ -76,8 +76,8 @@
       "title": "Track cost and usage"
     },
     "agent-sdk__custom-tools.md": {
-      "hash": "ecb7754e8921b09aba2822e752a15c53eacc7c3d39f65ed6b38c8419ab5b475c",
-      "last_updated": "2026-09-28T21:30:13+00:00",
+      "hash": "f77f51c0416946e0839e2fe2bae84d9fa390581a716050f4616c75a0161779fb",
+      "last_updated": "2026-10-05T21:32:07+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/custom-tools",
       "path": "/docs/en/agent-sdk/custom-tools",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/custom-tools.md",
@@ -184,8 +184,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "ac1dfaddb9fd53f1f1d71b1407ffab6c2c0ccc3523bd0cf5919f72f2b2c8cbc2",
-      "last_updated": "2026-10-05T01:14:46+00:00",
+      "hash": "fe73a98e2b63d7b933664385caf9aeef7b8d8b80c32bb4c69549c518b380b4f3",
+      "last_updated": "2026-10-05T21:32:11+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -310,8 +310,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "742d815d2ebe15ecb39bbecf954cc93b44469c34241d4dda6157846eaf899f78",
-      "last_updated": "2026-10-05T01:14:50+00:00",
+      "hash": "5b8f1a93ce6b107267682741cb72d71c86cf0e7d275e1de3546e217dac800f5b",
+      "last_updated": "2026-10-05T21:32:15+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/typescript.md",
@@ -562,8 +562,8 @@
       "title": "Scan your codebase for vulnerabilities"
     },
     "claude-tag.md": {
-      "hash": "28be822731a4a34a8ce0c39749fe59fb1c62f319707608ea107b206ff46dbaed",
-      "last_updated": "2026-10-02T21:31:34+00:00",
+      "hash": "9dd453f69e5cb5eb98f66c13a9f5633a3961cc7aa323d40128fae197c98a5f6f",
+      "last_updated": "2026-10-05T21:32:25+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-tag",
       "path": "/docs/en/claude-tag",
       "source_url": "https://code.claude.com/docs/en/claude-tag.md",
@@ -760,8 +760,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "3182a2764079484afbdcef60c455543b39b815f52f244166727b65ee4ed69fd7",
-      "last_updated": "2026-10-05T01:15:05+00:00",
+      "hash": "1303c425e9a62039e94c88452f2fcdc5ba39a0cce74a0dfbfa1807f4ff088997",
+      "last_updated": "2026-10-05T21:32:33+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -2016,7 +2016,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-05T18:42:55+00:00",
+  "last_updated": "2026-10-05T21:33:18+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
