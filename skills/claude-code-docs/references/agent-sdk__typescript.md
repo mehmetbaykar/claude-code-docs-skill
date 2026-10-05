@@ -1986,6 +1986,7 @@ type AgentOutput =
         output_tokens_details?: {
           thinking_tokens?: number | null;
         } | null;
+        fallback_credit?: unknown;
       };
       toolStats?: {
         readCount: number;
@@ -2747,7 +2748,9 @@ type ConfigScope = "local" | "user" | "project";
 ```
 ```typescript
 type NonNullableUsage = {
-  [K in keyof Usage]: NonNullable<Usage[K]>;
+  [K in keyof Usage]: K extends "fallback_credit"
+    ? Usage[K]
+    : NonNullable<Usage[K]>;
 };
 ```
 ```typescript
@@ -2766,6 +2769,7 @@ type Usage = {
   inference_geo: string | null;
   iterations: BetaIterationsUsage | null;
   output_tokens_details: BetaOutputTokensDetails | null;
+  fallback_credit: BetaFallbackCreditUsage | null;
 };
 ```
 ```typescript
