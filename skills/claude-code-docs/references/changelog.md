@@ -12,6 +12,11 @@ This page is generated from the [CHANGELOG.md on GitHub](https://github.com/anth
 
 Run `claude --version` to check your installed version.
 
+### 2.1.291 (October 6, 2026)
+
+* Fixed a regression in 2.1.290 where cloud sessions could drop answers to permission prompts
+* Fixed a regression in 2.1.288 where the last messages of a session could be lost when quitting
+
 ### 2.1.290 (October 5, 2026)
 
 * Added `serverToolUses` to the result of a mod's `turn.step` hook: the tool calls the API ran itself (the advisor), each with its id, name, input, start and end
