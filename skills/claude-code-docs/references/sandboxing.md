@@ -963,7 +963,7 @@ Effective sandboxing requires both filesystem and network isolation. Without net
 ## See also
 
 * [Sandbox environments](https://code.claude.com/docs/en/sandbox-environments): compare the built-in sandbox with dev containers, containers, and VMs
-* [Security](https://code.claude.com/docs/en/security): comprehensive security features and best practices
+* [Security](https://code.claude.com/docs/en/security): security features and best practices
 * [Permissions](https://code.claude.com/docs/en/permissions): permission configuration and access control
 * [All settings](https://code.claude.com/docs/en/settings-reference): every settings key
 * [CLI reference](https://code.claude.com/docs/en/cli-reference): command-line options

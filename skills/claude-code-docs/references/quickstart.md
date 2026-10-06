@@ -124,7 +124,7 @@ You'll see the Claude Code prompt with the version, current model, and working d
 
 ## Step 4: Ask your first question
 
-Let's start with understanding your codebase. Try one of these commands:
+Start by understanding your codebase. Try one of these commands:
 ```text wrap
 what does this project do?
 ```
@@ -155,7 +155,7 @@ Claude Code reads your project files as needed. You don't have to manually add c
 
 ## Step 5: Make your first code change
 
-Now let's make Claude Code do some actual coding. Try a simple task:
+Now have Claude Code do some actual coding. Try a simple task:
 ```text wrap
 add a hello world function to the main file
 ```
@@ -335,4 +335,4 @@ Customize with CLAUDE.md, skills, hooks, MCP, and more
 * **In Claude Code**: Type `/help` or ask a "how do I" question
 * **Documentation**: You're here! Browse other guides
 * **Courses**: Take [Claude Code 101](https://academy.claude.com/courses/claude-code-101) and other free self-paced courses on [Claude Academy](https://academy.claude.com/)
-* **Community**: Join our [Discord](https://www.anthropic.com/discord) for tips and support
+* **Community**: Join the [Discord server](https://www.anthropic.com/discord) for tips and support
