@@ -19,6 +19,8 @@ When you start a Remote Control session on your machine, Claude keeps running lo
 
 Unlike [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web), which run on cloud infrastructure, Remote Control sessions run directly on your machine and interact with your local filesystem. The web and mobile interfaces are a window into that local session, so your computer has to stay on and the `claude` process has to keep running.
 
+Remote Control is a Claude Code feature. For conversations in other Claude products, see the [Claude Help Center](https://support.claude.com).
+
 ## Requirements
 
 Before using Remote Control, confirm that your environment meets these conditions:
