@@ -22,8 +22,8 @@
       "title": "Use Claude Code with a screen reader"
     },
     "admin-setup.md": {
-      "hash": "3b99d89fd2a1ab1d074b537596504776905299091842b18db603848a0d4a8282",
-      "last_updated": "2026-10-05T18:41:23+00:00",
+      "hash": "7d9be7c147d6e45a4879d62131eb6f37929d4aed397cf42a22d19dc49577df4e",
+      "last_updated": "2026-10-06T18:40:02+00:00",
       "original_url": "https://code.claude.com/docs/en/admin-setup",
       "path": "/docs/en/admin-setup",
       "source_url": "https://code.claude.com/docs/en/admin-setup.md",
@@ -760,8 +760,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "b459d7d05dc612244e22c4ea2d0a6577beb81b3f0199423f3718c38d63dabb4b",
-      "last_updated": "2026-10-06T03:39:56+00:00",
+      "hash": "a87d5948dd118ce669287eace77ec851d6a8868ac051cc1d133d82a63d616474",
+      "last_updated": "2026-10-06T18:40:53+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -895,8 +895,8 @@
       "title": "Run Claude Code programmatically"
     },
     "hipaa-setup.md": {
-      "hash": "71b3d2c8edffadf956e9f9e8c4707f5eec85f3b13f4334b5c942afe5358c449d",
-      "last_updated": "2026-10-06T01:09:39+00:00",
+      "hash": "08e8f4e8d07c5b4166b653eff6cbb9253ea36c52db245250c2da838a45d1be92",
+      "last_updated": "2026-10-06T18:40:59+00:00",
       "original_url": "https://code.claude.com/docs/en/hipaa-setup",
       "path": "/docs/en/hipaa-setup",
       "source_url": "https://code.claude.com/docs/en/hipaa-setup.md",
@@ -913,8 +913,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "dacee046646682a908ee1b9bd299cbd679481c9d6d2bec4a39418f49ba9758cf",
-      "last_updated": "2026-10-06T03:40:02+00:00",
+      "hash": "8301df1637b9aa2f9af82b9575c3a6e1961defac0694c5a511b3be1ce447f075",
+      "last_updated": "2026-10-06T18:41:00+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "source_url": "https://code.claude.com/docs/en/hooks.md",
@@ -2016,7 +2016,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-06T06:52:26+00:00",
+  "last_updated": "2026-10-06T18:42:18+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
