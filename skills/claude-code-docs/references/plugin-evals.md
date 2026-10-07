@@ -114,7 +114,7 @@ Open the `Published:` URL, or the `Report:` path when no `Published:` line appea
 
 The most common first finding is a `Δ` near zero with the case's `tool_used: Skill` grader failing, which means Claude isn't choosing your skill on natural phrasing. Adjust the skill's [`description`](https://code.claude.com/docs/en/skills#frontmatter-reference), run `claude plugin eval .` again, and compare.
 
-To iterate on one case cheaply, run a single arm once. A single run is noisy, so confirm any change at the default three runs before you trust it. With one arm the table shows `SCORE` and `PASS%` columns instead of `WITH`, `W/OUT`, and `Δ`:
+To iterate on one case with fewer runs, run a single arm once. A single run is noisy, so confirm any change at the default three runs before you trust it. With one arm the table shows `SCORE` and `PASS%` columns instead of `WITH`, `W/OUT`, and `Δ`:
 ```bash
     claude plugin eval . --case <case-name> --runs 1 --ablation none
 ```
