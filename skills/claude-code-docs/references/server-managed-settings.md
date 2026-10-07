@@ -133,7 +133,7 @@ Claude Code reads a `managed-mcp.json` deployed at its [system path](https://cod
 
 ### Settings precedence
 
-Server-managed settings and [endpoint-managed settings](https://code.claude.com/docs/en/managed-settings#delivery-mechanisms) both occupy the highest tier in the Claude Code [settings hierarchy](https://code.claude.com/docs/en/settings#settings-precedence). No other settings level can override them, including command line arguments, apart from the [exceptions to managed settings precedence](https://code.claude.com/docs/en/settings#exceptions-to-managed-settings-precedence).
+Server-managed settings and [endpoint-managed settings](https://code.claude.com/docs/en/managed-settings#delivery-mechanisms) both occupy the highest tier in the Claude Code [settings hierarchy](https://code.claude.com/docs/en/settings#settings-precedence). A key you set here takes precedence over the same key in a user's own settings files or in a `--settings` value, apart from the [exceptions to managed settings precedence](https://code.claude.com/docs/en/settings#exceptions-to-managed-settings-precedence).
 
 Within the managed tier, Claude Code by default uses the first source that delivers at least one policy key, checking server-managed settings first and then endpoint-managed settings, apart from the [exception keys covered next](#per-key-exceptions-across-managed-sources). [How Claude Code combines managed sources](https://code.claude.com/docs/en/managed-settings#precedence-within-the-managed-tier) has the full ranking, the carve-out for the control keys, and the opt-in that applies every source.
 

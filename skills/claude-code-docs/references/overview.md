@@ -30,6 +30,8 @@ To install Claude Code, open a terminal and run the command for your system. If 
         curl -fsSL https://claude.ai/install.sh | bash
 ```
 
+On Windows, your prompt shows `PS C:\` when you're in PowerShell and `C:\` without the `PS` when you're in CMD.
+
         **Windows PowerShell:**
 ```powershell
         irm https://claude.ai/install.ps1 | iex
@@ -42,9 +44,9 @@ To install Claude Code, open a terminal and run the command for your system. If 
 
 When the installer finishes, open a new terminal window and run `claude --version`. A working installation prints a version number. If your shell says `claude` isn't found or isn't recognized, the install directory isn't on your PATH yet: see [Fix your PATH](https://code.claude.com/docs/en/troubleshoot-install#command-not-found-claude-after-installation).
 
-If you see `The token '&&' is not a valid statement separator`, you're in PowerShell, not CMD. If you see `'irm' is not recognized as an internal or external command`, you're in CMD, not PowerShell. Your prompt shows `PS C:\` when you're in PowerShell and `C:\` without the `PS` when you're in CMD.
+If you see `The token '&&' is not a valid statement separator`, you're in PowerShell, not CMD. If you see `'irm' is not recognized as an internal or external command`, you're in CMD, not PowerShell.
 
-If the install command fails with `syntax error near unexpected token '<'`, a `403`, or another curl error, see [Troubleshoot installation](https://code.claude.com/docs/en/troubleshoot-install#find-your-error) to match the error to a fix and for alternative install methods.
+If the install command fails with `syntax error near unexpected token '<'`, a `403`, or any other error, see [Troubleshoot installation](https://code.claude.com/docs/en/troubleshoot-install#find-your-error) to match the error to a fix and for alternative install methods.
 
 [Git for Windows](https://git-scm.com/downloads/win) is recommended on native Windows so Claude Code can use the Bash tool. If Git for Windows is not installed, Claude Code uses PowerShell as the shell tool instead. WSL setups do not need Git for Windows.
 
@@ -86,7 +88,7 @@ Then start Claude Code in any project. Replace `your-project` with the path to a
     claude
 ```
 
-You'll be prompted to log in on first use. If you've set the `ANTHROPIC_API_KEY` environment variable, Claude Code skips the login prompt and asks you to approve the key instead. That's it! [Continue with the Quickstart →](https://code.claude.com/docs/en/quickstart)
+Claude Code prompts you to log in on first use. If you've set the `ANTHROPIC_API_KEY` environment variable and you approve the key when Claude Code asks whether to use it, Claude Code skips the login prompt. [Continue with the Quickstart →](https://code.claude.com/docs/en/quickstart)
 
 
 See [advanced setup](https://code.claude.com/docs/en/setup) for installation options, manual updates, or uninstallation instructions. Visit [installation troubleshooting](https://code.claude.com/docs/en/troubleshoot-install) if you hit issues.
