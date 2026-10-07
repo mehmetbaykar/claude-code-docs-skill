@@ -463,8 +463,8 @@
       "title": "Use Claude Code with Chrome"
     },
     "claude-apps-gateway-config.md": {
-      "hash": "c8a6b775ff566b812584c11c7d20e8c5c701166a832a8c32873c2a577b535e13",
-      "last_updated": "2026-10-04T16:54:46+00:00",
+      "hash": "4bc26d602c232cad94fac2e834ee6757bbe1b99157c7834548ae197db5c76547",
+      "last_updated": "2026-10-07T01:12:43+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-config",
       "path": "/docs/en/claude-apps-gateway-config",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-config.md",
@@ -472,8 +472,8 @@
       "title": "Claude apps gateway configuration"
     },
     "claude-apps-gateway-deploy.md": {
-      "hash": "c62d65130415583012e099adbec626255c0fb67a8acf71523334293adbdbcad2",
-      "last_updated": "2026-10-04T08:28:25+00:00",
+      "hash": "5a737397b58e84883952d2b8b74e20a8c17dffe3de663bc0cbe065bb444581d8",
+      "last_updated": "2026-10-07T01:12:43+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-deploy",
       "path": "/docs/en/claude-apps-gateway-deploy",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-deploy.md",
@@ -481,8 +481,8 @@
       "title": "Claude apps gateway deployment and operations"
     },
     "claude-apps-gateway-on-aws.md": {
-      "hash": "b269e2799779d0518f420b3e8dc1d42923a91eb20e123fa8f6fda7fe691b2781",
-      "last_updated": "2026-09-30T21:33:11+00:00",
+      "hash": "8c7cb6cf1c8e6e66dfa1b11880d38d9e647415359474f52fa72ea5916c2ebb19",
+      "last_updated": "2026-10-07T01:12:44+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-on-aws",
       "path": "/docs/en/claude-apps-gateway-on-aws",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-on-aws.md",
@@ -508,8 +508,8 @@
       "title": "Claude apps gateway spend limits"
     },
     "claude-apps-gateway.md": {
-      "hash": "58d88f53dae67696d7968c19501018aabb9e3437474b2ab8cadb919d6e6e5190",
-      "last_updated": "2026-10-04T08:28:24+00:00",
+      "hash": "c9f2fd879e2aaadbf623ef9624fb6342208bc7088a9e67e0bfc6640aca6587b7",
+      "last_updated": "2026-10-07T01:12:43+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway",
       "path": "/docs/en/claude-apps-gateway",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway.md",
@@ -1588,8 +1588,8 @@
       "title": "Configure server-managed settings"
     },
     "sessions.md": {
-      "hash": "fbbfa9853e5552549871e6cf070da026cfd256ac6c1188a47b37f4604ccbc86c",
-      "last_updated": "2026-10-06T21:32:31+00:00",
+      "hash": "27fa50fe552567a16b9dc31e93c7f64cee3d40c3912ba937ff12606c3645c6d7",
+      "last_updated": "2026-10-07T01:13:30+00:00",
       "original_url": "https://code.claude.com/docs/en/sessions",
       "path": "/docs/en/sessions",
       "source_url": "https://code.claude.com/docs/en/sessions.md",
@@ -2016,7 +2016,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-06T21:32:47+00:00",
+  "last_updated": "2026-10-07T01:13:46+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
