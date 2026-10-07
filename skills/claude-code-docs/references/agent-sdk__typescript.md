@@ -74,8 +74,13 @@ spare.claimed.catch((error: Error) => {
   console.error("Claim failed:", error.message);
 });
 
-for await (const message of claimedQuery) {
-  console.log(message);
+try {
+  for await (const message of claimedQuery) {
+    console.log(message);
+  }
+} catch (error) {
+  // After a refused claim, the claimed query throws once it has yielded the error result
+  console.error(`Session ended with an error: ${error}`);
 }
 ```
 ```typescript
