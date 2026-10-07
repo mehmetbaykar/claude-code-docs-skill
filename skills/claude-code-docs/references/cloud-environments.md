@@ -94,13 +94,13 @@ Anyone who uses the environment can read the values. On Pro and Max plans, use a
 Add network secrets
 </h3>
 
-A network secret is an API key or token you store on a cloud environment so Claude can call that API from any session in the environment without seeing the key. Anthropic's agent proxy adds the key to requests for the hosts you list, after each request leaves the session's VM. The key never reaches Claude, the commands it runs, or the session's environment variables.
+A network secret is an API key or token you store on a cloud environment so Claude can call that API from any session in the environment without seeing the key. Anthropic's agent proxy adds the key to requests for the hosts you list, after each request leaves the session's VM, so the key itself stays outside the VM.
 
 Network secrets are available on Pro and Max plans. They aren't available on Team or Enterprise plans yet, so the **Network secrets** section doesn't appear in the environment dialog on those plans.
 
 #### Requirements
 
-Two of these decide whether you can add a secret, and two decide whether the agent proxy can use it once added:
+These requirements decide whether you can add a secret and whether the agent proxy can use it once added:
 
 * **Role**: an organization admin role in your claude.ai organization
 * On Team and Enterprise, Owners hold it and Admins don't
@@ -252,8 +252,8 @@ In Anthropic-hosted environments, all GitHub operations go through a dedicated p
 * **Git credentials**: the git client inside the VM uses a scoped credential, which the proxy verifies and swaps for your actual GitHub token.
 * **API requests**: requests from the built-in GitHub tools, and from `gh` under the [`proxy-injected` placeholder](#work-with-github-issues-and-pull-requests), go out with your real credentials substituted.
 * **Push restrictions**: the proxy rejects branch deletions and pushes of anything other than a branch, such as a tag. It doesn't limit which branches a push can update. To do that, use branch protection rules or rulesets on GitHub.
-* **Repository scope**: GitHub API and release-asset requests reach only repositories attached to the session, so a setup script that downloads release assets from an unattached repository gets a 403.
-* **GraphQL restrictions**: the proxy serves only a pinned set of GraphQL operations for pull-request workflows. The proxy rejects everything else on the GraphQL endpoint with a 403 that says `This GraphQL query is not enabled for this session` and names the REST fallback, `gh api repos/{owner}/{repo}/...`. The restriction applies to every request through the proxy regardless of the credentials you supply, so a `GH_TOKEN` you set gets the same 403. Claude can't reach GitHub APIs that exist only in GraphQL, such as Projects v2, through the proxy.
+* **Repository scope**: the proxy serves GitHub API requests for the repositories attached to the session. An API request for another repository gets a 403 whose message starts with `GitHub access to` and contains `is not enabled for this session`.
+* **GraphQL restrictions**: the proxy rejects requests to GitHub's GraphQL endpoint with a 403 whose message starts with `GitHub GraphQL is not available from Claude Code sessions` and names the REST fallback, `gh api repos/{owner}/{repo}/...`. `gh` subcommands that use GraphQL, such as `gh pr` and `gh issue`, get the same 403. The restriction applies to every request through the proxy regardless of the credentials you supply, so a `GH_TOKEN` you set gets the same 403. Claude can't reach GitHub APIs that exist only in GraphQL, such as Projects v2, through the proxy.
 
 Committed files from public repositories arrive through `raw.githubusercontent.com`, which the [security proxy](#security-proxy) handles instead. That domain is in the default [Trusted list](#default-allowed-domains), so those files stay reachable unless the environment's [access level](#access-levels) excludes it.
 
@@ -263,8 +263,6 @@ Cloud sessions in Anthropic-hosted environments run behind an HTTP/HTTPS network
 
 * Protection against malicious requests
 * Rate limiting and abuse prevention
-* Content filtering for enhanced security
-* A DNS-level audit trail of requested hostnames
 
 ## What's available in cloud sessions
 
@@ -345,13 +343,13 @@ Cloud sessions include built-in GitHub tools that let Claude read issues, list p
 You can set `GH_TOKEN` or `GITHUB_TOKEN` yourself in [environment settings](#set-environment-variables), or leave both unset and let the [GitHub proxy](#github-proxy) authenticate for you:
 
 * If you set a token, it passes through to the container unchanged, so your scripts and GitHub's [`gh` CLI](https://cli.github.com) use it directly.
-* If you set neither and the [GitHub proxy](#github-proxy) is handling authentication for your session, both variables read as the placeholder string `proxy-injected` in the commands Claude runs, and the proxy substitutes your real credentials on outbound GitHub requests. `gh` works without a token of your own, but a script that reads `GITHUB_TOKEN` directly gets the placeholder, not a usable token.
+* If you set neither and the [GitHub proxy](#github-proxy) is handling authentication for your session, both variables read as the placeholder string `proxy-injected` in the commands Claude runs, and the proxy substitutes your real credentials on outbound GitHub requests. `gh api` calls for attached repositories work without a token of your own, but a script that reads `GITHUB_TOKEN` directly gets the placeholder, not a usable token.
 
 A token you set is an ordinary environment variable, so anyone who uses the environment can read it; the proxy path keeps the credential out of the environment configuration and the session VM.
 
 To check which case applies to your session, ask Claude to run `echo $GH_TOKEN`.
 
-GitHub's [`gh` CLI](https://cli.github.com) is pre-installed. If you need a `gh` command the built-in tools don't cover, like `gh release` or `gh workflow run`, ask Claude to run it. `gh` reads `GH_TOKEN` automatically, so you don't need to run `gh auth login`.
+GitHub's [`gh` CLI](https://cli.github.com) is pre-installed. If you need a GitHub operation the built-in tools don't cover, ask Claude to call the REST API with `gh api`. `gh` subcommands that use the REST API, such as `gh workflow list`, work too. The proxy [rejects subcommands that use GraphQL](#github-proxy), such as `gh pr` and `gh issue`. `gh` reads `GH_TOKEN` automatically, so you don't need to run `gh auth login`.
 
 ### Link output back to the session
 

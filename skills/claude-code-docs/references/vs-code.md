@@ -36,6 +36,8 @@ The extension's version number is the Claude Code version it bundles. For exampl
 
 The extension also installs in other VS Code forks like Devin Desktop or Kiro. Search for "Claude Code" in the editor's Extensions view, or install from the [Open VSX registry](https://open-vsx.org/extension/Anthropic/claude-code). If your editor can't install the extension, [install the CLI](https://code.claude.com/docs/en/quickstart) and run `claude` in its integrated terminal instead. The CLI works in any terminal.
 
+To run Claude Code inside a dev container, see [Development containers](https://code.claude.com/docs/en/devcontainer).
+
 > [!NOTE] If the extension doesn't appear after installation, restart VS Code or run "Developer: Reload Window" from the Command Palette.
 
 ## Get started
@@ -756,6 +758,19 @@ The Quick Pick confirmation is separate from `PreToolUse` hooks. An allowlist en
 <a id="troubleshooting" />
 
 ## Fix common issues
+
+Sign-in, network, and launch errors have their own entries on the install troubleshooting and error reference pages. Find what you see in the table, then follow the link.
+
+| What you see | Where to go |
+| - | - |
+| `API Error: 403 Request not allowed` after you sign in | [403 Forbidden after login](https://code.claude.com/docs/en/troubleshoot-install#403-forbidden-after-login) |
+| You're asked to sign in again after you already signed in | [Not logged in or token expired](https://code.claude.com/docs/en/troubleshoot-install#not-logged-in-or-token-expired) |
+| Cloud provider credentials work in your terminal but not in the extension | [Bedrock, Agent Platform, or Foundry credentials not loading](https://code.claude.com/docs/en/troubleshoot-install#bedrock-agent-platform-or-foundry-credentials-not-loading) |
+| `SSL certificate verification failed` or `Self-signed certificate detected` | [SSL certificate errors](https://code.claude.com/docs/en/errors#ssl-certificate-errors) |
+| `Claude Code process exited with code 1`, or another code | [Claude Code process exited with code N](https://code.claude.com/docs/en/errors#claude-code-process-exited-with-code-n) |
+| `Could not locate the Claude CLI on PATH` | [Could not locate the Claude CLI on PATH](https://code.claude.com/docs/en/errors#could-not-locate-the-claude-cli-on-path) |
+| `The connection to Claude Code ended before this message completed` | [The connection to Claude Code ended before this message completed](https://code.claude.com/docs/en/errors#the-connection-to-claude-code-ended-before-this-message-completed) |
+| `claude` isn't found in VS Code's integrated terminal | [Run CLI in VS Code](#run-cli-in-vs-code) |
 
 ### Extension won't install
 
