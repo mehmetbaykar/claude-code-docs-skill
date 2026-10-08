@@ -472,8 +472,8 @@
       "title": "Claude apps gateway configuration"
     },
     "claude-apps-gateway-deploy.md": {
-      "hash": "5a737397b58e84883952d2b8b74e20a8c17dffe3de663bc0cbe065bb444581d8",
-      "last_updated": "2026-10-07T01:12:43+00:00",
+      "hash": "a228f4e9cd28d5707c0db71bcedc81a8274b8575127859edd10e359d26043c1d",
+      "last_updated": "2026-10-08T09:39:15+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-deploy",
       "path": "/docs/en/claude-apps-gateway-deploy",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-deploy.md",
@@ -508,8 +508,8 @@
       "title": "Claude apps gateway spend limits"
     },
     "claude-apps-gateway.md": {
-      "hash": "c9f2fd879e2aaadbf623ef9624fb6342208bc7088a9e67e0bfc6640aca6587b7",
-      "last_updated": "2026-10-07T01:12:43+00:00",
+      "hash": "844132b0de43e168981e4800046f2583c7224486fa9d4741d55258f13f0b6a98",
+      "last_updated": "2026-10-08T09:39:14+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway",
       "path": "/docs/en/claude-apps-gateway",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway.md",
@@ -2016,7 +2016,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-08T06:54:32+00:00",
+  "last_updated": "2026-10-08T09:40:16+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
