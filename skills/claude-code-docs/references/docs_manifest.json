@@ -139,8 +139,8 @@
       "title": "Migrate to Claude Agent SDK"
     },
     "agent-sdk__modifying-system-prompts.md": {
-      "hash": "bf3716b6082e9d8424d1865a5abecccecf3a91cf95381d8f70db5ef41a6a05f9",
-      "last_updated": "2026-09-29T01:10:29+00:00",
+      "hash": "0d05bdadb823051e7ab78546395acf8540936f801e78bafc7435aa52ba6319f9",
+      "last_updated": "2026-10-08T06:53:15+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts",
       "path": "/docs/en/agent-sdk/modifying-system-prompts",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts.md",
@@ -418,8 +418,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "ed4845214023047568cc350ffa83481776e0731fcf672b5b6d1b170f324a2daa",
-      "last_updated": "2026-10-07T18:41:12+00:00",
+      "hash": "a36852da876ccdadb199677db1f6cf78c960d1e0d37ff25a09f8ee2cd3a15da0",
+      "last_updated": "2026-10-08T06:53:26+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -2016,7 +2016,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-08T03:43:59+00:00",
+  "last_updated": "2026-10-08T06:54:32+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
