@@ -259,7 +259,7 @@ A file that changed on disk after Claude last read it can still be edited when `
 
 Viewing a file with Bash also satisfies the read-before-edit requirement when the command is `cat`, `nl`, `bat`, `batcat`, `head`, `tail`, `sed -n 'X,Yp'`, `grep`, `egrep`, `fgrep`, or `rg` on a single file with no pipes or redirects. Piped output and other Bash commands don't count toward the read-before-edit check.
 
-Viewing a file with Bash affects edit eligibility only, not permissions. See [Read and Edit permission rules](https://code.claude.com/docs/en/permissions#read-and-edit) for which Bash commands your `Read` and `Edit` deny rules cover.
+When Claude views a file this way, Claude Code also loads any [subdirectory `CLAUDE.md`](https://code.claude.com/docs/en/memory#how-claude-md-files-load) and [path-scoped rules](https://code.claude.com/docs/en/memory#path-specific-rules) that apply to that file. See [Read and Edit permission rules](https://code.claude.com/docs/en/permissions#read-and-edit) for which Bash commands your `Read` and `Edit` deny rules cover.
 
 ## EndConversation tool behavior
 

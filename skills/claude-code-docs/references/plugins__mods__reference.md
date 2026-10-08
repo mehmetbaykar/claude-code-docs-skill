@@ -39,7 +39,8 @@ A mod registers each of its hooks, which are event handlers, by calling `on` ins
 | `next.origin` | `{ plugin, tier }` of whoever fired the event. Claude Code itself is `{ plugin: 'engine', tier: 'core' }`. A mod's `tier` is its priority group in the [order mods run in](https://code.claude.com/docs/en/plugins/mods/events#the-order-mods-run-in): `prepend`, `user`, `append`, or `builtin`. |
 | `next.budget` | The hook's time limit in milliseconds: `next.budget.ms` is the whole limit, and `next.budget.remainingMs` is what's left now |
 | `next.to(e, tier)` | Skips to a later tier, which is `append`, `builtin`, or `core`. `next.to(e, 'append')` skips the mods a user installed. Only a mod in `prependPlugins` or `appendPlugins` can call it. |
-| `next.error`, `next.called` | In a `.catch` handler only. `next.error.kind` is `throw` or `timeout`, `next.error.message` is the error's text, and `next.called` is `true` when the failed hook had called `next`. |
+| `next.error` | In a `.catch` handler only. `kind` is `throw` or `timeout` when the hook failed, and `message` is the error's text. `kind` is `re-entry` when the hook was skipped because the event came from inside one of its own mods API calls, and `cause` is `lent` if a method another mod adds to the mods API fired that event. `re-entry` and `cause` require Claude Code v2.1.292 or later. |
+| `next.called` | In a `.catch` handler only. `true` when the hook had called `next`. |
 
 ## Events
 
@@ -226,7 +227,7 @@ Elements are the building blocks of a tree a `ui.render` hook returns, and you g
 | [`Box`](https://code.claude.com/docs/en/plugins/mods/interface#build-a-tree-from-elements) | `key`, flex layout, `gap`, `padding`, `margin`, `width`, `height`, [`borderStyle`](#box-border-styles), `backgroundColor`, `position`, `hover` | ✓ | ✓ |
 | [`Text`](https://code.claude.com/docs/en/plugins/mods/interface#build-a-tree-from-elements) | `color`, `backgroundColor`, `bold`, `italic`, `underline`, `dimColor`, `inverse`, `wrap` | ✓ | ✓ |
 | [`Button`](https://code.claude.com/docs/en/plugins/mods/interface#respond-to-presses-and-typing) | `key`, `label`, `onPress`, `hotkey`, `plain`, `dimColor`, `autoFocus`, `action` | ✓ | ✓ |
-| `Link` | `href`, `label` | ✓ | ✓ |
+| [`Link`](https://code.claude.com/docs/en/plugins/mods/interface#link-in-the-desktop-app) | `href`, `label`. See [Limits](#limits). | ✓ | ✓ |
 | [`Code`](https://code.claude.com/docs/en/plugins/mods/gallery#show-code-and-changes) | `source`, `language`, `path`, `startLine`, `format`, `wrap` | ✓ | ✓ |
 | `Markdown` | `text`, `key`, `dimColor`, `onLinkPress`, `pressableLinks` | ✓ | ✓ |
 | [`Input`](https://code.claude.com/docs/en/plugins/mods/interface#take-typed-input-and-draw-a-row-for-each-item) | `key`, `label`, `placeholder`, `value`, `submitLabel`, `onSubmit`, `onInput`, `autoFocus` | ✓ | ✓ |
@@ -261,7 +262,7 @@ A `Box` whose `borderStyle` names anything else, such as `'rounded'`, draws with
 
 ## Limits
 
-Hooks and mods API calls run under time and size limits. Claude Code skips a hook that exceeds a time limit and rejects a call that exceeds a size limit.
+Hooks and mods API calls run under time and size limits. Claude Code skips a hook that exceeds a time limit.
 
 | Limit | Value |
 | :- | :- |
@@ -272,6 +273,8 @@ Hooks and mods API calls run under time and size limits. Claude Code skips a hoo
 | `$.model.complete` `maxTokens` | 1024 by default, up to 64,000 or the model's output limit |
 | `$.fs.read` and `$.fs.write` | 4 MiB for one file |
 | Text in one tree | The first 100,000 characters are drawn |
+| A `Code`'s `language` or `path`, a `Select` option's `value`, or a `Client`'s `module` | 10,000 characters. If one is longer, Claude Code [draws its own version of the site](https://code.claude.com/docs/en/plugins/mods/interface#build-a-tree-from-elements). |
+| A `Link`'s `href` | 2,048 characters. A longer `href` keeps the whole tree from drawing. |
 | `$.store` | 4 MiB of JSON in total |
 | `$.session.messages()` | The newest 4,096 entries |
 | `$.ui.invalidate('ui.render')` redraws | Throttled to 10 a second, or 30 in the terminal for the visible pane, the expanded band, and the hint line under the prompt. Calls that come sooner are coalesced. |

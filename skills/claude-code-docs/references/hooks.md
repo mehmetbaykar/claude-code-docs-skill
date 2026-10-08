@@ -868,7 +868,7 @@ Exit code 2 is the way a hook signals "stop, don't do this." The effect depends 
 | `PostCompact` | No | Shows stderr to user only |
 | `PreModelSwitch` | Yes | Blocks the model switch and shows stderr to the user |
 | `PostModelSwitch` | No | Shows stderr to user only; the model already switched |
-| `Elicitation` | Yes | Denies the elicitation |
+| `Elicitation` | Yes | Declines the request, and no dialog appears |
 | `ElicitationResult` | Yes | Blocks the response (action becomes decline) |
 | `WorktreeCreate` | Yes | Any non-zero exit code causes worktree creation to fail |
 | `WorktreeRemove` | Yes | Any non-zero exit code causes worktree removal to fail if the directory still exists afterward. See [WorktreeRemove](#worktreeremove) for what happens to the directory |
@@ -1010,8 +1010,7 @@ Not every event supports blocking or controlling behavior through JSON. The even
 | PermissionDenied | `hookSpecificOutput` | `retry: true` tells the model it may retry the denied tool call; Claude Code ignores it for [no-verdict denials](#permissiondenied-decision-control) |
 | WorktreeCreate | path return | Command hook prints path on stdout; HTTP hook returns `hookSpecificOutput.worktreePath`. Hook failure or missing path fails creation |
 | WorktreeRemove | Exit code | Any non-zero exit code makes the removal fail if the directory still exists afterward. JSON output is discarded |
-| Elicitation | `hookSpecificOutput` | `action` (accept/decline/cancel), `content` (form field values for accept) |
-| ElicitationResult | `hookSpecificOutput` | `action` (accept/decline/cancel), `content` (form field values override) |
+| Elicitation, ElicitationResult | `hookSpecificOutput` or top-level `decision` | `action` (accept/decline/cancel), `content` (form field values). `decision: "block"` also [declines](#other-ways-to-decline-an-elicitation) |
 | MessageDisplay | `hookSpecificOutput` | `displayContent` replaces the displayed text on screen. Display-only: the transcript and what Claude sees keep the original |
 | SessionStart, SubagentStart, PostModelSwitch | Context only | `hookSpecificOutput.additionalContext` adds context for Claude. SessionStart also accepts [`initialUserMessage`, `watchPaths`, `sessionTitle`, and `reloadSkills`](#sessionstart-decision-control). No blocking or decision control |
 | Setup, Notification, SessionEnd, PostCompact, InstructionsLoaded, StopFailure, CwdChanged, DirectoryAdded, FileChanged | None | No decision control. Used for side effects like logging or cleanup |
@@ -2408,6 +2407,7 @@ In addition to the [common input fields](#common-input-fields), TaskCreated hook
 | `task_description` | Detailed description of the task. May be absent |
 | `teammate_name` | Name of the teammate creating the task. May be absent |
 | `team_name` | Deprecated. Session-derived team name; will be removed in a future release |
+| `agent_id` | On this event, the [common input field](#common-input-fields) identifies the subagent or [in-process teammate](https://code.claude.com/docs/en/agent-teams#choose-a-display-mode) creating the task. May be absent. Requires Claude Code v2.1.290 or later |
 
 #### TaskCreated decision control
 
@@ -2461,6 +2461,7 @@ In addition to the [common input fields](#common-input-fields), TaskCompleted ho
 | `task_description` | Detailed description of the task. May be absent |
 | `teammate_name` | Name of the teammate completing the task. May be absent |
 | `team_name` | Deprecated. Session-derived team name; will be removed in a future release |
+| `agent_id` | On this event, the [common input field](#common-input-fields) identifies the subagent or [in-process teammate](https://code.claude.com/docs/en/agent-teams#choose-a-display-mode) completing the task. May be absent. Requires Claude Code v2.1.290 or later |
 
 #### TaskCompleted decision control
 
@@ -2635,6 +2636,7 @@ In addition to the [common input fields](#common-input-fields), TeammateIdle hoo
 | :- | :- |
 | `teammate_name` | Name of the teammate that is about to go idle |
 | `team_name` | Deprecated. Session-derived team name; will be removed in a future release |
+| `agent_id` | On this event, the [common input field](#common-input-fields) identifies the [in-process teammate](https://code.claude.com/docs/en/agent-teams#choose-a-display-mode) that is about to go idle. May be absent. Requires Claude Code v2.1.290 or later |
 
 #### TeammateIdle decision control
 
@@ -3299,6 +3301,8 @@ Before v2.1.268, `CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS` raised only the overa
 
 Runs when an MCP server requests user input mid-task. By default, Claude Code shows an interactive dialog for the user to respond. Hooks can intercept this request and respond programmatically, skipping the dialog entirely.
 
+For a complete hook with its settings entry and script, see [Answer a form request from a script](#answer-a-form-request-from-a-script).
+
 The matcher field matches against the MCP server name.
 
 #### Elicitation input
@@ -3340,7 +3344,16 @@ For URL-mode elicitation, used for browser-based authentication:
 
 #### Elicitation output
 
-To respond programmatically without showing the dialog, return a JSON object with `hookSpecificOutput`:
+An Elicitation hook can answer the request for the user, decline or cancel it, or leave it to the dialog. To answer, decline, or cancel, exit 0 and print a `hookSpecificOutput` object with an `action`. The server gets your answer and no dialog appears. Each row of this table shows what to return for one outcome and what the MCP server receives:
+
+| To | Return | The server receives |
+| :- | :- | :- |
+| Answer for the user | `"action": "accept"`, with the form field values in `content` | `accept` with your `content` |
+| Decline the request | `"action": "decline"` | `decline` |
+| Cancel the request | `"action": "cancel"` | `cancel` |
+| Leave the request to the user | No output, with exit code 0 | The user's answer from the [dialog](https://code.claude.com/docs/en/mcp#respond-to-mcp-elicitation-requests) |
+
+This output answers the form-mode request shown under [Elicitation input](#elicitation-input). The keys in `content` are the property names from that request's `requested_schema`:
 ```json
 {
   "hookSpecificOutput": {
@@ -3353,18 +3366,135 @@ To respond programmatically without showing the dialog, return a JSON object wit
 }
 ```
 
-| Field | Values | Description |
-| :- | :- | :- |
-| `action` | `accept`, `decline`, `cancel` | Whether to accept, decline, or cancel the request |
-| `content` | object | Form field values to submit. Only used when `action` is `accept` |
+This output declines a request:
+```json
+{
+  "hookSpecificOutput": {
+    "hookEventName": "Elicitation",
+    "action": "decline"
+  }
+}
+```
 
-Exit code 2 denies the elicitation. Claude Code doesn't show your stderr message anywhere.
+In the dialog, selecting **Decline** sends `decline` and pressing `Esc` sends `cancel`, so return the one you want the server to see.
 
-Claude Code acts on `hookSpecificOutput` from an Elicitation hook's JSON output and discards `systemMessage` and `continue`.
+For a URL-mode request, a hook that returns `accept` skips the dialog, so the URL never opens.
+
+Claude Code discards `reason`, `systemMessage`, and `continue` from an Elicitation hook's JSON output, whichever `action` you return.
+
+#### Other ways to decline an elicitation
+
+Your hook can also decline in these ways. The server receives the same `decline` as for `"action": "decline"`:
+
+* **Exits with code 2**: Claude Code ignores a `hookSpecificOutput` printed by the same hook
+* **Prints a top-level `"decision": "block"`**: the block overrides an `action` in the same output
+
+When several hooks match the same request, a decline from one of them overrides an `accept` or `cancel` from another.
+
+This script declines URL-mode requests and leaves form requests to the dialog:
+```bash
+#!/bin/bash
+if [ "$(jq -r '.mode')" = "url" ]; then
+  exit 2
+fi
+```
+
+Neither the user nor the server sees why your hook declined, because Claude Code doesn't show your stderr or your `reason`.
+
+Claude Code ignored a top-level `decision` from `Elicitation` and `ElicitationResult` hooks from v2.1.105 until the fix in v2.1.284.
+
+#### Answer a form request from a script
+
+This example answers one recurring question for the user. An MCP server named `issue-tracker` asks for a project key in a form, and the hook fills in `DOCS`. The script accepts when `project_key` is the form's single field. For any other request it prints nothing, so the dialog appears.
+
+
+**macOS/Linux**
+
+Register a command hook for the event in your settings file, with the server name as the matcher:
+```json
+    {
+      "hooks": {
+        "Elicitation": [
+          {
+            "matcher": "issue-tracker",
+            "hooks": [
+              {
+                "type": "command",
+                "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/answer-project-key.sh",
+                "args": []
+              }
+            ]
+          }
+        ]
+      }
+    }
+```
+
+Save this script to `.claude/hooks/answer-project-key.sh` in your project and make it executable with `chmod +x`:
+```bash
+    #!/bin/bash
+    input=$(cat)
+    fields=$(jq -c '.requested_schema.properties // {} | keys' <<<"$input")
+
+    if [ "$fields" = '["project_key"]' ]; then
+      jq -n '{hookSpecificOutput: {hookEventName: "Elicitation", action: "accept", content: {project_key: "DOCS"}}}'
+    fi
+```
+
+
+
+**Windows (PowerShell)**
+
+Register a command hook that runs the script through PowerShell, with the server name as the matcher:
+```json
+    {
+      "hooks": {
+        "Elicitation": [
+          {
+            "matcher": "issue-tracker",
+            "hooks": [
+              {
+                "type": "command",
+                "command": "powershell.exe",
+                "args": [
+                  "-NoProfile",
+                  "-ExecutionPolicy",
+                  "Bypass",
+                  "-File",
+                  "${CLAUDE_PROJECT_DIR}/.claude/hooks/answer-project-key.ps1"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+```
+
+Save this script to `.claude/hooks/answer-project-key.ps1` in your project:
+```powershell
+    $request = [Console]::In.ReadToEnd() | ConvertFrom-Json
+    $fields = @($request.requested_schema.properties.PSObject.Properties.Name)
+
+    if ($fields.Count -eq 1 -and $fields[0] -eq 'project_key') {
+      @{
+        hookSpecificOutput = @{
+          hookEventName = "Elicitation"
+          action = "accept"
+          content = @{ project_key = "DOCS" }
+        }
+      } | ConvertTo-Json -Depth 3
+    }
+```
+
+
+To confirm the hook works, start Claude Code with `claude --debug` and give Claude a task that makes the server ask for the project key. No dialog appears, and the [debug log](#debug-hooks) has a line that ends with `Elicitation resolved by hook: {"action":"accept","content":{"project_key":"DOCS"}}`.
 
 ### ElicitationResult
 
 Runs after a user responds to an MCP elicitation. Hooks can observe, modify, or block the response before it is sent back to the MCP server.
+
+When an [Elicitation](#elicitation) hook answers a request, Claude Code sends that answer to the server without running ElicitationResult hooks.
 
 The matcher field matches against the MCP server name.
 
@@ -3380,32 +3510,59 @@ In addition to the [common input fields](#common-input-fields), ElicitationResul
   "mcp_server_name": "my-mcp-server",
   "action": "accept",
   "content": { "username": "alice" },
-  "mode": "form",
-  "elicitation_id": "elicit-123"
+  "mode": "form"
 }
 ```
 
 #### ElicitationResult output
 
-To override the user's response, return a JSON object with `hookSpecificOutput`:
+An ElicitationResult hook can let the user's response through, change its values, or block it. To change or block the response, exit 0 and print a `hookSpecificOutput` object with an `action`. Each row of this table shows what to return for one outcome and what the MCP server receives:
+
+| To | Return | The server receives |
+| :- | :- | :- |
+| Let the response through | No output, with exit code 0 | The user's response, unchanged |
+| Change the submitted values | `"action": "accept"`, with the new values in `content` | `accept` with your `content` in place of the user's values |
+| Block the response | `"action": "decline"` | `decline`, without the user's values |
+| Cancel the request | `"action": "cancel"` | `cancel`, along with the values the user submitted. To withhold them, return `"decline"` |
+
+This output changes the response shown under [ElicitationResult input](#elicitationresult-input), so the server receives `alice@example.com` where the user submitted `alice`:
 ```json
 {
   "hookSpecificOutput": {
     "hookEventName": "ElicitationResult",
-    "action": "decline",
-    "content": {}
+    "action": "accept",
+    "content": {
+      "username": "alice@example.com"
+    }
   }
 }
 ```
 
-| Field | Values | Description |
-| :- | :- | :- |
-| `action` | `accept`, `decline`, `cancel` | Overrides the user's action |
-| `content` | object | Overrides form field values. Only meaningful when `action` is `accept` |
+Your `content` replaces the user's whole `content` object, so include the fields you aren't changing. Return `action` along with it, because Claude Code ignores a `hookSpecificOutput` that has no `action`.
 
-Exit code 2 blocks the response, changing the effective action to `decline`. Claude Code doesn't show your stderr message anywhere.
+ElicitationResult hooks also run when the user declines or cancels, and your `action` replaces theirs. Check that the input's `action` is `accept` before you return `accept`, or your hook turns a declined request into an accepted one. This script makes the same change when the user accepted, keeps the other fields, and prints nothing otherwise:
+```bash
+#!/bin/bash
+input=$(cat)
 
-Claude Code acts on `hookSpecificOutput` from an ElicitationResult hook's JSON output and discards `systemMessage` and `continue`.
+if [ "$(jq -r '.action' <<<"$input")" = "accept" ]; then
+  jq '{hookSpecificOutput: {hookEventName: "ElicitationResult", action: "accept", content: (.content + {username: (.content.username + "@example.com")})}}' <<<"$input"
+fi
+```
+
+This output blocks the response:
+```json
+{
+  "hookSpecificOutput": {
+    "hookEventName": "ElicitationResult",
+    "action": "decline"
+  }
+}
+```
+
+Exit code 2 and a top-level `"decision": "block"` also block the response. [Other ways to decline an elicitation](#other-ways-to-decline-an-elicitation) covers which one takes effect when a hook combines them, what the user sees, and which versions ignored `decision`.
+
+Claude Code discards `reason`, `systemMessage`, and `continue` from an ElicitationResult hook's JSON output, whichever `action` you return.
 
 ## Prompt-based hooks
 
@@ -3462,6 +3619,8 @@ Instead of executing a Bash command, prompt-based hooks:
 ### Prompt hook configuration
 
 Set `type` to `"prompt"` and provide a `prompt` string instead of a `command`. Use the `$ARGUMENTS` placeholder to inject the hook's JSON input data into your prompt text.
+
+In a prompt or [agent hook](#agent-based-hooks), you can write the `prompt` as a rule about what to block or allow, such as "Block any Bash command that reads `.env` files", or as a condition that must hold, such as "All unit tests pass".
 
 This `Stop` hook asks the LLM to evaluate whether all tasks are complete before allowing Claude to finish:
 ```json
