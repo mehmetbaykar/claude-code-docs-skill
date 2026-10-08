@@ -743,11 +743,11 @@ This key covers the requests [`promptCacheTtl`](#promptcachettl) doesn't, so set
 
 Choose what happens when a [safety classifier flags a request](https://code.claude.com/docs/en/model-config#automatic-model-fallback): switch to the fallback model and continue, or pause so you can choose between switching and editing the prompt.
 
-* **Scope**: [`Any file`](#scopes). Appears in `/config` as **Switch models when a message is flagged**.
+* **Scope**: [`Any file`](#scopes). Appears in `/config` as **Switch models when a message is flagged**, with the options **Switch automatically** and **Ask each time**.
 * **Type**: Boolean
 * `true`: Claude Code switches to the fallback model and continues
 * `false`: in an interactive session Claude Code pauses so you can choose between switching and editing the prompt; where no dialog can show, such as a `-p` run, the flagged request ends as an error
-* **Default**: `true`, switch automatically
+* **Default**: unset. Claude Code switches automatically, though it may [ask first](https://code.claude.com/docs/en/model-config#ask-before-switching) in an interactive session
 ```json settings.json
 {
   "switchModelsOnFlag": false

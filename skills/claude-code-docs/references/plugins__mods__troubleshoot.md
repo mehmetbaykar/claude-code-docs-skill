@@ -28,7 +28,8 @@ To check whether your setup lets mods load at all, without installing one, run `
 | :- | :- |
 | `no hooks module to load` | Mods can load. The command found no mod to test in this directory. |
 | `hooks modules are turned off here` | A setting is blocking your mods: `disableAllHooks` in your own settings, or your organization's policy |
-| `hooks modules are turned off in this process` | Anthropic has turned installed mods off remotely. No setting on your machine turns them back on. |
+| `hooks modules are turned off in this process: the rollout switch served off` | Anthropic has turned installed mods off remotely. |
+| `hooks modules are turned off in this process: the rollout switch was saved off by an earlier session` | The command used a value an earlier session saved, which may be out of date. Start `claude` once to refresh it, then run the command again. |
 
 An organization can also set `allowManagedModsOnly` to allow only its own mods, which this command doesn't report. In that case Claude Code refuses a mod you install, and [a message says why](https://code.claude.com/docs/en/plugins/mods/troubleshoot#messages-from-the-built-in-guard).
 
@@ -60,7 +61,8 @@ Each of these follows `hooks module`, the mod's name, and `not loaded:` in the d
 
 | Message starts with | What it means |
 | :- | :- |
-| `hooks modules are turned off for installed plugins in this process` | Anthropic has turned installed mods off remotely. No setting on your machine turns them back on. |
+| `hooks modules are turned off for installed plugins in this process: the rollout switch served off` | Anthropic has turned installed mods off remotely. |
+| `hooks modules are turned off for installed plugins in this process: the rollout switch was saved off by an earlier session` | The session used a value an earlier session saved, which may be out of date. Start Claude Code again to refresh it. |
 | `disableAllHooks in managed settings` | Your organization turned off hooks from installed plugins |
 | `only managed plugins and built-in plugins run` | `allowManagedHooksOnly` is set, or `disableAllHooks` is set in a settings file other than managed settings |
 | `installed plugins that are not managed load no hooks module in this mode (--bare)` | You started Claude Code with `--bare` |

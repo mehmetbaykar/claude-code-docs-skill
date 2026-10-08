@@ -411,7 +411,7 @@ When writing prompts for scheduled tasks, be explicit about what success looks l
 
 ### Ask Claude about its capabilities
 
-Claude has built-in access to its documentation and can answer questions about its own features and limitations.
+Claude can answer questions about its own features and limitations. It looks up the answers in the current Claude Code documentation, so they aren't limited to the version you're running.
 
 #### Example questions
 ```text wrap
@@ -437,7 +437,6 @@ Claude provides documentation-based answers to these questions. For hands-on dem
 
 Tips:
 
-* Claude always has access to the latest Claude Code documentation, regardless of the version you're using
 * Ask specific questions to get detailed answers
 * Claude can explain complex features like MCP integration, enterprise configurations, and advanced workflows
 

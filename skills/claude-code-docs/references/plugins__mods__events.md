@@ -301,16 +301,30 @@ A hook that fails doesn't break the session, and you can decide what happens ins
 
 One line names the mod, the event, and the reason, such as `my-mod: tool.call hook skipped: threw Error: boom`. Where you read it depends on the session, as [Find out why a mod does nothing](https://code.claude.com/docs/en/plugins/mods/troubleshoot#find-out-why-a-mod-does-nothing) lists. A `ui.render` hook whose drawing doesn't validate is reported differently, as [Build a tree from elements](https://code.claude.com/docs/en/plugins/mods/interface#build-a-tree-from-elements) describes.
 
-To make a hook that blocks calls fail closed, add a `.catch` error handler that answers in its place. Here, `guard` is your hook function:
+To make a hook that blocks calls fail closed, add a `.catch` error handler that answers in its place. Here, `guard` is your hook function, and the handler tests [`next.called`](https://code.claude.com/docs/en/plugins/mods/reference#the-hook-function) to tell whether `guard` had already called `next` when it failed:
 ```javascript
 // on returns a registration, and .catch attaches a handler to that one hook
 on('tool.call', { tool: 'Bash' }, guard).catch(async ($, e, next) => {
+  // guard had already called next, so return what came back
+  if (next.called) return next(e)
   // next.error.kind is 'throw' or 'timeout', which says how guard failed
   return { deny: 'The command guard failed, so this command was not run: ' + next.error.kind }
 })
 ```
 
-While `guard` works, the handler never runs. When `guard` throws or times out on a Bash call, Claude Code calls the handler with the same event. The handler returns `{ deny }`, so the command doesn't run, and Claude reads the text with `throw` or `timeout` at the end. Without the handler, Claude Code would skip `guard` and run the command. The handler has a shorter [time limit](https://code.claude.com/docs/en/plugins/mods/reference#limits) of its own.
+While `guard` works, the handler never runs. When `guard` throws or times out on a Bash call, Claude Code calls the handler with the same event:
+
+* **`guard` failed before it called `next`**: the command doesn't run, and Claude reads the `deny` text with `throw` or `timeout` at the end
+* **`guard` failed after it called `next`**: the handler's `next(e)` resolves to the result that `guard`'s call produced without running the command again, and Claude reads that result
+
+The handler has a shorter [time limit](https://code.claude.com/docs/en/plugins/mods/reference#limits) of its own. If the handler itself throws or times out, Claude Code skips the hook as if it had no handler. When `guard` hadn't called `next`, the command then goes on as it would without the mod.
+
+The same handler shape fits a guard on `prompt.submit` or `config.set`. When `next.called` is false, return the refusal that the [events reference](https://code.claude.com/docs/en/plugins/mods/reference#events) lists for that event: `{ drop: 'the reason' }` for `prompt.submit`, `{ deny: 'the reason' }` for `config.set`.
+
+At `tool.check` and `plugin.register`, a refusal returned after `next` resolved still holds, so return it without testing `next.called`:
+
+* **`tool.check`**: return `{ decision: 'deny', reason: 'the reason' }`
+* **`plugin.register`**: return `{ refuse: 'the reason' }`, as [Refuse mods when your check fails](https://code.claude.com/docs/en/plugins/mods/admin#refuse-mods-when-your-check-fails) shows
 
 ## Next steps
 
