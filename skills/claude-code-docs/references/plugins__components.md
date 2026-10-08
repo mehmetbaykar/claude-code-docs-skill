@@ -538,7 +538,7 @@ A monitor is a shell command that runs in the background for the whole session. 
 ]
 ```
 
-The command runs in a shell, in the working directory the session started in.
+The command runs in a shell, in the session's current working directory. It runs with your full user permissions and outside the [sandbox](https://code.claude.com/docs/en/sandboxing).
 
 A monitor's command is limited in where it starts and what it can reference:
 
