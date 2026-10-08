@@ -730,7 +730,7 @@ If the link opens Desktop without a dialog about the connection, look for one of
 
 #### Pre-configure SSH connections for your team
 
-Administrators can distribute SSH connections to team members by adding `sshConfigs` to a [managed settings](https://code.claude.com/docs/en/managed-settings) file. Connections defined this way appear in each user's environment dropdown automatically and are shown as managed, so users can select them but cannot edit or delete them in the app.
+Administrators can distribute SSH connections to team members by setting `sshConfigs` in [managed settings](https://code.claude.com/docs/en/managed-settings). Connections defined this way appear in each user's environment dropdown automatically and are shown as managed, so users can select them but can't edit or delete them in the app.
 
 The following example pre-configures a single connection:
 ```json
@@ -751,7 +751,7 @@ Each entry requires `id`, `name`, and `sshHost`. The `sshPort` and `sshIdentityF
 
 #### Restrict which SSH hosts users can connect to
 
-Administrators can limit Desktop's SSH sessions to an approved set of hosts by adding `sshHostAllowlist` to a [managed settings](https://code.claude.com/docs/en/managed-settings) file. When set, users can only connect to hosts whose resolved hostname matches one of the patterns. Set it to an empty array to disable SSH sessions entirely.
+Administrators can limit Desktop's SSH sessions to an approved set of hosts by setting `sshHostAllowlist` in [managed settings](https://code.claude.com/docs/en/managed-settings). When set, users can only connect to hosts whose resolved hostname matches one of the patterns. Set it to an empty array to disable SSH sessions. The [`sshHostAllowlist` reference entry](https://code.claude.com/docs/en/settings-reference#sshhostallowlist) says how an empty array combines with lists in other managed sources.
 
 The following example allows connections to any host under `devboxes.example.com` and to a single named bastion host:
 ```json
@@ -759,6 +759,10 @@ The following example allows connections to any host under `devboxes.example.com
   "sshHostAllowlist": ["*.devboxes.example.com", "bastion.example.com"]
 }
 ```
+
+If your organization delivers [server-managed settings](https://code.claude.com/docs/en/server-managed-settings), set `sshHostAllowlist` there. By default, Desktop reads the key only from the [highest-ranked managed source that delivers a policy key](https://code.claude.com/docs/en/managed-settings#how-claude-code-combines-managed-sources). If that source leaves the key unset, Desktop ignores a list in a lower-ranked MDM policy or managed settings file and treats the key as [unset](https://code.claude.com/docs/en/settings-reference#sshhostallowlist). Desktop shows no warning.
+
+Also keep the same list on each user's machine, in the highest-ranked MDM policy or managed settings file there. Desktop fetches server-managed settings at launch and keeps no cached copy, so until a fetch succeeds the machine's list is the one that applies.
 
 Patterns are case-insensitive. `*` matches any host, and `*.example.com` matches `example.com` and any subdomain. Anything else is an exact match. The check runs against the hostname after `~/.ssh/config` resolution via `ssh -G`, so `Host` aliases and `ProxyCommand`/`ProxyJump` entries are permitted as long as the resolved `HostName` matches.
 
@@ -795,7 +799,7 @@ Managed settings override project and user settings and apply to Claude Code ses
 | `disableMobileSimulatorTools` | set to `true` to block Claude's tools for controlling and capturing devices in the [iOS Simulator pane](https://code.claude.com/docs/en/desktop-ios-simulator#turn-off-simulator-access). The pane stays usable for the user's own taps; only Claude's access is removed. The value must be the JSON boolean `true`; the string `"true"` is ignored. |
 | `disableBrowserExternalNavigation` | set to `true` to turn off external browsing in the [Browser pane](#browse-external-sites) entirely. Neither users nor Claude can navigate to external sites, and localhost dev server previews are unaffected. The value must be the JSON boolean `true`; the string `"true"` is ignored. |
 | `sshConfigs` | pre-configure [SSH connections](#pre-configure-ssh-connections-for-your-team) that appear in the environment dropdown. Users cannot edit or delete managed connections. |
-| `sshHostAllowlist` | restrict [SSH sessions](#restrict-which-ssh-hosts-users-can-connect-to) to hosts whose resolved hostname matches one of these patterns. An empty array disables SSH sessions. Read from managed settings only. |
+| `sshHostAllowlist` | restrict [SSH sessions](#restrict-which-ssh-hosts-users-can-connect-to) to hosts whose resolved hostname matches one of these patterns. Read from managed settings only. |
 | `disableDesktopLocalSessions` | set to `true` to turn off [Code sessions that run on the device](#local-sessions-on-managed-devices), leaving SSH sessions to other hosts and cloud sessions available. The value must be the JSON boolean `true`. Read from managed settings only. Requires Claude Desktop v1.37937.0 or later. |
 | `disableSshSavedPasswords` | set to `true` to stop Desktop from offering to remember SSH passwords and from using or showing the ones it saved earlier. Turning it on doesn't delete them. Read from managed settings only. Requires Claude Desktop v1.49585.0 or later. |
 | `managedMcpServers` | push MCP server configurations to all users. Available in third-party (3P) Desktop deployments only. In each entry, set a transport of `"http"`, `"sse"`, or `"stdio"`, connection details, and optionally a `toolPolicy` map to restrict which of that server's tools users can invoke. Deliver it through the managed settings file, MDM, or a Claude apps gateway policy's [`desktop` block](https://code.claude.com/docs/en/claude-apps-gateway-config#claude-desktop-overlay), since 3P deployments don't receive admin-console settings. To deliver it through the gateway, you need Claude Code v2.1.232 or later on the gateway server. This is the desktop app's own key; Claude Code reads a [same-named managed setting](https://code.claude.com/docs/en/managed-mcp#provide-servers-through-managed-settings) of its own, with a different entry shape. |
@@ -804,7 +808,7 @@ Which managed settings reach a Desktop session depends on where that session run
 
 * **Local sessions on this machine**: a managed settings file deployed to disk applies. Managed settings pushed remotely through the admin console also reach these sessions on Anthropic's API when the session authenticates with an [eligible login or key](https://code.claude.com/docs/en/server-managed-settings#platform-availability), following the same [settings precedence](https://code.claude.com/docs/en/settings#settings-precedence) as the terminal CLI.
 * **[Cloud sessions](#cloud-sessions)**: receive [server-managed settings](https://code.claude.com/docs/en/server-managed-settings); device-deployed files don't reach them, because they run on Anthropic-managed VMs. Sessions routed to a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments) also read the managed settings file in the runner image. [How Claude Code combines managed sources](https://code.claude.com/docs/en/managed-settings#how-claude-code-combines-managed-sources) says when that file applies.
-* **[SSH sessions](#ssh-sessions)**: the session reads the managed settings file from the remote host. Desktop itself reads `sshConfigs`, `sshHostAllowlist`, `disableSshSavedPasswords`, and `disableDesktopLocalSessions` from the local machine's managed settings.
+* **[SSH sessions](#ssh-sessions)**: the session reads the managed settings file from the remote host. Desktop itself reads `sshConfigs`, `sshHostAllowlist`, `disableSshSavedPasswords`, and `disableDesktopLocalSessions` on the local machine. If you deliver more than one managed source, it reads them from [one by default](https://code.claude.com/docs/en/managed-settings#how-claude-code-combines-managed-sources).
 * **[Cowork](https://claude.com/docs/cowork/overview) sessions**: in a Cowork session on this machine, Claude Code never fetches admin-console settings, even when the user signs in with a Team or Enterprise account, and reads policy deployed to the machine unless your Claude Desktop configuration sets `requireCoworkFullVmSandbox`. Remote Cowork sessions receive neither. See [where and when a policy applies](https://code.claude.com/docs/en/managed-settings#where-and-when-a-policy-applies) for which device files reach Cowork, and [MCP permission rules](https://code.claude.com/docs/en/permissions#mcp) for how `Bash` and `WebFetch` rules apply to Cowork's tools.
 
 In local and SSH sessions, the desktop app delivers each user's connected claude.ai connectors to Claude Code directly. No MCP setting or `managed-mcp.json` reaches those connectors, whichever settings source or file location you use. To block a connector's tools in these sessions, use your organization's [connector tool controls](https://code.claude.com/docs/en/mcp#organization-controls-on-connector-tools). [How connectors reach Claude Code](https://code.claude.com/docs/en/mcp#how-connectors-reach-claude-code) shows which settings govern connectors in each kind of session.
