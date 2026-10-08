@@ -36,7 +36,7 @@ Use a model alias to select model settings without remembering exact version num
 | **`opus`** | Uses the latest Opus model for complex reasoning tasks |
 | **`haiku`** | Uses the fast and efficient Haiku model for simple tasks |
 | **`sonnet[1m]`** | Uses Sonnet with a [1 million token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#context-window-sizes-by-model) for long sessions. No effect when `sonnet` already resolves to Sonnet 5.5 or Sonnet 5 with their native 1M window |
-| **`opus[1m]`** | Uses Opus with a [1 million token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#context-window-sizes-by-model) for long sessions |
+| **`opus[1m]`** | Uses Opus with a [1 million token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#context-window-sizes-by-model) for long sessions. No effect when `opus` already resolves to Opus 4.7 or later with its native 1M window |
 | **`opusplan`** | Special mode that uses `opus` during plan mode, then switches to `sonnet` for execution |
 
 The `opus`, `sonnet`, and `haiku` aliases resolve to the newest version on the Anthropic API and to an earlier version on some other providers:
@@ -501,13 +501,15 @@ Claude Code also applies the chain to [subagents](https://code.claude.com/docs/e
 
 This section covers content-based fallback from Fable models, Opus 5.5, Sonnet 5.5, and Opus 5. For availability-based fallback when a model is overloaded or unavailable, see [Fallback model chains](#fallback-model-chains).
 
-Fable models, Opus 5.5, Sonnet 5.5, and Opus 5 run with safety classifiers, which most often flag cybersecurity and biology content. When a classifier flags a request and the flagged category has a fallback model, Claude Code re-runs the request on that model and shows a notice in the transcript. For those two categories, the fallback model depends on which model refused:
+Fable models, Opus 5.5, Sonnet 5.5, and Opus 5 run with safety classifiers, which most often flag cybersecurity and biology content. For those two categories, the fallback model depends on which model refused:
 
 * **Fable 5.1, Fable 5, and Opus 5.5**: biology-flagged requests re-run on Opus 5, and cybersecurity-flagged requests re-run on Opus 4.8.
 * **Sonnet 5.5**: cybersecurity-flagged requests re-run on Sonnet 5. Biology-flagged requests end with a refusal instead, because Sonnet 5.5 has no biology fallback model.
 * **Opus 5**: cybersecurity-flagged requests re-run on Opus 4.8. Biology-flagged requests end with a refusal instead, because Opus 5 runs its own biology classifiers with no fallback model.
 
 On Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry, Claude Code resolves these targets through your deployment's model IDs instead. See [Enable fallback on Bedrock, Agent Platform, and Foundry](#enable-fallback-on-bedrock-agent-platform-and-foundry).
+
+When Claude Code switches a flagged request to the fallback model for its category, it re-runs the request on that model. In your main conversation, it shows a notice in the transcript. To be asked first, see [Ask before switching](#ask-before-switching).
 
 After a fallback, the session continues on the fallback model. To return to your original model, run [`/model`](#setting-your-model).
 
@@ -534,14 +536,19 @@ To check whether customizations are the trigger, start a session with `claude --
 
 #### Ask before switching
 
-To decide what happens each time a request is flagged, rather than switching automatically, run `/config` and turn off **Switch models when a message is flagged**, or set [`switchModelsOnFlag`](https://code.claude.com/docs/en/settings-reference#switchmodelsonflag) to `false` in your settings file. A flagged request then pauses the session with two options: switch to the fallback model, or edit the prompt and retry on the current model.
+To decide what happens each time a request is flagged, run `/config`, select **Switch models when a message is flagged**, and choose **Ask each time**. You can also set [`switchModelsOnFlag`](https://code.claude.com/docs/en/settings-reference#switchmodelsonflag) to `false` in your settings file. Claude Code then pauses at a flagged request that would switch models and gives you two options: switch to the fallback model, or edit the prompt and retry.
 
-Some cases behave differently:
+The first time a flagged request would switch models in an interactive session, Claude Code may ask whether to switch automatically from then on. It asks only if you haven't set `switchModelsOnFlag`, and it saves your choice as that key in your user settings.
+
+If you choose to stay on the current model instead, the saved value is `false`, the same as **Ask each time**. If you dismiss the question, Claude Code saves nothing and asks again the next time a flagged request would switch models.
+
+When you've chosen **Ask each time**, some cases behave differently:
 
 * When the flagged category has no fallback model, such as a biology flag on Opus 5 or Sonnet 5.5, Claude Code doesn't show the prompt and the request ends with the refusal.
 * If both models flag the same request, you can edit the prompt and retry, or start a new session.
 * In [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) on the mobile app, editing and retrying is not supported. Switch models, or continue the session from a desktop browser or the desktop app.
 * In [non-interactive mode](https://code.claude.com/docs/en/cli-reference#cli-flags) and SDK integrations that can't show the prompt, a flagged request ends the turn with a refusal instead.
+* In a [subagent](https://code.claude.com/docs/en/sub-agents), Claude Code doesn't show the prompt, and a flagged request that would switch models re-runs on the fallback model.
 * When the fallback target is blocked by [`availableModels`](#restrict-model-selection), Claude Code doesn't show the prompt. The flagged request ends with the refusal, the same as automatic fallback when the target is blocked.
 
 #### Enable fallback on Bedrock, Agent Platform, and Foundry
@@ -558,9 +565,11 @@ If either model can't be identified, Claude Code doesn't switch. The flagged req
 * **Every source model**: set `ANTHROPIC_DEFAULT_OPUS_MODEL` to an Opus model ID to turn fallback on and give the flagged categories a target. A pin that names a model outside the Opus family, or the model that refused, leaves the refusal standing.
 * **Sonnet 5.5**: in addition to the Opus pin, set `ANTHROPIC_DEFAULT_SONNET_MODEL` or keep a Sonnet 5 entry in the provider's model list to supply the model the request re-runs on. A Sonnet pin that names a model outside the Sonnet family, or Sonnet 5.5 itself, leaves the refusal standing.
 
+The fallback model must also have a context window at least as large as the session's, or Claude Code doesn't switch and the flagged request ends with the same refusal. On these providers the source models run with the [1M context window](#extended-context) by default. Pin a model that also does, such as Opus 4.8 in `ANTHROPIC_DEFAULT_OPUS_MODEL` or Sonnet 5 in `ANTHROPIC_DEFAULT_SONNET_MODEL`, by an ID Claude Code [can match to that model](#pin-models-for-third-party-deployments).
+
 #### Security research and biology workloads
 
-Workloads in offensive security or biology, including penetration testing, Capture the Flag (CTF) exercises, and biology-adjacent codebases, trigger fallback frequently, often on the first request. For substantive biology work on Fable 5.1, Fable 5, or Opus 5.5, Claude Code moves the session to Opus 5 at the first flagged request, and later biology-flagged requests end in refusals there, because Opus 5 has no biology fallback. On Opus 5 and Sonnet 5.5, you get those refusals from the first flagged request.
+Workloads in offensive security or biology, including penetration testing, Capture the Flag (CTF) exercises, and biology-adjacent codebases, trigger fallback frequently, often on the first request. For substantive biology work on Fable 5.1, Fable 5, or Opus 5.5, the first flagged request that switches models moves the session to Opus 5, and later biology-flagged requests end in refusals there, because Opus 5 has no biology fallback. On Opus 5 and Sonnet 5.5, you get those refusals from the first flagged request.
 
 This is expected routing for these domains, not an account flag. If your organization needs Fable-class capability for this work, ask your Anthropic account team about trusted access programs.
 
@@ -693,7 +702,7 @@ Claude Code collapses thinking output by default. Press `Ctrl+O` to toggle verbo
 
 Fable 5.1, Fable 5, Sonnet 5 and later, Haiku 5.5, Opus 4.6 and later, and Sonnet 4.6 support a [1 million token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#context-window-sizes-by-model) for long sessions with large codebases.
 
-On the Anthropic API, Fable 5.1, Fable 5, Sonnet 5 and later, Haiku 5.5, and Opus 4.7 and later run with the 1M window on every plan, including Pro. You don't select a `[1m]` variant or turn on usage credits for the 1M window on these models. Fable usage itself can bill to usage credits on some plans; see [Fable and usage credits](#fable-and-usage-credits).
+Fable 5.1, Fable 5, Sonnet 5 and later, Haiku 5.5, and Opus 4.7 and later run with the 1M window by default, with no `[1m]` suffix needed. That includes sessions on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry, and [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway) sessions. To run them with a 200K window instead, see [Turn off 1M context](#turn-off-1m-context).
 
 Opus 4.6 and Sonnet 4.6 reach 1M only through their `[1m]` variant, and access to that variant depends on your plan. On Max, Team, and Enterprise plans, including both Team Standard and Team Premium seats, Opus 4.6 with 1M context is included with your subscription. Sonnet 4.6 with 1M context requires [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) on every subscription plan, including Max.
 
@@ -705,38 +714,30 @@ Opus 4.6 and Sonnet 4.6 reach 1M only through their `[1m]` variant, and access t
 
 Claude Code checks these plan requirements only when it connects to the Anthropic API directly. If you point `ANTHROPIC_BASE_URL` at an [LLM gateway](https://code.claude.com/docs/en/llm-gateway#subscriptions-and-gateways) and your saved claude.ai login stays the active credential, Claude Code doesn't check your plan's usage credits. The `[1m]` options stay available in `/model`, and the gateway decides whether the request succeeds. Before v2.1.229, Claude Code rejected `/model sonnet[1m]` in that configuration when it couldn't confirm usage credits on the account.
 
+On the Anthropic API, the 1M context window uses standard model pricing with no premium for tokens beyond 200K, except on Haiku 5.5, which [costs more on prompts longer than 100K tokens](#haiku-5-5-context-window-and-pricing). For plans where extended context is included with your subscription, usage remains covered by your subscription. For plans that access extended context through usage credits, tokens are billed to usage credits.
+
+#### Select 1M context for Opus 4.6 or Sonnet 4.6
+
+To select a 1M variant by name, append the `[1m]` suffix to a model alias or a full model name:
+```text
+# Append [1m] to a full model name
+/model claude-opus-4-6[1m]
+/model claude-sonnet-4-6[1m]
+
+# Or to an alias: the suffix applies to the model the alias resolves to
+/model opus[1m]
+```
+
+#### Context window behind an LLM gateway
+
 If you set `ANTHROPIC_BASE_URL` to an [LLM gateway](https://code.claude.com/docs/en/llm-gateway) or another proxy, Claude Code gives each model it recognizes the same context window the model has on the Anthropic API. Fable 5.1, Fable 5, Sonnet 5 and later, Haiku 5.5, and Opus 4.7 and later get the 1M window with no `[1m]` variant to select, and a model that reaches 1M only through its `[1m]` variant, such as Opus 4.6, runs at 200K without it. Claude Code can't detect a lower limit that the gateway or the server behind it enforces. If your gateway rejects requests above 200K tokens, set [`CLAUDE_CODE_AUTO_COMPACT_WINDOW=200000`](https://code.claude.com/docs/en/env-vars) in the environment that starts Claude Code, so sessions on every model [compact at that boundary](#set-the-auto-compact-window).
 
-To turn off 1M context, set `CLAUDE_CODE_DISABLE_1M_CONTEXT=1`. Claude Code removes 1M model variants from the model picker. On models with a native 1M window, such as Sonnet 5 and the Fable models, it also treats the model as having a 200K context window:
+#### Turn off 1M context
+
+To keep sessions at a 200K window, set `CLAUDE_CODE_DISABLE_1M_CONTEXT=1` in your shell or in a [settings file](https://code.claude.com/docs/en/env-vars#set-environment-variables). Claude Code removes the `[1m]` model variants from the model picker. On models that run with the 1M window by default, such as the Fable models, Sonnet 5 and later, and Opus 4.7 and later, it also treats the model as having a 200K context window:
 
 * With auto-compaction on, sessions compact at the 200K boundary through [auto-compaction](#set-the-auto-compact-window). Setting the auto-compact window above 200K doesn't lift the hold, because Claude Code caps that window at the model's context window.
 * With auto-compaction off, sessions stop at the 200K boundary with the [context-limit error](https://code.claude.com/docs/en/errors#prompt-is-too-long) instead of compacting.
-
-Before v2.1.223, Claude Code held only Sonnet 5, Opus 4.8, and Opus 5 sessions to 200K. See [environment variables](https://code.claude.com/docs/en/env-vars).
-
-The 1M context window uses standard model pricing with no premium for tokens beyond 200K, except on Haiku 5.5, which [costs more on prompts longer than 100K tokens](#haiku-5-5-context-window-and-pricing). For plans where extended context is included with your subscription, usage remains covered by your subscription. For plans that access extended context through usage credits, tokens are billed to usage credits.
-
-If your account supports 1M context, the option appears in the `/model` picker in the latest versions of Claude Code. If you don't see it, restart your session, and on a third-party provider check whether your deployment [pinned the model](#pin-models-for-third-party-deployments) with an `ANTHROPIC_DEFAULT_*_MODEL` variable.
-
-You can also use the `[1m]` suffix with model aliases or full model names:
-```text
-# Use the opus[1m] or sonnet[1m] alias
-/model opus[1m]
-/model sonnet[1m]
-
-# Or append [1m] to a full model name
-/model claude-opus-4-8[1m]
-```
-
-#### Sonnet 5.5 and Sonnet 5 context window
-
-On the Anthropic API, Sonnet 5.5 and Sonnet 5 always run with the 1M context window. There is no 200K variant, no `[1m]` suffix to select, and no usage credits required on any plan. Sessions auto-compact before the window fills, at about 967K tokens by default; set [`CLAUDE_CODE_AUTO_COMPACT_WINDOW`](https://code.claude.com/docs/en/env-vars) to choose a different threshold.
-
-Claude Code gives Sonnet 5.5 and Sonnet 5 the same 1M window behind an [LLM gateway](https://code.claude.com/docs/en/llm-gateway) or another custom `ANTHROPIC_BASE_URL`. If your gateway enforces a lower limit, see [the context window behind a gateway](#context-window-behind-a-gateway).
-
-This setting budgets the window at 200K instead:
-
-* **`CLAUDE_CODE_DISABLE_1M_CONTEXT=1`**: holds sessions on every model with a native 1M window to a 200K window; see [Extended context](#extended-context) for how the hold is enforced. Useful for deployments that need to cap context.
 
 #### Haiku 5.5 context window and pricing
 
@@ -772,9 +773,9 @@ The environment variable accepts only the plain token count. Claude Code caps th
 If you don't set an auto-compact window, Claude Code compacts when the conversation reaches the model's context limit, except in these sessions:
 
 * [Cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) compact as the conversation approaches the model's limit
-* Sonnet 4.6 and Opus 4.6 without [extended context](#extended-context) compact at the 200K boundary, and so do Opus 4.8 and later when they run with a 200K context window, such as on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry
+* Sonnet 4.6 and Opus 4.6 without [extended context](#extended-context) compact at the 200K boundary
 * When you set [`CLAUDE_CODE_DISABLE_1M_CONTEXT=1`](https://code.claude.com/docs/en/env-vars), models with a native 1M window, such as Sonnet 5 and the Fable models, compact at the 200K boundary
-* Models running with a native 1M window compact before the window fills, at about 967K tokens by default. On the Anthropic API, these include Sonnet 5, Haiku 5.5, the Fable models, and Opus 4.7 and later. On Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry, see [Pin models for third-party deployments](#pin-models-for-third-party-deployments) for which models run with that window. Behind a custom `ANTHROPIC_BASE_URL`, see [the context window behind a gateway](#context-window-behind-a-gateway)
+* Models running with a native 1M window compact before the window fills, at about 967K tokens by default. These include the Fable models, Sonnet 5 and later, Haiku 5.5, and Opus 4.7 and later. Behind a custom `ANTHROPIC_BASE_URL`, see [the context window behind a gateway](#context-window-behind-a-gateway)
 * Sessions on a model ID Claude Code doesn't recognize, such as an [LLM gateway](https://code.claude.com/docs/en/llm-gateway) alias, compact at the context window Claude Code assumes for the ID; see [Correct the window for a gateway or custom model ID](#correct-the-window-for-a-gateway-or-custom-model-id)
 
 ### Correct the window for a gateway or custom model ID
@@ -865,16 +866,18 @@ Use the following environment variables with version-specific model IDs for your
 
 Apply the same pattern for `ANTHROPIC_DEFAULT_FABLE_MODEL`, `ANTHROPIC_DEFAULT_SONNET_MODEL`, and `ANTHROPIC_DEFAULT_HAIKU_MODEL`. For current and legacy model IDs across all providers, see [Models overview](https://platform.claude.com/docs/en/about-claude/models/overview). To upgrade users to a new model version, update these environment variables and redeploy.
 
-To enable [extended context](#extended-context) for a pinned model, append `[1m]` to the model ID in `ANTHROPIC_DEFAULT_OPUS_MODEL`, `ANTHROPIC_DEFAULT_SONNET_MODEL`, or `ANTHROPIC_DEFAULT_FABLE_MODEL`:
+A pinned model with a native 1M window, such as Opus 4.8 or Sonnet 5, runs with the [1M context window](#extended-context) without any suffix when Claude Code can match the pinned ID to that model. The ID matches when it contains the model's Anthropic API ID, as `us.anthropic.claude-opus-4-8` contains `claude-opus-4-8`, or when a [`modelOverrides`](#override-model-ids-per-version) entry maps the model to it. On a pinned ID that Claude Code can't match to a model, sessions run with a 200K window by default unless the ID carries the `[1m]` suffix.
+
+For a model that reaches 1M through its `[1m]` variant, such as Opus 4.6 or Sonnet 4.6, enable extended context by appending `[1m]` to the model ID in `ANTHROPIC_DEFAULT_OPUS_MODEL` or `ANTHROPIC_DEFAULT_SONNET_MODEL`:
 ```bash
-export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-8[1m]'
+export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-6[1m]'
 ```
 
 With the `[1m]` suffix, the 1M context window applies to all usage of the pinned alias, including the plan-mode Opus phase of [`opusplan`](#opusplan-model-setting) and [subagents](https://code.claude.com/docs/en/sub-agents#choose-a-model) whose `model` frontmatter names the alias.
 
 * Claude Code strips the suffix before sending the model ID to your provider.
 * Only append `[1m]` when the underlying model [supports 1M context](https://platform.claude.com/docs/en/build-with-claude/context-windows#context-window-sizes-by-model).
-* The suffix is read per variable, not per model. On Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry, a model ID without `[1m]` in one variable uses 200K context even if another variable sets the same model with the suffix. Sonnet 5 always runs with the 1M window on these providers and never needs the suffix.
+* The suffix is read per variable, not per model. On Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry, an Opus 4.6 or Sonnet 4.6 ID without `[1m]` in one variable uses 200K context even if another variable sets the same model with the suffix.
 
 When you set an `ANTHROPIC_DEFAULT_*_MODEL` variable, the `/model` picker shows one row for that model in place of the family's built-in rows, including any 1M context rows. To reach the 1M window without adding the suffix to that variable, your users run `/model opus[1m]`, and Claude Code applies the suffix to the model the variable names. `/model sonnet[1m]` works the same way.
 

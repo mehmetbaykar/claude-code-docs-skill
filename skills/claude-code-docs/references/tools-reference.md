@@ -183,7 +183,9 @@ For long-running processes such as dev servers or watch builds, Claude can set `
 
 #### When a background command stops
 
-A command that a [foreground subagent](https://code.claude.com/docs/en/sub-agents#run-subagents-in-foreground-or-background) started stops when that subagent's run ends, whether it finished, failed, or was interrupted. A command that the main conversation or a background subagent started keeps running after a final response, until it exits, is stopped, or reaches its [time limit](#time-limit-for-background-commands). In non-interactive mode with the `-p` flag, [background commands end shortly after the run's final result](https://code.claude.com/docs/en/headless#background-tasks-at-exit).
+A command that a [foreground subagent](https://code.claude.com/docs/en/sub-agents#run-subagents-in-foreground-or-background) started stops when that subagent's run ends, whether it finished, failed, or was interrupted. A command that the main conversation or a background subagent started keeps running after a final response, until it exits, is stopped, or reaches its [time limit](#time-limit-for-background-commands).
+
+While a command that the main conversation started is still running, a run in non-interactive mode with the `-p` flag [stays open after its result](https://code.claude.com/docs/en/headless#background-tasks-at-exit) until that command exits or reaches its time limit. A command that a background subagent started is stopped when the run exits.
 
 #### Time limit for background commands
 
@@ -196,13 +198,15 @@ The time limit counts from the moment the command enters the background:
 * A command that Claude starts in the background gets 30 minutes, or the `timeout` Claude passes with `run_in_background`, up to a maximum of 2 hours
 * A command that starts in the foreground and then moves to the background, for example at its timeout, gets 30 minutes from the move
 
+In a run with the `-p` flag whose prompt you pass as text rather than with `--input-format stream-json`, both defaults are 10 minutes instead of 30, because the run [waits for background commands after its result](https://code.claude.com/docs/en/headless#background-tasks-at-exit).
+
 When a background command reaches its time limit, Claude Code stops it and tells Claude why, and Claude can start the command again with a longer `timeout` if the work still needs it. The stop notice reads `Background command "<description>" was stopped after reaching its background time limit`.
 
 #### Raise the time limit for background commands
 
-Two [environment variables](https://code.claude.com/docs/en/env-vars) raise these limits, for Bash and PowerShell commands alike. Both take milliseconds, and neither can shorten a limit: a lower value leaves the 30-minute default and the 2-hour maximum in place.
+Two [environment variables](https://code.claude.com/docs/en/env-vars) raise these limits, for Bash and PowerShell commands alike. Both take milliseconds, and neither can shorten a limit: a lower value leaves the defaults and the 2-hour maximum in place.
 
-* Set `BASH_DEFAULT_TIMEOUT_MS` above `1800000` to replace the 30-minute default with that value, both for commands Claude starts without a `timeout` and for moved commands
+* Set `BASH_DEFAULT_TIMEOUT_MS` above `1800000` to replace the 30-minute default with that value, both for commands Claude starts without a `timeout` and for moved commands. In a `-p` run whose prompt you pass as text, any value above `600000` replaces its 10-minute default
 * Set `BASH_MAX_TIMEOUT_MS` above `7200000` to raise the 2-hour maximum to that value. Setting `BASH_DEFAULT_TIMEOUT_MS` above `7200000` raises the maximum the same way
 
 #### Foreground commands that move to the background
@@ -631,9 +635,15 @@ WebSearch is available on the Claude API, [Claude Platform on AWS](https://code.
 
 ### Session search limit
 
-An interactive terminal session can make 200 WebSearch calls, counted across the main conversation and every [subagent](https://code.claude.com/docs/en/sub-agents) it spawns, so searches made by parallel research fan-outs count against the same limit. The limit requires Claude Code v2.1.212 or later. When Claude reaches the limit, further calls return a notice telling Claude to continue with the information it already gathered, rather than an error that would invite a retry. You don't see the notice: a capped call appears in the conversation as a search that did nothing, and if Claude needs more searches, the notice tells it to ask you to raise the limit.
+An interactive terminal session has a limit of 200 WebSearch calls. Searches from the main conversation and from [subagents](https://code.claude.com/docs/en/sub-agents), such as a parallel research fan-out, count against the same limit. The limit requires Claude Code v2.1.212 or later.
 
-Set the [`CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`](https://code.claude.com/docs/en/env-vars) environment variable to change the cap; it accepts a positive whole number, so the cap can be raised but not turned off. An interactive terminal session's limit refills at about 100 calls per hour, and [`CLAUDE_CODE_WEB_SEARCH_REFILLS_PER_HOUR`](https://code.claude.com/docs/en/env-vars#variables) sets the rate. Running [`/clear`](https://code.claude.com/docs/en/commands#all-commands) resets the count. If work that can still spawn [subagents](https://code.claude.com/docs/en/sub-agents) survives the clear, such as a running workflow, the count carries over instead.
+While a session is at the limit, searches appear in the conversation as calls that did nothing. Claude gets a notice telling it to continue with the information it already gathered and, if it needs more searches, to ask you to raise the limit.
+
+To get more searches, raise the cap, wait for the limit to refill, or start a new conversation:
+
+* **Raise the cap**: set the [`CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`](https://code.claude.com/docs/en/env-vars#variables) environment variable to a positive whole number, such as `500`. The cap can be raised but not turned off.
+* **Wait for the refill**: on Claude Code v2.1.290 or later, an interactive terminal session's limit refills at about 100 calls per hour. To change the rate, set [`CLAUDE_CODE_WEB_SEARCH_REFILLS_PER_HOUR`](https://code.claude.com/docs/en/env-vars#variables) to a number of calls per hour, such as `50`.
+* **Start a new conversation**: running [`/clear`](https://code.claude.com/docs/en/commands#all-commands) at the Claude Code prompt also resets the count. If work that can still spawn subagents survives the clear, such as a running workflow, the count carries over instead.
 
 ## Write tool behavior
 

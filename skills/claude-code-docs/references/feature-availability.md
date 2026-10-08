@@ -83,7 +83,7 @@ Organization-level controls and usage visibility.
 | Feature | Claude subscription | Anthropic Console | Amazon Bedrock | Claude Platform on AWS | Google Cloud's Agent Platform | Microsoft Foundry |
 | --- | --- | --- | --- | --- | --- | --- |
 | [Analytics dashboard and API](https://code.claude.com/docs/en/analytics) | ✓ (dashboard: Team and Enterprise; API: Enterprise) | ✓ [4](#fn4) | ✗ | ✗ | ✗ | ✗ |
-| [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings) | ✓ (Team and Enterprise) | ✓ (Team and Enterprise) | ✗ | ✗ | ✗ | ✗ |
+| [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings) | ✓ (Team and Enterprise) | See [Platform availability](https://code.claude.com/docs/en/server-managed-settings#platform-availability) | ✗ | ✗ | ✗ | ✗ |
 | [Zero Data Retention](https://code.claude.com/docs/en/zero-data-retention) | ✓ (qualified Enterprise accounts) | ✓ (qualified accounts) | See note [3](#fn3) | ✓ (qualified accounts) | See note [3](#fn3) | See note [3](#fn3) |
 
 <sup>5</sup> Requires Claude Code v2.1.224 or later on macOS and Linux, including Linux inside WSL 2. On native Windows, requires Claude Code v2.1.234 or later. With API key authentication, messaging is same-machine only. On Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, and Microsoft Foundry, messaging is same-machine only and requires Claude Code v2.1.248 or later. Claude can find your [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) and your sessions on other machines only from a session that is connected to [Remote Control](https://code.claude.com/docs/en/remote-control). To connect, you need a claude.ai sign-in and the other [Remote Control requirements](https://code.claude.com/docs/en/remote-control#requirements). See [Message sessions on other machines](https://code.claude.com/docs/en/cross-session-messaging#message-sessions-on-other-machines).
@@ -161,7 +161,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 
     **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription).
 
-Everything in [CLI capabilities that vary by provider](#cli-capabilities-that-vary-by-provider) is available, except that [fast mode](https://code.claude.com/docs/en/fast-mode) requires [provisioned access](https://code.claude.com/docs/en/fast-mode#enable-fast-mode-for-your-organization). [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings) are also available when your API key belongs to a Team or Enterprise organization.
+Everything in [CLI capabilities that vary by provider](#cli-capabilities-that-vary-by-provider) is available, except that [fast mode](https://code.claude.com/docs/en/fast-mode) requires [provisioned access](https://code.claude.com/docs/en/fast-mode#enable-fast-mode-for-your-organization). [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings) that you configure in a claude.ai Team or Enterprise organization don't reach a session that authenticates with a Console API key. See [Platform availability](https://code.claude.com/docs/en/server-managed-settings#platform-availability) for how to cover those sessions.
 
 
 ## Availability by subscription plan
