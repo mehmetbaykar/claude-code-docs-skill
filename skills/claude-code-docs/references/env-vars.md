@@ -574,7 +574,7 @@ With fetching off, you can't:
 * Use [the advisor tool](https://code.claude.com/docs/en/advisor#requirements)
 * Read or reply to [comments on an artifact](https://code.claude.com/docs/en/artifacts#collect-comments-on-an-artifact)
 * Have Claude read [another organization's public artifact](https://code.claude.com/docs/en/artifacts#read-an-artifact-shared-with-you)
-* Have Claude Code probe claude.ai connector servers or stdio servers for [MCP protocol revision 2026-07-28](https://code.claude.com/docs/en/mcp#mcp-client-runtimes) unless you set `MCP_PROTOCOL_NEGOTIATION=auto`
+* Have Claude Code probe claude.ai connector servers for [MCP protocol revision 2026-07-28](https://code.claude.com/docs/en/mcp#mcp-client-runtimes) unless you set `MCP_PROTOCOL_NEGOTIATION=auto`
 * Get the [PowerShell tool](https://code.claude.com/docs/en/tools-reference#powershell-tool) by default for claude.ai and Console accounts on Windows with Git Bash installed; Claude Code routes shell commands through Git Bash unless you set `CLAUDE_CODE_USE_POWERSHELL_TOOL=1`. On Windows without Git Bash, the tool stays on
 * Get [Claude-drafted feedback](https://code.claude.com/docs/en/tools-reference#sendfeedback-tool-behavior), which Claude Code turns on through a fetched flag
 * Have Claude [treat large pastes as pasted rather than typed text](https://code.claude.com/docs/en/terminal-config#how-claude-treats-pasted-text); the content behind a `[Pasted text #N]` placeholder reaches Claude unmarked
