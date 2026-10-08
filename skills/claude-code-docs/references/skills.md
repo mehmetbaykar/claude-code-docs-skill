@@ -32,6 +32,19 @@ The [`/doctor`](https://code.claude.com/docs/en/commands#all-commands) setup che
 
 Bundled skills are listed alongside built-in commands in the [commands reference](https://code.claude.com/docs/en/commands), marked **Skill** in the Purpose column.
 
+### Check your setup with `/doctor`
+
+Run `/doctor` at the Claude Code prompt for a setup checkup that diagnoses issues and can fix them. Claude reports its findings first and asks for confirmation before changing anything. The checkup covers these areas:
+
+* **Installation health**: duplicate or leftover installs, `PATH` problems, unparseable settings files, and whether a newer version is available on your [release channel](https://code.claude.com/docs/en/setup#configure-release-channel)
+* **Extensions**: unused skills, MCP servers, and plugins compared with their context cost, and slow [hooks](https://code.claude.com/docs/en/hooks)
+* **`CLAUDE.md` files**: local `CLAUDE.md` files that duplicate checked-in ones, checked-in [`CLAUDE.md` content Claude could derive from the codebase](https://code.claude.com/docs/en/memory#my-claude-md-is-too-large), and the always-loaded guidance that remains, which Claude offers to migrate into skills and nested `CLAUDE.md` files that load on demand
+* **Permissions**: an offer to make [auto mode](https://code.claude.com/docs/en/permissions#permission-modes) your default permission mode and to [pre-approve](https://code.claude.com/docs/en/permissions) read-only commands that you frequently deny
+
+For read-only installation diagnostics without starting a session, run `claude doctor` in your terminal instead.
+
+To audit your instructions rather than your setup, run `/doctor prompt-audit` at the Claude Code prompt. Claude [checks your `CLAUDE.md` files, skills, and other configuration](https://code.claude.com/docs/en/memory#audit-your-instruction-files) for outdated or conflicting instructions instead of running the checkup. The `prompt-audit` subcommand requires Claude Code v2.1.283 or later.
+
 ### Run and verify your app
 
 Three bundled skills work together to launch your app and confirm changes against the running app instead of tests alone:
