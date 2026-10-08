@@ -133,6 +133,14 @@ The line starts with the mod's name, as in `first-mod was unloaded: it crashed t
 
 Fix the hook.
 
+### `its session.start ran again in a fresh copy`
+
+The line starts with the mod's name and names a `$.prompt.submit`, `$.command.run`, or `$.agent.spawn` call, as in `first-mod: its session.start ran again in a fresh copy; the $.prompt.submit call it had already made was not made again`. Claude Code loaded the mod's module again, for example after the hooks worker crashed and was replaced, and the fresh copy's [`session.start`](https://code.claude.com/docs/en/plugins/mods/reference#session) hook ran. The call the line names resolved with the result of its first run instead of running again, so your mod doesn't submit the prompt, run the command, or start the subagent twice. The rest of the hook ran as usual.
+
+There's nothing to fix.
+
+Before v2.1.292, the call ran a second time, so the prompt was submitted, the command run, or the subagent started twice.
+
 ### `mods that run in the hooks worker are off for this session`
 
 The line reads `hooks: mods that run in the hooks worker are off for this session: it crashed 3 times`. The worker stopped three times and Claude Code couldn't trace the stops to one mod, so it unloaded every mod that isn't built in, including mods your organization installs. This line reaches the transcript in every interactive session.
@@ -164,6 +172,22 @@ The mod loaded, and its pane, band, or controls don't behave as you expect.
 The [tree](https://code.claude.com/docs/en/plugins/mods/interface#build-a-tree-from-elements) your hook returned didn't validate. With `--plugin-dir`, the transcript says `ui.render (Pane) refused:` with the reason, as in `first-mod: ui.render (Pane) refused: Box prop "flexDirection" must be one of row, column, row-reverse, column-reverse; the engine drew its own`. The debug log has `a hook returned a tree that does not validate` with the same reason.
 
 Read the reason on that line. Common causes are a prop the element doesn't take and an element the app doesn't have.
+
+### A `ui.render` line says `threw while drawn`
+
+The line names the [render site](https://code.claude.com/docs/en/plugins/mods/reference#render-sites), then says `threw while drawn:` and the error, as in `first-mod: ui.render (ToolUse) threw while drawn: <error>; the engine drew its own`. Claude Code hit that error while drawing the tree your [`ui.render`](https://code.claude.com/docs/en/plugins/mods/reference#interface) hook returned, or while drawing the site from the [`props` your hook passed to `next`](https://code.claude.com/docs/en/plugins/mods/interface#change-what-claude-code-already-draws). The ending `the engine drew its own` means the site shows Claude Code's usual content.
+
+Read the error and fix the value in your hook that caused it.
+
+Before v2.1.289, this error in a transcript row ended the session with [`Claude Code exited after an unrecoverable interface error`](https://code.claude.com/docs/en/errors#exited-after-an-unrecoverable-interface-error).
+
+### `the module failed without a message`
+
+A [`Client`](https://code.claude.com/docs/en/plugins/mods/interface#when-a-client-fails) failed with an error that has no message, such as `throw new Error()`. The line in its place reads like `my-mod: Client client/spinner.js: the module failed without a message`.
+
+Find the throw in your `Client`'s code and give the error a message. The line then shows that message.
+
+Before v2.1.289, the line showed `Error` as the reason instead.
 
 ### `$.ui.open` runs and no pane appears
 
@@ -224,7 +248,7 @@ hooks module first-mod@inline loaded (worker, environment 2, tier user); events:
 
 A drawing that didn't validate counts as a refused result and gets a line too. To write your own lines in the log, call [`$.ui.log`](https://code.claude.com/docs/en/plugins/mods/api#show-something-without-starting-a-turn) with a second argument, as in `$.ui.log('message', { to: 'debug' })`. Without the second argument, `$.ui.log` adds a dim line to the transcript.
 
-While you edit a mod loaded with `--plugin-dir`, the transcript shows a line for each reload that names the mod and lists its hooks. If a save breaks the module, the line says `reload failed, the previous version stays loaded:` with the reason, and the last working version keeps running.
+While you edit a mod loaded with `--plugin-dir`, the transcript shows a line for each reload that names the mod and lists its hooks. If a save breaks the module, the line says `reload failed, the previous version stays loaded:` with the reason, and the last working version keeps running until Claude Code next reloads plugins, such as when you run `/reload-plugins`.
 
 ## Next steps
 

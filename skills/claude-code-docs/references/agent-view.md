@@ -282,6 +282,7 @@ After about ten seconds, Claude Code backgrounds the session without waiting any
 * **Foreground subagents are still running**: Claude Code keeps waiting so the work of the [foreground subagents](https://code.claude.com/docs/en/sub-agents#run-subagents-in-foreground-or-background) Claude started carries over, and shows `Still backgrounding after the current tool`. Press `←` again to background without waiting, which restarts those subagents from the beginning.
 * **A permission prompt or question is waiting for your answer**: while a permission prompt or a question Claude asked waits, Claude Code keeps waiting and shows `Still backgrounding after the current tool — a question is waiting for your answer.`
 * **You type into the prompt input**: Claude Code cancels the switch, because unsent text stays in your terminal's input box and wouldn't move to the background session. It shows `Backgrounding cancelled — you have unsent text in the input. Send it or clear it, then press ← again.`
+* **A queued message can't move**: messages you [queued while Claude was working](https://code.claude.com/docs/en/interactive-mode#queue-messages-while-claude-works) move to the background session with the conversation. When one of them can't, the session stays in the foreground and Claude Code shows a notice such as `Cannot open agents — 1 queued message can't move to the background. Press ← again once Claude has read it.`
 
 Pressing `←` creates the session's row even when the conversation has no messages yet, so `→` still returns to it.
 
