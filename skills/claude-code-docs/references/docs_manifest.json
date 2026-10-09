@@ -319,8 +319,8 @@
       "title": "Agent SDK reference - TypeScript"
     },
     "agent-sdk__user-input.md": {
-      "hash": "531a6e4af6607e10f253e2ee1ce21fefb32070151c0d56604d4206d98d9c2f10",
-      "last_updated": "2026-09-28T21:30:21+00:00",
+      "hash": "0c77f2c482cc1a2bbfacd72f2b3431b67cedbeb10de9bb72c37bdee3502e230d",
+      "last_updated": "2026-10-09T03:43:42+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/user-input",
       "path": "/docs/en/agent-sdk/user-input",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/user-input.md",
@@ -1714,8 +1714,8 @@
       "title": "Troubleshooting"
     },
     "ultrareview.md": {
-      "hash": "1cd92b98b8d2699d3c30803dc52df53608a20bd64761491779530a5a7afd7a1b",
-      "last_updated": "2026-10-05T18:42:42+00:00",
+      "hash": "7b36fbaca4af485114727e65bc63cf1c19553b1b82ef5fee70dd5adae0dc564b",
+      "last_updated": "2026-10-09T03:44:41+00:00",
       "original_url": "https://code.claude.com/docs/en/ultrareview",
       "path": "/docs/en/ultrareview",
       "source_url": "https://code.claude.com/docs/en/ultrareview.md",
@@ -2016,7 +2016,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-09T01:15:04+00:00",
+  "last_updated": "2026-10-09T03:45:00+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
