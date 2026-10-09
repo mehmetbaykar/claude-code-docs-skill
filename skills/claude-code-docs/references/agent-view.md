@@ -756,7 +756,7 @@ Every background session has a short ID you can use from the shell. The ID is pr
 | `claude daemon logs` | Follow the supervisor's log file, [`~/.claude/daemon.log`](#where-state-is-stored), printing new lines as they arrive until you press `Ctrl+C` |
 | `claude daemon stop --any` | Stop the supervisor process and the background sessions it hosts. Pass `--keep-workers` to leave background sessions running so the next supervisor reconnects to them. The next `claude agents` or `claude --bg` starts a fresh supervisor |
 
-`claude attach` and `claude logs` can take part of a running session's name in place of the ID, as in `claude logs "auth refactor"`. Passing a name requires Claude Code v2.1.290 or later.
+`claude attach` and `claude logs` can take part of a session's name in place of the ID, as in `claude logs "auth refactor"`. Passing a name requires Claude Code v2.1.290 or later.
 
 ### List sessions as JSON
 
@@ -979,7 +979,7 @@ Agent view has evolved quickly during research preview. If you are on an older C
 
 | Version | Change |
 | - | - |
-| v2.1.290 | [`claude attach` and `claude logs`](#manage-sessions-from-the-shell) can take part of a running session's name in place of the ID. |
+| v2.1.290 | [`claude attach` and `claude logs`](#manage-sessions-from-the-shell) can take part of a session's name in place of the ID. |
 | v2.1.290 | `/model`, `/effort`, `/rename`, and `/usage` sent as a [peek reply](#peek-and-reply) to a working session run right away. |
 | v2.1.290 | A [peek reply](#peek-and-reply) that can't be delivered is no longer saved for the next restart when it starts with `/`, or when it answers a question with predefined choices while the session's process is running. |
 | v2.1.288 | `Ctrl+F` finds sessions by name, and `Alt+↑` / `Alt+↓` jump between group headers. Both, and `Ctrl+R`, can be [rebound](https://code.claude.com/docs/en/keybindings#agents-actions). |

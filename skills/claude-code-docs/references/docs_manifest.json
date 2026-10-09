@@ -337,8 +337,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "da5e994c5f951c2fedde358c0f136c220cb5b499a40be74fb3bb383b43622902",
-      "last_updated": "2026-10-09T15:33:19+00:00",
+      "hash": "3b65cc7d6934e95aa31f2b8c11ea2fbc0e01e27a70fec4e53d6aac1b59d4d963",
+      "last_updated": "2026-10-09T18:39:18+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "source_url": "https://code.claude.com/docs/en/agent-view.md",
@@ -571,8 +571,8 @@
       "title": "Work with Claude Tag"
     },
     "cli-reference.md": {
-      "hash": "4e07eb1cd7599201852fc46f1bbf1410a208821e4e7bb1f0617e273552a14214",
-      "last_updated": "2026-10-09T01:14:19+00:00",
+      "hash": "65bda84cbaf47a22833a33e16e9ce1c08d0db6007c1f25a38137aa40bece6bbd",
+      "last_updated": "2026-10-09T18:39:27+00:00",
       "original_url": "https://code.claude.com/docs/en/cli-reference",
       "path": "/docs/en/cli-reference",
       "source_url": "https://code.claude.com/docs/en/cli-reference.md",
@@ -931,8 +931,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "db49eb833715f9c502deac48a0f5a6a2b969150de9fee202d0a6e81640617212",
-      "last_updated": "2026-10-07T18:41:33+00:00",
+      "hash": "dfbb34e19da1bb3673b42d9bd0dbbf982a2eb1dc430413a3cf4b3b483a8b46d2",
+      "last_updated": "2026-10-09T18:39:42+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -1255,8 +1255,8 @@
       "title": "Plugin loading reference"
     },
     "plugins__manifest-reference.md": {
-      "hash": "62a78f1f6cc81a1af2a2d30ce295de82ed559db1246439896143d095e5b4f72a",
-      "last_updated": "2026-10-04T04:50:34+00:00",
+      "hash": "ce449ec30dc9ede24c46168d994a63c253fd15777b4aad32524b10081f8bf060",
+      "last_updated": "2026-10-09T18:39:55+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/manifest-reference",
       "path": "/docs/en/plugins/manifest-reference",
       "source_url": "https://code.claude.com/docs/en/plugins/manifest-reference.md",
@@ -1417,8 +1417,8 @@
       "title": "Plugin security and trust"
     },
     "plugins__troubleshooting.md": {
-      "hash": "1a40d97687252a6f83ec9dac5a4d0ec71f6a71fb1d68728312ca5db9a36359ee",
-      "last_updated": "2026-10-09T01:14:46+00:00",
+      "hash": "43d8e37339fe3035c9a7fc81dcf471436e44ac16f08c7d6b93c68975b33a78f8",
+      "last_updated": "2026-10-09T18:40:02+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/troubleshooting",
       "path": "/docs/en/plugins/troubleshooting",
       "source_url": "https://code.claude.com/docs/en/plugins/troubleshooting.md",
@@ -2016,7 +2016,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-09T15:34:14+00:00",
+  "last_updated": "2026-10-09T18:40:35+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
