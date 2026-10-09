@@ -377,7 +377,7 @@ Learn more: [Give Claude a way to verify its work](https://code.claude.com/docs/
 
 ### Worktree isolation
 
-An isolation mode that runs Claude in a separate git worktree under `.claude/worktrees/`, enabled with the `-w` flag or `isolation: worktree` in subagent config. Changes stay on a separate branch in a separate directory, so parallel agents don't overwrite each other's files.
+An isolation mode that runs Claude in a separate git worktree under `.claude/worktrees/`, enabled with the `-w` flag or `isolation: worktree` in subagent config. Changes stay on a separate branch in a separate directory, so parallel agents each edit their own copy of the files.
 
 Learn more: [Run parallel sessions with git worktrees](https://code.claude.com/docs/en/worktrees)
 

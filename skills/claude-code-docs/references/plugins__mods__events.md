@@ -250,6 +250,8 @@ Claude's response streams to the screen as it does without the mod. After each r
 
 `result.usage` holds the token counts the Claude API reports for a request, plus the `model` that answered: `input_tokens`, `output_tokens`, `cache_read_input_tokens`, and `cache_creation_input_tokens`. The hook runs for subagents' requests too, so check `e.agentId` when you want only the main conversation.
 
+To see the tool calls that the API ran itself during the request, such as calls to the [advisor tool](https://code.claude.com/docs/en/advisor), read `result.serverToolUses`. Claude Code doesn't run these calls, so no `tool.call` or `tool.check` hook fires for them. The field is absent when the response has no such calls, and it requires Claude Code v2.1.290 or later.
+
 <h3 id="hook-the-settings-hook-events">
 Handle the settings hook events
 </h3>
