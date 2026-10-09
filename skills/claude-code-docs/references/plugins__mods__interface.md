@@ -316,7 +316,7 @@ Besides `id`, `$.ui.open` takes these optional fields:
 | `title` | The pane's tab label when more than one pane is open |
 | `focus` | Requests [keyboard focus](#know-which-keys-your-mod-can-receive) |
 | `closeOnEscape` | Makes Esc close the pane |
-| `holdToasts` | Holds toasts, the small notices from [`$.ui.toast`](https://code.claude.com/docs/en/plugins/mods/api#show-something-without-starting-a-turn), until the pane closes |
+| `holdToasts` | In the terminal, holds toasts while this pane is the one showing. See [Hold toasts behind a dialog](#hold-toasts-behind-a-dialog). |
 | `rows` | The height to ask for when the pane sits above the prompt. The default is a third of the space. |
 | `columns` | The width to ask for when the pane sits beside the transcript |
 
@@ -327,6 +327,12 @@ await $.ui.open(items.length > 0 ? { ...pane, focus: true } : pane)
 ```
 
 To let a command open the pane while Claude is working, add `immediate: true` when you [register the command](https://code.claude.com/docs/en/plugins/mods/api#add-a-command). Without it, a command typed during a turn waits for the turn to end.
+
+#### Hold toasts behind a dialog
+
+Pass `holdToasts: true` to `$.ui.open` when the pane is a dialog the user answers and leaves, so toasts don't appear while they decide. In the terminal, the hold lasts while that pane is the one showing, and a toast raised in that time waits until the hold ends.
+
+Claude Code holds other mods' toasts and its own short-lived notifications as well as the ones your mod raises with [`$.ui.toast`](https://code.claude.com/docs/en/plugins/mods/api#show-something-without-starting-a-turn). Leave the field off a pane that stays open, so the user keeps seeing them.
 
 #### When a pane waits for a wider terminal
 

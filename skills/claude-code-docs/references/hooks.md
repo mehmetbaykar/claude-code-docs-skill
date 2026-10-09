@@ -1144,15 +1144,17 @@ This example shows the input for a session resumed 90 minutes after its last res
 
 #### SessionStart decision control
 
-Claude Code adds stdout it [treats as plain text](#exit-code-0) to Claude's context. In addition to the [JSON output fields](#json-output) available to all hooks, you can return these event-specific fields:
+A SessionStart hook can add context for Claude, supply the first user message, set the session title, watch files, and reload skills. Return the field for each one, in addition to the [JSON output fields](#json-output) available to all hooks:
 
 | Field | Description |
 | :- | :- |
 | `additionalContext` | String added to Claude's context at the start of the conversation, before the first prompt. See [Add context for Claude](#add-context-for-claude) for how the text is delivered and what to put in it |
-| `initialUserMessage` | String used as the first user message of the session. Applies in [non-interactive mode](https://code.claude.com/docs/en/headless) with the `-p` flag, where it becomes the first turn even if no prompt is provided. If a prompt is provided, it follows as the next turn. Unlike `additionalContext`, which attaches to an existing turn, this creates the turn |
-| `sessionTitle` | Sets the session title, with the same effect as `/rename`. Use to name sessions automatically from the launch folder, git branch, or worktree name. Applies when `source` is `"startup"`, `"resume"`, or `"fork"`; ignored on `"clear"` and `"compact"` |
+| `initialUserMessage` | String used as the first user message of the session, in [non-interactive mode](https://code.claude.com/docs/en/headless) with the `-p` flag. It becomes the first turn even if you pass no prompt. A prompt you do pass follows as the next turn |
+| `sessionTitle` | Sets the session title, with the same effect as `/rename`. Applies when `source` is `"startup"`, `"resume"`, or `"fork"` |
 | `watchPaths` | Array of absolute paths to watch for [FileChanged](#filechanged) events during this session |
-| `reloadSkills` | Boolean. When `true`, Claude Code re-scans the [skill](https://code.claude.com/docs/en/skills) and command directories after the SessionStart hooks complete, so skills the hook installed are available in the same session, starting with the first prompt |
+| `reloadSkills` | Boolean. When `true`, Claude Code re-scans the [skill](https://code.claude.com/docs/en/skills) and command directories after the SessionStart hooks complete. See [Reload skills that a hook installs](#reload-skills-that-a-hook-installs) |
+
+This output adds context and names the session:
 ```json
 {
   "hookSpecificOutput": {
@@ -1163,9 +1165,15 @@ Claude Code adds stdout it [treats as plain text](#exit-code-0) to Claude's cont
 }
 ```
 
-Since plain stdout already reaches Claude for this event, a hook that only loads context can print to stdout directly without building JSON. Use the JSON form when you need to combine context with other fields such as `sessionTitle`.
+A hook that only adds context can print it without building JSON, because Claude Code adds a SessionStart hook's [plain-text stdout](#exit-code-0) to Claude's context.
 
-Use `reloadSkills` when a SessionStart hook installs or updates skills. Skill discovery normally runs before SessionStart hooks finish, so files the hook writes into `~/.claude/skills/` or `.claude/skills/` would otherwise only appear in the next session. This example syncs a shared skills repository and requests the re-scan:
+If your plugin's SessionStart hook supplies `initialUserMessage` or `sessionTitle`, install the plugin before the session starts. Claude Code ignores both fields from a plugin that finishes installing after the SessionStart hooks have run.
+
+#### Reload skills that a hook installs
+
+To make skills that a SessionStart hook installs available in the same session, return `reloadSkills`. Skill discovery normally runs before SessionStart hooks finish, so without it, files a hook writes into `~/.claude/skills/` or `.claude/skills/` can be missing when the first prompt runs.
+
+This example syncs a shared skills repository and requests the re-scan:
 ```bash
 #!/bin/bash
 
@@ -1175,7 +1183,7 @@ git -C ~/.claude/skills/team-skills pull --quiet 2>/dev/null || \
 echo '{"hookSpecificOutput": {"hookEventName": "SessionStart", "reloadSkills": true}}'
 ```
 
-The repository URL is a placeholder; replace it with your own skills repository. With the placeholder, the clone fails and prints a `fatal:` message to stderr. Stderr from a SessionStart hook that exits 0 is informational only, so the `reloadSkills` request still applies.
+The repository URL is a placeholder. Replace it with your own skills repository.
 
 #### Persist environment variables
 
@@ -1693,6 +1701,7 @@ Fetches and processes web content.
 | :- | :- | :- | :- |
 | `url` | string | `"https://example.com/api"` | URL to fetch content from |
 | `prompt` | string | `"Extract the API endpoints"` | Prompt to run on the fetched content |
+| `offset` | number | `100000` | Optional number of characters to skip from the start of the page. Claude sets it to keep reading a long page. Requires Claude Code v2.1.290 or later |
 
 ##### WebSearch
 
@@ -3841,7 +3850,7 @@ Then add this configuration to `.claude/settings.json` in your project root. The
 Async hooks have additional constraints compared to synchronous hooks:
 
 * Hook output is delivered on the next conversation turn. If the session is idle, the response waits until the next user interaction. Exception: an `asyncRewake` hook that exits with code 2 wakes Claude immediately even when the session is idle.
-* Each execution creates a separate background process. There is no deduplication across multiple firings of the same async hook.
+* Each execution creates a separate background process.
 
 ## Security considerations
 

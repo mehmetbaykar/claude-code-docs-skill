@@ -472,7 +472,7 @@ Configuration object for the `query()` function.
 | `includePartialMessages` | `boolean` | `false` | Include partial message events |
 | `loadTimeoutMs` | `number` | `60000` | *Alpha.* Timeout in milliseconds for each `sessionStore.load()` and `sessionStore.listSubkeys()` call during resume materialization. If the adapter doesn't settle within this window, the query fails instead of hanging. Ignored when `sessionStore` is not set |
 | `managedSettings` | `Settings` | `undefined` | Policy-tier settings your host process supplies to the spawned session. On machines with admin-deployed managed settings, Claude Code ignores these unless the admin's highest-priority managed source sets `parentSettingsBehavior: 'merge'`, and never merges them while a [`policyHelper`](https://code.claude.com/docs/en/settings-reference#policyhelper) supplies managed settings. Merged values pass through a restrictive-only filter; [Restrict parent settings](https://code.claude.com/docs/en/claude-apps-gateway#restrict-parent-settings) covers what the filter admits and the `allowManaged*Only` locks. A host that sets [`CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST`](https://code.claude.com/docs/en/env-vars) has three keys read straight from this payload instead: its [model configuration](https://code.claude.com/docs/en/model-config#restrict-model-selection) on Claude Code v2.1.222 or later, [`modelPricing`](https://code.claude.com/docs/en/settings-reference#modelpricing) when no managed source sets it on v2.1.246 or later, and its `ENABLE_TOOL_SEARCH` env entry on v2.1.247 or later |
-| `maxBudgetUsd` | `number` | `undefined` | Stop the query when the client-side cost estimate reaches this USD value. Counts only the call's own spend; totals restored from a resumed session don't count. For accuracy caveats and reset behavior, see [Track cost and usage](https://code.claude.com/docs/en/agent-sdk/cost-tracking) |
+| `maxBudgetUsd` | `number` | `undefined` | Stop the query when the client-side cost estimate reaches this USD value. The estimate can pass this value, so [leave headroom](https://code.claude.com/docs/en/agent-sdk/agent-loop#budget-headroom). Counts only the call's own spend; totals restored from a resumed session don't count. For accuracy caveats and reset behavior, see [Track cost and usage](https://code.claude.com/docs/en/agent-sdk/cost-tracking) |
 | `maxThinkingTokens` | `number` | `undefined` | *Deprecated:* Use `thinking` instead. Maximum tokens for thinking process |
 | `maxTurns` | `number` | `undefined` | Maximum agentic turns (tool-use round trips) |
 | `mcpServers` | `Record<string, [`McpServerConfig`](#mcpserverconfig)>` | `{}` | MCP server configurations |
@@ -1354,6 +1354,7 @@ type SDKAssistantMessage = {
   parent_tool_use_id: string | null;
   error?: SDKAssistantMessageError;
   aborted?: true;
+  agent_id?: string;
   timestamp?: string;
   context_usage?: SDKContextUsage;
   user_message_uuid?: string;
@@ -1373,6 +1374,10 @@ The `message` field is a [`BetaMessage`](https://platform.claude.com/docs/en/api
 
 `aborted` is `true` when an interrupt or abort truncated the assistant message before the stream completed: the message has no `stop_reason` and the content may end mid-word. The field is absent on normally completed messages. It requires Agent SDK v0.3.214 or later.
 
+`agent_id` identifies the subagent that produced the message and is absent on main-thread messages. The value equals the `task_id` on that subagent's [`task_started`](#sdktaskstartedmessage) and other task events, and is unchanged when the subagent is [resumed](https://code.claude.com/docs/en/agent-sdk/subagents#resume-subagents). The field requires Agent SDK v0.3.292 or later.
+
+Match a subagent's messages to its task events on `agent_id` rather than pairing a message's `parent_tool_use_id` with a task event's `tool_use_id`. When a tool call resumes the subagent, the task events carry that call's `tool_use_id`, while the messages keep the `parent_tool_use_id` of the tool call that first started the subagent, so the two no longer match.
+
 Claude Code sets `user_message_uuid` and `user_message_uuids` on the turn's first assistant message, under the conditions in [`user_message_uuid`](#user_message_uuid). When Claude Code re-runs a turn that a restart interrupted, the re-run's assistant messages that carry those fields also carry [`resume_reason`](#resume_reason).
 
 `timestamp` is the ISO 8601 time when the message's content finished generating on the process that produced it. The value comes from that machine's clock, so use it for display only and don't order messages by it. One API turn can produce several assistant messages that share a `message.id`, each with its own `timestamp`. When the field is absent, fall back to the time you received the message.
@@ -1387,6 +1392,7 @@ type SDKUserMessage = {
   type: "user";
   uuid?: UUID;
   session_id?: string;
+  agent_id?: string;
   message: MessageParam; // From Anthropic SDK
   pasted_content?: MessageParam["content"][];
   parent_tool_use_id: string | null;
@@ -1424,6 +1430,8 @@ const message: SDKUserMessage = {
   origin: { kind: "human" },
 };
 ```
+
+A user message that a subagent produces, such as the `tool_result` for one of its own tool calls, carries `agent_id`. See [`SDKAssistantMessage`](#sdkassistantmessage), which defines the field and its version requirement.
 
 On a message that carries a `tool_result` block, `tool_use_result` is the tool's structured output object rather than the text sent to the model. Its shape depends on the tool named by the matching `tool_use` block, so the field is typed `unknown`; the built-in shapes are listed under [Tool Output Types](#tool-output-types). These results need handling beyond their listed shape:
 
@@ -1759,7 +1767,9 @@ The table below lists the fields of each `plugin_errors` entry.
 
 ### `SDKPartialAssistantMessage`
 
-Streaming partial message (only when `includePartialMessages` is true). The `parent_tool_use_id` field is always `null`: stream events are emitted for the main session only. For subagent attribution, use complete messages, which carry `parent_tool_use_id`, or enable [`forwardSubagentText`](#options) to receive subagent text and thinking as complete messages.
+Streaming partial message (only when `includePartialMessages` is true).
+
+The `parent_tool_use_id` field is always `null`: stream events are emitted for the main session only. For subagent attribution, use complete messages, which carry [`agent_id`](#sdkassistantmessage) and `parent_tool_use_id`, or enable [`forwardSubagentText`](#options) to receive subagent text and thinking as complete messages.
 ```typescript
 type SDKPartialAssistantMessage = {
   type: "stream_event";
@@ -2794,6 +2804,7 @@ type AgentInput = {
   prompt: string;
   subagent_type?: string;
   model?: "sonnet" | "opus" | "haiku" | "fable";
+  effort?: "low" | "medium" | "high" | "xhigh" | "max";
   run_in_background?: boolean;
   name?: string;
   team_name?: string; // Deprecated; ignored
@@ -2980,10 +2991,13 @@ Edits cells in Jupyter notebook files.
 type WebFetchInput = {
   url: string;
   prompt: string;
+  offset?: number;
 };
 ```
 
 Fetches content from a URL and processes it with an AI model.
+
+`offset` is the number of characters to skip from the start of the page. Claude sets it to keep reading a long page. The field requires Agent SDK v0.3.290 or later.
 
 ### WebSearch
 
@@ -5029,6 +5043,7 @@ type SDKTaskStartedMessage = {
   task_type?: string;
   is_backgrounded?: boolean;
   spawn_depth?: number;
+  parent_task_id?: string;
   ambient?: boolean;
   uuid: UUID;
   session_id: string;
@@ -5045,6 +5060,14 @@ type SDKTaskStartedMessage = {
 * `spawn_depth`: Claude Code sets it on `"local_agent"` tasks only. A subagent that the main thread spawned has depth `1`. A subagent that a depth `1` subagent spawned has depth `2`, and so on.
 
 A [resumed subagent](https://code.claude.com/docs/en/agent-sdk/subagents#resume-subagents) always reports `is_backgrounded: true`, because Claude Code runs every resumed subagent in the background. When a foreground task moves to the background later, Claude Code reports the new `is_backgrounded` value in a [`task_updated`](#sdktaskupdatedmessage) message rather than sending a second `task_started`.
+
+`parent_task_id` holds the `task_id` of the subagent that launched this task. Use it to group each task under the subagent that started it. Claude Code sets it on subagent, Bash, and [Monitor](#monitor) tasks. The field requires Agent SDK v0.3.292 or later. It is absent when:
+
+* The main thread launched the task
+* Claude Code no longer tracks the parent task
+* A [teammate](https://code.claude.com/docs/en/agent-teams) or an agent inside a workflow launched the task
+
+The parent can be a foreground task or one that already ended, so treat an ID you don't recognize as no parent.
 
 ### `SDKTaskProgressMessage`
 
@@ -5094,11 +5117,11 @@ type SDKTaskUpdatedMessage = {
 
 ### `SDKBackgroundTasksChangedMessage`
 
-Emitted whenever the set of live background tasks changes: a task starts, completes, is killed, a foreground agent is backgrounded, or a task's `description` or `ambient` field changes.
+Emitted whenever the set of live background tasks changes: a task starts, completes, or is killed; a foreground agent is backgrounded; or a task's `description`, `ambient`, or `parent_task_id` field changes. For the `parent_task_id` field on each entry, see [`SDKTaskStartedMessage`](#sdktaskstartedmessage), which defines it and its version requirement.
 
 The `tasks` array is the full live set. Replace any cached set with each payload instead of pairing `task_started` and `task_notification` events, so the next membership change corrects any event you missed.
 
-Ordering relative to those per-task events is unspecified, so don't correlate the two streams.
+When a task ends, its [`task_updated`](#sdktaskupdatedmessage) and [`task_notification`](#sdktasknotificationmessage) arrive before the `background_tasks_changed` that drops it from the list. Ordering relative to the per-task events is otherwise unspecified.
 
 Nothing is emitted at startup. Reset to an empty set whenever the session's CLI process starts or restarts and let the next membership change repopulate it.
 
@@ -5114,6 +5137,7 @@ type SDKBackgroundTasksChangedMessage = {
     task_type: string;
     subagent_type?: string;
     description: string;
+    parent_task_id?: string;
     ambient?: boolean;
   }[];
   uuid: UUID;

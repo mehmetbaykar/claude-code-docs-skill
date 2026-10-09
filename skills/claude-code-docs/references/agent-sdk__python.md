@@ -781,7 +781,7 @@ class ClaudeAgentOptions:
 | `resume` | `str \| None` | `None` | Session ID to resume |
 | `session_id` | `str \| None` | `None` | Use a specific session ID instead of an auto-generated one. Must be a valid UUID. Can't be combined with `continue_conversation` or `resume` unless `fork_session` is also set |
 | `max_turns` | `int \| None` | `None` | Maximum agentic turns (tool-use round trips) |
-| `max_budget_usd` | `float \| None` | `None` | Stop the query when the client-side cost estimate reaches this USD value. Counts only the call's own spend; totals restored from a resumed session don't count. For accuracy caveats and reset behavior, see [Track cost and usage](https://code.claude.com/docs/en/agent-sdk/cost-tracking) |
+| `max_budget_usd` | `float \| None` | `None` | Stop the query when the client-side cost estimate reaches this USD value. The estimate can pass this value, so [leave headroom](https://code.claude.com/docs/en/agent-sdk/agent-loop#budget-headroom). Counts only the call's own spend; totals restored from a resumed session don't count. For accuracy caveats and reset behavior, see [Track cost and usage](https://code.claude.com/docs/en/agent-sdk/cost-tracking) |
 | `disallowed_tools` | `list[str]` | `[]` | Tools to deny. A bare name such as `"Bash"` removes the tool from Claude's context. A scoped rule such as `"Bash(rm *)"` leaves the tool available and denies matching calls in every permission mode, including `bypassPermissions`, for the command [as written](https://code.claude.com/docs/en/permissions#bash-rule-limits). See [Permissions](https://code.claude.com/docs/en/agent-sdk/permissions#allow-and-deny-rules) |
 | `enable_file_checkpointing` | `bool` | `False` | Enable file change tracking for rewinding. See [File checkpointing](https://code.claude.com/docs/en/agent-sdk/file-checkpointing) |
 | `model` | `str \| None` | `None` | Claude model alias or full model name. See [accepted values and provider-specific IDs](https://code.claude.com/docs/en/model-config#available-models) |
@@ -2847,6 +2847,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 {
     "url": str,  # The URL to fetch content from
     "prompt": str,  # The prompt to run on the fetched content
+    "offset": int | None,  # Number of characters to skip from the start of the page. Requires Python Agent SDK 0.2.164 or later
 }
 ```
 

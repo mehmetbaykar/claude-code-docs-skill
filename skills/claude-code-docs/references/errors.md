@@ -3653,7 +3653,7 @@ Before v2.1.282, `claude plugin list` and `/plugin` reported the plugins of an i
 
 ### Marketplace is already added from a different source
 
-You confirmed adding a marketplace through [`/plugin install <plugin> --marketplace <source>`](https://code.claude.com/docs/en/plugins/install#add-a-marketplace-and-install-in-one-command), and the catalog Claude Code fetched from that source names itself the same as a marketplace you already added from a different source. Claude Code keeps the existing marketplace instead of replacing it, and the plugin isn't installed.
+You named a new marketplace source with [`--marketplace <source>` on the install command](https://code.claude.com/docs/en/plugins/install#add-a-marketplace-and-install-in-one-command), in a session or from your shell. The catalog Claude Code fetched from that source has the same name as a marketplace you already added from a different source. Claude Code keeps the existing marketplace instead of replacing it, and the plugin isn't installed.
 ```text
 Marketplace "acme-tools" is already added from a different source (github:acme/plugins). To use this source instead, remove that marketplace first with /plugin marketplace remove acme-tools.
 ```
