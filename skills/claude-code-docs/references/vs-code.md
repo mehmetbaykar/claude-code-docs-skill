@@ -167,6 +167,7 @@ If your organization's policy turns product feedback off, **Report a problem** d
 * **Bookmarks**: hover over a response and click **Bookmark response** to save it, or click **Remove bookmark** on a saved response to remove it.
 
 To review saved responses, open the Bookmarks panel: click the bookmark icon at the top of the Claude Code panel, select **Bookmarks** in the Context section of the command menu, or type `/bookmarks`. Requires Claude Code v2.1.286 or later.
+* **Files Claude sends you**: when the session is connected to [Remote Control](https://code.claude.com/docs/en/remote-control#start-a-remote-control-session) and Claude sends you files with the [`SendUserFile` tool](https://code.claude.com/docs/en/tools-reference), the conversation shows a row such as **Sent report.md, chart.png**. Click a file's name to open it in the editor.
 * **Context indicator**: the prompt box shows how much of Claude's context window you're using. Claude automatically compacts when needed, or you can run `/compact` manually.
 * **Prompt cache clock**: a clock icon next to the context indicator estimates how much time the conversation's [prompt cache](https://code.claude.com/docs/en/prompt-caching) has left before it expires. It counts down from the cache's five-minute or one-hour [lifetime](https://code.claude.com/docs/en/prompt-caching#cache-lifetime), and each response that uses the cache restarts the countdown. Apart from compaction, the [actions that invalidate the cache](https://code.claude.com/docs/en/prompt-caching#actions-that-invalidate-the-cache) don't reset the clock, so it can still show minutes left after you switch models.
 * Until the countdown runs out, the icon shows the minutes left, such as **12m**.
@@ -544,6 +545,7 @@ VS Code reads `initialPermissionMode` from your user settings and ignores worksp
 | `useCtrlEnterToSend` | `false` | Use Ctrl/Cmd+Enter instead of Enter to send prompts |
 | `scrollToBottomOnSend` | `true` | Scroll the conversation to the bottom when you send a message. When off, the conversation stays where you left it. Requires Claude Code v2.1.275 or later |
 | `showMessageTimestamps` | `true` | Show when each message was sent. A date line marks where the day changes. Requires Claude Code v2.1.284 or later. Before v2.1.290, the default was `false` |
+| `spinnerVerbs` | `{"mode": "append", "verbs": []}` | Set the verbs the conversation spinner rotates through while a turn runs, with the same `mode` and `verbs` fields as the CLI's [`spinnerVerbs`](https://code.claude.com/docs/en/settings-reference#spinnerverbs). |
 | `enableNewConversationShortcut` | `false` | Enable Cmd/Ctrl+N to start a new conversation |
 | `enableReopenClosedSessionShortcut` | `true` | Use Cmd/Ctrl+Shift+T to reopen the most recently closed Claude session tab. When the last closed tab wasn't a Claude session, the shortcut runs VS Code's normal reopen-closed-editor command instead. |
 | `archiveInactiveSessions` | `14` | [Archive a session automatically](#resume-past-conversations) after this many days without activity: `1`, `2`, `7`, or `14`. Set `0` to turn it off. Requires Claude Code v2.1.265 or later |
