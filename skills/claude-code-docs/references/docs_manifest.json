@@ -184,8 +184,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "581e127e3697f82eb3abb009d74da4f178dcfbf48e09d440da3d8f70e06d0b40",
-      "last_updated": "2026-10-09T01:14:07+00:00",
+      "hash": "3e9f2abc0b16b4dacc18e62f8dd8d4a3bec50a0411201880fa60bbe422988e6c",
+      "last_updated": "2026-10-09T15:33:14+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -310,8 +310,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "1e447ced082a21741dc8b218a1430354ee5b721faedcc38c64639df75c92d3b6",
-      "last_updated": "2026-10-09T01:14:11+00:00",
+      "hash": "3f792c7b49d4401980716b0211f3bc423a97cbc161c0ebd0349f85a83bc97233",
+      "last_updated": "2026-10-09T15:33:18+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/typescript.md",
@@ -337,8 +337,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "ae5f048c342f35fb64365151893cb00ac19dec5882cfcc4cb762474c15b2487b",
-      "last_updated": "2026-10-09T01:14:12+00:00",
+      "hash": "da5e994c5f951c2fedde358c0f136c220cb5b499a40be74fb3bb383b43622902",
+      "last_updated": "2026-10-09T15:33:19+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "source_url": "https://code.claude.com/docs/en/agent-view.md",
@@ -760,8 +760,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "d7c6b78c49e4b817d41fc5276c0508fdc1987ef851e71eadea2648eb31d3d636",
-      "last_updated": "2026-10-09T01:14:25+00:00",
+      "hash": "611ef517bbced31933eeef9c53299ef8857918938c79d8451e780414f1ec8be3",
+      "last_updated": "2026-10-09T15:33:34+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -769,8 +769,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "decef2c27ca002fb5f60e413b25f97be47bb4d19b50f0e16212d4d9e95eb1609",
-      "last_updated": "2026-10-09T01:14:26+00:00",
+      "hash": "41582e5f5a7ea9a3dbbe91b280b6470d8282ecfe27a6c0f9dfcd8b23e75108a0",
+      "last_updated": "2026-10-09T15:33:34+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -868,8 +868,8 @@
       "title": "Glossary"
     },
     "goal.md": {
-      "hash": "467394014c11ba07f1d7551cefeeef1503f181dbbdba6a9a6c7e7c74ed5082cd",
-      "last_updated": "2026-10-02T15:35:09+00:00",
+      "hash": "cd74c0bc1f50e553243b66d2a79d924562377b39816b8b4fa059b5bcf434038a",
+      "last_updated": "2026-10-09T15:33:37+00:00",
       "original_url": "https://code.claude.com/docs/en/goal",
       "path": "/docs/en/goal",
       "source_url": "https://code.claude.com/docs/en/goal.md",
@@ -886,8 +886,8 @@
       "title": "Claude Code on Google Cloud's Agent Platform"
     },
     "headless.md": {
-      "hash": "aa24f95f61c0dfff3a6292dc91cd0d7b26e068c5fee4ddab4e8e60dd8348a072",
-      "last_updated": "2026-10-08T18:41:30+00:00",
+      "hash": "f666c5dee404e9ff7a9469d6f0dfa26b78c3b0502362761a61f0f36cedc5a7b8",
+      "last_updated": "2026-10-09T15:33:38+00:00",
       "original_url": "https://code.claude.com/docs/en/headless",
       "path": "/docs/en/headless",
       "source_url": "https://code.claude.com/docs/en/headless.md",
@@ -1039,8 +1039,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "b9932aa85c72d1be882c1806f6d13c056a3f53aa3da66d07d88a6a1ff11dc12a",
-      "last_updated": "2026-10-08T21:33:54+00:00",
+      "hash": "bae4d0feba0d88d6227715b1e7e0b0b5da8a0b2a82c88d3cb8b75e729a5f6a3c",
+      "last_updated": "2026-10-09T15:33:43+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -1084,8 +1084,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "5953e9fc93677666877980b163b34d6a79b4b93cd6ea0a7ffce9c77bb13adfac",
-      "last_updated": "2026-10-09T01:14:36+00:00",
+      "hash": "5e841931234b9e648967b51334b554a4f29c9088ee594f839dacd9cd8d551f47",
+      "last_updated": "2026-10-09T15:33:44+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -1660,8 +1660,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "05a01004c2bc5d86f70a013fe597ad899c410facd439479f1f4c1d6db0a27755",
-      "last_updated": "2026-10-09T01:14:54+00:00",
+      "hash": "c2d355973b923da4d2c7104e754445a8297e30945319ea2bb1882fc1b4182338",
+      "last_updated": "2026-10-09T15:34:03+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -2016,7 +2016,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-09T03:45:00+00:00",
+  "last_updated": "2026-10-09T15:34:14+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
