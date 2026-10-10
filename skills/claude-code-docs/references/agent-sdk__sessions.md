@@ -257,7 +257,7 @@ If you set [`CLAUDE_CODE_PROJECT_DIR_NAME`](https://code.claude.com/docs/en/sess
 
 You can resume from any working directory:
 
-* **Cross-directory lookup**: Claude Code searches beyond the current project directory to find the ID; see [Resume a session](https://code.claude.com/docs/en/sessions#resume-a-session) for the exact lookup order and how duplicate copies are handled.
+* **Cross-directory lookup**: Claude Code searches beyond the current project directory to find the ID; see [Resume a session](https://code.claude.com/docs/en/sessions#where-the-session-picker-looks) for the exact lookup order and how duplicate copies are handled.
 * **Same machine only**: the session file still needs to exist on the current machine.
 
 Before v2.1.223, the lookup was scoped to the current project directory and its git worktrees; SDK versions that bundle an older CLI still behave this way.
@@ -374,7 +374,7 @@ Session files are local to the machine that created them. To resume a session on
 
 * **Move the session file.** Persist `~/.claude/projects/<encoded-cwd>/<session-id>.jsonl` from the first run and restore it inside any directory under `~/.claude/projects/` on the new host before calling `resume`.
 
-Claude Code searches beyond the current project directory to find the ID; see [Resume a session](https://code.claude.com/docs/en/sessions#resume-a-session) for the exact lookup order and how duplicate copies are handled. Before v2.1.223, the lookup was scoped to the current project directory and its git worktrees; SDK versions that bundle an older CLI still behave this way.
+Claude Code searches beyond the current project directory to find the ID; see [Resume a session](https://code.claude.com/docs/en/sessions#where-the-session-picker-looks) for the exact lookup order and how duplicate copies are handled. Before v2.1.223, the lookup was scoped to the current project directory and its git worktrees; SDK versions that bundle an older CLI still behave this way.
 
 * **Don't rely on session resume.** Capture the results you need (analysis output, decisions, file diffs) as application state and pass them into a fresh session's prompt. This is often more robust than shipping transcript files around.
 

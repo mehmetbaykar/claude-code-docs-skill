@@ -283,7 +283,7 @@ When [`CLAUDE_CODE_SYNC_PLUGIN_INSTALL`](https://code.claude.com/docs/en/env-var
 
 ### Auto-approve tools
 
-Use `--allowedTools` to let Claude use certain tools without prompting. Listing `Read` and `Edit` lets Claude read and edit files without asking for permission. Listing `Bash` does the same for shell commands, except in a run that starts in [auto mode](https://code.claude.com/docs/en/permission-modes#how-auto-mode-evaluates-actions), where Claude Code drops a bare `Bash` entry as a broad allow rule and auto mode evaluates each command instead. This example runs a test suite and fixes failures with those three tools listed:
+Use `--allowedTools` to let Claude use certain tools without prompting. Listing `Read` and `Edit` lets Claude read and edit files without asking for permission, apart from reads from [network paths](https://code.claude.com/docs/en/permissions#network-paths). Listing `Bash` does the same for shell commands, except in a run that starts in [auto mode](https://code.claude.com/docs/en/permission-modes#how-auto-mode-evaluates-actions), where Claude Code drops a bare `Bash` entry as a broad allow rule and auto mode evaluates each command instead. This example runs a test suite and fixes failures with those three tools listed:
 ```bash
 claude -p "Run the test suite and fix any failures" \
   --allowedTools "Bash,Read,Edit"
@@ -292,7 +292,7 @@ claude -p "Run the test suite and fix any failures" \
 To set a baseline for the whole session instead of listing individual tools, pass a [permission mode](https://code.claude.com/docs/en/permission-modes). A run where nothing sets a permission mode takes the [built-in starting permission mode](https://code.claude.com/docs/en/permission-modes#which-mode-a-session-starts-in), which can be `auto`, so pass the one you want:
 
 * **`auto`**: pass `--permission-mode auto` to have a classifier review most actions instead of you
-* **`dontAsk`**: Claude Code denies every call that would otherwise prompt, which is useful for locked-down CI runs. Actions that need no approval in Manual mode still run, such as file reads in your working directories and the [read-only command set](https://code.claude.com/docs/en/permissions#read-only-commands), and so do actions your `--allowedTools` entries or `permissions.allow` rules cover. `AskUserQuestion`, connector tools [your organization set to `ask`](https://code.claude.com/docs/en/mcp#organization-controls-on-connector-tools), and MCP tools marked [`requiresUserInteraction`](https://code.claude.com/docs/en/mcp#require-approval-for-a-specific-tool) are denied even when an allow rule matches
+* **`dontAsk`**: Claude Code denies every call that would otherwise prompt, which is useful for locked-down CI runs. Actions that need no approval in Manual mode still run, such as file reads in your working directories and the [read-only command set](https://code.claude.com/docs/en/permissions#read-only-commands), and so do actions your `--allowedTools` entries or `permissions.allow` rules cover. `AskUserQuestion`, connector tools [your organization set to `ask`](https://code.claude.com/docs/en/mcp#organization-controls-on-connector-tools), MCP tools marked [`requiresUserInteraction`](https://code.claude.com/docs/en/mcp#require-approval-for-a-specific-tool), and [reads from network paths](https://code.claude.com/docs/en/permissions#network-paths) are denied even when an allow rule matches
 * **`acceptEdits`**: Claude writes files without prompting, and Claude Code auto-approves common filesystem commands such as `mkdir`, `touch`, `mv`, and `cp`. The [actions no mode auto-approves](https://code.claude.com/docs/en/permission-modes#actions-no-mode-auto-approves) still apply. Apart from the read-only command set, other shell commands and network requests still need an `--allowedTools` entry or a `permissions.allow` rule. See [what `acceptEdits` auto-approves](https://code.claude.com/docs/en/permission-modes#auto-approve-file-edits-with-acceptedits-mode) for the full list
 
 This example applies lint fixes with `acceptEdits` as the baseline:
@@ -350,7 +350,7 @@ See [system prompt flags](https://code.claude.com/docs/en/cli-reference#system-p
 
 ### Continue conversations
 
-Use `--continue` to continue the most recent conversation, or `--resume` with a session ID to continue a specific conversation. On Claude Code v2.1.257 or later, when you pass `--continue`, Claude Code opens a [background session](https://code.claude.com/docs/en/sessions#resume-a-session) that has finished, but not one that is still running. This example runs a review, then sends follow-up prompts:
+Use `--continue` to continue the most recent conversation, or `--resume` with a session ID to continue a specific conversation. On Claude Code v2.1.257 or later, when you pass `--continue`, Claude Code opens a [background session](https://code.claude.com/docs/en/sessions#where-the-session-picker-looks) that has finished, but not one that is still running. This example runs a review, then sends follow-up prompts:
 ```bash
 # First request
 claude -p "Review this codebase for performance issues"
@@ -366,7 +366,7 @@ session_id=$(claude -p "Start a review" --output-format json | jq -r '.session_i
 claude -p "Continue that review" --resume "$session_id"
 ```
 
-You can run the two commands from different directories: Claude Code [finds the session by its ID](https://code.claude.com/docs/en/sessions#resume-a-session) in any project on this machine. Before v2.1.223, Claude Code looked for the ID only in the current project directory and its git worktrees, so you had to run both commands from the same directory.
+You can run the two commands from different directories: Claude Code [finds the session by its ID](https://code.claude.com/docs/en/sessions#where-the-session-picker-looks) in any project on this machine.
 
 In place of the session ID, you can pass `--resume` the absolute path to a session's `.jsonl` [transcript file](https://code.claude.com/docs/en/sessions#where-transcripts-are-stored), and Claude Code continues the conversation stored in that file.
 
