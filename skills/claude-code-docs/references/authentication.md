@@ -94,7 +94,7 @@ Use your existing Claude Console account or create a new one.
 
 You can add users through either method:
 
-* Bulk invite users from within the Console: Settings -> Members -> Invite
+* Bulk invite users from the Console's Members page at [platform.claude.com/settings/members](https://platform.claude.com/settings/members): click **Invite**
 * [Set up SSO](https://support.claude.com/en/articles/13132885-setting-up-single-sign-on-sso)
 
 

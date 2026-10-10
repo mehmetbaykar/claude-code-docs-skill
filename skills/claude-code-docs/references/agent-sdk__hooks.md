@@ -381,7 +381,7 @@ To confirm the block, register the callback under `PreToolUse` with a `Write|Edi
 
 ### Auto-approve specific tools
 
-By default, the agent may prompt for permission before using certain tools. This example auto-approves read-only filesystem tools (Read, Glob, Grep) by returning `permissionDecision: 'allow'`, letting them run without user confirmation while leaving all other tools subject to normal permission checks:
+By default, the agent may prompt for permission before using certain tools. This example auto-approves read-only filesystem tools (Read, Glob, Grep) by returning `permissionDecision: 'allow'`, letting them run without user confirmation, apart from reads from [network paths](https://code.claude.com/docs/en/permissions#network-paths), while leaving all other tools subject to normal permission checks:
 ```python Python
   async def auto_approve_read_only(input_data, tool_use_id, context):
       if input_data["hook_event_name"] != "PreToolUse":

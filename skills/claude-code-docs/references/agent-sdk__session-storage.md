@@ -320,7 +320,7 @@ The following TypeScript SDK functions accept a `sessionStore` option and operat
 * [`renameSession()`](https://code.claude.com/docs/en/agent-sdk/typescript#renamesession)
 * [`tagSession()`](https://code.claude.com/docs/en/agent-sdk/typescript#tagsession)
 * [`deleteSession()`](https://code.claude.com/docs/en/agent-sdk/typescript)
-* [`forkSession()`](https://code.claude.com/docs/en/agent-sdk/typescript)
+* [`forkSession()`](https://code.claude.com/docs/en/agent-sdk/typescript#forksession)
 * [`listSubagents()`](https://code.claude.com/docs/en/agent-sdk/typescript)
 * [`getSubagentMessages()`](https://code.claude.com/docs/en/agent-sdk/typescript)
 
