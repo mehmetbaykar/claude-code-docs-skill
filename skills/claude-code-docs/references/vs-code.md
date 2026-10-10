@@ -439,7 +439,7 @@ You can also open the attachment menu to select specific browser tools like open
 
 Claude opens new tabs for browser tasks and shares your browser's login state, so it can access any site you're already signed into.
 
-To have each session connect to your browser as it starts, without typing `@browser`, see [Enable Chrome by default](https://code.claude.com/docs/en/chrome#enable-chrome-by-default). For when Claude Code asks you before a browser action in a session connected that way, see [Permission prompts in VS Code sessions](https://code.claude.com/docs/en/chrome#permission-prompts-in-vs-code-sessions).
+To have each session connect to your browser as it starts, without typing `@browser`, see [Enable Chrome by default](https://code.claude.com/docs/en/chrome#enable-chrome-by-default). For when Claude Code asks you before a browser action, see [Permission prompts in VS Code sessions](https://code.claude.com/docs/en/chrome#permission-prompts-in-vs-code-sessions).
 
 For setup instructions, the full list of capabilities, and troubleshooting, see [Use Claude Code with Chrome](https://code.claude.com/docs/en/chrome).
 
