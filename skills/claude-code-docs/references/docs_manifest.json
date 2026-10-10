@@ -769,8 +769,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "612a64c0623fdbe37c4c9c7de771f83392f1231888720a99b323ffdb1bdf3bf1",
-      "last_updated": "2026-10-09T21:32:41+00:00",
+      "hash": "2ea8ae4b7db438a25220afb3a5116e1b46790df5b303e36ec21167f9b2fe3179",
+      "last_updated": "2026-10-10T03:42:12+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -2016,7 +2016,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-10T01:13:13+00:00",
+  "last_updated": "2026-10-10T03:43:03+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
