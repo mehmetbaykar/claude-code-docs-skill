@@ -310,8 +310,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "f38878527f879b5a467221052abf299913977ec674c3a7431afd1e5d63f4caa9",
-      "last_updated": "2026-10-10T18:37:47+00:00",
+      "hash": "0b04f816e2f3f396f2d46058cf79210120ecdb213cde1980c4ec6ca2d05ed3c2",
+      "last_updated": "2026-10-11T18:38:58+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/typescript.md",
@@ -1984,8 +1984,8 @@
       "title": "Week 37 \u00b7 September 7\u201311, 2026"
     },
     "workflows.md": {
-      "hash": "ea759b7a4c445381a80d56d19957492096bc024e5a97a5e687e54551ef1a344a",
-      "last_updated": "2026-10-10T18:38:48+00:00",
+      "hash": "84f8a905ad0b1e847839772ca9c7ebc8d7815f53879781c383a4384a98be5df8",
+      "last_updated": "2026-10-11T18:40:07+00:00",
       "original_url": "https://code.claude.com/docs/en/workflows",
       "path": "/docs/en/workflows",
       "source_url": "https://code.claude.com/docs/en/workflows.md",
@@ -2025,7 +2025,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-11T03:45:54+00:00",
+  "last_updated": "2026-10-11T18:40:08+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
