@@ -337,8 +337,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "54b6a33d78ca9a2e8d5a4740121d49205afb6d77489591828e9c3ece285237da",
-      "last_updated": "2026-10-10T21:31:56+00:00",
+      "hash": "d364d57a407441f959cd7a3d32f6a59640ec27f2aafaee44ead860c383afb633",
+      "last_updated": "2026-10-11T03:44:52+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "source_url": "https://code.claude.com/docs/en/agent-view.md",
@@ -661,8 +661,8 @@
       "title": "Run Claude Code behind a corporate launcher"
     },
     "costs.md": {
-      "hash": "b4e564e052e0646ede370bb1e7cbf7d357cbbfd3a92f59beb863ef4843959343",
-      "last_updated": "2026-10-07T18:41:21+00:00",
+      "hash": "97bf73a946eae01ca6068662cef96b2aa04235f0a5434101301fac0cb599605e",
+      "last_updated": "2026-10-11T03:45:04+00:00",
       "original_url": "https://code.claude.com/docs/en/costs",
       "path": "/docs/en/costs",
       "source_url": "https://code.claude.com/docs/en/costs.md",
@@ -688,8 +688,8 @@
       "title": "Data usage"
     },
     "debug-your-config.md": {
-      "hash": "97deac20d536712b78b37079ee499799ad52b0a3cc497841ba661ce3e8f1e043",
-      "last_updated": "2026-10-08T21:33:39+00:00",
+      "hash": "b4dd868b437626448f688ad8fb8c8b844f3f259abcf59a1ce5c186940f349ad9",
+      "last_updated": "2026-10-11T03:45:05+00:00",
       "original_url": "https://code.claude.com/docs/en/debug-your-config",
       "path": "/docs/en/debug-your-config",
       "source_url": "https://code.claude.com/docs/en/debug-your-config.md",
@@ -769,8 +769,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "40c4de9999ff50ca4680f7c162dc21696802fd746b9f896a078d30f5c59c4821",
-      "last_updated": "2026-10-10T18:38:05+00:00",
+      "hash": "87e69b1762195b700c4d38116004c07a1ad2be5771f157c2c137eea8ea896c3d",
+      "last_updated": "2026-10-11T03:45:08+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -1660,8 +1660,8 @@
       "title": "Claude Code in Slack"
     },
     "statusline.md": {
-      "hash": "98ebe05395e1df3c098df0e49363f33d88acca3773496eca6d78904dfd01f8ca",
-      "last_updated": "2026-10-08T03:43:44+00:00",
+      "hash": "0336316bc003df4b0be1dd3cc3f363d2807e9657f6cb980430052fd832b8f046",
+      "last_updated": "2026-10-11T03:45:42+00:00",
       "original_url": "https://code.claude.com/docs/en/statusline",
       "path": "/docs/en/statusline",
       "source_url": "https://code.claude.com/docs/en/statusline.md",
@@ -2025,7 +2025,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-10T21:33:00+00:00",
+  "last_updated": "2026-10-11T03:45:54+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
