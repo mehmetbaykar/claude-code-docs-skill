@@ -310,8 +310,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "0b04f816e2f3f396f2d46058cf79210120ecdb213cde1980c4ec6ca2d05ed3c2",
-      "last_updated": "2026-10-11T18:38:58+00:00",
+      "hash": "746109123c07932f6f3b7dab8e854294d34f36d2f4f90357f3b7ea25bd1740b7",
+      "last_updated": "2026-10-12T01:20:07+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/typescript.md",
@@ -382,8 +382,8 @@
       "title": "Share session output as artifacts"
     },
     "authentication.md": {
-      "hash": "e0f846122e4f184c9da4eff495e71376b9cee128984f17478a20ef3bb6fcbdbe",
-      "last_updated": "2026-10-10T18:37:50+00:00",
+      "hash": "82671f61e00f212914507d5901e10a16849005c5d5aa54753b83734cb2333517",
+      "last_updated": "2026-10-12T01:20:10+00:00",
       "original_url": "https://code.claude.com/docs/en/authentication",
       "path": "/docs/en/authentication",
       "source_url": "https://code.claude.com/docs/en/authentication.md",
@@ -778,8 +778,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "e654623544c425299d7ae5a03f6dccfd9636bd85a77da2cb42cf3bde285c295b",
-      "last_updated": "2026-10-11T21:32:36+00:00",
+      "hash": "109a8ca25b5a505121c69f6bfbe9c7dccfa44fa0eb362eba2ade91e040f06042",
+      "last_updated": "2026-10-12T01:20:24+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -2025,7 +2025,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-11T21:33:23+00:00",
+  "last_updated": "2026-10-12T01:21:05+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
