@@ -724,8 +724,8 @@
       "title": "Claude Desktop on Linux (beta)"
     },
     "desktop-quickstart.md": {
-      "hash": "88e0d1a08a228ee4e428f2dedbefdca9efc098262f5800bf439254ad5d212257",
-      "last_updated": "2026-10-06T01:09:33+00:00",
+      "hash": "6300f0c8537f0c09fc0326317044e8fea8897f0d1b2aeacc8296b2a9f696b2d8",
+      "last_updated": "2026-10-13T21:30:09+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop-quickstart",
       "path": "/docs/en/desktop-quickstart",
       "source_url": "https://code.claude.com/docs/en/desktop-quickstart.md",
@@ -751,8 +751,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "c17df091e32533ccd4246a0a3352e2cf33fe054d6779af9b986d6ef6cee90350",
-      "last_updated": "2026-10-11T21:32:34+00:00",
+      "hash": "08ecb6bb871ad8a594f17836dc29a0091bfc8a0bdaf8f1a6dc6045dfcf663e18",
+      "last_updated": "2026-10-13T21:30:08+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -1462,8 +1462,8 @@
       "title": "Quickstart"
     },
     "remote-control.md": {
-      "hash": "1aa9a2b445a82f5bb8ccca75e48a7f2ae55810131fcb859439000393b40959c6",
-      "last_updated": "2026-10-11T21:33:02+00:00",
+      "hash": "6136b307a8fa00e7f5b80894adb2e08632dbdd78c4f1308d0f422a13a51c47d2",
+      "last_updated": "2026-10-13T21:30:40+00:00",
       "original_url": "https://code.claude.com/docs/en/remote-control",
       "path": "/docs/en/remote-control",
       "source_url": "https://code.claude.com/docs/en/remote-control.md",
@@ -2025,7 +2025,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-13T06:58:06+00:00",
+  "last_updated": "2026-10-13T21:31:03+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
