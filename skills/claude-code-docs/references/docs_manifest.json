@@ -184,8 +184,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "56a8cd71f8f688cbeba6c8cd0facc6fa41a5c5054ad9f67668303c37820a76c1",
-      "last_updated": "2026-10-10T18:37:43+00:00",
+      "hash": "a5228d710774e20d88d0d0e8e3515244c9f22d2e7d02c931f9958c2cf3b3bf10",
+      "last_updated": "2026-10-13T06:56:47+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -274,8 +274,8 @@
       "title": "Subagents in the SDK"
     },
     "agent-sdk__todo-tracking.md": {
-      "hash": "8c205d3f6155fd880dda5a106003598d2919bbd6a375f4533a833b210e44f80d",
-      "last_updated": "2026-09-10T23:14:41+00:00",
+      "hash": "7ad52f9c39d9eb5a7460d16f1ebf0a20fa359a2f69bde7635942bdc2171ac42e",
+      "last_updated": "2026-10-13T06:56:50+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/todo-tracking",
       "path": "/docs/en/agent-sdk/todo-tracking",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/todo-tracking.md",
@@ -310,8 +310,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "746109123c07932f6f3b7dab8e854294d34f36d2f4f90357f3b7ea25bd1740b7",
-      "last_updated": "2026-10-12T01:20:07+00:00",
+      "hash": "66b61e4112e4287a8a98927db596d8fe501ac150a09236ee0f23ccd1664419ab",
+      "last_updated": "2026-10-13T06:56:52+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/typescript.md",
@@ -769,8 +769,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "87e69b1762195b700c4d38116004c07a1ad2be5771f157c2c137eea8ea896c3d",
-      "last_updated": "2026-10-11T03:45:08+00:00",
+      "hash": "622a237bd454fd6c410f0d14fdff48e901c79f0fd0db246ba82fff8d9a406b85",
+      "last_updated": "2026-10-13T06:57:13+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -796,8 +796,8 @@
       "title": "Speed up responses with fast mode"
     },
     "feature-availability.md": {
-      "hash": "b9299a0ed4f21ca6aee4bdf0427589f3b089b8855988b13f5a33da87ed1bff84",
-      "last_updated": "2026-10-08T18:41:24+00:00",
+      "hash": "407973eac25b1bdd427ca0b53c6188e254ecf2d857b61e2b3d1996a6f715d26d",
+      "last_updated": "2026-10-13T06:57:15+00:00",
       "original_url": "https://code.claude.com/docs/en/feature-availability",
       "path": "/docs/en/feature-availability",
       "source_url": "https://code.claude.com/docs/en/feature-availability.md",
@@ -886,8 +886,8 @@
       "title": "Keep Claude working toward a goal"
     },
     "google-vertex-ai.md": {
-      "hash": "3a2025631349c5d159b3a5101b7366608c4db1053a69677c32e46c4675977f81",
-      "last_updated": "2026-10-08T18:41:30+00:00",
+      "hash": "d8bf701cb98689c8e8059504797f071ba7dacc0d0c4fef74292d6ec09217370e",
+      "last_updated": "2026-10-13T06:57:18+00:00",
       "original_url": "https://code.claude.com/docs/en/google-vertex-ai",
       "path": "/docs/en/google-vertex-ai",
       "source_url": "https://code.claude.com/docs/en/google-vertex-ai.md",
@@ -940,8 +940,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "fda1fba46a561ef416078b8126f632df12e042459f94fe56b5c75cf2e0c93fc5",
-      "last_updated": "2026-10-10T18:38:11+00:00",
+      "hash": "303d507be7ec4f8f7976ec2c1a8b48995ae61a70343ce3146b743b7c6b2b6c19",
+      "last_updated": "2026-10-13T06:57:21+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -985,8 +985,8 @@
       "title": "Legal and compliance"
     },
     "llm-gateway-connect.md": {
-      "hash": "aa702a8dcea86563ebdcded9f003c32ffcef91281b40e5e4408766f1e4bcbec5",
-      "last_updated": "2026-10-10T18:38:13+00:00",
+      "hash": "0de27e479e348a2bceff127fa838ecd164eeb16b9f4a7adeb80cd45b13f31f9b",
+      "last_updated": "2026-10-13T06:57:23+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-connect",
       "path": "/docs/en/llm-gateway-connect",
       "source_url": "https://code.claude.com/docs/en/llm-gateway-connect.md",
@@ -994,8 +994,8 @@
       "title": "Connect Claude Code to an LLM gateway"
     },
     "llm-gateway-protocol.md": {
-      "hash": "96747cb4c2eb81e5636664ab0f839f8af6fc1e091004e4710ca4b7697dc89b7a",
-      "last_updated": "2026-10-08T03:43:18+00:00",
+      "hash": "96f5f4db960f46c8252ae9d8333a5f5cd4c1206d7a35536679bc679124e9cb32",
+      "last_updated": "2026-10-13T06:57:23+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-protocol",
       "path": "/docs/en/llm-gateway-protocol",
       "source_url": "https://code.claude.com/docs/en/llm-gateway-protocol.md",
@@ -1048,8 +1048,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "8a1f8b9ab723abb9732b20a57d00596b762f2e4c3402fbcd1351a166873e8c4a",
-      "last_updated": "2026-10-10T18:38:14+00:00",
+      "hash": "71ae52e5eb43787d1d263e42b8dc2380f1a7ad0079cfc79cf716a6f84138c997",
+      "last_updated": "2026-10-13T06:57:25+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -1435,8 +1435,8 @@
       "title": "Troubleshoot plugins"
     },
     "prompt-caching.md": {
-      "hash": "2e01edab20a9245648d8b0aba15f142da3d6390ff2dc8c473708db41b8b2a332",
-      "last_updated": "2026-10-08T18:41:59+00:00",
+      "hash": "ffc9046fb846fac073d44e185e61479535982263d5f7132861a043909a37dd53",
+      "last_updated": "2026-10-13T06:57:42+00:00",
       "original_url": "https://code.claude.com/docs/en/prompt-caching",
       "path": "/docs/en/prompt-caching",
       "source_url": "https://code.claude.com/docs/en/prompt-caching.md",
@@ -1696,8 +1696,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "cf21aa4c1cab9022a47c7ed1b0b0d633eab7d32ac893e126622ed193105dd712",
-      "last_updated": "2026-10-10T18:38:38+00:00",
+      "hash": "51bcedbb57fc56d8bac4ea539ba0e781124a9f05013c34df6b85d94104a002c5",
+      "last_updated": "2026-10-13T06:57:53+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "source_url": "https://code.claude.com/docs/en/tools-reference.md",
@@ -2025,7 +2025,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-12T01:21:05+00:00",
+  "last_updated": "2026-10-13T06:58:06+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
