@@ -427,8 +427,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "39a2d813295daecdb1e81c5fb6935909ec7de202a2f210a54396a35987c16bcc",
-      "last_updated": "2026-10-14T03:37:16+00:00",
+      "hash": "bd3991b3302f307d45fea758e73c212cdcc1b2a4bb36e254817908bf06af0d17",
+      "last_updated": "2026-10-14T21:31:10+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -526,8 +526,8 @@
       "title": "Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry"
     },
     "claude-code-on-the-web.md": {
-      "hash": "84c8b8e4650803f8f5dc55d881ea37a8769cc904295c935b5863b9cb510f20c1",
-      "last_updated": "2026-10-14T03:37:19+00:00",
+      "hash": "faf523b57868f16b22e172c761761c83420ee9b1d089ee506f9b52f9d5c18edb",
+      "last_updated": "2026-10-14T21:31:14+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-code-on-the-web",
       "path": "/docs/en/claude-code-on-the-web",
       "source_url": "https://code.claude.com/docs/en/claude-code-on-the-web.md",
@@ -553,8 +553,8 @@
       "title": "Claude Code on Claude Platform on AWS"
     },
     "claude-projects.md": {
-      "hash": "c3f22ef227b15cdf923fdc4d9c39e66628221e03299b37fb40f75d789e75c319",
-      "last_updated": "2026-10-10T01:12:10+00:00",
+      "hash": "4195a951bcff061ba4d381e2932c543c1de1ca102ef56075325672fdd4393fef",
+      "last_updated": "2026-10-14T21:31:15+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-projects",
       "path": "/docs/en/claude-projects",
       "source_url": "https://code.claude.com/docs/en/claude-projects.md",
@@ -589,8 +589,8 @@
       "title": "CLI reference"
     },
     "cloud-environments.md": {
-      "hash": "4456130617d01cd08b5f1830126da644a71c46874de92f7c64641798da845a4e",
-      "last_updated": "2026-10-14T01:01:44+00:00",
+      "hash": "81ebecb1fc0d82dc62d0392870d4a9f7ecc5efde16c4b45c6b4d4354a900c293",
+      "last_updated": "2026-10-14T21:31:17+00:00",
       "original_url": "https://code.claude.com/docs/en/cloud-environments",
       "path": "/docs/en/cloud-environments",
       "source_url": "https://code.claude.com/docs/en/cloud-environments.md",
@@ -751,8 +751,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "a443e2ca8b5c70012abd3a56f58c4c5433f9eac05b17d547a15cfe0a44a8c8be",
-      "last_updated": "2026-10-14T03:37:26+00:00",
+      "hash": "17e5f7362adbc1d2df2f0ee052314fdd38b29c3e8d6536acd66f1ad696f5582e",
+      "last_updated": "2026-10-14T21:31:21+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -778,8 +778,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "99dfb2e98267fde3b523fc3d743c5afd3030d8b9f5fcd93a7ec66bcd3b0e7328",
-      "last_updated": "2026-10-14T18:40:00+00:00",
+      "hash": "70dc8babeef3c96ed1e161d8ba7aa9992b5bc60e4484f042897996ca17823b55",
+      "last_updated": "2026-10-14T21:31:24+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -1471,8 +1471,8 @@
       "title": "Continue local sessions from any device with Remote Control"
     },
     "routines.md": {
-      "hash": "1d2d3433f6bba441e0318352f420b5aeea2d8b012b916e3013e4832726d03867",
-      "last_updated": "2026-10-14T03:37:55+00:00",
+      "hash": "bdb4b7ba60bf67ae38c86166322d00b8e0217f227b85278a6d34dff2f5443483",
+      "last_updated": "2026-10-14T21:31:52+00:00",
       "original_url": "https://code.claude.com/docs/en/routines",
       "path": "/docs/en/routines",
       "source_url": "https://code.claude.com/docs/en/routines.md",
@@ -2025,7 +2025,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-14T18:40:59+00:00",
+  "last_updated": "2026-10-14T21:32:13+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
