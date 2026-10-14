@@ -589,8 +589,8 @@
       "title": "CLI reference"
     },
     "cloud-environments.md": {
-      "hash": "de784ce601410ce3e2dd7bfca722c4c4537684e6c907fef8118e5fd19788db90",
-      "last_updated": "2026-10-10T01:12:12+00:00",
+      "hash": "4456130617d01cd08b5f1830126da644a71c46874de92f7c64641798da845a4e",
+      "last_updated": "2026-10-14T01:01:44+00:00",
       "original_url": "https://code.claude.com/docs/en/cloud-environments",
       "path": "/docs/en/cloud-environments",
       "source_url": "https://code.claude.com/docs/en/cloud-environments.md",
@@ -598,8 +598,8 @@
       "title": "Configure cloud environments"
     },
     "code-review.md": {
-      "hash": "008b93718fb8686c4488aee81d9b7cfa3de2cfb7d6ff229f0c836afa8ebcb4a7",
-      "last_updated": "2026-10-10T18:37:58+00:00",
+      "hash": "c485423d120951c661f14ac4acdf1f334b6b037b2c88370aaf66c786068f63c4",
+      "last_updated": "2026-10-14T01:01:45+00:00",
       "original_url": "https://code.claude.com/docs/en/code-review",
       "path": "/docs/en/code-review",
       "source_url": "https://code.claude.com/docs/en/code-review.md",
@@ -643,8 +643,8 @@
       "title": "Let Claude use your computer from the CLI"
     },
     "context-window.md": {
-      "hash": "8054448edb3f3b77877758685dc309f7b56b6e530e4870d50510454dc59bc785",
-      "last_updated": "2026-10-08T21:33:37+00:00",
+      "hash": "b3c71826eb8d201ccc2dd37057bfd4c0c0734fc0ec76ae2da2eb51409be8dfbf",
+      "last_updated": "2026-10-14T01:01:46+00:00",
       "original_url": "https://code.claude.com/docs/en/context-window",
       "path": "/docs/en/context-window",
       "source_url": "https://code.claude.com/docs/en/context-window.md",
@@ -769,8 +769,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "622a237bd454fd6c410f0d14fdff48e901c79f0fd0db246ba82fff8d9a406b85",
-      "last_updated": "2026-10-13T06:57:13+00:00",
+      "hash": "76a45b93214f4a2f88fe190c26b703ab664f225225d5ddc324c4a2758a96bb46",
+      "last_updated": "2026-10-14T01:01:51+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -1084,8 +1084,8 @@
       "title": "Claude Code on mobile"
     },
     "model-config.md": {
-      "hash": "282e575df5e6a7e7a3756ac1d6ed02a1aac958bde6ba2ca0a202894b35c0f744",
-      "last_updated": "2026-10-08T21:33:56+00:00",
+      "hash": "d4a71ecf7bc47d7cbafdc65e9fee73d70b7e31effd283c6562b4b4f474a05b1c",
+      "last_updated": "2026-10-14T01:02:04+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -1093,8 +1093,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "21e7a4a1ba1a3349ce1c97466dbc6c8d8e21afcde48cfe0cc74f78a868622884",
-      "last_updated": "2026-10-10T18:38:16+00:00",
+      "hash": "660a27303920c3218cb496c203c99647465cc70aef70e03599275f218c716ea1",
+      "last_updated": "2026-10-14T01:02:04+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -1471,8 +1471,8 @@
       "title": "Continue local sessions from any device with Remote Control"
     },
     "routines.md": {
-      "hash": "928d32ae2a75ca487470db5a34cb2fb882d7d8d528ca436e1b08a38200284d93",
-      "last_updated": "2026-10-10T18:38:30+00:00",
+      "hash": "2a93440e0f02a685072053e436467708596b3ee302cfbc332ba238a8ad2b56c8",
+      "last_updated": "2026-10-14T01:02:20+00:00",
       "original_url": "https://code.claude.com/docs/en/routines",
       "path": "/docs/en/routines",
       "source_url": "https://code.claude.com/docs/en/routines.md",
@@ -1615,8 +1615,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "b2259c1b2b68d57abac9bfd5c0c8c4836578046a1d8f8fdfb46914b0c0b1eec0",
-      "last_updated": "2026-10-11T21:33:09+00:00",
+      "hash": "e36d63abaa8a228c6661c0c4a577a5df8617643a556344a14a08b8ab113535b4",
+      "last_updated": "2026-10-14T01:02:26+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "source_url": "https://code.claude.com/docs/en/settings-reference.md",
@@ -1669,8 +1669,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "0ee5714fa1c1dde207676de0266639b8fd842bc2dafecfa9448d7c42bb85065f",
-      "last_updated": "2026-10-10T18:38:37+00:00",
+      "hash": "1a35e991945b80b3f3ed2f93660d52731c96e81a0bbb4eff03290d217cc547c6",
+      "last_updated": "2026-10-14T01:02:28+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "source_url": "https://code.claude.com/docs/en/sub-agents.md",
@@ -2025,7 +2025,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-13T21:31:03+00:00",
+  "last_updated": "2026-10-14T01:02:41+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
