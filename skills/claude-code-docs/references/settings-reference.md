@@ -767,7 +767,7 @@ Start sessions with [ultracode](https://code.claude.com/docs/en/workflows#let-cl
 * `true`: sessions start with ultracode on when dynamic workflows are enabled for you and your model supports `xhigh`
 * `false`: sessions start with ultracode off
 * **Default**: unset, so ultracode is off
-* **Per-session overrides**: `/effort ultracode` turns ultracode on for one session without this key, and `/effort ultracode off` turns it off for one session when this key is `true`. The `--effort ultracode` flag also turns it on for one session, at `xhigh` effort, and requires Claude Code v2.1.203 or later
+* **Per-session overrides**: `/effort ultracode` turns ultracode on for one session without this key, and `/effort ultracode off` turns it off for one session when this key is `true`. The `--effort ultracode` flag also turns it on for one session, at `xhigh` effort
 ```json settings.json
 {
   "ultracode": true
@@ -2237,6 +2237,7 @@ Ignoring this group in project and local settings requires Claude Code v2.1.282 
 * Variables that change how Claude Code starts or syncs, such as `CLAUDE_CODE_PROCESS_WRAPPER`, `CLAUDE_CODE_SYNC_SKILLS`, `CLAUDE_CODE_SYNC_PLUGINS`, `CLAUDE_CODE_PLUGIN_CACHE_DIR`, and `CLAUDE_CODE_PLUGIN_SEED_DIR`.
 * Variables that set the timers on an unanswered dialog: [`CLAUDE_CODE_USER_DIALOG_TIMEOUT_MS`, `CLAUDE_AFK_TIMEOUT_MS`, and `CLAUDE_AFK_COUNTDOWN_MS`](https://code.claude.com/docs/en/env-vars#variables).
 * [`CLAUDE_CODE_DISABLE_ATTACHMENTS`](https://code.claude.com/docs/en/env-vars#variables), which turns off attachment processing.
+* [`CLAUDE_CODE_DISABLE_FILE_MENTIONS`](https://code.claude.com/docs/en/env-vars#variables), which stops Claude Code from expanding `@` mentions of files and directories.
 
 Before v2.1.251, project and local settings could also set the variables in this list that choose where Claude Code writes its files or that export session content, except `HOME` and `XDG_CONFIG_HOME`. Before v2.1.290, they could also set the dialog timer variables and `CLAUDE_CODE_DISABLE_ATTACHMENTS`.
 * Identity variables that Claude Code's hosting environments own, such as `CLAUDE_CODE_REMOTE` and `CLAUDE_CODE_ACCOUNT_UUID`, are ignored from every file.
@@ -4019,7 +4020,7 @@ This example stores the `api_endpoint` option for the `deployer` plugin from `ac
 
 Built-in plugins store their options under the same key with an `@builtin` suffix. For example, the [**Project instructions**](https://code.claude.com/docs/en/memory#choose-which-instruction-files-load) setting that controls whether Claude Code reads `AGENTS.md` files is `pluginConfigs["cc-plugin-agents-md@builtin"].options.instructionFiles`. Before v2.1.285, the plugin's ID was `agents-md@builtin`. Later versions read an entry under either ID.
 
-Claude Code ignores project and local entries because it substitutes these values into plugin hook, MCP, and LSP configurations, and a cloned repository must not be able to supply them. Before v2.1.207, project and local settings were also read.
+Claude Code ignores project and local entries because it substitutes these values into plugin hook, MCP, and LSP configurations, and a cloned repository must not be able to supply them.
 
 ### `prependPlugins`
 
@@ -4449,7 +4450,7 @@ Choose how [background sessions](https://code.claude.com/docs/en/agent-view#how-
 }
 ```
 
-Outside a git repository, a [`WorktreeCreate` hook](https://code.claude.com/docs/en/worktrees#non-git-version-control) that fails releases the block so the session can edit the working directory in place; that release requires Claude Code v2.1.203 or later.
+Outside a git repository, a [`WorktreeCreate` hook](https://code.claude.com/docs/en/worktrees#non-git-version-control) that fails releases the block so the session can edit the working directory in place.
 
 ### `worktree.location`
 
