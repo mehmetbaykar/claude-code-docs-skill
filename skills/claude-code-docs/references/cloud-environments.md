@@ -10,7 +10,7 @@ path: /docs/en/cloud-environments
 
 Cloud environments apply to [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web), which are available on Pro, Max, and Team plans, and for Enterprise users with [premium seats or Chat + Claude Code seats](https://support.claude.com/en/articles/11845131-use-claude-code-with-your-team-or-enterprise-plan).
 
-Each [cloud session](https://code.claude.com/docs/en/claude-code-on-the-web) runs in a cloud environment. You can configure an environment to allow or deny [network access](#access-levels), [set environment variables](#set-environment-variables) for the session, on Pro and Max plans store [network secrets](#add-network-secrets) that sessions use without seeing them, and run a [setup script](#setup-scripts) before Claude starts working.
+Each [cloud session](https://code.claude.com/docs/en/claude-code-on-the-web) runs in a cloud environment. You can configure an environment to allow or deny [network access](#access-levels), [set environment variables](#set-environment-variables) for the session, store [network secrets](#add-network-secrets) that sessions use without seeing them, and run a [setup script](#setup-scripts) before Claude starts working.
 
 The same environments apply wherever you start a cloud session: the [Desktop app](https://code.claude.com/docs/en/desktop), the [Claude mobile app](https://code.claude.com/docs/en/mobile), your browser at [claude.ai/code](https://claude.ai/code), the terminal with [`claude --cloud`](https://code.claude.com/docs/en/claude-code-on-the-web#from-terminal-to-cloud), [routines](https://code.claude.com/docs/en/routines), and [Claude Tag](https://claude.com/docs/claude-tag/overview). Each of these surfaces can also route to a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments). [Availability and limitations](https://code.claude.com/docs/en/self-hosted-environments#availability-and-limitations) covers what Claude can't use yet when a Claude Tag session runs in one.
 
@@ -57,7 +57,7 @@ On [claude.ai/code](https://claude.ai/code), select the cloud icon showing the c
 
 Select **Cloud** to list your environments. Then select **Add cloud environment**, or hover over an existing environment and select the settings icon that appears on the right.
 
-The dialog includes the name, network access level, environment variables, and setup script. When you edit an existing cloud environment on a Pro or Max plan, the dialog also includes [network secrets](#add-network-secrets).
+The dialog includes the name, network access level, environment variables, and setup script. To store a key that sessions use without seeing it, see [Add network secrets](#add-network-secrets).
 
 
 
@@ -88,7 +88,7 @@ After you edit, add, or remove a variable, an existing session in an Anthropic-h
 
 A cloud session also sets some variables itself when it starts. For [`CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`](https://code.claude.com/docs/en/claude-code-on-the-web#manage-context), the value the session sets overrides one you add here, so adding that key here has no effect.
 
-Anyone who uses the environment can read the values. On Pro and Max plans, use a [network secret](#add-network-secrets) instead for a key the agent proxy can attach to a request. The [requests that never get a secret](#requests-that-never-get-the-credential) are listed there.
+Anyone who uses the environment can read the values. In an Anthropic-hosted environment, use a [network secret](#add-network-secrets) instead for a key the agent proxy can attach to a request. The [requests that never get a secret](#requests-that-never-get-the-credential) are listed there.
 
 <h3 id="add-network-secrets">
 Add network secrets
@@ -96,15 +96,16 @@ Add network secrets
 
 A network secret is an API key or token you store on a cloud environment so Claude can call that API from any session in the environment without seeing the key. Anthropic's agent proxy adds the key to requests for the hosts you list, after each request leaves the session's VM, so the key itself stays outside the VM.
 
-Network secrets are available on Pro and Max plans. They aren't available on Team or Enterprise plans yet, so the **Network secrets** section doesn't appear in the environment dialog on those plans.
+Network secrets are available on Pro, Max, Team, and Enterprise plans. To check whether you can add one yourself, see [Requirements](#requirements).
 
 #### Requirements
 
 These requirements decide whether you can add a secret and whether the agent proxy can use it once added:
 
-* **Role**: an organization admin role in your claude.ai organization
-* On Team and Enterprise, Owners hold it and Admins don't
-* On Pro and Max, you hold it in your own organization
+* **Role**: on Pro, Max, and Team plans, you can add and delete secrets on your own environments whatever your role. On Team and Enterprise, Owners hold an organization admin role in your claude.ai organization and Admins don't, which changes what you see in these cases:
+* **Your own environment on Enterprise**: with an organization admin role, you add and delete secrets. Without it, the **Network secrets** section lists the secrets under the note "Only an organization admin can add or delete network secrets", with no **Add secret** or delete button. Ask an Owner to add the secret to a [shared environment](#organization-shared-environments), then run your sessions there
+* **A shared environment**: Owners [add and delete its secrets](#add-a-credential) from admin settings. Without an organization admin role, ask an Owner to add the secret, because the environment's dialog has no **Network secrets** section
+* **Your own environment on Team**: without an organization admin role, **Add secret** opens a [shorter form](#add-a-secret-without-the-role) that takes one host
 * **Environment type**: an Anthropic-hosted cloud environment that already exists. A [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments) doesn't have network secrets
 * **API reachability**: the API accepts connections from the internet, because requests leave from Anthropic's network
 * **Encryption keys**: if your organization uses customer-managed encryption keys, you can't save network secrets
@@ -115,31 +116,43 @@ Add a secret
 
 You add secrets one at a time, and you can't edit a secret after you add it. To change a secret's hosts or value, delete it and add it again.
 
+To add a secret to a [shared environment](#organization-shared-environments), open it for editing from the **Cloud environments** page in [admin settings](https://claude.ai/admin-settings), then continue step 1 from the **Network secrets** section. If you're on a Team plan and don't hold an [organization admin role](#requirements), follow step 1 on your own environment, then [fill in the shorter form](#add-a-secret-without-the-role).
+
 
 **Open the environment's network secrets**
 
-[Open the environment for editing](#configure-your-environment) at [claude.ai/code](https://claude.ai/code). In the **Edit environment** dialog, find the **Network secrets** section. You see the secrets already on the environment, each with the hosts it applies to.
+[Open the environment for editing](#configure-your-environment) at [claude.ai/code](https://claude.ai/code). In the **Edit cloud environment** dialog, find the **Network secrets** section. You see the secrets already on the environment, each with the hosts it applies to.
 
 
 
 **Add the secret**
 
-Select **Add secret** and fill in the form. Keep the default **Credential type**, **Bearer**, for an API key that travels in a request header, and fill in these fields:
+Select **Add secret** and fill in the form. Keep the default **Secret type**, **Bearer**, for an API key that travels in a request header, and fill in these fields:
 
 * **Name**: a label for the secret, such as `Internal billing API`
 * **Allowed websites**: the API's hosts, such as `api.example.com`. A leading `*.` matches every subdomain
 * **Custom headers**: one row for the header that carries the key. The row starts with `Authorization` as the header's **Name** and `Bearer` as its **Prefix**; paste the key itself as the **Value**. For a header like `X-Api-Key` that takes the bare value, change the name and clear the prefix
 
-For an API that authenticates another way, pick a different **Credential type**. The list is the same one [Claude Tag](https://claude.com/docs/claude-tag/overview), the Slack integration for Team and Enterprise plans, offers for [connections](https://claude.com/docs/claude-tag/admins/add-connections).
+For an API that authenticates another way, pick a different **Secret type**. The list is the same one [Claude Tag](https://claude.com/docs/claude-tag/overview), the Slack integration for Team and Enterprise plans, offers for [connections](https://claude.com/docs/claude-tag/admins/add-connections).
 
 
 
 **Save the secret**
 
-Select **Connect**. The secret appears in the list with its hosts, saved without the dialog's **Save changes** button. You can't view the value again after saving.
+Select **Add**. The secret appears in the list with its hosts, saved without the dialog's **Save changes** button. You can't view the value again after saving.
 
 
 To confirm the secret works, start a session in the environment and ask Claude to call the API, for example with `curl`. The API answers as if the key were in the request, and the key doesn't appear in the session's environment variables or in any file. If the list marks a secret **Not sent** instead, the note under it says why and what to do. Two secrets whose hosts overlap without matching exactly get no marker, and the agent proxy sends only one of them.
+
+<h4 id="add-a-secret-without-the-role">
+Add a secret on a Team plan without an organization admin role
+</h4>
+
+If you're on a Team plan and don't hold an [organization admin role](#requirements), the **Add secret** form takes one secret for one host. Select **Add secret** in your environment's [**Network secrets** section](#add-a-credential), fill in these fields, then select the form's **Add secret** button:
+
+* **Host**: the one host that gets the secret, such as `api.example.com`. The form doesn't accept a `*.` wildcard
+* **Name**: an optional label for the secret
+* **Secret type**: **Token** for a key that travels in a request header, or **Username and password**. For a token, paste the key as the **Value**
 
 <h4 id="which-requests-get-the-credential">
 Which requests get the secret
@@ -168,7 +181,7 @@ A [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environm
 
 ### Archive an environment
 
-To archive one of your own environments, open it for editing and select **Archive**. An Owner archives a [shared environment](#organization-shared-environments) from the **Cloud environments** page in admin settings. You can't delete an environment, only archive it.
+To archive one of your own environments, open it for editing, select **Archive environment**, and confirm. If the environment is [shared with your organization](#organization-shared-environments), an Owner archives it from the **Cloud environments** page in [admin settings](https://claude.ai/admin-settings) instead, so ask an Owner unless you are one. You can't delete an environment, only archive it.
 
 Archiving affects new sessions, not running ones:
 
@@ -190,7 +203,7 @@ An Owner makes an environment available to the organization in one of two ways:
 
 Owners choose the organization's [default environment](#the-default-environment) separately, at [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code).
 
-Every member's sessions in a shared environment read its variables, so don't include secrets in them. [Network secrets](#add-network-secrets), which give sessions a key they can't read, aren't available on Team or Enterprise plans yet.
+To give a shared environment's sessions a key they can't read, add a [network secret](#add-network-secrets) when you edit the environment on the **Cloud environments** page. Don't include secrets in its variables, because every member's sessions read them.
 
 ### Set the environment a Claude Tag channel uses
 
@@ -288,12 +301,12 @@ Cloud sessions start from a fresh clone of your repository. Anything you commit 
 | Plugins enabled only in your user settings | No | User-scoped `enabledPlugins` lives in `~/.claude/settings.json` on your machine |
 | MCP servers you added with `claude mcp add` at the default local scope or the user scope | No | Those write to `~/.claude.json` on your machine, not the repo. Add the server with `claude mcp add --scope project`, which writes the repo's [`.mcp.json`](https://code.claude.com/docs/en/mcp#project-scope), and commit that file. A session with one repository loads it |
 | Transport variables in your repo's `.claude/settings.json` `env` block, such as `NODE_EXTRA_CA_CERTS` and the [mTLS client certificate variables](https://code.claude.com/docs/en/network-config#mtls-authentication) | No | The hosting environment manages the session's API connection, so Claude Code ignores these keys and notes each ignored key in the session's debug log |
-| API keys and tokens for services Claude calls | On Pro and Max plans, as [network secrets](#add-network-secrets) | You add the key once on the environment and the agent proxy attaches it to requests for the hosts you list. A key the agent proxy [can't attach](#requests-that-never-get-the-credential), or any key on a Team or Enterprise plan, stays in an environment variable |
+| API keys and tokens for services Claude calls | In an Anthropic-hosted environment, as [network secrets](#add-network-secrets) | You add the key once on the environment and the agent proxy attaches it to requests for the hosts you list. A key the agent proxy [can't attach](#requests-that-never-get-the-credential) stays in an environment variable |
 | Interactive auth like AWS SSO | No | Not supported. SSO requires browser-based login that can't run in a cloud session |
 
 To make your own configuration available in cloud sessions, commit it to the repo.
 
-Anyone who uses the environment can read its environment variables and setup script. The dialog's note under **Environment variables** says so and warns against putting secrets there. On Pro and Max plans, store a key the agent proxy can attach as a [network secret](#add-network-secrets) instead.
+Anyone who uses the environment can read its environment variables and setup script. The dialog's note under **Environment variables** says so and warns against putting secrets there. In an Anthropic-hosted environment, store a key the agent proxy can attach as a [network secret](#add-network-secrets) instead.
 
 #### Add personal preferences without committing to the repo
 
