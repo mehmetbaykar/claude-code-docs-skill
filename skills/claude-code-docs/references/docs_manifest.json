@@ -769,8 +769,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "5a7fded84da037bece9050444fa492130d85a832e5bf48ddec30bd1ce272e401",
-      "last_updated": "2026-10-14T03:37:29+00:00",
+      "hash": "b83216829a059a565025460d8b919c8edc1834b3e1f002a65a52c1275f70e6ea",
+      "last_updated": "2026-10-14T06:48:45+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -940,8 +940,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "303d507be7ec4f8f7976ec2c1a8b48995ae61a70343ce3146b743b7c6b2b6c19",
-      "last_updated": "2026-10-13T06:57:21+00:00",
+      "hash": "e4902c0a376689c1976c32b8e2d1c5ccf0f8f1371b8b6452c0081ece339addda",
+      "last_updated": "2026-10-14T06:48:53+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -1345,8 +1345,8 @@
       "title": "Draw in the interface with a mod"
     },
     "plugins__mods__overview.md": {
-      "hash": "e851b664c943efedbf5198ecbb8e2b705186b90824b347e1f69e2a7759af35ea",
-      "last_updated": "2026-10-08T21:34:07+00:00",
+      "hash": "099b5659efc213957437e228f34b14c4a6ca3183c42c0abf88406489d62e8ff1",
+      "last_updated": "2026-10-14T06:49:10+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/overview",
       "path": "/docs/en/plugins/mods/overview",
       "source_url": "https://code.claude.com/docs/en/plugins/mods/overview.md",
@@ -1390,8 +1390,8 @@
       "title": "Manage Claude Code plugins for your organization"
     },
     "plugins__overview.md": {
-      "hash": "aa64f9422104876087a5052700c99dc8bbe1b01db7a3f11746847ae76cff922b",
-      "last_updated": "2026-10-02T06:51:08+00:00",
+      "hash": "f316d611fc951ca01e8b0b55c9b82bf423a6ff9b38a5e8c06468db9cf305ff80",
+      "last_updated": "2026-10-14T06:49:12+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/overview",
       "path": "/docs/en/plugins/overview",
       "source_url": "https://code.claude.com/docs/en/plugins/overview.md",
@@ -2025,7 +2025,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-14T03:38:14+00:00",
+  "last_updated": "2026-10-14T06:49:38+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
