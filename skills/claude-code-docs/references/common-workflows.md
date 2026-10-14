@@ -390,6 +390,8 @@ Tips:
 * Directory references show file listings, not contents
 * You can reference multiple files in a single message (for example, "@file1.js and @file2.js")
 
+To stop `@` references from including file contents and directory listings in your message, set [`CLAUDE_CODE_DISABLE_FILE_MENTIONS=1`](https://code.claude.com/docs/en/env-vars#variables) in your shell or user settings. Claude then receives the paths you referenced with a note to read them using its file tools. The variable requires Claude Code v2.1.299 or later, and Claude Code ignores it in project and local settings.
+
 ***
 
 ### Run Claude on a schedule
