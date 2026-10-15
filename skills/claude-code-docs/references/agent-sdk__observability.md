@@ -19,6 +19,8 @@ The Agent SDK can export this data as OpenTelemetry traces, metrics, and log eve
 
 This guide explains how the SDK emits telemetry, how to configure the export, and how to tag and filter the data once it reaches your backend. To read token usage and cost directly from the SDK response stream instead of exporting to a backend, see [Track cost and usage](https://code.claude.com/docs/en/agent-sdk/cost-tracking).
 
+For the Claude API or Managed Agents, see [OpenTelemetry for the Claude API](https://platform.claude.com/docs/en/manage-claude/opentelemetry).
+
 ## How telemetry flows from the SDK
 
 The Agent SDK runs the Claude Code CLI as a child process and communicates with it over a local pipe. The CLI has OpenTelemetry instrumentation built in: it records spans around each model request and tool execution, emits metrics for token and cost counters, and emits structured log events for prompts and tool results. The SDK does not produce telemetry of its own. Instead, it passes configuration through to the CLI process, and the CLI exports directly to your collector.

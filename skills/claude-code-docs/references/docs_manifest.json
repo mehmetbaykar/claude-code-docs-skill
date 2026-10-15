@@ -148,8 +148,8 @@
       "title": "Modifying system prompts"
     },
     "agent-sdk__observability.md": {
-      "hash": "1f8cf18cbae62abe5e0dae385cfc949fc0ccbcf8953caaef817113231082531e",
-      "last_updated": "2026-09-29T01:10:30+00:00",
+      "hash": "f1272eb8b49ef37bb25e3ebe77b32cff26ab6e5eefe8691a1218989751fea960",
+      "last_updated": "2026-10-15T03:37:12+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/observability",
       "path": "/docs/en/agent-sdk/observability",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/observability.md",
@@ -373,8 +373,8 @@
       "title": "Track team usage with analytics"
     },
     "artifacts.md": {
-      "hash": "3a566fc507ad941bc50ea14a2d0d92891e80eb236caa6c06e6883f1be9abb94e",
-      "last_updated": "2026-10-14T03:37:13+00:00",
+      "hash": "20409a75d7733fa97c6aaa530a1e368b4905776da7b69cbff0c95e0e5a5cbe4a",
+      "last_updated": "2026-10-15T03:37:19+00:00",
       "original_url": "https://code.claude.com/docs/en/artifacts",
       "path": "/docs/en/artifacts",
       "source_url": "https://code.claude.com/docs/en/artifacts.md",
@@ -769,8 +769,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "3440b558ef595618e4b313368a119a6bc0b66cff5fcea2b2b618972e19e349d2",
-      "last_updated": "2026-10-14T18:39:59+00:00",
+      "hash": "d1a4192a87da605da9a702cbda7b69db014e4e0d81a5b941b31d163a219686a6",
+      "last_updated": "2026-10-15T03:37:32+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -1093,8 +1093,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "6e71d1a6be9385c978d48f62e186c957ab3f8375d2d4327ecf6b185b046757ed",
-      "last_updated": "2026-10-14T03:37:41+00:00",
+      "hash": "8061892fc33c296e511ec15c0fc6e1ada8cd3de856f8137260a9d50c3d521fc0",
+      "last_updated": "2026-10-15T03:37:43+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -1741,8 +1741,8 @@
       "title": "Voice dictation"
     },
     "vs-code.md": {
-      "hash": "6b03a1913c54bf00e16dbeca232c87f6aaccf40d054a0970634e805e394f2bcb",
-      "last_updated": "2026-10-10T18:38:40+00:00",
+      "hash": "182aa1dbd1c2c132e4b0cb92af68301ea5ec4d55afc18c41488bc4d0a51ee784",
+      "last_updated": "2026-10-15T03:38:04+00:00",
       "original_url": "https://code.claude.com/docs/en/vs-code",
       "path": "/docs/en/vs-code",
       "source_url": "https://code.claude.com/docs/en/vs-code.md",
@@ -1984,8 +1984,8 @@
       "title": "Week 37 \u00b7 September 7\u201311, 2026"
     },
     "workflows.md": {
-      "hash": "7781aeb2aa047a6054a3ee439a314cdde780827c66b0956c79f17f0bd5e18a0e",
-      "last_updated": "2026-10-14T03:38:13+00:00",
+      "hash": "4edd5465a0404773346fa55937f8fe03f175314ce8a32e2d23d10baf0cb528de",
+      "last_updated": "2026-10-15T03:38:12+00:00",
       "original_url": "https://code.claude.com/docs/en/workflows",
       "path": "/docs/en/workflows",
       "source_url": "https://code.claude.com/docs/en/workflows.md",
@@ -2025,7 +2025,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-15T01:01:21+00:00",
+  "last_updated": "2026-10-15T03:38:13+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
