@@ -3189,6 +3189,11 @@ Set this key to `false` to leave both out, for example when you use your own git
 }
 ```
 
+If you replace the system prompt in [non-interactive mode](https://code.claude.com/docs/en/headless) or the Agent SDK, the session starts without the snapshot even when this key is `true`:
+
+* **`-p` runs**: you replace the prompt when you pass [`--system-prompt`](https://code.claude.com/docs/en/cli-reference#system-prompt-flags) or `--system-prompt-file`. You also replace it when you run a custom agent with its own prompt, selected with [`--agent`](https://code.claude.com/docs/en/sub-agents#invoke-subagents-explicitly) or the [`agent`](#agent) setting. Outside [bare mode](https://code.claude.com/docs/en/headless#start-faster-with-bare-mode), to keep the snapshot, run without a custom agent and add your instructions with [`--append-system-prompt`](https://code.claude.com/docs/en/cli-reference#system-prompt-flags) instead of replacing the prompt.
+* **[Agent SDK](https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts)**: you replace the prompt with a custom system prompt or a custom main-thread agent. If you set no system prompt, the SDK uses its minimal default and the session starts without the snapshot too. Outside [bare mode](https://code.claude.com/docs/en/headless#start-faster-with-bare-mode), to keep the snapshot, use the `claude_code` preset without a custom `agent`.
+
 ### `prUrlTemplate`
 
 Point the PR links Claude Code renders, in the footer badge and in tool-result summaries, at an internal code-review tool instead of `github.com`. Claude Code substitutes `{host}`, `{owner}`, `{repo}`, `{number}`, and `{url}` from the PR URL. [GitLab merge request](https://code.claude.com/docs/en/interactive-mode#gitlab-merge-requests) links on both surfaces keep their GitLab URL.
