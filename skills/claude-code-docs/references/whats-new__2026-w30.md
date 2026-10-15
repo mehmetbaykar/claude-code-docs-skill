@@ -64,7 +64,7 @@ Install the plugin from the official Anthropic marketplace, run `/reload-plugins
 
 Other wins
 
-[/code-review](https://code.claude.com/docs/en/code-review#review-a-diff-locally) now runs as a background subagent with its own context window, so review work stays out of your conversation and the findings arrive when it completes
+[/code-review](https://code.claude.com/docs/en/code-review-local) now runs as a background subagent with its own context window, so review work stays out of your conversation and the findings arrive when it completes
 `/verify`, `/code-review`, and `/deep-research` run only when you invoke them; Claude no longer launches them on its own
 [Emoji shortcodes](https://code.claude.com/docs/en/interactive-mode#emoji-shortcodes) autocomplete in the prompt input: type `:heart:` to insert an emoji, or two or more characters after `:` for suggestions; turn it off with `emojiCompletionEnabled`
 Skills with `context: fork` [run in the background](https://code.claude.com/docs/en/skills#run-skills-in-a-subagent) by default, and `background: false` in the skill's frontmatter waits for the result in the same turn
