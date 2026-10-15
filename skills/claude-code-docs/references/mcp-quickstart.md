@@ -352,6 +352,8 @@ In PowerShell, set the variable before the command on the same line:
     $env:MCP_TIMEOUT = "60000"; claude
 ```
 
+Before v2.1.299, some connections to HTTP servers that were up timed out at startup regardless of `MCP_TIMEOUT`. If you use one of those versions and an HTTP server that is up still times out after you raise the limit, [update Claude Code](https://code.claude.com/docs/en/setup#update-claude-code).
+
 
 
 **Server already exists**
