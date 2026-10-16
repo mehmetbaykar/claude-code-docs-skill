@@ -1673,7 +1673,7 @@ You can block specific paths from `@` references, or turn the insertion off:
 
 Use [PreToolUse decision control](#pretooluse-decision-control) to allow, deny, ask, or defer the tool call.
 
-An [Agent SDK callback hook](https://code.claude.com/docs/en/agent-sdk/hooks) on `PreToolUse` that exceeds its timeout blocks the tool call, and Claude receives an error result naming the timeout. An explicit deny returned by another hook still takes precedence.
+An [Agent SDK callback hook](https://code.claude.com/docs/en/agent-sdk/hooks) on `PreToolUse` that exceeds its timeout blocks the tool call, and Claude receives an error result naming the timeout.
 
 #### PreToolUse input
 
