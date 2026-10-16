@@ -1345,8 +1345,8 @@
       "title": "Measure plugin cost and usage"
     },
     "plugins__mods__admin.md": {
-      "hash": "446ee93240dfb0181f47630f122d343a88beb9f65bc90582a8f5969c4ef23846",
-      "last_updated": "2026-10-15T18:38:55+00:00",
+      "hash": "200d61046b835cb8144e6791a48496fc76c8e37da0c9cbe50b94d390fc8a603a",
+      "last_updated": "2026-10-16T03:38:10+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/admin",
       "path": "/docs/en/plugins/mods/admin",
       "source_url": "https://code.claude.com/docs/en/plugins/mods/admin.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-16T01:00:44+00:00",
+  "last_updated": "2026-10-16T03:38:43+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
