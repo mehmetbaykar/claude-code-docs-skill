@@ -994,8 +994,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "e4902c0a376689c1976c32b8e2d1c5ccf0f8f1371b8b6452c0081ece339addda",
-      "last_updated": "2026-10-14T06:48:53+00:00",
+      "hash": "76ebebc8d5f1242dd3a2592cec81bf96d6d5cf5141c389d9dfa95274415a0a83",
+      "last_updated": "2026-10-16T00:59:57+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-15T21:32:41+00:00",
+  "last_updated": "2026-10-16T01:00:44+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",

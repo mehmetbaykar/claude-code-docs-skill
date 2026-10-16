@@ -193,6 +193,7 @@ Claude Code reads this setting from your user settings file, the `--settings` fl
 | `T{char}` | Jump to just after previous occurrence of character on the current line |
 | `;` | Repeat last f/F/t/T motion |
 | `,` | Repeat last f/F/t/T motion in reverse |
+| `%` | Jump to the matching `()`, `[]`, or `{}` bracket, starting from the next bracket on the current line when the cursor isn't on a bracket. Requires Claude Code v2.1.301 or later |
 | `/` | Open reverse history search, same as `Ctrl+R`. The empty search prompt shows a hint: press `Esc` then `i` then `/` to open the command menu instead |
 
 In vim NORMAL mode, if the cursor is at the beginning or end of input and can't move further, `j`/`k` and `↑`/`↓` navigate command history instead. `←` on an empty prompt opens [agent view](https://code.claude.com/docs/en/agent-view) from NORMAL mode as well as INSERT; before v2.1.219, `←` on an empty prompt did nothing in NORMAL mode.
@@ -210,6 +211,7 @@ In vim NORMAL mode, if the cursor is at the beginning or end of input and can't 
 | `dj`/`dk` | Delete the current line and the line below or above |
 | `dgg`/`dG` | Delete from the current line to the first or last line |
 | `d0`/`c0`/`y0` | Delete, change, or yank from the cursor back to the beginning of the line. Requires Claude Code v2.1.281 or later |
+| `d%`/`c%`/`y%` | Delete, change, or yank from the cursor through the bracket that `%` jumps to. Requires Claude Code v2.1.301 or later |
 | `cc` | Change line |
 | `C` | Change to end of line |
 | `cw`/`ce`/`cb` | Change word/to end/back |
