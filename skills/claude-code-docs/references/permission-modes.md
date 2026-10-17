@@ -607,9 +607,11 @@ The first time you start an interactive session with this mode enabled, Claude C
 In [non-interactive mode](https://code.claude.com/docs/en/headless) no dialog is shown. A [background session](https://code.claude.com/docs/en/agent-view) honors your acceptance when it's recorded in user or managed settings:
 
 * With no acceptance recorded, `claude --bg --permission-mode bypassPermissions` is refused until you accept the dialog in an interactive session.
-* With `skipDangerousModePermissionPrompt` set only in `.claude/settings.local.json`, the background session starts with the bypass request ignored and pins the notice `Bypass permissions was requested at launch and ignored · if that was you, ~/.claude/settings.json needs "skipDangerousModePermissionPrompt": true`. To get bypass honored, add that key to `~/.claude/settings.json`, then start a new background session.
+* With `skipDangerousModePermissionPrompt` set only in `.claude/settings.local.json`, the background session starts with the bypass request ignored and pins the notice `Bypass permissions was requested at launch and ignored · if that was you, ~/.claude/settings.json needs "skipDangerousModePermissionPrompt": true`. Add that key to `~/.claude/settings.json`, then start a new background session. The session showing the notice still runs:
+* With `--allow-dangerously-skip-permissions` ignored, `bypassPermissions` is left out of its `Shift+Tab` cycle.
+* With `--permission-mode bypassPermissions` or `--dangerously-skip-permissions` ignored, the session starts in Manual mode instead.
 
-On Linux and macOS, Claude Code refuses to start in this mode when running as root or under `sudo`:
+On Linux and macOS, Claude Code refuses to start in `bypassPermissions` mode when running as root or under `sudo`:
 ```text
 --dangerously-skip-permissions cannot be used with root/sudo privileges for security reasons
 ```
@@ -659,6 +661,7 @@ Protected directories:
 * Markdown files in the project's [auto memory](https://code.claude.com/docs/en/memory#storage-location) directory, such as `~/.claude/projects/<project>/memory/`, in a session started without `--restricted`
 * Markdown files in a [subagent memory](https://code.claude.com/docs/en/sub-agents#enable-persistent-memory) directory, such as `.claude/agent-memory/`, in a session started without `--restricted`
 * A directory you loaded with [`--plugin-dir`](https://code.claude.com/docs/en/plugins/mods/create#change-a-mod-with-claude), because Claude Code reloads and runs a mod's code from it when a file changes
+* `~/.claude/dev-mods/`, or `dev-mods/` in the directory [`CLAUDE_CONFIG_DIR`](https://code.claude.com/docs/en/env-vars) points to, where Claude saves the [mods it writes for you](https://code.claude.com/docs/en/plugins/mods/create#ask-claude-for-a-mod)
 
 Protected files:
 
