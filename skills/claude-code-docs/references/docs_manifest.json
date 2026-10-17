@@ -184,8 +184,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "dd3bd2bbed0a97bfbe924cdf54796af36b302334ce9f7edf887323af3cb64766",
-      "last_updated": "2026-10-17T03:34:50+00:00",
+      "hash": "8b3d74594375d62243d4174bf07d57dff42127fd397b24d4fe71a0f9d1ed16f2",
+      "last_updated": "2026-10-17T06:43:47+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/python.md",
@@ -310,8 +310,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "a45d99c489f8b5e078db523b68f96a28875cd3ad5eb39b9ce5c32bbcbea71848",
-      "last_updated": "2026-10-17T03:34:54+00:00",
+      "hash": "2c2d92d46973731b1b0f670bcc3ea7abe737b33bfb1caaeac0182af760c8a101",
+      "last_updated": "2026-10-17T06:43:52+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/typescript.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-17T03:36:08+00:00",
+  "last_updated": "2026-10-17T06:45:10+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
