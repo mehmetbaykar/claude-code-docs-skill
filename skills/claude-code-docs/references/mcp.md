@@ -1139,7 +1139,7 @@ After you remove your entry with `claude mcp remove <name>` and connect the serv
 
 ### How connectors reach Claude Code
 
-Which settings govern a claude.ai connector depends on where your session runs, because only some sessions fetch connectors from claude.ai themselves. Each row below names how connectors arrive in one kind of session and what controls them there. The desktop app's [WSL sessions](https://code.claude.com/docs/en/desktop-wsl#what-works-in-a-wsl-session) have no row because connectors aren't available in them yet.
+Which settings govern a claude.ai connector depends on where your session runs, because only some sessions fetch connectors from claude.ai themselves. Each row below names how connectors arrive in one kind of session and what controls them there. The desktop app's WSL sessions have no row because connectors are [still rolling out to them](https://code.claude.com/docs/en/desktop-wsl#check-for-the-terminal-and-connectors).
 
 | Where the session runs | How connectors arrive | What governs them |
 | :- | :- | :- |

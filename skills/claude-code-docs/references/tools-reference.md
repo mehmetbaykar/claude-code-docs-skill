@@ -48,7 +48,7 @@ In [auto mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompt
 | `SendFeedback` | Drafts a feedback report about Claude Code, covering a product problem or Claude's own behavior in the session, and queues it on your machine for you to review. Claude Code sends nothing until you choose to send the draft. See [SendFeedback tool behavior](#sendfeedback-tool-behavior). Requires Claude Code v2.1.238 or later | No |
 | `SendMessage` | Sends a message to another agent: an [agent team](https://code.claude.com/docs/en/agent-teams) teammate, a [subagent it resumes](https://code.claude.com/docs/en/sub-agents#resume-subagents) by agent ID or name, or one of your other Claude Code sessions, on this machine or beyond it. Messaging other sessions requires Claude Code v2.1.224 or later. [Cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging) covers which sessions Claude can reach, [what a message looks like when it arrives](https://code.claude.com/docs/en/cross-session-messaging#what-a-message-looks-like), and [how Claude gets a notice when another session goes idle](https://code.claude.com/docs/en/cross-session-messaging#get-a-notice-when-another-session-goes-idle). Claude can include an optional `summary` input, typically 5-10 words, that Claude Code shows as a one-line preview. When Claude omits it on a [plain-text message](https://code.claude.com/docs/en/cross-session-messaging#limitations), Claude Code uses the first line of the message as the summary. Claude Code truncates a summary longer than 200 characters with an ellipsis | No |
 | `SendUserFile` | Sends files from the session to you with an optional caption, so a generated report, diagram, screenshot, or built artifact reaches your device instead of only being mentioned in the transcript. The optional `display` input controls presentation: `render` opens the file inline in the client, `attach` shows a download card only, and when unset the client decides by file type. Available when a [Remote Control](https://code.claude.com/docs/en/remote-control) client is connected or in a [cloud session](https://code.claude.com/docs/en/claude-code-on-the-web). Delivery runs through Anthropic-hosted infrastructure, so the tool is not available on Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry | No |
-| `ShareOnboardingGuide` | Uploads `ONBOARDING.md` and returns a share link teammates can open in Claude Code. Called from `/team-onboarding` after the guide is written. Available to claude.ai subscribers on Pro, Max, Team, and Enterprise plans | Yes |
+| `ShareOnboardingGuide` | Uploads `ONBOARDING.md` and returns a share link teammates can open in Claude Code. Called from `/team-onboarding` after the guide is written. Available to claude.ai subscribers on Team and Enterprise plans | Yes |
 | `Skill` | Executes a [skill](https://code.claude.com/docs/en/skills#control-who-invokes-a-skill) within the main conversation | Yes |
 | `SubagentHandback` | Delivers a subagent's final report to whichever conversation receives that subagent's result. Provided only in [auto mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode), to subagents that the Agent tool runs locally other than [forks](https://code.claude.com/docs/en/sub-agents#fork-the-current-conversation), and available in the terminal CLI, IDE extensions, cloud sessions, and the Agent SDK; the classifier reviews the report before it's delivered. Requires Claude Code v2.1.271 or later | No |
 | `TaskCreate` | Creates a new task in the task list. Provided by default only on the models listed under [Task tool availability](#task-tool-availability), and on other models when you opt in | No |
@@ -96,11 +96,12 @@ Hook `matcher` fields use bare tool names, not the parenthesized rule format. Se
 
 ## Agent tool behavior
 
-The Agent tool spawns a subagent in a separate context window. The subagent works through its task autonomously, then returns its result to the parent conversation. The parent doesn't see the subagent's intermediate tool calls or outputs, only that final result. With [agent teams](https://code.claude.com/docs/en/agent-teams) enabled, a call that carries a `name` can launch a [teammate](https://code.claude.com/docs/en/agent-teams#how-claude-starts-agent-teams) instead, which reports back through team messages rather than by returning a result.
+The Agent tool spawns a subagent in a separate context window. The subagent works through its task autonomously, then returns its result to the parent conversation. The parent doesn't see the subagent's intermediate tool calls or outputs, only that final result. The same tool can also launch a teammate or a fork:
+
+* **Teammate**: with [agent teams](https://code.claude.com/docs/en/agent-teams) enabled, a call that carries a `name` can launch a [teammate](https://code.claude.com/docs/en/agent-teams#how-claude-starts-agent-teams) instead, which reports back through team messages rather than by returning a result
+* **Fork**: wherever [fork mode](https://code.claude.com/docs/en/sub-agents#turn-fork-mode-on-or-off) is on, the tool can launch a [forked subagent](https://code.claude.com/docs/en/sub-agents#fork-the-current-conversation), which inherits the full parent conversation instead of starting fresh
 
 To cap how many turns a subagent runs, set `maxTurns` in the [subagent definition](https://code.claude.com/docs/en/sub-agents#supported-frontmatter-fields). When the subagent reaches the limit, Claude Code marks the returned result as partial output, and Claude can [resume the subagent](https://code.claude.com/docs/en/sub-agents#resume-subagents) to continue.
-
-The same Agent tool also launches [forked subagents](https://code.claude.com/docs/en/sub-agents#fork-the-current-conversation) wherever [fork mode](https://code.claude.com/docs/en/sub-agents#turn-fork-mode-on-or-off) is on. A fork inherits the full parent conversation instead of starting fresh, runs in the background apart from the [cases that stay in the foreground](https://code.claude.com/docs/en/sub-agents#run-subagents-in-foreground-or-background), and still surfaces permission prompts in your terminal. The rest of this section describes non-fork subagents.
 
 Which tools a non-fork subagent can use depends on the `tools` and `disallowedTools` fields in the [subagent definition](https://code.claude.com/docs/en/sub-agents):
 
@@ -499,11 +500,15 @@ Reading an empty file returns a notice that the file exists but its contents are
 
 Read handles several file types beyond plain text:
 
-* **Images**: PNG, JPG, and other image formats are returned as visual content that Claude can see, not as raw bytes. Claude Code resizes and recompresses large images to fit the model's image size limits before sending them, so Claude may see a downscaled version of a large screenshot. An image that is still larger than 500KB after that resize is re-encoded as a JPEG at reduced quality with its pixel dimensions unchanged. If Claude misses fine pixel-level detail in a large image, ask it to crop the region of interest first, for example with ImageMagick via Bash.
+* **Images**: PNG, JPEG, GIF, and WebP files are returned as visual content that Claude can see, not as raw bytes. Claude Code resizes and recompresses large images to fit the model's image size limits before sending them, so Claude may see a downscaled version of a large screenshot.
+
+If Claude misses fine pixel-level detail in a large image, ask it to crop the region you care about, such as with ImageMagick via Bash, and then read the crop.
 * **PDFs**: Claude reads short `.pdf` files whole. For PDFs longer than 10 pages, it reads in ranges with a `pages` parameter, such as `"1-5"`, up to 20 pages at a time. Page-range reads render pages with `pdftoppm` from poppler-utils, so install it with `brew install poppler` on macOS or `apt-get install poppler-utils` on Debian and Ubuntu. On Windows and other platforms, install a poppler build that puts `pdftoppm` on your `PATH`. Without it, a page-range read fails with `pdftoppm is not installed`.
 * **Jupyter notebooks**: `.ipynb` files return all cells with their outputs, including code, markdown, and visualizations. A notebook whose cells come to more than 256 KB, or more than the [token limit](#large-files), returns an error instead. Claude Code refuses to read a notebook file over 100 MB; the error tells Claude how to read a portion of the notebook instead, such as a slice of cells, with a shell command.
 
 Read only reads files, not directories. Claude lists directory contents with a shell command such as `ls`.
+
+Read refuses a file whose extension it treats as binary, such as `.xlsx`, `.parquet`, `.heic`, or `.zip`. Claude keeps working after a refusal: the error suggests a skill for that file type if one is available, or else a shell command or script that reads the format. If you [`@`-mention](https://code.claude.com/docs/en/common-workflows#reference-files-and-directories) a file that Read refuses, Claude receives the file's path but not its contents.
 
 ### Large files
 
@@ -649,7 +654,7 @@ WebSearch is available on the Claude API, [Claude Platform on AWS](https://code.
 
 An interactive terminal session has a limit of 200 WebSearch calls. Searches from the main conversation and from [subagents](https://code.claude.com/docs/en/sub-agents), such as a parallel research fan-out, count against the same limit.
 
-While a session is at the limit, searches appear in the conversation as calls that did nothing. Claude gets a notice telling it to continue with the information it already gathered and, if it needs more searches, to ask you to raise the limit.
+While a session is at the limit, searches appear in the conversation as calls that did nothing. Claude gets a notice telling it to continue with the information already gathered, say so in its answer, and, if it needs more searches, ask you to raise the limit.
 
 To get more searches, raise the cap, wait for the limit to refill, or start a new conversation:
 
