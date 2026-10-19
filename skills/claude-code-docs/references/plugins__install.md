@@ -107,7 +107,7 @@ In a local or SSH session in the desktop app's **Code** tab:
 
 **Open the plugin browser**
 
-Click the **+** button next to the prompt box and select **Plugins**, then **Add plugin**. The plugin browser opens with the plugins from your marketplaces.
+Click the **+** button next to the prompt box and select **Add plugins**. If the **+** menu shows **Plugins** instead of **Add plugins**, select **Plugins**, then **Browse plugins**. The plugin browser opens with the plugins from your marketplaces.
 
 
 
@@ -123,7 +123,7 @@ Choose a [scope](#choose-an-install-scope): your user account, this project, or 
 
 
 
-To enable, disable, or uninstall later, use **+ > Plugins > Manage plugins**. The plugin browser isn't available in the desktop app's cloud sessions. See [Install plugins in the desktop app](https://code.claude.com/docs/en/desktop#install-plugins).
+To enable, disable, or uninstall a plugin later, see [Install plugins in the desktop app](https://code.claude.com/docs/en/desktop#install-plugins).
 
 
 

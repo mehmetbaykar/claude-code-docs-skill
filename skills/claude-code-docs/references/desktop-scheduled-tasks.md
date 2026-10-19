@@ -30,7 +30,7 @@ Claude Code offers three ways to schedule recurring or one-off work:
 
 Use **cloud tasks** for work that should run reliably without your machine. Use **Desktop tasks** when you need access to local files and tools. Use **`/loop`** for quick polling during a session.
 
-By default, scheduled tasks run against whatever state your working directory is in, including uncommitted changes. Enable the worktree toggle when creating the task to give each run its own isolated Git worktree, the same way [parallel sessions](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessions) work.
+By default, scheduled tasks run against whatever state your working directory is in, including uncommitted changes. Enable the worktree toggle when creating the task to give each run its own [isolated Git worktree](https://code.claude.com/docs/en/desktop#run-a-session-in-its-own-worktree).
 
 ## Create a scheduled task
 

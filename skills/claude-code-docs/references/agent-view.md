@@ -862,6 +862,14 @@ If you press `←` to background the current session and Claude Code shows a `Ba
 
 Run `/tasks` to see everything that's running, then confirm to background anyway or choose `Stay` to let the work finish first. See [What carries over when you background](#what-carries-over-when-you-background) for which kinds of work carry over and which Claude Code stops.
 
+<h3 id="carried-into-this-session-and-not-resumed">
+The conversation says a background agent `was carried into this session and not resumed`
+</h3>
+
+This notice names a background [subagent](https://code.claude.com/docs/en/sub-agents) that isn't running in this session.
+
+Claude sees the notice and replies on its own, so you don't need to prompt it. If you still need that subagent's work after reading Claude's reply, ask Claude for it.
+
 ### Prompt rejected as too short
 
 The dispatch input expects a task description, not a conversational opener. A prompt shorter than four characters is rejected with a `Too short` hint so a stray keystroke doesn't start a session. Describe what you want the session to do, such as `investigate the flaky checkout test`.

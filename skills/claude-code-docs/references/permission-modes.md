@@ -258,7 +258,7 @@ The JetBrains plugin runs Claude Code in the IDE terminal, so switching permissi
 
 **Desktop**
 
-    **During a session**: in the Code tab, use the mode selector next to the send button. Not every mode appears in the selector:
+    **During a session**: in the Code tab, use the mode selector in the row under the prompt box. Not every mode appears in the selector:
 
 * **Auto**: appears when [auto mode is available](#eliminate-prompts-with-auto-mode)
 * **Bypass permissions**: requires the **Allow bypass permissions mode** toggle in Desktop settings on Pro and Max plans; on Team and Enterprise plans, organization policy controls it instead

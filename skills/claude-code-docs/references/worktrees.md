@@ -10,7 +10,10 @@ path: /docs/en/worktrees
 
 A [git worktree](https://git-scm.com/docs/git-worktree) is a separate working directory with its own files and branch, sharing the same repository history and remote as your main checkout. Running each Claude Code session in its own worktree gives it a separate copy of the files to edit, so one session can build a feature while a second fixes a bug.
 
-Worktrees require a git repository; for other version control systems, [configure hooks to replace the git logic](#non-git-version-control). In the [desktop app](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessions), select the **worktree** option when you start a session to give it its own worktree.
+If you use another version control system or the desktop app, follow the instructions for your setup:
+
+* **Other version control systems**: worktrees require a git repository; [configure hooks to replace the git logic](#non-git-version-control)
+* **Desktop app**: see [Run a session in its own worktree](https://code.claude.com/docs/en/desktop#run-a-session-in-its-own-worktree)
 
 Worktrees are one of several ways to run Claude in parallel. They isolate file edits. [Subagents](https://code.claude.com/docs/en/sub-agents) split work up inside one session, and [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging) lets Claude pass findings between the sessions in your worktrees. See [Run agents in parallel](https://code.claude.com/docs/en/agents) to compare the approaches, or skip ahead to [Isolate subagents with worktrees](#isolate-subagents-with-worktrees) to use worktrees and subagents together.
 
@@ -229,7 +232,7 @@ The same read-through covers `.claude/agents` and `.claude/commands`. For skills
 
 All of these apply whether you create the worktree with `--worktree` or with `git worktree add`.
 
-In a worktree session that you start from the [desktop app](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessions), Claude Code reads project configuration such as settings, hooks, skills, agents, commands, and [`.mcp.json`](https://code.claude.com/docs/en/mcp#project-scope) servers from the main checkout's root rather than from the worktree. Hook commands run in that root, and `${CLAUDE_PROJECT_DIR}` points at it. To reach the files Claude is working on, read the worktree's path from the hook's [`cwd` input field](https://code.claude.com/docs/en/hooks#common-input-fields). `CLAUDE.md` files and `.claude/rules/` still load from the worktree.
+In a worktree session you start from the [desktop app](https://code.claude.com/docs/en/desktop#run-a-session-in-its-own-worktree), Claude Code reads project configuration such as settings, hooks, skills, agents, commands, and [`.mcp.json`](https://code.claude.com/docs/en/mcp#project-scope) servers from the main checkout's root. Hook commands run in that root, and `${CLAUDE_PROJECT_DIR}` points at it. To reach the files Claude is working on, read the worktree's path from the hook's [`cwd` input field](https://code.claude.com/docs/en/hooks#common-input-fields). `CLAUDE.md` files and `.claude/rules/` still load from the worktree.
 
 ## Manage worktrees manually
 
@@ -371,4 +374,4 @@ Worktrees handle file isolation. The related pages below cover delegating work i
 * [Cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging): let the sessions in your worktrees pass findings to each other
 * [Agent teams](https://code.claude.com/docs/en/agent-teams): coordinate multiple Claude sessions automatically
 * [Manage sessions](https://code.claude.com/docs/en/sessions): name, resume, and switch between conversations
-* [Desktop parallel sessions](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessions): worktree-backed sessions in the desktop app
+* [Run a Desktop session in its own worktree](https://code.claude.com/docs/en/desktop#run-a-session-in-its-own-worktree): worktree-backed sessions in the desktop app

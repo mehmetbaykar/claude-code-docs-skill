@@ -305,8 +305,10 @@ The parent span's `tool_name` attribute tells you which tool an event came from.
 | Attribute | Description | Gated by |
 | - | - | - |
 | `duration_ms` | Time spent waiting for the permission decision | |
-| `decision` | `accept` or `reject` | |
-| `source` | Decision source, matching the [Tool decision event](#tool-decision-event) | |
+| `decision` | `accept`, `reject`, or `cancelled`, where `cancelled` means Claude Code stopped waiting for a permission decision on the tool call and didn't run it | |
+| `source` | For an `accept` or `reject`, where the decision came from, such as `config`, `hook`, or `user_temporary`, with the meanings given under the [Tool decision event](#tool-decision-event). For a `cancelled`, what ended the wait before any decision was made, such as `user_abort` | |
+
+A `cancelled` decision with `source` `user_abort` means a message needing immediate delivery interrupted the turn while the permission prompt or [auto mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode) check was pending. For example, during an auto mode check, the user had a message queued and [sent it immediately](https://code.claude.com/docs/en/interactive-mode#when-claude-code-sends-what-you-queued).
 
 **`claude_code.tool.execution`**
 
@@ -952,12 +954,43 @@ Logged when a tool permission decision is made (accept/reject).
 * `"mcp"`: MCP servers generally
 * `"sdk_host_builtin_mcp"`: an in-process server built into Claude Desktop itself, in a session Claude Desktop owns. Claude Desktop owns a session it started from one of its own entrypoints, `claude-desktop`, `claude-desktop-3p`, or `local-agent`, when that session isn't a nested child; nested sessions, including sessions Claude Code itself spawns, report these servers as `"mcp"`
 * `source`: Where the decision came from:
-* `"config"`: Decided automatically without prompting, based on project settings, allow or deny rules in the user's personal settings, enterprise managed policy, `--allowedTools` or `--disallowedTools` flags, the active permission mode, a session-scoped grant from an earlier prompt in the same interactive CLI session, or because the tool is inherently safe. The event doesn't indicate which of these sources matched. Claude Code also reports `"config"` when the permission prompt request itself fails, for example when the Agent SDK's [`canUseTool`](https://code.claude.com/docs/en/agent-sdk/typescript#canusetool) callback or the [`--permission-prompt-tool`](https://code.claude.com/docs/en/cli-reference#cli-flags) tool returns an invalid result, or when the input stream closes while the request is pending. Before v2.1.216, Claude Code reported these failures as `"user_reject"`.
+* `"config"`: Decided automatically without prompting, by one of these sources:
+
+* Project settings
+* Allow or deny rules in the user's personal settings
+* Enterprise managed policy
+* `--allowedTools` or `--disallowedTools` flags
+* The active permission mode
+* The auto mode classifier, whose verdict the same event records in `classifier_verdict`
+* A grant for the rest of the session, given at an earlier permission prompt in the same interactive CLI session
+* The tool being inherently safe
+
+The `source` value doesn't indicate which of these sources matched.
+
+Claude Code also reports `"config"` when the permission prompt request itself fails. For example, that request fails when the Agent SDK's [`canUseTool`](https://code.claude.com/docs/en/agent-sdk/typescript#canusetool) callback or the [`--permission-prompt-tool`](https://code.claude.com/docs/en/cli-reference#cli-flags) tool returns an invalid result, or when the input stream closes while the request is pending. Before v2.1.216, Claude Code reported these failures as `"user_reject"`.
 * `"hook"`: A `PreToolUse` or `PermissionRequest` hook returned the decision.
 * `"user_permanent"`: Emitted when the user chose "Yes, and don't ask again for ..." at a permission prompt, which saves an allow rule to their personal settings. In the interactive CLI this is emitted only for that choice itself; later calls that match the saved rule emit `"config"` instead. In Agent SDK or non-interactive `-p` sessions, both the initial choice and later rule matches emit `"user_permanent"`. Treated as an accept.
 * `"user_temporary"`: Emitted when the user chose "Yes" at a permission prompt for a one-time approval, or chose an option that grants access for the rest of the session on a file edit or read prompt. In the interactive CLI this is emitted only for the choice itself; later calls allowed by that session-scoped grant emit `"config"` instead. In Agent SDK or non-interactive `-p` sessions, both the choice and later matches emit `"user_temporary"`. Treated as an accept.
 * `"user_abort"`: Emitted when the user dismissed the permission prompt without answering. In Agent SDK and non-interactive `-p` sessions, this includes interrupting the turn while a `canUseTool` or `--permission-prompt-tool` permission request is pending; before v2.1.216, Claude Code reported that interrupt as `"user_reject"`. Treated as a reject.
 * `"user_reject"`: Emitted when the user chose "No" when prompted. In the interactive CLI this is emitted only for that choice itself; calls that match a deny rule in the user's personal settings emit `"config"` instead. In Agent SDK or non-interactive `-p` sessions, calls that match a deny rule in personal settings emit `"user_reject"`. Treated as a reject.
+* `classifier_verdict`: The auto mode [classifier](https://code.claude.com/docs/en/permission-modes#how-the-classifier-evaluates-actions) verdict for the call, or why Claude Code denied the call when none came. Requires Claude Code v2.1.301 or later
+
+* `"allow"`: the classifier approved the call
+* `"block"`: the classifier blocked the call. A classifier check that fails partway through can also end as `"block"`, so a partial classifier outage can appear as more blocks rather than as `"unavailable"`
+* `"no_verdict"`: the check ran but gave [no usable verdict](https://code.claude.com/docs/en/errors#auto-mode-cannot-determine-the-safety-of-an-action), so Claude Code denied the call. The denial doesn't mean the classifier found the call unsafe
+* `"unavailable"`: the request to the classifier failed, for example on a rate limit, timeout, or connection error, so Claude Code denied the call. With [server-side classifier review](https://code.claude.com/docs/en/permission-modes#server-side-classifier-review), it also marks a call denied because [the server returned no safety verdict](https://code.claude.com/docs/en/errors#the-server-returned-no-safety-verdict)
+
+The attribute also appears on plan mode calls when [the classifier reviews commands in plan mode](https://code.claude.com/docs/en/permission-modes#analyze-before-you-edit-with-plan-mode). The attribute is absent in these cases:
+
+* An allow or deny [permission rule](https://code.claude.com/docs/en/permissions#manage-permissions) decided the call
+* Claude Code approved the call in auto mode without asking the classifier
+* The user answered the prompt Claude Code showed after [repeated blocks](https://code.claude.com/docs/en/permission-modes#repeated-block-thresholds)
+* In a `-p` run without `--permission-prompt-tool`, Claude Code denied the call after repeated blocks because there was nobody to answer a prompt. That event reports `decision` as `"reject"` and `source` as `"config"`
+* `classifier_category` (when `OTEL_LOG_TOOL_DETAILS=1`): The name of the [built-in rule](https://code.claude.com/docs/en/auto-mode-config#inspect-the-defaults-and-your-effective-config) the classifier named when it blocked the call, in lowercase with underscores, such as `"data_exfiltration"` for the Data Exfiltration rule. Requires Claude Code v2.1.301 or later. The attribute is present when all of these hold:
+* `classifier_verdict` is `"block"`
+* Claude Code sent the classifier request itself, rather than using [server-side classifier review](https://code.claude.com/docs/en/permission-modes#server-side-classifier-review)
+* The classifier named exactly one rule, and that rule is a built-in one rather than one you wrote
+* `permission_mode`: [Permission mode](https://code.claude.com/docs/en/permission-modes) active when this call's permission check began: `"default"`, `"plan"`, `"acceptEdits"`, `"bypassPermissions"`, `"dontAsk"`, or `"auto"`. Manual mode appears as `"default"`. A [subagent](https://code.claude.com/docs/en/sub-agents#permission-modes) call reports the subagent's permission mode rather than the session's. Requires Claude Code v2.1.301 or later
 * `tool_parameters` (when `OTEL_LOG_TOOL_DETAILS=1`): JSON string containing tool-specific parameters. Same shape as the [Tool result event](#tool-result-event), minus post-execution fields such as `git_commit_id`. Values may differ from `tool_result` for an accepted call if the permission decision rewrites the tool input via `updatedInput`. Use this attribute to see which command was rejected when `decision` is `"reject"`.
 * For `"sdk_host_builtin_mcp"` tools: `mcp_server_name` and `mcp_tool_name` are included even when `OTEL_LOG_TOOL_DETAILS` is off, because the host application defines these names; without them, a rejected call to one of these built-in servers would be unattributable on the default stream. For user-configured MCP servers, the event's `tool_name` is always the literal `"mcp_tool"`, and the server and tool names appear only in `tool_parameters` with the flag on; argument content requires the flag everywhere.
 * For Bash tool: includes `bash_command`, `full_command`, `timeout`, `description`, `dangerouslyDisableSandbox`. The desktop app's workspace bash tool also reports `tool_name` as `Bash`, but includes only `bash_command`, `full_command`, and `timeout`
@@ -969,6 +1002,8 @@ Logged when a tool permission decision is made (accept/reject).
 
 Logged when the permission mode changes, for example from `Shift+Tab` cycling, exiting plan mode, or an auto mode gate check.
 
+To group tool calls by the permission mode each was checked in, use `permission_mode` on the [Tool decision event](#tool-decision-event).
+
 **Event Name**: `claude_code.permission_mode_changed`
 
 **Attributes**:
@@ -979,7 +1014,7 @@ Logged when the permission mode changes, for example from `Shift+Tab` cycling, e
 * `event.sequence`: per-process counter for ordering events, described under [Event correlation attributes](#event-correlation-attributes)
 * `from_mode`: The previous permission mode, for example `"default"`, `"plan"`, `"acceptEdits"`, `"auto"`, or `"bypassPermissions"`
 * `to_mode`: The new permission mode
-* `trigger`: What caused the change. One of `"shift_tab"`, `"exit_plan_mode"`, `"auto_gate_denied"`, or `"auto_opt_in"`. Absent for some changes, such as when the SDK sets the permission mode through [`setPermissionMode()`](https://code.claude.com/docs/en/agent-sdk/typescript#query-object)
+* `trigger`: What caused the change, for example `"shift_tab"`, `"exit_plan_mode"`, or `"auto_gate_denied"`. Absent for some changes, such as when the SDK sets the permission mode through [`setPermissionMode()`](https://code.claude.com/docs/en/agent-sdk/typescript#query-object)
 
 #### Auth event
 
@@ -1487,8 +1522,10 @@ When building detection rules, look up the signal you want to monitor and query 
 
 | Signal | Event | Key attributes |
 | - | - | - |
-| Tool call allowed or denied, and by what | `tool_decision` | `decision`, `source`, `tool_name`, `tool_parameters` |
+| Tool call allowed or denied, and where the decision came from, such as a rule, a hook, or the user | [`tool_decision`](#tool-decision-event) | `decision`, `source`, `classifier_verdict`, `permission_mode`, `tool_name`; `tool_parameters` when you set `OTEL_LOG_TOOL_DETAILS=1` |
+| Auto mode classifier allowed or blocked a tool call, or Claude Code denied the call without a classifier verdict | [`tool_decision`](#tool-decision-event) where `classifier_verdict` is present. For a denial without a verdict, `classifier_verdict` is `"no_verdict"` or `"unavailable"` | `classifier_verdict`, `permission_mode`, `tool_name`; `classifier_category` when you set `OTEL_LOG_TOOL_DETAILS=1` |
 | Permission mode escalation | `permission_mode_changed` | `from_mode`, `to_mode`, `trigger` |
+| Which permission mode each tool call was checked in, including calls subagents make | [`tool_decision`](#tool-decision-event) | `permission_mode`, `session.id` |
 | Policy hook blocked an action | `hook_execution_complete` | `hook_event`, `num_blocking` |
 | Login, logout, and authentication failure | `auth` | `action`, `success`, `error_category` |
 | MCP server connect or failure | `mcp_server_connection` | `status`, `server_name`, `is_plugin`, `error_code` |
