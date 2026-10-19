@@ -277,7 +277,7 @@ A subagent starts in the main conversation's current working directory. Within a
 
 A subagent with `isolation: worktree` runs its Bash and PowerShell commands inside its worktree. A command whose working directory resolves to your main checkout instead, for example because the worktree directory was removed while the subagent was running, fails with an error.
 
-This working-directory check covers the whole repository containing the directory you launched Claude Code from. When your session runs in a linked [worktree](https://code.claude.com/docs/en/worktrees) of its own, the check also covers the main checkout that worktree is linked from. Before v2.1.210, the check covered only the launch directory itself. A command whose working directory resolved elsewhere in the same repository, such as the repository root when you launched Claude Code from a monorepo subdirectory, ran there instead of failing.
+This working-directory check covers the whole repository containing the directory you launched Claude Code from. When your session runs in a linked [worktree](https://code.claude.com/docs/en/worktrees) of its own, the check also covers the main checkout that worktree is linked from.
 
 For Bash commands, Claude Code also checks the command itself in two ways:
 
@@ -388,7 +388,7 @@ In interactive sessions, Claude Code shows a warning naming the requested model 
 
 To check which model a subagent is running on, run [`/tasks`](https://code.claude.com/docs/en/commands). Claude Code names the model on the subagent's row, and adds the [effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) set for that subagent, if any. Requires Claude Code v2.1.242 or later.
 
-A per-invocation `model` parameter also applies when the subagent is [resumed or sent a follow-up message](#resume-subagents), so the subagent stays on that model. Before v2.1.211, resuming dropped the per-invocation value and the subagent reverted to its definition's `model` field or, without one, the main conversation's model.
+A per-invocation `model` parameter also applies when the subagent is [resumed or sent a follow-up message](#resume-subagents), so the subagent stays on that model.
 
 As of v2.1.198, subagents also inherit the main conversation's [extended thinking](https://code.claude.com/docs/en/model-config#extended-thinking) configuration: if thinking is on in your session, it's on for the subagent, and if it's off, it stays off. There is no per-subagent thinking setting. Before v2.1.198, subagents ran with extended thinking disabled regardless of the main conversation's setting.
 
@@ -471,7 +471,7 @@ disallowedTools: Write, Edit
 ---
 ```
 
-When nothing in the `tools` list resolves to a tool, for example because every entry is misspelled or names a tool that isn't available to subagents, Claude Code usually refuses to launch the subagent and the Agent tool returns an error naming the unresolved entries; see [Agent would be spawned with zero tools](https://code.claude.com/docs/en/errors#agent-would-be-spawned-with-zero-tools) for the message and how to fix each entry. Before v2.1.208, that subagent launched with no tools and could return an empty or confusing result.
+When nothing in the `tools` list resolves to a tool, for example because every entry is misspelled or names a tool that isn't available to subagents, Claude Code usually refuses to launch the subagent and the Agent tool returns an error naming the unresolved entries; see [Agent would be spawned with zero tools](https://code.claude.com/docs/en/errors#agent-would-be-spawned-with-zero-tools) for the message and how to fix each entry.
 
 The `tools` and `disallowedTools` fields also take entries for a whole MCP server:
 
@@ -898,7 +898,7 @@ Background subagents surface every permission prompt in your main session. When 
 
 A background subagent can leave a background [Bash or PowerShell command](https://code.claude.com/docs/en/tools-reference#background-commands) [running past the end of its turn](https://code.claude.com/docs/en/interactive-mode#how-backgrounding-works). When that command ends, Claude Code sends the subagent a notification.
 
-A background subagent's results reach Claude as a completion notification in a later turn. Claude waits for that notification before reporting the subagent's results, and if you ask about progress first, it reports that the subagent is still running. Before v2.1.211, Claude sometimes reported results for a background subagent that hadn't finished.
+A background subagent's results reach Claude as a completion notification in a later turn. Claude waits for that notification before reporting the subagent's results, and if you ask about progress first, it reports that the subagent is still running.
 
 You can also steer this yourself:
 
@@ -943,8 +943,6 @@ The scan doesn't judge whether content is malicious, and it doesn't change what 
 A report that returns to Claude as the subagent's result also arrives under a header marking it as subagent output. The header states that instructions or approval claims inside the report are the subagent's words and carry no authority from you.
 
 A [background subagent's report](#run-subagents-in-foreground-or-background) arrives inside a completion notification, which is marked as an automated event rather than a message from you.
-
-Subagent output scanning requires Claude Code v2.1.210 or later.
 
 ### Common patterns
 
@@ -1145,13 +1143,13 @@ If the value is in range and you still see no change, check for these causes:
 
 ## Fork the current conversation
 
-Run a forked subagent with `/subtask`, which requires Claude Code v2.1.212 or later. When [agent view is turned off](https://code.claude.com/docs/en/agent-view#turn-off-agent-view), `/subtask` isn't available and `/fork` starts the forked subagent instead; otherwise `/fork` copies the whole session into a new [background session](https://code.claude.com/docs/en/agent-view#from-inside-a-session).
+When [agent view is turned off](https://code.claude.com/docs/en/agent-view#turn-off-agent-view), `/subtask` isn't available and `/fork` starts the forked subagent instead; otherwise `/fork` copies the whole session into a new [background session](https://code.claude.com/docs/en/agent-view#from-inside-a-session).
 
 A fork is a subagent that inherits the entire conversation so far instead of starting fresh. This drops the input isolation that subagents otherwise provide: a fork sees the same system prompt, tools, model, and message history as the main session, so you can hand it a side task without re-explaining the situation. The fork's own tool calls still stay out of your conversation and only its final result comes back, so your main context window stays clean. Use a fork when any other subagent would need too much background to be useful, or when you want to try several approaches in parallel from the same starting point.
 
 Claude starts a fork by requesting the `fork` subagent type through the Agent tool. You control whether it can with [fork mode](#turn-fork-mode-on-or-off), which is on by default in interactive sessions.
 
-You can start a fork yourself with `/subtask` followed by a task, whether or not fork mode is on. On v2.1.161 through v2.1.211 the command is `/fork`. Claude Code names the fork from the first words of the task. The following example forks the conversation to draft test cases while you continue with the implementation in the main session:
+You can start a fork yourself with `/subtask` followed by a task, whether or not fork mode is on. Claude Code names the fork from the first words of the task. The following example forks the conversation to draft test cases while you continue with the implementation in the main session:
 ```text wrap
 /subtask draft unit tests for the parser changes so far
 ```

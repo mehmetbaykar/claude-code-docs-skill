@@ -157,7 +157,7 @@ Claude Code keeps your vim mode and cursor position when you toggle the [transcr
 
 ### Remap INSERT-mode key sequences
 
-The [`vimInsertModeRemaps`](https://code.claude.com/docs/en/settings-reference#viminsertmoderemaps) setting maps a two-key INSERT-mode sequence to Escape, so a mapping like `jj` returns you to NORMAL mode. Requires Claude Code v2.1.208 or later.
+The [`vimInsertModeRemaps`](https://code.claude.com/docs/en/settings-reference#viminsertmoderemaps) setting maps a two-key INSERT-mode sequence to Escape, so a mapping like `jj` returns you to NORMAL mode.
 
 The following `~/.claude/settings.json` example turns on vim mode and maps `jj` to Escape:
 ```json
@@ -215,8 +215,8 @@ In vim NORMAL mode, if the cursor is at the beginning or end of input and can't 
 | `cc` | Change line |
 | `C` | Change to end of line |
 | `cw`/`ce`/`cb` | Change word/to end/back |
-| `s` | Substitute character: delete the character under the cursor and enter INSERT mode. Requires Claude Code v2.1.211 or later |
-| `S` | Substitute line: clear the line and enter INSERT mode. Requires Claude Code v2.1.211 or later |
+| `s` | Substitute character: delete the character under the cursor and enter INSERT mode |
+| `S` | Substitute line: clear the line and enter INSERT mode |
 | `yy`/`Y` | Yank (copy) line |
 | `yw`/`ye`/`yb` | Yank word/to end/back |
 | `p` | Paste after cursor |
@@ -413,7 +413,7 @@ Claude Code also skips individual suggestions in several situations, including:
 * After the first turn of a conversation, in some sessions
 * The previous response ended in an error
 * While you're in plan mode
-* Your account is close to or at its usage limit. To keep suggestions on until you reach the limit, set [`CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION`](https://code.claude.com/docs/en/env-vars) to `true`. Before v2.1.238, Claude Code skipped them near the limit even with the variable set to `true`
+* Your account is close to or at its usage limit. To keep this skip from applying until you reach the limit, set [`CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION`](https://code.claude.com/docs/en/env-vars) to `true`. Before v2.1.238, Claude Code skipped suggestions near the limit even with the variable set to `true`
 * In an [agent team](https://code.claude.com/docs/en/agent-teams), in teammates' sessions by default. The lead's session shows suggestions
 
 The notice `Showing fewer prompt suggestions · use one to bring them back` means Claude Code is showing suggestions less often because you left many in a row unused. To return to the usual frequency, use a suggestion or set [`CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION`](https://code.claude.com/docs/en/env-vars) to `true`.
@@ -665,7 +665,7 @@ In the [VS Code extension](https://code.claude.com/docs/en/vs-code#use-the-promp
 
 Your five newest earlier side questions appear as a dimmed list above the current answer, with a count of any older ones. They stay out of the conversation history.
 
-To return to the overlay after dismissing it, run `/btw` with no question. The overlay reopens on your most recent exchange. Before v2.1.212, `/btw` without a question printed a usage message instead.
+To return to the overlay after dismissing it, run `/btw` with no question. The overlay reopens on your most recent exchange.
 
 Once the answer appears, the overlay accepts these keys.
 

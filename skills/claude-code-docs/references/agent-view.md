@@ -444,7 +444,7 @@ Run `/fork` to copy the current conversation into a new background session while
 
 After the fork, the two conversations are independent: nothing the copy does enters the original conversation on its own, though in sessions where [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging) is enabled, either session's Claude can explicitly message the other.
 
-Copying the session requires Claude Code v2.1.212 or later; on v2.1.161 through v2.1.211, `/fork` starts a [forked subagent](https://code.claude.com/docs/en/sub-agents#fork-the-current-conversation) instead, which is now `/subtask`. When [agent view is turned off](#turn-off-agent-view), `/fork` keeps the forked-subagent behavior and `/subtask` isn't available.
+When [agent view is turned off](#turn-off-agent-view), `/fork` starts a [forked subagent](https://code.claude.com/docs/en/sub-agents#fork-the-current-conversation) instead of copying the session.
 
 Pass a prompt such as `/fork open a draft pull request with the work so far` and the copy starts working on it immediately. Without a prompt the copy waits for its first instruction: select its row in `claude agents` and press `Space` to send one, or run `claude attach <id>`. The selected row shows `space to send it a prompt` while it waits.
 

@@ -3054,7 +3054,7 @@ Set the transcript view Claude Code starts in: `"default"`, `"verbose"`, or `"fo
 
 ### `vimInsertModeRemaps`
 
-Map two-key INSERT-mode sequences to Escape in [vim editor mode](https://code.claude.com/docs/en/interactive-mode#vim-editor-mode). Each key is exactly two printable characters typed in sequence, and `""` is the only supported target; Claude Code ignores other entries. Requires Claude Code v2.1.208 or later.
+Map two-key INSERT-mode sequences to Escape in [vim editor mode](https://code.claude.com/docs/en/interactive-mode#vim-editor-mode). Each key is exactly two printable characters typed in sequence, and `""` is the only supported target; Claude Code ignores other entries.
 
 * **Scope**: [`User or managed`](#scopes). A repository can't remap your keystrokes.
 * **Type**: object mapping a two-character sequence to `""`
@@ -3067,7 +3067,7 @@ Map two-key INSERT-mode sequences to Escape in [vim editor mode](https://code.cl
 }
 ```
 
-Has no effect unless `editorMode` is `"vim"`. See [Remap INSERT-mode key sequences](https://code.claude.com/docs/en/interactive-mode#remap-insert-mode-key-sequences). Requires Claude Code v2.1.208 or later.
+Has no effect unless `editorMode` is `"vim"`. See [Remap INSERT-mode key sequences](https://code.claude.com/docs/en/interactive-mode#remap-insert-mode-key-sequences).
 
 ### `voice`
 
