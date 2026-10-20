@@ -203,6 +203,8 @@ Match the message you see to a section below.
 | `Installation was killed before it could finish (exit code 137)` | [Troubleshoot installation and login](https://code.claude.com/docs/en/troubleshoot-install#installation-was-killed-before-it-could-finish) |
 | `The connection dropped while downloading the update` | [Troubleshoot installation and login](https://code.claude.com/docs/en/troubleshoot-install#the-connection-dropped-while-downloading-the-update) |
 | `Download timed out: exceeded the total deadline` | [Troubleshoot installation and login](https://code.claude.com/docs/en/troubleshoot-install#the-connection-dropped-while-downloading-the-update) |
+| `Release verification failed for Claude Code <version> (<reason>). The update was not installed.` | [Troubleshoot installation and login](https://code.claude.com/docs/en/troubleshoot-install#release-verification-failed) |
+| `Auto-update failed · Run claude doctor` | [Troubleshoot installation and login](https://code.claude.com/docs/en/troubleshoot-install#auto-update-failed) |
 | `--bg and --print conflict` | [Command-line errors](#conflict-between-bg-and-print) |
 | `Couldn't tell whether --bg is a flag or text here, so nothing was started` | [Command-line errors](#couldnt-tell-whether-bg-is-a-flag-or-text) |
 | `Error: Cannot use both --append-subagent-system-prompt and --append-subagent-system-prompt-file. Please use only one.` | [Command-line errors](#conflict-between-a-system-prompt-flag-and-its-file-form) |
@@ -836,7 +838,7 @@ When a proxy, load balancer, or gateway between Claude Code and the API answers 
 * Run `/status` and confirm the active credential is the one you expect. A stray `ANTHROPIC_API_KEY` in your environment can route requests through a low-tier key instead of your subscription.
 * Check your provider console for the active limits and request a higher tier if needed
 * For Anthropic API keys, see the [rate limits reference](https://platform.claude.com/docs/en/api/rate-limits) for how tiers work and how to set per-workspace caps
-* Reduce concurrency: lower [`CLAUDE_CODE_MAX_TOOL_USE_CONCURRENCY`](https://code.claude.com/docs/en/env-vars), avoid running many parallel subagents, or switch to a smaller model with `/model` for high-volume scripted runs
+* Reduce concurrency: avoid running many parallel subagents, or switch to a smaller model with `/model` for high-volume scripted runs
 
 ### You've hit your monthly spend limit
 
@@ -3311,7 +3313,7 @@ Unknown command: /hepl. Did you mean /help?
 Claude Code suggests the closest command name or alias that the menu lists in this session. When nothing is close, the message ends after the name. The cause is usually one of the following:
 
 * A typo, such as `/hepl` for `/help`. [How the command menu matches what you type](https://code.claude.com/docs/en/commands#how-the-command-menu-matches-what-you-type) covers picking a close match before you submit
-* A command that exists but isn't available in this session because a requirement isn't met, such as your platform, plan, or authentication method. The troubleshooting entries for [`/web-setup`](https://code.claude.com/docs/en/web-quickstart#web-setup-shows-no-commands-match-or-unknown-command) and [`/schedule`](https://code.claude.com/docs/en/routines#schedule-returns-unknown-command) walk through two common cases. Some commands answer with their own message when your organization's policy disables them, such as [`Cloud sessions are disabled by your organization's policy`](#cloud-sessions-are-disabled-by-your-organizations-policy)
+* A command that exists but isn't available in this session because a requirement isn't met, such as your platform, plan, or authentication method. See the entry for [`/web-setup`](https://code.claude.com/docs/en/web-quickstart#web-setup-shows-no-commands-match-or-unknown-command), [`/schedule`](https://code.claude.com/docs/en/routines#schedule-returns-unknown-command), or [`/auto-mode-setup`](https://code.claude.com/docs/en/auto-mode-config#auto-mode-setup-returns-unknown-command). Some commands answer with their own message when your organization's policy disables them, such as [`Cloud sessions are disabled by your organization's policy`](#cloud-sessions-are-disabled-by-your-organizations-policy)
 * A command from a [plugin](https://code.claude.com/docs/en/plugins/overview) or [MCP server](https://code.claude.com/docs/en/mcp#use-mcp-prompts-as-commands) that isn't installed or connected in this session
 
 Claude Code answers an unmatched `/` name this way only in an interactive terminal session. In every other session, it sends the prompt to Claude as a normal message instead, with a note that the command didn't run and a list of commands Claude can run in the session. Those sessions include:

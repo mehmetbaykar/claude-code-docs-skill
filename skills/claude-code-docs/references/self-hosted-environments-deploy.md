@@ -82,7 +82,7 @@ You don't need to allowlist these hosts for runner or session traffic:
 These host-side flows do reach `claude.ai`, so run them from a host whose egress allows it rather than widening session-container egress:
 
 * **The one-line installer**: fetches `install.sh` from `claude.ai` at install time.
-* **Interactive `claude auth login`**: signs in through `claude.ai`, `claude.com`, and `platform.claude.com`. The [guided setup](https://code.claude.com/docs/en/self-hosted-environments-quickstart#run-the-guided-setup), `doctor`'s signed-in mode, and [CI dispatch](https://code.claude.com/docs/en/self-hosted-environments-testing#authenticate-from-ci) use it. The browser you sign in with also loads the claude.ai sign-in page's browser checks from `hcaptcha.com`, `*.hcaptcha.com`, and `challenges.cloudflare.com`.
+* **Interactive `claude auth login`**: signs in through `claude.ai`, `claude.com`, and `platform.claude.com`. The [guided setup](https://code.claude.com/docs/en/self-hosted-environments-quickstart#run-the-guided-setup), `doctor`'s signed-in mode, and [CI dispatch](https://code.claude.com/docs/en/self-hosted-environments-testing#authenticate-from-ci) use it. The browser you sign in with also loads the claude.ai sign-in page's browser checks from `hcaptcha.com`, `*.hcaptcha.com`, and `challenges.cloudflare.com`. If your organization uses single sign-on, that browser can also be redirected through `sso.claude.com`.
 
 ### Default-deny egress
 
