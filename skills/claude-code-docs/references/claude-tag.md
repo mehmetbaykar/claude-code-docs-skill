@@ -15,40 +15,21 @@ Anyone in a Slack channel can tag Claude into a problem and hand it work: reprod
 [I'm setting it up →](https://code.claude.com/docs/claude-tag/admins/setup-overview)
 [Use it in your channel ↓](#put-claude-tag-to-work)
 
-
-
-# platform-eng
+\# platform-eng
 38 members
 
+Dana2:14 PMcheckout has felt slow all morning — anyone else seeing it?
 
+Leo2:15 PMsame. @Claude can you investigate? Compare latency against this morning's deploy and find what's causing it.
 
-D
+![](https://mintcdn.com/claude-ai/5JFKyLlO7sHMMf5J/images/claude-tag/logo/clay-spark.svg?fit=max\&auto=format\&n=5JFKyLlO7sHMMf5J\&q=85\&s=032101c39ca3b1af9f72fc4af8e60d12)
 
-Dana2:14 PM
-checkout has felt slow all morning — anyone else seeing it?
-
-
-L
-
-Leo2:15 PM
-same. @Claude can you investigate? Compare latency against this morning's deploy and find what's causing it.
-
-
-
-
-![](https://mintcdn.com/claude-ai/5JFKyLlO7sHMMf5J/images/claude-tag/logo/clay-spark.svg?fit=max&auto=format&n=5JFKyLlO7sHMMf5J&q=85&s=032101c39ca3b1af9f72fc4af8e60d12)
-
-
-
-ClaudeAPP2:15 PM
-On it. I'll compare latency before and after the deploy, track down the cause, and report back here.
-
+ClaudeAPP2:15 PMOn it. I'll compare latency before and after the deploy, track down the cause, and report back here.
 
 Done: Pulled p99 latency from Datadog
 Done: Diffed deploy 4f2c1 against main
 Done: Reproduced the slow query locally
 In progress: Opening a pull request with the fix…
-
 
 ## Plans that include Claude Tag
 
@@ -72,12 +53,12 @@ When Claude works on a task, it runs in an ephemeral sandbox, not on your comput
 
 You extend what Claude can reach, like your repositories, ticketing systems, data warehouses, and custom tools, through [Claude Tag connectors](https://code.claude.com/docs/claude-tag/admins/add-connections), [plugins, and skills](https://code.claude.com/docs/claude-tag/admins/customize). An Owner or a [Claude Tag admin](https://code.claude.com/docs/claude-tag/admins/restrict-access#delegate-claude-tag-administration) configures these for all of Slack, for one workspace, or for one channel. Members' own claude.ai connectors are separate from that configuration; Claude can use them in a channel for the member's own requests, as [personal connectors in channels](https://code.claude.com/docs/claude-tag/concepts/personal-connectors) describes.
 
-[For administrators
+For administrators
 Set up Claude Tag
 
+![](https://mintcdn.com/claude-ai/5JFKyLlO7sHMMf5J/images/claude-tag/illustrations/Hand-Key.svg?fit=max\&auto=format\&n=5JFKyLlO7sHMMf5J\&q=85\&s=1b7a9675728f971bc7a4663c7f1ea599)
 
-
-![](https://mintcdn.com/claude-ai/5JFKyLlO7sHMMf5J/images/claude-tag/illustrations/Hand-Key.svg?fit=max&auto=format&n=5JFKyLlO7sHMMf5J&q=85&s=1b7a9675728f971bc7a4663c7f1ea599)](https://code.claude.com/docs/claude-tag/admins/setup-overview)
+[Open](https://code.claude.com/docs/claude-tag/admins/setup-overview)
 
 [Where do I start?
 Pair your Slack workspace, launch, and test that it works](https://code.claude.com/docs/claude-tag/admins/setup-overview)
@@ -88,14 +69,12 @@ How admins set access per channel, and where credentials are stored](https://cod
 [How do I connect each service?
 Credential types, allowed hosts, and what each connection lets Claude reach](https://code.claude.com/docs/claude-tag/admins/add-connections)
 
-
-
-[For end users
+For end users
 Put Claude Tag to work
 
+![](https://mintcdn.com/claude-ai/5JFKyLlO7sHMMf5J/images/claude-tag/illustrations/Hand-NodePair.svg?fit=max\&auto=format\&n=5JFKyLlO7sHMMf5J\&q=85\&s=c64df4c6d27a6da752aa32c9e0622781)
 
-
-![](https://mintcdn.com/claude-ai/5JFKyLlO7sHMMf5J/images/claude-tag/illustrations/Hand-NodePair.svg?fit=max&auto=format&n=5JFKyLlO7sHMMf5J&q=85&s=c64df4c6d27a6da752aa32c9e0622781)](#put-claude-tag-to-work)
+[Open](#put-claude-tag-to-work)
 
 [How do I hand Claude Tag a task?
 Mention Claude in any channel it's in, with nothing to install](https://code.claude.com/docs/claude-tag/users/getting-started)
@@ -111,7 +90,6 @@ Channel memory, what's shared across the workspace, and who can see what](https:
 
 [Can Claude Tag run tasks on a schedule?
 Scheduled jobs, channel watching, and triggers](https://code.claude.com/docs/claude-tag/users/proactivity)
-
 
 ## Billing and spend limits
 
@@ -166,30 +144,22 @@ Claude Tag starts with no access of its own to your external systems. After you 
 Security review
 [Security and data handling](https://code.claude.com/docs/claude-tag/concepts/security-and-data)
 
-
 The security model, what admins can and can't restrict, audit trails, and network requirements.
 
 ## Where to start with Claude Tag
 
+> **[Set up Claude Tag](https://code.claude.com/docs/claude-tag/admins/setup-overview)**
+>
+> Admins: pair your Slack workspace and launch
 
-**Set up Claude Tag**
+> **[Hand Claude Tag your first task](https://code.claude.com/docs/claude-tag/users/getting-started)**
+>
+> It's already in your channel: send your first message
 
-Admins: pair your Slack workspace and launch
+> **[How Claude Tag works](https://code.claude.com/docs/claude-tag/concepts/how-it-works)**
+>
+> The session model, what it can read, and how memory follows places
 
-
-
-**Hand Claude Tag your first task**
-
-It's already in your channel: send your first message
-
-
-
-**How Claude Tag works**
-
-The session model, what it can read, and how memory follows places
-
-
-
-**Use case library**
-
-Prompts to paste, by team and connection
+> **[Use case library](https://code.claude.com/docs/claude-tag/users/use-cases)**
+>
+> Prompts to paste, by team and connection

@@ -31,7 +31,9 @@ Three approaches keep the current session running between prompts. Pick based on
 
 [Auto mode](https://code.claude.com/docs/en/auto-mode-config) on its own approves tool calls within a single turn but doesn't start a new one. Claude stops when it judges the work done. `/goal` adds a separate evaluator that checks your condition after every turn, so completion is decided by a fresh model rather than the one doing the work. The two are complementary: auto mode removes per-tool prompts, and `/goal` removes per-turn prompts.
 
-The approaches above keep the current session running. You can also schedule work that runs independent of any open session, such as nightly tests or morning triage. See [scheduling options](https://code.claude.com/docs/en/scheduled-tasks#compare-scheduling-options) for cloud and Desktop scheduled tasks.
+> [!TIP]
+>
+> The approaches above keep the current session running. You can also schedule work that runs independent of any open session, such as nightly tests or morning triage. See [scheduling options](https://code.claude.com/docs/en/scheduled-tasks#compare-scheduling-options) for cloud and Desktop scheduled tasks.
 
 ## Use `/goal`
 
@@ -162,11 +164,15 @@ Check-ins require Claude Code v2.1.234 or later.
 
 To evaluate on a different model, set [`ANTHROPIC_DEFAULT_HAIKU_MODEL`](https://code.claude.com/docs/en/model-config#environment-variables).
 
-Claude Code reads `ANTHROPIC_DEFAULT_HAIKU_MODEL` everywhere it uses the small fast model, not only for `/goal` evaluation. When you set it, Claude Code also resolves the [`haiku` alias](https://code.claude.com/docs/en/model-config#model-aliases) to that model and runs [background functionality](https://code.claude.com/docs/en/costs#background-token-usage), such as conversation summarization, on it.
+> [!WARNING]
+>
+> Claude Code reads `ANTHROPIC_DEFAULT_HAIKU_MODEL` everywhere it uses the small fast model, not only for `/goal` evaluation. When you set it, Claude Code also resolves the [`haiku` alias](https://code.claude.com/docs/en/model-config#model-aliases) to that model and runs [background functionality](https://code.claude.com/docs/en/costs#background-token-usage), such as conversation summarization, on it.
 
 The evaluator runs on whichever provider your session is configured for. It does not call tools, so it can only judge what Claude has already surfaced in the conversation.
 
-Evaluation tokens are billed on the small fast model configured for your provider and are typically negligible compared to main-turn spend.
+> [!NOTE]
+>
+> Evaluation tokens are billed on the small fast model configured for your provider and are typically negligible compared to main-turn spend.
 
 ## Requirements
 

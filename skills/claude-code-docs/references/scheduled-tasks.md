@@ -10,10 +10,12 @@ path: /docs/en/scheduled-tasks
 
 Session-scoped scheduled tasks let Claude re-run a prompt automatically on an interval within a Claude Code session. Use them to poll a deployment, babysit a PR, check back on a long-running build, or remind yourself to do something later in the session.
 
-These cases are covered on other pages:
-
-* **Reacting to events as they happen instead of polling**: see [Channels](https://code.claude.com/docs/en/channels). Your CI can push the failure into the session directly.
-* **Keeping the session working turn after turn toward a condition rather than on an interval**: see [`/goal`](https://code.claude.com/docs/en/goal).
+> [!NOTE]
+>
+> These cases are covered on other pages:
+>
+> * **Reacting to events as they happen instead of polling**: see [Channels](https://code.claude.com/docs/en/channels). Your CI can push the failure into the session directly.
+> * **Keeping the session working turn after turn toward a condition rather than on an interval**: see [`/goal`](https://code.claude.com/docs/en/goal).
 
 Tasks are session-scoped. When you resume with `--resume` or `--continue`, Claude Code restores tasks that haven't [expired](#seven-day-expiry), except those listed under [Limitations](#limitations). For scheduling that survives independently of any session, create a [cloud scheduled task](https://code.claude.com/docs/en/routines), set up a [Desktop scheduled task](https://code.claude.com/docs/en/desktop-scheduled-tasks), or use [GitHub Actions](https://code.claude.com/docs/en/github-actions).
 
@@ -33,7 +35,9 @@ Claude Code offers three ways to schedule recurring or one-off work:
 | Customizable schedule | Via `/schedule` in the CLI | Yes | Yes |
 | Minimum interval | 1 hour | 1 minute | 1 minute |
 
-Use **cloud tasks** for work that should run reliably without your machine. Use **Desktop tasks** when you need access to local files and tools. Use **`/loop`** for quick polling during a session.
+> [!TIP]
+>
+> Use **cloud tasks** for work that should run reliably without your machine. Use **Desktop tasks** when you need access to local files and tools. Use **`/loop`** for quick polling during a session.
 
 ## Run a prompt repeatedly with /loop
 
@@ -76,7 +80,9 @@ In a session where the [Monitor tool is available](https://code.claude.com/docs/
 
 A dynamically scheduled loop appears in your [scheduled task list](#manage-scheduled-tasks) like any other task, so you can list or cancel it the same way. The list shows its pending wakeup as a one-shot task, so a wakeup scheduled for `:00` or `:30` can [run a little early](#when-a-one-shot-task-runs-early). The [seven-day expiry](#seven-day-expiry) applies to the loop too.
 
-Dynamically chosen intervals and the [built-in maintenance prompt](#run-the-built-in-maintenance-prompt) work on every provider, and with [feature-flag fetching](https://code.claude.com/docs/en/env-vars#features-that-need-feature-flag-fetching) turned off. On Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, and Microsoft Foundry, or with fetching turned off, both require Claude Code v2.1.248 or later.
+> [!NOTE]
+>
+> Dynamically chosen intervals and the [built-in maintenance prompt](#run-the-built-in-maintenance-prompt) work on every provider, and with [feature-flag fetching](https://code.claude.com/docs/en/env-vars#features-that-need-feature-flag-fetching) turned off. On Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, and Microsoft Foundry, or with fetching turned off, both require Claude Code v2.1.248 or later.
 
 ### Run the built-in maintenance prompt
 

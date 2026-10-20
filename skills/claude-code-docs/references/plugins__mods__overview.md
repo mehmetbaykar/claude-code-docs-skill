@@ -10,7 +10,9 @@ path: /docs/en/plugins/mods/overview
 
 A mod is a [plugin](https://code.claude.com/docs/en/plugins/overview) that changes how Claude Code looks and behaves. It's made of JavaScript or TypeScript event handlers: Claude Code calls one when an event happens, such as a tool call, a submitted prompt, or a part of the interface being drawn, and the handler can watch the event, change it, or take it over. Use a mod to add a feature of your own to Claude Code, such as a pane that charts how full your context is after each request. For the files in a mod and a complete example, see [How a mod works](#how-a-mod-works).
 
-Claude Code's existing [hooks](https://code.claude.com/docs/en/hooks) also run on events, as a shell command, HTTP request, or prompt you configure in a settings file. A mod's handlers are functions that run inside Claude Code instead. Claude Code calls both kinds hooks: on these pages, "hook" means a mod's handler, and the settings-file kind is a "settings hook".
+> [!NOTE]
+>
+> Claude Code's existing [hooks](https://code.claude.com/docs/en/hooks) also run on events, as a shell command, HTTP request, or prompt you configure in a settings file. A mod's handlers are functions that run inside Claude Code instead. Claude Code calls both kinds hooks: on these pages, "hook" means a mod's handler, and the settings-file kind is a "settings hook".
 
 ## What a mod can do
 
@@ -34,7 +36,9 @@ To start with a mod:
 
 ### Install or update a mod
 
-A mod is code that runs with your permissions. It can read and write your files, start processes, and make network requests. Install mods only from authors and marketplaces you trust. See [Decide whether to trust a mod](#decide-whether-to-trust-a-mod).
+> [!WARNING]
+>
+> A mod is code that runs with your permissions. It can read and write your files, start processes, and make network requests. Install mods only from authors and marketplaces you trust. See [Decide whether to trust a mod](#decide-whether-to-trust-a-mod).
 
 A mod installs as a plugin, from a marketplace. Give the plugin's name, an `@`, and the marketplace's name. These examples install a plugin named `token-chart` from a marketplace named `your-org`:
 
@@ -108,7 +112,9 @@ If you use Claude Code through an organization, an administrator can also limit 
 
 To find out whether mods can load for you, see [Check whether mods can load](https://code.claude.com/docs/en/plugins/mods/troubleshoot#check-whether-mods-can-load).
 
-If you set `CLAUDE_CODE_ENABLE_FUNCTION_HOOKS` during early access, remove it. Claude Code v2.1.287 and later ignores it, so setting it to `0` doesn't keep mods off.
+> [!NOTE]
+>
+> If you set `CLAUDE_CODE_ENABLE_FUNCTION_HOOKS` during early access, remove it. Claude Code v2.1.287 and later ignores it, so setting it to `0` doesn't keep mods off.
 
 ### See which mods a session loaded
 
@@ -161,11 +167,7 @@ The file registers two hooks, and both use the `calls` variable at the top:
 
 This recording shows the mod at work. Watch the spinner line above the prompt box: while Claude lists a directory and reads two files, it reads `Thinking · tool calls: 1…`, then `2…`, then `3…`.
 
-
 Video: https://mintcdn.com/claude-code/dgiVO_Od1X1faduV/images/mods-overview-light.mp4?fit=max&auto=format&n=dgiVO_Od1X1faduV&q=85&s=00a18aa0743b59a700f0275ce226e6d1
-
-
-Video: https://mintcdn.com/claude-code/dgiVO_Od1X1faduV/images/mods-overview-dark.mp4?fit=max&auto=format&n=dgiVO_Od1X1faduV&q=85&s=d5223da2fef16ceaaa214a36d72c0536
 
 ### What a hook can do with an event
 

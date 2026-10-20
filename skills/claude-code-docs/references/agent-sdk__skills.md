@@ -25,7 +25,9 @@ When using the Claude Agent SDK, skills are:
 
 Unlike subagents, which you can define in the [`agents` option](https://code.claude.com/docs/en/agent-sdk/subagents#programmatic-definition-recommended), you create skills as files on disk. The SDK doesn't provide a programmatic API for registering them.
 
-Skills are discovered through the filesystem setting sources. With default `query()` options, the SDK loads user and project sources, so skills in `~/.claude/skills/`, `<cwd>/.claude/skills/`, and `.claude/skills/` in any parent directory of `<cwd>` up to the repository root are available. The project source also covers `<dir>/.claude/skills/` in each directory you pass through `additionalDirectories` (TypeScript) or `add_dirs` (Python), because the SDK passes those directories to Claude Code as [`--add-dir`](https://code.claude.com/docs/en/skills#skills-from-additional-directories). If you set `settingSources` explicitly, include `'project'` to keep project and added-directory skills and `'user'` to keep your personal skills, or use the [`plugins` option](https://code.claude.com/docs/en/agent-sdk/plugins) to load skills from a specific path.
+> [!NOTE]
+>
+> Skills are discovered through the filesystem setting sources. With default `query()` options, the SDK loads user and project sources, so skills in `~/.claude/skills/`, `<cwd>/.claude/skills/`, and `.claude/skills/` in any parent directory of `<cwd>` up to the repository root are available. The project source also covers `<dir>/.claude/skills/` in each directory you pass through `additionalDirectories` (TypeScript) or `add_dirs` (Python), because the SDK passes those directories to Claude Code as [`--add-dir`](https://code.claude.com/docs/en/skills#skills-from-additional-directories). If you set `settingSources` explicitly, include `'project'` to keep project and added-directory skills and `'user'` to keep your personal skills, or use the [`plugins` option](https://code.claude.com/docs/en/agent-sdk/plugins) to load skills from a specific path.
 
 ## Use skills with the Agent SDK
 
@@ -33,10 +35,10 @@ Set the `skills` option on `query()` to control which skills Claude can invoke i
 
 For example, to let Claude invoke only two named skills:
 ```python Python
-  options = ClaudeAgentOptions(skills=["pdf", "docx"])
+options = ClaudeAgentOptions(skills=["pdf", "docx"])
 ```
 ```typescript TypeScript
-  const options = { skills: ["pdf", "docx"] };
+const options = { skills: ["pdf", "docx"] };
 ```
 
 ### Set up skills in a session
@@ -47,40 +49,40 @@ Once configured, Claude automatically discovers skills from the filesystem and i
 
 The following example enables every discovered skill in a session and pre-approves the tools that skills commonly need. The example sets `cwd` to the process's current working directory, so run it from inside a project that has a `.claude/skills/` directory in the current directory or any parent up to the repository root:
 ```python Python
-  import asyncio
-  import os
+import asyncio
+import os
 
-  from claude_agent_sdk import query, ClaudeAgentOptions
+from claude_agent_sdk import query, ClaudeAgentOptions
 
-  async def main():
-      options = ClaudeAgentOptions(
-          cwd=os.getcwd(),  # .claude/skills/ here or in a parent directory
-          setting_sources=["user", "project"],  # Load skills from filesystem
-          skills="all",  # Let Claude invoke every discovered skill
-          allowed_tools=["Read", "Write", "Bash"],
-      )
+async def main():
+    options = ClaudeAgentOptions(
+        cwd=os.getcwd(),  # .claude/skills/ here or in a parent directory
+        setting_sources=["user", "project"],  # Load skills from filesystem
+        skills="all",  # Let Claude invoke every discovered skill
+        allowed_tools=["Read", "Write", "Bash"],
+    )
 
-      async for message in query(
-          prompt="Help me process this PDF document", options=options
-      ):
-          print(message)
+    async for message in query(
+        prompt="Help me process this PDF document", options=options
+    ):
+        print(message)
 
-  asyncio.run(main())
+asyncio.run(main())
 ```
 ```typescript TypeScript
-  import { query } from "@anthropic-ai/claude-agent-sdk";
+import { query } from "@anthropic-ai/claude-agent-sdk";
 
-  for await (const message of query({
-    prompt: "Help me process this PDF document",
-    options: {
-      cwd: process.cwd(), // .claude/skills/ here or in a parent directory
-      settingSources: ["user", "project"], // Load skills from filesystem
-      skills: "all", // Let Claude invoke every discovered skill
-      allowedTools: ["Read", "Write", "Bash"]
-    }
-  })) {
-    console.log(message);
+for await (const message of query({
+  prompt: "Help me process this PDF document",
+  options: {
+    cwd: process.cwd(), // .claude/skills/ here or in a parent directory
+    settingSources: ["user", "project"], // Load skills from filesystem
+    skills: "all", // Let Claude invoke every discovered skill
+    allowedTools: ["Read", "Write", "Bash"]
   }
+})) {
+  console.log(message);
+}
 ```
 
 ### Confirm skills loaded
@@ -114,27 +116,27 @@ By default, both you and Claude can invoke any skill. You can restrict either pa
 
 You can dispatch commands that work without an interactive terminal through the SDK. The `system/init` message lists the ones available in your session in its `slash_commands` field. Commands that need an interactive terminal, such as `/theme` and `/terminal-setup`, don't appear in the list. Access the field when your session starts:
 ```typescript TypeScript
-  import { query } from "@anthropic-ai/claude-agent-sdk";
+import { query } from "@anthropic-ai/claude-agent-sdk";
 
-  for await (const message of query({
-    prompt: "Hello Claude",
-    options: { maxTurns: 1 }
-  })) {
-    if (message.type === "system" && message.subtype === "init") {
-      console.log("Available commands:", message.slash_commands);
-    }
+for await (const message of query({
+  prompt: "Hello Claude",
+  options: { maxTurns: 1 }
+})) {
+  if (message.type === "system" && message.subtype === "init") {
+    console.log("Available commands:", message.slash_commands);
   }
+}
 ```
 ```python Python
-  import asyncio
-  from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage
+import asyncio
+from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage
 
-  async def main():
-      async for message in query(prompt="Hello Claude", options=ClaudeAgentOptions(max_turns=1)):
-          if isinstance(message, SystemMessage) and message.subtype == "init":
-              print("Available commands:", message.data["slash_commands"])
+async def main():
+    async for message in query(prompt="Hello Claude", options=ClaudeAgentOptions(max_turns=1)):
+        if isinstance(message, SystemMessage) and message.subtype == "init":
+            print("Available commands:", message.data["slash_commands"])
 
-  asyncio.run(main())
+asyncio.run(main())
 ```
 
 The printed list mixes built-in commands, bundled skills, your user-invocable skills, and `.claude/commands/` files:
@@ -152,82 +154,86 @@ A `/<name>` that matches neither a command in the session nor a built-in Claude 
 
 A `/<name>` that matches a built-in Claude Code command that isn't available in the session, such as `/theme`, returns `/theme isn't available in this environment.` as the result without a model turn.
 
-A command can hit the `maxTurns` / `max_turns` limit like any other prompt, ending the query with an error result instead of `success`. For the error-result contract, see [Handle the result](https://code.claude.com/docs/en/agent-sdk/agent-loop#handle-the-result). If your command might hit the limit, wrap the loop in a `try`/`catch` in TypeScript or `try`/`except` in Python, as shown in [Single Message Input](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode#single-message-input), or set `maxTurns` high enough for the work to complete.
+> [!NOTE]
+>
+> A command can hit the `maxTurns` / `max_turns` limit like any other prompt, ending the query with an error result instead of `success`. For the error-result contract, see [Handle the result](https://code.claude.com/docs/en/agent-sdk/agent-loop#handle-the-result). If your command might hit the limit, wrap the loop in a `try`/`catch` in TypeScript or `try`/`except` in Python, as shown in [Single Message Input](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode#single-message-input), or set `maxTurns` high enough for the work to complete.
 
 ### Compact history with `/compact`
 
 The `/compact` command reduces the size of your conversation history by summarizing older messages while preserving important context. Compaction needs an existing conversation with enough prior messages to summarize. This example has a conversation first, then compacts it and reads the `compact_boundary` system message that reports the result:
 ```typescript TypeScript
-  import { query } from "@anthropic-ai/claude-agent-sdk";
+import { query } from "@anthropic-ai/claude-agent-sdk";
 
-  // Compaction needs existing history, so have a conversation first
-  try {
-    for await (const message of query({
-      prompt: "Explain what this project does",
-      options: { maxTurns: 2 }
-    })) {
-      if (message.type === "result" && message.subtype === "success") {
-        console.log(message.result);
-      }
-    }
-  } catch (error) {
-    // A single-shot query() throws after yielding an error result,
-    // so the follow-up query below still runs.
-    console.error(`Session ended with an error: ${error}`);
-  }
-
-  // Compact the same conversation
+// Compaction needs existing history, so have a conversation first
+try {
   for await (const message of query({
-    prompt: "/compact",
-    options: { continue: true, maxTurns: 1 }
+    prompt: "Explain what this project does",
+    options: { maxTurns: 2 }
   })) {
-    if (message.type === "system" && message.subtype === "compact_boundary") {
-      console.log("Compaction completed");
-      console.log("Pre-compaction tokens:", message.compact_metadata.pre_tokens);
-      console.log("Trigger:", message.compact_metadata.trigger);
-      // Example output:
-      // Compaction completed
-      // Pre-compaction tokens: 1842
-      // Trigger: manual
+    if (message.type === "result" && message.subtype === "success") {
+      console.log(message.result);
     }
   }
+} catch (error) {
+  // A single-shot query() throws after yielding an error result,
+  // so the follow-up query below still runs.
+  console.error(`Session ended with an error: ${error}`);
+}
+
+// Compact the same conversation
+for await (const message of query({
+  prompt: "/compact",
+  options: { continue: true, maxTurns: 1 }
+})) {
+  if (message.type === "system" && message.subtype === "compact_boundary") {
+    console.log("Compaction completed");
+    console.log("Pre-compaction tokens:", message.compact_metadata.pre_tokens);
+    console.log("Trigger:", message.compact_metadata.trigger);
+    // Example output:
+    // Compaction completed
+    // Pre-compaction tokens: 1842
+    // Trigger: manual
+  }
+}
 ```
 ```python Python
-  import asyncio
-  from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage, SystemMessage
+import asyncio
+from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage, SystemMessage
 
-  async def main():
-      # Compaction needs existing history, so have a conversation first
-      try:
-          async for message in query(
-              prompt="Explain what this project does",
-              options=ClaudeAgentOptions(max_turns=2),
-          ):
-              if isinstance(message, ResultMessage) and message.subtype == "success":
-                  print(message.result)
-      except Exception as error:
-          # A single-shot query() raises after yielding an error result,
-          # so the follow-up query below still runs.
-          print(f"Session ended with an error: {error}")
+async def main():
+    # Compaction needs existing history, so have a conversation first
+    try:
+        async for message in query(
+            prompt="Explain what this project does",
+            options=ClaudeAgentOptions(max_turns=2),
+        ):
+            if isinstance(message, ResultMessage) and message.subtype == "success":
+                print(message.result)
+    except Exception as error:
+        # A single-shot query() raises after yielding an error result,
+        # so the follow-up query below still runs.
+        print(f"Session ended with an error: {error}")
 
-      # Compact the same conversation
-      async for message in query(
-          prompt="/compact",
-          options=ClaudeAgentOptions(continue_conversation=True, max_turns=1),
-      ):
-          if isinstance(message, SystemMessage) and message.subtype == "compact_boundary":
-              print("Compaction completed")
-              print("Pre-compaction tokens:", message.data["compact_metadata"]["pre_tokens"])
-              print("Trigger:", message.data["compact_metadata"]["trigger"])
-              # Example output:
-              # Compaction completed
-              # Pre-compaction tokens: 1842
-              # Trigger: manual
+    # Compact the same conversation
+    async for message in query(
+        prompt="/compact",
+        options=ClaudeAgentOptions(continue_conversation=True, max_turns=1),
+    ):
+        if isinstance(message, SystemMessage) and message.subtype == "compact_boundary":
+            print("Compaction completed")
+            print("Pre-compaction tokens:", message.data["compact_metadata"]["pre_tokens"])
+            print("Trigger:", message.data["compact_metadata"]["trigger"])
+            # Example output:
+            # Compaction completed
+            # Pre-compaction tokens: 1842
+            # Trigger: manual
 
-  asyncio.run(main())
+asyncio.run(main())
 ```
 
-A `compact_boundary` message only arrives when compaction ran. When a continued session has messages but nothing `/compact` can summarize, the run still ends with a `success` result rather than an error, and no `compact_boundary` message arrives. The result text then carries the reason, for example `Not enough messages to compact.` when the session holds a prompt but no reply from Claude yet. A fresh one-shot `query()` call starts with empty context, so use this pattern in a session with prior turns, for example in [streaming input mode](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode) or when resuming a session.
+> [!NOTE]
+>
+> A `compact_boundary` message only arrives when compaction ran. When a continued session has messages but nothing `/compact` can summarize, the run still ends with a `success` result rather than an error, and no `compact_boundary` message arrives. The result text then carries the reason, for example `Not enough messages to compact.` when the session holds a prompt but no reply from Claude yet. A fresh one-shot `query()` call starts with empty context, so use this pattern in a session with prior turns, for example in [streaming input mode](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode) or when resuming a session.
 
 ### Reset context with `/clear`
 
@@ -272,29 +278,29 @@ Analyze the codebase for security vulnerabilities including:
 
 Once the file exists, the skill is available through the SDK. Claude invokes it when a request matches its description, and you can dispatch it directly:
 ```typescript TypeScript
-  import { query } from "@anthropic-ai/claude-agent-sdk";
+import { query } from "@anthropic-ai/claude-agent-sdk";
 
-  for await (const message of query({
-    prompt: "/security-check",
-    options: { maxTurns: 10 }
-  })) {
-    if (message.type === "result" && message.subtype === "success") {
-      console.log(message.result);
-    }
+for await (const message of query({
+  prompt: "/security-check",
+  options: { maxTurns: 10 }
+})) {
+  if (message.type === "result" && message.subtype === "success") {
+    console.log(message.result);
   }
+}
 ```
 ```python Python
-  import asyncio
-  from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
+import asyncio
+from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
 
-  async def main():
-      async for message in query(
-          prompt="/security-check", options=ClaudeAgentOptions(max_turns=10)
-      ):
-          if isinstance(message, ResultMessage) and message.subtype == "success":
-              print(message.result)
+async def main():
+    async for message in query(
+        prompt="/security-check", options=ClaudeAgentOptions(max_turns=10)
+    ):
+        if isinstance(message, ResultMessage) and message.subtype == "success":
+            print(message.result)
 
-  asyncio.run(main())
+asyncio.run(main())
 ```
 
 A successful run ends with a `success` result whose text carries the scan findings. Against a small Express app with seeded issues, the result text begins:
@@ -307,43 +313,47 @@ A successful run ends with a `success` result whose text carries the scan findin
 
 The skill's name also appears in the init message's `slash_commands` array.
 
-Claude Code includes bundled `code-review` and `verify` skills. If you name a `.claude/commands/` file after one of them, for example `.claude/commands/code-review.md`, the file's command shadows the bundled skill and `slash_commands` lists the name once.
+> [!NOTE]
+>
+> Claude Code includes bundled `code-review` and `verify` skills. If you name a `.claude/commands/` file after one of them, for example `.claude/commands/code-review.md`, the file's command shadows the bundled skill and `slash_commands` lists the name once.
 
 ## Pre-approve tools for skills
 
-In SDK sessions, you can pre-approve tools for a project or personal skill with the skill's [`allowed-tools`](https://code.claude.com/docs/en/skills#pre-approve-tools-for-a-skill) frontmatter or with the `allowedTools` option (`allowed_tools` in Python) in your query configuration. If your organization sets [`allowManagedPermissionRulesOnly`](https://code.claude.com/docs/en/settings-reference#allowmanagedpermissionrulesonly) in managed settings, Claude Code ignores both. Skills [synced from claude.ai](https://code.claude.com/docs/en/skills#how-claude-code-handles-the-frontmatter-of-a-synced-skill) follow their own frontmatter rules.
+> [!NOTE]
+>
+> In SDK sessions, you can pre-approve tools for a project or personal skill with the skill's [`allowed-tools`](https://code.claude.com/docs/en/skills#pre-approve-tools-for-a-skill) frontmatter or with the `allowedTools` option (`allowed_tools` in Python) in your query configuration. If your organization sets [`allowManagedPermissionRulesOnly`](https://code.claude.com/docs/en/settings-reference#allowmanagedpermissionrulesonly) in managed settings, Claude Code ignores both. Skills [synced from claude.ai](https://code.claude.com/docs/en/skills#how-claude-code-handles-the-frontmatter-of-a-synced-skill) follow their own frontmatter rules.
 
 Skills run with the session's tools. The example below pre-approves `Read`, `Grep`, and `Glob` with `allowedTools` (`allowed_tools` in Python), so Claude can inspect files while running the [security-check skill](#create-and-dispatch-your-first-skill) without stopping for approval:
 ```python Python
-  import asyncio
+import asyncio
 
-  from claude_agent_sdk import query, ClaudeAgentOptions
+from claude_agent_sdk import query, ClaudeAgentOptions
 
-  options = ClaudeAgentOptions(
-      setting_sources=["user", "project"],  # Load skills from filesystem
-      skills="all",
-      allowed_tools=["Read", "Grep", "Glob"],
-  )
+options = ClaudeAgentOptions(
+    setting_sources=["user", "project"],  # Load skills from filesystem
+    skills="all",
+    allowed_tools=["Read", "Grep", "Glob"],
+)
 
-  async def main():
-      async for message in query(prompt="Check this project for security issues", options=options):
-          print(message)
+async def main():
+    async for message in query(prompt="Check this project for security issues", options=options):
+        print(message)
 
-  asyncio.run(main())
+asyncio.run(main())
 ```
 ```typescript TypeScript
-  import { query } from "@anthropic-ai/claude-agent-sdk";
+import { query } from "@anthropic-ai/claude-agent-sdk";
 
-  for await (const message of query({
-    prompt: "Check this project for security issues",
-    options: {
-      settingSources: ["user", "project"], // Load skills from filesystem
-      skills: "all",
-      allowedTools: ["Read", "Grep", "Glob"]
-    }
-  })) {
-    console.log(message);
+for await (const message of query({
+  prompt: "Check this project for security issues",
+  options: {
+    settingSources: ["user", "project"], // Load skills from filesystem
+    skills: "all",
+    allowedTools: ["Read", "Grep", "Glob"]
   }
+})) {
+  console.log(message);
+}
 ```
 
 In the stream, the skill invocation appears as a Skill tool use, followed by Read calls on the project files. The run ends with a `success` result whose text carries the findings.
@@ -356,47 +366,47 @@ The list pre-approves the named tools rather than restricting the others. For th
 
 **Check settingSources configuration**: the SDK discovers skills through the `user` and `project` setting sources. If you set `settingSources`/`setting_sources` explicitly and omit those sources, the SDK doesn't load skills:
 ```python Python
-  # Skills not loaded: setting_sources excludes user and project
-  options = ClaudeAgentOptions(setting_sources=[], skills="all")
+# Skills not loaded: setting_sources excludes user and project
+options = ClaudeAgentOptions(setting_sources=[], skills="all")
 
-  # Skills loaded: user and project sources included
-  options = ClaudeAgentOptions(
-      setting_sources=["user", "project"],
-      skills="all",
-  )
+# Skills loaded: user and project sources included
+options = ClaudeAgentOptions(
+    setting_sources=["user", "project"],
+    skills="all",
+)
 ```
 ```typescript TypeScript
-  // Skills not loaded: settingSources excludes user and project
-  const optionsWithoutSkills = {
-    settingSources: [],
-    skills: "all"
-  };
+// Skills not loaded: settingSources excludes user and project
+const optionsWithoutSkills = {
+  settingSources: [],
+  skills: "all"
+};
 
-  // Skills loaded: user and project sources included
-  const optionsWithSkills = {
-    settingSources: ["user", "project"],
-    skills: "all"
-  };
+// Skills loaded: user and project sources included
+const optionsWithSkills = {
+  settingSources: ["user", "project"],
+  skills: "all"
+};
 ```
 
 For which skill directories each source loads, see the [filesystem sources table](https://code.claude.com/docs/en/agent-sdk/claude-code-features#control-filesystem-settings-with-settingsources). For more details on `settingSources`/`setting_sources`, see the [TypeScript SDK reference](https://code.claude.com/docs/en/agent-sdk/typescript#settingsource) or [Python SDK reference](https://code.claude.com/docs/en/agent-sdk/python#settingsource).
 
 **Check working directory**: the SDK loads skills from `.claude/skills/` in the `cwd` option and in every parent directory up to the repository root. Ensure `cwd` points at or below the directory containing `.claude/skills/`, within the same repository:
 ```python Python
-  # Ensure your cwd points to the directory containing .claude/skills/
-  options = ClaudeAgentOptions(
-      cwd="/path/to/project",  # .claude/skills/ here or in a parent directory
-      setting_sources=["user", "project"],  # Loads skills from these sources
-      skills="all",
-  )
+# Ensure your cwd points to the directory containing .claude/skills/
+options = ClaudeAgentOptions(
+    cwd="/path/to/project",  # .claude/skills/ here or in a parent directory
+    setting_sources=["user", "project"],  # Loads skills from these sources
+    skills="all",
+)
 ```
 ```typescript TypeScript
-  // Ensure your cwd points to the directory containing .claude/skills/
-  const options = {
-    cwd: "/path/to/project", // .claude/skills/ here or in a parent directory
-    settingSources: ["user", "project"], // Loads skills from these sources
-    skills: "all"
-  };
+// Ensure your cwd points to the directory containing .claude/skills/
+const options = {
+  cwd: "/path/to/project", // .claude/skills/ here or in a parent directory
+  settingSources: ["user", "project"], // Loads skills from these sources
+  skills: "all"
+};
 ```
 
 See [Use skills with the Agent SDK](#use-skills-with-the-agent-sdk) for the complete pattern.
@@ -427,31 +437,27 @@ When a name in your `skills` list can't work as an exact skill name, `query()` r
 
 Each SDK surfaces the rejection differently:
 
-
 **TypeScript**
 
 The TypeScript SDK throws an `Error` stating the rule the entry broke. For example, `skills: ["docs:*"]` throws:
 ```text
-    Invalid skill name "docs:*": wildcard-suffix names are not allowed; list each skill by its exact name.
+Invalid skill name "docs:*": wildcard-suffix names are not allowed; list each skill by its exact name.
 ```
 
 An empty name reports `Skill names must be non-empty strings.`
 
 Before TypeScript Agent SDK 0.3.221, the SDK didn't run this check.
 
-
-
 **Python**
 
 The Python SDK raises `ValueError` stating the rule the entry broke. For example, `skills=["docs:*"]` raises:
 ```text
-    ValueError: Invalid skill name 'docs:*': wildcard-suffix names are not allowed; list each skill by its exact name.
+ValueError: Invalid skill name 'docs:*': wildcard-suffix names are not allowed; list each skill by its exact name.
 ```
 
 An empty name reports `Skill names must be non-empty strings`.
 
 Before Python Agent SDK 0.2.129, the SDK didn't run this check.
-
 
 ### Additional troubleshooting
 

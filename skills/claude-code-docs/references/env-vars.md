@@ -25,58 +25,46 @@ A variable you set in your shell lasts for that terminal session, while a variab
 
 Set the variable before launching `claude`:
 
-
 **macOS, Linux, WSL**
 ```bash
-    export API_TIMEOUT_MS="1200000"
-    claude
+export API_TIMEOUT_MS="1200000"
+claude
 ```
 
 To set it for every session, add the `export` line to `~/.bashrc`, `~/.zshrc`, or your shell's profile file.
 
-
-
 **Windows PowerShell**
 ```powershell
-    $env:API_TIMEOUT_MS = "1200000"
-    claude
+$env:API_TIMEOUT_MS = "1200000"
+claude
 ```
 
 To set it for every session, run `[Environment]::SetEnvironmentVariable("API_TIMEOUT_MS", "1200000", "User")` and open a new terminal.
 
-
-
 **Windows CMD**
 ```batch
-    set API_TIMEOUT_MS=1200000
-    claude
+set API_TIMEOUT_MS=1200000
+claude
 ```
 
 To set it for every session, run `setx API_TIMEOUT_MS "1200000"` and open a new terminal.
 
-
 The assignment line prints nothing on success. To confirm the variable is set, print it in the same shell:
-
 
 **macOS, Linux, WSL**
 ```bash
-    echo $API_TIMEOUT_MS
+echo $API_TIMEOUT_MS
 ```
-
-
 
 **Windows PowerShell**
 ```powershell
-    echo $env:API_TIMEOUT_MS
+echo $env:API_TIMEOUT_MS
 ```
-
-
 
 **Windows CMD**
 ```batch
-    echo %API_TIMEOUT_MS%
+echo %API_TIMEOUT_MS%
 ```
-
 
 ### Set variables in settings files
 
@@ -121,18 +109,20 @@ Claude Code reads shell environment variables at startup, so changes to them tak
 
 Numeric variables such as timeouts, token budgets, and retry counts accept scientific notation and digit-separator spellings in addition to plain digits, except where a variable's row notes it takes plain digits only. For example, Claude Code reads `2e3` as 2000 and `64_000` as 64000. Before v2.1.211, these spellings could silently set a much smaller value, such as `1e6` setting a timeout to 1.
 
-For variables that turn a behavior on or off, set `1`, `true`, `yes`, or `on` to turn it on and `0`, `false`, `no`, or `off` to turn it off, in any casing.
-
-Some variables read only whether you set them at all, so any non-empty value including `0` turns the behavior on, and you turn the behavior off by unsetting the variable or setting it to an empty value. These variables work that way:
-
-* `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`
-* `DISABLE_TELEMETRY`
-* `DISABLE_ERROR_REPORTING`
-* `CLAUDE_CODE_TMUX_TRUECOLOR`
-* `FALLBACK_FOR_ALL_PRIMARY_MODELS`
-* `IS_DEMO`
-
-One other variable has its own rule: `FORCE_HYPERLINK` reads a number, so only `0` turns it off. Each variable's row also states its own rule.
+> [!NOTE]
+>
+> For variables that turn a behavior on or off, set `1`, `true`, `yes`, or `on` to turn it on and `0`, `false`, `no`, or `off` to turn it off, in any casing.
+>
+> Some variables read only whether you set them at all, so any non-empty value including `0` turns the behavior on, and you turn the behavior off by unsetting the variable or setting it to an empty value. These variables work that way:
+>
+> * `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`
+> * `DISABLE_TELEMETRY`
+> * `DISABLE_ERROR_REPORTING`
+> * `CLAUDE_CODE_TMUX_TRUECOLOR`
+> * `FALLBACK_FOR_ALL_PRIMARY_MODELS`
+> * `IS_DEMO`
+>
+> One other variable has its own rule: `FORCE_HYPERLINK` reads a number, so only `0` turns it off. Each variable's row also states its own rule.
 
 | Variable | Purpose |
 | :- | :- |

@@ -8,6 +8,11 @@ path: /docs/en/amazon-bedrock
 
 > Learn about configuring Claude Code through Amazon Bedrock, including setup, IAM configuration, and troubleshooting.
 
+**Deploying Claude Code across your organization?** Talk to sales about enterprise plans, SSO, and centralized billing.
+
+View plans
+Contact sales
+
 ## Prerequisites
 
 Before configuring Claude Code with Amazon Bedrock, ensure you have:
@@ -23,23 +28,17 @@ To sign in with your own Amazon Bedrock credentials, follow [Sign in with Amazon
 
 If you have AWS credentials and want to start using Claude Code through Amazon Bedrock, the login wizard walks you through it. You complete the AWS-side prerequisites once per account; the wizard handles the Claude Code side.
 
-
-**Enable Anthropic models in your AWS account**
+**1. Enable Anthropic models in your AWS account**
 
 In the [Amazon Bedrock console](https://console.aws.amazon.com/bedrock/), open the Model catalog, select an Anthropic model, and submit the use case form. Access is granted immediately after submission. See [Submit use case details](#1-submit-use-case-details) for AWS Organizations and [IAM configuration](#iam-configuration) for the permissions your role needs.
 
-
-
-**Start Claude Code and choose Amazon Bedrock**
+**2. Start Claude Code and choose Amazon Bedrock**
 
 Run `claude`. At the login prompt, select **3rd-party platform**, then **Amazon Bedrock**. If you're already signed in and see the chat prompt instead, run `/setup-bedrock` to open the wizard. Until `CLAUDE_CODE_USE_BEDROCK=1` is set, Claude Code [hides the command from the command menu](https://code.claude.com/docs/en/commands#how-the-command-menu-matches-what-you-type); type it in full.
 
-
-
-**Follow the wizard prompts**
+**3. Follow the wizard prompts**
 
 Choose how you authenticate to AWS: an AWS profile detected from your `~/.aws` directory, an Amazon Bedrock API key, an access key and secret, or credentials already in your environment. The wizard asks for your region, verifies which Claude models your account can invoke, and lets you pin them. It saves the result to the `env` block of your [user settings file](https://code.claude.com/docs/en/settings), so you don't need to export environment variables yourself.
-
 
 After you've signed in, run `/setup-bedrock` any time to reopen the wizard and change your credentials, region, or model pins. The model pin step starts from your currently pinned models. The wizard writes to `~/.claude/settings.json`, or to `$CLAUDE_CONFIG_DIR/settings.json` when [`CLAUDE_CONFIG_DIR`](https://code.claude.com/docs/en/env-vars#variables) is set.
 
@@ -214,7 +213,9 @@ Run `/status` to see the resolved region. When the region came from your AWS con
 
 ### 4. Pin model versions
 
-Pin specific model versions when deploying to multiple users. Without pinning, model aliases such as `sonnet` and `opus` resolve to Claude Code's built-in default for Amazon Bedrock, which can lag the newest release and may not yet be available in your account. Claude Code [falls back](#startup-model-checks) to an earlier or lower-tier model at startup when the default is unavailable, but pinning lets you control when your users move to a new model.
+> [!WARNING]
+>
+> Pin specific model versions when deploying to multiple users. Without pinning, model aliases such as `sonnet` and `opus` resolve to Claude Code's built-in default for Amazon Bedrock, which can lag the newest release and may not yet be available in your account. Claude Code [falls back](#startup-model-checks) to an earlier or lower-tier model at startup when the default is unavailable, but pinning lets you control when your users move to a new model.
 
 Set these environment variables to specific Amazon Bedrock model IDs.
 
@@ -248,7 +249,9 @@ Background tasks such as session title generation use the small/fast model, norm
 * When you select a primary model with `--model`, `ANTHROPIC_MODEL`, or the `model` setting, background tasks use that model. When Claude Code starts the session on the model you set with [`ANTHROPIC_DEFAULT_MODEL`](https://code.claude.com/docs/en/model-config#set-a-default-model-for-new-sessions), background tasks use that model too. Setting `ANTHROPIC_DEFAULT_OPUS_MODEL` without `ANTHROPIC_DEFAULT_SONNET_MODEL` also counts as a selection, because the built-in Sonnet model may not be enabled in an account that steers its own Opus.
 * To use Haiku for background tasks, set `ANTHROPIC_DEFAULT_HAIKU_MODEL` to a model ID that is available in your account.
 
-Opus models have a higher per-token price than Sonnet models, so if you don't pin a primary model, you're billed at the Opus rate. To use Sonnet 4.5 as the primary model, set `ANTHROPIC_MODEL` to its full model ID. A deployment that steers the default with `ANTHROPIC_DEFAULT_SONNET_MODEL` and doesn't set `ANTHROPIC_DEFAULT_OPUS_MODEL` keeps its steered Sonnet model as the default.
+> [!WARNING]
+>
+> Opus models have a higher per-token price than Sonnet models, so if you don't pin a primary model, you're billed at the Opus rate. To use Sonnet 4.5 as the primary model, set `ANTHROPIC_MODEL` to its full model ID. A deployment that steers the default with `ANTHROPIC_DEFAULT_SONNET_MODEL` and doesn't set `ANTHROPIC_DEFAULT_OPUS_MODEL` keeps its steered Sonnet model as the default.
 
 Before v2.1.280, the primary model on Amazon Bedrock defaulted to Opus 5 and the `opus` alias resolved to Opus 5 from v2.1.219. On v2.1.207 through v2.1.218, the primary model on Amazon Bedrock defaulted to Opus 4.8 and the `opus` alias resolved to Opus 4.8.
 
@@ -270,7 +273,9 @@ export ANTHROPIC_MODEL='arn:aws:bedrock:us-east-2:your-account-id:application-in
 
 The 1-hour cache TTL is billed at a higher rate than the 5-minute default. See [cache lifetime](https://code.claude.com/docs/en/prompt-caching#cache-lifetime). To set different TTLs for your main conversation and for the requests Claude Code makes outside it, [choose the TTL yourself](https://code.claude.com/docs/en/prompt-caching#choose-the-ttl-yourself).
 
-> [!NOTE] Prompt caching may not be available in all Amazon Bedrock regions. If cache token counts stay at zero, check [supported models, regions, and limits](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html#prompt-caching-models) in the Amazon Bedrock documentation.
+> [!NOTE]
+>
+> Prompt caching may not be available in all Amazon Bedrock regions. If cache token counts stay at zero, check [supported models, regions, and limits](https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html#prompt-caching-models) in the Amazon Bedrock documentation.
 
 #### Map each model version to an inference profile
 
@@ -408,7 +413,9 @@ If the token is missing this permission, Claude Code recovers automatically by r
 
 For details, see [Amazon Bedrock IAM documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/security-iam.html).
 
-Create a dedicated AWS account for Claude Code to simplify cost tracking and access control.
+> [!NOTE]
+>
+> Create a dedicated AWS account for Claude Code to simplify cost tracking and access control.
 
 ## 1M token context window
 

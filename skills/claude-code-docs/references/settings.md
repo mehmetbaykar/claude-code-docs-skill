@@ -10,11 +10,15 @@ path: /docs/en/settings
 
 Settings are the JSON keys that change how Claude Code behaves: which model it starts with, what it can run without asking, which files it can't read, how it looks in your terminal, and what your organization enforces.
 
-To look up a specific key, go to [All settings](https://code.claude.com/docs/en/settings-reference), which lists every key with the file you set it in, its default, and an example.
+> [!TIP]
+>
+> To look up a specific key, go to [All settings](https://code.claude.com/docs/en/settings-reference), which lists every key with the file you set it in, its default, and an example.
 
 Claude Code reads settings from JSON settings files such as `~/.claude/settings.json`. It looks for them in a few locations, and [the file it reads a setting from decides who the setting applies to](#settings-files-and-who-they-affect). This page covers those files: which one to put a setting in, how to change a setting and confirm it applied, and which value Claude Code uses when the same key is set in more than one file. [Configure permissions](https://code.claude.com/docs/en/permissions) covers what Claude Code can run without asking and how to write `allow`, `ask`, and `deny` rules.
 
-This page covers Claude Code running on your machine: the terminal, the [VS Code](https://code.claude.com/docs/en/vs-code) and [JetBrains](https://code.claude.com/docs/en/jetbrains) extensions, and the [desktop app](https://code.claude.com/docs/en/desktop), which all read the same settings files. A [cloud session](https://code.claude.com/docs/en/claude-code-on-the-web) runs on a different machine and reads only some of them; see [Settings in cloud sessions](#settings-in-cloud-sessions).
+> [!NOTE]
+>
+> This page covers Claude Code running on your machine: the terminal, the [VS Code](https://code.claude.com/docs/en/vs-code) and [JetBrains](https://code.claude.com/docs/en/jetbrains) extensions, and the [desktop app](https://code.claude.com/docs/en/desktop), which all read the same settings files. A [cloud session](https://code.claude.com/docs/en/claude-code-on-the-web) runs on a different machine and reads only some of them; see [Settings in cloud sessions](#settings-in-cloud-sessions).
 
 ## Settings files and who they affect
 
@@ -35,6 +39,14 @@ Suppose you have three projects on your machine, `website/`, `api/`, and `acme-a
 
 The graphic below shows which of those folders a setting applies in when you start Claude Code from them. Click a settings file to see the folders it reaches.
 
+Settings file
+
+Your machine
+
+A teammate’s machine
+
+A cloud session
+
 * **`~/.claude/settings.json`**: every project on your machine, and nothing on your teammate's or in the cloud session
 * **`acme-app/.claude/settings.json`**: your `acme-app/`. It reaches your teammate's clone and the cloud session only if you commit the file to version control; until you do, it's a file on your disk like any other and nobody else has it
 * **`acme-app/.claude/settings.local.json`**: your `acme-app/` only. Claude Code adds it to your global git excludes the first time it writes the file, so it stays out of your commits; if you create the file by hand, [add it to `.gitignore` yourself](#keep-personal-settings-out-of-a-repository)
@@ -48,7 +60,9 @@ Installing Claude Code doesn't create any settings file. If your machine or proj
 * **Shared project**: a project that already uses Claude Code may have one committed. If not, create it at `.claude/settings.json` in the project folder.
 * **User** and **Project local**: create them yourself, or let Claude Code create them. It writes `~/.claude/settings.json` the first time you change an option in the `/config` menu that it stores in user settings, such as the theme, and `.claude/settings.local.json` the first time you give a standing approval on a permission prompt, such as "Yes, and don't ask again" for a Bash command. A few `/config` options, including **Show tips**, save to `.claude/settings.local.json` instead of the user file.
 
-On Windows, `~/.claude` means `%USERPROFILE%\.claude`. To keep the home-directory files somewhere else, set [`CLAUDE_CONFIG_DIR`](https://code.claude.com/docs/en/env-vars); Claude Code then stores your settings, session history, and plugins there instead.
+> [!NOTE]
+>
+> On Windows, `~/.claude` means `%USERPROFILE%\.claude`. To keep the home-directory files somewhere else, set [`CLAUDE_CONFIG_DIR`](https://code.claude.com/docs/en/env-vars); Claude Code then stores your settings, session history, and plugins there instead.
 
 Claude Code also keeps a fifth file, [`~/.claude.json`](https://code.claude.com/docs/en/claude-directory#ce-claude-json), that it writes for itself; you don't need to edit it. It holds your sign-in session, [MCP server](https://code.claude.com/docs/en/mcp) configurations, per-project state such as trust decisions, and the [global config keys](https://code.claude.com/docs/en/settings-reference#global-config-settings) that `/config` writes for you.
 
@@ -111,7 +125,9 @@ Run `/config` inside Claude Code and open the **Config** tab. It lists a short s
 
 To set one option without the menu, pass `key=value`, such as `/config verbose=true`.
 
-`/config` is part of the terminal interface. The [VS Code](https://code.claude.com/docs/en/vs-code) chat panel and the [desktop app](https://code.claude.com/docs/en/desktop) don't open it; change settings there by editing a settings file or through those apps' own settings.
+> [!NOTE]
+>
+> `/config` is part of the terminal interface. The [VS Code](https://code.claude.com/docs/en/vs-code) chat panel and the [desktop app](https://code.claude.com/docs/en/desktop) don't open it; change settings there by editing a settings file or through those apps' own settings.
 
 ### Edit a settings file
 
@@ -190,6 +206,8 @@ A `-p` run shows no dialog. Unless [a managed settings document can't be parsed]
 ## Settings precedence
 
 When the same key appears in more than one place, Claude Code uses the value from the highest level that sets it. The stack below shows the levels, highest on top; a key at a higher level overrides the same key anywhere below it.
+
+Settings precedence, highest first: managed settings, command line, project local, shared project, user. A key set at a higher level overrides the same key set lower down.
 
 In order, highest precedence first:
 

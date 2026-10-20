@@ -16,10 +16,12 @@ This page is for the person who deploys managed settings for Claude Code, whethe
 * **See what your users get when you change nothing**: [Know what happens by default](#know-what-happens-by-default)
 * **Leave mods on with other limits**: [Choose how much to allow](#choose-how-much-to-allow)
 
-These cases are covered on other pages:
-
-* **You haven't deployed managed settings before**: start with [Deploy managed settings](https://code.claude.com/docs/en/managed-settings)
-* **You want to control which plugins users can install**: see [Manage plugins for your organization](https://code.claude.com/docs/en/plugins/org)
+> [!NOTE]
+>
+> These cases are covered on other pages:
+>
+> * **You haven't deployed managed settings before**: start with [Deploy managed settings](https://code.claude.com/docs/en/managed-settings)
+> * **You want to control which plugins users can install**: see [Manage plugins for your organization](https://code.claude.com/docs/en/plugins/org)
 
 ## Stop user-installed mods from loading
 
@@ -234,9 +236,7 @@ The [messages from the built-in guard](https://code.claude.com/docs/en/plugins/m
 
 You can deploy mods of your own to every user, choose where they run relative to users' mods, and use one to enforce a policy.
 
-<h3 id="install-your-organizations-mods">
-Install your organization's mods and set the order
-</h3>
+### Install your organization's mods and set the order
 
 Your organization's mods load where users' mods don't and can run ahead of them, so Claude Code has to be able to tell that a mod came from you. It treats a mod as your organization's only when all of these are true:
 

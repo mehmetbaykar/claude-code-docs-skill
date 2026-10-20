@@ -12,10 +12,12 @@ A plugin manifest is the `plugin.json` file in a plugin's `.claude-plugin/` dire
 
 This reference is for plugin creators, and for marketplace owners who put component fields in a marketplace entry.
 
-These cases are covered on other pages:
-
-* **Learning to build a plugin**: start with [Create a plugin](https://code.claude.com/docs/en/plugins/create)
-* **What each component does at runtime**: see [Plugin components](https://code.claude.com/docs/en/plugins/components)
+> [!NOTE]
+>
+> These cases are covered on other pages:
+>
+> * **Learning to build a plugin**: start with [Create a plugin](https://code.claude.com/docs/en/plugins/create)
+> * **What each component does at runtime**: see [Plugin components](https://code.claude.com/docs/en/plugins/components)
 
 Start at the section that matches what you're looking up:
 

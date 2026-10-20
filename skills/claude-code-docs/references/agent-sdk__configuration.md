@@ -21,43 +21,43 @@ Every `query()` call accepts an options object: `Options` in TypeScript, `Claude
 * **`maxTurns` / `max_turns`**: caps the turn count
 * **`cwd`**: sets the working directory
 ```typescript TypeScript
-  import { query } from "@anthropic-ai/claude-agent-sdk";
+import { query } from "@anthropic-ai/claude-agent-sdk";
 
-  for await (const message of query({
-    prompt: "Summarize the open TODOs in this repo",
-    options: {
-      model: "claude-sonnet-5",
-      allowedTools: ["Read", "Glob", "Grep"],
-      maxTurns: 8,
-      cwd: "/path/to/repo",
-    },
-  })) {
-    if (message.type === "result" && message.subtype === "success" && !message.is_error) {
-      console.log(message.result);
-    }
+for await (const message of query({
+  prompt: "Summarize the open TODOs in this repo",
+  options: {
+    model: "claude-sonnet-5",
+    allowedTools: ["Read", "Glob", "Grep"],
+    maxTurns: 8,
+    cwd: "/path/to/repo",
+  },
+})) {
+  if (message.type === "result" && message.subtype === "success" && !message.is_error) {
+    console.log(message.result);
   }
+}
 ```
 ```python Python
-  import asyncio
+import asyncio
 
-  from claude_agent_sdk import ClaudeAgentOptions, ResultMessage, query
+from claude_agent_sdk import ClaudeAgentOptions, ResultMessage, query
 
-  async def main():
-      options = ClaudeAgentOptions(
-          model="claude-sonnet-5",
-          allowed_tools=["Read", "Glob", "Grep"],
-          max_turns=8,
-          cwd="/path/to/repo",
-      )
+async def main():
+    options = ClaudeAgentOptions(
+        model="claude-sonnet-5",
+        allowed_tools=["Read", "Glob", "Grep"],
+        max_turns=8,
+        cwd="/path/to/repo",
+    )
 
-      async for message in query(
-          prompt="Summarize the open TODOs in this repo",
-          options=options,
-      ):
-          if isinstance(message, ResultMessage) and not message.is_error:
-              print(message.result)
+    async for message in query(
+        prompt="Summarize the open TODOs in this repo",
+        options=options,
+    ):
+        if isinstance(message, ResultMessage) and not message.is_error:
+            print(message.result)
 
-  asyncio.run(main())
+asyncio.run(main())
 ```
 
 Point `cwd` at one of your own projects and run the example. The summary of that project's open TODOs prints when the result message arrives.
@@ -83,19 +83,21 @@ In either language, the option accepts a single model or a comma-separated list 
 
 The examples below show a fallback list in TypeScript and a single fallback in Python:
 ```typescript TypeScript
-  const options = {
-    model: "claude-fable-5",
-    fallbackModel: "claude-opus-5,claude-sonnet-5",
-  };
+const options = {
+  model: "claude-fable-5",
+  fallbackModel: "claude-opus-5,claude-sonnet-5",
+};
 ```
 ```python Python
-  options = ClaudeAgentOptions(
-      model="claude-fable-5",
-      fallback_model="claude-opus-5",
-  )
+options = ClaudeAgentOptions(
+    model="claude-fable-5",
+    fallback_model="claude-opus-5",
+)
 ```
 
-The [Messages API](https://platform.claude.com/docs/en/api/messages) request parameters `temperature`, `top_p`, and `max_tokens` have no fields on the options object in either language. Set the [effort level](https://code.claude.com/docs/en/agent-sdk/agent-loop#effort-level) or a [spend cap](#limit-turns-and-spend) instead, or call the Messages API when you need those parameters directly.
+> [!NOTE]
+>
+> The [Messages API](https://platform.claude.com/docs/en/api/messages) request parameters `temperature`, `top_p`, and `max_tokens` have no fields on the options object in either language. Set the [effort level](https://code.claude.com/docs/en/agent-sdk/agent-loop#effort-level) or a [spend cap](#limit-turns-and-spend) instead, or call the Messages API when you need those parameters directly.
 
 ## Set environment variables
 
@@ -108,14 +110,14 @@ In TypeScript, spread `process.env` into `env` to keep inherited variables such 
 
 The example routes API traffic through a gateway by setting `ANTHROPIC_BASE_URL`.
 ```typescript TypeScript
-  const options = {
-    env: { ...process.env, ANTHROPIC_BASE_URL: "https://gateway.example.com" },
-  };
+const options = {
+  env: { ...process.env, ANTHROPIC_BASE_URL: "https://gateway.example.com" },
+};
 ```
 ```python Python
-  options = ClaudeAgentOptions(
-      env={"ANTHROPIC_BASE_URL": "https://gateway.example.com"},
-  )
+options = ClaudeAgentOptions(
+    env={"ANTHROPIC_BASE_URL": "https://gateway.example.com"},
+)
 ```
 
 The variables you pass can also configure Claude Code itself. For the variables the Claude Code process reads, see [Environment variables](https://code.claude.com/docs/en/env-vars). To tune API timeouts and stall detection this way, follow the Handle slow or stalled API responses section in the [TypeScript reference](https://code.claude.com/docs/en/agent-sdk/typescript#handle-slow-or-stalled-api-responses) or the [Python reference](https://code.claude.com/docs/en/agent-sdk/python#handle-slow-or-stalled-api-responses).
@@ -167,84 +169,86 @@ TypeScript also has `applyFlagSettings()` and `updateSettings()`:
 
 The example below runs a two-turn session, changes the configuration between the turns, and prints the model that answered each turn. In TypeScript, the prompt stream holds the second message until the setters have run, and the second turn runs on the new model.
 ```typescript TypeScript
-  import { query, type SDKUserMessage } from "@anthropic-ai/claude-agent-sdk";
+import { query, type SDKUserMessage } from "@anthropic-ai/claude-agent-sdk";
 
-  function userMessage(text: string): SDKUserMessage {
-    return { type: "user", message: { role: "user", content: text }, parent_tool_use_id: null };
-  }
+function userMessage(text: string): SDKUserMessage {
+  return { type: "user", message: { role: "user", content: text }, parent_tool_use_id: null };
+}
 
-  // Hold the second prompt until the setters have run.
-  let startSecondTurn!: () => void;
-  const secondTurnReady = new Promise<void>((resolve) => {
-    startSecondTurn = resolve;
-  });
+// Hold the second prompt until the setters have run.
+let startSecondTurn!: () => void;
+const secondTurnReady = new Promise<void>((resolve) => {
+  startSecondTurn = resolve;
+});
 
-  async function* turnPrompts(): AsyncGenerator<SDKUserMessage, void> {
-    yield userMessage("Reply with exactly: ready");
-    await secondTurnReady;
-    yield userMessage("Reply with exactly: done");
-  }
+async function* turnPrompts(): AsyncGenerator<SDKUserMessage, void> {
+  yield userMessage("Reply with exactly: ready");
+  await secondTurnReady;
+  yield userMessage("Reply with exactly: done");
+}
 
-  const session = query({
-    prompt: turnPrompts(),
-    options: {
-      model: "claude-sonnet-5",
-    },
-  });
+const session = query({
+  prompt: turnPrompts(),
+  options: {
+    model: "claude-sonnet-5",
+  },
+});
 
-  let turnModel = "";
-  let completedTurns = 0;
+let turnModel = "";
+let completedTurns = 0;
 
-  for await (const message of session) {
-    if (message.type === "assistant") {
-      turnModel = message.message.model;
-    } else if (message.type === "result") {
-      completedTurns += 1;
-      if (completedTurns === 1) {
-        console.log(`First turn model: ${turnModel}`);
-        await session.setModel("claude-opus-5");
-        await session.setPermissionMode("acceptEdits");
-        startSecondTurn();
-      } else {
-        console.log(`Second turn model: ${turnModel}`);
-        break;
-      }
+for await (const message of session) {
+  if (message.type === "assistant") {
+    turnModel = message.message.model;
+  } else if (message.type === "result") {
+    completedTurns += 1;
+    if (completedTurns === 1) {
+      console.log(`First turn model: ${turnModel}`);
+      await session.setModel("claude-opus-5");
+      await session.setPermissionMode("acceptEdits");
+      startSecondTurn();
+    } else {
+      console.log(`Second turn model: ${turnModel}`);
+      break;
     }
   }
+}
 ```
 ```python Python
-  import asyncio
+import asyncio
 
-  from claude_agent_sdk import AssistantMessage, ClaudeAgentOptions, ClaudeSDKClient
+from claude_agent_sdk import AssistantMessage, ClaudeAgentOptions, ClaudeSDKClient
 
-  async def main():
-      options = ClaudeAgentOptions(model="claude-sonnet-5")
+async def main():
+    options = ClaudeAgentOptions(model="claude-sonnet-5")
 
-      async with ClaudeSDKClient(options=options) as client:
-          await client.query("Reply with exactly: ready")
-          first_model = ""
-          async for message in client.receive_response():
-              if isinstance(message, AssistantMessage):
-                  first_model = message.model
+    async with ClaudeSDKClient(options=options) as client:
+        await client.query("Reply with exactly: ready")
+        first_model = ""
+        async for message in client.receive_response():
+            if isinstance(message, AssistantMessage):
+                first_model = message.model
 
-          await client.set_model("claude-opus-5")
-          await client.set_permission_mode("acceptEdits")
+        await client.set_model("claude-opus-5")
+        await client.set_permission_mode("acceptEdits")
 
-          await client.query("Reply with exactly: done")
-          second_model = ""
-          async for message in client.receive_response():
-              if isinstance(message, AssistantMessage):
-                  second_model = message.model
+        await client.query("Reply with exactly: done")
+        second_model = ""
+        async for message in client.receive_response():
+            if isinstance(message, AssistantMessage):
+                second_model = message.model
 
-      print(f"First turn model: {first_model}")
-      print(f"Second turn model: {second_model}")
+    print(f"First turn model: {first_model}")
+    print(f"Second turn model: {second_model}")
 
-  asyncio.run(main())
+asyncio.run(main())
 ```
 
 On the Claude API, the program prints `First turn model: claude-sonnet-5`, then `Second turn model: claude-opus-5` after the switch.
 
-Each model has its own prompt cache, so after a mid-session switch the next request recomputes the full conversation uncached at the new model's rates. For more information, see [Switching models](https://code.claude.com/docs/en/prompt-caching#switching-models).
+> [!NOTE]
+>
+> Each model has its own prompt cache, so after a mid-session switch the next request recomputes the full conversation uncached at the new model's rates. For more information, see [Switching models](https://code.claude.com/docs/en/prompt-caching#switching-models).
 
 ## Configure specific features
 

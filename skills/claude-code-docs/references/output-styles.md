@@ -15,11 +15,13 @@ Use an output style to change the way Claude responds and works with you for a w
 * To use a built-in style, pick one from the [built-in output styles](#built-in-output-styles) and [switch to it](#change-your-output-style).
 * To write your own instructions, [create a custom output style](#create-a-custom-output-style).
 
-An output style gives Claude instructions to follow. It doesn't guarantee that something always happens or never happens. Some needs fit a different feature:
-
-* For what Claude should know about your project, use [CLAUDE.md](https://code.claude.com/docs/en/memory).
-* For something that has to happen every time, such as formatting after each edit or blocking a command, use a [hook](https://code.claude.com/docs/en/hooks-guide).
-* For skills, subagents, and the other options, see [Choose between an output style and other features](#choose-between-an-output-style-and-other-features).
+> [!NOTE]
+>
+> An output style gives Claude instructions to follow. It doesn't guarantee that something always happens or never happens. Some needs fit a different feature:
+>
+> * For what Claude should know about your project, use [CLAUDE.md](https://code.claude.com/docs/en/memory).
+> * For something that has to happen every time, such as formatting after each edit or blocking a command, use a [hook](https://code.claude.com/docs/en/hooks-guide).
+> * For skills, subagents, and the other options, see [Choose between an output style and other features](#choose-between-an-output-style-and-other-features).
 
 ## Built-in output styles
 
@@ -116,8 +118,7 @@ A custom output style is a Markdown file: frontmatter for metadata, then the ins
 
 In the VS Code extension, you can also create the file from the [**Output styles** menu](https://code.claude.com/docs/en/vs-code#use-the-prompt-box) rather than writing it by hand. This requires Claude Code v2.1.261 or later.
 
-
-**Create a Markdown file**
+**1. Create a Markdown file**
 
 Save it at one of three levels. The file name becomes the style name unless you set `name` in the frontmatter.
 
@@ -127,39 +128,32 @@ Save it at one of three levels. The file name becomes the style name unless you 
 
 Project output styles load from every `.claude/output-styles/` between the working directory and the repository root. When more than one of these nested directories defines a style with the same name, Claude Code uses the one closest to the working directory.
 
-
-
-**Add frontmatter and instructions**
+**2. Add frontmatter and instructions**
 
 Decide whether to keep Claude Code's software engineering instructions. Set `keep-coding-instructions: true` if you're changing how Claude communicates but still want it coding the same way. Leave it out if Claude won't be doing software engineering.
 
 This example leads every explanation with a diagram while keeping Claude's coding behavior:
 ```markdown
-    ---
-    name: Diagrams first
-    description: Lead every explanation with a diagram
-    keep-coding-instructions: true
-    ---
+---
+name: Diagrams first
+description: Lead every explanation with a diagram
+keep-coding-instructions: true
+---
 
-    When explaining code, architecture, or data flow, start with a Mermaid diagram showing the structure, then explain in prose.
+When explaining code, architecture, or data flow, start with a Mermaid diagram showing the structure, then explain in prose.
 
-    ## Diagram conventions
+## Diagram conventions
 
-    Use `flowchart TD` for control flow and `sequenceDiagram` for request paths. Keep diagrams under 15 nodes.
+Use `flowchart TD` for control flow and `sequenceDiagram` for request paths. Keep diagrams under 15 nodes.
 ```
 
-
-
-**Switch to your style**
+**3. Switch to your style**
 
 Run `/output-style <style>` in the terminal, or run `/config` and select your style under **Output style**. Claude uses the new style starting with your next message. In the terminal, Claude Code reads style files when it starts, so if you create or edit one during a running session, restart Claude Code to pick up the change.
 
-
 [Plugins](https://code.claude.com/docs/en/plugins/manifest-reference) can also ship output styles in an `output-styles/` directory.
 
-<h3 id="frontmatter">
-Frontmatter reference
-</h3>
+### Frontmatter reference
 
 Configure an output style with YAML [frontmatter](https://code.claude.com/docs/en/glossary#frontmatter) between `---` markers at the top of the file. All fields are optional, and field names use lowercase words separated by hyphens. A misspelled field is ignored without an error. If the YAML doesn't parse, the style still loads under its file name with no fields set; run `claude --debug` to see the parse error.
 

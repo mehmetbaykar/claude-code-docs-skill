@@ -12,10 +12,12 @@ Anthropic publishes three general-purpose plugin marketplaces for Claude Code: [
 
 Use this page to distinguish the three marketplaces and to find where to check whether the official one holds a given plugin.
 
-These cases are covered on other pages:
-
-* **How to install a plugin**: see [Install plugins](https://code.claude.com/docs/en/plugins/install)
-* **A failed install**: see [Troubleshoot plugins](https://code.claude.com/docs/en/plugins/troubleshooting)
+> [!NOTE]
+>
+> These cases are covered on other pages:
+>
+> * **How to install a plugin**: see [Install plugins](https://code.claude.com/docs/en/plugins/install)
+> * **A failed install**: see [Troubleshoot plugins](https://code.claude.com/docs/en/plugins/troubleshooting)
 
 Go to the part of the page you need:
 

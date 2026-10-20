@@ -88,7 +88,9 @@ Make any code changes needed to complete the migration.
 
 ## Breaking changes
 
-To improve isolation and explicit configuration, Claude Agent SDK v0.1.0 introduces breaking changes for users migrating from Claude Code SDK.
+> [!WARNING]
+>
+> To improve isolation and explicit configuration, Claude Agent SDK v0.1.0 introduces breaking changes for users migrating from Claude Code SDK.
 
 ### Python: ClaudeCodeOptions renamed to ClaudeAgentOptions
 
@@ -113,55 +115,55 @@ options = ClaudeAgentOptions(model="claude-opus-4-7", permission_mode="acceptEdi
 
 **Migration:**
 ```typescript TypeScript
-  import { query } from "@anthropic-ai/claude-agent-sdk";
+import { query } from "@anthropic-ai/claude-agent-sdk";
 
-  // BEFORE (v0.0.x) - Used Claude Code's system prompt by default
-  const before = query({ prompt: "Hello" });
+// BEFORE (v0.0.x) - Used Claude Code's system prompt by default
+const before = query({ prompt: "Hello" });
 
-  // AFTER (v0.1.0) - Uses minimal system prompt by default
-  // To get the old behavior, explicitly request Claude Code's preset:
-  const presetResult = query({
-    prompt: "Hello",
-    options: {
-      systemPrompt: { type: "preset", preset: "claude_code" }
-    }
-  });
+// AFTER (v0.1.0) - Uses minimal system prompt by default
+// To get the old behavior, explicitly request Claude Code's preset:
+const presetResult = query({
+  prompt: "Hello",
+  options: {
+    systemPrompt: { type: "preset", preset: "claude_code" }
+  }
+});
 
-  // Or use a custom system prompt:
-  const customResult = query({
-    prompt: "Hello",
-    options: {
-      systemPrompt: "You are a helpful coding assistant"
-    }
-  });
+// Or use a custom system prompt:
+const customResult = query({
+  prompt: "Hello",
+  options: {
+    systemPrompt: "You are a helpful coding assistant"
+  }
+});
 ```
 ```python Python
-  from claude_agent_sdk import query, ClaudeAgentOptions
-  import asyncio
+from claude_agent_sdk import query, ClaudeAgentOptions
+import asyncio
 
-  async def main():
-      # BEFORE (v0.0.x) - Used Claude Code's system prompt by default
-      async for message in query(prompt="Hello"):
-          print(message)
+async def main():
+    # BEFORE (v0.0.x) - Used Claude Code's system prompt by default
+    async for message in query(prompt="Hello"):
+        print(message)
 
-      # AFTER (v0.1.0) - Uses minimal system prompt by default
-      # To get the old behavior, explicitly request Claude Code's preset:
-      async for message in query(
-          prompt="Hello",
-          options=ClaudeAgentOptions(
-              system_prompt={"type": "preset", "preset": "claude_code"}  # Use the preset
-          ),
-      ):
-          print(message)
+    # AFTER (v0.1.0) - Uses minimal system prompt by default
+    # To get the old behavior, explicitly request Claude Code's preset:
+    async for message in query(
+        prompt="Hello",
+        options=ClaudeAgentOptions(
+            system_prompt={"type": "preset", "preset": "claude_code"}  # Use the preset
+        ),
+    ):
+        print(message)
 
-      # Or use a custom system prompt:
-      async for message in query(
-          prompt="Hello",
-          options=ClaudeAgentOptions(system_prompt="You are a helpful coding assistant"),
-      ):
-          print(message)
+    # Or use a custom system prompt:
+    async for message in query(
+        prompt="Hello",
+        options=ClaudeAgentOptions(system_prompt="You are a helpful coding assistant"),
+    ):
+        print(message)
 
-  asyncio.run(main())
+asyncio.run(main())
 ```
 
 ### Settings sources default
@@ -174,7 +176,9 @@ To run isolated from filesystem settings, pass `settingSources: []`, or `setting
 
 Isolation is especially important for CI/CD pipelines, deployed applications, test environments, and multi-tenant systems where local customizations should not leak in.
 
-Python SDK 0.1.59 and earlier treated an empty list the same as omitting the option, so upgrade before relying on `setting_sources=[]`. See [What settingSources does not control](https://code.claude.com/docs/en/agent-sdk/claude-code-features#what-settingsources-does-not-control) for inputs that are read even when `settingSources` is `[]`.
+> [!NOTE]
+>
+> Python SDK 0.1.59 and earlier treated an empty list the same as omitting the option, so upgrade before relying on `setting_sources=[]`. See [What settingSources does not control](https://code.claude.com/docs/en/agent-sdk/claude-code-features#what-settingsources-does-not-control) for inputs that are read even when `settingSources` is `[]`.
 
 ## Next Steps
 

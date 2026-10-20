@@ -8,7 +8,9 @@ path: /docs/en/channels
 
 > Use channels to push messages, alerts, and webhooks into your Claude Code session from an MCP server. Forward CI results, chat messages, and monitoring events so Claude can react while you're away.
 
-Channels are in [research preview](#research-preview). They require Anthropic authentication through claude.ai or a Console API key, and are not available on Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry. Team and Enterprise organizations must [explicitly enable them](#enterprise-controls).
+> [!NOTE]
+>
+> Channels are in [research preview](#research-preview). They require Anthropic authentication through claude.ai or a Console API key, and are not available on Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry. Team and Enterprise organizations must [explicitly enable them](#enterprise-controls).
 
 A channel is an MCP server that pushes events into your running Claude Code session, so Claude can react to things that happen while you're not at the terminal. Channels can be two-way: Claude reads the event and replies back through the same channel, like a chat bridge. Events only arrive while the session is open, so for an always-on setup you run Claude in a background process or persistent terminal.
 
@@ -24,24 +26,19 @@ If you manage a Team, Enterprise, or Console organization, see [Enable channels 
 
 Each supported channel is a plugin that requires [Bun](https://bun.sh). For a hands-on demo of the plugin flow before connecting a real platform, try the [fakechat quickstart](#quickstart).
 
-
 **Telegram**
 
 View the full [Telegram plugin source](https://github.com/anthropics/claude-plugins-official/tree/main/external_plugins/telegram).
 
-
-
-**Create a Telegram bot**
+**1. Create a Telegram bot**
 
 Open [BotFather](https://t.me/BotFather) in Telegram and send `/newbot`. Give it a display name and a unique username ending in `bot`. Copy the token BotFather returns.
 
-
-
-**Install the plugin**
+**2. Install the plugin**
 
 Start Claude Code by running `claude` in your terminal, then enter this at its prompt:
 ```
-        /plugin install telegram@claude-plugins-official
+/plugin install telegram@claude-plugins-official
 ```
 
 If the install fails, match the message Claude Code reports:
@@ -51,67 +48,53 @@ If the install fails, match the message Claude Code reports:
 
 When the install asks for an installation scope, choose the user scope option so the plugin is available across all your projects. Check the install summary: if it reports `Run /reload-plugins to apply.`, see [Apply plugin changes without restarting](https://code.claude.com/docs/en/plugins/cli-reference#reload-plugins) to make the plugin's configure command available.
 
-
-
-**Configure your token**
+**3. Configure your token**
 
 Run the configure command with the token from BotFather:
 ```
-        /telegram:configure <token>
+/telegram:configure <token>
 ```
 
 This saves it to `~/.claude/channels/telegram/.env`. You can also set `TELEGRAM_BOT_TOKEN` in your shell environment before launching Claude Code.
 
-
-
-**Restart with channels enabled**
+**4. Restart with channels enabled**
 
 Exit Claude Code and restart with the channel flag. This starts the Telegram plugin, which begins polling for messages from your bot:
 ```bash
-        claude --channels plugin:telegram@claude-plugins-official
+claude --channels plugin:telegram@claude-plugins-official
 ```
 
-
-
-**Pair your account**
+**5. Pair your account**
 
 Open Telegram and send any message to your bot. The bot replies with a pairing code.
 
-        > [!NOTE] If your bot doesn't respond, make sure Claude Code is running with `--channels` from the previous step. The bot can only reply while the channel is active.
+> [!NOTE]
+>
+> If your bot doesn't respond, make sure Claude Code is running with `--channels` from the previous step. The bot can only reply while the channel is active.
 
 Back in Claude Code, run:
 ```
-        /telegram:access pair <code>
+/telegram:access pair <code>
 ```
 
 Then lock down access so only your account can send messages:
 ```
-        /telegram:access policy allowlist
+/telegram:access policy allowlist
 ```
-
-
-
-
 
 **Discord**
 
 View the full [Discord plugin source](https://github.com/anthropics/claude-plugins-official/tree/main/external_plugins/discord).
 
-
-
-**Create a Discord bot**
+**1. Create a Discord bot**
 
 Go to the [Discord Developer Portal](https://discord.com/developers/applications), click **New Application**, and name it. In the **Bot** section, create a username, then click **Reset Token** and copy the token.
 
-
-
-**Enable Message Content Intent**
+**2. Enable Message Content Intent**
 
 In your bot's settings, scroll to **Privileged Gateway Intents** and enable **Message Content Intent**.
 
-
-
-**Invite the bot to your server**
+**3. Invite the bot to your server**
 
 Go to **OAuth2 > URL Generator**. Select the `bot` scope and enable these permissions:
 
@@ -124,13 +107,11 @@ Go to **OAuth2 > URL Generator**. Select the `bot` scope and enable these permis
 
 Open the generated URL to add the bot to your server.
 
-
-
-**Install the plugin**
+**4. Install the plugin**
 
 Start Claude Code by running `claude` in your terminal, then enter this at its prompt:
 ```
-        /plugin install discord@claude-plugins-official
+/plugin install discord@claude-plugins-official
 ```
 
 If the install fails, match the message Claude Code reports:
@@ -140,47 +121,39 @@ If the install fails, match the message Claude Code reports:
 
 When the install asks for an installation scope, choose the user scope option so the plugin is available across all your projects. Check the install summary: if it reports `Run /reload-plugins to apply.`, see [Apply plugin changes without restarting](https://code.claude.com/docs/en/plugins/cli-reference#reload-plugins) to make the plugin's configure command available.
 
-
-
-**Configure your token**
+**5. Configure your token**
 
 Run the configure command with the bot token you copied:
 ```
-        /discord:configure <token>
+/discord:configure <token>
 ```
 
 This saves it to `~/.claude/channels/discord/.env`. You can also set `DISCORD_BOT_TOKEN` in your shell environment before launching Claude Code.
 
-
-
-**Restart with channels enabled**
+**6. Restart with channels enabled**
 
 Exit Claude Code and restart with the channel flag. This connects the Discord plugin so your bot can receive and respond to messages:
 ```bash
-        claude --channels plugin:discord@claude-plugins-official
+claude --channels plugin:discord@claude-plugins-official
 ```
 
-
-
-**Pair your account**
+**7. Pair your account**
 
 DM your bot on Discord. The bot replies with a pairing code.
 
-        > [!NOTE] If your bot doesn't respond, make sure Claude Code is running with `--channels` from the previous step. The bot can only reply while the channel is active.
+> [!NOTE]
+>
+> If your bot doesn't respond, make sure Claude Code is running with `--channels` from the previous step. The bot can only reply while the channel is active.
 
 Back in Claude Code, run:
 ```
-        /discord:access pair <code>
+/discord:access pair <code>
 ```
 
 Then lock down access so only your account can send messages:
 ```
-        /discord:access policy allowlist
+/discord:access policy allowlist
 ```
-
-
-
-
 
 **iMessage**
 
@@ -188,21 +161,17 @@ View the full [iMessage plugin source](https://github.com/anthropics/claude-plug
 
 The iMessage channel reads your Messages database directly and sends replies through AppleScript. It requires macOS and needs no bot token or external service.
 
-
-
-**Grant Full Disk Access**
+**1. Grant Full Disk Access**
 
 The Messages database at `~/Library/Messages/chat.db` is protected by macOS. The first time the server reads it, macOS prompts for access: click **Allow**. The prompt names whichever app launched Bun, such as Terminal, iTerm, or your IDE.
 
 If the prompt doesn't appear or you clicked Don't Allow, grant access manually under **System Settings > Privacy & Security > Full Disk Access** and add your terminal. Without this, the server exits immediately with `authorization denied`.
 
-
-
-**Install the plugin**
+**2. Install the plugin**
 
 Start Claude Code by running `claude` in your terminal, then enter this at its prompt:
 ```
-        /plugin install imessage@claude-plugins-official
+/plugin install imessage@claude-plugins-official
 ```
 
 If the install fails, match the message Claude Code reports:
@@ -214,36 +183,29 @@ When the install asks for an installation scope, choose the user scope option so
 
 If the install summary reports `Run /reload-plugins to apply.`, you don't need to act on it here, because restarting in the next step picks up the plugin.
 
-
-
-**Restart with channels enabled**
+**3. Restart with channels enabled**
 
 Exit Claude Code and restart with the channel flag:
 ```bash
-        claude --channels plugin:imessage@claude-plugins-official
+claude --channels plugin:imessage@claude-plugins-official
 ```
 
-
-
-**Text yourself**
+**4. Text yourself**
 
 Open Messages on any device signed into your Apple ID and send a message to yourself. It reaches Claude immediately: self-chat bypasses access control with no setup.
 
-        > [!NOTE] The first reply Claude sends triggers a macOS Automation prompt asking if your terminal can control Messages. Click **OK**.
+> [!NOTE]
+>
+> The first reply Claude sends triggers a macOS Automation prompt asking if your terminal can control Messages. Click **OK**.
 
-
-
-**Allow other senders**
+**5. Allow other senders**
 
 By default, only your own messages pass through. To let another contact reach Claude, add their handle:
 ```
-        /imessage:access allow +15551234567
+/imessage:access allow +15551234567
 ```
 
 Handles are phone numbers in `+country` format or Apple ID emails like `user@example.com`.
-
-
-
 
 ## Quickstart
 
@@ -257,12 +219,11 @@ To try the fakechat demo, you'll need:
 * [Bun](https://bun.sh) installed. The pre-built channel plugins are Bun scripts. Check with `bun --version`; if that fails, [install Bun](https://bun.sh/docs/installation).
 * **Team, Enterprise, or managed Console org**: your admin must [enable channels](#enterprise-controls) in managed settings
 
-
-**Install the fakechat channel plugin**
+**1. Install the fakechat channel plugin**
 
 Start Claude Code by running `claude` in your terminal, then enter the install command at its prompt:
 ```text
-    /plugin install fakechat@claude-plugins-official
+/plugin install fakechat@claude-plugins-official
 ```
 
 If the install fails, match the message Claude Code reports:
@@ -274,32 +235,27 @@ When the install asks for an installation scope, choose the user scope option so
 
 If the install summary reports `Run /reload-plugins to apply.`, you don't need to act on it here, because restarting in the next step picks up the plugin.
 
-
-
-**Restart with the channel enabled**
+**2. Restart with the channel enabled**
 
 Exit Claude Code, then restart with `--channels` and pass the fakechat plugin you installed:
 ```bash
-    claude --channels plugin:fakechat@claude-plugins-official
+claude --channels plugin:fakechat@claude-plugins-official
 ```
 
 The fakechat server starts automatically. The startup screen shows a channels notice stating that messages from `plugin:fakechat@claude-plugins-official` inject directly in this session. If the plugin isn't installed or isn't on the approved allowlist, a warning line naming the problem appears below that notice.
 
+> [!TIP]
+>
+> You can pass several plugins to `--channels`, space-separated.
 
-You can pass several plugins to `--channels`, space-separated.
-
-
-
-
-**Push a message in**
+**3. Push a message in**
 
 Open the fakechat UI at [http://localhost:8787](http://localhost:8787) and type a message:
 ```text
-    what's in my working directory?
+what's in my working directory?
 ```
 
 The message arrives in your Claude Code session. The terminal shows it as an inbound channel line like `← fakechat · web: what's in my working directory?`, while the model receives it as a `<channel source="plugin:fakechat:fakechat">` event, using the plugin's scoped server name. Claude reads it, does the work, and calls fakechat's `reply` tool. If Claude Code asks for permission for the first reply, approve it. The answer shows up in the chat UI.
-
 
 If Claude hits a permission prompt while you're away from the terminal, the session pauses until you respond. Channel servers that declare the [permission relay capability](https://code.claude.com/docs/en/channels-reference#relay-permission-prompts) can forward these prompts to you so you can approve or deny remotely. For unattended use, [`--dangerously-skip-permissions`](https://code.claude.com/docs/en/permission-modes#skip-all-checks-with-bypasspermissions-mode) bypasses most prompts, but only use it in environments you trust. Even then, the [actions no mode auto-approves](https://code.claude.com/docs/en/permission-modes#actions-no-mode-auto-approves) still apply.
 

@@ -12,22 +12,20 @@ A [development container](https://containers.dev/), or dev container, lets you d
 
 This page covers [installing Claude Code in a dev container](#add-claude-code-to-your-dev-container), then a set of self-contained configuration topics: persisting authentication across rebuilds, enforcing organization policy, restricting network egress, and running without permission prompts. Read the ones that match your setup.
 
-While the dev container provides substantial protections, no system is completely immune to all attacks.
-When executed with `--dangerously-skip-permissions`, dev containers do not prevent a malicious project from exfiltrating anything accessible inside the container, including the Claude Code credentials stored in [`~/.claude`](https://code.claude.com/docs/en/claude-directory).
-Only use dev containers when developing with trusted repositories, and monitor Claude's activities.
-Avoid mounting host secrets such as `~/.ssh` or cloud credential files into the container; prefer repository-scoped or short-lived tokens.
+> [!WARNING]
+>
+> While the dev container provides substantial protections, no system is completely immune to all attacks.
+> When executed with `--dangerously-skip-permissions`, dev containers do not prevent a malicious project from exfiltrating anything accessible inside the container, including the Claude Code credentials stored in [`~/.claude`](https://code.claude.com/docs/en/claude-directory).
+> Only use dev containers when developing with trusted repositories, and monitor Claude's activities.
+> Avoid mounting host secrets such as `~/.ssh` or cloud credential files into the container; prefer repository-scoped or short-lived tokens.
 
-**How dev containers work with your editor**
-
-
-![](https://mintcdn.com/claude-code/YvJyjZfd9yMihr0i/images/devcontainer-architecture.svg?fit=max&auto=format&n=YvJyjZfd9yMihr0i&q=85&s=9017b1d16a446c6cc37ba562f35b9aae)
-
-
-![](https://mintcdn.com/claude-code/_xqph1dUOslCOwsj/images/devcontainer-architecture-dark.svg?fit=max&auto=format&n=_xqph1dUOslCOwsj&q=85&s=a0a340b1f2afc6a590696102c8acaaca)
-
-A dev container runs as a Docker container, either on your machine or on a cloud host such as GitHub Codespaces. An editor that supports the Dev Containers spec, such as VS Code, GitHub Codespaces, a JetBrains IDE, or Cursor, connects to that container: you browse and edit files in the editor as usual, but the integrated terminal, language servers, and build tools all run inside the container rather than on your host. Editors without dev container support, such as plain Vim, are not part of this workflow.
-
-Claude Code runs inside the container, so it sees the same files, dependencies, and tools as the rest of your project's toolchain. In VS Code you can use either the [Claude Code extension panel](https://code.claude.com/docs/en/vs-code) or run `claude` in the integrated terminal; both run inside the container and share the same `~/.claude` configuration.
+> **How dev containers work with your editor**
+>
+> ![Diagram showing an editor on the host connecting to a Docker dev container. Claude Code, the terminal, and build tools run inside the container. The host repository is bind-mounted into the container as the workspace.](https://mintcdn.com/claude-code/YvJyjZfd9yMihr0i/images/devcontainer-architecture.svg?fit=max\&auto=format\&n=YvJyjZfd9yMihr0i\&q=85\&s=9017b1d16a446c6cc37ba562f35b9aae)
+>
+> A dev container runs as a Docker container, either on your machine or on a cloud host such as GitHub Codespaces. An editor that supports the Dev Containers spec, such as VS Code, GitHub Codespaces, a JetBrains IDE, or Cursor, connects to that container: you browse and edit files in the editor as usual, but the integrated terminal, language servers, and build tools all run inside the container rather than on your host. Editors without dev container support, such as plain Vim, are not part of this workflow.
+>
+> Claude Code runs inside the container, so it sees the same files, dependencies, and tools as the rest of your project's toolchain. In VS Code you can use either the [Claude Code extension panel](https://code.claude.com/docs/en/vs-code) or run `claude` in the integrated terminal; both run inside the container and share the same `~/.claude` configuration.
 
 ## Add Claude Code to your dev container
 
@@ -37,10 +35,11 @@ The settings work with any tool that supports the Dev Containers spec, such as V
 
 When you open the container in VS Code or Codespaces, the feature also adds the Claude Code VS Code extension; other editors ignore that part.
 
-New to dev containers? The [VS Code Dev Containers tutorial](https://code.visualstudio.com/docs/devcontainers/tutorial) walks through installing Docker, the extension, and opening your first container. For a fuller hardened example with a firewall and persistent volumes, see [Try the reference container](#try-the-reference-container).
+> [!TIP]
+>
+> New to dev containers? The [VS Code Dev Containers tutorial](https://code.visualstudio.com/docs/devcontainers/tutorial) walks through installing Docker, the extension, and opening your first container. For a fuller hardened example with a firewall and persistent volumes, see [Try the reference container](#try-the-reference-container).
 
-
-**Create or update devcontainer.json**
+**1. Create or update devcontainer.json**
 
 Save the following as `.devcontainer/devcontainer.json` in your repository, or add the `features` block to your existing file.
 
@@ -48,32 +47,27 @@ The version tag at the end, such as `:1.0`, pins the feature's install script, n
 
 To pin the CLI version or disable auto-update, see [Enforce organization policy](#enforce-organization-policy).
 ```json .devcontainer/devcontainer.json
-    {
-      "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-      "features": {
-        "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
-      }
-    }
+{
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
+  }
+}
 ```
 
 Replace the `image` line with your project's base image or remove it if your existing file uses a Dockerfile.
 
 The Claude Code feature installs Node.js itself when the base image doesn't provide it. If that install fails and the build stops with `Failed to install Node.js and npm`, add `"ghcr.io/devcontainers/features/node:1": {}` to the `features` block above the Claude Code feature and rebuild.
 
-
-
-**Rebuild the container**
+**2. Rebuild the container**
 
 Open the VS Code Command Palette with `Cmd+Shift+P` on Mac or `Ctrl+Shift+P` on Windows and Linux, and run **Dev Containers: Rebuild Container**.
 
 For other tools, follow that tool's rebuild action: see [rebuilding in GitHub Codespaces](https://docs.github.com/en/codespaces/developing-in-a-codespace/rebuilding-the-container-in-a-codespace), the [Dev Containers CLI](https://github.com/devcontainers/cli), or your IDE's dev container documentation.
 
-
-
-**Sign in to Claude Code**
+**3. Sign in to Claude Code**
 
 Open a terminal in the rebuilt container and run `claude`, then follow the authentication prompt.
-
 
 What you see at the authentication prompt depends on your provider:
 
@@ -84,7 +78,9 @@ For cloud providers, pass credentials into the container as environment variable
 
 See [Choose your API provider](https://code.claude.com/docs/en/admin-setup#choose-your-api-provider) to decide which path fits your organization.
 
-If the browser sign-in completes but the callback never reaches the container, copy the code shown in the browser and paste it at the `Paste code here if prompted` prompt in the terminal. This can happen when the editor's port forwarding doesn't route the localhost callback.
+> [!NOTE]
+>
+> If the browser sign-in completes but the callback never reaches the container, copy the code shown in the browser and paste it at the `Paste code here if prompted` prompt in the terminal. This can happen when the editor's port forwarding doesn't route the localhost callback.
 
 ## Persist authentication and settings across rebuilds
 
@@ -154,29 +150,21 @@ If you want fewer prompts without disabling safety checks, consider [auto mode](
 
 The [`anthropics/claude-code`](https://github.com/anthropics/claude-code/tree/main/.devcontainer) repository includes an example dev container that combines the CLI, the egress firewall, persistent volumes, and a Zsh-based shell. It is provided as a working example rather than a maintained base image; use it to see how the pieces fit together before applying them to your own configuration.
 
-
-**Install prerequisites**
+**1. Install prerequisites**
 
 Install VS Code and the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
 
-
-
-**Clone the reference**
+**2. Clone the reference**
 
 Clone the [Claude Code repository](https://github.com/anthropics/claude-code) and open it in VS Code.
 
-
-
-**Reopen in container**
+**3. Reopen in container**
 
 When prompted, click **Reopen in Container**, or run **Dev Containers: Reopen in Container** from the Command Palette.
 
-
-
-**Start Claude Code**
+**4. Start Claude Code**
 
 Once the container finishes building, open a terminal with `` Ctrl+` `` and run `claude` to sign in and start your first session.
-
 
 To use this configuration with your own project, copy the `.devcontainer/` directory into your repository and adjust the Dockerfile for your toolchain, or return to [Add Claude Code to your dev container](#add-claude-code-to-your-dev-container) to add only the feature to a setup you already have.
 

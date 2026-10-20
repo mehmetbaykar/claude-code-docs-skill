@@ -20,68 +20,68 @@ Common reasons to use a session store:
 
 A `SessionStore` is an object with two required methods, `append` and `load`, and four optional methods. The SDK calls `append` to write transcript entries during a query and `load` to read them back for resume.
 ```typescript TypeScript
-  // Exported from @anthropic-ai/claude-agent-sdk as
-  // SessionStore, SessionKey, SessionStoreEntry, SessionSummaryEntry.
+// Exported from @anthropic-ai/claude-agent-sdk as
+// SessionStore, SessionKey, SessionStoreEntry, SessionSummaryEntry.
 
-  type SessionKey = {
+type SessionKey = {
+  projectKey: string;
+  sessionId: string;
+  subpath?: string;
+};
+
+type SessionStore = {
+  // Required
+  append(key: SessionKey, entries: SessionStoreEntry[]): Promise<void>;
+  load(key: SessionKey): Promise<SessionStoreEntry[] | null>;
+
+  // Optional
+  listSessions?(
+    projectKey: string,
+  ): Promise<Array<{ sessionId: string; mtime: number }>>;
+  listSessionSummaries?(projectKey: string): Promise<SessionSummaryEntry[]>;
+  delete?(key: SessionKey): Promise<void>;
+  listSubkeys?(key: {
     projectKey: string;
     sessionId: string;
-    subpath?: string;
-  };
+  }): Promise<string[]>;
+};
 
-  type SessionStore = {
-    // Required
-    append(key: SessionKey, entries: SessionStoreEntry[]): Promise<void>;
-    load(key: SessionKey): Promise<SessionStoreEntry[] | null>;
-
-    // Optional
-    listSessions?(
-      projectKey: string,
-    ): Promise<Array<{ sessionId: string; mtime: number }>>;
-    listSessionSummaries?(projectKey: string): Promise<SessionSummaryEntry[]>;
-    delete?(key: SessionKey): Promise<void>;
-    listSubkeys?(key: {
-      projectKey: string;
-      sessionId: string;
-    }): Promise<string[]>;
-  };
-
-  type SessionSummaryEntry = {
-    sessionId: string;
-    mtime: number;
-    data: Record<string, unknown>;
-  };
+type SessionSummaryEntry = {
+  sessionId: string;
+  mtime: number;
+  data: Record<string, unknown>;
+};
 ```
 ```python Python
-  # Exported from claude_agent_sdk as
-  # SessionStore, SessionKey, SessionStoreEntry, SessionSummaryEntry.
+# Exported from claude_agent_sdk as
+# SessionStore, SessionKey, SessionStoreEntry, SessionSummaryEntry.
 
-  class SessionKey(TypedDict):
-      project_key: str
-      session_id: str
-      subpath: NotRequired[str]
+class SessionKey(TypedDict):
+    project_key: str
+    session_id: str
+    subpath: NotRequired[str]
 
-  class SessionStore(Protocol):
-      # Required
-      async def append(
-          self, key: SessionKey, entries: list[SessionStoreEntry]
-      ) -> None: ...
-      async def load(self, key: SessionKey) -> list[SessionStoreEntry] | None: ...
+class SessionStore(Protocol):
+    # Required
+    async def append(
+        self, key: SessionKey, entries: list[SessionStoreEntry]
+    ) -> None: ...
+    async def load(self, key: SessionKey) -> list[SessionStoreEntry] | None: ...
 
-      # Optional — omit or raise NotImplementedError
-      async def list_sessions(
-          self, project_key: str
-      ) -> list[SessionStoreListEntry]: ...
-      async def list_session_summaries(
-          self, project_key: str
-      ) -> list[SessionSummaryEntry]: ...
-      async def delete(self, key: SessionKey) -> None: ...
-      async def list_subkeys(self, key: SessionListSubkeysKey) -> list[str]: ...
+    # Optional — omit or raise NotImplementedError
+    async def list_sessions(
+        self, project_key: str
+    ) -> list[SessionStoreListEntry]: ...
+    async def list_session_summaries(
+        self, project_key: str
+    ) -> list[SessionSummaryEntry]: ...
+    async def delete(self, key: SessionKey) -> None: ...
+    async def list_subkeys(self, key: SessionListSubkeysKey) -> list[str]: ...
 
-  class SessionSummaryEntry(TypedDict):
-      session_id: str
-      mtime: int
-      data: dict[str, Any]
+class SessionSummaryEntry(TypedDict):
+    session_id: str
+    mtime: int
+    data: dict[str, Any]
 ```
 
 `SessionKey` addresses one transcript. `projectKey` is a stable, filesystem-safe encoding of the working directory, `sessionId` is the session UUID, and `subpath` is set when the entry belongs to a subagent transcript or sidecar file rather than the main conversation.
@@ -109,72 +109,72 @@ For what the SDK does with the transcript `load` returns, see [Resume from the s
 
 The SDK ships an `InMemorySessionStore` for development and testing. The example below runs a query with the store attached, captures the session ID from the result message, then resumes from the store in a second `query()` call. The second call passes the same store instance plus `resume`, so the SDK loads the transcript from the store instead of the local filesystem:
 ```typescript TypeScript
-  import { query, InMemorySessionStore } from "@anthropic-ai/claude-agent-sdk";
+import { query, InMemorySessionStore } from "@anthropic-ai/claude-agent-sdk";
 
-  const store = new InMemorySessionStore();
+const store = new InMemorySessionStore();
 
-  let sessionId: string | undefined;
-  try {
-    for await (const message of query({
-      prompt: "List the TypeScript files under src/",
-      options: { sessionStore: store },
-    })) {
-      if (message.type === "result") {
-        sessionId = message.session_id;
-      }
-    }
-  } catch (error) {
-    // A single-shot query() throws after yielding an error result. If the
-    // failure was an error result, sessionId was already captured by the loop
-    // above; connection or process failures yield no result message.
-    console.error(`Session ended with an error: ${error}`);
-  }
-
-  // Resume from the store. The agent has full context from the first call.
+let sessionId: string | undefined;
+try {
   for await (const message of query({
-    prompt: "Summarize what those files do",
-    options: { sessionStore: store, resume: sessionId },
+    prompt: "List the TypeScript files under src/",
+    options: { sessionStore: store },
   })) {
-    if (message.type === "result" && message.subtype === "success") {
-      console.log(message.result);
+    if (message.type === "result") {
+      sessionId = message.session_id;
     }
   }
+} catch (error) {
+  // A single-shot query() throws after yielding an error result. If the
+  // failure was an error result, sessionId was already captured by the loop
+  // above; connection or process failures yield no result message.
+  console.error(`Session ended with an error: ${error}`);
+}
+
+// Resume from the store. The agent has full context from the first call.
+for await (const message of query({
+  prompt: "Summarize what those files do",
+  options: { sessionStore: store, resume: sessionId },
+})) {
+  if (message.type === "result" && message.subtype === "success") {
+    console.log(message.result);
+  }
+}
 ```
 ```python Python
-  import asyncio
-  from claude_agent_sdk import (
-      ClaudeAgentOptions,
-      InMemorySessionStore,
-      ResultMessage,
-      query,
-  )
+import asyncio
+from claude_agent_sdk import (
+    ClaudeAgentOptions,
+    InMemorySessionStore,
+    ResultMessage,
+    query,
+)
 
-  store = InMemorySessionStore()
+store = InMemorySessionStore()
 
-  async def main():
-      session_id = None
-      try:
-          async for message in query(
-              prompt="List the Python files under src/",
-              options=ClaudeAgentOptions(session_store=store),
-          ):
-              if isinstance(message, ResultMessage):
-                  session_id = message.session_id
-      except Exception as error:
-          # A single-shot query() raises after yielding an error result. If the
-          # failure was an error result, session_id was already captured by the
-          # loop above; connection or process failures yield no result message.
-          print(f"Session ended with an error: {error}")
+async def main():
+    session_id = None
+    try:
+        async for message in query(
+            prompt="List the Python files under src/",
+            options=ClaudeAgentOptions(session_store=store),
+        ):
+            if isinstance(message, ResultMessage):
+                session_id = message.session_id
+    except Exception as error:
+        # A single-shot query() raises after yielding an error result. If the
+        # failure was an error result, session_id was already captured by the
+        # loop above; connection or process failures yield no result message.
+        print(f"Session ended with an error: {error}")
 
-      # Resume from the store. The agent has full context from the first call.
-      async for message in query(
-          prompt="Summarize what those files do",
-          options=ClaudeAgentOptions(session_store=store, resume=session_id),
-      ):
-          if isinstance(message, ResultMessage) and message.subtype == "success":
-              print(message.result)
+    # Resume from the store. The agent has full context from the first call.
+    async for message in query(
+        prompt="Summarize what those files do",
+        options=ClaudeAgentOptions(session_store=store, resume=session_id),
+    ):
+        if isinstance(message, ResultMessage) and message.subtype == "success":
+            print(message.result)
 
-  asyncio.run(main())
+asyncio.run(main())
 ```
 
 The second query prints a summary of the files from the first query, which shows the agent resumed with full context from the store.

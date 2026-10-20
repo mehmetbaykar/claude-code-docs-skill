@@ -12,11 +12,11 @@ With Code Review, Claude reviews the pull requests in your GitHub repositories. 
 
 Findings arrive as inline comments on the lines concerned, ranked by [severity](https://code.claude.com/docs/en/code-review-pull-requests#severity-levels), with a summary and a check run on the pull request. A review never approves or blocks the pull request, so the decision to merge stays with your team.
 
-![](https://mintcdn.com/claude-code/gLJVaPQEgKC8ZyUD/images/code-review-pipeline.svg?fit=max&auto=format&n=gLJVaPQEgKC8ZyUD&q=85&s=0351c96df9efa3105172eb00a672f130)
+![Diagram of a review in four stages. A pull request on GitHub goes to several agents that search in parallel on Anthropic infrastructure. A verification step drops false positives, the remaining findings are deduplicated and ranked by severity, and the review posts inline comments, a summary, and a check run back on GitHub.](https://mintcdn.com/claude-code/gLJVaPQEgKC8ZyUD/images/code-review-pipeline.svg?fit=max\&auto=format\&n=gLJVaPQEgKC8ZyUD\&q=85\&s=0351c96df9efa3105172eb00a672f130)
 
-![](https://mintcdn.com/claude-code/gLJVaPQEgKC8ZyUD/images/code-review-pipeline-dark.svg?fit=max&auto=format&n=gLJVaPQEgKC8ZyUD&q=85&s=9cf26bde98f4e999d0d9ff5bf5bdff40)
-
-Code Review uses AI to review code and may miss bugs, security vulnerabilities, or other issues. A review with no findings doesn't mean your code is error-free or secure.
+> [!NOTE]
+>
+> Code Review uses AI to review code and may miss bugs, security vulnerabilities, or other issues. A review with no findings doesn't mean your code is error-free or secure.
 
 To turn on Code Review, an Owner of your Claude organization follows [Set up Code Review](https://code.claude.com/docs/en/code-review-setup). Claude can also review code without this service. Run [`/code-review`](https://code.claude.com/docs/en/code-review-local) in your Claude Code session on any plan, or [compare all the options](#compare-ways-to-get-a-review).
 
@@ -34,35 +34,25 @@ Check that your organization qualifies before you set up Code Review:
 
 Pick the page for what you need to do:
 
+> **[Set up Code Review](https://code.claude.com/docs/en/code-review-setup)**
+>
+> Check the requirements, install the Claude GitHub App, and choose repositories, a review level, and when reviews run
 
-**Set up Code Review**
+> **[Customize Code Review](https://code.claude.com/docs/en/code-review-customize)**
+>
+> Tune what gets flagged with `REVIEW.md` and `CLAUDE.md` files in your repository
 
-Check the requirements, install the Claude GitHub App, and choose repositories, a review level, and when reviews run
+> **[Read and request reviews on a pull request](https://code.claude.com/docs/en/code-review-pull-requests)**
+>
+> Read the findings and their severities, and request another review with a comment
 
+> **[Troubleshoot Code Review](https://code.claude.com/docs/en/code-review-troubleshooting)**
+>
+> Fix a review that didn't start, failed, or was skipped for budget
 
-
-**Customize Code Review**
-
-Tune what gets flagged with `REVIEW.md` and `CLAUDE.md` files in your repository
-
-
-
-**Read and request reviews on a pull request**
-
-Read the findings and their severities, and request another review with a comment
-
-
-
-**Troubleshoot Code Review**
-
-Fix a review that didn't start, failed, or was skipped for budget
-
-
-
-**Code Review costs and usage**
-
-See how reviews are billed, estimate spend, set the monthly spend limit, and track review activity
-
+> **[Code Review costs and usage](https://code.claude.com/docs/en/code-review-costs)**
+>
+> See how reviews are billed, estimate spend, set the monthly spend limit, and track review activity
 
 ## How reviews work
 

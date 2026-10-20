@@ -18,33 +18,34 @@ Make sure you have:
 * A code project to work with
 * A [Claude subscription](https://claude.com/pricing?utm_source=claude_code\&utm_medium=docs\&utm_content=quickstart_prereq) (Pro, Max, Team, or Enterprise), [Claude Console](https://platform.claude.com/) account, or access through a [supported cloud provider](https://code.claude.com/docs/en/third-party-integrations)
 
-These cases are covered on other pages:
-
-* **Never used a terminal before**: start with the [terminal guide](https://code.claude.com/docs/en/terminal-guide)
-* **Want Claude Code somewhere other than the terminal**: Claude Code is also available on the [web](https://claude.ai/code), as a [desktop app](https://code.claude.com/docs/en/desktop), in [VS Code](https://code.claude.com/docs/en/vs-code) and [JetBrains IDEs](https://code.claude.com/docs/en/jetbrains), in [Slack](https://code.claude.com/docs/en/slack), and in CI/CD with [GitHub Actions](https://code.claude.com/docs/en/github-actions) and [GitLab](https://code.claude.com/docs/en/gitlab-ci-cd). See [all interfaces](https://code.claude.com/docs/en/overview#use-claude-code-everywhere).
+> [!NOTE]
+>
+> These cases are covered on other pages:
+>
+> * **Never used a terminal before**: start with the [terminal guide](https://code.claude.com/docs/en/terminal-guide)
+> * **Want Claude Code somewhere other than the terminal**: Claude Code is also available on the [web](https://claude.ai/code), as a [desktop app](https://code.claude.com/docs/en/desktop), in [VS Code](https://code.claude.com/docs/en/vs-code) and [JetBrains IDEs](https://code.claude.com/docs/en/jetbrains), in [Slack](https://code.claude.com/docs/en/slack), and in CI/CD with [GitHub Actions](https://code.claude.com/docs/en/github-actions) and [GitLab](https://code.claude.com/docs/en/gitlab-ci-cd). See [all interfaces](https://code.claude.com/docs/en/overview#use-claude-code-everywhere).
 
 ## Step 1: Install Claude Code
 
 To install Claude Code, open a terminal and run the command for your system. If you haven't used a terminal before, the [terminal guide](https://code.claude.com/docs/en/terminal-guide) shows how to open one and paste the command.
 
-
 **Native Install (Recommended)**
 
-    **macOS, Linux, WSL:**
+**macOS, Linux, WSL:**
 ```bash
-    curl -fsSL https://claude.ai/install.sh | bash
+curl -fsSL https://claude.ai/install.sh | bash
 ```
 
 On Windows, your prompt shows `PS C:\` when you're in PowerShell and `C:\` without the `PS` when you're in CMD.
 
-    **Windows PowerShell:**
+**Windows PowerShell:**
 ```powershell
-    irm https://claude.ai/install.ps1 | iex
+irm https://claude.ai/install.ps1 | iex
 ```
 
-    **Windows CMD:**
+**Windows CMD:**
 ```batch
-    curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 ```
 
 The install command shows no progress while it downloads Claude Code. When the installer finishes, open a new terminal window and run `claude --version`. A working installation prints a version number. If your shell says `claude` isn't found or isn't recognized, the install directory isn't on your PATH yet: see [Fix your PATH](https://code.claude.com/docs/en/troubleshoot-install#command-not-found-claude-after-installation).
@@ -55,34 +56,29 @@ If the install command fails with `syntax error near unexpected token '<'`, a `4
 
 [Git for Windows](https://git-scm.com/downloads/win) is recommended on native Windows so Claude Code can use the Bash tool. If Git for Windows is not installed, Claude Code uses PowerShell as the shell tool instead. WSL setups do not need Git for Windows.
 
-
-Native installations automatically update in the background to keep you on the latest version.
-
-
-
+> [!NOTE]
+>
+> Native installations automatically update in the background to keep you on the latest version.
 
 **Homebrew**
 ```bash
-    brew install --cask claude-code
+brew install --cask claude-code
 ```
 
 Homebrew offers two casks. `claude-code` tracks the stable release channel, which is typically about a week behind and skips releases with major regressions. `claude-code@latest` tracks the latest channel and receives new versions as soon as they ship.
 
-
-Homebrew installations do not auto-update. Run `brew upgrade claude-code` or `brew upgrade claude-code@latest`, depending on which cask you installed, to get the latest features and security fixes.
-
-
-
+> [!NOTE]
+>
+> Homebrew installations do not auto-update. Run `brew upgrade claude-code` or `brew upgrade claude-code@latest`, depending on which cask you installed, to get the latest features and security fixes.
 
 **WinGet**
 ```powershell
-    winget install Anthropic.ClaudeCode
+winget install Anthropic.ClaudeCode
 ```
 
-
-WinGet installations do not auto-update. Run `winget upgrade Anthropic.ClaudeCode` periodically to get the latest features and security fixes.
-
-
+> [!NOTE]
+>
+> WinGet installations do not auto-update. Run `winget upgrade Anthropic.ClaudeCode` periodically to get the latest features and security fixes.
 
 You can also install with [apt, dnf, or apk](https://code.claude.com/docs/en/setup#install-with-linux-package-managers) on Debian, Fedora, RHEL, and Alpine.
 
@@ -145,7 +141,9 @@ how do I create custom skills in Claude Code?
 can Claude Code work with Docker?
 ```
 
-Claude Code reads your project files as needed. You don't have to manually add context.
+> [!NOTE]
+>
+> Claude Code reads your project files as needed. You don't have to manually add context.
 
 ## Step 4: Make your first code change
 
@@ -207,7 +205,9 @@ update the README with installation instructions
 review my changes and suggest improvements
 ```
 
-Talk to Claude like you would a helpful colleague. Describe what you want to achieve, and it will help you get there.
+> [!TIP]
+>
+> Talk to Claude like you would a helpful colleague. Describe what you want to achieve, and it will help you get there.
 
 ## Essential commands
 
@@ -243,45 +243,40 @@ See the [commands reference](https://code.claude.com/docs/en/commands) for the c
 
 For more, see [best practices](https://code.claude.com/docs/en/best-practices) and [common workflows](https://code.claude.com/docs/en/common-workflows).
 
+> **Be specific with your requests**
+>
+> Instead of: "fix the bug"
+>
+> Try: "fix the login bug where users see a blank screen after entering wrong credentials"
 
-**Be specific with your requests**
+> **Use step-by-step instructions**
+>
+> Break complex tasks into steps:
+>
+> ```text wrap theme={null}
+> 1. create a new database table for user profiles
+> 2. create an API endpoint to get and update user profiles
+> 3. build a webpage that allows users to see and edit their information
+> ```
 
-Instead of: "fix the bug"
+> **Let Claude explore first**
+>
+> Before making changes, let Claude understand your code:
+>
+> ```text wrap theme={null}
+> analyze the database schema
+> ```
+>
+> ```text wrap theme={null}
+> build a dashboard showing products that are most frequently returned by our UK customers
+> ```
 
-Try: "fix the login bug where users see a blank screen after entering wrong credentials"
-
-
-
-**Use step-by-step instructions**
-
-Break complex tasks into steps:
-```text wrap
-    1. create a new database table for user profiles
-    2. create an API endpoint to get and update user profiles
-    3. build a webpage that allows users to see and edit their information
-```
-
-
-
-**Let Claude explore first**
-
-Before making changes, let Claude understand your code:
-```text wrap
-    analyze the database schema
-```
-```text wrap
-    build a dashboard showing products that are most frequently returned by our UK customers
-```
-
-
-
-**Save time with shortcuts**
-
-* Type `/` to see the commands and skills available to you
-* Use Tab for command completion
-* Press ↑ for command history
-* Press `Shift+Tab` to cycle permission modes
-
+> **Save time with shortcuts**
+>
+> * Type `/` to see the commands and skills available to you
+> * Use Tab for command completion
+> * Press ↑ for command history
+> * Press `Shift+Tab` to cycle permission modes
 
 ## What's next?
 

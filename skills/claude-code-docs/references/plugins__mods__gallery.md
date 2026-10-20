@@ -18,79 +18,73 @@ The samples on this page are snippets, not whole mods. Each one is the code for 
 
 To see a sample in your own terminal, create the small mod in these steps and paste the sample into it. The mod adds a `/gallery` command that opens a pane and draws the sample there. A [pane](https://code.claude.com/docs/en/plugins/mods/interface#pick-where-to-draw) is a sidebar beside the transcript in a wide fullscreen terminal, or a framed region above the prompt otherwise.
 
-
-**Create the mod**
+**1. Create the mod**
 
 Create a directory named `gallery` with `.claude-plugin` and `hooks` directories inside it. [Create a mod](https://code.claude.com/docs/en/plugins/mods/create#write-a-mod-yourself) explains the files.
 
 Save the manifest as `gallery/.claude-plugin/plugin.json`:
 ```json gallery/.claude-plugin/plugin.json
-    {
-      "name": "gallery",
-      "version": "0.1.0",
-      "description": "Opens a pane that draws one sample",
-      "author": { "name": "Your Name" }
-    }
+{
+  "name": "gallery",
+  "version": "0.1.0",
+  "description": "Opens a pane that draws one sample",
+  "author": { "name": "Your Name" }
+}
 ```
 
 Name your entry point in `gallery/hooks/hooks.json`:
 ```json gallery/hooks/hooks.json
-    {
-      "modules": ["./register.js"]
-    }
+{
+  "modules": ["./register.js"]
+}
 ```
 
 Save the code as `gallery/hooks/register.js`. It adds a `/gallery` command that opens a pane, and draws `Plain text` in that pane:
 ```javascript gallery/hooks/register.js
-    // Stands in for your own callback in the samples that take one
-    const noop = () => {}
-    // The Select sample keeps its choice here
-    let picked = 'md'
+// Stands in for your own callback in the samples that take one
+const noop = () => {}
+// The Select sample keeps its choice here
+let picked = 'md'
 
-    // The Raster sample packs its cells with this function
-    const DEFAULT_COLOR = 0x01000000
-    function cellsOf(rows) {
-      const numbers = rows.flat().flatMap(([char, color]) => [char.codePointAt(0), color, DEFAULT_COLOR])
-      return new Uint8Array(Uint32Array.from(numbers).buffer).toBase64()
-    }
+// The Raster sample packs its cells with this function
+const DEFAULT_COLOR = 0x01000000
+function cellsOf(rows) {
+  const numbers = rows.flat().flatMap(([char, color]) => [char.codePointAt(0), color, DEFAULT_COLOR])
+  return new Uint8Array(Uint32Array.from(numbers).buffer).toBase64()
+}
 
-    export function register(on) {
-      on('session.start', async ($, e, next) => {
-        await $.command.register({ name: 'gallery', description: 'Open the sample pane' })
-        return next(e)
-      })
+export function register(on) {
+  on('session.start', async ($, e, next) => {
+    await $.command.register({ name: 'gallery', description: 'Open the sample pane' })
+    return next(e)
+  })
 
-      on('command.run', { command: 'gallery' }, async ($) => {
-        await $.ui.open({ id: 'gallery', focus: true, closeOnEscape: true })
-        return {}
-      })
+  on('command.run', { command: 'gallery' }, async ($) => {
+    await $.ui.open({ id: 'gallery', focus: true, closeOnEscape: true })
+    return {}
+  })
 
-      on('ui.render', { component: 'Pane' }, async ($, e, next) => {
-        if (e.requestId !== 'gallery') return next(e)
-        const { Box, Text, Button, Input, Select, Link, Markdown, Code, Raster, Svg } = $.ui.resolve(e)
-        // Replace the element after return with a sample
-        return Text({ children: ['Plain text'] })
-      })
-    }
+  on('ui.render', { component: 'Pane' }, async ($, e, next) => {
+    if (e.requestId !== 'gallery') return next(e)
+    const { Box, Text, Button, Input, Select, Link, Markdown, Code, Raster, Svg } = $.ui.resolve(e)
+    // Replace the element after return with a sample
+    return Text({ children: ['Plain text'] })
+  })
+}
 ```
 
-
-
-**Run the mod**
+**2. Run the mod**
 
 In your shell, start Claude Code from the directory that holds `gallery`:
 ```bash
-    claude --plugin-dir ./gallery
+claude --plugin-dir ./gallery
 ```
 
 At the Claude Code prompt, run `/gallery`. A pane opens with `Plain text` in it.
 
-
-
-**Swap in a sample**
+**3. Swap in a sample**
 
 Copy a sample from this page. In `register.js`, paste it over `Text({ children: ['Plain text'] })`, so that it follows `return`, and save the file. Claude Code reloads the module each time you save, so run `/gallery` again to see the new sample.
-
 
 ## Pick an element
 
@@ -126,9 +120,7 @@ Box({
 })
 ```
 
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-text-light.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=90724ce3953d9347b61b6a9266fda451)
-
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-text-dark.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=790dd3465e06db0842639d0d8fcbbc96)
+![A pane with nine lines of text, each named for its style: plain, bold, italic, underline, strikethrough, dimColor in gray, inverse, color red, and backgroundColor blue.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-text-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=90724ce3953d9347b61b6a9266fda451)
 
 `dimColor` draws the text in gray. `backgroundColor` fills only as wide as the text.
 
@@ -141,9 +133,7 @@ Markdown({
 })
 ```
 
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-markdown-light.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=e40eacc4e3fbe06eb003f4463f552ec1)
-
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-markdown-dark.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=2cc342ed0c58e752c425fff3c95a33a6)
+![A pane with a bold heading, Release notes, then a sentence with one bold word and one colored code word, a two-item list, and a quote drawn in italics with a bar on its left.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-markdown-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=e40eacc4e3fbe06eb003f4463f552ec1)
 
 A heading draws in bold without its `#` marks. Inline code draws in color without its backticks. A quote draws in italics with a bar on its left.
 
@@ -154,9 +144,7 @@ A heading draws in bold without its `#` marks. Inline code draws in color withou
 Link({ href: 'https://code.claude.com/docs', label: 'Claude Code docs' })
 ```
 
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-link-light.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=8217bd2dfb561a8ba57023c6d89ea977)
-
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-link-dark.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=cd32f222a7d3530b070f58f5f189a1f8)
+![A pane with one line: the label Claude Code docs, then the URL in gray.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-link-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=8217bd2dfb561a8ba57023c6d89ea977)
 
 The terminal draws the URL as text after the label. Whether a click opens it depends on the user's terminal.
 
@@ -175,9 +163,7 @@ Code({
 })
 ```
 
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-code-light.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=4e13f5d506d3fdcc59d6d9524f48d2a9)
-
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-code-dark.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=59f797371dd91b16b874a382b784b668)
+![A pane with two numbered lines of JavaScript in syntax colors.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-code-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=4e13f5d506d3fdcc59d6d9524f48d2a9)
 
 The colors come from the user's theme.
 
@@ -191,9 +177,7 @@ Code({
 })
 ```
 
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-diff-light.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=4f12c9f7229ceccd9b4f47479a7235dd)
-
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-diff-dark.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=9db96f34381bac8bebc32d41859b8808)
+![A pane with a four-line diff. The removed line is shaded red and the added line green, each with its line number. In the added line, the words that runs code have a stronger shade.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-diff-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=4f12c9f7229ceccd9b4f47479a7235dd)
 
 Claude Code draws line numbers in place of the `@@` line. Where a removed line and an added line are alike, the words that changed get a stronger shade.
 
@@ -221,9 +205,7 @@ Box({
 })
 ```
 
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-box-light.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=cb9263bb02f5c8afb6e5b8450e0cdadc)
-
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-box-dark.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=dae83407af4d667a58717f68f13848e2)
+![A pane with three words in a row, four columns apart, then a blank row, then a rounded border around one line of text. The border runs the full width of the pane.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-box-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=cb9263bb02f5c8afb6e5b8450e0cdadc)
 
 The border stretches to the width of the pane.
 
@@ -247,15 +229,11 @@ Box({
 })
 ```
 
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-button-light.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=8c638c15e12d9736f327dfcaa797b512)
-
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-button-dark.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=6a88a1fe18ba63b050366dcfab14be45)
+![A pane with three buttons, one per line: Save in brackets, n: Next without brackets and with the n in color, and Skip in brackets in gray.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-button-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=8c638c15e12d9736f327dfcaa797b512)
 
 A button that has the focus draws in inverse video. Here the user has pressed Tab twice:
 
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-button-plain-focused-light.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=a6224e58d10752a894615047d9824ad9)
-
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-button-plain-focused-dark.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=9aeb7145615e77c84e7436180ed69e86)
+![The same three buttons, with the second one, n: Next, drawn in inverse video.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-button-plain-focused-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=a6224e58d10752a894615047d9824ad9)
 
 ### `Input`
 
@@ -273,21 +251,15 @@ Input({
 
 Without the focus, the field shows its label and its placeholder:
 
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-input-light.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=7d580be1aaf5507032e1962b9167d725)
-
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-input-dark.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=9d254a8adc5959ba173717fb45eabd52)
+![A pane with one line: the label Title, then the placeholder Type a title and press Enter in gray.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-input-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=7d580be1aaf5507032e1962b9167d725)
 
 With the focus, the label turns bold, a cursor appears, and the `submitLabel` shows after `⏎`:
 
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-input-focused-light.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=dcfcce0174480cc624d06c8521734fe7)
-
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-input-focused-dark.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=2f5cf7d0e5f813983070e883009f528e)
+![The same field with its label in bold, a block cursor on the first letter of the placeholder, and a return sign followed by the word save.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-input-focused-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=dcfcce0174480cc624d06c8521734fe7)
 
 Typing replaces the placeholder:
 
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-input-typed-light.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=4eb6d4443763a21415dad4e426bc747a)
-
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-input-typed-dark.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=90fbac3c7a47ab26a4fb71401975eac6)
+![The same field holding the typed letters Rel, followed by the return sign and the word save.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-input-typed-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=4eb6d4443763a21415dad4e426bc747a)
 
 ### `Select`
 
@@ -310,21 +282,15 @@ Select({
 
 Closed, it shows its label and the current option:
 
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-select-light.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=4e3b18268ffd87d2cad06442e6d661a9)
-
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-select-dark.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=1e329e6aee748c2dd70e92dbe4960de0)
+![A pane with one line: the label Format, the current option Markdown, and a small down arrow.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-select-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=4e3b18268ffd87d2cad06442e6d661a9)
 
 Open, it lists its options and marks one:
 
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-select-moved-light.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=deb6ce0a49d213235feedaa79ac658c0)
-
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-select-moved-dark.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=d69edeecd4f97dad4bdb39b908e3d98e)
+![The picker open, with its three options listed under the label. The second option, HTML, is drawn in inverse video.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-select-moved-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=deb6ce0a49d213235feedaa79ac658c0)
 
 After the user picks an option, the list closes:
 
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-select-picked-light.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=f065ab5bc479868f03088dc736f17097)
-
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-select-picked-dark.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=f084630e325825f3831219215a6a595e)
+![The picker closed again, now showing HTML as the current option.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-select-picked-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=f065ab5bc479868f03088dc736f17097)
 
 ## Draw pictures
 
@@ -343,9 +309,7 @@ Raster({
 })
 ```
 
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-raster-light.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=5ed719481d3dd45b568bab696e57bf16)
-
-![](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-raster-dark.png?fit=max&auto=format&n=EXkwf0kKMewZsyod&q=85&s=b381f05d4cc99e2abfacb505c77b17f5)
+![A pane with a small grid of colored blocks, two rows of three: green, amber, and red, then green, green, and amber.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-raster-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=5ed719481d3dd45b568bab696e57bf16)
 
 A `Raster` rounds each color to a smaller palette, so `0x2e7d32` draws as `#337733`.
 

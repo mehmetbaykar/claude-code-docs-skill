@@ -8,7 +8,9 @@ path: /docs/en/self-hosted-environments-reference
 
 > Complete reference for the self-hosted runner and orchestrator: CLI flags, environment variables, and Prometheus metrics.
 
-Self-hosted environments are in public beta on Team and Enterprise plans; an [Owner](https://code.claude.com/docs/en/cloud-environments#organization-shared-environments) enables them by turning on **Allow self-hosted environments** on the [**Cloud environments** admin page](https://claude.ai/admin-settings/cloud-environments). This page is the flag and metric reference; see the [quickstart](https://code.claude.com/docs/en/self-hosted-environments-quickstart) for setup and [Deploy to production](https://code.claude.com/docs/en/self-hosted-environments-deploy) for the fleet recipes.
+> [!NOTE]
+>
+> Self-hosted environments are in public beta on Team and Enterprise plans; an [Owner](https://code.claude.com/docs/en/cloud-environments#organization-shared-environments) enables them by turning on **Allow self-hosted environments** on the [**Cloud environments** admin page](https://claude.ai/admin-settings/cloud-environments). This page is the flag and metric reference; see the [quickstart](https://code.claude.com/docs/en/self-hosted-environments-quickstart) for setup and [Deploy to production](https://code.claude.com/docs/en/self-hosted-environments-deploy) for the fleet recipes.
 
 This page is the reference for the two processes you run in a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments): the runner, which executes Claude Code [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web) on your hosts, and the optional autoscaling orchestrator, which starts runners as sessions queue. Each has its own flag table. Both run on Linux or macOS hosts, which the defaults such as `/workspace` and `~/.claude` assume. Run `claude self-hosted-runner --help` for the authoritative list on your installed version.
 
