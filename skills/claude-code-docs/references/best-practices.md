@@ -460,7 +460,7 @@ Have Claude write the list of files that need migrating to a file, so the loop i
 
 **Test on a few files, then run on all of them**
 
-Refine your prompt based on what goes wrong with the first 2-3 files, then run on the full set. The `--allowedTools` flag pre-approves the tools the migration needs, and [`--permission-mode dontAsk`](https://code.claude.com/docs/en/permission-modes#allow-only-pre-approved-tools-with-dontask-mode) denies anything else that would need approval, which matters when you're running unattended.
+Refine your prompt based on what goes wrong with the first 2-3 files, then run on the full set. The `--allowedTools` flag pre-approves the tools the migration needs. [`--permission-mode dontAsk`](https://code.claude.com/docs/en/permission-modes#allow-only-pre-approved-tools-with-dontask-mode) denies anything else that would need approval, which matters when you're running unattended, though a [mod](https://code.claude.com/docs/en/plugins/mods/overview) you installed can still approve some of those calls.
 
 
 You can also integrate Claude into existing data/processing pipelines:
