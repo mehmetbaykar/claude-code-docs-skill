@@ -76,8 +76,8 @@
       "title": "Track cost and usage"
     },
     "agent-sdk__custom-tools.md": {
-      "hash": "b8631890b2a5bbd1214d36dc7d0dfff0f34d3ab69a6616dfdced49cdef05bf06",
-      "last_updated": "2026-10-17T03:34:45+00:00",
+      "hash": "844d6fb463e455f3bb1e79d043fb3e97cf17183e9c37478d9efc7e966adada51",
+      "last_updated": "2026-10-20T06:48:10+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/custom-tools",
       "path": "/docs/en/agent-sdk/custom-tools",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/custom-tools.md",
@@ -1363,8 +1363,8 @@
       "title": "Use the mods API"
     },
     "plugins__mods__create.md": {
-      "hash": "429cc77f688b89e0a0388d45e0a1b8e41ea53920d914c50c6dded7a43b115b2a",
-      "last_updated": "2026-10-17T03:35:39+00:00",
+      "hash": "92ba9cb1aed88004e701d30f7f58bc9e0e74ade331e0021cd6d87ab0b1c20ee7",
+      "last_updated": "2026-10-20T06:49:06+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/create",
       "path": "/docs/en/plugins/mods/create",
       "source_url": "https://code.claude.com/docs/en/plugins/mods/create.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-20T03:38:33+00:00",
+  "last_updated": "2026-10-20T06:49:35+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
