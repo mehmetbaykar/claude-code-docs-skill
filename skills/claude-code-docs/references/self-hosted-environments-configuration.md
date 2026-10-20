@@ -487,7 +487,7 @@ If a server's tools don't appear on later turns either, check whether the server
 
 ### Turn off built-in session tools
 
-Anthropic's control plane attaches its own MCP server, named Claude Code Remote, to cloud sessions. Claude uses the server's tools to schedule [routines](https://code.claude.com/docs/en/routines), start and steer other cloud sessions, attach more repositories, and follow pull request activity.
+Anthropic's control plane attaches its own MCP server, named Claude Code Remote, to cloud sessions. Claude uses the server's tools to create [cloud scheduled tasks](https://code.claude.com/docs/en/routines), start and steer other cloud sessions, attach more repositories, and follow pull request activity.
 
 To turn off the whole server, add a [server-level deny rule](https://code.claude.com/docs/en/permissions#mcp) to your settings. The control plane registers the server under one of three names, depending on how the session was created. Claude Code matches the name in a rule exactly, including case, so write the rule once per name as shown:
 ```json
@@ -644,7 +644,7 @@ When Anthropic's control plane supplies a session with [Claude Code hooks](https
 * **Who authors them**: the control plane populates the scripts from fixed constants in its own deployment, never from per-session or third-party input.
 * **What still governs them**: hooks delivered through `--settings` enter the ordinary merged hook configuration, not the managed tier, so your managed settings still apply. `disableAllHooks` disables them, and they are not among the categories [`allowManagedHooksOnly`](https://code.claude.com/docs/en/settings-reference#allowmanagedhooksonly) keeps loaded.
 
-When a person starts their own session, Claude Code also downloads the [skills enabled for their claude.ai account](https://code.claude.com/docs/en/skills#skills-in-cowork-and-cloud-sessions) into that session's config directory. A [routine](https://code.claude.com/docs/en/routines) run doesn't get its owner's skills, and a session that [sends model requests to Bedrock or Agent Platform](#send-model-requests-to-bedrock-or-agent-platform) doesn't download any. For a skill those sessions need, commit it to the repository's `.claude/skills/` or add it to your runner image.
+When a person starts their own session, Claude Code also downloads the [skills enabled for their claude.ai account](https://code.claude.com/docs/en/skills#skills-in-cowork-and-cloud-sessions) into that session's config directory. A [cloud scheduled task](https://code.claude.com/docs/en/routines) run doesn't get its owner's skills, and a session that [sends model requests to Bedrock or Agent Platform](#send-model-requests-to-bedrock-or-agent-platform) doesn't download any. For a skill those sessions need, commit it to the repository's `.claude/skills/` or add it to your runner image.
 
 Outside [Claude Tag](https://claude.com/docs/claude-tag/overview) sessions, a session in a self-hosted environment runs with [auto memory](https://code.claude.com/docs/en/memory#auto-memory) off by default. For instructions that should carry across sessions, use the `CLAUDE.md` in your runner image or in the repository.
 

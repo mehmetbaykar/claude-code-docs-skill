@@ -174,7 +174,7 @@ Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex o
 - `prompt-library` - [Prompt library](https://code.claude.com/docs/en/prompt-library)
 - `quickstart` - [Quickstart](https://code.claude.com/docs/en/quickstart)
 - `remote-control` - [Continue local sessions from any device with Remote Control](https://code.claude.com/docs/en/remote-control)
-- `routines` - [Automate work with routines](https://code.claude.com/docs/en/routines)
+- `routines` - [Automate work with scheduled tasks](https://code.claude.com/docs/en/routines)
 - `sandbox-environments` - [Choose a sandbox environment](https://code.claude.com/docs/en/sandbox-environments)
 - `sandboxing` - [Configure the sandboxed Bash tool](https://code.claude.com/docs/en/sandboxing)
 - `scheduled-tasks` - [Run prompts on a schedule](https://code.claude.com/docs/en/scheduled-tasks)

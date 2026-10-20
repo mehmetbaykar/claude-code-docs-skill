@@ -84,4 +84,4 @@ If you're not sure where to start, [install the CLI](https://code.claude.com/doc
 * [Dispatch](https://code.claude.com/docs/en/desktop#sessions-from-dispatch): message a task from your phone and it can spawn a Desktop session
 * [Remote Control](https://code.claude.com/docs/en/remote-control): drive a running session from your phone or browser
 * [Channels](https://code.claude.com/docs/en/channels): push events from chat apps or your own servers into a session
-* [Scheduled tasks](https://code.claude.com/docs/en/scheduled-tasks): run prompts on a recurring schedule
+* [Scheduling options](https://code.claude.com/docs/en/scheduled-tasks#compare-scheduling-options): run prompts on a recurring schedule

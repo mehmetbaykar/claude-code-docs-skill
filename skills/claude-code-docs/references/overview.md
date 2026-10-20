@@ -224,7 +224,7 @@ See the [CLI reference](https://code.claude.com/docs/en/cli-reference) for the f
 
 Run Claude on a schedule to automate work that repeats: morning PR reviews, overnight CI failure analysis, weekly dependency audits, or syncing docs after PRs merge.
 
-* [Routines](https://code.claude.com/docs/en/routines) run in the cloud, so they keep running even when your computer is off. They can also trigger on API calls or GitHub events. Create them from the web, the Desktop app, or by running `/schedule` in the CLI.
+* [Cloud scheduled tasks](https://code.claude.com/docs/en/routines), formerly routines, run in the cloud, so they keep running even when your computer is off. They can also trigger on API calls or GitHub events. Create them from the web, the Desktop app, or by running `/schedule` in the CLI.
 * [Desktop scheduled tasks](https://code.claude.com/docs/en/desktop-scheduled-tasks) run on your machine, with direct access to your local files and tools
 * [`/loop`](https://code.claude.com/docs/en/scheduled-tasks) repeats a prompt within a CLI session for quick polling
 
@@ -252,7 +252,7 @@ Beyond the [Terminal](https://code.claude.com/docs/en/quickstart), [VS Code](htt
 | Continue a local session from my phone or another device | [Remote Control](https://code.claude.com/docs/en/remote-control) |
 | Push events from Telegram, Discord, iMessage, or my own webhooks into a session | [Channels](https://code.claude.com/docs/en/channels) |
 | Start a task locally, continue on mobile | [`claude --cloud`](https://code.claude.com/docs/en/claude-code-on-the-web#from-terminal-to-cloud), then the [Claude mobile app](https://code.claude.com/docs/en/mobile) |
-| Run Claude on a recurring schedule | [Routines](https://code.claude.com/docs/en/routines) or [Desktop scheduled tasks](https://code.claude.com/docs/en/desktop-scheduled-tasks) |
+| Run Claude on a recurring schedule | [Cloud scheduled tasks](https://code.claude.com/docs/en/routines) or [Desktop scheduled tasks](https://code.claude.com/docs/en/desktop-scheduled-tasks) |
 | Automate PR reviews and issue triage | [GitHub Actions](https://code.claude.com/docs/en/github-actions) or [GitLab CI/CD](https://code.claude.com/docs/en/gitlab-ci-cd) |
 | Get automatic code review on every PR | [GitHub Code Review](https://code.claude.com/docs/en/code-review) |
 | Route bug reports from Slack to pull requests | [Slack](https://code.claude.com/docs/en/slack) |

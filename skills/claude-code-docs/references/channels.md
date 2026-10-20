@@ -398,4 +398,4 @@ Once you have a channel running, explore these related features:
 
 * [Build your own channel](https://code.claude.com/docs/en/channels-reference) for systems that don't have plugins yet
 * [Remote Control](https://code.claude.com/docs/en/remote-control) to drive a local session from your phone instead of forwarding events into it
-* [Scheduled tasks](https://code.claude.com/docs/en/scheduled-tasks) to poll on a timer instead of reacting to pushed events
+* [Session-scoped scheduled tasks](https://code.claude.com/docs/en/scheduled-tasks) to poll on a timer instead of reacting to pushed events
