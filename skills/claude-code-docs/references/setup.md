@@ -190,7 +190,7 @@ Native installations automatically update in the background. You can [configure 
 
 Claude Code checks for updates on startup and periodically while running. Updates download and install in the background, then take effect the next time you start Claude Code.
 
-Run `claude doctor` to see the result of the most recent update attempt.
+Run `claude doctor` in your shell to see the result of the last update attempt Claude Code recorded. On a native installation, if it reports a failed attempt, see [`Auto-update failed` in the session footer](https://code.claude.com/docs/en/troubleshoot-install#auto-update-failed) for what to do next.
 
 On macOS and Linux, the native installer manages the launcher at `~/.local/bin/claude` as a symlink into `~/.local/share/claude/versions/`. If you replace that launcher with your own script or symlink, auto-update and `claude update` leave it in place: new versions still install under the `versions/` directory, and your launcher decides which version runs.
 

@@ -2237,7 +2237,7 @@ When a project or local settings file sets a variable in this group, a local int
 
 Ignoring this group in project and local settings requires Claude Code v2.1.282 or later.
 * Variables that change how Claude Code starts or syncs, such as `CLAUDE_CODE_PROCESS_WRAPPER`, `CLAUDE_CODE_SYNC_SKILLS`, `CLAUDE_CODE_SYNC_PLUGINS`, `CLAUDE_CODE_PLUGIN_CACHE_DIR`, and `CLAUDE_CODE_PLUGIN_SEED_DIR`.
-* Variables that set the timers on an unanswered dialog: [`CLAUDE_CODE_USER_DIALOG_TIMEOUT_MS`, `CLAUDE_AFK_TIMEOUT_MS`, and `CLAUDE_AFK_COUNTDOWN_MS`](https://code.claude.com/docs/en/env-vars#variables).
+* [`CLAUDE_CODE_USER_DIALOG_TIMEOUT_MS`](https://code.claude.com/docs/en/env-vars#variables), which sets the timer on an unanswered dialog.
 * [`CLAUDE_CODE_DISABLE_ATTACHMENTS`](https://code.claude.com/docs/en/env-vars#variables), which turns off attachment processing.
 * [`CLAUDE_CODE_DISABLE_FILE_MENTIONS`](https://code.claude.com/docs/en/env-vars#variables), which stops Claude Code from expanding `@` mentions of files and directories.
 
@@ -2380,7 +2380,6 @@ Let an unanswered [`AskUserQuestion`](https://code.claude.com/docs/en/tools-refe
 * **Scope**: [`User or managed`](#scopes)
 * **Type**: string, one of `"60s"`, `"5m"`, `"10m"`, or `"never"`
 * **Default**: `"never"`
-* **Per-session overrides**: [`CLAUDE_AFK_TIMEOUT_MS`](https://code.claude.com/docs/en/env-vars) takes precedence over this key for one session
 ```json settings.json
 {
   "askUserQuestionTimeout": "5m"

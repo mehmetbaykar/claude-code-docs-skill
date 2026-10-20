@@ -58,7 +58,7 @@ Tool events fire around each tool call Claude makes, from the description Claude
 | Event | Fires when | A hook can return |
 | :- | :- | :- |
 | [`tool.call`](https://code.claude.com/docs/en/plugins/mods/events#guard-or-change-a-tool-call) | A tool is about to run | `next(e)`, `{ deny: reason }`, or `{ result }` |
-| [`tool.check`](https://code.claude.com/docs/en/plugins/mods/events#where-settings-hooks-run-in-the-order) | Claude Code decides whether a tool call may run, after the `tool.call` and `PreToolUse` hooks. `next(e)` resolves to the decision the rules, the permission mode, and those hooks reached. | `{ decision }`, which is `allow`, `ask`, or `deny` |
+| [`tool.check`](https://code.claude.com/docs/en/plugins/mods/events#where-settings-hooks-run-in-the-order) | Claude Code decides whether a tool call may run, after the `tool.call` and `PreToolUse` hooks. `next(e)` resolves to the decision the rules, the permission mode, and those hooks reached. | `next(e)` or `{ decision }`, with `decision` set to `allow`, `ask`, or `deny` and an optional `reason` |
 | `tool.describe` | Once for each tool, when its description is first sent to Claude. A second time for an MCP tool when Claude loads it through [tool search](https://code.claude.com/docs/en/mcp#scale-with-mcp-tool-search), with `e.description` set to the text Claude reads for the loaded tool. | `{ description }`, optionally with `isDeferred` set to `true` to put the tool behind tool search or `false` to load it upfront |
 
 #### Agent and organization fields on `tool.check`
@@ -69,6 +69,12 @@ In a `tool.check` hook, read these fields to tell a subagent's call from the mai
 * **`e.ceiling`**: `ask` for a connector tool your organization set to `ask`, in [sessions where that setting reaches Claude Code](https://code.claude.com/docs/en/mcp#organization-controls-on-connector-tools)
 
 On `tool.check`, `e.agentId` and `e.ceiling` require Claude Code v2.1.290 or later.
+
+#### The `e.isReadOnly` field on `tool.check`
+
+In a `tool.check` hook, `e.isReadOnly` is `true` when the tool reports this call as read-only. Otherwise the field is absent, not `false`. The value is the tool's own report, so read [Check whether a tool call is read-only](https://code.claude.com/docs/en/plugins/mods/events#check-whether-a-tool-call-is-read-only) before you approve a call on this field alone.
+
+On `tool.check`, `e.isReadOnly` requires Claude Code v2.1.304 or later.
 
 ### Prompts and what Claude reads
 
