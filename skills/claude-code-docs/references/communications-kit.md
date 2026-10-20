@@ -10,7 +10,9 @@ path: /docs/en/communications-kit
 
 This page is for administrators and engineering leads rolling Claude Code out to a team. It provides copy-ready launch announcements, a tips-and-tricks drip campaign, and one-line FAQ responses for the questions you will be asked most.
 
-Treat everything here as draft copy, not finished copy. Rewrite each message in your organization's voice, swap the example tasks for real bugs and modules from your own codebase, and replace the `[bracketed placeholders]` before sending. The announcements that drive adoption are the ones that read like someone at your company wrote them.
+> [!NOTE]
+>
+> Treat everything here as draft copy, not finished copy. Rewrite each message in your organization's voice, swap the example tasks for real bugs and modules from your own codebase, and replace the `[bracketed placeholders]` before sending. The announcements that drive adoption are the ones that read like someone at your company wrote them.
 
 ## Launch communications
 
@@ -33,74 +35,70 @@ Work through this checklist before the announcement goes out. Each item closes a
 
 Use this as your standard org-wide rollout message. It covers what Claude Code is, gives a two-minute install path, hands readers one concrete task to try, and answers "where does my code go?" before anyone has to ask.
 
-
 **Email**
 ```text
-    Subject: Claude Code is live for [Engineering / your team]
+Subject: Claude Code is live for [Engineering / your team]
 
-    Team,
+Team,
 
-    As of today you have access to Claude Code, an AI coding agent that runs in
-    your terminal, reads your actual codebase, and works through real tasks end
-    to end: debugging, refactors, tests, PRs. It is not autocomplete and it is
-    not a chat window. It edits files and runs your commands.
+As of today you have access to Claude Code, an AI coding agent that runs in
+your terminal, reads your actual codebase, and works through real tasks end
+to end: debugging, refactors, tests, PRs. It is not autocomplete and it is
+not a chat window. It edits files and runs your commands.
 
-    Get running in two minutes:
+Get running in two minutes:
 
-        curl -fsSL https://claude.ai/install.sh | bash
-        cd <your-repo>
-        claude
+    curl -fsSL https://claude.ai/install.sh | bash
+    cd <your-repo>
+    claude
 
-    Then run /init once. Claude reads your project and writes a CLAUDE.md with
-    your build commands and conventions, so you stop re-explaining the basics.
+Then run /init once. Claude reads your project and writes a CLAUDE.md with
+your build commands and conventions, so you stop re-explaining the basics.
 
-    Then try one of these on the repo you are already in:
+Then try one of these on the repo you are already in:
 
-      - "The test in [file] is flaky. Figure out why and fix it"
-      - "Walk me through how [module] handles [X]"
-      - "Look at my working diff and tell me what's risky before I push"
+  - "The test in [file] is flaky. Figure out why and fix it"
+  - "Walk me through how [module] handles [X]"
+  - "Look at my working diff and tell me what's risky before I push"
 
-    Where your code goes: Claude Code runs in your terminal and talks directly
-    to Anthropic's API. On our Team or Enterprise plan, Anthropic does not use
-    your code or prompts to train its models.
-    Details: https://code.claude.com/docs/en/data-usage
-             https://code.claude.com/docs/en/security
+Where your code goes: Claude Code runs in your terminal and talks directly
+to Anthropic's API. On our Team or Enterprise plan, Anthropic does not use
+your code or prompts to train its models.
+Details: https://code.claude.com/docs/en/data-usage
+         https://code.claude.com/docs/en/security
 
-    Where to go with questions: #claude-code. [Owner name] is watching it
-    this week.
+Where to go with questions: #claude-code. [Owner name] is watching it
+this week.
 
-    - [Name]
+- [Name]
 
-    P.S. Prefer your editor? There is a VS Code extension and a JetBrains
-    plugin. Same agent, no terminal required.
+P.S. Prefer your editor? There is a VS Code extension and a JetBrains
+plugin. Same agent, no terminal required.
 ```
-
-
 
 **Slack or Teams**
 ```markdown
-    🚀 *Claude Code is live for [team]*
+🚀 *Claude Code is live for [team]*
 
-    AI coding agent, runs in your terminal, reads your repo, does real work:
-    bugs, refactors, tests, PRs.
+AI coding agent, runs in your terminal, reads your repo, does real work:
+bugs, refactors, tests, PRs.
 
-    `curl -fsSL https://claude.ai/install.sh | bash` → `cd your-repo` → `claude`
+`curl -fsSL https://claude.ai/install.sh | bash` → `cd your-repo` → `claude`
 
-    *First thing to try* → run `/init`, then: "the test in [file] is flaky,
-    figure out why and fix it."
+*First thing to try* → run `/init`, then: "the test in [file] is flaky,
+figure out why and fix it."
 
-    🔒 Runs in your terminal, talks directly to Anthropic's API. On our Team or
-    Enterprise plan, your code and prompts are not used to train models.
-    Data usage → https://code.claude.com/docs/en/data-usage
+🔒 Runs in your terminal, talks directly to Anthropic's API. On our Team or
+Enterprise plan, your code and prompts are not used to train models.
+Data usage → https://code.claude.com/docs/en/data-usage
 
-    📚 Quickstart · VS Code · Free 1-hr course
-       https://code.claude.com/docs/en/quickstart
-       https://code.claude.com/docs/en/vs-code
-       https://academy.claude.com/courses/claude-code-in-action
+📚 Quickstart · VS Code · Free 1-hr course
+   https://code.claude.com/docs/en/quickstart
+   https://code.claude.com/docs/en/vs-code
+   https://academy.claude.com/courses/claude-code-in-action
 
-    Questions → this thread. [Owner] is on point.
+Questions → this thread. [Owner] is on point.
 ```
-
 
 ### Executive sponsor variant
 
@@ -108,50 +106,46 @@ Send this from your sponsoring executive, such as the CTO, CIO, or SVP Engineeri
 
 This version is deliberately stripped to one ask: install it and run it on one real task. The exec's job is to make the ask land; the standard announcement and `#claude-code` handle the how.
 
-
 **Email**
 ```text
-    Subject: One thing I'd like every engineer to try this week
+Subject: One thing I'd like every engineer to try this week
 
-    Team,
+Team,
 
-    We have turned on Claude Code for all of engineering. It is an AI agent
-    that works directly in your terminal, on your actual codebase, and the
-    early results from teams already using it are strong enough that I want
-    everyone on it this week.
+We have turned on Claude Code for all of engineering. It is an AI agent
+that works directly in your terminal, on your actual codebase, and the
+early results from teams already using it are strong enough that I want
+everyone on it this week.
 
-    I am asking for ten minutes:
+I am asking for ten minutes:
 
-        curl -fsSL https://claude.ai/install.sh | bash
-        cd <your-repo>
-        claude
+    curl -fsSL https://claude.ai/install.sh | bash
+    cd <your-repo>
+    claude
 
-    Then hand it one real task: the bug you have been putting off, or "walk me
-    through how [module] works."
+Then hand it one real task: the bug you have been putting off, or "walk me
+through how [module] works."
 
-    That is the whole ask. [Owner name] and team are in #claude-code for
-    anything you hit along the way.
+That is the whole ask. [Owner name] and team are in #claude-code for
+anything you hit along the way.
 
-    - [Exec Name]
-      [Title]
+- [Exec Name]
+  [Title]
 ```
-
-
 
 **Slack or Teams**
 ```markdown
-    📣 *From [Exec Name]: one thing to try this week*
+📣 *From [Exec Name]: one thing to try this week*
 
-    We have turned on *Claude Code* for all of engineering. Early results are
-    strong enough that I am asking everyone to give it ten minutes on real
-    work this week.
+We have turned on *Claude Code* for all of engineering. Early results are
+strong enough that I am asking everyone to give it ten minutes on real
+work this week.
 
-    `curl -fsSL https://claude.ai/install.sh | bash` → `cd your-repo` →
-    `claude` → hand it one real task.
+`curl -fsSL https://claude.ai/install.sh | bash` → `cd your-repo` →
+`claude` → hand it one real task.
 
-    That's it. Questions → #claude-code.
+That's it. Questions → #claude-code.
 ```
-
 
 ### Pilot group variant
 
@@ -508,4 +502,6 @@ Share these starter prompts with engineers who have installed but aren't sure wh
 | Make a skill | "make me a /ship skill that runs tests and lint before commit" |
 | Debug a stack trace | "here's the stack trace, find the root cause, don't just paper over it" |
 
-Claude Code ships frequently. Verify version-specific details against the [documentation home page](https://code.claude.com/docs/en/overview) before distributing internally.
+> [!TIP]
+>
+> Claude Code ships frequently. Verify version-specific details against the [documentation home page](https://code.claude.com/docs/en/overview) before distributing internally.

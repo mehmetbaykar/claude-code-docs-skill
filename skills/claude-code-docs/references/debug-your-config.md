@@ -35,7 +35,9 @@ If `/context` confirms the file loaded but Claude still isn't following a partic
 
 Adherence drops when an instruction is vague enough to interpret multiple ways, when two files give conflicting direction, or when the file has grown long enough that individual rules get less attention. [Write effective instructions](https://code.claude.com/docs/en/memory#write-effective-instructions) covers the specificity, size, and structure patterns that keep adherence high.
 
-CLAUDE.md and permissions solve different problems. CLAUDE.md tells Claude how your project works so it makes good decisions. [Permissions](https://code.claude.com/docs/en/permissions) and [hooks](https://code.claude.com/docs/en/hooks) enforce limits regardless of what Claude decides. Use CLAUDE.md for "we do it this way here." Use permissions or hooks for security boundaries and anything that must never happen, where you need a guarantee instead of guidance.
+> [!NOTE]
+>
+> CLAUDE.md and permissions solve different problems. CLAUDE.md tells Claude how your project works so it makes good decisions. [Permissions](https://code.claude.com/docs/en/permissions) and [hooks](https://code.claude.com/docs/en/hooks) enforce limits regardless of what Claude decides. Use CLAUDE.md for "we do it this way here." Use permissions or hooks for security boundaries and anything that must never happen, where you need a guarantee instead of guidance.
 
 ## Check resolved settings
 
@@ -90,66 +92,48 @@ Safe mode still applies managed hooks and settings policy from your organization
 
 If the problem persists in safe mode, or your settings themselves are suspect, start a session with none of your own configuration and check whether the problem follows.
 
-
-**Create an empty directory and change into it**
+**1. Create an empty directory and change into it**
 
 In your shell, with no Claude Code session running, create the directory and move into it:
 
-
-
 **Bash or Zsh**
 ```bash
-        mkdir -p ~/claude-clean/empty && cd ~/claude-clean/empty
+mkdir -p ~/claude-clean/empty && cd ~/claude-clean/empty
 ```
-
-
 
 **PowerShell**
 ```powershell
-        New-Item -ItemType Directory -Force "$HOME/claude-clean/empty" | Out-Null
-        Set-Location "$HOME/claude-clean/empty"
+New-Item -ItemType Directory -Force "$HOME/claude-clean/empty" | Out-Null
+Set-Location "$HOME/claude-clean/empty"
 ```
 
-
-
-
-
-**Start Claude Code with a clean configuration directory**
+**2. Start Claude Code with a clean configuration directory**
 
 From the same shell, set [`CLAUDE_CONFIG_DIR`](https://code.claude.com/docs/en/env-vars) to a fresh directory in place of `~/.claude`, and pass [`--setting-sources user`](https://code.claude.com/docs/en/cli-reference#cli-flags) to turn off project configuration such as `.claude/settings.json`, `CLAUDE.md`, and `.mcp.json`:
-
-
 
 **Bash or Zsh**
 
 The variable applies to this one launch.
 ```bash
-        CLAUDE_CONFIG_DIR=~/claude-clean/config claude --setting-sources user
+CLAUDE_CONFIG_DIR=~/claude-clean/config claude --setting-sources user
 ```
-
-
 
 **PowerShell**
 
 The variable stays set for the rest of this PowerShell session, so later `claude` launches in the same window keep using the clean directory. To return to your usual directory, run `Remove-Item Env:CLAUDE_CONFIG_DIR` before the next launch.
 ```powershell
-        $env:CLAUDE_CONFIG_DIR = "$HOME/claude-clean/config"
-        claude --setting-sources user
+$env:CLAUDE_CONFIG_DIR = "$HOME/claude-clean/config"
+claude --setting-sources user
 ```
-
-
 
 On the first launch, you go through the first-run setup screens again, a sign that the clean configuration directory is in effect. Managed settings still apply, and [connectors](https://code.claude.com/docs/en/mcp#use-mcp-servers-from-claude-ai) still load if you log in with a claude.ai account.
 
-
-
-**Reproduce the problem**
+**3. Reproduce the problem**
 
 Repeat what triggered the problem in the clean session:
 
 * **Problem gone**: the cause is in your user or project configuration. Copy `~/.claude.json` and the files in `~/.claude` into `~/claude-clean/config` one at a time. If none brings the problem back, go to your project directory in the same shell and start Claude Code without `--setting-sources user`. In Bash or Zsh, run `CLAUDE_CONFIG_DIR=~/claude-clean/config claude`. In PowerShell, the variable is still set, so run `claude`.
 * **Problem persists**: the cause is outside your user and project configuration. Run `/status` in the session to check for managed settings, check your shell for [environment variables](https://code.claude.com/docs/en/env-vars), then see [Troubleshooting](https://code.claude.com/docs/en/troubleshooting).
-
 
 ## Check common causes
 

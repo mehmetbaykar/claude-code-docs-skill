@@ -14,7 +14,9 @@ Client-side features that Claude Code turns on through Anthropic's feature-flag 
 
 Use this guide to point Claude Code at a workspace you've already provisioned through Claude Platform on AWS. For the AWS subscription and workspace setup that comes before this, see the [Claude Platform on AWS documentation](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws).
 
-Subscribing through AWS Marketplace provisions a new Anthropic organization tied to your AWS account. This organization is separate from any organization you already have with Anthropic, and credentials don't transfer between them. Use the workspace ID and API keys from the AWS-linked organization, not from a pre-existing Claude Console account.
+> [!NOTE]
+>
+> Subscribing through AWS Marketplace provisions a new Anthropic organization tied to your AWS account. This organization is separate from any organization you already have with Anthropic, and credentials don't transfer between them. Use the workspace ID and API keys from the AWS-linked organization, not from a pre-existing Claude Console account.
 
 ## Prerequisites
 
@@ -68,7 +70,9 @@ The key is sent as `x-api-key` and takes precedence over SigV4, so any AWS crede
 
 Treat workspace API keys like any other production credential. The [user settings file](https://code.claude.com/docs/en/settings) `env` block is a convenient way to scope the key to your machine without exporting it globally.
 
-The `/login` and `/logout` commands don't sign you into a claude.ai subscription for Claude Platform on AWS. Authentication runs through your AWS credentials or workspace API key.
+> [!NOTE]
+>
+> The `/login` and `/logout` commands don't sign you into a claude.ai subscription for Claude Platform on AWS. Authentication runs through your AWS credentials or workspace API key.
 
 ### 2. Configure Claude Code
 

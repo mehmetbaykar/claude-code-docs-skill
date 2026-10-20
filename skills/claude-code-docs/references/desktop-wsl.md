@@ -20,23 +20,17 @@ Use a WSL session when your repository lives inside the distribution's filesyste
 
 ## Start a WSL session
 
-
-**Pick a distribution**
+**1. Pick a distribution**
 
 Start a new session in the Code tab and open the [environment selector](https://code.claude.com/docs/en/desktop#start-a-session) under the prompt box, or above it in the [earlier layout](https://code.claude.com/docs/en/desktop#check-which-layout-you-have). Your installed WSL 2 distributions appear under **WSL**. Pick one.
 
-
-
-**Choose a folder**
+**2. Choose a folder**
 
 The session starts in the distribution's home directory. Use the folder picker to choose a project folder. Browsing happens inside the distribution, with Linux paths like `/home/you/project`.
 
-
-
-**Trust the folder**
+**3. Trust the folder**
 
 The first session in a folder shows the workspace trust dialog. You grant trust per distribution and folder. A folder you trust in one distribution isn't trusted in another distribution or at the same path on Windows.
-
 
 The first session in a distribution takes a little longer while Claude sets up inside it. You can also open a `\\wsl.localhost\...` folder from the normal folder picker, and it reopens inside that distribution.
 
@@ -50,8 +44,6 @@ If a Desktop feature is unavailable or limited in a WSL session, check whether i
 * **[Plugins](https://code.claude.com/docs/en/desktop#install-plugins)**: not available in WSL sessions
 * **File editing**: you can view files in the [file pane](https://code.claude.com/docs/en/desktop#open-and-edit-files) but can't edit them there, so ask Claude to make the changes
 * **Attachments**: if the **+** menu shows **Add image** in place of **Add files or photos**, you can attach only images. See [Add files and context to prompts](https://code.claude.com/docs/en/desktop#add-files-and-context-to-prompts).
-
-<a id="check-for-the-terminal-and-connectors" />
 
 ### If the terminal or connectors are unavailable
 

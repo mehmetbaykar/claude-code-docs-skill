@@ -8,16 +8,19 @@ path: /docs/en/claude-apps-gateway-on-aws
 
 > A worked example of running Claude apps gateway on AWS: ECS Fargate or EKS, Amazon RDS for PostgreSQL, AWS Secrets Manager, and IAM-role auth to Amazon Bedrock.
 
-This page walks through one way to run Claude apps gateway on AWS. The configuration is a working example for customer-managed infrastructure rather than a supported production deployment; use it to see how the pieces fit together before adapting it to your own environment. For the platform-agnostic requirements, see the [deployment guide](https://code.claude.com/docs/en/claude-apps-gateway-deploy).
+> [!NOTE]
+>
+> This page walks through one way to run Claude apps gateway on AWS. The configuration is a working example for customer-managed infrastructure rather than a supported production deployment; use it to see how the pieces fit together before adapting it to your own environment. For the platform-agnostic requirements, see the [deployment guide](https://code.claude.com/docs/en/claude-apps-gateway-deploy).
 
 This example provisions Claude apps gateway on AWS with Amazon Bedrock as the model upstream, using either [Amazon ECS](https://aws.amazon.com/ecs/) on [AWS Fargate](https://aws.amazon.com/fargate/) or [Amazon EKS](https://aws.amazon.com/eks/) for compute. [Okta](https://www.okta.com/) is the example identity provider (IdP), but any OpenID Connect (OIDC) compliant IdP works; see [Identity provider setup](https://code.claude.com/docs/en/claude-apps-gateway-deploy#identity-provider-setup) for per-IdP details.
 
-Bedrock isn't the only Claude upstream on AWS. The gateway also supports Claude Platform on AWS, the Anthropic-operated Claude API with AWS authentication and AWS Marketplace billing, in place of Bedrock or alongside it. Its upstream entry, credentials, and IAM permissions differ from this page's Bedrock-scoped ones; the [Claude Platform on AWS upstream reference](https://code.claude.com/docs/en/claude-apps-gateway-config#claude-platform-on-aws) covers what changes, and the rest of this page applies unchanged.
+> [!NOTE]
+>
+> Bedrock isn't the only Claude upstream on AWS. The gateway also supports Claude Platform on AWS, the Anthropic-operated Claude API with AWS authentication and AWS Marketplace billing, in place of Bedrock or alongside it. Its upstream entry, credentials, and IAM permissions differ from this page's Bedrock-scoped ones; the [Claude Platform on AWS upstream reference](https://code.claude.com/docs/en/claude-apps-gateway-config#claude-platform-on-aws) covers what changes, and the rest of this page applies unchanged.
 
 ## Architecture
 
-
-![](https://mintcdn.com/claude-code/PHweeRmDUYEKff49/images/claude-gateway-aws-architecture.svg?fit=max&auto=format&n=PHweeRmDUYEKff49&q=85&s=8599cc34aa28522cde208ee831439bb4)
+![Diagram of Claude apps gateway on AWS: Claude Code clients connect over HTTPS to an internal Application Load Balancer fronting the gateway (ECS Fargate or EKS), which runs in private subnets alongside an Amazon RDS for PostgreSQL instance for session state. The gateway signs users in via OIDC against the corporate IdP, reads secrets from AWS Secrets Manager, forwards model requests to Amazon Bedrock using its IAM role, and pulls its image from Amazon ECR at deploy.](https://mintcdn.com/claude-code/PHweeRmDUYEKff49/images/claude-gateway-aws-architecture.svg?fit=max\&auto=format\&n=PHweeRmDUYEKff49\&q=85\&s=8599cc34aa28522cde208ee831439bb4)
 
 The gateway runs as a private HTTPS endpoint on your network that developers sign in to through your IdP. Their Claude Code sessions reach Claude models on Amazon Bedrock through the gateway's IAM role, so no model credentials land on developer machines. The reference configuration provisions:
 
@@ -62,90 +65,87 @@ export PRIVATE_SUBNETS="<subnet-id-a> <subnet-id-b>"
 
 The steps below provision the full deployment with `aws` commands.
 
-
-**Create the security groups**
+**1. Create the security groups**
 
 Three security groups chain the traffic path: your corporate network reaches the load balancer on 443, the load balancer reaches the gateway on 8080, and the gateway reaches Postgres on 5432. Nothing else is reachable. How you attach them depends on the compute track:
 
 * On ECS Fargate, the deploy step attaches `$ALB_SG` to the load balancer and `$GW_SG` to the service.
 * On EKS, the AWS Load Balancer Controller creates its own frontend security group for the ALB, so `$ALB_SG` and `$GW_SG` go unused: the deploy step's `inbound-cidrs` annotation restricts the listener to your corporate network, and the database security group admits the cluster's security group instead.
 ```bash
-    ALB_SG="$(aws ec2 create-security-group --group-name claude-gateway-alb \
-      --description "Claude gateway ALB" --vpc-id "$VPC_ID" \
-      --query GroupId --output text)"
-    GW_SG="$(aws ec2 create-security-group --group-name claude-gateway-svc \
-      --description "Claude gateway service" --vpc-id "$VPC_ID" \
-      --query GroupId --output text)"
-    DB_SG="$(aws ec2 create-security-group --group-name claude-gateway-db \
-      --description "Claude gateway Postgres" --vpc-id "$VPC_ID" \
-      --query GroupId --output text)"
+ALB_SG="$(aws ec2 create-security-group --group-name claude-gateway-alb \
+  --description "Claude gateway ALB" --vpc-id "$VPC_ID" \
+  --query GroupId --output text)"
+GW_SG="$(aws ec2 create-security-group --group-name claude-gateway-svc \
+  --description "Claude gateway service" --vpc-id "$VPC_ID" \
+  --query GroupId --output text)"
+DB_SG="$(aws ec2 create-security-group --group-name claude-gateway-db \
+  --description "Claude gateway Postgres" --vpc-id "$VPC_ID" \
+  --query GroupId --output text)"
 
-    aws ec2 authorize-security-group-ingress --group-id "$ALB_SG" \
-      --protocol tcp --port 443 --cidr <your-corporate-cidr>
-    aws ec2 authorize-security-group-ingress --group-id "$GW_SG" \
-      --protocol tcp --port 8080 --source-group "$ALB_SG"
-    aws ec2 authorize-security-group-ingress --group-id "$DB_SG" \
-      --protocol tcp --port 5432 --source-group "$GW_SG"
+aws ec2 authorize-security-group-ingress --group-id "$ALB_SG" \
+  --protocol tcp --port 443 --cidr <your-corporate-cidr>
+aws ec2 authorize-security-group-ingress --group-id "$GW_SG" \
+  --protocol tcp --port 8080 --source-group "$ALB_SG"
+aws ec2 authorize-security-group-ingress --group-id "$DB_SG" \
+  --protocol tcp --port 5432 --source-group "$GW_SG"
 ```
 
-
-
-**Create the IAM roles and submit the use case form**
+**2. Create the IAM roles and submit the use case form**
 
 The gateway runs with a dedicated task role whose only permission is invoking Claude models on Bedrock. Per the [Bedrock upstream reference](https://code.claude.com/docs/en/claude-apps-gateway-config#amazon-bedrock), the policy must cover both the cross-region inference-profile ARNs and the underlying foundation-model ARNs:
 ```bash
-    cat > bedrock-invoke.json <<EOF
-    {
-      "Version": "2012-10-17",
-      "Statement": [{
-        "Effect": "Allow",
-        "Action": ["bedrock:InvokeModel", "bedrock:InvokeModelWithResponseStream", "bedrock:CountTokens"],
-        "Resource": [
-          "arn:aws:bedrock:${AWS_REGION}:${ACCOUNT_ID}:inference-profile/us.anthropic.*",
-          "arn:aws:bedrock:*::foundation-model/anthropic.*"
-        ]
-      }]
-    }
-    EOF
-    cat > ecs-trust.json <<'EOF'
-    {
-      "Version": "2012-10-17",
-      "Statement": [{
-        "Effect": "Allow",
-        "Principal": { "Service": "ecs-tasks.amazonaws.com" },
-        "Action": "sts:AssumeRole"
-      }]
-    }
-    EOF
+cat > bedrock-invoke.json <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": ["bedrock:InvokeModel", "bedrock:InvokeModelWithResponseStream", "bedrock:CountTokens"],
+    "Resource": [
+      "arn:aws:bedrock:${AWS_REGION}:${ACCOUNT_ID}:inference-profile/us.anthropic.*",
+      "arn:aws:bedrock:*::foundation-model/anthropic.*"
+    ]
+  }]
+}
+EOF
+cat > ecs-trust.json <<'EOF'
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Principal": { "Service": "ecs-tasks.amazonaws.com" },
+    "Action": "sts:AssumeRole"
+  }]
+}
+EOF
 
-    aws iam create-role --role-name claude-gateway-task \
-      --assume-role-policy-document file://ecs-trust.json
-    aws iam put-role-policy --role-name claude-gateway-task \
-      --policy-name bedrock-invoke --policy-document file://bedrock-invoke.json
+aws iam create-role --role-name claude-gateway-task \
+  --assume-role-policy-document file://ecs-trust.json
+aws iam put-role-policy --role-name claude-gateway-task \
+  --policy-name bedrock-invoke --policy-document file://bedrock-invoke.json
 ```
 
 ECS also needs an execution role, which the ECS agent itself uses to pull the image from ECR and inject the Secrets Manager values created later. It is separate from the task role the gateway's AWS SDK uses at runtime:
 ```bash
-    aws iam create-role --role-name claude-gateway-execution \
-      --assume-role-policy-document file://ecs-trust.json
-    aws iam attach-role-policy --role-name claude-gateway-execution \
-      --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
-    cat > secrets-read.json <<EOF
-    {
-      "Version": "2012-10-17",
-      "Statement": [{
-        "Effect": "Allow",
-        "Action": ["secretsmanager:GetSecretValue", "secretsmanager:DescribeSecret"],
-        "Resource": [
-          "arn:aws:secretsmanager:${AWS_REGION}:${ACCOUNT_ID}:secret:gateway-jwt-secret-??????",
-          "arn:aws:secretsmanager:${AWS_REGION}:${ACCOUNT_ID}:secret:gateway-oidc-client-secret-??????",
-          "arn:aws:secretsmanager:${AWS_REGION}:${ACCOUNT_ID}:secret:gateway-postgres-url-??????"
-        ]
-      }]
-    }
-    EOF
-    aws iam put-role-policy --role-name claude-gateway-execution \
-      --policy-name read-gateway-secrets --policy-document file://secrets-read.json
+aws iam create-role --role-name claude-gateway-execution \
+  --assume-role-policy-document file://ecs-trust.json
+aws iam attach-role-policy --role-name claude-gateway-execution \
+  --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+cat > secrets-read.json <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [{
+    "Effect": "Allow",
+    "Action": ["secretsmanager:GetSecretValue", "secretsmanager:DescribeSecret"],
+    "Resource": [
+      "arn:aws:secretsmanager:${AWS_REGION}:${ACCOUNT_ID}:secret:gateway-jwt-secret-??????",
+      "arn:aws:secretsmanager:${AWS_REGION}:${ACCOUNT_ID}:secret:gateway-oidc-client-secret-??????",
+      "arn:aws:secretsmanager:${AWS_REGION}:${ACCOUNT_ID}:secret:gateway-postgres-url-??????"
+    ]
+  }]
+}
+EOF
+aws iam put-role-policy --role-name claude-gateway-execution \
+  --policy-name read-gateway-secrets --policy-document file://secrets-read.json
 ```
 
 The policy names one ARN per secret rather than a bare `gateway-*` wildcard, which in a shared account would also match unrelated secrets; the trailing `-??????` matches exactly the random six-character suffix Secrets Manager appends to every secret's ARN. A trailing `-*` would be a plain prefix glob and would also match longer names such as `gateway-postgres-url-prod`.
@@ -154,57 +154,53 @@ The IAM policy grants the gateway permission to call Bedrock, and Bedrock enable
 
 The EKS track reuses both policy documents on an IRSA role instead of the two ECS roles; see the deploy step.
 
-
-
-**Provision Amazon RDS for PostgreSQL**
+**3. Provision Amazon RDS for PostgreSQL**
 
 The instance runs Postgres 16 in the private subnets, with no public address and storage encryption on.
 
 First, create the subnet group that places the database in the private subnets, and a parameter group with `rds.force_ssl=1` so the server rejects plaintext connections. The engine version is pinned once because the parameter group's family must match the engine major version the instance runs:
 ```bash
-    aws rds create-db-subnet-group --db-subnet-group-name claude-gateway-db \
-      --db-subnet-group-description "Claude gateway" --subnet-ids $PRIVATE_SUBNETS
+aws rds create-db-subnet-group --db-subnet-group-name claude-gateway-db \
+  --db-subnet-group-description "Claude gateway" --subnet-ids $PRIVATE_SUBNETS
 
-    PG_VERSION=16
-    PG_FAMILY="postgres${PG_VERSION}"
-    aws rds create-db-parameter-group --db-parameter-group-name claude-gateway-db \
-      --db-parameter-group-family "$PG_FAMILY" \
-      --description "Claude gateway - require TLS on every connection"
-    aws rds modify-db-parameter-group --db-parameter-group-name claude-gateway-db \
-      --parameters "ParameterName=rds.force_ssl,ParameterValue=1,ApplyMethod=immediate"
+PG_VERSION=16
+PG_FAMILY="postgres${PG_VERSION}"
+aws rds create-db-parameter-group --db-parameter-group-name claude-gateway-db \
+  --db-parameter-group-family "$PG_FAMILY" \
+  --description "Claude gateway - require TLS on every connection"
+aws rds modify-db-parameter-group --db-parameter-group-name claude-gateway-db \
+  --parameters "ParameterName=rds.force_ssl,ParameterValue=1,ApplyMethod=immediate"
 ```
 
 Then create the instance with a generated master password:
 ```bash
-    PGPASS="$(openssl rand -hex 24)"
-    aws rds create-db-instance --db-instance-identifier claude-gateway-db \
-      --engine postgres --engine-version "$PG_VERSION" \
-      --db-instance-class db.t4g.micro \
-      --allocated-storage 20 --db-name claude_gateway \
-      --master-username gateway --master-user-password "$PGPASS" \
-      --db-subnet-group-name claude-gateway-db \
-      --db-parameter-group-name claude-gateway-db \
-      --vpc-security-group-ids "$DB_SG" \
-      --no-publicly-accessible --storage-encrypted
+PGPASS="$(openssl rand -hex 24)"
+aws rds create-db-instance --db-instance-identifier claude-gateway-db \
+  --engine postgres --engine-version "$PG_VERSION" \
+  --db-instance-class db.t4g.micro \
+  --allocated-storage 20 --db-name claude_gateway \
+  --master-username gateway --master-user-password "$PGPASS" \
+  --db-subnet-group-name claude-gateway-db \
+  --db-parameter-group-name claude-gateway-db \
+  --vpc-security-group-ids "$DB_SG" \
+  --no-publicly-accessible --storage-encrypted
 ```
 
 The literal `--master-user-password` argument is visible in the process table and in audit/EDR logs while the command runs, the same exposure the secrets step's note covers. On a shared or monitored host, pass the password via `--cli-input-json` from a `0600` file instead, the way the bundle's `setup.sh` does.
 
 Wait for the instance to come up, which can take several minutes, then read its private endpoint and assemble the connection string the gateway will use:
 ```bash
-    aws rds wait db-instance-available --db-instance-identifier claude-gateway-db
-    DB_HOST="$(aws rds describe-db-instances --db-instance-identifier claude-gateway-db \
-      --query 'DBInstances[0].Endpoint.Address' --output text)"
-    GATEWAY_POSTGRES_URL="postgres://gateway:${PGPASS}@${DB_HOST}:5432/claude_gateway?sslmode=verify-full"
+aws rds wait db-instance-available --db-instance-identifier claude-gateway-db
+DB_HOST="$(aws rds describe-db-instances --db-instance-identifier claude-gateway-db \
+  --query 'DBInstances[0].Endpoint.Address' --output text)"
+GATEWAY_POSTGRES_URL="postgres://gateway:${PGPASS}@${DB_HOST}:5432/claude_gateway?sslmode=verify-full"
 ```
 
 `sslmode=verify-full` makes the gateway verify the RDS server certificate's chain and hostname, not only encrypt. The trust anchor is the [AWS RDS certificate bundle](https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem), which the image build step below copies to `/etc/claude/rds-global-bundle.pem` and trusts via `NODE_EXTRA_CA_CERTS`. Don't append a libpq-style `sslrootcert=` parameter to the URL: the gateway's driver reads only `sslmode` from the query string and would forward `sslrootcert` to Postgres as a startup parameter, which the server rejects.
 
 The ECS service or EKS pods must run in this VPC so they can reach the instance's private endpoint, and the `claude-gateway-db` security group only admits the gateway's security group.
 
-
-
-**Write gateway.yaml**
+**4. Write gateway.yaml**
 
 The `upstreams` block points at Bedrock with `auth: {}`, so the gateway authenticates via the AWS default credential chain from the task role on ECS or the IRSA role on EKS. See the [configuration reference](https://code.claude.com/docs/en/claude-apps-gateway-config) for every field.
 
@@ -217,196 +213,188 @@ On both tracks the front end is an internal ALB, whether created directly or by 
 
 The ALB's client port preservation attribute, `routing.http.xff_client_port.enabled`, can stay at either setting: with it on, the ALB writes the client as `203.0.113.7:54321` or `[2001:db8::1]:54321`, and the gateway reads both with the port dropped.
 ```yaml gateway.yaml
-    listen:
-      host: 0.0.0.0
-      port: 8080
-      public_url: https://claude-gateway.internal.example.com
-      trusted_proxies: [<your-alb-subnet-cidrs>]
+listen:
+  host: 0.0.0.0
+  port: 8080
+  public_url: https://claude-gateway.internal.example.com
+  trusted_proxies: [<your-alb-subnet-cidrs>]
 
-    oidc:
-      issuer: https://example.okta.com
-      client_id: 0oa1example2
-      client_secret: ${OIDC_CLIENT_SECRET}           # EKS: ${file:/secrets/oidc-client-secret}
-      allowed_email_domains: [example.com]
-      # The Okta org authorization server returns a thin id_token that omits
-      # email and groups; the gateway fills them from /userinfo.
-      userinfo_fallback: true
-      # Okta emits groups only when the `groups` scope is requested and the
-      # app's groups claim filter allows them.
-      scopes: [openid, profile, email, offline_access, groups]
+oidc:
+  issuer: https://example.okta.com
+  client_id: 0oa1example2
+  client_secret: ${OIDC_CLIENT_SECRET}           # EKS: ${file:/secrets/oidc-client-secret}
+  allowed_email_domains: [example.com]
+  # The Okta org authorization server returns a thin id_token that omits
+  # email and groups; the gateway fills them from /userinfo.
+  userinfo_fallback: true
+  # Okta emits groups only when the `groups` scope is requested and the
+  # app's groups claim filter allows them.
+  scopes: [openid, profile, email, offline_access, groups]
 
-    session:
-      jwt_secret: ${GATEWAY_JWT_SECRET}              # EKS: ${file:/secrets/jwt-secret}
-      ttl_hours: 8                                   # bounds deprovision latency; lower
-                                                     # toward 1 for tighter revocation
+session:
+  jwt_secret: ${GATEWAY_JWT_SECRET}              # EKS: ${file:/secrets/jwt-secret}
+  ttl_hours: 8                                   # bounds deprovision latency; lower
+                                                 # toward 1 for tighter revocation
 
-    store:
-      postgres_url: ${GATEWAY_POSTGRES_URL}          # EKS: ${file:/secrets/postgres-url}
-      # readiness_grace_seconds: 300                 # keep passing the health check
-                                                     # through an RDS failover
+store:
+  postgres_url: ${GATEWAY_POSTGRES_URL}          # EKS: ${file:/secrets/postgres-url}
+  # readiness_grace_seconds: 300                 # keep passing the health check
+                                                 # through an RDS failover
 
-    upstreams:
-      - provider: bedrock
-        region: <your-region>                        # match $AWS_REGION so the IAM
-                                                     # policy's ARNs cover it
-        auth: {}                                     # AWS default credential chain:
-                                                     # ECS task role, or IRSA on EKS
+upstreams:
+  - provider: bedrock
+    region: <your-region>                        # match $AWS_REGION so the IAM
+                                                 # policy's ARNs cover it
+    auth: {}                                     # AWS default credential chain:
+                                                 # ECS task role, or IRSA on EKS
 ```
 
+> [!NOTE]
+>
+> Only the `oidc` block is Okta-specific. To use Microsoft Entra ID instead, set `issuer` to `https://login.microsoftonline.com/<tenant-id>/v2.0`, drop `userinfo_fallback` and the `groups` scope, and note that Entra emits group Object IDs rather than names, so [`managed.policies`](https://code.claude.com/docs/en/claude-apps-gateway-config#managed) must match on the GUIDs, or on App Roles with `oidc.groups_claim: roles`. See [Identity provider setup](https://code.claude.com/docs/en/claude-apps-gateway-deploy#identity-provider-setup).
 
-Only the `oidc` block is Okta-specific. To use Microsoft Entra ID instead, set `issuer` to `https://login.microsoftonline.com/<tenant-id>/v2.0`, drop `userinfo_fallback` and the `groups` scope, and note that Entra emits group Object IDs rather than names, so [`managed.policies`](https://code.claude.com/docs/en/claude-apps-gateway-config#managed) must match on the GUIDs, or on App Roles with `oidc.groups_claim: roles`. See [Identity provider setup](https://code.claude.com/docs/en/claude-apps-gateway-deploy#identity-provider-setup).
-
-
-
-
-**Store secrets in AWS Secrets Manager**
+**5. Store secrets in AWS Secrets Manager**
 
 Create three secrets; the execution role from the IAM step can already read them:
 ```bash
-    aws secretsmanager create-secret --name gateway-jwt-secret \
-      --secret-string "$(openssl rand -base64 32)"
-    aws secretsmanager create-secret --name gateway-oidc-client-secret \
-      --secret-string '<your-okta-client-secret>'
-    aws secretsmanager create-secret --name gateway-postgres-url \
-      --secret-string "$GATEWAY_POSTGRES_URL"
+aws secretsmanager create-secret --name gateway-jwt-secret \
+  --secret-string "$(openssl rand -base64 32)"
+aws secretsmanager create-secret --name gateway-oidc-client-secret \
+  --secret-string '<your-okta-client-secret>'
+aws secretsmanager create-secret --name gateway-postgres-url \
+  --secret-string "$GATEWAY_POSTGRES_URL"
 ```
 
 Note the ARN each call prints; the ECS task definition references secrets by ARN.
 
-
-Literal `--secret-string` arguments are visible in the process table and in audit/EDR logs while each command runs. On a shared or monitored host, put the value in a `0600` file and pass `--secret-string file://<path>` instead. The bundle's `setup.sh` keeps secret values off process argv the same way, passing `0600` temporary files to `--cli-input-json`.
-
+> [!NOTE]
+>
+> Literal `--secret-string` arguments are visible in the process table and in audit/EDR logs while each command runs. On a shared or monitored host, put the value in a `0600` file and pass `--secret-string file://<path>` instead. The bundle's `setup.sh` keeps secret values off process argv the same way, passing `0600` temporary files to `--cli-input-json`.
 
 Unlike the secrets, `gateway.yaml` itself contains no secret values, because every credential resolves at boot through [`${VAR}` or `${file:...}` expansion](https://code.claude.com/docs/en/claude-apps-gateway-config#secret-expansion). How everything reaches the container differs by track:
 
 * On ECS, the next step's build copies `gateway.yaml` into the image at `/etc/claude/gateway.yaml`, and the task definition injects the three secrets as environment variables via its `secrets` field, so the YAML references `${GATEWAY_JWT_SECRET}`, `${OIDC_CLIENT_SECRET}`, and `${GATEWAY_POSTGRES_URL}`.
 * On EKS, mount `gateway.yaml` from a ConfigMap and the secrets as files at `/secrets`, referenced as `${file:/secrets/...}`. Source the Kubernetes Secrets from Secrets Manager with External Secrets Operator or the Secrets Store CSI driver's AWS provider, or create them directly with `kubectl`.
 
-
-
-**Build and push the image to Amazon ECR**
+**6. Build and push the image to Amazon ECR**
 
 Build the image per the [container image requirements](https://code.claude.com/docs/en/claude-apps-gateway-deploy#container-image), placing the `linux-x64` glibc binary at `./claude` in the build context. Write your own Dockerfile per those requirements or start from the bundle's [`Dockerfile`](https://github.com/anthropics/claude-code/blob/main/examples/gateway/aws/Dockerfile), which copies the filled-in `gateway.yaml` from the previous steps into the image at `/etc/claude/gateway.yaml`. On ECS that embedded copy is how the configuration reaches the container, which is why the build comes after the file is written. The EKS track instead mounts `gateway.yaml` from a ConfigMap at deploy, so the embedded copy is unused there.
 
 The image also carries the AWS RDS certificate bundle as the trust anchor for the connection string's `sslmode=verify-full`, so download it into the build context first. AWS rotates the bundle (new regional CAs get appended), so download it per build rather than pinning a checksum or committing it:
 ```bash
-    curl -fL --proto '=https' -o rds-global-bundle.pem \
-      https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
+curl -fL --proto '=https' -o rds-global-bundle.pem \
+  https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
 ```
 
 The container image requirements don't cover the bundle, so if you write your own Dockerfile, add the two lines that copy and trust it; the bundle's `Dockerfile` already includes both:
 ```dockerfile
-    COPY rds-global-bundle.pem /etc/claude/rds-global-bundle.pem
-    ENV NODE_EXTRA_CA_CERTS=/etc/claude/rds-global-bundle.pem
+COPY rds-global-bundle.pem /etc/claude/rds-global-bundle.pem
+ENV NODE_EXTRA_CA_CERTS=/etc/claude/rds-global-bundle.pem
 ```
 
 Create the ECR repository and sign Docker in to it. Immutable tags mean the `<version>` tag the deploy step pins cannot later be silently re-pointed at a different image:
 ```bash
-    aws ecr create-repository --repository-name claude-gateway \
-      --image-tag-mutability IMMUTABLE \
-      --image-scanning-configuration scanOnPush=true
-    aws ecr get-login-password --region "$AWS_REGION" \
-      | docker login --username AWS --password-stdin \
-        "${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+aws ecr create-repository --repository-name claude-gateway \
+  --image-tag-mutability IMMUTABLE \
+  --image-scanning-configuration scanOnPush=true
+aws ecr get-login-password --region "$AWS_REGION" \
+  | docker login --username AWS --password-stdin \
+    "${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
 ```
 
 Build and push the image. The task definition below runs `linux/amd64`, so the platform must match here; for Fargate on ARM64 (Graviton), build `linux/arm64` with the `linux-arm64` binary and set `cpuArchitecture` to `ARM64` instead:
 ```bash
-    docker build --platform=linux/amd64 \
-      -t "${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/claude-gateway:<version>" .
-    docker push "${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/claude-gateway:<version>"
+docker build --platform=linux/amd64 \
+  -t "${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/claude-gateway:<version>" .
+docker push "${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/claude-gateway:<version>"
 ```
 
-
-
-**Deploy**
-
-
+**7. Deploy**
 
 **ECS Fargate**
 
 Create the cluster and a log group for the gateway's stderr, which carries both its audit events and operational logs. Retention is a separate call, and without one CloudWatch keeps the logs forever; align the 90 days with your audit retention policy:
 ```bash
-        aws ecs create-cluster --cluster-name claude-gateway
-        aws logs create-log-group --log-group-name /ecs/claude-gateway
-        aws logs put-retention-policy --log-group-name /ecs/claude-gateway \
-          --retention-in-days 90
+aws ecs create-cluster --cluster-name claude-gateway
+aws logs create-log-group --log-group-name /ecs/claude-gateway
+aws logs put-retention-policy --log-group-name /ecs/claude-gateway \
+  --retention-in-days 90
 ```
 
 Write the task definition. The task role carries the Bedrock permission and the execution role injects the secrets; use the secret ARNs from the Secrets Manager step:
 ```json claude-gateway-task.json
-        {
-          "family": "claude-gateway",
-          "networkMode": "awsvpc",
-          "requiresCompatibilities": ["FARGATE"],
-          "cpu": "1024",
-          "memory": "2048",
-          "runtimePlatform": { "cpuArchitecture": "X86_64", "operatingSystemFamily": "LINUX" },
-          "executionRoleArn": "arn:aws:iam::<account-id>:role/claude-gateway-execution",
-          "taskRoleArn": "arn:aws:iam::<account-id>:role/claude-gateway-task",
-          "containerDefinitions": [
-            {
-              "name": "gateway",
-              "image": "<account-id>.dkr.ecr.<region>.amazonaws.com/claude-gateway:<version>",
-              "portMappings": [{ "containerPort": 8080 }],
-              "secrets": [
-                { "name": "GATEWAY_JWT_SECRET",   "valueFrom": "<gateway-jwt-secret ARN>" },
-                { "name": "OIDC_CLIENT_SECRET",   "valueFrom": "<gateway-oidc-client-secret ARN>" },
-                { "name": "GATEWAY_POSTGRES_URL", "valueFrom": "<gateway-postgres-url ARN>" }
-              ],
-              "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {
-                  "awslogs-group": "/ecs/claude-gateway",
-                  "awslogs-region": "<region>",
-                  "awslogs-stream-prefix": "gateway"
-                }
-              }
-            }
-          ]
+{
+  "family": "claude-gateway",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "1024",
+  "memory": "2048",
+  "runtimePlatform": { "cpuArchitecture": "X86_64", "operatingSystemFamily": "LINUX" },
+  "executionRoleArn": "arn:aws:iam::<account-id>:role/claude-gateway-execution",
+  "taskRoleArn": "arn:aws:iam::<account-id>:role/claude-gateway-task",
+  "containerDefinitions": [
+    {
+      "name": "gateway",
+      "image": "<account-id>.dkr.ecr.<region>.amazonaws.com/claude-gateway:<version>",
+      "portMappings": [{ "containerPort": 8080 }],
+      "secrets": [
+        { "name": "GATEWAY_JWT_SECRET",   "valueFrom": "<gateway-jwt-secret ARN>" },
+        { "name": "OIDC_CLIENT_SECRET",   "valueFrom": "<gateway-oidc-client-secret ARN>" },
+        { "name": "GATEWAY_POSTGRES_URL", "valueFrom": "<gateway-postgres-url ARN>" }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/claude-gateway",
+          "awslogs-region": "<region>",
+          "awslogs-stream-prefix": "gateway"
         }
+      }
+    }
+  ]
+}
 ```
 
 Register it:
 ```bash
-        aws ecs register-task-definition --cli-input-json file://claude-gateway-task.json
+aws ecs register-task-definition --cli-input-json file://claude-gateway-task.json
 ```
 
 Put an internal ALB in front with a target group that health-checks the gateway. `--ip-address-type ipv4` matters: an internal dual-stack ALB publishes public-range AAAA records, which the `/login` private-network check rejects:
 ```bash
-        ALB_ARN="$(aws elbv2 create-load-balancer --name claude-gateway \
-          --scheme internal --type application --ip-address-type ipv4 \
-          --subnets $PRIVATE_SUBNETS --security-groups "$ALB_SG" \
-          --query 'LoadBalancers[0].LoadBalancerArn' --output text)"
+ALB_ARN="$(aws elbv2 create-load-balancer --name claude-gateway \
+  --scheme internal --type application --ip-address-type ipv4 \
+  --subnets $PRIVATE_SUBNETS --security-groups "$ALB_SG" \
+  --query 'LoadBalancers[0].LoadBalancerArn' --output text)"
 
-        TG_ARN="$(aws elbv2 create-target-group --name claude-gateway \
-          --protocol HTTP --port 8080 --vpc-id "$VPC_ID" --target-type ip \
-          --health-check-path /readyz \
-          --query 'TargetGroups[0].TargetGroupArn' --output text)"
+TG_ARN="$(aws elbv2 create-target-group --name claude-gateway \
+  --protocol HTTP --port 8080 --vpc-id "$VPC_ID" --target-type ip \
+  --health-check-path /readyz \
+  --query 'TargetGroups[0].TargetGroupArn' --output text)"
 ```
 
 Add the HTTPS listener. `--ssl-policy` pins a modern TLS floor, since omitting it falls back to the legacy `ELBSecurityPolicy-2016-08` default, which still accepts TLS 1.0/1.1.
 
 The ALB closes a connection after 60 seconds with no data by default. The gateway's keepalive pings keep streams inside that default, so raising the timeout adds margin above the ping cadence; the [Troubleshooting](#troubleshooting) row on dropped streams covers the mechanism and older gateways. The commands below add the listener and raise the timeout:
 ```bash
-        aws elbv2 create-listener --load-balancer-arn "$ALB_ARN" \
-          --protocol HTTPS --port 443 \
-          --ssl-policy ELBSecurityPolicy-TLS13-1-2-2021-06 \
-          --certificates CertificateArn=<your-acm-certificate-arn> \
-          --default-actions Type=forward,TargetGroupArn="$TG_ARN"
+aws elbv2 create-listener --load-balancer-arn "$ALB_ARN" \
+  --protocol HTTPS --port 443 \
+  --ssl-policy ELBSecurityPolicy-TLS13-1-2-2021-06 \
+  --certificates CertificateArn=<your-acm-certificate-arn> \
+  --default-actions Type=forward,TargetGroupArn="$TG_ARN"
 
-        aws elbv2 modify-load-balancer-attributes --load-balancer-arn "$ALB_ARN" \
-          --attributes Key=idle_timeout.timeout_seconds,Value=3600
+aws elbv2 modify-load-balancer-attributes --load-balancer-arn "$ALB_ARN" \
+  --attributes Key=idle_timeout.timeout_seconds,Value=3600
 ```
 
 Create the service. The deployment circuit breaker rolls a deployment whose tasks keep failing, from a bad image or an unbootable config, back to the last steady state instead of relaunching failing tasks forever:
 ```bash
-        aws ecs create-service --cluster claude-gateway --service-name claude-gateway \
-          --task-definition claude-gateway --desired-count 1 --launch-type FARGATE \
-          --deployment-configuration "deploymentCircuitBreaker={enable=true,rollback=true}" \
-          --health-check-grace-period-seconds 60 \
-          --network-configuration "awsvpcConfiguration={subnets=[$(echo $PRIVATE_SUBNETS | tr ' ' ',')],securityGroups=[$GW_SG],assignPublicIp=DISABLED}" \
-          --load-balancers "targetGroupArn=$TG_ARN,containerName=gateway,containerPort=8080"
+aws ecs create-service --cluster claude-gateway --service-name claude-gateway \
+  --task-definition claude-gateway --desired-count 1 --launch-type FARGATE \
+  --deployment-configuration "deploymentCircuitBreaker={enable=true,rollback=true}" \
+  --health-check-grace-period-seconds 60 \
+  --network-configuration "awsvpcConfiguration={subnets=[$(echo $PRIVATE_SUBNETS | tr ' ' ',')],securityGroups=[$GW_SG],assignPublicIp=DISABLED}" \
+  --load-balancers "targetGroupArn=$TG_ARN,containerName=gateway,containerPort=8080"
 ```
 
 The 60-second grace period gives a cold task time to pull the image, connect to the store, and answer its first health check before ECS starts counting failures against the deployment.
@@ -419,25 +407,23 @@ Finish by giving developers a privately resolvable hostname: in a Route 53 priva
 
 Update the OAuth client's authorized redirect URI to `<public_url>/oauth/callback` before the first sign-in. After changing `public_url`, rebuild and push the image under a new tag, register a new task definition revision, and redeploy. On ECS the setting lives in the image's embedded `gateway.yaml`, and the gateway builds its public origin only from that setting, ignoring `X-Forwarded-Host` and `X-Forwarded-Proto`. `X-Forwarded-For` is honored for client IPs only when `listen.trusted_proxies` is set.
 
-
-
 **EKS**
 
 This track needs `kubectl` and `eksctl` installed locally, and an existing EKS cluster with an IAM OIDC provider and the AWS Load Balancer Controller installed. The cluster must be on `$VPC_ID` so pods can reach the RDS private endpoint, and the `claude-gateway-db` security group must admit the cluster's pod or node security group in place of `$GW_SG`.
 
 On EKS the gateway gets its Bedrock credentials through IRSA rather than the ECS roles. The `ecs-tasks.amazonaws.com` trust policy from the IAM step does not apply here; IRSA needs a role whose trust policy federates on the cluster's OIDC provider, scoped to `system:serviceaccount:claude-gateway:gateway`. `eksctl create iamserviceaccount` creates that role, attaches the policies, and annotates the Kubernetes service account with the role ARN in one step. Turn the two policy documents from the IAM step into managed policies it can attach:
 ```bash
-        BEDROCK_POLICY_ARN="$(aws iam create-policy --policy-name claude-gateway-bedrock-invoke \
-          --policy-document file://bedrock-invoke.json --query Policy.Arn --output text)"
-        SECRETS_POLICY_ARN="$(aws iam create-policy --policy-name claude-gateway-secrets-read \
-          --policy-document file://secrets-read.json --query Policy.Arn --output text)"
+BEDROCK_POLICY_ARN="$(aws iam create-policy --policy-name claude-gateway-bedrock-invoke \
+  --policy-document file://bedrock-invoke.json --query Policy.Arn --output text)"
+SECRETS_POLICY_ARN="$(aws iam create-policy --policy-name claude-gateway-secrets-read \
+  --policy-document file://secrets-read.json --query Policy.Arn --output text)"
 
-        kubectl create namespace claude-gateway
-        eksctl create iamserviceaccount --cluster <your-cluster> --region "$AWS_REGION" \
-          --namespace claude-gateway --name gateway --role-name claude-gateway \
-          --attach-policy-arn "$BEDROCK_POLICY_ARN" \
-          --attach-policy-arn "$SECRETS_POLICY_ARN" \
-          --approve
+kubectl create namespace claude-gateway
+eksctl create iamserviceaccount --cluster <your-cluster> --region "$AWS_REGION" \
+  --namespace claude-gateway --name gateway --role-name claude-gateway \
+  --attach-policy-arn "$BEDROCK_POLICY_ARN" \
+  --attach-policy-arn "$SECRETS_POLICY_ARN" \
+  --approve
 ```
 
 The secrets policy is needed only when the pods read Secrets Manager themselves, as the Secrets Store CSI driver's AWS provider does using the mounting pod's service account; drop it if you create the Kubernetes Secrets another way. The provider needs both of the policy's actions: it calls `DescribeSecret` when it reconciles rotated secrets, so a `GetSecretValue`-only grant mounts on the first deploy but stops picking up rotations.
@@ -459,14 +445,9 @@ For the front end, an Ingress managed by the AWS Load Balancer Controller provis
 
 With IRSA, the AWS SDK reads a projected service-account token and exchanges it with AWS STS, so the pod never needs the EC2 instance metadata service; an egress NetworkPolicy may block `169.254.169.254` for gateway pods. The node hop-limit problem in [Troubleshooting](#troubleshooting) below applies only to clusters that skip IRSA and rely on node instance roles.
 
-
-
-
-
-**Push the gateway URL to developer machines**
+**8. Push the gateway URL to developer machines**
 
 The gateway is now running, but developers can't reach it from `/login` until the gateway URL is on their machines. Deploy the full [managed settings snippet](https://code.claude.com/docs/en/claude-apps-gateway#set-the-gateway-url), with `forceLoginMethod`, `forceLoginGatewayUrl`, and the `parentSettingsBehavior: "merge"` opt-in, to each device via MDM. There is no gateway option in the login picker for a developer to select manually.
-
 
 ## Terraform reference
 

@@ -52,13 +52,15 @@ Different kinds of customization live in different files. Use this table to find
 
 This table lists every file the explorer covers. Project-scope files live in your repo under `.claude/` (or at the root for `CLAUDE.md`, `.mcp.json`, and `.worktreeinclude`). Global-scope files live in `~/.claude/` and apply across all projects.
 
-Several things can override what you put in these files:
-
-* [Managed settings](https://code.claude.com/docs/en/server-managed-settings) deployed by your organization take precedence over every settings file and `--settings` value, apart from the [exceptions under Settings precedence](https://code.claude.com/docs/en/settings#exceptions-to-managed-settings-precedence)
-* CLI flags like `--permission-mode` or `--settings` override `settings.json` for that session
-* Some environment variables take precedence over their equivalent setting, but this varies: check the [environment variables reference](https://code.claude.com/docs/en/env-vars) for each one
-
-See [settings precedence](https://code.claude.com/docs/en/settings#settings-precedence) for the full order.
+> [!NOTE]
+>
+> Several things can override what you put in these files:
+>
+> * [Managed settings](https://code.claude.com/docs/en/server-managed-settings) deployed by your organization take precedence over every settings file and `--settings` value, apart from the [exceptions under Settings precedence](https://code.claude.com/docs/en/settings#exceptions-to-managed-settings-precedence)
+> * CLI flags like `--permission-mode` or `--settings` override `settings.json` for that session
+> * Some environment variables take precedence over their equivalent setting, but this varies: check the [environment variables reference](https://code.claude.com/docs/en/env-vars) for each one
+>
+> See [settings precedence](https://code.claude.com/docs/en/settings#settings-precedence) for the full order.
 
 Click a filename to open that node in the explorer above.
 
@@ -181,9 +183,7 @@ Apart from the rows that say otherwise, the retention cleanup sweep doesn't remo
 | `cache/changelog.md` | Cached copy of the Claude Code changelog, shown by `/release-notes`. Refreshed in the background. |
 | `policy-limits.json` | Cached feature policy settings for your organization. Only present for some account types. Refreshed automatically. A `policy-limits.json.stamp.json` sidecar records which account or API key the cache belongs to. Claude Code deletes both files when you log out. |
 
-<h4 id="state-files-to-keep">
-State files to keep
-</h4>
+#### State files to keep
 
 Depending on which features you use, `~/.claude/` also holds files that the tables under [Application data](#application-data) don't list. Of those, caches and lock files are safe to delete. Keep these state files:
 

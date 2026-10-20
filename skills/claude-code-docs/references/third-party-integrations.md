@@ -10,6 +10,11 @@ path: /docs/en/third-party-integrations
 
 Organizations can deploy Claude Code through Anthropic directly or through a cloud provider. This page helps you choose the right configuration.
 
+**Deploying Claude Code across your organization?** Talk to sales about enterprise plans, SSO, and centralized billing.
+
+View plans
+Contact sales
+
 ## Compare deployment options
 
 For most organizations, Claude for Teams or Claude for Enterprise provides the best experience. Team members get access to both Claude Code and Claude on the web with a single subscription, centralized billing, and no infrastructure setup required.
@@ -27,7 +32,7 @@ If your organization has specific infrastructure requirements, compare the optio
 | Feature | Claude for Teams/Enterprise | Anthropic Console | Amazon Bedrock | Claude Platform on AWS | Google Cloud's Agent Platform, formerly Vertex AI | Microsoft Foundry |
 | --- | --- | --- | --- | --- | --- | --- |
 | Best for | Most organizations (recommended) | Individual developers | AWS-native deployments | AWS Marketplace billing with Claude API features | GCP-native deployments | Azure-native deployments |
-| Billing | **Teams:** per-seat subscription with PAYG available, see [pricing](https://claude.com/pricing?utm_source=claude_code&utm_medium=docs&utm_content=third_party_pricing#team-&-enterprise) **Enterprise:** [Contact Sales](https://claude.com/contact-sales?utm_source=claude_code&utm_medium=docs&utm_content=third_party_enterprise) | PAYG | PAYG through AWS | PAYG through AWS Marketplace | PAYG through GCP | PAYG through Azure |
+| Billing | **Teams:** per-seat subscription with PAYG available, see [pricing](https://claude.com/pricing?utm_source=claude_code\&utm_medium=docs\&utm_content=third_party_pricing#team-&-enterprise)\ **Enterprise:** [Contact Sales](https://claude.com/contact-sales?utm_source=claude_code\&utm_medium=docs\&utm_content=third_party_enterprise) | PAYG | PAYG through AWS | PAYG through AWS Marketplace | PAYG through GCP | PAYG through Azure |
 | Regions | Supported [countries](https://www.anthropic.com/supported-countries) | Supported [countries](https://www.anthropic.com/supported-countries) | Multiple AWS [regions](https://docs.aws.amazon.com/bedrock/latest/userguide/models-regions.html) | Multiple AWS regions | Multiple GCP [regions](https://cloud.google.com/vertex-ai/generative-ai/docs/learn/locations) | Multiple Azure [regions](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/) |
 | Prompt caching | Enabled by default | Enabled by default | Enabled by default | Enabled by default | Enabled by default | Enabled by default |
 | Authentication | claude.ai SSO or email | API key or a [Console sign-in without one](https://code.claude.com/docs/en/authentication#sign-in-without-an-api-key) | API key or AWS credentials | API key or AWS credentials | GCP credentials | API key or Microsoft Entra ID |
@@ -84,9 +89,7 @@ Security teams can configure managed permissions for what Claude Code is and is 
 
 To limit which of these deployment options a managed machine may use, set [`allowedProviders`](https://code.claude.com/docs/en/settings-reference#allowedproviders) in managed settings. For example, `["bedrock"]` allows Amazon Bedrock and nothing else; a Bedrock fleet that also enables the Mantle endpoint lists `"mantle"` too. The entry says which endpoint variables also need a managed `env` pin. Requires Claude Code v2.1.285 or later.
 
-<h3 id="leverage-mcp-for-integrations">
-Use MCP for integrations
-</h3>
+### Use MCP for integrations
 
 MCP is a great way to give Claude Code more information, such as connecting to ticket management systems or error logs. Have one central team configure MCP servers and check a `.mcp.json` configuration into the codebase so that all users benefit. [Learn more](https://code.claude.com/docs/en/mcp).
 

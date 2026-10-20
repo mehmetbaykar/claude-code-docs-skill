@@ -42,7 +42,9 @@ These Claude Code capabilities are available in the SDK:
 
 Follow the [Quickstart](https://code.claude.com/docs/en/agent-sdk/quickstart) to install the SDK, set your API key, and build your first agent, one that finds and fixes bugs in existing code.
 
-Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK. Use the API key authentication methods described in the [Quickstart](https://code.claude.com/docs/en/agent-sdk/quickstart) instead.
+> [!NOTE]
+>
+> Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK. Use the API key authentication methods described in the [Quickstart](https://code.claude.com/docs/en/agent-sdk/quickstart) instead.
 
 ## Changelog
 

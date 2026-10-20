@@ -24,24 +24,19 @@ First check that your organization [qualifies for Code Review](https://code.clau
 
 ## Turn on Code Review
 
-
-**Click the Allow code review switch**
+**1. Click the Allow code review switch**
 
 Go to the **Code review** section of [**Admin settings > Claude Code**](https://claude.ai/admin-settings/claude-code#code-review) and click the **Allow code review** switch.
 
 If Code Review turns on right away with no dialog, your organization already has the Claude GitHub App linked or repositories added. Go to [Add more repositories](#add-more-repositories), then come back for the last step.
 
-
-
-**Connect your GitHub account**
+**2. Connect your GitHub account**
 
 If a **Connect GitHub** dialog opens, click **Connect**. If your organization uses GitHub Enterprise Server, select your instance in the dialog first. GitHub asks you to authorize Claude, then returns you to the admin page with the **Add a repository** dialog open.
 
 If **Add a repository** opened straight away, your account is already connected, so go on to the next step.
 
-
-
-**Install the Claude GitHub App**
+**3. Install the Claude GitHub App**
 
 If the repositories you want are listed in the **Add a repository** dialog, or you find them by searching there, go on to the next step. The dialog lists a repository only if the Claude GitHub App can access it, so if they aren't there, install the app:
 
@@ -52,30 +47,23 @@ If the repositories you want are listed in the **Add a repository** dialog, or y
 * When the install completes, the tab returns to Claude. If it shows a **Finish connecting GitHub** button, click it to link the installation to your Claude organization.
 * Go back to the admin page's tab, where the list in the dialog refreshes.
 
-
-
-**Choose repositories**
+**4. Choose repositories**
 
 Select the repositories you want reviewed, then click **Continue**. Adding a repository needs write access to it from the GitHub account you connected. You can [add more repositories](#add-more-repositories) later.
 
-
-
-**Click Finish**
+**5. Click Finish**
 
 A **Code review is set up** dialog follows. Click **Finish** to turn Code Review on. If you close the dialog any other way, your repositories stay added but **Allow code review** stays off, and you turn it on from the switch.
 
 Each repository starts set to review after every push, which runs the most reviews. To run fewer, [set when reviews run](#set-when-reviews-run).
 
-
-
-**Verify with a test pull request**
+**6. Verify with a test pull request**
 
 Open a test pull request in one of the repositories you added, and don't mark it as a draft. A check run named **Claude Code Review** appears within a few minutes. If you already set the repository to **Manual (@claude review)**, comment `@claude review` on the pull request to start the first review.
 
 If no check run appears, see [No check run appears on the test pull request](https://code.claude.com/docs/en/code-review-troubleshooting#no-check-run-appears-on-the-test-pull-request).
 
 Once the review arrives, send your developers [Read and request reviews on a pull request](https://code.claude.com/docs/en/code-review-pull-requests), which covers the severity levels, the comment commands, and how to respond to findings.
-
 
 ## Set defaults for your organization
 

@@ -12,10 +12,12 @@ Installing a plugin adds its skills, agents, hooks, and MCP servers to Claude Co
 
 This page is for anyone using plugins on their own machine or account, whether in the terminal, the desktop app, an IDE, or a cloud session: it covers installing, choosing a scope, adding marketplaces, and keeping plugins updated.
 
-These cases are covered on other pages:
-
-* **You use claude.ai chat or Cowork, not Claude Code**: see [Plugins on claude.ai and in Cowork](https://claude.com/docs/plugins/overview)
-* **Claude Code printed an error**: find it in [Troubleshoot plugins](https://code.claude.com/docs/en/plugins/troubleshooting)
+> [!NOTE]
+>
+> These cases are covered on other pages:
+>
+> * **You use claude.ai chat or Cowork, not Claude Code**: see [Plugins on claude.ai and in Cowork](https://claude.com/docs/plugins/overview)
+> * **Claude Code printed an error**: find it in [Troubleshoot plugins](https://code.claude.com/docs/en/plugins/troubleshooting)
 
 Start with [Install a plugin](#install-a-plugin). If someone sent you an install command whose `@` name isn't `claude-plugins-official`, [add that marketplace](#add-a-marketplace) first.
 
@@ -27,25 +29,20 @@ The same steps install any other plugin: substitute its name and its marketplace
 
 Pick the tab for where you run Claude Code.
 
-
 **Terminal**
 
 Start Claude Code with `claude` in your project, then:
 
-
-
-**Open the plugin's details with the install command**
+**1. Open the plugin's details with the install command**
 
 Run `/plugin install` with the plugin's name and marketplace. In a session, this command doesn't install right away: it opens the `/plugin` panel on that plugin's details so you can review it and choose a scope first.
 ```text
-        /plugin install commit-commands@claude-plugins-official
+/plugin install commit-commands@claude-plugins-official
 ```
 
 To browse instead, run `/plugin` with no plugin name: the panel opens on the **Discover** tab, which lists the plugins from your marketplaces, and you can type to search, then press **Enter** on a plugin to open its details.
 
-
-
-**Review what the plugin adds**
+**2. Review what the plugin adds**
 
 The details pane shows the plugin's description. It can also show:
 
@@ -57,9 +54,7 @@ Plugins from a local or custom marketplace can show `Components will be discover
 
 A plugin can run hooks and MCP servers, so read the pane before you install. See [Plugin security and trust](https://code.claude.com/docs/en/plugins/security).
 
-
-
-**Choose a scope**
+**3. Choose a scope**
 
 Select one of the three install options:
 
@@ -71,9 +66,7 @@ Select one of the three install options:
 
 After you select a scope, Claude Code installs the plugin along with any dependencies it declares, then prints an install summary.
 
-
-
-**Read the install summary**
+**4. Read the install summary**
 
 The last sentence of the summary tells you whether the plugin is usable in this session yet:
 
@@ -82,9 +75,7 @@ The last sentence of the summary tells you whether the plugin is usable in this 
 * **Reload needed**: `Run /reload-plugins to apply.` The panel closes and Claude Code runs that reload for you. If the reload would [invalidate the prompt cache](https://code.claude.com/docs/en/prompt-caching#enabling-or-disabling-a-plugin), it warns and leaves the plugin pending instead. Run `/reload-plugins --force` to activate it anyway, which costs one uncached request.
 * **Load failed**: `The plugin couldn't be loaded`. Open the **Errors** tab in `/plugin` for the reason, then see [After install: plugin not working](https://code.claude.com/docs/en/plugins/troubleshooting#plugin-installed-but-not-working).
 
-
-
-**Confirm the plugin works**
+**5. Confirm the plugin works**
 
 Type `/` and look for the plugin's skills under its name, in the form `/<plugin>:<skill>`. For `commit-commands`, `/commit-commands:commit` appears. Two other places list the plugin too:
 
@@ -93,74 +84,49 @@ Type `/` and look for the plugin's skills under its name, in the form `/<plugin>
 
 If `/commit-commands:commit` doesn't appear, see [After install: plugin not working](https://code.claude.com/docs/en/plugins/troubleshooting#plugin-installed-but-not-working).
 
-
-
 Installing from any other marketplace requires one extra step first: [add the marketplace](#add-a-marketplace). Claude Code adds Anthropic's official marketplace for you the first time you start an interactive terminal session, which is why the example skips that step. If you found a plugin on [claude.com/marketplace](https://claude.com/marketplace), its **Claude Code** button copies the install command in its [shell form](#install-from-your-shell), `claude plugin install <name>@claude-plugins-official`.
-
-
 
 **Desktop app**
 
 In a local or SSH session in the desktop app's **Code** tab:
 
-
-
-**Open the plugin browser**
+**1. Open the plugin browser**
 
 Click the **+** button next to the prompt box and select **Add plugins**. If the **+** menu shows **Plugins** instead of **Add plugins**, select **Plugins**, then **Browse plugins**. The plugin browser opens with the plugins from your marketplaces.
 
-
-
-**Select the plugin**
+**2. Select the plugin**
 
 Find `commit-commands` and select it.
 
-
-
-**Choose a scope**
+**3. Choose a scope**
 
 Choose a [scope](#choose-an-install-scope): your user account, this project, or local-only.
 
-
-
 To enable, disable, or uninstall a plugin later, see [Install plugins in the desktop app](https://code.claude.com/docs/en/desktop#install-plugins).
-
-
 
 **VS Code**
 
 In the Claude Code panel in VS Code:
 
-
-
-**Open Manage plugins**
+**1. Open Manage plugins**
 
 Type `/plugins` in the prompt box to open **Manage plugins**.
 
-
-
-**Install the plugin**
+**2. Install the plugin**
 
 On the **Plugins** tab, search for `commit-commands` and click **Install**. If the tab lists no plugins, add `anthropics/claude-plugins-official` on the **Marketplaces** tab first.
 
-
-
-**Choose a scope**
+**3. Choose a scope**
 
 Choose a [scope](#choose-an-install-scope): **Install for you**, **Install for this project**, or **Install locally**.
 
-
-
 Your changes apply to open sessions without a restart. See [Manage plugins in VS Code](https://code.claude.com/docs/en/vs-code#manage-plugins).
-
-
 
 **Cloud session**
 
 A [cloud session](https://code.claude.com/docs/en/cloud-environments), including [the browser at claude.ai/code](https://code.claude.com/docs/en/claude-code-on-the-web), has no plugin browser and doesn't load the plugins you installed on your own machine or the ones your repository's `.claude/settings.json` turns on. For plugins your organization distributes through managed settings, see [Manage plugins for your organization](https://code.claude.com/docs/en/plugins/org).
 
 See [which parts of your setup are also available in a cloud session](https://code.claude.com/docs/en/cloud-environments#what-carries-over-from-your-setup) for the rest of your setup.
-
 
 ### Choose an install scope
 
@@ -176,9 +142,7 @@ When the same plugin is set at several scopes, the local setting overrides the p
 
 The terminal, the desktop app's local sessions, and the VS Code extension on one computer read the same settings files, so a plugin you install at user scope in any of them is available in the other two.
 
-<h3 id="other-places-you-run-claude-code">
-JetBrains, non-interactive runs, and the Agent SDK
-</h3>
+### JetBrains, non-interactive runs, and the Agent SDK
 
 Some places you run Claude Code have no plugin browser of their own:
 
@@ -188,11 +152,11 @@ Some places you run Claude Code have no plugin browser of their own:
 
 If Claude Code reports that a plugin enabled in the repository's `.claude/settings.json` isn't installed, see [Enabled in project settings but not installed](https://code.claude.com/docs/en/plugins/loading#enabled-in-project-settings-but-not-installed).
 
-If you're a plugin author testing a copy of your plugin on disk, start Claude Code from your shell with `--plugin-dir` to load it for one session instead of installing it. See [Flags that load a plugin for one session](https://code.claude.com/docs/en/plugins/cli-reference#flags-that-load-a-plugin-for-one-session).
+> [!TIP]
+>
+> If you're a plugin author testing a copy of your plugin on disk, start Claude Code from your shell with `--plugin-dir` to load it for one session instead of installing it. See [Flags that load a plugin for one session](https://code.claude.com/docs/en/plugins/cli-reference#flags-that-load-a-plugin-for-one-session).
 
-<h3 id="plugins-from-your-claude-ai-account">
-Plugins from your claude.ai account
-</h3>
+### Plugins from your claude.ai account
 
 Your claude.ai account is a separate source of plugins, alongside the marketplaces you install from:
 
@@ -236,7 +200,9 @@ In a Claude Code session, run `/plugin marketplace add` followed by the marketpl
 
 From your shell, `claude plugin marketplace add` takes the same sources.
 
-`/plugin market` also works as a shorter form of `/plugin marketplace`.
+> [!TIP]
+>
+> `/plugin market` also works as a shorter form of `/plugin marketplace`.
 
 Include the `https://` prefix on every URL, or use the `git@host:path` form for SSH. If you type a bare `gitlab.example.com/your-group/your-marketplace.git`, Claude Code reads it as GitHub `owner/repo` shorthand and rejects it.
 
@@ -280,9 +246,7 @@ On a GitHub Enterprise Server host, see [Plugin marketplaces on GHES](https://co
 
 If your organization registers the marketplace for you through managed settings, you don't add it yourself. See [Pre-install and require plugins](https://code.claude.com/docs/en/plugins/org#pre-install-and-require-plugins).
 
-<h3 id="add-from-claude-ai">
-Add a marketplace from claude.ai
-</h3>
+### Add a marketplace from claude.ai
 
 In terminal sessions where [plugins sync from your claude.ai account](https://code.claude.com/docs/en/plugins/loading#synced-plugins), claude.ai can also list plugin marketplaces for you, such as your organization's plugin library and your own claude.ai uploads. You add one of these by its name rather than by a source. Adding a marketplace from claude.ai requires Claude Code v2.1.273 or later.
 

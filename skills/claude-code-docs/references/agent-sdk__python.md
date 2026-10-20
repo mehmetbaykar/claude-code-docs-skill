@@ -39,7 +39,9 @@ Use `ClaudeSDKClient` for interactive applications such as chat interfaces, or w
 
 ## Functions
 
-> [!NOTE] Signature blocks and bare `async for` / `async with` fragments on this page are illustrative. To run them, wrap the body in `async def main(): ...` and call `asyncio.run(main())`.
+> [!NOTE]
+>
+> Signature blocks and bare `async for` / `async with` fragments on this page are illustrative. To run them, wrap the body in `async def main(): ...` and call `asyncio.run(main())`.
 
 ### `query()`
 
@@ -640,7 +642,9 @@ async def interruptible_task():
 asyncio.run(interruptible_task())
 ```
 
-  **Buffer behavior after interrupt:** `interrupt()` sends a stop signal but does not clear the message buffer. Messages already produced by the interrupted task, including its `ResultMessage`, remain in the stream. You must drain them with `receive_response()` before reading the response to a new query. If you send a new query immediately after `interrupt()` and call `receive_response()` only once, you'll receive the interrupted task's messages, not the new query's response.
+> [!NOTE]
+>
+> **Buffer behavior after interrupt:** `interrupt()` sends a stop signal but does not clear the message buffer. Messages already produced by the interrupted task, including its `ResultMessage`, remain in the stream. You must drain them with `receive_response()` before reading the response to a new query. If you send a new query immediately after `interrupt()` and call `receive_response()` only once, you'll receive the interrupted task's messages, not the new query's response.
 
 #### Example - Advanced permission control
 ```python
@@ -689,7 +693,9 @@ asyncio.run(main())
 
 ## Types
 
-  **`@dataclass` vs `TypedDict`:** This SDK uses two kinds of types. Classes decorated with `@dataclass` (such as `ResultMessage`, `AgentDefinition`, `TextBlock`) are object instances at runtime and support attribute access: `msg.result`. Classes defined with `TypedDict` (such as `ThinkingConfigEnabled`, `McpStdioServerConfig`, `SyncHookJSONOutput`) are **plain dicts at runtime** and require key access: `config["budget_tokens"]`, not `config.budget_tokens`. The `ClassName(field=value)` call syntax works for both, but only dataclasses produce objects with attributes.
+> [!NOTE]
+>
+> **`@dataclass` vs `TypedDict`:** This SDK uses two kinds of types. Classes decorated with `@dataclass` (such as `ResultMessage`, `AgentDefinition`, `TextBlock`) are object instances at runtime and support attribute access: `msg.result`. Classes defined with `TypedDict` (such as `ThinkingConfigEnabled`, `McpStdioServerConfig`, `SyncHookJSONOutput`) are **plain dicts at runtime** and require key access: `config["budget_tokens"]`, not `config.budget_tokens`. The `ClassName(field=value)` call syntax works for both, but only dataclasses produce objects with attributes.
 
 ### `SdkMcpTool`
 
@@ -716,7 +722,9 @@ class SdkMcpTool(Generic[T]):
 
 Abstract base class for custom transport implementations. Use this to communicate with the Claude process over a custom channel (for example, a remote connection instead of a local subprocess).
 
-This is a low-level internal API. The interface may change in future releases. Custom implementations must be updated to match any interface changes.
+> [!WARNING]
+>
+> This is a low-level internal API. The interface may change in future releases. Custom implementations must be updated to match any interface changes.
 ```python
 from abc import ABC, abstractmethod
 from collections.abc import AsyncIterator
@@ -991,7 +999,9 @@ async def main():
 asyncio.run(main())
 ```
 
-In Python SDK 0.1.59 and earlier, an empty list was treated the same as omitting the option, so `setting_sources=[]` did not disable filesystem settings. Upgrade to a newer release if you need an empty list to take effect. The TypeScript SDK is not affected.
+> [!NOTE]
+>
+> In Python SDK 0.1.59 and earlier, an empty list was treated the same as omitting the option, so `setting_sources=[]` did not disable filesystem settings. Upgrade to a newer release if you need an empty list to take effect. The TypeScript SDK is not affected.
 
 **Load only specific setting sources:**
 ```python
@@ -1086,7 +1096,9 @@ class AgentDefinition:
 | `effort` | No | Reasoning effort level for this agent. Accepts a named level or an integer. See [`EffortLevel`](#effortlevel) |
 | `permissionMode` | No | Permission mode for tool execution within this agent. The [subagent inheritance rules](https://code.claude.com/docs/en/agent-sdk/permissions#available-modes) decide when it applies. See [`PermissionMode`](#permissionmode) |
 
-`AgentDefinition` field names use camelCase, such as `disallowedTools`, `permissionMode`, and `maxTurns`. These names map directly to the wire format shared with the TypeScript SDK. This differs from `ClaudeAgentOptions`, which uses Python snake\_case for the equivalent top-level fields such as `disallowed_tools` and `permission_mode`. Because `AgentDefinition` is a dataclass, passing a snake\_case keyword raises a `TypeError` at construction time.
+> [!NOTE]
+>
+> `AgentDefinition` field names use camelCase, such as `disallowedTools`, `permissionMode`, and `maxTurns`. These names map directly to the wire format shared with the TypeScript SDK. This differs from `ClaudeAgentOptions`, which uses Python snake\_case for the equivalent top-level fields such as `disallowed_tools` and `permission_mode`. Because `AgentDefinition` is a dataclass, passing a snake\_case keyword raises a `TypeError` at construction time.
 
 ### `PermissionMode`
 
@@ -1322,7 +1334,9 @@ SdkBeta = Literal["context-1m-2025-08-07"]
 
 Use with the `betas` field in `ClaudeAgentOptions` to enable beta features.
 
-On the Claude API, the `context-1m-2025-08-07` beta is retired for Claude Sonnet 4.5 and Claude Sonnet 4. If you still pass it with either model, requests that exceed the standard 200K-token context window return an error, so remove it from `betas`. To run a session with a 1M-token context window, set `model` to a model that [runs with the 1M window by default](https://code.claude.com/docs/en/model-config#extended-context), such as `claude-sonnet-5-5` or `claude-opus-5-5`. For a model that reaches 1M only through its `[1m]` variant, append the suffix to the model ID, as in `claude-opus-4-6[1m]`.
+> [!WARNING]
+>
+> On the Claude API, the `context-1m-2025-08-07` beta is retired for Claude Sonnet 4.5 and Claude Sonnet 4. If you still pass it with either model, requests that exceed the standard 200K-token context window return an error, so remove it from `betas`. To run a session with a 1M-token context window, set `model` to a model that [runs with the 1M window by default](https://code.claude.com/docs/en/model-config#extended-context), such as `claude-sonnet-5-5` or `claude-opus-5-5`. For a model that reaches 1M only through its `[1m]` variant, append the suffix to the model ID, as in `claude-opus-4-6[1m]`.
 
 ### `McpSdkServerConfig`
 
@@ -1971,7 +1985,9 @@ HookEvent = Literal[
 ]
 ```
 
-The TypeScript SDK supports additional hook events not yet available in Python. See the [hook availability table](https://code.claude.com/docs/en/agent-sdk/hooks#available-hooks) for per-SDK support.
+> [!NOTE]
+>
+> The TypeScript SDK supports additional hook events not yet available in Python. See the [hook availability table](https://code.claude.com/docs/en/agent-sdk/hooks#available-hooks) for per-SDK support.
 
 ### `HookCallback`
 
@@ -2268,7 +2284,9 @@ class SyncHookJSONOutput(TypedDict):
     hookSpecificOutput: NotRequired[HookSpecificOutput]
 ```
 
-Use `continue_` (with underscore) in Python code. It is automatically converted to `continue` when sent to the CLI.
+> [!NOTE]
+>
+> Use `continue_` (with underscore) in Python code. It is automatically converted to `continue` when sent to the CLI.
 
 #### `HookSpecificOutput`
 
@@ -2327,7 +2345,9 @@ class AsyncHookJSONOutput(TypedDict):
     asyncTimeout: NotRequired[int]  # Timeout in milliseconds
 ```
 
-Use `async_` (with underscore) in Python code. It is automatically converted to `async` when sent to the CLI.
+> [!NOTE]
+>
+> Use `async_` (with underscore) in Python code. It is automatically converted to `async` when sent to the CLI.
 
 ### Hook Usage Example
 
@@ -2934,19 +2954,21 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 
 **Tool name:** `TodoWrite`
 
-The following tools are available by default only on Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5, and earlier models. On every other model, including model IDs Claude Code doesn't recognize, they aren't available unless you opt in:
-
-* `TodoWrite`
-* `TaskCreate`
-* `TaskGet`
-* `TaskUpdate`
-* `TaskList`
-
-Wherever the tools are available, Claude Code provides the four Task tools, or `TodoWrite` instead when you set `CLAUDE_CODE_ENABLE_TASKS=0`.
-
-This default set applies in Claude Code v2.1.268 and later, which the TypeScript Agent SDK bundles from v0.3.268.
-
-See [Model availability](https://code.claude.com/docs/en/agent-sdk/todo-tracking#model-availability) to opt in.
+> [!NOTE]
+>
+> The following tools are available by default only on Claude Opus 4.7, Claude Sonnet 4.6, Claude Haiku 4.5, and earlier models. On every other model, including model IDs Claude Code doesn't recognize, they aren't available unless you opt in:
+>
+> * `TodoWrite`
+> * `TaskCreate`
+> * `TaskGet`
+> * `TaskUpdate`
+> * `TaskList`
+>
+> Wherever the tools are available, Claude Code provides the four Task tools, or `TodoWrite` instead when you set `CLAUDE_CODE_ENABLE_TASKS=0`.
+>
+> This default set applies in Claude Code v2.1.268 and later, which the TypeScript Agent SDK bundles from v0.3.268.
+>
+> See [Model availability](https://code.claude.com/docs/en/agent-sdk/todo-tracking#model-availability) to opt in.
 
 **Input:**
 ```python
@@ -3329,9 +3351,11 @@ class SandboxSettings(TypedDict, total=False):
 | `ignoreViolations` | [`SandboxIgnoreViolations`](#sandboxignoreviolations) | `None` | Configure which sandbox violations to ignore |
 | `enableWeakerNestedSandbox` | `bool` | `False` | Enable a weaker nested sandbox for compatibility |
 
-The sandbox depends on platform support and, on Linux, tools like `bubblewrap` and `socat`. By default, when `enabled` is `True` but the sandbox can't start, commands run unsandboxed with a warning on stderr. This default differs from the TypeScript SDK, where `failIfUnavailable` defaults to `true`.
-
-Set `"failIfUnavailable": True` in your sandbox settings to stop instead. The SDK forwards `failIfUnavailable` to Claude Code along with the declared `SandboxSettings` fields. `query()` then reports a `ResultMessage` with `subtype="error_during_execution"` and the reason in `errors`. Because this is a single-shot `query()` call, the SDK raises after yielding that error result, so wrap the loop in a try block to continue past it. See [Handle the result](https://code.claude.com/docs/en/agent-sdk/agent-loop#handle-the-result) for the error contract.
+> [!NOTE]
+>
+> The sandbox depends on platform support and, on Linux, tools like `bubblewrap` and `socat`. By default, when `enabled` is `True` but the sandbox can't start, commands run unsandboxed with a warning on stderr. This default differs from the TypeScript SDK, where `failIfUnavailable` defaults to `true`.
+>
+> Set `"failIfUnavailable": True` in your sandbox settings to stop instead. The SDK forwards `failIfUnavailable` to Claude Code along with the declared `SandboxSettings` fields. `query()` then reports a `ResultMessage` with `subtype="error_during_execution"` and the reason in `errors`. Because this is a single-shot `query()` call, the SDK raises after yielding that error result, so wrap the loop in a try block to continue past it. See [Handle the result](https://code.claude.com/docs/en/agent-sdk/agent-loop#handle-the-result) for the error contract.
 
 To keep sandboxed commands from writing to a file, list its absolute path under [`denyWrite`](https://code.claude.com/docs/en/settings-reference#sandbox-filesystem-denywrite) in your sandbox settings, such as `"filesystem": {"denyWrite": ["/home/user/project/.env"]}`. The SDK forwards `filesystem` to Claude Code along with the declared `SandboxSettings` fields. Once the sandbox starts, it blocks writes to each absolute path you listed.
 
@@ -3363,7 +3387,9 @@ async def main():
 asyncio.run(main())
 ```
 
-  **Unix socket security**: The `allowUnixSockets` option can grant access to system services that reach outside the sandbox. For example, allowing `/var/run/docker.sock` effectively grants full host system access through the Docker API, bypassing sandbox isolation. Only allow Unix sockets that are strictly necessary and understand the security implications of each.
+> [!WARNING]
+>
+> **Unix socket security**: The `allowUnixSockets` option can grant access to system services that reach outside the sandbox. For example, allowing `/var/run/docker.sock` effectively grants full host system access through the Docker API, bypassing sandbox isolation. Only allow Unix sockets that are strictly necessary and understand the security implications of each.
 
 ### `SandboxNetworkConfig`
 
@@ -3393,7 +3419,9 @@ class SandboxNetworkConfig(TypedDict, total=False):
 | `httpProxyPort` | `int` | `None` | HTTP proxy port for network requests |
 | `socksProxyPort` | `int` | `None` | SOCKS proxy port for network requests |
 
-The built-in sandbox proxy enforces the network allowlist based on the requested hostname and does not terminate or inspect TLS traffic, so techniques such as [domain fronting](https://en.wikipedia.org/wiki/Domain_fronting) can potentially bypass it. See [Sandboxing security limitations](https://code.claude.com/docs/en/sandboxing#security-limitations) for details and [Secure deployment](https://code.claude.com/docs/en/agent-sdk/secure-deployment#traffic-forwarding) for configuring a TLS-terminating proxy.
+> [!NOTE]
+>
+> The built-in sandbox proxy enforces the network allowlist based on the requested hostname and does not terminate or inspect TLS traffic, so techniques such as [domain fronting](https://en.wikipedia.org/wiki/Domain_fronting) can potentially bypass it. See [Sandboxing security limitations](https://code.claude.com/docs/en/sandboxing#security-limitations) for details and [Secure deployment](https://code.claude.com/docs/en/agent-sdk/secure-deployment#traffic-forwarding) for configuring a TLS-terminating proxy.
 
 ### `SandboxIgnoreViolations`
 
@@ -3474,9 +3502,11 @@ async def main():
 asyncio.run(main())
 ```
 
-Commands running with `dangerouslyDisableSandbox: True` have full system access. Ensure your `can_use_tool` handler validates these requests carefully.
-
-If `permission_mode` is set to `bypassPermissions` and `allowUnsandboxedCommands` is enabled, the model can autonomously execute commands outside the sandbox without approval prompts, apart from the [actions no mode auto-approves](https://code.claude.com/docs/en/permission-modes#actions-no-mode-auto-approves). This combination effectively allows the model to escape sandbox isolation silently.
+> [!WARNING]
+>
+> Commands running with `dangerouslyDisableSandbox: True` have full system access. Ensure your `can_use_tool` handler validates these requests carefully.
+>
+> If `permission_mode` is set to `bypassPermissions` and `allowUnsandboxedCommands` is enabled, the model can autonomously execute commands outside the sandbox without approval prompts, apart from the [actions no mode auto-approves](https://code.claude.com/docs/en/permission-modes#actions-no-mode-auto-approves). This combination effectively allows the model to escape sandbox isolation silently.
 
 ## See also
 

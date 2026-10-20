@@ -61,54 +61,41 @@ For teams and organizations, you can configure Claude Code access in one of thes
 * **Claude for Teams**: self-service plan with collaboration features, admin tools, SSO, billing management, and [server-managed settings](https://code.claude.com/docs/en/server-managed-settings) for organization-wide Claude Code configuration. Best for smaller teams.
 * **Claude for Enterprise**: adds domain capture, role-based permissions, and the compliance API. Best for larger organizations with security and compliance requirements.
 
-
-**Subscribe**
+**1. Subscribe**
 
 Subscribe to [Claude for Teams](https://claude.com/pricing?utm_source=claude_code\&utm_medium=docs\&utm_content=authentication_teams_step#team-&-enterprise) or contact sales for [Claude for Enterprise](https://anthropic.com/contact-sales?utm_source=claude_code\&utm_medium=docs\&utm_content=authentication_enterprise_step).
 
-
-
-**Invite team members**
+**2. Invite team members**
 
 Invite team members from the admin dashboard.
 
-
-
-**Install and log in**
+**3. Install and log in**
 
 Team members install Claude Code and log in with their claude.ai accounts.
-
 
 ### Claude Console authentication
 
 For organizations that prefer API-based billing, you can set up access through the Claude Console.
 
-
-**Create or use a Console account**
+**1. Create or use a Console account**
 
 Use your existing Claude Console account or create a new one.
 
-
-
-**Add users**
+**2. Add users**
 
 You can add users through either method:
 
 * Bulk invite users from the Console's Members page at [platform.claude.com/settings/members](https://platform.claude.com/settings/members): click **Invite**
 * [Set up SSO](https://support.claude.com/en/articles/13132885-setting-up-single-sign-on-sso)
 
-
-
-**Assign roles**
+**3. Assign roles**
 
 When inviting users, assign one of:
 
 * **Claude Code** role: users can only create Claude Code API keys
 * **Developer** role: users can create any kind of API key
 
-
-
-**Users complete setup**
+**4. Users complete setup**
 
 Each invited user needs to:
 
@@ -116,7 +103,6 @@ Each invited user needs to:
 * [Check system requirements](https://code.claude.com/docs/en/setup#system-requirements)
 * [Install Claude Code](https://code.claude.com/docs/en/setup#install-claude-code)
 * Log in with Console account credentials
-
 
 #### Sign in without an API key
 
@@ -147,23 +133,17 @@ Everything else about profiles applies to this sign-in, including where it ranks
 
 For teams using Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry:
 
-
-**Follow provider setup**
+**1. Follow provider setup**
 
 Follow the [Amazon Bedrock docs](https://code.claude.com/docs/en/amazon-bedrock), [Google Cloud's Agent Platform docs](https://code.claude.com/docs/en/google-vertex-ai), or [Microsoft Foundry docs](https://code.claude.com/docs/en/microsoft-foundry).
 
-
-
-**Distribute configuration**
+**2. Distribute configuration**
 
 Distribute the environment variables and instructions for generating cloud credentials to your users. Read more about how to [manage configuration here](https://code.claude.com/docs/en/settings).
 
-
-
-**Install Claude Code**
+**3. Install Claude Code**
 
 Users can [install Claude Code](https://code.claude.com/docs/en/setup#install-claude-code).
-
 
 ### Restrict login to your organization
 
@@ -296,26 +276,20 @@ claude setup-token
 
 The command opens the same browser authorization flow as `/login`, and the token prints to the terminal after you approve access in the browser. It does not save the token anywhere; copy it and set it as the `CLAUDE_CODE_OAUTH_TOKEN` environment variable wherever you want to authenticate:
 
-
 **macOS, Linux, WSL**
 ```bash
-    export CLAUDE_CODE_OAUTH_TOKEN=your-token
+export CLAUDE_CODE_OAUTH_TOKEN=your-token
 ```
-
-
 
 **Windows PowerShell**
 ```powershell
-    $env:CLAUDE_CODE_OAUTH_TOKEN = "your-token"
+$env:CLAUDE_CODE_OAUTH_TOKEN = "your-token"
 ```
-
-
 
 **Windows CMD**
 ```batch
-    set CLAUDE_CODE_OAUTH_TOKEN=your-token
+set CLAUDE_CODE_OAUTH_TOKEN=your-token
 ```
-
 
 This token authenticates with your Claude subscription and requires a Pro, Max, Team, or Enterprise plan. It can only make model requests, so it can't establish [Remote Control](https://code.claude.com/docs/en/remote-control) sessions or fetch [claude.ai connectors](https://code.claude.com/docs/en/mcp#use-mcp-servers-from-claude-ai). MCP servers you configure locally still work.
 

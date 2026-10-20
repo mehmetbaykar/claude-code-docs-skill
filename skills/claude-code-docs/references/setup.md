@@ -31,28 +31,29 @@ Claude Code runs on the following platforms and configurations:
 
 ## Install Claude Code
 
-Prefer a graphical interface? The [Desktop app](https://code.claude.com/docs/en/desktop-quickstart) lets you use Claude Code without the terminal. Download it for [macOS](https://claude.ai/api/desktop/darwin/universal/dmg/latest/redirect?utm_source=claude_code\&utm_medium=docs), [Windows](https://claude.com/download?utm_source=claude_code\&utm_medium=docs), or [Linux](https://code.claude.com/docs/en/desktop-linux).
+> [!TIP]
+>
+> Prefer a graphical interface? The [Desktop app](https://code.claude.com/docs/en/desktop-quickstart) lets you use Claude Code without the terminal. Download it for [macOS](https://claude.ai/api/desktop/darwin/universal/dmg/latest/redirect?utm_source=claude_code\&utm_medium=docs), [Windows](https://claude.com/download?utm_source=claude_code\&utm_medium=docs), or [Linux](https://code.claude.com/docs/en/desktop-linux).
 
 To install Claude Code, open a terminal and run the command for your system. If you haven't used a terminal before, the [terminal guide](https://code.claude.com/docs/en/terminal-guide) shows how to open one and paste the command.
 
-
 **Native Install (Recommended)**
 
-    **macOS, Linux, WSL:**
+**macOS, Linux, WSL:**
 ```bash
-    curl -fsSL https://claude.ai/install.sh | bash
+curl -fsSL https://claude.ai/install.sh | bash
 ```
 
 On Windows, your prompt shows `PS C:\` when you're in PowerShell and `C:\` without the `PS` when you're in CMD.
 
-    **Windows PowerShell:**
+**Windows PowerShell:**
 ```powershell
-    irm https://claude.ai/install.ps1 | iex
+irm https://claude.ai/install.ps1 | iex
 ```
 
-    **Windows CMD:**
+**Windows CMD:**
 ```batch
-    curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 ```
 
 The install command shows no progress while it downloads Claude Code. When the installer finishes, open a new terminal window and run `claude --version`. A working installation prints a version number. If your shell says `claude` isn't found or isn't recognized, the install directory isn't on your PATH yet: see [Fix your PATH](https://code.claude.com/docs/en/troubleshoot-install#command-not-found-claude-after-installation).
@@ -63,34 +64,29 @@ If the install command fails with `syntax error near unexpected token '<'`, a `4
 
 [Git for Windows](https://git-scm.com/downloads/win) is recommended on native Windows so Claude Code can use the Bash tool. If Git for Windows is not installed, Claude Code uses PowerShell as the shell tool instead. WSL setups do not need Git for Windows.
 
-
-Native installations automatically update in the background to keep you on the latest version.
-
-
-
+> [!NOTE]
+>
+> Native installations automatically update in the background to keep you on the latest version.
 
 **Homebrew**
 ```bash
-    brew install --cask claude-code
+brew install --cask claude-code
 ```
 
 Homebrew offers two casks. `claude-code` tracks the stable release channel, which is typically about a week behind and skips releases with major regressions. `claude-code@latest` tracks the latest channel and receives new versions as soon as they ship.
 
-
-Homebrew installations do not auto-update. Run `brew upgrade claude-code` or `brew upgrade claude-code@latest`, depending on which cask you installed, to get the latest features and security fixes.
-
-
-
+> [!NOTE]
+>
+> Homebrew installations do not auto-update. Run `brew upgrade claude-code` or `brew upgrade claude-code@latest`, depending on which cask you installed, to get the latest features and security fixes.
 
 **WinGet**
 ```powershell
-    winget install Anthropic.ClaudeCode
+winget install Anthropic.ClaudeCode
 ```
 
-
-WinGet installations do not auto-update. Run `winget upgrade Anthropic.ClaudeCode` periodically to get the latest features and security fixes.
-
-
+> [!NOTE]
+>
+> WinGet installations do not auto-update. Run `winget upgrade Anthropic.ClaudeCode` periodically to get the latest features and security fixes.
 
 You can also install with [apt, dnf, or apk](https://code.claude.com/docs/en/setup#install-with-linux-package-managers) on Debian, Fedora, RHEL, and Alpine.
 
@@ -204,15 +200,17 @@ To let Claude Code manage the launcher again, remove `~/.local/bin/claude` and r
 
 If an npm global install can't auto-update because the npm global directory isn't writable, Claude Code shows a one-time notice at startup, and `claude doctor` lists the available fixes. See [permission errors during installation](https://code.claude.com/docs/en/troubleshoot-install#permission-errors-during-installation) for details.
 
-Homebrew, WinGet, apt, dnf, and apk installations do not auto-update by default; see below to opt in for Homebrew and WinGet. To upgrade Homebrew manually, run `brew upgrade claude-code` or `brew upgrade claude-code@latest`, depending on which cask you installed. For WinGet, run `winget upgrade Anthropic.ClaudeCode`. For Linux package managers, see the upgrade commands in [Install with Linux package managers](#install-with-linux-package-managers).
-
-To have Claude Code run the upgrade command for you on Homebrew or WinGet, set [`CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE`](https://code.claude.com/docs/en/env-vars) to `1`. Claude Code then runs the upgrade in the background when a new version is available and shows a restart prompt on success. The upgrade targets only the Claude Code package and does not affect other software you have installed.
-
-On WinGet the upgrade may fail while Claude Code is running because Windows locks the executable. In that case Claude Code shows the manual command instead. apt, dnf, and apk continue to require a manual upgrade because those commands need elevated privileges.
-
-  **Known issue:** Claude Code may notify you of updates before the new version is available in these package managers. If an upgrade fails, wait and try again later.
-
-Homebrew keeps old versions on disk after upgrades. Run `brew cleanup` periodically to reclaim disk space.
+> [!NOTE]
+>
+> Homebrew, WinGet, apt, dnf, and apk installations do not auto-update by default; see below to opt in for Homebrew and WinGet. To upgrade Homebrew manually, run `brew upgrade claude-code` or `brew upgrade claude-code@latest`, depending on which cask you installed. For WinGet, run `winget upgrade Anthropic.ClaudeCode`. For Linux package managers, see the upgrade commands in [Install with Linux package managers](#install-with-linux-package-managers).
+>
+> To have Claude Code run the upgrade command for you on Homebrew or WinGet, set [`CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE`](https://code.claude.com/docs/en/env-vars) to `1`. Claude Code then runs the upgrade in the background when a new version is available and shows a restart prompt on success. The upgrade targets only the Claude Code package and does not affect other software you have installed.
+>
+> On WinGet the upgrade may fail while Claude Code is running because Windows locks the executable. In that case Claude Code shows the manual command instead. apt, dnf, and apk continue to require a manual upgrade because those commands need elevated privileges.
+>
+> **Known issue:** Claude Code may notify you of updates before the new version is available in these package managers. If an upgrade fails, wait and try again later.
+>
+> Homebrew keeps old versions on disk after upgrades. Run `brew cleanup` periodically to reclaim disk space.
 
 ### Configure release channel
 
@@ -288,72 +286,54 @@ The native installer accepts either a specific version number or a release chann
 
 To install the latest version (default):
 
-
 **macOS, Linux, WSL**
 ```bash
-    curl -fsSL https://claude.ai/install.sh | bash
+curl -fsSL https://claude.ai/install.sh | bash
 ```
-
-
 
 **Windows PowerShell**
 ```powershell
-    irm https://claude.ai/install.ps1 | iex
+irm https://claude.ai/install.ps1 | iex
 ```
-
-
 
 **Windows CMD**
 ```batch
-    curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 ```
-
 
 To install the stable version:
 
-
 **macOS, Linux, WSL**
 ```bash
-    curl -fsSL https://claude.ai/install.sh | bash -s stable
+curl -fsSL https://claude.ai/install.sh | bash -s stable
 ```
-
-
 
 **Windows PowerShell**
 ```powershell
-    & ([scriptblock]::Create((irm https://claude.ai/install.ps1))) stable
+& ([scriptblock]::Create((irm https://claude.ai/install.ps1))) stable
 ```
-
-
 
 **Windows CMD**
 ```batch
-    curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd stable && del install.cmd
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd stable && del install.cmd
 ```
-
 
 To install a specific version number:
 
-
 **macOS, Linux, WSL**
 ```bash
-    curl -fsSL https://claude.ai/install.sh | bash -s 2.1.89
+curl -fsSL https://claude.ai/install.sh | bash -s 2.1.89
 ```
-
-
 
 **Windows PowerShell**
 ```powershell
-    & ([scriptblock]::Create((irm https://claude.ai/install.ps1))) 2.1.89
+& ([scriptblock]::Create((irm https://claude.ai/install.ps1))) 2.1.89
 ```
-
-
 
 **Windows CMD**
 ```batch
-    curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd 2.1.89 && del install.cmd
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd 2.1.89 && del install.cmd
 ```
-
 
 To confirm which version installed, run `claude --version`: the command prints the exact version you passed, such as `2.1.89 (Claude Code)`.
 
@@ -363,92 +343,86 @@ Claude Code publishes signed apt, dnf, and apk repositories. Each repository off
 
 All repositories are signed with the [Claude Code release signing key](#binary-integrity-and-code-signing). Before trusting the key, verify it as described in each tab.
 
-
 **apt**
 
 For Debian and Ubuntu. The install commands below download the signing key with `curl` and verify it with `gpg`, which fresh Debian and Ubuntu installations may not include. If either command reports `command not found`, install both first:
 ```bash
-    sudo apt install curl gnupg
+sudo apt install curl gnupg
 ```
 
 Download the signing key:
 ```bash
-    sudo install -d -m 0755 /etc/apt/keyrings
-    sudo curl -fsSL https://downloads.claude.ai/keys/claude-code.asc \
-      -o /etc/apt/keyrings/claude-code.asc
+sudo install -d -m 0755 /etc/apt/keyrings
+sudo curl -fsSL https://downloads.claude.ai/keys/claude-code.asc \
+  -o /etc/apt/keyrings/claude-code.asc
 ```
 
 If this download fails, `apt update` later fails with `NO_PUBKEY BAA929FF1A7ECACE`. Confirm the key downloaded and belongs to Anthropic before continuing:
 ```bash
-    gpg --show-keys /etc/apt/keyrings/claude-code.asc
+gpg --show-keys /etc/apt/keyrings/claude-code.asc
 ```
 
 The fingerprint gpg prints should be `31DDDE24DDFAB679F42D7BD2BAA929FF1A7ECACE`. If gpg reports that the file can't be opened or contains no valid OpenPGP data, the download failed or returned the wrong content: confirm your network can reach `downloads.claude.ai`, then rerun the download command.
 
 Register the repository on the `stable` channel and install:
 ```bash
-    echo "deb [signed-by=/etc/apt/keyrings/claude-code.asc] https://downloads.claude.ai/claude-code/apt/stable stable main" \
-      | sudo tee /etc/apt/sources.list.d/claude-code.list
-    sudo apt update
-    sudo apt install claude-code
+echo "deb [signed-by=/etc/apt/keyrings/claude-code.asc] https://downloads.claude.ai/claude-code/apt/stable stable main" \
+  | sudo tee /etc/apt/sources.list.d/claude-code.list
+sudo apt update
+sudo apt install claude-code
 ```
 
 To use the `latest` channel instead, both the URL path and the suite name change. Use this `deb` line:
 ```bash
-    echo "deb [signed-by=/etc/apt/keyrings/claude-code.asc] https://downloads.claude.ai/claude-code/apt/latest latest main" \
-      | sudo tee /etc/apt/sources.list.d/claude-code.list
+echo "deb [signed-by=/etc/apt/keyrings/claude-code.asc] https://downloads.claude.ai/claude-code/apt/latest latest main" \
+  | sudo tee /etc/apt/sources.list.d/claude-code.list
 ```
 
 To upgrade later, run `sudo apt update && sudo apt upgrade claude-code`.
-
-
 
 **dnf**
 
 For Fedora and RHEL. The following commands configure the `stable` channel:
 ```bash
-    sudo tee /etc/yum.repos.d/claude-code.repo <<'EOF'
-    [claude-code]
-    name=Claude Code
-    baseurl=https://downloads.claude.ai/claude-code/rpm/stable
-    enabled=1
-    gpgcheck=1
-    gpgkey=https://downloads.claude.ai/keys/claude-code.asc
-    EOF
-    sudo dnf install claude-code
+sudo tee /etc/yum.repos.d/claude-code.repo <<'EOF'
+[claude-code]
+name=Claude Code
+baseurl=https://downloads.claude.ai/claude-code/rpm/stable
+enabled=1
+gpgcheck=1
+gpgkey=https://downloads.claude.ai/keys/claude-code.asc
+EOF
+sudo dnf install claude-code
 ```
 
 To use the `latest` channel instead, set `baseurl` to the `latest` repository:
 ```ini
-    baseurl=https://downloads.claude.ai/claude-code/rpm/latest
+baseurl=https://downloads.claude.ai/claude-code/rpm/latest
 ```
 
 dnf downloads the key on first install and prompts you to confirm the fingerprint. Verify it matches `31DD DE24 DDFA B679 F42D 7BD2 BAA9 29FF 1A7E CACE` before accepting.
 
 To upgrade later, run `sudo dnf upgrade claude-code`.
 
-
-
 **apk**
 
 For Alpine Linux. The following commands configure the `stable` channel:
 ```sh
-    wget -O /etc/apk/keys/claude-code.rsa.pub \
-      https://downloads.claude.ai/keys/claude-code.rsa.pub
-    echo "https://downloads.claude.ai/claude-code/apk/stable" >> /etc/apk/repositories
-    apk add claude-code
+wget -O /etc/apk/keys/claude-code.rsa.pub \
+  https://downloads.claude.ai/keys/claude-code.rsa.pub
+echo "https://downloads.claude.ai/claude-code/apk/stable" >> /etc/apk/repositories
+apk add claude-code
 ```
 
 To switch to the `latest` channel, remove the `stable` repository line and add the `latest` repository:
 ```sh
-    sed -i '\|downloads.claude.ai/claude-code/apk/stable|d' /etc/apk/repositories
-    echo "https://downloads.claude.ai/claude-code/apk/latest" >> /etc/apk/repositories
+sed -i '\|downloads.claude.ai/claude-code/apk/stable|d' /etc/apk/repositories
+echo "https://downloads.claude.ai/claude-code/apk/latest" >> /etc/apk/repositories
 ```
 
 Verify the downloaded key with `sha256sum /etc/apk/keys/claude-code.rsa.pub`, which should report `395759c1f7449ef4cdef305a42e820f3c766d6090d142634ebdb049f113168b6`.
 
 To upgrade later, run `apk update && apk upgrade claude-code`.
-
 
 ### Install with npm
 
@@ -463,7 +437,9 @@ Supported npm install platforms are `darwin-arm64`, `darwin-x64`, `linux-x64`, `
 
 To upgrade an npm installation, run `npm install -g @anthropic-ai/claude-code@latest`. Avoid `npm update -g`, which respects the semver range from the original install and may not move you to the newest release.
 
-Do NOT use `sudo npm install -g` as this can lead to permission issues and security risks. If you encounter permission errors, see [troubleshooting permission errors](https://code.claude.com/docs/en/troubleshoot-install#permission-errors-during-installation).
+> [!WARNING]
+>
+> Do NOT use `sudo npm install -g` as this can lead to permission issues and security risks. If you encounter permission errors, see [troubleshooting permission errors](https://code.claude.com/docs/en/troubleshoot-install#permission-errors-during-installation).
 
 ### Install on network storage
 
@@ -486,80 +462,66 @@ Each release publishes a `manifest.json` containing SHA256 checksums for every p
 
 Steps 1-3 require a POSIX shell with `gpg` and `curl`. On Windows, run them in Git Bash or WSL. Step 4 includes a PowerShell option.
 
-
-**Download and import the public key**
+**1. Download and import the public key**
 
 The release signing key is published at a fixed URL.
 ```bash
-    curl -fsSL https://downloads.claude.ai/keys/claude-code.asc | gpg --import
+curl -fsSL https://downloads.claude.ai/keys/claude-code.asc | gpg --import
 ```
 
 Display the fingerprint of the imported key.
 ```bash
-    gpg --fingerprint security@anthropic.com
+gpg --fingerprint security@anthropic.com
 ```
 
 Confirm the output includes this fingerprint:
 ```text
-    31DD DE24 DDFA B679 F42D  7BD2 BAA9 29FF 1A7E CACE
+31DD DE24 DDFA B679 F42D  7BD2 BAA9 29FF 1A7E CACE
 ```
 
-
-
-**Download the manifest and signature**
+**2. Download the manifest and signature**
 
 Set `VERSION` to the release you want to verify.
 ```bash
-    REPO=https://downloads.claude.ai/claude-code-releases
-    VERSION=2.1.89
-    curl -fsSLO "$REPO/$VERSION/manifest.json"
-    curl -fsSLO "$REPO/$VERSION/manifest.json.sig"
+REPO=https://downloads.claude.ai/claude-code-releases
+VERSION=2.1.89
+curl -fsSLO "$REPO/$VERSION/manifest.json"
+curl -fsSLO "$REPO/$VERSION/manifest.json.sig"
 ```
 
-
-
-**Verify the signature**
+**3. Verify the signature**
 
 Verify the detached signature against the manifest.
 ```bash
-    gpg --verify manifest.json.sig manifest.json
+gpg --verify manifest.json.sig manifest.json
 ```
 
 A valid result reports `Good signature from "Anthropic Claude Code Release Signing <security@anthropic.com>"`.
 
 `gpg` also prints `WARNING: This key is not certified with a trusted signature!` for any freshly imported key. This is expected. The `Good signature` line confirms the cryptographic check passed. The fingerprint comparison in Step 1 confirms the key itself is authentic.
 
-
-
-**Check the binary against the manifest**
+**4. Check the binary against the manifest**
 
 Compare the SHA256 checksum of the binary with the value listed under `platforms.<platform>.checksum` in `manifest.json`. The commands below assume a `claude` binary in the current directory. To verify an installed native binary instead, run the command against `~/.local/share/claude/versions/VERSION`, replacing VERSION with the release you set in Step 2.
 
-
-
 **Linux**
 ```bash
-        sha256sum claude
+sha256sum claude
 ```
-
-
 
 **macOS**
 ```bash
-        shasum -a 256 claude
+shasum -a 256 claude
 ```
-
-
 
 **Windows PowerShell**
 ```powershell
-        (Get-FileHash claude.exe -Algorithm SHA256).Hash.ToLower()
+(Get-FileHash claude.exe -Algorithm SHA256).Hash.ToLower()
 ```
 
-
-
-
-Manifest signatures are available for releases from `2.1.89` onward. Earlier releases publish checksums in `manifest.json` without a detached signature.
+> [!NOTE]
+>
+> Manifest signatures are available for releases from `2.1.89` onward. Earlier releases publish checksums in `manifest.json` without a detached signature.
 
 #### Platform code signatures
 
@@ -577,21 +539,17 @@ To remove Claude Code, follow the instructions for your installation method. If 
 
 Remove the Claude Code binary and version files:
 
-
 **macOS, Linux, WSL**
 ```bash
-    rm -f ~/.local/bin/claude
-    rm -rf ~/.local/share/claude
+rm -f ~/.local/bin/claude
+rm -rf ~/.local/share/claude
 ```
-
-
 
 **Windows PowerShell**
 ```powershell
-    Remove-Item -Path "$env:USERPROFILE\.local\bin\claude.exe" -Force
-    Remove-Item -Path "$env:USERPROFILE\.local\share\claude" -Recurse -Force
+Remove-Item -Path "$env:USERPROFILE\.local\bin\claude.exe" -Force
+Remove-Item -Path "$env:USERPROFILE\.local\share\claude" -Recurse -Force
 ```
-
 
 ### Uninstall with Homebrew
 
@@ -616,30 +574,24 @@ winget uninstall Anthropic.ClaudeCode
 
 Remove the package and the repository configuration:
 
-
 **apt**
 ```bash
-    sudo apt remove claude-code
-    sudo rm /etc/apt/sources.list.d/claude-code.list /etc/apt/keyrings/claude-code.asc
+sudo apt remove claude-code
+sudo rm /etc/apt/sources.list.d/claude-code.list /etc/apt/keyrings/claude-code.asc
 ```
-
-
 
 **dnf**
 ```bash
-    sudo dnf remove claude-code
-    sudo rm /etc/yum.repos.d/claude-code.repo
+sudo dnf remove claude-code
+sudo rm /etc/yum.repos.d/claude-code.repo
 ```
-
-
 
 **apk**
 ```sh
-    apk del claude-code
-    sed -i '\|downloads.claude.ai/claude-code/apk|d' /etc/apk/repositories
-    rm /etc/apk/keys/claude-code.rsa.pub
+apk del claude-code
+sed -i '\|downloads.claude.ai/claude-code/apk|d' /etc/apk/repositories
+rm /etc/apk/keys/claude-code.rsa.pub
 ```
-
 
 ### Uninstall with npm
 
@@ -650,33 +602,32 @@ npm uninstall -g @anthropic-ai/claude-code
 
 ### Remove configuration files
 
-Removing configuration files will delete all your settings, allowed tools, MCP server configurations, and session history.
+> [!WARNING]
+>
+> Removing configuration files will delete all your settings, allowed tools, MCP server configurations, and session history.
 
 The VS Code extension, the JetBrains plugin, and the Desktop app also write to `~/.claude/`. If any of them is still installed, the directory is recreated the next time it runs. To remove Claude Code completely, uninstall the [VS Code extension](https://code.claude.com/docs/en/vs-code#uninstall-the-extension), the JetBrains plugin, and the Desktop app before deleting these files.
 
 To remove Claude Code settings and cached data:
 
-
 **macOS, Linux, WSL**
 ```bash
-    # Remove user settings and state
-    rm -rf ~/.claude
-    rm ~/.claude.json
+# Remove user settings and state
+rm -rf ~/.claude
+rm ~/.claude.json
 
-    # Remove project-specific settings (run from your project directory)
-    rm -rf .claude
-    rm -f .mcp.json
+# Remove project-specific settings (run from your project directory)
+rm -rf .claude
+rm -f .mcp.json
 ```
-
-
 
 **Windows PowerShell**
 ```powershell
-    # Remove user settings and state
-    Remove-Item -Path "$env:USERPROFILE\.claude" -Recurse -Force
-    Remove-Item -Path "$env:USERPROFILE\.claude.json" -Force
+# Remove user settings and state
+Remove-Item -Path "$env:USERPROFILE\.claude" -Recurse -Force
+Remove-Item -Path "$env:USERPROFILE\.claude.json" -Force
 
-    # Remove project-specific settings (run from your project directory)
-    Remove-Item -Path ".claude" -Recurse -Force
-    Remove-Item -Path ".mcp.json" -Force
+# Remove project-specific settings (run from your project directory)
+Remove-Item -Path ".claude" -Recurse -Force
+Remove-Item -Path ".mcp.json" -Force
 ```

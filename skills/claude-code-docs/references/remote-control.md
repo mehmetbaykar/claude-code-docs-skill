@@ -19,7 +19,9 @@ When you start a Remote Control session on your machine, Claude keeps running lo
 
 Unlike [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web), which run on cloud infrastructure, Remote Control sessions run directly on your machine and interact with your local filesystem. The web and mobile interfaces are a window into that local session, so your computer has to stay on and the `claude` process has to keep running.
 
-Remote Control is a Claude Code feature. For conversations in other Claude products, see the [Claude Help Center](https://support.claude.com).
+> [!NOTE]
+>
+> Remote Control is a Claude Code feature. For conversations in other Claude products, see the [Claude Help Center](https://support.claude.com).
 
 ## Requirements
 
@@ -40,12 +42,11 @@ Before using Remote Control, confirm that your environment meets these condition
 
 You can start a Remote Control session from the CLI, the [Claude Desktop app](https://code.claude.com/docs/en/desktop), or the VS Code extension. The CLI offers three invocation modes; the Desktop app and VS Code use the `/remote-control` command.
 
-
 **Server mode**
 
 In your project directory, run:
 ```bash
-    claude remote-control
+claude remote-control
 ```
 
 Until you accept Remote Control's one-time confirmation, `claude remote-control` explains what it does and asks `Enable Remote Control? (y/n)` before starting the server. Answer `y` to accept and start the server. If you decline, Claude Code exits without starting the server and asks again the next time you run the command.
@@ -54,56 +55,52 @@ The process stays running in your terminal in server mode, waiting for remote co
 
 Pass any of these flags after `remote-control`:
 
-    | Flag | Description |
-    | - | - |
-    | `--name "My Project"` | Set a custom session title visible in the session list at claude.ai/code. |
-    | `--remote-control-session-name-prefix <prefix>` | Prefix for auto-generated session names when no explicit name is set. Defaults to your machine's hostname, producing names like `myhost-graceful-unicorn`. Set `CLAUDE_REMOTE_CONTROL_SESSION_NAME_PREFIX` for the same effect. |
-    | `-c`, `--continue` | Bring back the session that the last server in this directory started with, instead of creating a new one. See [Resume sessions after stopping the server](#resume-sessions-after-stopping-the-server). Can't be combined with `--session-id`, `--spawn`, `--capacity`, or `--create-session-in-dir`. Requires Claude Code v2.1.200 or later. |
-    | `--session-id <id>` | Bring back one session by its ID. See [Resume sessions after stopping the server](#resume-sessions-after-stopping-the-server). Can't be combined with `--continue`, `--spawn`, `--capacity`, or `--create-session-in-dir`. Requires Claude Code v2.1.200 or later. |
-    | `--spawn <mode>` | How the server creates sessions.• `same-dir` (default): all sessions share the current working directory, so they can conflict if editing the same files.• `worktree`: each on-demand session gets its own [git worktree](https://code.claude.com/docs/en/worktrees). Requires a git repository or a [`WorktreeCreate` hook](https://code.claude.com/docs/en/hooks#worktreecreate).• `session`: single-session mode. Serves exactly one session and rejects additional connections. Set at startup only.Press `w` at runtime to toggle between `same-dir` and `worktree`. |
-    | `--capacity ` | Maximum number of concurrent sessions. Default is 32. Cannot be used with `--spawn=session`. |
-    | `--[no-]create-session-in-dir` | Pre-create one session in the current directory when the server starts, so you have somewhere to type immediately. In `worktree` mode this session stays in the current directory while on-demand sessions get isolated worktrees. On by default. If you pass `--no-create-session-in-dir` to start with none, Claude Code archives the server's sessions when you stop it, so there's nothing to [resume](#resume-sessions-after-stopping-the-server). |
-    | `--permission-mode <mode>` | Set the starting [permission mode](https://code.claude.com/docs/en/permission-modes) for the server's sessions, such as `acceptEdits`. Accepts `manual` as an alias for `default`; an unrecognized mode stops the server at startup and lists the valid modes. |
-    | `--chrome` / `--no-chrome` | Turn [Chrome integration](https://code.claude.com/docs/en/chrome) on or off in the sessions the server creates, so Claude can use Chrome on your machine while you work from another device. Without either flag, the session the server pre-creates and any session you start yourself from claude.ai/code or the Claude app begin with Chrome off, even if you [enabled Chrome by default](https://code.claude.com/docs/en/chrome#enable-chrome-by-default). A session the server starts for one of your [project](https://code.claude.com/docs/en/claude-projects) threads follows that setting instead, except in `bypassPermissions` mode. Requires Claude Code v2.1.273 or later. |
-    | `-d`, `--debug[=<filter>]` | Turn on debug logging for the server, optionally filtered by category. Pass a filter only in the `=` form, such as `--debug=api,hooks`. Requires Claude Code v2.1.282 or later. |
-    | `--debug-file <path>` | Write debug logs to the given file. |
-    | `--verbose` | Show detailed connection and session logs. |
-    | `--sandbox`, `--no-sandbox` | Removed in v2.1.300. If you pass either flag, the server [exits with an error](https://code.claude.com/docs/en/errors#sandbox-is-not-supported-by-claude-remote-control) instead of starting. |
+| Flag | Description |
+| - | - |
+| `--name "My Project"` | Set a custom session title visible in the session list at claude.ai/code. |
+| `--remote-control-session-name-prefix <prefix>` | Prefix for auto-generated session names when no explicit name is set. Defaults to your machine's hostname, producing names like `myhost-graceful-unicorn`. Set `CLAUDE_REMOTE_CONTROL_SESSION_NAME_PREFIX` for the same effect. |
+| `-c`, `--continue` | Bring back the session that the last server in this directory started with, instead of creating a new one. See [Resume sessions after stopping the server](#resume-sessions-after-stopping-the-server). Can't be combined with `--session-id`, `--spawn`, `--capacity`, or `--create-session-in-dir`. Requires Claude Code v2.1.200 or later. |
+| `--session-id <id>` | Bring back one session by its ID. See [Resume sessions after stopping the server](#resume-sessions-after-stopping-the-server). Can't be combined with `--continue`, `--spawn`, `--capacity`, or `--create-session-in-dir`. Requires Claude Code v2.1.200 or later. |
+| `--spawn <mode>` | How the server creates sessions. • `same-dir` (default): all sessions share the current working directory, so they can conflict if editing the same files. • `worktree`: each on-demand session gets its own [git worktree](https://code.claude.com/docs/en/worktrees). Requires a git repository or a [`WorktreeCreate` hook](https://code.claude.com/docs/en/hooks#worktreecreate). • `session`: single-session mode. Serves exactly one session and rejects additional connections. Set at startup only. Press `w` at runtime to toggle between `same-dir` and `worktree`. |
+| `--capacity ` | Maximum number of concurrent sessions. Default is 32. Cannot be used with `--spawn=session`. |
+| `--[no-]create-session-in-dir` | Pre-create one session in the current directory when the server starts, so you have somewhere to type immediately. In `worktree` mode this session stays in the current directory while on-demand sessions get isolated worktrees. On by default. If you pass `--no-create-session-in-dir` to start with none, Claude Code archives the server's sessions when you stop it, so there's nothing to [resume](#resume-sessions-after-stopping-the-server). |
+| `--permission-mode <mode>` | Set the starting [permission mode](https://code.claude.com/docs/en/permission-modes) for the server's sessions, such as `acceptEdits`. Accepts `manual` as an alias for `default`; an unrecognized mode stops the server at startup and lists the valid modes. |
+| `--chrome` / `--no-chrome` | Turn [Chrome integration](https://code.claude.com/docs/en/chrome) on or off in the sessions the server creates, so Claude can use Chrome on your machine while you work from another device. Without either flag, the session the server pre-creates and any session you start yourself from claude.ai/code or the Claude app begin with Chrome off, even if you [enabled Chrome by default](https://code.claude.com/docs/en/chrome#enable-chrome-by-default). A session the server starts for one of your [project](https://code.claude.com/docs/en/claude-projects) threads follows that setting instead, except in `bypassPermissions` mode. Requires Claude Code v2.1.273 or later. |
+| `-d`, `--debug[=<filter>]` | Turn on debug logging for the server, optionally filtered by category. Pass a filter only in the `=` form, such as `--debug=api,hooks`. Requires Claude Code v2.1.282 or later. |
+| `--debug-file <path>` | Write debug logs to the given file. |
+| `--verbose` | Show detailed connection and session logs. |
+| `--sandbox`, `--no-sandbox` | Removed in v2.1.300. If you pass either flag, the server [exits with an error](https://code.claude.com/docs/en/errors#sandbox-is-not-supported-by-claude-remote-control) instead of starting. |
 
 If you pass a global `claude` flag before `remote-control`, or a wrapper script adds one, Claude Code doesn't carry the flag over to the sessions the server creates. Claude Code lets the flag through only when dropping it is known not to change what those sessions can do, such as `--verbose` or `--model`. For any other flag, such as `--settings`, Claude Code [refuses to start](https://code.claude.com/docs/en/errors#not-carried-over-to-the-sessions-remote-control-starts) and names the flag to remove.
 
 To sandbox the sessions the server starts, turn on [sandboxing](https://code.claude.com/docs/en/sandboxing) in a settings file.
 
-Claude Code checks Remote Control eligibility before printing help, so `claude remote-control --help` returns an error instead of this flag list when you aren't signed in with an eligible account.
-
-
+To print the `remote-control` flags in your terminal, run `claude remote-control --help`. Before v2.1.302, without an eligible sign-in the command returned one of the errors under [Troubleshooting](#troubleshooting) instead.
 
 **Interactive session**
 
 To start a normal interactive Claude Code session with Remote Control enabled, use the `--remote-control` flag (or `--rc`):
 ```bash
-    claude --remote-control
+claude --remote-control
 ```
 
 Optionally pass a name for the session:
 ```bash
-    claude --remote-control "My Project"
+claude --remote-control "My Project"
 ```
 
 This gives you a full interactive session in your terminal that you can also control from claude.ai or the Claude app. Unlike `claude remote-control` (server mode), you can type messages locally while the session is also available remotely.
-
-
 
 **From an existing session**
 
 If you're already in a Claude Code session and want to continue it remotely, use the `/remote-control` (or `/rc`) command:
 ```text
-    /remote-control
+/remote-control
 ```
 
 Pass a name as an argument to set a custom session title:
 ```text
-    /remote-control My Project
+/remote-control My Project
 ```
 
 This starts a Remote Control session that carries over your current conversation history.
@@ -112,32 +109,27 @@ Until you accept Remote Control's one-time confirmation, a dialog appears before
 
 The `--verbose` flag is not available with this command.
 
-
-
 **VS Code**
 
 In the [Claude Code VS Code extension](https://code.claude.com/docs/en/vs-code), type `/remote-control` or `/rc` in the prompt box.
 ```text
-    /remote-control
+/remote-control
 ```
 
 While Remote Control is on, Claude Code shows a **Remote Control** indicator in the prompt box footer. Once the session connects, click the indicator to go directly to the session, or find it in the session list at [claude.ai/code](https://claude.ai/code). Claude Code also posts the session URL in the conversation. To disconnect, run `/remote-control` again.
 
 Unlike the CLI, the VS Code command does not accept a name argument or display a QR code. The session title is derived from your conversation history or first prompt.
 
-
-
 **Desktop app**
 
 In a local session in the [Claude Desktop app's](https://code.claude.com/docs/en/desktop) Code tab, type `/remote-control` or `/rc` in the prompt box.
 ```text
-    /remote-control
+/remote-control
 ```
 
 Once the session connects, find it in the session list at [claude.ai/code](https://claude.ai/code). To disconnect, run `/remote-control` again.
 
 To turn Remote Control on for every session by default instead, see [Enable Remote Control for all sessions](#enable-remote-control-for-all-sessions).
-
 
 ### Check connection status
 
@@ -177,7 +169,7 @@ A connected device shows the conversation in your terminal as it happens. These 
 * **Compaction and `/clear`**: while Claude Code [compacts the conversation](https://code.claude.com/docs/en/context-window#what-survives-compaction), connected devices show the progress and then where the conversation was compacted. When you run `/clear`, the conversation resets on connected devices too.
 * **Switching conversations with `/resume`**: the connected device doesn't receive the switched-to conversation's title or earlier history, but new messages in both directions go to and from whichever conversation is open in your terminal. To work on the original conversation from the device again, run `/resume` in your terminal and switch back to it.
 * **Pulling a session with `/teleport`**: when you pull a [cloud session](https://code.claude.com/docs/en/claude-code-on-the-web#from-cloud-to-terminal) into your terminal with `/teleport`, the connected device doesn't receive the pulled conversation's earlier history. New messages in both directions go to and from the pulled conversation, which is now the one open in your terminal.
-* **Messages from your other sessions**: with [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging), the same connection carries messages between your own sessions on different machines and from your [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web).
+* **Messages from your other sessions**: with [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging), the same connection carries messages between your own sessions on different machines.
 * **Diff of your changes**: when the session's directory is in a git repository, a connected device's diff pane shows your changes. On a branch that has commits ahead of the repository's default branch, the pane shows the changes since the branch split from it, including your uncommitted edits. On the default branch itself, or on a branch that isn't ahead of it, the pane shows only your uncommitted changes.
 * **Model**: when you pick a [model](https://code.claude.com/docs/en/model-config) from a connected device, Claude Code runs the session on that model. Requires Claude Code v2.1.238 or later. A model you pick from the device's model control applies to the current session only. When you send `/model <name>` from the device to an interactive session, Claude Code also sets your default for new sessions.
 * **Effort level**: when you set the [effort level](https://code.claude.com/docs/en/model-config#adjust-effort-level) from a connected device, with `/effort` or the device's effort control, Claude Code applies it to the session on your machine. If you pinned a level with `CLAUDE_CODE_EFFORT_LEVEL`, the session keeps that level, and Claude Code refuses a different pick from the effort control. Picking a level from the effort control requires Claude Code v2.1.234 or later on your machine.
@@ -189,7 +181,7 @@ Remote Control only activates when you explicitly run `claude remote-control`, `
 
 * **`true`**: connect automatically when an interactive session starts.
 * **`false`**: turn auto-connect off, though a `true` from [managed settings](https://code.claude.com/docs/en/managed-settings) outranks it, because Claude Code saves the choice to your user settings. A `false` in project or local settings (`.claude/settings.json`, `.claude/settings.local.json`) turns auto-connect off even over a managed `true`.
-* **`default`**: clear your choice and follow your organization's admin default if one is set, otherwise Claude Code's current default.
+* **`default`**: clear your choice and follow your organization's admin default if one is set, otherwise Claude Code's current default. If you set `DISABLE_TELEMETRY` or `DO_NOT_TRACK`, see [Auto-connect with `DISABLE_TELEMETRY` or `DO_NOT_TRACK` set](#auto-connect-with-disable-telemetry-or-do-not-track).
 
 The VS Code extension and the Desktop app also have an auto-connect toggle:
 
@@ -201,6 +193,15 @@ To turn auto-connect on from a settings file instead, set [`remoteControlAtStart
 Auto-connect signs in with your own claude.ai account, so a session it starts appears only in your own account's Claude apps and grants no one else access.
 
 With this setting on, each interactive Claude Code process registers one remote session. If you run multiple instances, each one gets its own remote session. To run multiple concurrent sessions from a single process, use [server mode](#start-a-remote-control-session) instead.
+
+#### Auto-connect with `DISABLE_TELEMETRY` or `DO_NOT_TRACK` set
+
+With only `DISABLE_TELEMETRY` or `DO_NOT_TRACK` set, your sessions don't auto-connect through your organization's admin default or Claude Code's own default. If something else makes Remote Control unavailable for you, such as `DISABLE_GROWTHBOOK` or an LLM gateway, start with [Requirements](#requirements) instead.
+
+Turning auto-connect on with only `DISABLE_TELEMETRY` or `DO_NOT_TRACK` set requires Claude Code v2.1.283 or later. To auto-connect, check whether your organization requires [Trusted Devices](#trusted-devices):
+
+* **Not required**: set **Enable Remote Control for all sessions** to `true` in `/config`.
+* **Required**: Remote Control isn't available while `DISABLE_TELEMETRY` or `DO_NOT_TRACK` is set. Unset whichever of the two variables you set. If your sessions still don't auto-connect, set **Enable Remote Control for all sessions** to `true` in `/config`.
 
 ### Resume sessions after stopping the server
 
@@ -230,9 +231,11 @@ To turn Remote Control off entirely, use the [`disableRemoteControl`](https://co
 
 ## Trusted Devices
 
-Trusted Devices is currently in beta. Features and functionality may evolve as the experience is refined.
-
-Trusted Devices is available on Pro, Max, Team, and Enterprise plans and is off by default. On Team and Enterprise plans, an Owner turns it on for the organization. On Pro and Max plans, you turn on **Require trusted devices** yourself in your settings, on the Cowork or Account page.
+> [!NOTE]
+>
+> Trusted Devices is currently in beta. Features and functionality may evolve as the experience is refined.
+>
+> Trusted Devices is available on Pro, Max, Team, and Enterprise plans and is off by default. On Team and Enterprise plans, an Owner turns it on for the organization. On Pro and Max plans, you turn on **Require trusted devices** yourself in your settings, on the Cowork or Account page.
 
 Trusted Devices requires each member of your organization, or you alone on a Pro or Max plan, to verify their device before they can view or steer Remote Control sessions from claude.ai, the Claude mobile apps, or Claude Desktop. It ties Remote Control access to a known device and a recent authentication, not just a signed-in account.
 
@@ -245,29 +248,21 @@ Biometric checks run on the device through the operating system or browser, the 
 
 The setting applies to Remote Control in Claude Code and to Computer access in [Cowork](https://claude.com/docs/cowork/overview). This page covers the Claude Code side. Regular Claude chat, Claude Code in the terminal, and API usage are unaffected.
 
-<h3 id="enable-trusted-devices-for-your-organization">
-Enable Trusted Devices for a Team or Enterprise organization
-</h3>
+### Enable Trusted Devices for a Team or Enterprise organization
 
 An Owner enables the setting from the claude.ai organization settings.
 
-
-**Go to the Capabilities page**
+**1. Go to the Capabilities page**
 
 Go to [**Organization settings > Capabilities > Remote sessions**](https://claude.ai/admin-settings/capabilities). The **Require trusted devices** toggle appears in that section.
 
-
-
-**Turn on Require trusted devices**
+**2. Turn on Require trusted devices**
 
 The setting applies to every member of the organization and to Remote Control sessions started after you enable it. Sessions that were already running before the toggle was turned on are not retroactively protected and continue without the device requirement until they end. Per-team or per-project scoping is not available.
 
-
-
-**Tell members what to expect**
+**3. Tell members what to expect**
 
 The first time a member views or steers a new Remote Control session from a browser, phone, or desktop app after the setting is enabled, they are prompted to enroll that device. Letting them know ahead of time avoids confusion.
-
 
 ### What members see
 
@@ -312,29 +307,21 @@ Claude decides when to push. It typically sends one when a long-running task fin
 
 To set up mobile push notifications:
 
-
-**Install the Claude mobile app**
+**1. Install the Claude mobile app**
 
 Download the Claude app for [iOS](https://apps.apple.com/us/app/claude-by-anthropic/id6473753684) or [Android](https://play.google.com/store/apps/details?id=com.anthropic.claude).
 
-
-
-**Sign in with your Claude Code account**
+**2. Sign in with your Claude Code account**
 
 Use the same account and organization you use for Claude Code in the terminal.
 
-
-
-**Allow notifications**
+**3. Allow notifications**
 
 Accept the notification permission prompt from the operating system.
 
-
-
-**Enable push in Claude Code**
+**4. Enable push in Claude Code**
 
 In your terminal, run `/config` and enable **Push when Claude decides** for proactive notifications, **Push when actions required** for permission prompts and questions, or both.
-
 
 If notifications don't arrive:
 
@@ -372,19 +359,16 @@ Claude Code skips mobile push notifications while you are typing in or focused o
 
 When a claude.ai connector needs authentication in a session you drive over Remote Control, the `/mcp` panel isn't available from the mobile app or the web. Get the authorization link from a terminal on the machine where the session runs, then open the link on the device you're using. You can't run the command from the mobile app or the web. A line you send from there that starts with `!` goes to Claude as a message and doesn't run in [shell mode](https://code.claude.com/docs/en/interactive-mode#shell-mode-with-prefix).
 
-
-**Get the authorization link**
+**1. Get the authorization link**
 
 In a terminal on the machine where the session runs, such as over SSH, run `claude mcp login` with the connector's name in quotes. A connector's name starts with `claude.ai`, such as `claude.ai Slack` for the Slack connector. The following command gets the link for the Slack connector:
 ```bash
-    claude mcp login "claude.ai Slack" --no-browser
+claude mcp login "claude.ai Slack" --no-browser
 ```
 
 The command prints a claude.ai link and exits. Open the link in your browser and finish authorizing on claude.ai. `--no-browser` keeps the command from opening a browser on that machine, which might not be the device you're using.
 
-
-
-**Use the connector in a session**
+**2. Use the connector in a session**
 
 Start a new session, or reconnect the connector in the session that's already running:
 
@@ -393,11 +377,10 @@ Start a new session, or reconnect the connector in the session that's already ru
 
 The following command reconnects the Slack connector:
 ```text
-    /mcp reconnect claude.ai Slack
+/mcp reconnect claude.ai Slack
 ```
 
 In the terminal, Claude Code prints `Successfully reconnected to claude.ai Slack`. From the mobile app or the web, the reply is `Reconnected "claude.ai Slack".`
-
 
 ## Troubleshooting
 
@@ -444,9 +427,7 @@ The session isn't talking to the Anthropic API directly, which Remote Control re
 
 The message names what routed the session away from the Anthropic API, such as `CLAUDE_CODE_USE_BEDROCK` or a custom `ANTHROPIC_BASE_URL`. If you have an eligible claude.ai login, unset the named variable, remove it from the `env` key in [settings](https://code.claude.com/docs/en/settings) if you set it there, and restart the session.
 
-<h3 id="remote-control-is-disabled-by-your-organizations-policy">
-  "Remote Control is disabled by your organization's policy"
-</h3>
+### "Remote Control is disabled by your organization's policy"
 
 A policy blocks Remote Control. Check these causes in order:
 
@@ -457,9 +438,7 @@ A policy blocks Remote Control. Check these causes in order:
 
 Before v2.1.281, this message also appeared when Claude Code hadn't loaded your organization's policy on this machine, for example after starting offline. Later versions report that state as [`Couldn't verify your organization's policy for remote control`](#couldnt-verify-your-organizations-policy-for-remote-control) instead.
 
-<h3 id="remote-control-was-turned-off-by-your-organizations-policy">
-  "Remote Control was turned off by your organization's policy"
-</h3>
+### "Remote Control was turned off by your organization's policy"
 
 Your organization's policy stopped allowing Remote Control while a session was connected, so Claude Code disconnected it. What happens to the session depends on how you started Remote Control:
 
@@ -470,9 +449,7 @@ You can still find an archived session by [filtering for archived sessions](http
 
 Remote Control doesn't reconnect on its own. To turn it back on after your organization allows it again, run `/remote-control` in the session or `claude remote-control` in your shell. Either command fails with [`Remote Control is disabled by your organization's policy`](#remote-control-is-disabled-by-your-organizations-policy) until Claude Code on this machine has fetched the changed policy. An open session fetches it about once an hour. To find out what is blocking Remote Control, match the full text the command prints against that entry.
 
-<h3 id="couldnt-verify-your-organizations-policy-for-remote-control">
-  "Couldn't verify your organization's policy for remote control"
-</h3>
+### "Couldn't verify your organization's policy for remote control"
 
 Claude Code couldn't fetch your organization's policy and has no saved copy on this machine to use instead, so it keeps Remote Control off until it can confirm that your organization allows it. This usually happens when you start Claude Code offline or before a VPN connects, or when a proxy interferes with the request. On a slow connection it can also appear while the first request is still in flight.
 
@@ -498,17 +475,13 @@ Common causes:
 * Network or proxy issue: a firewall or proxy may be blocking the outbound HTTPS request. Remote Control requires access to the Anthropic API on port 443.
 * Session creation failed: if you also see `Session creation failed — see debug log`, the failure happened earlier in setup. Check that your subscription is active.
 
-<h3 id="couldnt-reconnect-to-your-remote-control-session">
-  "Couldn't reconnect to your Remote Control session"
-</h3>
+### "Couldn't reconnect to your Remote Control session"
 
 When you resume a conversation with `claude --resume` or `claude --continue`, Claude Code reconnects to the Remote Control session recorded in that conversation. This message means the reconnection failed for a reason that may be temporary, such as a network interruption or a server error, so Claude Code can't confirm whether the remote session still exists.
 
 Run `/remote-control` to retry the connection, or start a new session with `claude --remote-control` to create a new Remote Control session. Your local session keeps running without Remote Control in the meantime.
 
-<h3 id="previous-session-is-unavailable">
-  "Previous session is unavailable — run /remote-control to start a new one"
-</h3>
+### "Previous session is unavailable — run /remote-control to start a new one"
 
 Claude Code couldn't bring back the previous Remote Control session and stopped instead of starting a new one on its own. You can see this message after you resume a conversation with `claude --resume` or `claude --continue`, or after Claude Code [reconnects on its own following a disconnect](https://code.claude.com/docs/en/errors#remote-control-couldnt-refresh-your-login).
 

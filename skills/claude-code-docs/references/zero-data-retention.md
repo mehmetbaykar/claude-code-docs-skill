@@ -10,7 +10,9 @@ path: /docs/en/zero-data-retention
 
 Zero Data Retention (ZDR) for Claude Code is available to qualified accounts on Claude for Enterprise. When ZDR is enabled, prompts and model responses generated during Claude Code sessions are processed in real time and not stored by Anthropic after the response is returned, except where needed to comply with law or combat misuse.
 
-ZDR is not included in the standard Claude for Enterprise plan and cannot be enabled from your admin settings. It is available to qualified accounts and requires separate enablement by Anthropic. If your organization requires ZDR, [contact sales](https://www.anthropic.com/contact-sales?utm_source=claude_code\&utm_medium=docs\&utm_content=zero_data_retention_request) or your Anthropic account team to confirm eligibility.
+> [!NOTE]
+>
+> ZDR is not included in the standard Claude for Enterprise plan and cannot be enabled from your admin settings. It is available to qualified accounts and requires separate enablement by Anthropic. If your organization requires ZDR, [contact sales](https://www.anthropic.com/contact-sales?utm_source=claude_code\&utm_medium=docs\&utm_content=zero_data_retention_request) or your Anthropic account team to confirm eligibility.
 
 Claude for Enterprise organizations that have enabled HIPAA can bring the Claude Code CLI and the Code tab in Claude Desktop under their Business Associate Agreement (BAA) without ZDR once the HIPAA configuration is applied to Claude Code (local mode) and Cowork (local mode). See [Set up Claude Code (local mode) for a HIPAA-ready organization](https://code.claude.com/docs/en/hipaa-setup). Organizations without the HIPAA configuration still need ZDR for BAA coverage of Claude Code. See the [Implementation Guide](https://trust.anthropic.com/resources?s=l1wrssd9hsbi4gak0tp5a6\&name=%5Banthropic%5D-hipaa-ready-offering-implementation-guide) for a list of Eligible Services.
 
@@ -27,7 +29,9 @@ ZDR for Claude Code on Claude for Enterprise applies only to Anthropic's direct 
 
 ZDR covers Claude Code inference on Claude for Enterprise.
 
-ZDR is enabled on a per-organization basis. Each new organization requires ZDR to be enabled separately by your Anthropic account team. ZDR does not automatically apply to new organizations created under the same account. Contact your account team to enable ZDR for any new organizations.
+> [!WARNING]
+>
+> ZDR is enabled on a per-organization basis. Each new organization requires ZDR to be enabled separately by your Anthropic account team. ZDR does not automatically apply to new organizations created under the same account. Contact your account team to enable ZDR for any new organizations.
 
 ### Route Claude Code traffic to your ZDR organization
 

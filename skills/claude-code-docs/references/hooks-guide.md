@@ -14,68 +14,64 @@ For decisions that require judgment rather than deterministic rules, you can als
 
 For other ways to extend Claude Code, see [skills](https://code.claude.com/docs/en/skills) for giving Claude additional instructions and executable commands, [subagents](https://code.claude.com/docs/en/sub-agents) for running tasks in isolated contexts, and [plugins](https://code.claude.com/docs/en/plugins/overview) for packaging extensions to share across projects.
 
-This guide covers common use cases and how to get started. For full event schemas, JSON input/output formats, and advanced features like async hooks and MCP tool hooks, see the [Hooks reference](https://code.claude.com/docs/en/hooks).
+> [!TIP]
+>
+> This guide covers common use cases and how to get started. For full event schemas, JSON input/output formats, and advanced features like async hooks and MCP tool hooks, see the [Hooks reference](https://code.claude.com/docs/en/hooks).
 
 ## Set up your first hook
 
 To create a hook, add a `hooks` block to a [settings file](#configure-hook-location). This walkthrough creates a desktop notification hook, so you get alerted whenever Claude is waiting for your input instead of watching the terminal.
 
-
-**Add the hook to your settings**
+**1. Add the hook to your settings**
 
 Open `~/.claude/settings.json` and add a `Notification` hook. If the file doesn't exist, create it. The example below uses `osascript` for macOS; see [Get notified when Claude needs input](#get-notified-when-claude-needs-input) for Linux and Windows commands.
 ```json
-    {
-      "hooks": {
-        "Notification": [
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
           {
-            "matcher": "",
-            "hooks": [
-              {
-                "type": "command",
-                "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'"
-              }
-            ]
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'"
           }
         ]
       }
-    }
+    ]
+  }
+}
 ```
 
 If your settings file already has a `hooks` key, add `Notification` as a sibling of the existing event keys rather than replacing the whole object. Each event name is a key inside the single `hooks` object:
 ```json
-    {
-      "hooks": {
-        "PostToolUse": [
-          {
-            "matcher": "Edit|Write",
-            "hooks": [{ "type": "command", "command": "jq -r '.tool_input.file_path' | xargs npx prettier --write" }]
-          }
-        ],
-        "Notification": [
-          {
-            "matcher": "",
-            "hooks": [{ "type": "command", "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'" }]
-          }
-        ]
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [{ "type": "command", "command": "jq -r '.tool_input.file_path' | xargs npx prettier --write" }]
       }
-    }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [{ "type": "command", "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'" }]
+      }
+    ]
+  }
+}
 ```
 
 You can also ask Claude to write the hook for you by describing what you want in the CLI.
 
-
-
-**Verify the configuration**
+**2. Verify the configuration**
 
 Type `/hooks` at the Claude Code prompt to open the hooks browser. Your new hook appears in the list under `Notification`.
 
-
-
-**Test the hook**
+**3. Test the hook**
 
 Press `Esc` to return to the CLI. Press `Shift+Tab` until the status bar shows `⏸ manual mode on`, ask Claude to do something that requires permission, then switch away from the terminal. You should receive a desktop notification.
-
 
 ## What you can automate
 
@@ -93,100 +89,90 @@ This hook uses the `Notification` event, which Claude Code fires when Claude is 
 
 Each tab below uses the platform's native notification command. Add this to `~/.claude/settings.json`:
 
-
 **macOS**
 ```json
-    {
-      "hooks": {
-        "Notification": [
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
           {
-            "matcher": "",
-            "hooks": [
-              {
-                "type": "command",
-                "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'"
-              }
-            ]
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'"
           }
         ]
       }
-    }
+    ]
+  }
+}
 ```
 
-
-**If no notification appears**
-
-`osascript` routes notifications through the built-in Script Editor app. If Script Editor doesn't have notification permission, the command fails silently, and macOS won't prompt you to grant it.
-
-Run this in Terminal once to make Script Editor appear in your notification settings:
-```bash
-      osascript -e 'display notification "test"'
-```
-
-Nothing will appear yet. Open **System Settings > Notifications**, find **Script Editor** in the list, and turn on **Allow Notifications**. Run the command again to confirm the test notification appears.
-
-
-
+> **If no notification appears**
+>
+> `osascript` routes notifications through the built-in Script Editor app. If Script Editor doesn't have notification permission, the command fails silently, and macOS won't prompt you to grant it.
+>
+> Run this in Terminal once to make Script Editor appear in your notification settings:
+>
+> ```bash theme={null}
+> osascript -e 'display notification "test"'
+> ```
+>
+> Nothing will appear yet. Open **System Settings > Notifications**, find **Script Editor** in the list, and turn on **Allow Notifications**. Run the command again to confirm the test notification appears.
 
 **Linux**
 ```json
-    {
-      "hooks": {
-        "Notification": [
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
           {
-            "matcher": "",
-            "hooks": [
-              {
-                "type": "command",
-                "command": "notify-send 'Claude Code' 'Claude Code needs your attention'"
-              }
-            ]
+            "type": "command",
+            "command": "notify-send 'Claude Code' 'Claude Code needs your attention'"
           }
         ]
       }
-    }
+    ]
+  }
+}
 ```
 
-
-**If no notification appears**
-
-`notify-send` needs a desktop notification daemon, which headless servers, SSH sessions, and most containers don't have. Test the command directly first:
-```bash
-      notify-send 'Claude Code' 'test'
-```
-
-If the command isn't found, install the `libnotify-bin` package on Debian and Ubuntu, or your distribution's equivalent.
-
-
-
+> **If no notification appears**
+>
+> `notify-send` needs a desktop notification daemon, which headless servers, SSH sessions, and most containers don't have. Test the command directly first:
+>
+> ```bash theme={null}
+> notify-send 'Claude Code' 'test'
+> ```
+>
+> If the command isn't found, install the `libnotify-bin` package on Debian and Ubuntu, or your distribution's equivalent.
 
 **Windows (PowerShell)**
 ```json
-    {
-      "hooks": {
-        "Notification": [
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
           {
-            "matcher": "",
-            "hooks": [
-              {
-                "type": "command",
-                "command": "powershell.exe -Command \"[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms'); [System.Windows.Forms.MessageBox]::Show('Claude Code needs your attention', 'Claude Code')\""
-              }
-            ]
+            "type": "command",
+            "command": "powershell.exe -Command \"[System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms'); [System.Windows.Forms.MessageBox]::Show('Claude Code needs your attention', 'Claude Code')\""
           }
         ]
       }
-    }
+    ]
+  }
+}
 ```
 
-
-**If no dialog appears**
-
-This command opens a dialog box rather than a notification in the corner of your screen, so the dialog can open behind your terminal window. Test the command directly in PowerShell first.
-
-If you run Claude Code inside WSL, `powershell.exe` must be available on your `PATH` through Windows interop.
-
-
+> **If no dialog appears**
+>
+> This command opens a dialog box rather than a notification in the corner of your screen, so the dialog can open behind your terminal window. Test the command directly in PowerShell first.
+>
+> If you run Claude Code inside WSL, `powershell.exe` must be available on your `PATH` through Windows interop.
 
 The empty `matcher` fires on all notification types. To fire only on specific events, set it to one of these values:
 
@@ -244,7 +230,9 @@ When the hook succeeds, Claude Code shows nothing in the conversation. To confir
 
 To reformat a specific file however it changes, including when a `Bash` command rewrites it, use a [FileChanged](https://code.claude.com/docs/en/hooks#filechanged) hook instead.
 
-The Bash examples on this page use `jq` for JSON parsing. Install it with `brew install jq` on macOS, `apt-get install jq` on Debian and Ubuntu, or see [`jq` downloads](https://jqlang.org/download/).
+> [!NOTE]
+>
+> The Bash examples on this page use `jq` for JSON parsing. Install it with `brew install jq` on macOS, `apt-get install jq` on Debian and Ubuntu, or see [`jq` downloads](https://jqlang.org/download/).
 
 ### Block edits to protected files
 
@@ -252,70 +240,62 @@ Prevent Claude from modifying sensitive files like `.env`, `package-lock.json`, 
 
 This example uses a separate script file that the hook calls. The script checks the target file path against a list of protected patterns and exits with code 2 to block the edit.
 
-
-**Create the hook script**
+**1. Create the hook script**
 
 Save this to `.claude/hooks/protect-files.sh`:
 ```bash
-    #!/bin/bash
-    # protect-files.sh
+#!/bin/bash
+# protect-files.sh
 
-    INPUT=$(cat)
-    FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+INPUT=$(cat)
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
 
-    # Normalize Windows backslash separators so the patterns below match
-    FILE_PATH="${FILE_PATH//\\//}"
+# Normalize Windows backslash separators so the patterns below match
+FILE_PATH="${FILE_PATH//\\//}"
 
-    PROTECTED_PATTERNS=(".env" "package-lock.json" ".git/")
+PROTECTED_PATTERNS=(".env" "package-lock.json" ".git/")
 
-    for pattern in "${PROTECTED_PATTERNS[@]}"; do
-      if [[ "$FILE_PATH" == *"$pattern"* ]]; then
-        echo "Blocked: $FILE_PATH matches protected pattern '$pattern'" >&2
-        exit 2
-      fi
-    done
+for pattern in "${PROTECTED_PATTERNS[@]}"; do
+  if [[ "$FILE_PATH" == *"$pattern"* ]]; then
+    echo "Blocked: $FILE_PATH matches protected pattern '$pattern'" >&2
+    exit 2
+  fi
+done
 
-    exit 0
+exit 0
 ```
 
-
-
-**Make the script executable on macOS and Linux**
+**2. Make the script executable on macOS and Linux**
 
 Hook scripts must be executable for Claude Code to run them:
 ```bash
-    chmod +x .claude/hooks/protect-files.sh
+chmod +x .claude/hooks/protect-files.sh
 ```
 
-
-
-**Register the hook**
+**3. Register the hook**
 
 Add a `PreToolUse` hook to `.claude/settings.json` that runs the script before any `Edit` or `Write` tool call:
 ```json
-    {
-      "hooks": {
-        "PreToolUse": [
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
           {
-            "matcher": "Edit|Write",
-            "hooks": [
-              {
-                "type": "command",
-                "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/protect-files.sh"
-              }
-            ]
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/protect-files.sh"
           }
         ]
       }
-    }
+    ]
+  }
+}
 ```
 
-
-
-**Test the hook**
+**4. Test the hook**
 
 Ask Claude to add a comment to your `.env` file. Claude Code blocks the edit before it runs and passes the script's `Blocked:` message to Claude as feedback.
-
 
 ### Re-inject context after compaction
 
@@ -453,9 +433,11 @@ When the hook approves, Claude Code exits plan mode and restores whatever permis
 
 To set a specific permission mode instead, your hook's output can include an `updatedPermissions` array with a `setMode` entry. The `mode` value is any permission mode like `default`, `acceptEdits`, or `bypassPermissions`, and `destination: "session"` applies it for the current session only.
 
-`bypassPermissions` only applies if you started the session with bypass mode already available: `--dangerously-skip-permissions`, `--permission-mode bypassPermissions`, `--allow-dangerously-skip-permissions`, or `permissions.defaultMode: "bypassPermissions"` in [user, `--settings`, or managed settings](https://code.claude.com/docs/en/settings-reference#permissions-defaultmode). It doesn't apply if bypass mode is disabled by [`permissions.disableBypassPermissionsMode`](https://code.claude.com/docs/en/permissions#managed-settings), or if you started the session in [restricted mode](https://code.claude.com/docs/en/cli-reference#cli-flags).
-
-Claude Code never saves it as `defaultMode`.
+> [!NOTE]
+>
+> `bypassPermissions` only applies if you started the session with bypass mode already available: `--dangerously-skip-permissions`, `--permission-mode bypassPermissions`, `--allow-dangerously-skip-permissions`, or `permissions.defaultMode: "bypassPermissions"` in [user, `--settings`, or managed settings](https://code.claude.com/docs/en/settings-reference#permissions-defaultmode). It doesn't apply if bypass mode is disabled by [`permissions.disableBypassPermissionsMode`](https://code.claude.com/docs/en/permissions#managed-settings), or if you started the session in [restricted mode](https://code.claude.com/docs/en/cli-reference#cli-flags).
+>
+> Claude Code never saves it as `defaultMode`.
 
 To switch the session to `acceptEdits`, your hook writes this JSON to stdout:
 ```json
@@ -608,7 +590,9 @@ With an exit code besides 0 and 2 and no valid JSON output, the action proceeds 
 
 Exit codes only let you block or stay silent. For more control, exit 0 and print a JSON object to stdout instead.
 
-Use exit 2 to block with a stderr message, or exit 0 with JSON for structured control. Choose one approach per hook. For what happens when you mix them, see [Exit code output](https://code.claude.com/docs/en/hooks#exit-code-output).
+> [!NOTE]
+>
+> Use exit 2 to block with a stderr message, or exit 0 with JSON for structured control. Choose one approach per hook. For what happens when you mix them, see [Exit code output](https://code.claude.com/docs/en/hooks#exit-code-output).
 
 For example, a `PreToolUse` hook can deny a tool call and tell Claude why, or escalate it to the user for approval:
 ```json
@@ -671,7 +655,9 @@ Without a matcher, a hook fires on every occurrence of its event. Matchers let y
 
 The `"Edit|Write"` matcher fires only when Claude uses the `Edit` or `Write` tool, not when it uses `Bash`, `Read`, or any other tool. A comma separates alternatives the same way, so `"Edit, Write"` is equivalent. See [Matcher patterns](https://code.claude.com/docs/en/hooks#matcher-patterns) for how plain names and regular expressions are evaluated.
 
-Claude can also create or modify files by running shell commands. If your hook must see every file change, such as for compliance scanning or audit logging, add a [`Stop`](https://code.claude.com/docs/en/hooks#stop) hook that scans the working tree once per turn. For per-call coverage instead, also match `Bash|PowerShell` and have your script list modified and untracked files with `git status --porcelain`. The [PowerShell hook input section](https://code.claude.com/docs/en/hooks#powershell) explains why matching `Bash` alone is not enough. To run a hook when a specific file changes on disk, whatever wrote it, use a [FileChanged](https://code.claude.com/docs/en/hooks#filechanged) hook.
+> [!NOTE]
+>
+> Claude can also create or modify files by running shell commands. If your hook must see every file change, such as for compliance scanning or audit logging, add a [`Stop`](https://code.claude.com/docs/en/hooks#stop) hook that scans the working tree once per turn. For per-call coverage instead, also match `Bash|PowerShell` and have your script list modified and untracked files with `git status --porcelain`. The [PowerShell hook input section](https://code.claude.com/docs/en/hooks#powershell) explains why matching `Bash` alone is not enough. To run a hook when a specific file changes on disk, whatever wrote it, use a [FileChanged](https://code.claude.com/docs/en/hooks#filechanged) hook.
 
 Each event type matches on a specific field:
 
@@ -698,29 +684,26 @@ Each event type matches on a specific field:
 
 The tabs below show a few more matchers on different event types.
 
-
 **Log every Bash command**
 
 Match only `Bash` tool calls and log each command to a file. The `PostToolUse` event fires after the command completes, so `tool_input.command` contains what ran. The hook receives the event data as JSON on stdin, and `jq -r '.tool_input.command'` extracts only the command string, which `>>` appends to the log file:
 ```json
-    {
-      "hooks": {
-        "PostToolUse": [
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
           {
-            "matcher": "Bash",
-            "hooks": [
-              {
-                "type": "command",
-                "command": "jq -r '.tool_input.command' >> ~/.claude/command-log.txt"
-              }
-            ]
+            "type": "command",
+            "command": "jq -r '.tool_input.command' >> ~/.claude/command-log.txt"
           }
         ]
       }
-    }
+    ]
+  }
+}
 ```
-
-
 
 **Match MCP tools**
 
@@ -728,46 +711,43 @@ MCP tools use a different naming convention than built-in tools: `mcp__<server>_
 
 The command below extracts the tool name from the hook's JSON input with `jq` and writes it to stderr. Writing to stderr keeps stdout clean for JSON output and sends the message to the [debug log](https://code.claude.com/docs/en/hooks#debug-hooks):
 ```json
-    {
-      "hooks": {
-        "PreToolUse": [
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "mcp__github__.*",
+        "hooks": [
           {
-            "matcher": "mcp__github__.*",
-            "hooks": [
-              {
-                "type": "command",
-                "command": "echo \"GitHub tool called: $(jq -r '.tool_name')\" >&2"
-              }
-            ]
+            "type": "command",
+            "command": "echo \"GitHub tool called: $(jq -r '.tool_name')\" >&2"
           }
         ]
       }
-    }
+    ]
+  }
+}
 ```
-
-
 
 **Clean up on session end**
 
 The `SessionEnd` event supports matchers on the reason the session ended. This hook only fires on the `clear` reason, set when you run `/clear`, not on normal exits:
 ```json
-    {
-      "hooks": {
-        "SessionEnd": [
+{
+  "hooks": {
+    "SessionEnd": [
+      {
+        "matcher": "clear",
+        "hooks": [
           {
-            "matcher": "clear",
-            "hooks": [
-              {
-                "type": "command",
-                "command": "rm -f /tmp/claude-scratch-*.txt"
-              }
-            ]
+            "type": "command",
+            "command": "rm -f /tmp/claude-scratch-*.txt"
           }
         ]
       }
-    }
+    ]
+  }
+}
 ```
-
 
 #### Filter by tool name and arguments with the `if` field
 
@@ -864,7 +844,9 @@ For full configuration options, see [Prompt-based hooks](https://code.claude.com
 
 ## Agent-based hooks
 
-Agent hooks are experimental. Behavior and configuration may change in future releases. For production workflows, prefer [command hooks](https://code.claude.com/docs/en/hooks#command-hook-fields).
+> [!WARNING]
+>
+> Agent hooks are experimental. Behavior and configuration may change in future releases. For production workflows, prefer [command hooks](https://code.claude.com/docs/en/hooks#command-hook-fields).
 
 When verification requires inspecting files or running commands, use `type: "agent"` hooks. Unlike prompt hooks, which make a single LLM call, agent hooks spawn a subagent that can read files, search code, and use other tools to verify conditions before returning a decision.
 
@@ -960,9 +942,11 @@ With a hook in a settings file or a plugin's `hooks/hooks.json` you can't loosen
 In [plan mode](https://code.claude.com/docs/en/permissions#hook-approvals-in-plan-mode), if your `PreToolUse` hook returns `"allow"` for a file edit, you get the same prompt, block, or approval the edit would get with no hook. To lift this limit on hook approvals, [approve the plan](https://code.claude.com/docs/en/permission-modes#review-and-approve-a-plan) or switch to another permission mode.
 * **`"deny"` in every permission mode**: a hook that returns `permissionDecision: "deny"` blocks the tool even in `bypassPermissions` mode or with `--dangerously-skip-permissions`. `PreToolUse` hooks fire before any permission-mode check, in every [permission mode](https://code.claude.com/docs/en/permission-modes), including `dontAsk`. This lets you enforce policy that users can't bypass by changing their permission mode.
 
-If your machine has no [managed settings](https://code.claude.com/docs/en/settings#check-what-your-organization-enforces) and your session doesn't use [`/login` credentials](https://code.claude.com/docs/en/authentication#authentication-precedence) for a Team or Enterprise plan, a [mod](https://code.claude.com/docs/en/plugins/mods/overview) can approve a call your `PreToolUse` hook blocked. A session that runs on an API key or a long-lived [`CLAUDE_CODE_OAUTH_TOKEN`](https://code.claude.com/docs/en/authentication#generate-a-long-lived-token) instead isn't using that login, even when that login is stored.
-
-In plan mode, a mod can approve such a blocked call only when it's read-only, so not a file edit. For the cases where a mod's approval doesn't get past your rules and hooks, see [Extend permissions with hooks](https://code.claude.com/docs/en/permissions#precedence-among-rules-hooks-and-mods).
+> [!NOTE]
+>
+> If your machine has no [managed settings](https://code.claude.com/docs/en/settings#check-what-your-organization-enforces) and your session doesn't use [`/login` credentials](https://code.claude.com/docs/en/authentication#authentication-precedence) for a Team or Enterprise plan, a [mod](https://code.claude.com/docs/en/plugins/mods/overview) can approve a call your `PreToolUse` hook blocked. A session that runs on an API key or a long-lived [`CLAUDE_CODE_OAUTH_TOKEN`](https://code.claude.com/docs/en/authentication#generate-a-long-lived-token) instead isn't using that login, even when that login is stored.
+>
+> In plan mode, a mod can approve such a blocked call only when it's read-only, so not a file edit. For the cases where a mod's approval doesn't get past your rules and hooks, see [Extend permissions with hooks](https://code.claude.com/docs/en/permissions#precedence-among-rules-hooks-and-mods).
 
 ### Hook not firing
 

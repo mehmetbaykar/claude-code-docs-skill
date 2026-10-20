@@ -14,11 +14,13 @@ Use this page to add a component to a plugin that already loads.
 
 After you add a component, run `/reload-plugins` in a running session or start a new one so Claude Code loads it. To check the component's file before loading it, run [`claude plugin validate .`](https://code.claude.com/docs/en/plugins/cli-reference#plugin-validate) in your shell from the plugin directory.
 
-These cases are covered on other pages:
-
-* **Building your first plugin**: start with [Create a plugin](https://code.claude.com/docs/en/plugins/create)
-* **Installing someone else's plugin**: see [Install plugins](https://code.claude.com/docs/en/plugins/install)
-* **Your plugin's users are on claude.ai or in Cowork**: a different set of components loads there. See [Plugin structure and testing](https://claude.com/docs/plugins/build) and the [component support table](https://claude.com/docs/plugins/platform-support#compare-component-support-by-app)
+> [!NOTE]
+>
+> These cases are covered on other pages:
+>
+> * **Building your first plugin**: start with [Create a plugin](https://code.claude.com/docs/en/plugins/create)
+> * **Installing someone else's plugin**: see [Install plugins](https://code.claude.com/docs/en/plugins/install)
+> * **Your plugin's users are on claude.ai or in Cowork**: a different set of components loads there. See [Plugin structure and testing](https://claude.com/docs/plugins/build) and the [component support table](https://claude.com/docs/plugins/platform-support#compare-component-support-by-app)
 
 ## Explore the plugin directory
 
@@ -36,159 +38,169 @@ The explorer shows an example plugin, `my-plugin`, that has one of every kind of
 
 Each file is the smallest valid example of its format, there to show the shape rather than to be useful: a real skill or agent carries full instructions and often supporting files, and a real hook or monitor does real work. The sections after the explorer use the same files as their examples and link to fuller ones. Select a file or folder to read what it's for, see what goes in it, and find the section that covers it.
 
+What goes in a plugin
+
+This example plugin, `my-plugin`, has one of every kind of component, each in its default location. Select a file or folder to read what it’s for and see what goes in it.
+
+Plugin directory
+
+my-plugin/
+
+Selected piece
+
 The [manifest](https://code.claude.com/docs/en/plugins/manifest-reference) is the `plugin.json` file in a plugin's `.claude-plugin/` directory. It contains the plugin's metadata and the `userConfig` values that Claude Code prompts the user for. Claude Code loads a plugin without one. Inside the file, only `name` is required. In this one, `description` is the text users see for the plugin in `/plugin`, and `version` keeps users on that version until you change it:
 ```json
-    {
-      "name": "my-plugin",
-      "version": "1.0.0",
-      "description": "Review, formatting, and database tools for this team"
-    }
+{
+  "name": "my-plugin",
+  "version": "1.0.0",
+  "description": "Review, formatting, and database tools for this team"
+}
 ```
 
 A [skill](https://code.claude.com/docs/en/skills) is a `SKILL.md` file. Save each skill in its own directory under `skills/`. Claude reads every skill's `description`, and when what the user asks for matches it, such as asking Claude to review a pull request here, Claude loads the skill's instructions and follows them. The user can also run it directly as `/my-plugin:review`:
 ```markdown
-    ---
-    description: Reviews a pull request for style and test coverage. Use when asked to review code.
-    ---
+---
+description: Reviews a pull request for style and test coverage. Use when asked to review code.
+---
 
-    Review the changed files. Report style problems first, then missing tests.
+Review the changed files. Report style problems first, then missing tests.
 ```
 
 A command is a single Markdown file the user runs by name. Commands are the older format: a skill runs by name the same way and can also carry supporting files in its own directory, so write new ones as skills and keep `commands/` for files you already have. This file becomes `/my-plugin:about` and takes the same frontmatter as a skill:
 ```markdown
-    ---
-    description: Summarize the repository
-    ---
+---
+description: Summarize the repository
+---
 
-    Summarize what this repository does in three sentences.
+Summarize what this repository does in three sentences.
 ```
 
 A [subagent](https://code.claude.com/docs/en/sub-agents) is a separate assistant, with its own instructions and its own context window, that Claude can delegate a task to and get a result back from. Each Markdown file under `agents/` defines one: the frontmatter names it and says when to use it, and the body is its system prompt. This one is named `my-plugin:security-reviewer`, and the user can invoke it with `@agent-my-plugin:security-reviewer`:
 ```markdown
-    ---
-    name: security-reviewer
-    description: Reviews code changes for security issues. Use after edits to authentication or input handling.
-    model: sonnet
-    ---
+---
+name: security-reviewer
+description: Reviews code changes for security issues. Use after edits to authentication or input handling.
+model: sonnet
+---
 
-    You are a security reviewer. Read the changed files and report injection, authentication, and secrets-handling risks.
+You are a security reviewer. Read the changed files and report injection, authentication, and secrets-handling risks.
 ```
 
 A [hook](https://code.claude.com/docs/en/hooks-guide) runs something automatically at a point in Claude Code's lifecycle, such as after every file edit: a shell command, an HTTP request, an MCP tool call, a prompt to a model, or a subagent. Save the plugin's hooks in `hooks/hooks.json` at the plugin root. This one runs the plugin's `scripts/format.sh` after Claude writes or edits a file:
 ```json
-    {
-      "hooks": {
-        "PostToolUse": [
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
           {
-            "matcher": "Write|Edit",
-            "hooks": [
-              {
-                "type": "command",
-                "command": "\"${CLAUDE_PLUGIN_ROOT}/scripts/format.sh\""
-              }
-            ]
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/scripts/format.sh\""
           }
         ]
       }
-    }
+    ]
+  }
+}
 ```
 
 A monitor is a shell command that Claude Code starts in the background when the session starts and keeps running until it ends. What it prints reaches Claude as notifications. A `when` field can instead start it the first time a named skill runs. This one tails an error log:
 ```json
-    [
-      {
-        "name": "error-log",
-        "command": "tail -F ./logs/error.log",
-        "description": "Application error log"
-      }
-    ]
+[
+  {
+    "name": "error-log",
+    "command": "tail -F ./logs/error.log",
+    "description": "Application error log"
+  }
+]
 ```
 
 A plugin can include [output styles](https://code.claude.com/docs/en/output-styles), which change how Claude formats and phrases its replies. Save each output style as `output-styles/<name>.md`. This one appears in `/output-style` as `my-plugin:terse`:
 ```markdown
-    ---
-    name: terse
-    description: Answer in as few words as possible
-    keep-coding-instructions: true
-    ---
+---
+name: terse
+description: Answer in as few words as possible
+keep-coding-instructions: true
+---
 
-    Keep every reply short. Skip preambles and summaries.
+Keep every reply short. Skip preambles and summaries.
 ```
 
 A plugin can include [color themes](https://code.claude.com/docs/en/terminal-config#create-a-custom-theme) for the Claude Code interface. Save each theme as `themes/<slug>.json`. This one appears in `/theme` as `Dracula`, marked as from `my-plugin`:
 ```json
-    {
-      "name": "Dracula",
-      "base": "dark",
-      "overrides": {
-        "claude": "#bd93f9",
-        "error": "#ff5555"
-      }
-    }
+{
+  "name": "Dracula",
+  "base": "dark",
+  "overrides": {
+    "claude": "#bd93f9",
+    "error": "#ff5555"
+  }
+}
 ```
 
 The `workflows/` folder holds [workflow](https://code.claude.com/docs/en/workflows) `.js` files: a `meta` block, then a script body that orchestrates several subagents. This one runs as `/my-plugin:audit-routes`:
 ```javascript
-    export const meta = {
-      name: 'audit-routes',
-      description: 'Audit every route handler for missing auth checks',
-    }
+export const meta = {
+  name: 'audit-routes',
+  description: 'Audit every route handler for missing auth checks',
+}
 
-    const found = await agent('List every .ts file under src/routes/.', {
-      schema: { type: 'object', required: ['files'], properties: { files: { type: 'array', items: { type: 'string' } } } },
-    })
+const found = await agent('List every .ts file under src/routes/.', {
+  schema: { type: 'object', required: ['files'], properties: { files: { type: 'array', items: { type: 'string' } } } },
+})
 
-    const audits = await pipeline(found.files, file =>
-      agent(`Audit ${file} for missing authentication checks.`, { label: file }),
-    )
+const audits = await pipeline(found.files, file =>
+  agent(`Audit ${file} for missing authentication checks.`, { label: file }),
+)
 
-    return audits.filter(Boolean)
+return audits.filter(Boolean)
 ```
 
 `bin/` is how a plugin ships a command-line tool. While the plugin is enabled, Claude Code puts this folder on the `PATH` of the shell it runs commands in, so Claude, or a skill's instructions, can run the tool by name without the user installing anything. With this [executable](#executables) in place, `hello-plugin` is a command Claude can run:
 ```bash
-    #!/bin/bash
-    echo "hello from my-plugin"
+#!/bin/bash
+echo "hello from my-plugin"
 ```
 
 The hook in `hooks/hooks.json` runs a script, and this folder is where the example keeps it. The name `scripts/` is a convention, not something Claude Code looks for: the hook points at the file by its path, `${CLAUDE_PLUGIN_ROOT}/scripts/format.sh`. A formatter script might look like this:
 ```bash
-    #!/bin/bash
-    npx prettier --write .
+#!/bin/bash
+npx prettier --write .
 ```
 
 A `settings.json` at the plugin root holds [settings](https://code.claude.com/docs/en/settings-reference) that apply while the plugin is enabled, so a plugin can change how the session behaves and not only add components. Only two keys take effect from a plugin, [`agent`](https://code.claude.com/docs/en/settings-reference#agent) and [`subagentStatusLine`](https://code.claude.com/docs/en/settings-reference#subagentstatusline); every other key is dropped. See [Default settings](#default-settings).
 
 This one sets `agent`, which runs the session's main thread as the plugin's own `security-reviewer` agent, so that agent's system prompt, tool restrictions, and model apply to the whole session:
 ```json
-    {
-      "agent": "security-reviewer"
-    }
+{
+  "agent": "security-reviewer"
+}
 ```
 
 An [MCP server](https://code.claude.com/docs/en/mcp) gives Claude tools from an external system. Declare it in `.mcp.json` at the plugin root. This one starts a local server from a script inside the plugin, and appears in `/mcp` as `plugin:my-plugin:db`:
 ```json
-    {
-      "mcpServers": {
-        "db": {
-          "command": "node",
-          "args": ["${CLAUDE_PLUGIN_ROOT}/server.js"]
-        }
-      }
+{
+  "mcpServers": {
+    "db": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/server.js"]
     }
+  }
+}
 ```
 
 An LSP server gives Claude [diagnostics and code navigation](https://code.claude.com/docs/en/plugins/code-intelligence) for a language. Declare the server in `.lsp.json` at the plugin root. This one connects the Go language server for `.go` files:
 ```json
-    {
-      "gopls": {
-        "command": "gopls",
-        "args": ["serve"],
-        "extensionToLanguage": {
-          ".go": "go"
-        }
-      }
+{
+  "gopls": {
+    "command": "gopls",
+    "args": ["serve"],
+    "extensionToLanguage": {
+      ".go": "go"
     }
+  }
+}
 ```
 
 ## Add each kind of component
@@ -236,7 +248,9 @@ For frontmatter fields and supporting files, see [Skills](https://code.claude.co
 
 A command is a single Markdown file the user runs by name, such as `/my-plugin:about`.
 
-Commands are the older format, and [skills](#skills) supersede them for new work. A skill runs by name the same way, and it can also carry supporting files in its directory. Keep `commands/` for files you're moving over from `.claude/commands/`.
+> [!NOTE]
+>
+> Commands are the older format, and [skills](#skills) supersede them for new work. A skill runs by name the same way, and it can also carry supporting files in its directory. Keep `commands/` for files you're moving over from `.claude/commands/`.
 
 Save a command at `commands/<file>.md` and it becomes `/<plugin>:<file>`. A subdirectory adds a segment, so `commands/db/migrate.md` is `/my-plugin:db:migrate`.
 
@@ -436,7 +450,7 @@ Claude Code disconnects a server that exceeds either limit or writes non-protoco
 
 ### Executables
 
-Files in `bin/` at the plugin root are on the `PATH` of the Bash tool's shell while the plugin is enabled, so Claude can run them as bare commands. Add an executable script:
+Files in `bin/` at the plugin root are on the `PATH` of the Bash tool's shell while the plugin is enabled, so Claude can run them as bare commands. A command that Claude runs with the [PowerShell tool](https://code.claude.com/docs/en/tools-reference#powershell-tool) outside the [sandbox](https://code.claude.com/docs/en/sandboxing) finds them on its `PATH` too, and a sandboxed PowerShell command doesn't. Add an executable script:
 ```bash bin/hello-plugin
 #!/bin/bash
 echo "hello from my-plugin"
@@ -552,9 +566,7 @@ The `experimental.monitors` manifest key takes the same array inline or a path t
 
 For the `when` trigger and the other fields, see [`monitors`](https://code.claude.com/docs/en/plugins/manifest-reference#monitors).
 
-<h2 id="user-configuration">
-Ask the user for configuration values
-</h2>
+## Ask the user for configuration values
 
 Declare the values your plugin needs from the user in the `userConfig` manifest key, so users don't edit `settings.json` themselves. Each option appears in a dialog with its `title` as the label and its `description` beneath it.
 
@@ -598,9 +610,7 @@ When options remain unset, `claude plugin install` prints a `userConfig options 
 
 For the option fields, where each value is stored, how a component references a saved value, and which fields reject `${user_config.*}`, see [User configuration](https://code.claude.com/docs/en/plugins/manifest-reference#user-configuration).
 
-<h2 id="path-variables-and-persistent-data">
-Reference plugin paths and store data
-</h2>
+## Reference plugin paths and store data
 
 You don't know where your plugin will be installed, so refer to its files and data through these variables rather than fixed paths. They're substituted in skill, command, and agent content, in hook and monitor commands, and in MCP and LSP server configurations. They're also exported to hook, MCP, and LSP processes:
 

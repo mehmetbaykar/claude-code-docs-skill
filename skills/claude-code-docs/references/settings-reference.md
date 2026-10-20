@@ -8,6 +8,8 @@ path: /docs/en/settings-reference
 
 > Complete reference for every Claude Code settings.json key: where each one goes, its type and default, and a paste-ready example, with an index of every key.
 
+[Back to index](#all-settings)
+
 This reference page lists each key Claude Code reads from a settings file, plus the [short group of keys](#global-config-settings) it keeps in `~/.claude.json` instead. To pick a file, or check precedence, start with [Settings files and precedence](https://code.claude.com/docs/en/settings).
 
 ## Settings index
@@ -2267,7 +2269,7 @@ In a `-p` run or an Agent SDK session, Claude Code ignores this key. The SDK tur
 
 ### `idleCompaction`
 
-Idle compaction [compacts](https://code.claude.com/docs/en/context-window#what-survives-compaction) a long conversation that you've stepped away from, shortly before its prompt cache expires. Your next message then sends a summary instead of the whole conversation. When you come back, the conversation shows `Compacted while idle, before the prompt cache expired`.
+Idle compaction [compacts](https://code.claude.com/docs/en/context-window#what-survives-compaction) a long conversation that you've stepped away from, shortly before its prompt cache expires. Your next message then sends a summary instead of the whole conversation. When you come back, the conversation shows a line that starts with `Compacted while idle, before the prompt cache expired`.
 
 Idle compaction is on by default for conversations that meet all of these conditions:
 
@@ -2290,6 +2292,11 @@ To turn idle compaction off, set this key to `false`.
   "idleCompaction": false
 }
 ```
+
+To turn idle compaction off or on from inside a session, run `/config` and change the **Idle compaction** row. Your choice is saved to your user settings and applies right away. The row requires Claude Code v2.1.302 or later. If you run one of those versions and `/config` doesn't show the row, check for these causes:
+
+* **Another settings source sets the key**: a value in managed settings, the `--settings` flag, or a project or local settings file overrides your user settings. Change the key in that source instead
+* **Feature flags are unavailable**: where Claude Code can't [fetch feature flags from Anthropic](https://code.claude.com/docs/en/env-vars#features-that-need-feature-flag-fetching), idle compaction doesn't run, so there is nothing to turn off
 
 The key requires Claude Code v2.1.290 or later. On an earlier version, which ignores this key, turn off [`autoCompactEnabled`](#autocompactenabled) to stop idle compaction.
 
@@ -2356,7 +2363,9 @@ Raise it to keep long descriptions intact at the cost of more context per turn; 
 
 ### `taskOutputMaxChars`
 
-Removed in v2.1.277, together with the `TaskOutput` tool it sized. Setting it has no effect on current versions. Claude reads a background task's [output file](https://code.claude.com/docs/en/tools-reference#background-commands) with `Read` instead.
+> [!WARNING]
+>
+> Removed in v2.1.277, together with the `TaskOutput` tool it sized. Setting it has no effect on current versions. Claude reads a background task's [output file](https://code.claude.com/docs/en/tools-reference#background-commands) with `Read` instead.
 
 Through v2.1.276, you set this key to the number of characters of a [background task's](https://code.claude.com/docs/en/tools-reference#background-commands) output that Claude received inline when it read the task with the `TaskOutput` tool.
 
@@ -2614,7 +2623,9 @@ Footer badges render alongside a [custom status line](https://code.claude.com/do
 
 ### `keybindingFlavor`
 
-Deprecated since v2.1.261 and has no effect. The prompt's word-editing keys always [follow readline conventions](https://code.claude.com/docs/en/interactive-mode#make-ctrl-w-delete-back-to-whitespace), as in Bash. Claude Code still accepts `keybindingFlavor`, so a settings file that sets it stays valid.
+> [!WARNING]
+>
+> Deprecated since v2.1.261 and has no effect. The prompt's word-editing keys always [follow readline conventions](https://code.claude.com/docs/en/interactive-mode#make-ctrl-w-delete-back-to-whitespace), as in Bash. Claude Code still accepts `keybindingFlavor`, so a settings file that sets it stays valid.
 
 In v2.1.238 through v2.1.260, setting it to `"readline"` made `Ctrl+W` delete back to the previous whitespace instead of only the previous word.
 
@@ -3093,7 +3104,9 @@ This example turns dictation on and makes the key tap once to start recording an
 
 ### `voiceEnabled`
 
-Deprecated since v2.1.92, when the [`voice`](#voice) object replaced it. Claude Code still reads it so older settings files keep working, but new configurations should set `voice.enabled`.
+> [!WARNING]
+>
+> Deprecated since v2.1.92, when the [`voice`](#voice) object replaced it. Claude Code still reads it so older settings files keep working, but new configurations should set `voice.enabled`.
 
 Turn voice dictation on with the single Boolean form that predates the `voice` object. When both are set, `voice.enabled` applies.
 
@@ -3154,7 +3167,9 @@ Claude Code tells Claude that your own instructions about attribution, such as a
 
 ### `includeCoAuthoredBy`
 
-Deprecated since v2.0.62, when [`attribution`](#attribution) replaced it. Claude Code still reads it, but new configurations should set `attribution`.
+> [!WARNING]
+>
+> Deprecated since v2.0.62, when [`attribution`](#attribution) replaced it. Claude Code still reads it, but new configurations should set `attribution`.
 
 Use [`attribution`](#attribution) instead, which replaces this key and lets you change or hide the commit trailer, the pull request text, and the session link separately. Claude Code still honors `includeCoAuthoredBy: false` from settings files that predate `attribution`, but ignores it once you set `attribution.commit` or `attribution.pr`.
 
@@ -3850,7 +3865,14 @@ Lock the `agents` surface. Claude Code stops loading agents from `~/.claude/agen
 
 ### `strictPluginOnlyCustomization.hooks`
 
-Lock the `hooks` surface. Claude Code stops running hooks from user, project, and local `settings.json`, and keeps running plugin hooks and hooks in managed settings.
+Lock the `hooks` surface:
+
+* **Stops running**:
+* Hooks from user, project, and local `settings.json`
+* Frontmatter hooks in skills, custom commands, and agents, from the sources that a [`skills`](#strictpluginonlycustomization-skills) or [`agents`](#strictpluginonlycustomization-agents) lock would block
+* **Keeps running**: plugin hooks and hooks in managed settings
+
+Skills, custom commands, and agents whose frontmatter hooks stop running still load while their own surface isn't locked.
 
 * **Scope**: [`Managed`](#scopes)
 * **Type**: the string `"hooks"` in the [`strictPluginOnlyCustomization`](#strictpluginonlycustomization) array
@@ -4517,7 +4539,9 @@ Claude Code never shows the recap in non-interactive mode.
 
 ### `disableArtifact`
 
-Deprecated, and replaced by [`enableArtifact`](#enableartifact). Claude Code still honors `disableArtifact: true` as equivalent to `enableArtifact: false`, and ignores `disableArtifact: false`.
+> [!WARNING]
+>
+> Deprecated, and replaced by [`enableArtifact`](#enableartifact). Claude Code still honors `disableArtifact: true` as equivalent to `enableArtifact: false`, and ignores `disableArtifact: false`.
 
 Use [`enableArtifact`](#enableartifact) instead to turn off the [Artifact](https://code.claude.com/docs/en/artifacts) tool, which publishes session output as a private web page on claude.ai. When you turn the **Artifacts** row off in `/config`, Claude Code writes `enableArtifact` to your user settings and clears this key.
 
@@ -5549,7 +5573,9 @@ Claude Code ignores this key in `settings.json`.
 
 ### `permissionExplainerEnabled`
 
-Removed in v2.1.257, together with the `Ctrl+E` command explanation on Bash and PowerShell permission prompts. Setting it has no effect on current versions.
+> [!WARNING]
+>
+> Removed in v2.1.257, together with the `Ctrl+E` command explanation on Bash and PowerShell permission prompts. Setting it has no effect on current versions.
 
 Through v2.1.256, you could press `Ctrl+E` on a Bash or PowerShell permission prompt to see a model-generated explanation of the command, and set this key to `false` to turn that shortcut off.
 
@@ -5576,7 +5602,9 @@ Claude Code ignores this key in `settings.json`.
 
 ### `teammateDefaultModel`
 
-Removed in v2.1.234, together with its `/config` row **Default teammate model**. Setting it has no effect on current versions.
+> [!WARNING]
+>
+> Removed in v2.1.234, together with its `/config` row **Default teammate model**. Setting it has no effect on current versions.
 
 Through v2.1.233, you set this key to the model for [agent team](https://code.claude.com/docs/en/agent-teams#specify-teammates-and-models) teammates your prompt didn't name a model for: an alias such as `"sonnet"`, or `null` to follow the lead's model. For the model Claude Code picks for such teammates now, see [specify teammates and models](https://code.claude.com/docs/en/agent-teams#specify-teammates-and-models).
 
