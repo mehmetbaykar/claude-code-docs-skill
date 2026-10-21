@@ -295,6 +295,7 @@ Match the message you see to a section below.
 | `The packages it lists are not installed` / `The packages it lists were not installed, because` | [Plugin troubleshooting](https://code.claude.com/docs/en/plugins/troubleshooting#the-packages-it-lists-are-not-installed) |
 | `does not load (...), so Claude Code ignores the whole file` | [Plugin troubleshooting](https://code.claude.com/docs/en/plugins/troubleshooting#does-not-load-so-claude-code-ignores-the-whole-file) |
 | `path escapes plugin directory` | [Plugin errors](#path-escapes-plugin-directory) |
+| `Plugin not loaded: its manifest <path> was not read` | [Plugin errors](#plugin-not-loaded-its-manifest-was-not-read) |
 | `path could not be checked` | [Plugin errors](#path-could-not-be-checked) |
 | `its marketplace entry path does not stay inside the marketplace directory` | [Plugin errors](#marketplace-entry-path-does-not-stay-inside-the-marketplace-directory) |
 | `Plugin source path refused` | [Plugin errors](#marketplace-entry-path-does-not-stay-inside-the-marketplace-directory) |
@@ -473,6 +474,7 @@ You can tune retry behavior with these environment variables:
 | [`CLAUDE_CODE_MAX_RETRIES`](https://code.claude.com/docs/en/env-vars) | 10 | Number of retry attempts. Capped at 15 as of v2.1.186; as of v2.1.199 `CLAUDE_CODE_RETRY_WATCHDOG` raises the default and removes the cap. Lower it to surface failures faster in scripts. |
 | [`CLAUDE_CODE_RETRY_WATCHDOG`](https://code.claude.com/docs/en/env-vars) | unset | Set to `1` in unattended sessions such as CI jobs to retry `429` and `529` capacity errors indefinitely instead of failing after `CLAUDE_CODE_MAX_RETRIES` attempts. Claude Code fails at once when a standard-speed request gets a `429` that reports a spend limit or exhausted usage credits, even one from a [gateway spend cap](#spend-limit-reached) that resets on a schedule. Before v2.1.239, the watchdog retried these indefinitely. For fast mode requests, see [Handle rate limits](https://code.claude.com/docs/en/fast-mode#handle-rate-limits). On v2.1.199 or later it also raises the default retry count for other transient errors, such as server errors, timeouts, and dropped connections, to 300, roughly three hours of backoff, and removes the cap of 15 on `CLAUDE_CODE_MAX_RETRIES` if you set that variable explicitly. |
 | [`CLAUDE_CODE_RETRY_WATCHDOG_MAX_WAIT_MS`](https://code.claude.com/docs/en/env-vars) | unset | Maximum time in milliseconds that each API request spends waiting out `429` and `529` errors when `CLAUDE_CODE_RETRY_WATCHDOG` is set. When unset, the wait has no limit. Requires Claude Code v2.1.295 or later. |
+| [`CLAUDE_CODE_RETRY_WATCHDOG_USAGE_LIMIT_RECHECK_MS`](https://code.claude.com/docs/en/env-vars) | unset | Minimum interval in milliseconds between checks of whether a [usage limit](#youve-hit-your-session-limit) was already lifted, while a request waits for that limit to reset with `CLAUDE_CODE_RETRY_WATCHDOG` set. When a check finds the limit lifted, the request goes out at once. Give plain digits from `60000` to `10800000`. When unset or outside that range, no checks are made. For when Claude Code skips these checks, see the [environment variables reference](https://code.claude.com/docs/en/env-vars). Requires Claude Code v2.1.305 or later. |
 | [`CLAUDE_CODE_OVERLOADED_RETRY_BASE_DELAY_MS`](https://code.claude.com/docs/en/env-vars) | 500 | Starting delay in milliseconds of the backoff between retries of a request that the API rejects with a `529` overloaded error. Raise it, up to 32000, to spread the retries over a longer window when the API is at capacity. Has no effect when `CLAUDE_CODE_RETRY_WATCHDOG` is set to `1`, or when the rejected request was sent in [fast mode](https://code.claude.com/docs/en/fast-mode#handle-rate-limits). Requires Claude Code v2.1.292 or later. |
 | [`CLAUDE_CODE_OVERLOADED_RETRY_MAX_DELAY_MS`](https://code.claude.com/docs/en/env-vars) | 32000 | Ceiling in milliseconds on the backoff between retries of a request that the API rejects with a `529` overloaded error. Raise it, up to 64000, so that later retries keep spreading apart when the API is at capacity. Has no effect when `CLAUDE_CODE_RETRY_WATCHDOG` is set to `1`, or when the rejected request was sent in [fast mode](https://code.claude.com/docs/en/fast-mode#handle-rate-limits). Requires Claude Code v2.1.296 or later. |
 | [`API_TIMEOUT_MS`](https://code.claude.com/docs/en/env-vars) | 600000 | Time in milliseconds that each request attempt has to receive its response headers. It doesn't limit how long a streaming response runs after that. Raise it for slow networks or proxies. For how it caps the first-byte deadline, see [No response from API](#no-response-from-api). |
@@ -528,10 +530,11 @@ The API didn't respond before the connection deadline.
 Request timed out
 ```
 
-The default request timeout is 10 minutes.
+The default request timeout is 10 minutes. If you set [`API_TIMEOUT_MS`](https://code.claude.com/docs/en/env-vars) to `0`, this request timeout is off. The [first-byte deadline](#no-response-from-api) and the body idle timeout don't turn off when you set `0`, so a streaming request still runs under [whichever of them apply to your connection](https://code.claude.com/docs/en/network-config#streaming-idle-watchdogs). A non-streaming attempt keeps its 300-second limit in a local session and can still end with this message.
 
 **What to do:**
 
+* If every request fails with this message and you set `API_TIMEOUT_MS` to `0`, check `claude --version`. On a version before v2.1.305, update Claude Code or set a positive value.
 * Retry the request
 * If a slow network or proxy is the cause, raise `API_TIMEOUT_MS` as described in [Automatic retries](#automatic-retries)
 * If timeouts are frequent and your network is otherwise healthy, see [Network and connection errors](#network-and-connection-errors) below
@@ -547,6 +550,8 @@ Claude Code sets the first attempt's wait for response headers and the retry's w
 
 * **First attempt**: [`CLAUDE_STREAM_FIRST_BYTE_TIMEOUT_MS`](https://code.claude.com/docs/en/env-vars) when you set it to 1 or more, clamped to between 10 seconds and 30 minutes. Otherwise Claude Code uses the byte-level watchdog timeout listed in [Streaming idle watchdogs](https://code.claude.com/docs/en/network-config#streaming-idle-watchdogs), so the variables that change that timeout change this wait too. Either way, Claude Code adds one second for every 32KB of request body.
 * **Retry**: one second less than `API_TIMEOUT_MS`, just under 10 minutes by default, so that the retry can outlast a proxy or gateway that holds the response until generation completes. On Amazon Bedrock, the retry uses the same deadline as the first attempt, and the message shows one duration instead of two.
+
+Except on Amazon Bedrock, if you set `API_TIMEOUT_MS` to `0`, the retry waits 10 minutes plus one second per 32KB, or as long as the first attempt if that's longer.
 
 Neither wait exceeds one second less than a positive `API_TIMEOUT_MS`, and a positive `API_TIMEOUT_MS` under 11 seconds turns the deadline off. The byte-level watchdog starts only once the response headers arrive, so a response that stops sending bytes after that follows the [stalled-stream rules](#automatic-retries) instead of this deadline.
 
@@ -2214,16 +2219,20 @@ Page-range reads render pages with `pdftoppm`. Install poppler-utils with the co
 
 ### Extra inputs are not permitted
 
-A proxy or LLM gateway between Claude Code and the API stripped the `anthropic-beta` request header, so the API rejected fields that depend on it.
+The endpoint that received the request rejected one of the request's fields as an input it doesn't accept, and the endpoint's message names that field.
 ```text
-API Error: 400 ... Extra inputs are not permitted ... context_management
+API Error: 400 ... context_management: Extra inputs are not permitted
 ```
 
-Claude Code sends beta-only fields such as `context_management` alongside an `anthropic-beta` header that enables them. When a gateway forwards the body but drops the header, the API sees fields it doesn't recognize.
+Claude Code sends beta-only fields such as `context_management` and tool search's `defer_loading` alongside an `anthropic-beta` header that enables them. When a gateway forwards the body but drops the header, the API sees fields it doesn't recognize. When a gateway forwards an Anthropic-format body to an upstream with a different schema, that upstream rejects such fields. [Beta header and body field pairs](https://code.claude.com/docs/en/llm-gateway-protocol#beta-header-and-body-field-pairs) covers both cases.
 
 **What to do:**
 
-* Configure your gateway to forward the `anthropic-beta` header. See [feature pass-through](https://code.claude.com/docs/en/llm-gateway-protocol#feature-pass-through) for what gateways must forward.
+* If the message contains `context_management: Extra inputs are not permitted`, [update Claude Code](https://code.claude.com/docs/en/setup#update-claude-code) to v2.1.304 or later. After you update, Claude Code answers this rejection by sending the request once more without the field. Before v2.1.304, Claude Code didn't retry this rejection.
+* If the message names `defer_loading` or `tool_reference`, update Claude Code or turn [tool search](https://code.claude.com/docs/en/mcp#tool-search-through-a-gateway) off:
+* [Update Claude Code](https://code.claude.com/docs/en/setup#update-claude-code) to v2.1.305 or later. Claude Code then answers this rejection by sending the request once more without tool search fields.
+* If you can't update, or the message still appears after you do, set `ENABLE_TOOL_SEARCH=false` in your shell or your [settings `env`](https://code.claude.com/docs/en/settings-reference#env). If a settings file already sets the variable, change it there, since that value [can override a shell export](https://code.claude.com/docs/en/settings-reference#how-env-values-interact-with-your-shell). Claude Code then loads MCP tools upfront.
+* If your gateway drops the header, configure it to forward the `anthropic-beta` header. See [feature pass-through](https://code.claude.com/docs/en/llm-gateway-protocol#feature-pass-through) for what gateways must forward.
 * As a fallback, set [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1`](https://code.claude.com/docs/en/env-vars) before launching. [Disable pre-release capabilities](https://code.claude.com/docs/en/llm-gateway-protocol#disable-pre-release-capabilities) covers the exact scope.
 
 Before v2.1.302, this error could also name the field `diagnostics` with no gateway involved. It appeared when a session that had already used the Anthropic API moved to Amazon Bedrock or Google Cloud's Agent Platform without a restart. For example, a session you left open moves to Bedrock when you run [`/setup-bedrock`](https://code.claude.com/docs/en/commands) in another Claude Code window. On those versions, run `/clear` in that session or restart it.
@@ -3831,7 +3840,7 @@ Plugin archive integrity check failed for https://artifacts.example.com/claude-p
 
 ### Path escapes plugin directory
 
-A plugin component path, declared in the plugin's `plugin.json` or in its [marketplace entry](https://code.claude.com/docs/en/plugins/marketplace-reference#plugin-entries), resolves outside the plugin's own directory. Claude Code drops that path and loads the rest of the plugin. The component name in the message, such as `commands` or `hooks`, names the field that declared the path.
+One of the plugin's component paths leads outside the plugin directory or couldn't be confirmed inside it, so Claude Code drops that path and loads the rest of the plugin. For a path the plugin declares in `plugin.json` or its [marketplace entry](https://code.claude.com/docs/en/plugins/marketplace-reference#plugin-entries), the component name in the message, such as `commands` or `hooks`, names the field that declared the path.
 ```text
 commands path escapes plugin directory: ./../shared.md
 ```
@@ -3843,6 +3852,18 @@ Claude Code rejects both a path that points outside the plugin as written, such 
 commands path escapes plugin directory: ./commands/deploy.md — it resolves to /home/user/shared/deploy.md, outside the plugin directory
 ```
 
+A message that gives the full path of one of a marketplace plugin's own files, such as `hooks/hooks.json`, means Claude Code skipped that file. That happens when Claude Code can't confirm the file is inside the plugin or, for a plugin in a [local marketplace](https://code.claude.com/docs/en/plugins/loading#in-place-and-copied-plugins), inside that marketplace. The message reports each of these files under the component name shown:
+
+* `hooks/hooks.json`: `hooks`
+* `monitors/monitors.json`: `monitors`
+* `settings.json`: `settings`
+* `SKILL.md` at the plugin root: `skills`
+
+For example, this message is for a `hooks/hooks.json` that resolves outside both the plugin and its local marketplace:
+```text
+hooks path escapes plugin directory: /home/user/my-marketplace/my-plugin/hooks/hooks.json — it resolves to /home/user/dotfiles/hooks.json, outside the plugin directory and its marketplace directory
+```
+
 On macOS and Linux, Claude Code also rejects a component path that contains a backslash anywhere in it, even when the path stays inside the plugin. A plugin whose component paths use Windows-style separators loads on Windows and triggers this rejection on the other platforms:
 ```text
 commands path escapes plugin directory: ./commands\deploy.md — its path contains a backslash, which is not resolved reliably on this platform
@@ -3850,14 +3871,31 @@ commands path escapes plugin directory: ./commands\deploy.md — its path contai
 
 Before v2.1.251, Claude Code loaded a `commands` path declared in a marketplace entry even when it pointed outside the plugin directory.
 
-Before v2.1.257, the check looked only at the path's spelling, not at where a symlink leads.
+Before v2.1.257, the check on paths the plugin declares looked only at the path's spelling, not at where a symlink leads.
 
 **What to do:**
 
-* Move the referenced file inside the plugin directory and point the path at it with a `./` relative path
-* If the path is a symlink to a file outside the plugin, replace the symlink with a copy of the file
-* If the message says the path contains a backslash, write the path with forward slashes, for example `./commands/deploy.md`
+* If you installed the plugin and don't maintain it, report the message to its author
+* For a path the plugin declares, move the referenced file inside the plugin directory and point the path at it with a `./` relative path
+* If the path, or a folder above it inside the plugin, is a symlink leading outside the plugin, replace the symlink with a copy of what it points to
+* If the message says a path the plugin declares contains a backslash, write the path with forward slashes, for example `./commands/deploy.md`
+* If the message ends with `EACCES`, restore your execute permission on every directory leading to the file or folder the path names. Check the directories above the path, then follow each symlink you reach and check the directories leading to where it points. For any other error code, look it up in the [causes and steps for a path that couldn't be checked](#path-could-not-be-checked).
 * To share files with other plugins in the same marketplace, link them with a symlink inside the plugin directory, following the [symlink rules](https://code.claude.com/docs/en/plugins/host-marketplace#share-files-within-a-marketplace-with-symlinks)
+
+### Plugin not loaded: its manifest was not read
+
+Claude Code couldn't confirm that a marketplace plugin's [manifest](https://code.claude.com/docs/en/plugins/manifest-reference) at `.claude-plugin/plugin.json` is inside the plugin, so it loads nothing from that plugin. For a plugin in a [local marketplace](https://code.claude.com/docs/en/plugins/loading#in-place-and-copied-plugins), Claude Code also couldn't confirm that the manifest is inside that marketplace. The message appears in the `/plugin` **Errors** tab, and the reason at its end says what Claude Code found.
+
+For example, this message is for a plugin in a local marketplace whose `.claude-plugin` folder is a symlink leading outside the marketplace:
+```text
+Plugin not loaded: its manifest /home/user/my-marketplace/my-plugin/.claude-plugin/plugin.json was not read, because it resolves to /home/user/dotfiles/my-plugin/.claude-plugin/plugin.json, outside the plugin directory and its marketplace directory
+```
+
+**What to do:**
+
+* If the reason ends with `EACCES`, restore your execute permission on every directory leading to the manifest. Check the directories above the manifest, then follow each symlink you reach and check the directories leading to where it points. For any other error code, look it up in the [causes and steps for a path that couldn't be checked](#path-could-not-be-checked).
+* If you maintain the plugin and the reason says where the manifest resolves, the `.claude-plugin` folder or `plugin.json` itself is a symlink that leads there. Replace that link with a copy of what it points to.
+* If you installed the plugin and don't maintain it, report the message to its author
 
 ### Path could not be checked
 
