@@ -526,8 +526,8 @@
       "title": "Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry"
     },
     "claude-code-on-the-web.md": {
-      "hash": "d049bf0ef83ffaf468f0712586751fd2eba9ed51dd8e9d54d7bedeb15160161c",
-      "last_updated": "2026-10-20T18:38:24+00:00",
+      "hash": "073b464958e6e68ea9fb00b011abb7d61d6138eb215e6fa68c39060b64f64db7",
+      "last_updated": "2026-10-21T12:44:29+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-code-on-the-web",
       "path": "/docs/en/claude-code-on-the-web",
       "source_url": "https://code.claude.com/docs/en/claude-code-on-the-web.md",
@@ -553,8 +553,8 @@
       "title": "Claude Code on Claude Platform on AWS"
     },
     "claude-projects.md": {
-      "hash": "3579b3c12fff1f7a9a1ef6570fbdc06b2a898a41876ef10b693a804a5401c535",
-      "last_updated": "2026-10-20T18:38:25+00:00",
+      "hash": "10b4bf6d6c496bec479eb00038d6bc3ae742b285869dc1d99da7c0428702a4c6",
+      "last_updated": "2026-10-21T12:44:30+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-projects",
       "path": "/docs/en/claude-projects",
       "source_url": "https://code.claude.com/docs/en/claude-projects.md",
@@ -589,8 +589,8 @@
       "title": "CLI reference"
     },
     "cloud-environments.md": {
-      "hash": "a9a0f66fedb4a8f8f77d865b45c6927b08ed08058503ede14319d7caf3bb1abf",
-      "last_updated": "2026-10-20T18:38:28+00:00",
+      "hash": "621eef2f5a0e0f7ec1bc364fc3a68789f730981fd14dc1e66c28f22a38a223f5",
+      "last_updated": "2026-10-21T12:44:32+00:00",
       "original_url": "https://code.claude.com/docs/en/cloud-environments",
       "path": "/docs/en/cloud-environments",
       "source_url": "https://code.claude.com/docs/en/cloud-environments.md",
@@ -1093,8 +1093,8 @@
       "title": "Deploy managed settings"
     },
     "mcp-quickstart.md": {
-      "hash": "020d3d87a515edf9751530395472cc75d5630e977ff1ef94d6379e1a150ea1d1",
-      "last_updated": "2026-10-20T18:38:52+00:00",
+      "hash": "a8f19d366d246b5d0f39df3ff56a1664f1cdeaa822e863c21e5dc900de9c80cd",
+      "last_updated": "2026-10-21T12:44:51+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp-quickstart",
       "path": "/docs/en/mcp-quickstart",
       "source_url": "https://code.claude.com/docs/en/mcp-quickstart.md",
@@ -1102,8 +1102,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "b113bf37e915ecde6b5069a81a3a4cc2b61be6e81ed9a435a326a54428ae3110",
-      "last_updated": "2026-10-21T06:49:53+00:00",
+      "hash": "9b6022001630ed4013e30a1a2173eedde323a4ae01287bf890d58cc68680dd56",
+      "last_updated": "2026-10-21T12:44:51+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -1525,8 +1525,8 @@
       "title": "Continue local sessions from any device with Remote Control"
     },
     "routines.md": {
-      "hash": "a235c5782efa2739b0f9e60a0e516ced10a7c46614bf7343e62bd98ddd6f9ca7",
-      "last_updated": "2026-10-20T18:39:08+00:00",
+      "hash": "e1053d7c8e948c6a4118afde07fdbc8e578fa30208365a7c1ff6e9ffb2f6fdcd",
+      "last_updated": "2026-10-21T12:45:07+00:00",
       "original_url": "https://code.claude.com/docs/en/routines",
       "path": "/docs/en/routines",
       "source_url": "https://code.claude.com/docs/en/routines.md",
@@ -1579,8 +1579,8 @@
       "title": "Security"
     },
     "self-hosted-environments-configuration.md": {
-      "hash": "753271feed95a29850f160e567ba85cb55c496678d1450f40227e30617261636",
-      "last_updated": "2026-10-21T03:39:15+00:00",
+      "hash": "dddb646b54d84bb9f4edeaee67827fe848209e867a818f2b0b22eab407aec2ee",
+      "last_updated": "2026-10-21T12:45:09+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-configuration",
       "path": "/docs/en/self-hosted-environments-configuration",
       "source_url": "https://code.claude.com/docs/en/self-hosted-environments-configuration.md",
@@ -1660,8 +1660,8 @@
       "title": "Manage sessions"
     },
     "settings-example.md": {
-      "hash": "70aa2b25b5b2c4b84dda3de18421c4bcc1aa06647aef0baa39e71e5c41bf1e84",
-      "last_updated": "2026-10-20T18:39:14+00:00",
+      "hash": "752a195fd422fc8a47e058e2bcba786148d8e5f171d26f11f9e7150bbbd5b64c",
+      "last_updated": "2026-10-21T12:45:12+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-example",
       "path": "/docs/en/settings-example",
       "source_url": "https://code.claude.com/docs/en/settings-example.md",
@@ -1678,8 +1678,8 @@
       "title": "All settings"
     },
     "settings.md": {
-      "hash": "5a4c730f0b4aadad658f48e50a4c0d09528ef97ac6296294abccb1dd90c0e281",
-      "last_updated": "2026-10-20T18:39:14+00:00",
+      "hash": "d48c3ffd4fa3d67da4aea8856b5bdb807290d5c56e3b6fa4cdd5e2e221723d1a",
+      "last_updated": "2026-10-21T12:45:12+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "source_url": "https://code.claude.com/docs/en/settings.md",
@@ -1696,8 +1696,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "9f320193a143bdb7d28831d055880ca36b1ab5223a2e18b8e5b73f77c2ff0776",
-      "last_updated": "2026-10-20T21:32:40+00:00",
+      "hash": "6016e8c76349b6591bcebe92f0cdb6bc9af1e05b6c3d5db8bbfdcb2bd781003f",
+      "last_updated": "2026-10-21T12:45:14+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "source_url": "https://code.claude.com/docs/en/skills.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-21T06:50:27+00:00",
+  "last_updated": "2026-10-21T12:45:27+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
