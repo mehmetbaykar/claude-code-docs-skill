@@ -57,7 +57,7 @@ At the provider's own endpoint, Amazon Bedrock and its [Mantle endpoint](https:/
 When your requests pass through an [LLM gateway](https://code.claude.com/docs/en/llm-gateway), a custom `ANTHROPIC_BASE_URL`, or a cloud provider base-URL override such as [`ANTHROPIC_BEDROCK_BASE_URL`](https://code.claude.com/docs/en/env-vars), what stays cached depends on how the gateway handles the [`cache_control` markers](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#explicit-cache-breakpoints) Claude Code sends:
 
 * **Forwards them unchanged**: the block and your conversation cache the same as at the provider's own endpoint.
-* **Rejects the marked request with a `400` error naming `cache_control`**: Claude Code re-sends the request with the marker moved off the block and onto your last conversation message, and keeps it there for the rest of the conversation. The block bills as uncached input; your conversation stays cached.
+* **Rejects the marked request with a `400` error naming `cache_control`**: Claude Code re-sends the request with the marker moved off the block and onto your last conversation message, and keeps it there until Claude Code exits. The block bills as uncached input; your conversation stays cached.
 * **Removes the markers while returning success**: your entire conversation history bills as uncached input on every turn. A gateway that converts block-form system content to a plain string drops the marker the same way.
 
 For what each provider stores and processes, see [data usage](https://code.claude.com/docs/en/data-usage). Wherever the cache lives, entries expire after a period of inactivity, and [Cache lifetime](#cache-lifetime) below covers the TTL and how to extend it.
