@@ -36,7 +36,7 @@ Both agent teams and [subagents](https://code.claude.com/docs/en/sub-agents) let
 | | Subagents | Agent teams |
 | :- | :- | :- |
 | **Context** | Own context window; results return to the caller | Own context window; fully independent |
-| **Communication** | Return a result to the caller. Subagents that Claude named when it spawned them can also [message each other](https://code.claude.com/docs/en/sub-agents#what-loads-at-startup) | Teammates message each other directly |
+| **Communication** | Return a result to the caller. Subagents that Claude [named](https://code.claude.com/docs/en/sub-agents#subagent-names) when it spawned them can also [message each other](https://code.claude.com/docs/en/sub-agents#what-loads-at-startup) | Teammates message each other directly |
 | **Coordination** | Main agent manages all work | Self-coordination through messages, plus a shared task list for [agents that have the Task tools](https://code.claude.com/docs/en/tools-reference#task-tool-availability) |
 | **Best for** | Focused tasks where only the result matters | Complex work requiring discussion and collaboration |
 | **Token cost** | Lower: results summarized back to main context | Higher: each teammate is a separate Claude instance |
