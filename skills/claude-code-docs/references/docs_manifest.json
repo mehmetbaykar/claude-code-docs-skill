@@ -121,8 +121,8 @@
       "title": "Hosting the Agent SDK"
     },
     "agent-sdk__mcp.md": {
-      "hash": "b79b8c890d7efbd636999662b9fb3a166fd9c0faa300f32733b9bab7d74e0cd4",
-      "last_updated": "2026-10-21T03:38:13+00:00",
+      "hash": "d0f54743e9a6c5ef57d45e778890d77b4f1a23d83bbe6753cb1b6a40048c91a6",
+      "last_updated": "2026-10-21T06:49:17+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/mcp",
       "path": "/docs/en/agent-sdk/mcp",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/mcp.md",
@@ -283,8 +283,8 @@
       "title": "Track todos"
     },
     "agent-sdk__tool-search.md": {
-      "hash": "200f5deec5b5d7755e18f59b37c10d134b548b8a89cedd7c7077ffce915bf4ae",
-      "last_updated": "2026-10-21T01:02:24+00:00",
+      "hash": "6965dc1b0098df1a30fde0184be53388f8aef29dc12c6eb1189b39074f4769ff",
+      "last_updated": "2026-10-21T06:49:23+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/tool-search",
       "path": "/docs/en/agent-sdk/tool-search",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/tool-search.md",
@@ -823,8 +823,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "7b8039531cb8575edb479228a864a3fa38947c1b6e6c4542465e259b96d044d6",
-      "last_updated": "2026-10-21T03:38:43+00:00",
+      "hash": "959b053bab05fb331da00fb00dc85ec09f635fcc00fb4c6810f7d008da5c1055",
+      "last_updated": "2026-10-21T06:49:43+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "source_url": "https://code.claude.com/docs/en/env-vars.md",
@@ -832,8 +832,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "f8d3af32a63815540091f437406934b01133ed336ace0615e4ed6c37061fdb5f",
-      "last_updated": "2026-10-21T03:38:43+00:00",
+      "hash": "88f4e86c8e2a0ea4acacc4a82b1d8b85a88a50fae05706ff430684da1491fe10",
+      "last_updated": "2026-10-21T06:49:43+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -1102,8 +1102,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "217cf8e2295f4b80af966f14924ad01b83acf09e1e4827d6a32c69f1eddde6a6",
-      "last_updated": "2026-10-21T01:02:52+00:00",
+      "hash": "b113bf37e915ecde6b5069a81a3a4cc2b61be6e81ed9a435a326a54428ae3110",
+      "last_updated": "2026-10-21T06:49:53+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "source_url": "https://code.claude.com/docs/en/mcp.md",
@@ -1183,8 +1183,8 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "b3ecee3e882d5bbf7d80db0e88b14df7403ff2fef4baa68a6cb43e192ce61900",
-      "last_updated": "2026-10-21T03:38:58+00:00",
+      "hash": "9010648d833767d144e308c4bef55e70c01aa29745c910396fe06a25e3e79f7d",
+      "last_updated": "2026-10-21T06:49:56+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "source_url": "https://code.claude.com/docs/en/permission-modes.md",
@@ -1192,8 +1192,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "65f7d8f87d8cdc8180607de48345ae40cbfde9b839b39c39956ab221940d14d2",
-      "last_updated": "2026-10-21T03:38:58+00:00",
+      "hash": "3d9f85f0aa6d3c9c12eafadd76c6822e2affda2d7c95c172656b2881f98c8d1b",
+      "last_updated": "2026-10-21T06:49:56+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -1489,8 +1489,8 @@
       "title": "Troubleshoot plugins"
     },
     "prompt-caching.md": {
-      "hash": "fda232218fafe827eb1e3e445aac1aeb46ad948a57ca85672e55b10e949ead76",
-      "last_updated": "2026-10-21T03:39:11+00:00",
+      "hash": "2796584f9893b8a34f88990efee6af7a254bdd2d823f127174f387696d2e866f",
+      "last_updated": "2026-10-21T06:50:07+00:00",
       "original_url": "https://code.claude.com/docs/en/prompt-caching",
       "path": "/docs/en/prompt-caching",
       "source_url": "https://code.claude.com/docs/en/prompt-caching.md",
@@ -1543,8 +1543,8 @@
       "title": "Choose a sandbox environment"
     },
     "sandboxing.md": {
-      "hash": "b45088fdcf449855fa836fbe7a2382ddbf5d7eff0ef9a9bdb61b38904583e2b8",
-      "last_updated": "2026-10-21T01:03:07+00:00",
+      "hash": "668273a2dc42166bd0ea07c6418d421f8abb9ffa8400d089995e266daff59898",
+      "last_updated": "2026-10-21T06:50:09+00:00",
       "original_url": "https://code.claude.com/docs/en/sandboxing",
       "path": "/docs/en/sandboxing",
       "source_url": "https://code.claude.com/docs/en/sandboxing.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-21T03:39:35+00:00",
+  "last_updated": "2026-10-21T06:50:27+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
