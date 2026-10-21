@@ -89,13 +89,13 @@ A [session](https://code.claude.com/docs/en/desktop#work-in-parallel-with-sessio
 
 Check your [permission mode](https://code.claude.com/docs/en/desktop#choose-a-permission-mode) in the row under the prompt box to see whether Claude waits for your approval:
 
-* **Auto or Accept edits**: Claude applies its file changes, and an indicator such as `+12 -1` appears so you can review them in the diff view
+* **Auto or Accept edits**: Claude applies its file changes, and an indicator such as `+12 -1` appears so you can review them in the [diff view](https://code.claude.com/docs/en/desktop#review-changes-with-diff-view)
 * **Manual**: Claude proposes each change and waits for your approval before applying it
 
 In Manual mode, you'll see:
 
-1. A [diff view](https://code.claude.com/docs/en/desktop#review-changes-with-diff-view) showing exactly what will change in each file
-2. Accept/Reject buttons to approve or decline each change
+1. A diff showing exactly what will change
+2. Buttons to approve or decline each change
 3. Real-time updates as Claude works through your request
 
 ## Now what?
