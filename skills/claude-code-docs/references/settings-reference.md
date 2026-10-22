@@ -4766,6 +4766,8 @@ This example adds one connection named `Dev VM` that connects to `user@dev.examp
 
 Limit the hosts a [Desktop SSH session](https://code.claude.com/docs/en/desktop.md#restrict-which-ssh-hosts-users-can-connect-to) can connect to. Only the Desktop app reads this key; the CLI doesn't. Patterns are case-insensitive: `*` matches any host, `*.example.com` matches `example.com` and every subdomain, and anything else is an exact match against the hostname after `~/.ssh/config` resolution. An empty array turns SSH sessions off.
 
+With Claude Desktop v3.1623.0 or later, a session's [jump hosts](https://code.claude.com/docs/en/desktop.md#allow-jump-hosts) have to match a pattern too.
+
 * **Scope**: [`Managed`](#scopes). By default, Desktop reads the key from [one managed source](https://code.claude.com/docs/en/managed-settings.md#how-claude-code-combines-managed-sources).
 * **Type**: array of hostname patterns
 * **Default**: unset, so any host is allowed
