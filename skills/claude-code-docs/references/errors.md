@@ -2434,7 +2434,7 @@ On providers with provider-specific model IDs, the message may add a `Try '...' 
 
 ### Couldn't confirm model with the API
 
-You switched models through the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/typescript.md) `setModel()` method or an app that runs the Claude Code CLI for you, such as the [Desktop app](https://code.claude.com/docs/en/desktop.md), and the request that confirms the model ID with your API endpoint got no answer within five seconds. The session keeps its current model.
+You switched models through the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/typescript.md) `setModel()` method or an app that runs the Claude Code CLI for you, such as the [Desktop app](https://code.claude.com/docs/en/desktop.md), and the request that confirms the model ID with your API endpoint got no answer within 15 seconds. The session keeps its current model.
 ```text
 Couldn't confirm model "claude-sonnet-5" with the API. Try again, or run /model to see available models.
 ```
