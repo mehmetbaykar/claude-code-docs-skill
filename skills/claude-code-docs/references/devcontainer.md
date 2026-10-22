@@ -25,7 +25,7 @@ This page covers [installing Claude Code in a dev container](#add-claude-code-to
 >
 > A dev container runs as a Docker container, either on your machine or on a cloud host such as GitHub Codespaces. An editor that supports the Dev Containers spec, such as VS Code, GitHub Codespaces, a JetBrains IDE, or Cursor, connects to that container: you browse and edit files in the editor as usual, but the integrated terminal, language servers, and build tools all run inside the container rather than on your host. Editors without dev container support, such as plain Vim, are not part of this workflow.
 >
-> Claude Code runs inside the container, so it sees the same files, dependencies, and tools as the rest of your project's toolchain. In VS Code you can use either the [Claude Code extension panel](https://code.claude.com/docs/en/vs-code) or run `claude` in the integrated terminal; both run inside the container and share the same `~/.claude` configuration.
+> Claude Code runs inside the container, so it sees the same files, dependencies, and tools as the rest of your project's toolchain. In VS Code you can use either the [Claude Code extension panel](https://code.claude.com/docs/en/vs-code.md) or run `claude` in the integrated terminal; both run inside the container and share the same `~/.claude` configuration.
 
 ## Add Claude Code to your dev container
 
@@ -72,11 +72,11 @@ Open a terminal in the rebuilt container and run `claude`, then follow the authe
 What you see at the authentication prompt depends on your provider:
 
 * **Anthropic**: sign in through a browser with your Claude or Anthropic Console account
-* **[Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry](https://code.claude.com/docs/en/third-party-integrations)**: Claude Code uses your cloud provider credentials, with no browser prompt
+* **[Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry](https://code.claude.com/docs/en/third-party-integrations.md)**: Claude Code uses your cloud provider credentials, with no browser prompt
 
-For cloud providers, pass credentials into the container as environment variables through `containerEnv`, a Codespaces secret, or your cloud's workload identity rather than mounting credential files from the host. See [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock), [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai), or [Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry) for the credential chain Claude Code reads.
+For cloud providers, pass credentials into the container as environment variables through `containerEnv`, a Codespaces secret, or your cloud's workload identity rather than mounting credential files from the host. See [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md), [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md), or [Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry.md) for the credential chain Claude Code reads.
 
-See [Choose your API provider](https://code.claude.com/docs/en/admin-setup#choose-your-api-provider) to decide which path fits your organization.
+See [Choose your API provider](https://code.claude.com/docs/en/admin-setup.md#choose-your-api-provider) to decide which path fits your organization.
 
 > [!NOTE]
 >
@@ -112,15 +112,15 @@ To carry authentication across codespaces, store `ANTHROPIC_API_KEY` or a `CLAUD
 
 A dev container is a convenient place to apply organization policy, because the same image and configuration run on every engineer's machine.
 
-Claude Code reads `/etc/claude-code/managed-settings.json` on Linux and applies it at the highest precedence in the [settings hierarchy](https://code.claude.com/docs/en/settings#settings-precedence), so values there override anything an engineer sets in `~/.claude` or the project's `.claude/` directory. Copy the file into place from your Dockerfile:
+Claude Code reads `/etc/claude-code/managed-settings.json` on Linux and applies it at the highest precedence in the [settings hierarchy](https://code.claude.com/docs/en/settings.md#settings-precedence), so values there override anything an engineer sets in `~/.claude` or the project's `.claude/` directory. Copy the file into place from your Dockerfile:
 ```dockerfile Dockerfile
 RUN mkdir -p /etc/claude-code
 COPY managed-settings.json /etc/claude-code/managed-settings.json
 ```
 
-Because the Dockerfile lives in the repository, anyone with write access can change or remove this step. For policy that engineers cannot bypass by editing repository files, deliver managed settings through [server-managed settings](https://code.claude.com/docs/en/server-managed-settings) or your MDM instead. See [managed settings files](https://code.claude.com/docs/en/managed-settings#delivery-mechanisms) for the available keys and the other delivery paths.
+Because the Dockerfile lives in the repository, anyone with write access can change or remove this step. For policy that engineers cannot bypass by editing repository files, deliver managed settings through [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md) or your MDM instead. See [managed settings files](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms) for the available keys and the other delivery paths.
 
-To set [environment variables](https://code.claude.com/docs/en/env-vars) that apply to every Claude Code session in the container, add them to `containerEnv` in your `devcontainer.json`. The following example opts out of telemetry and error reporting and prevents Claude Code from auto-updating after install:
+To set [environment variables](https://code.claude.com/docs/en/env-vars.md) that apply to every Claude Code session in the container, add them to `containerEnv` in your `devcontainer.json`. The following example opts out of telemetry and error reporting and prevents Claude Code from auto-updating after install:
 ```json devcontainer.json
 "containerEnv": {
   "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
@@ -128,17 +128,17 @@ To set [environment variables](https://code.claude.com/docs/en/env-vars) that ap
 }
 ```
 
-`CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` also disables the feature-flag evaluation that [Remote Control](https://code.claude.com/docs/en/remote-control#requirements) and the other [features that need feature-flag fetching](https://code.claude.com/docs/en/env-vars#features-that-need-feature-flag-fetching) depend on, so sessions in the container can't use them.
+`CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` also disables the feature-flag evaluation that [Remote Control](https://code.claude.com/docs/en/remote-control.md#requirements) and the other [features that need feature-flag fetching](https://code.claude.com/docs/en/env-vars.md#features-that-need-feature-flag-fetching) depend on, so sessions in the container can't use them.
 
 The Dev Container Feature always installs the latest Claude Code release. To pin a specific Claude Code version for reproducible builds, install it from your Dockerfile with `npm install -g @anthropic-ai/claude-code@X.Y.Z` instead of using the feature, and set `DISABLE_AUTOUPDATER` to `1` in `containerEnv`.
 
-For the full list of policy controls including permission rules, tool restrictions, and MCP server allowlists, see [Set up Claude Code for your organization](https://code.claude.com/docs/en/admin-setup).
+For the full list of policy controls including permission rules, tool restrictions, and MCP server allowlists, see [Set up Claude Code for your organization](https://code.claude.com/docs/en/admin-setup.md).
 
-To make [MCP servers](https://code.claude.com/docs/en/mcp) available inside the container, define them at [project scope](https://code.claude.com/docs/en/mcp#mcp-installation-scopes) in a `.mcp.json` file at the repository root so they are checked in alongside your dev container configuration. Install any binaries that local stdio servers depend on in your Dockerfile, and add remote server domains to your network allowlist.
+To make [MCP servers](https://code.claude.com/docs/en/mcp.md) available inside the container, define them at [project scope](https://code.claude.com/docs/en/mcp.md#mcp-installation-scopes) in a `.mcp.json` file at the repository root so they are checked in alongside your dev container configuration. Install any binaries that local stdio servers depend on in your Dockerfile, and add remote server domains to your network allowlist.
 
 ## Restrict network egress
 
-You can limit the container's outbound traffic to only the domains Claude Code needs. See [Network access requirements](https://code.claude.com/docs/en/network-config#network-access-requirements) for the inference and authentication domains, and [Telemetry services](https://code.claude.com/docs/en/data-usage#telemetry-services) for the optional telemetry and error reporting connections and how to disable them.
+You can limit the container's outbound traffic to only the domains Claude Code needs. See [Network access requirements](https://code.claude.com/docs/en/network-config.md#network-access-requirements) for the inference and authentication domains, and [Telemetry services](https://code.claude.com/docs/en/data-usage.md#telemetry-services) for the optional telemetry and error reporting connections and how to disable them.
 
 The reference container includes an [`init-firewall.sh`](https://github.com/anthropics/claude-code/blob/main/.devcontainer/init-firewall.sh) script that limits outbound traffic to the destinations the script allows. Running a firewall inside a container requires extra permissions, so the reference adds the `NET_ADMIN` and `NET_RAW` capabilities through `runArgs`. The firewall script and these capabilities are not required for Claude Code itself: you can leave them out and rely on your own network controls instead.
 
@@ -148,7 +148,7 @@ Because the container runs Claude Code as a non-root user and confines command e
 
 Skipping permission prompts removes your opportunity to review tool calls before they run. Claude can still modify any file in the bind-mounted workspace, which appears directly on your host, and reach anything the container's network policy allows. Pair this flag with the [network egress restrictions](#restrict-network-egress) above to limit what a bypassed session can reach.
 
-If you want fewer prompts without disabling safety checks, consider [auto mode](https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode) instead, which has a classifier review actions before they run. To prevent engineers from using `--dangerously-skip-permissions` at all, set `permissions.disableBypassPermissionsMode` to `"disable"` in [managed settings](https://code.claude.com/docs/en/settings-reference#permission-settings).
+If you want fewer prompts without disabling safety checks, consider [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode) instead, which has a classifier review actions before they run. To prevent engineers from using `--dangerously-skip-permissions` at all, set `permissions.disableBypassPermissionsMode` to `"disable"` in [managed settings](https://code.claude.com/docs/en/settings-reference.md#permission-settings).
 
 ## Try the reference container
 
@@ -184,12 +184,12 @@ The reference configuration consists of three files. None of them are required w
 
 Once Claude Code is running in your dev container, the pages below cover the rest of an organization rollout: choosing an authentication path, delivering managed policy outside the repository, monitoring usage, and understanding what Claude Code stores and sends.
 
-* [Set up Claude Code for your organization](https://code.claude.com/docs/en/admin-setup): choose an authentication provider, decide how policy reaches devices, and plan the rollout
-* [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings): deliver managed policy from the claude.ai admin console so engineers cannot bypass it by editing repository files
-* [Monitor usage and audit activity](https://code.claude.com/docs/en/monitoring-usage): export OpenTelemetry metrics and review what your team is running
-* [Network access requirements](https://code.claude.com/docs/en/network-config#network-access-requirements): the full domain allowlist for proxies and firewalls
-* [Telemetry services and opt-out](https://code.claude.com/docs/en/data-usage#telemetry-services): what Claude Code sends by default and the environment variables that disable it
+* [Set up Claude Code for your organization](https://code.claude.com/docs/en/admin-setup.md): choose an authentication provider, decide how policy reaches devices, and plan the rollout
+* [Server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md): deliver managed policy from the claude.ai admin console so engineers cannot bypass it by editing repository files
+* [Monitor usage and audit activity](https://code.claude.com/docs/en/monitoring-usage.md): export OpenTelemetry metrics and review what your team is running
+* [Network access requirements](https://code.claude.com/docs/en/network-config.md#network-access-requirements): the full domain allowlist for proxies and firewalls
+* [Telemetry services and opt-out](https://code.claude.com/docs/en/data-usage.md#telemetry-services): what Claude Code sends by default and the environment variables that disable it
 * [Explore the `.claude` directory](https://code.claude.com/docs/en/claude-directory): what the volume mount holds, including credentials, settings, and session history
-* [Sandbox environments](https://code.claude.com/docs/en/sandbox-environments): compare dev containers with the built-in Bash sandbox, custom containers, and VMs
-* [Security model](https://code.claude.com/docs/en/security): how Claude Code's permission system, sandboxing, and prompt-injection protections fit together
-* [Permission modes](https://code.claude.com/docs/en/permission-modes): the full range from plan mode to auto mode to bypass, and when to use each
+* [Sandbox environments](https://code.claude.com/docs/en/sandbox-environments.md): compare dev containers with the built-in Bash sandbox, custom containers, and VMs
+* [Security model](https://code.claude.com/docs/en/security.md): how Claude Code's permission system, sandboxing, and prompt-injection protections fit together
+* [Permission modes](https://code.claude.com/docs/en/permission-modes.md): the full range from plan mode to auto mode to bypass, and when to use each
