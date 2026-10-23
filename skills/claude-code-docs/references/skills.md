@@ -788,7 +788,7 @@ The forked subagent runs in the [background](https://code.claude.com/docs/en/sub
 Claude Code also waits for the result, even when the skill doesn't set `background: false`, in cases like these:
 
 * In non-interactive mode, with the `-p` flag or the Agent SDK
-* When you set [`CLAUDE_CODE_DISABLE_BACKGROUND_TASKS`](https://code.claude.com/docs/en/env-vars) to `1`, which also turns off all other background task features
+* When you set [`CLAUDE_CODE_DISABLE_BACKGROUND_TASKS`](https://code.claude.com/docs/en/env-vars) to `1`, which also turns off other background task features
 * When you invoke a forked skill while an earlier invocation of the same skill is still running
 * When a [session-scoped scheduled task](https://code.claude.com/docs/en/scheduled-tasks.md) fires with the skill as its prompt
 

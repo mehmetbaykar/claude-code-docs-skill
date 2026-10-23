@@ -112,7 +112,7 @@ After the effort level and flags, Claude Code reads the rest of the line as the 
 To make the review run in the foreground, do one of these:
 
 * Run it in non-interactive mode, with the `-p` flag or the Agent SDK. Claude Code waits for the review and includes the findings in the response, except for `ultra`, which [doesn't wait for the cloud review](https://code.claude.com/docs/en/ultrareview.md#run-ultrareview-non-interactively).
-* Set [`CLAUDE_CODE_DISABLE_BACKGROUND_TASKS`](https://code.claude.com/docs/en/env-vars) to `1`, which also turns off every other background task feature
+* Set [`CLAUDE_CODE_DISABLE_BACKGROUND_TASKS`](https://code.claude.com/docs/en/env-vars) to `1`, which also turns off other background task features
 * Run `/code-review` again while an earlier review is still in progress
 
 Before v2.1.218, the review ran inside your conversation.
