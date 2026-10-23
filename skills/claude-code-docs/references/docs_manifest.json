@@ -589,8 +589,8 @@
       "title": "CLI reference"
     },
     "cloud-environments.md": {
-      "hash": "35f1d75c016b4cab793be7f30aa6b12c0bec2d862d7f7209d092f1deb3444d7b",
-      "last_updated": "2026-10-22T18:37:51+00:00",
+      "hash": "52df90c52423a21fb77a82dc21a66434fc9e52dd9e145fbd96fbce4f41ba0f3a",
+      "last_updated": "2026-10-23T15:35:15+00:00",
       "original_url": "https://code.claude.com/docs/en/cloud-environments",
       "path": "/docs/en/cloud-environments",
       "source_url": "https://code.claude.com/docs/en/cloud-environments.md",
@@ -1561,8 +1561,8 @@
       "title": "Run prompts on a schedule"
     },
     "security-guidance.md": {
-      "hash": "89ee9309b0d9dd2faefe9726c3401b4af8774a9efe21eba1837316a5464c8fed",
-      "last_updated": "2026-10-22T18:38:33+00:00",
+      "hash": "78c2c1533a8cc7ad46507d416fb3d6e1fa0aae39399531034840a3918bc8f92e",
+      "last_updated": "2026-10-23T15:35:59+00:00",
       "original_url": "https://code.claude.com/docs/en/security-guidance",
       "path": "/docs/en/security-guidance",
       "source_url": "https://code.claude.com/docs/en/security-guidance.md",
@@ -1579,8 +1579,8 @@
       "title": "Security"
     },
     "self-hosted-environments-configuration.md": {
-      "hash": "c79dc933e3da447269c820d761e678ad8888bd0f6ca575d217fb868f4d38a16f",
-      "last_updated": "2026-10-22T18:38:34+00:00",
+      "hash": "ebf7b966f5aa730df3f06fc726dcb7fe5edd243ba75b03e197d1ead02a9fc5bb",
+      "last_updated": "2026-10-23T15:36:00+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-configuration",
       "path": "/docs/en/self-hosted-environments-configuration",
       "source_url": "https://code.claude.com/docs/en/self-hosted-environments-configuration.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-23T03:39:48+00:00",
+  "last_updated": "2026-10-23T15:36:22+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
