@@ -509,7 +509,7 @@ Cloud sessions also support multiple repositories. Choose the repositories:
 * **Current layout**: in the row under the prompt box, once you select a cloud environment.
 * **[Earlier layout](#check-which-layout-you-have)**: above the prompt box. To add another repository, click **+** beside the selected one.
 
-See [Use Claude Code in the cloud](https://code.claude.com/docs/en/claude-code-on-the-web.md) for more on how cloud sessions work. When one body of work needs many cloud sessions, select **Projects** in the sidebar to create a [project](https://code.claude.com/docs/en/claude-projects.md), where Claude starts and tracks the sessions for you from one conversation.
+See [Use Claude Code in the cloud](https://code.claude.com/docs/en/claude-code-on-the-web.md) for more on how cloud sessions work. When one body of work needs many cloud sessions, use a [project](https://code.claude.com/docs/en/claude-projects.md): Claude starts and tracks the sessions for you from one conversation. [Create a project](https://code.claude.com/docs/en/claude-projects.md#create-a-project) has the steps.
 
 > [!NOTE]
 >
@@ -1826,7 +1826,7 @@ The following features aren't available in Desktop, except where noted:
 * **Agent teams**: coordinated teams, where Claude as the team lead assigns tasks to teammates from a shared task list, are available in the [CLI](https://code.claude.com/docs/en/agent-teams.md), not in Desktop. For multi-agent work inside one session, use [dynamic workflows](https://code.claude.com/docs/en/workflows.md), which run in Desktop; Claude can also [message and manage your other sessions](#work-across-sessions) directly.
 * **Terminal-dialog commands**: built-in commands that open an interactive panel in the terminal behave differently in the Code tab. Edit [settings files](https://code.claude.com/docs/en/settings.md) directly to manage permission rules and configuration, or run the commands from the standalone CLI.
 * Commands with no argument form, such as `/permissions`, reply with `isn't available in this environment`.
-* `/config` opens Settings → Claude Code. Text after the command is ignored, so `/config theme=dark` doesn't set the theme.
+* `/config` opens **Settings > Claude Code**.
 
 ## Troubleshooting
 

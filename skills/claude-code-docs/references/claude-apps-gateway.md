@@ -446,6 +446,22 @@ These parent-supplied settings pass the filter even with all five locks set:
 
 Under the default first-wins setting, an admin value blocks the parent's only when it sits in the highest-priority admin source, except for `allowedMcpServers` while the [MCP server lock](#lock-behavior-across-sources) is on. Under the `managedSourcesBehavior` merge opt-in, [how Claude Code combines managed sources](https://code.claude.com/docs/en/managed-settings.md#how-claude-code-combines-managed-sources) says which source's value applies instead.
 
+#### How hook and skill keys in parent settings take effect
+
+If you pass `disableAllHooks: true` as a parent setting through the Agent SDK's `managedSettings` option, not every hook stops. Your [SDK hook callbacks](https://code.claude.com/docs/en/agent-sdk/hooks.md) still run, and so do the administrator's hooks, which your application can't switch off.
+
+On a machine where an administrator deploys managed settings, Claude Code ignores parent settings unless the administrator [lets an embedding host add policy](https://code.claude.com/docs/en/managed-settings.md#let-an-embedding-host-add-policy).
+
+| What you pass | What happens |
+| :- | :- |
+| `disableAllHooks: true` | Treated as `allowManagedHooksOnly: true`, so the hooks listed as [blocked under `allowManagedHooksOnly`](https://code.claude.com/docs/en/settings-reference#what-runs-under-allowmanagedhooksonly) stop, and so do hooks in the SDK's [`settings` option](https://code.claude.com/docs/en/agent-sdk/typescript#options). |
+| [`disableSkillShellExecution: true`](https://code.claude.com/docs/en/settings-reference#disableskillshellexecution) | Takes effect. |
+| `allowedHttpHookUrls: []` | Takes effect unless the administrator defines `hooks` or enables a plugin. No HTTP hook runs, except for URLs another settings source lists. |
+| `httpHookAllowedEnvVars: []` | Takes effect unless the administrator defines `hooks` or enables a plugin. HTTP hook headers can include only environment variables another settings source lists. |
+| `allowedHttpHookUrls` or `httpHookAllowedEnvVars` with entries | Claude Code ignores it, since merging would widen an administrator's list. Use the SDK `settings` option instead. |
+
+Passing these keys in `managedSettings` requires Claude Code v2.1.309 or later, or TypeScript Agent SDK v0.3.309 or later.
+
 ### Connect Claude Desktop
 
 [Claude Desktop](https://code.claude.com/docs/en/desktop.md) connects to the same gateway through a different MDM key: set `bootstrapUrl` in Claude Desktop's [managed configuration](https://claude.com/docs/third-party/claude-desktop/configuration) to `<listen.public_url>/user/bootstrap`, and opt the user's policy in with a `desktop` key. [Claude Desktop overlay](https://code.claude.com/docs/en/claude-apps-gateway-config.md#claude-desktop-overlay) covers both halves. Requires Claude Code v2.1.203 or later on the gateway server.
