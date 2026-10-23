@@ -61,7 +61,7 @@ Bare mode also limits what happens while the session runs:
 
 * **MCP servers**: only servers supplied on the command line connect, for example with `--mcp-config`. In an interactive session, Claude Code also skips the automatic IDE connection unless you pass `--ide`.
 * **System reminders**: Claude gets your prompts and the tool results without the [system reminders](https://code.claude.com/docs/en/glossary.md#system-reminder) Claude Code would add alongside them. For example, Claude isn't told when a file it read earlier changes on disk, and it doesn't get the list of available skills, including skills from an `--add-dir` folder.
-* **Background tasks**: none run. A command that reaches its [timeout](https://code.claude.com/docs/en/tools-reference.md#timeout-and-output-limits) stops instead of [moving to the background](https://code.claude.com/docs/en/tools-reference.md#background-commands).
+* **Background tasks**: Claude can't run background commands or background subagents, and the other features that [`CLAUDE_CODE_DISABLE_BACKGROUND_TASKS`](https://code.claude.com/docs/en/env-vars) turns off are off too. A command that reaches its [timeout](https://code.claude.com/docs/en/tools-reference.md#timeout-and-output-limits) stops instead of [moving to the background](https://code.claude.com/docs/en/tools-reference.md#background-commands).
 
 Before v2.1.286, these limits held only partly: an interactive `--bare` session connected the MCP servers that a normal session would, every `--bare` session sent system reminders, and background tasks stayed available.
 
@@ -87,6 +87,13 @@ When stderr is a terminal and the run has waited five seconds, Claude Code print
 If the run reaches its [`--max-budget-usd`](https://code.claude.com/docs/en/cli-reference#cli-flags) cap, Claude Code stops the remaining background work instead of waiting.
 
 When background work starts another turn, the run prints each turn's result with the default `text` output and the last turn's result with `json` output. Before v2.1.295, the run printed only the last turn's result with `text` output too.
+
+#### MCP work when a non-interactive run ends
+
+A `claude -p` run doesn't wait for MCP work in the background:
+
+* **[MCP tasks](https://code.claude.com/docs/en/mcp.md#mcp-tasks-that-run-on-the-server)**: on a remote server the job goes on. To follow it again, [resume that session](https://code.claude.com/docs/en/mcp.md#exit-clear-or-resume-while-an-mcp-task-runs), not as a one-shot `claude -p "<prompt>"` run.
+* **MCP calls that [automatic backgrounding](https://code.claude.com/docs/en/mcp.md#automatic-backgrounding-of-long-tool-calls) moved**: the call's result is lost.
 
 ### Stop a run with SIGTERM
 
