@@ -89,6 +89,24 @@ In your wrapper script or [`command` hook](#command), handle these flags as foll
 * **Pass them through**: end the wrapper with `exec "$CLAUDE_RUNNER_CLAUDE_BIN" "$@"`, which forwards the file flags along with every other argument. Don't drop or rewrite them. If a session loses a prompt file flag, it runs without the instructions the control plane sent for it.
 * **On a runner at v2.1.281 or later, a file flag you append replaces the server's, never adds to it**: each prompt file flag takes a single value and Claude Code keeps the last occurrence, so if you append `--append-system-prompt-file <path>` after `"$@"`, your file's contents replace the server's appended instructions. To add instructions on top of the server's, put them in the runner image's `CLAUDE.md`, which the runner [seeds into every session's user-level config](#how-each-session’s-config-is-assembled).
 
+#### Fix `Argument list too long` at session start
+
+On Linux, if you join the control plane's prompt and your own text into one `--append-system-prompt` argument, the runner logs a line like this once the argument reaches 128 KB:
+```text
+Session <id> finished: failed — reason: child exited 126: /opt/wrapper.sh: line 9: /usr/local/bin/claude: Argument list too long
+```
+
+Linux limits each single argument to 32 memory pages, or 128 KB with the usual 4 KB pages. The figure from `getconf ARG_MAX`, often 2 MB, is a separate limit on all arguments and the environment together.
+
+On Claude Code v2.1.283 or later, leave the file flags in `"$@"` and pass only your own text as `--append-system-prompt`. Claude Code [uses both](https://code.claude.com/docs/en/cli-reference.md#system-prompt-flags), the control plane's prompt first and then your own text:
+```bash
+exec "$CLAUDE_RUNNER_CLAUDE_BIN" "$@" --append-system-prompt "$(cat /opt/team-instructions.md)"
+```
+
+On Linux, if your own text reaches 128 KB, move it to the runner image's `CLAUDE.md`, because it's still one argument.
+
+On v2.1.281 or v2.1.282, that command exits with `Cannot use both --append-system-prompt and --append-system-prompt-file`. On earlier versions, your text replaces the control plane's prompt with no error. On any of them, update first, or move your own text to `CLAUDE.md`.
+
 ### Provision credentials scoped to the session creator
 
 Use the `decode-token` subcommand to read claims from the session JWT. It reads the token from an argument, from `CLAUDE_CODE_SESSION_ACCESS_TOKEN`, or from stdin, in that order; see [Verify the token inside the session](https://code.claude.com/docs/en/self-hosted-environments-identity.md#verify-the-token-inside-the-session) for what it checks. The example below decodes the creator identity, exchanges it for short-lived AWS credentials, and execs into Claude Code:
