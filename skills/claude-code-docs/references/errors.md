@@ -3100,7 +3100,7 @@ For example, the subcommand can't ask when its standard input or standard output
 
 **What to do:**
 
-* In a script or CI job, append `--trust-workspace` to trust the checkout for that run only: `claude ultrareview --trust-workspace`. Append it only for code you trust, because the checkout's git configuration and Claude Code project settings can then run programs. To review a pull request whose code you don't trust, see [how to review it from a checkout you do trust](https://code.claude.com/docs/en/ultrareview.md#trust-the-folder-before-the-review-runs).
+* In a script or CI job, append `--trust-workspace` to trust the folder for that run: `claude ultrareview --trust-workspace`. Append it only for code you trust, because git and Claude Code can then run programs named in the folder's git configuration and project settings. For a pull request whose code you don't trust, [run the review from a branch you trust](https://code.claude.com/docs/en/ultrareview.md#trust-the-folder-before-the-review-runs).
 * On your own machine, run `claude` in that folder and accept the [workspace trust dialog](https://code.claude.com/docs/en/permissions.md#project-allow-rules-and-workspace-trust), then run your original command again
 
 Each of these messages from `claude ultrareview` means that no review started and the exit code is 1:
@@ -4512,7 +4512,7 @@ Claude Code saves each Bash and PowerShell command's output to a file under that
 The command was not started: this computer's disk is full (ENOSPC) on the volume holding /tmp/claude-501 (Claude Code's temporary directory), so the file that captures command output could not be created there and nothing ran. Free space on that volume, or restart Claude Code with CLAUDE_CODE_TMPDIR set to a directory on another one, then retry. If this is the user's own computer, tell them before deleting anything to make room.
 ```
 
-The other three messages follow a command that ran and exited with a nonzero code. This example is the `Disk full:` form:
+The `Disk full:`, `Disk quota used up:`, and `Nearly out of inodes:` messages follow a command that ran and exited with a nonzero code. For example:
 ```text wrap
 Disk full: this computer's volume holding /tmp/claude-501 (Claude Code's temporary directory) has 3 MB free, so whatever this command printed was lost and its own writes may have failed with "No space left on device". Free space on that volume, or restart Claude Code with CLAUDE_CODE_TMPDIR set to a directory on another one, then retry. If this is the user's own computer, tell them before deleting anything to make room.
 ```
@@ -4521,8 +4521,7 @@ Disk full: this computer's volume holding /tmp/claude-501 (Claude Code's tempora
 
 * On macOS and Linux, run `df -h <dir>` in your shell to see which volume holds the directory and how full it is. `df -i <dir>` shows how many inodes are free. `<dir>` is the directory your message names, as in `df -i /tmp/claude-501`
 * **`Disk full: this computer's volume` or `disk is full (ENOSPC)`**: anywhere on that volume, delete files you don't need
-* **`Disk quota used up:` or `Disk full: a test write`**: delete your own files on that volume, even if it still shows free space
-* **`disk quota is used up (EDQUOT)`**: delete your own files on that volume
+* **`Disk quota used up:`, `disk quota is used up (EDQUOT)`, or `Disk full: a test write`**: delete your own files on that volume, even if it still shows free space
 * **`Nearly out of inodes:`**: delete many files on that volume. Each takes one inode whatever its size, so their number matters, not their size
 * Or restart Claude Code with [`CLAUDE_CODE_TMPDIR`](https://code.claude.com/docs/en/env-vars) set to a directory on a volume with room
 * Then have Claude run the command again
