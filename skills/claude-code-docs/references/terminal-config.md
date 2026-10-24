@@ -126,11 +126,14 @@ If it does and you see no status for a session, check for each of these causes:
 When Claude Code runs inside tmux, by default Shift+Enter submits instead of inserting a newline, and desktop notifications and the [progress bar](https://code.claude.com/docs/en/settings-reference.md#terminalprogressbarenabled) never reach the outer terminal. Add these lines to `~/.tmux.conf`, then run `tmux source-file ~/.tmux.conf` to apply them to the running server:
 ```bash ~/.tmux.conf
 set -g allow-passthrough on
+set -g focus-events on
 set -s extended-keys on
 set -as terminal-features 'xterm*:extkeys'
 ```
 
 The `allow-passthrough` line lets notifications and progress updates reach the outer terminal instead of being swallowed by tmux. The `extended-keys` lines let tmux distinguish Shift+Enter from plain Enter so the newline shortcut works.
+
+A [mod's `Image`](https://code.claude.com/docs/en/plugins/mods/reference#elements) needs the `allow-passthrough` and `focus-events` lines, along with the other [requirements for drawing inside tmux](https://code.claude.com/docs/en/plugins/mods/gallery.md#draw-an-image-inside-tmux). After you add the lines, also detach from tmux, attach again, and restart Claude Code.
 
 ## Fix Backspace deleting a whole word on Windows
 
