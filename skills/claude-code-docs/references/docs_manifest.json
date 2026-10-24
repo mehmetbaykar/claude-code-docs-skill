@@ -832,8 +832,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "9325732da6044de83f0a14fbb9212629d4db1feaf2177f682ed78915f2166bea",
-      "last_updated": "2026-10-23T03:38:55+00:00",
+      "hash": "aea606e3c34fe0d8a3b3bfc254dd65d2741a812deb81be23cf24df7658e549a5",
+      "last_updated": "2026-10-24T03:37:04+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -1003,8 +1003,8 @@
       "title": "Interactive mode"
     },
     "jetbrains.md": {
-      "hash": "f08c3d008b3cd74f2341805de2094c8cdbd4bfa2951ce512f6301d08d3c88b29",
-      "last_updated": "2026-10-22T18:38:09+00:00",
+      "hash": "1451789a4c593e0751695cecc364b12ff138db1157f48254bc00869365bb819c",
+      "last_updated": "2026-10-24T03:37:10+00:00",
       "original_url": "https://code.claude.com/docs/en/jetbrains",
       "path": "/docs/en/jetbrains",
       "source_url": "https://code.claude.com/docs/en/jetbrains.md",
@@ -1147,8 +1147,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "e8b2d4863da8d5cc9ffbf5ac5beca036a1f1ed69c89790dda30aaac8f6ca6fb2",
-      "last_updated": "2026-10-23T03:39:09+00:00",
+      "hash": "9ba61087c2830a676f1fe15a6a621dee30d9cc01e44ac6b60822c91dd6d4c521",
+      "last_updated": "2026-10-24T03:37:15+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-24T01:01:59+00:00",
+  "last_updated": "2026-10-24T03:37:51+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
