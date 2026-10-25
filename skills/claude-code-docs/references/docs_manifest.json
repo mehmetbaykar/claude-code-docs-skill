@@ -1048,8 +1048,8 @@
       "title": "Connect Claude Code to an LLM gateway"
     },
     "llm-gateway-protocol.md": {
-      "hash": "7174b942bd79bc90fe24de8667af434c5dbe0dfd0d448c8b5505d905f87a82e8",
-      "last_updated": "2026-10-25T01:07:06+00:00",
+      "hash": "375df19a448fb06e2b96481b33feda75fe4199e8cbe227f60b8cd12697bf8736",
+      "last_updated": "2026-10-25T06:45:51+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-protocol",
       "path": "/docs/en/llm-gateway-protocol",
       "source_url": "https://code.claude.com/docs/en/llm-gateway-protocol.md",
@@ -1147,8 +1147,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "9ba61087c2830a676f1fe15a6a621dee30d9cc01e44ac6b60822c91dd6d4c521",
-      "last_updated": "2026-10-24T03:37:15+00:00",
+      "hash": "7d203d7471201f408a278f7187a079f57937d517aa7c7331413e5a90ca334b5d",
+      "last_updated": "2026-10-25T06:45:54+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "source_url": "https://code.claude.com/docs/en/monitoring-usage.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-25T01:07:38+00:00",
+  "last_updated": "2026-10-25T06:46:25+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
