@@ -310,8 +310,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "3f3ff60bf2ed34a1b2906a9da06d6ab6e0da4c16324a7bb65e3dffa437164354",
-      "last_updated": "2026-10-25T15:31:07+00:00",
+      "hash": "8e8e3439cc10bc16b30897aa7a7eefe8fe4c7e35c2042e83eba29c444cff0449",
+      "last_updated": "2026-10-25T18:35:06+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/typescript.md",
@@ -508,8 +508,8 @@
       "title": "Deploy Claude apps gateway on Google Cloud"
     },
     "claude-apps-gateway-spend-limits.md": {
-      "hash": "eb1461df5a355d02a056a57044ea3331bccce64acc7fbb51ef2264e741c594cd",
-      "last_updated": "2026-10-22T18:37:48+00:00",
+      "hash": "e14b16fcb2943b7b6f2fc2c90f9bc9f5871f8e50f6f5f1963754362d3ca595ab",
+      "last_updated": "2026-10-25T18:35:15+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-spend-limits",
       "path": "/docs/en/claude-apps-gateway-spend-limits",
       "source_url": "https://code.claude.com/docs/en/claude-apps-gateway-spend-limits.md",
@@ -1714,8 +1714,8 @@
       "title": "Claude Code in Slack"
     },
     "statusline.md": {
-      "hash": "c80b18b70a15ffdf26dd240f655a8fdbdedb0c06bdf9e2d3f83913539f5b7e37",
-      "last_updated": "2026-10-22T18:38:40+00:00",
+      "hash": "2cfa845411e9f5febe0ce5de2ada0bcbc8de43f111163bf7f04cbeda615f232a",
+      "last_updated": "2026-10-25T18:36:07+00:00",
       "original_url": "https://code.claude.com/docs/en/statusline",
       "path": "/docs/en/statusline",
       "source_url": "https://code.claude.com/docs/en/statusline.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-25T15:32:10+00:00",
+  "last_updated": "2026-10-25T18:36:22+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
