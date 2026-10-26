@@ -1345,8 +1345,8 @@
       "title": "Measure plugin cost and usage"
     },
     "plugins__mods__admin.md": {
-      "hash": "093426ee3eed37bed86b51b7172db949489a5c94b2dca467b2d38ccfdcabce0d",
-      "last_updated": "2026-10-22T18:38:23+00:00",
+      "hash": "19920d587bfaf049bd2ae07c7914fe926215d2ab2eecebc9380bd6c2b7d2141a",
+      "last_updated": "2026-10-26T18:48:47+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/admin",
       "path": "/docs/en/plugins/mods/admin",
       "source_url": "https://code.claude.com/docs/en/plugins/mods/admin.md",
@@ -1372,8 +1372,8 @@
       "title": "Create a mod"
     },
     "plugins__mods__events.md": {
-      "hash": "6d7b6a6ceb37bb13bc4b5f2b0d9551a4a52b6de16d4622ef48b1feead9487484",
-      "last_updated": "2026-10-25T15:31:46+00:00",
+      "hash": "ea35fce4930e10e69af776b5b4bc293f55295d56fda60ed573e9cbcaf00ba584",
+      "last_updated": "2026-10-26T18:48:48+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/events",
       "path": "/docs/en/plugins/mods/events",
       "source_url": "https://code.claude.com/docs/en/plugins/mods/events.md",
@@ -1642,8 +1642,8 @@
       "title": "Self-hosted environments"
     },
     "server-managed-settings.md": {
-      "hash": "514b62c2aec3c7f2d016bd90c2240abd9233348f87a35f5dd204ba43a12273cc",
-      "last_updated": "2026-10-22T18:38:36+00:00",
+      "hash": "a8b609688b4288a1c1201ab7eb5fef82de03c7f24d694616ab60c2fb24312433",
+      "last_updated": "2026-10-26T18:48:57+00:00",
       "original_url": "https://code.claude.com/docs/en/server-managed-settings",
       "path": "/docs/en/server-managed-settings",
       "source_url": "https://code.claude.com/docs/en/server-managed-settings.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-26T07:04:36+00:00",
+  "last_updated": "2026-10-26T18:49:11+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
