@@ -310,8 +310,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "8cbf4fec96d722338a9015696ef117a80abb7a63727e22e47b3d80c3c461ee2b",
-      "last_updated": "2026-10-26T21:32:59+00:00",
+      "hash": "be42701dd65eeeda0158d16da1b3d418b962ec1841f1bc30079a2a4b95d2f7d9",
+      "last_updated": "2026-10-27T01:05:32+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "source_url": "https://code.claude.com/docs/en/agent-sdk/typescript.md",
@@ -427,8 +427,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "0ebdc23abecdca3ebedc36caee7b8c8212a5118619a434c0fa09464bd89d12fd",
-      "last_updated": "2026-10-24T01:00:32+00:00",
+      "hash": "dfcd074aa1daf2bbbe77830bc80c54733c1bfba7f0bc89ed71753cbf79143960",
+      "last_updated": "2026-10-27T01:05:36+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "source_url": "https://code.claude.com/docs/en/changelog.md",
@@ -805,8 +805,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "8dd739e8035b55d11904991353ed952ac37d29bf48b0a3c7cf4ef3dc0318e210",
-      "last_updated": "2026-10-26T07:03:40+00:00",
+      "hash": "8f715d3828153c449c0736221ff0ebfa5f9258d6b209489e52142de2b865bd33",
+      "last_updated": "2026-10-27T01:05:48+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "source_url": "https://code.claude.com/docs/en/desktop.md",
@@ -832,8 +832,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "dd14ffa7c456754185d9332885b6b16f2008bfac6fef9f723da157a2febbe011",
-      "last_updated": "2026-10-26T21:33:17+00:00",
+      "hash": "ef5f00246fd17d455e7b05cab17130171c8cee4cc0e9fb08218e65d96adda775",
+      "last_updated": "2026-10-27T01:05:51+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "source_url": "https://code.claude.com/docs/en/errors.md",
@@ -1588,8 +1588,8 @@
       "title": "Customize sessions in self-hosted environments"
     },
     "self-hosted-environments-deploy.md": {
-      "hash": "9c56358919f1a872c1e358afd0c3fcd4f6e3f42f66eab9dfc371be717f092224",
-      "last_updated": "2026-10-25T15:31:54+00:00",
+      "hash": "0f1971b9fcd56a6900cecf1d649a5445ec4ac0c7499d87fd37eac949fdecdd4f",
+      "last_updated": "2026-10-27T01:06:16+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-deploy",
       "path": "/docs/en/self-hosted-environments-deploy",
       "source_url": "https://code.claude.com/docs/en/self-hosted-environments-deploy.md",
@@ -1615,8 +1615,8 @@
       "title": "Self-hosted environments quickstart"
     },
     "self-hosted-environments-reference.md": {
-      "hash": "088dec96fe421531e837e0fa9f8917660a82d352d33a7be021f1753ad7794e49",
-      "last_updated": "2026-10-25T15:31:55+00:00",
+      "hash": "9d4444a8a3013bcbdbc973a30791467873bc7e18f38cd5fb0736aa6263aa8a94",
+      "last_updated": "2026-10-27T01:06:16+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-reference",
       "path": "/docs/en/self-hosted-environments-reference",
       "source_url": "https://code.claude.com/docs/en/self-hosted-environments-reference.md",
@@ -1804,8 +1804,8 @@
       "title": "Use Claude Code in VS Code"
     },
     "web-quickstart.md": {
-      "hash": "c588b09b7d2bab97e1c9ebd29631c02a579dcb9357836eaed8bcbcb14827bf66",
-      "last_updated": "2026-10-25T01:07:30+00:00",
+      "hash": "8b0fa703cfc8973c09d5a6c449ab72d08aff99646faf88efc996857dacd47c37",
+      "last_updated": "2026-10-27T01:06:23+00:00",
       "original_url": "https://code.claude.com/docs/en/web-quickstart",
       "path": "/docs/en/web-quickstart",
       "source_url": "https://code.claude.com/docs/en/web-quickstart.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-26T21:33:56+00:00",
+  "last_updated": "2026-10-27T01:06:31+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
