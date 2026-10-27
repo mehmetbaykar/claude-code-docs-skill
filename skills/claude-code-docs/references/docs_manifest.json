@@ -1138,8 +1138,8 @@
       "title": "Claude Code on mobile"
     },
     "model-config.md": {
-      "hash": "da901f1645a3e6f0a3858f6be54481631abb1528aa119c9db60cca57aec95e4a",
-      "last_updated": "2026-10-27T03:40:10+00:00",
+      "hash": "b5c730c4bf9de229c64324ce08f622bf1a8e384f0b15763aad883d0bc1609278",
+      "last_updated": "2026-10-27T06:51:52+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "source_url": "https://code.claude.com/docs/en/model-config.md",
@@ -1192,8 +1192,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "36635837b5e99fe32131084a279de597318aff46639d57614381fb80f90e589c",
-      "last_updated": "2026-10-23T01:05:16+00:00",
+      "hash": "0b43f7f1ac436b17e8931504cc906985c531acc83553c9e9c7f910cc65aafc42",
+      "last_updated": "2026-10-27T06:51:54+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "source_url": "https://code.claude.com/docs/en/permissions.md",
@@ -1732,8 +1732,8 @@
       "title": "Create custom subagents"
     },
     "terminal-config.md": {
-      "hash": "135c9875115c6a25253f987745b22560e719c881602b0ff05069656c23d31a1c",
-      "last_updated": "2026-10-25T01:07:27+00:00",
+      "hash": "3ba1b5cca802977d5b6e956607ac609279d8e8a64cdf10de28e61864e7f96dc7",
+      "last_updated": "2026-10-27T06:52:17+00:00",
       "original_url": "https://code.claude.com/docs/en/terminal-config",
       "path": "/docs/en/terminal-config",
       "source_url": "https://code.claude.com/docs/en/terminal-config.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-27T03:40:52+00:00",
+  "last_updated": "2026-10-27T06:52:31+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
