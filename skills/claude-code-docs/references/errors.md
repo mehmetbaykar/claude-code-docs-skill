@@ -399,6 +399,7 @@ Match the message you see to a section below.
 | `Claude Code process exited with code N` | [Wrapper and IDE errors](#claude-code-process-exited-with-code-n) |
 | `The connection to Claude Code ended before this message completed` | [Wrapper and IDE errors](#the-connection-to-claude-code-ended-before-this-message-completed) |
 | `Could not locate the Claude CLI on PATH` | [Wrapper and IDE errors](#could-not-locate-the-claude-cli-on-path) |
+| `The Claude Code program for this computer, the <build> build, could not be found` | [Wrapper and IDE errors](#the-claude-code-program-for-this-computer-could-not-be-found) |
 | `Restored the code, but skipped N files` | [Rewind warnings and errors](#restored-the-code-but-skipped-files) |
 | `No files were restored: N files failed (backup missing, or the file could not be updated)` | [Rewind warnings and errors](#no-files-were-restored) |
 | `Transcript writes are failing (...)` | [Session saving warnings](#transcript-writes-are-failing) |
@@ -487,15 +488,15 @@ While retrying, the spinner shows a `Retrying in Ns · attempt x/y` countdown af
 
 As of v2.1.198, the usual spinner tip is suppressed during retries. Once the error reason is revealed, if the failure is a 529 overload the line below the countdown also names where to check service status: `status.claude.com` on the Anthropic API, or the provider or gateway host named in the message on other configurations.
 
-If no data arrives on the response stream for 20 seconds while a request is still pending, the spinner shows `Waiting for API response · will retry in … · check your network` before any retry has started. The request hasn't failed yet: the countdown runs to the point where Claude Code aborts the stalled connection. After the abort, what you see depends on how far the response had got:
+#### Waiting for API response
+
+The `Waiting for API response · will retry in … · check your network` banner means that Claude Code has waited at least 20 seconds without receiving any data for a request. The request hasn't failed yet: the countdown runs to the point where Claude Code aborts the stalled connection. If the abort happens:
 
 * Before Claude has completed a block of text or a tool call, or started one after finishing its thinking, Claude Code retries the request or ends the turn with an error. [Automatic retries](#automatic-retries) says which stalls it retries and how many times.
 * After Claude has completed a block of text or a tool call, or started one after finishing its thinking, but before Claude has finished the response, Claude Code keeps what Claude completed, continues the turn from any tool calls Claude finished, and shows [The response above may be incomplete](#the-response-above-may-be-incomplete). In a non-interactive session, and for a subagent's response in any session, Claude Code may first prompt Claude to continue the response; that entry says when it does and when you still see the notice there.
 * After Claude finished the response, Claude Code ends the turn normally.
 
-The banner clears on its own once data resumes or a retry succeeds. If it reappears on every attempt, treat it as a [network issue](#unable-to-connect-to-api). Before v2.1.185, the banner appeared after 10 seconds with different wording.
-
-While Claude is consulting the [advisor](https://code.claude.com/docs/en/advisor.md), the banner appears after 90 seconds without data instead of 20, because a long advisor review can send nothing for well over 20 seconds. Before v2.1.214, the 20-second threshold applied during advisor calls too, so the banner appeared during advisor reviews even when nothing was wrong.
+The banner clears on its own once data resumes or a retry succeeds. If it reappears on every attempt, treat it as a [network issue](#unable-to-connect-to-api). If you connect through a gateway, see [The waiting banner comes and goes behind a gateway](#waiting-banner-behind-a-gateway). Before v2.1.185, the banner appeared after 10 seconds with different wording.
 
 #### The waiting banner comes and goes behind a gateway
 
@@ -2384,7 +2385,7 @@ Before v2.1.216, no deployment ran the exclusion checks.
 
 **What to do:**
 
-* If your Claude Code version is earlier than v2.1.216, run `claude update`.
+* If your Claude Code version is earlier than v2.1.300, run [`claude update`](https://code.claude.com/docs/en/setup#update-claude-code) in your shell. Before v2.1.300, Claude Code didn't [retry the request without the rejected tool's parameters](https://code.claude.com/docs/en/mcp.md#tools-whose-input-schema-the-api-refuses), so this error repeated on every request that included the tool.
 * Remove or [disable](https://code.claude.com/docs/en/mcp.md#disable-a-server-without-removing-it) the MCP server that declares the invalid schema. The error names the tool only by position. On v2.1.216 or later, check each server's log for a line naming a tool whose input schema would be rejected. If no log names one, disable servers one at a time.
 * If you maintain the server, fix the tool's `input_schema`. The schema must be valid JSON Schema, and top-level property names must be 1 to 64 characters long and use only ASCII letters and digits, `_`, `.`, and `-`. See [Tools with invalid input schemas](https://code.claude.com/docs/en/mcp.md#tools-with-invalid-input-schemas).
 
@@ -5144,6 +5145,21 @@ Failed to run Claude Code: Error: Could not locate the Claude CLI on PATH. Launc
 * Open a new PowerShell window outside VS Code and run `where.exe claude`. If it doesn't print a path, the CLI isn't on your PATH: add its install directory by following [Verify your PATH](https://code.claude.com/docs/en/troubleshoot-install.md#verify-your-path). If it prints a path, the entry comes from your PowerShell profile or from a PATH change VS Code hasn't picked up yet; the next two steps cover those cases.
 * Set the PATH entry as a user or system environment variable, not in your PowerShell profile. The extension doesn't run your profile, so a PATH edit that lives only there never reaches it.
 * Restart VS Code after changing PATH. The extension checks the PATH that VS Code captured at startup, so a PATH change takes effect only after a restart.
+
+### The Claude Code program for this computer could not be found
+
+The [VS Code extension](https://code.claude.com/docs/en/vs-code.md) looked for the copy of Claude Code bundled inside it and found none built for your computer. The message names the build your computer needs:
+```text
+The Claude Code program for this computer, the Linux (linux-x64) build, could not be found.
+```
+
+**What to do:**
+
+* If the message says which build the extension holds, you have the extension package for another platform: install the package made for the build the message names
+* If the message doesn't say which build the extension holds, reinstall the Claude Code extension from your editor's Extensions view
+* Or, in either case, set [`claudeCode.claudeProcessWrapper`](https://code.claude.com/docs/en/vs-code#extension-settings) to a separately installed `claude` binary
+
+Before v2.1.290, this appeared as `Unsupported platform: <platform>-<arch>. No compatible Claude Code binary found.`
 
 ### The connection to Claude Code ended before this message completed
 
