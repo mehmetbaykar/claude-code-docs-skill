@@ -905,6 +905,7 @@ Sign-in, network, and launch errors have their own entries on the install troubl
 | `Claude Code process exited with code 1`, or another code | [Claude Code process exited with code N](https://code.claude.com/docs/en/errors.md#claude-code-process-exited-with-code-n) |
 | `Could not locate the Claude CLI on PATH` | [Could not locate the Claude CLI on PATH](https://code.claude.com/docs/en/errors.md#could-not-locate-the-claude-cli-on-path) |
 | `The connection to Claude Code ended before this message completed` | [The connection to Claude Code ended before this message completed](https://code.claude.com/docs/en/errors.md#the-connection-to-claude-code-ended-before-this-message-completed) |
+| `The Claude Code program for this computer, the <build> build, could not be found` | [The Claude Code program for this computer could not be found](https://code.claude.com/docs/en/errors.md#the-claude-code-program-for-this-computer-could-not-be-found) |
 | `claude` isn't found in VS Code's integrated terminal | [Run CLI in VS Code](#run-cli-in-vs-code) |
 
 ### Extension won't install

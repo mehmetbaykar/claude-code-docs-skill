@@ -233,7 +233,7 @@ claude mcp remove notion
 /mcp
 ```
 
-When you remove a remote server, Claude Code also deletes the OAuth tokens and client registration it stored for that server.
+When you remove a remote server, Claude Code also deletes the OAuth tokens and client registration it stored for that server. Claude Code doesn't revoke the tokens at the authorization server that issued them. To revoke the tokens where the authorization server supports revocation, run [`claude mcp logout <name>`](#authenticate-from-the-command-line) in your shell before `claude mcp remove <name>`.
 
 #### Server status
 
@@ -807,22 +807,14 @@ If you open a local session in the [Desktop app's Code tab](https://code.claude.
 
 Claude Code supports environment variable expansion in `.mcp.json` files, allowing teams to share configurations while maintaining flexibility for machine-specific paths and sensitive values like API keys.
 
-#### Supported syntax
+You can reference an environment variable in a server's `command`, `args`, `env`, `url`, or `headers` value, in either of two forms:
 
 * `${VAR}`: expands to the value of environment variable `VAR`
-* `${VAR:-default}`: expands to `VAR` if set, otherwise uses `default`
-
-#### Expansion locations
-
-Environment variables can be expanded in:
-
-* `command`: the server executable path
-* `args`: command-line arguments
-* `env`: environment variables passed to the server
-* `url`: for HTTP server types
-* `headers`: for HTTP server authentication
+* `${VAR:-default}`: expands to the value of `VAR` if `VAR` is set, or to `default` if it is unset
 
 #### Example with variable expansion
+
+In this server entry, the URL is the value of `API_BASE_URL` followed by `/mcp`, with `https://api.example.com` as the default, and the API key comes from `API_KEY`:
 ```json
 {
   "mcpServers": {
@@ -840,6 +832,10 @@ Environment variables can be expanded in:
 #### Unset variables without a default
 
 If a referenced environment variable isn't set and has no default value, the config still loads: Claude Code reports a missing-variable warning for that server in `claude mcp list` output and uses the unexpanded `${VAR}` text as-is. Set the variable or add a `:-default` fallback so the server starts with the value you intend. In a remote server's `url` and `headers`, some credential variables [read as empty](#credential-variables-that-read-as-empty) instead, with no warning.
+
+#### Variables set to an empty string
+
+If you set a variable to an empty string, it counts as set, so a `${VAR:-default}` reference expands to the empty string rather than to `default`. With the [example server](#example-with-variable-expansion), if you set `API_BASE_URL` to an empty string, its `url` becomes `/mcp` and `claude mcp list` reports `'url' is not a valid URL`. To use the default, unset the variable rather than setting it to an empty string.
 
 #### Credential variables that read as empty
 
@@ -1498,16 +1494,35 @@ When Claude Code can't produce a schema the API accepts, or on a deployment that
 
 ## Tools with invalid input schemas
 
-The Claude API checks every tool's input schema in a request and rejects the whole request when any one schema fails, so a single MCP tool with a malformed schema would make every request that includes it fail with a 400 error. Claude Code runs two of the API's checks itself when it loads a server's tools and excludes each tool that would fail them, so the server's other tools keep working:
+> [!NOTE]
+>
+> If your session fails with a 400 error that names a tool by its position, follow the steps in [Tool input schema is invalid](https://code.claude.com/docs/en/errors.md#tool-input-schema-is-invalid).
+
+If one of your MCP server's tools has an input schema that breaks either of two rules the API enforces, Claude Code excludes that tool. The server's other tools are unaffected. Claude Code checks both rules as it loads the server's tools:
 
 * Top-level property names must be 1 to 64 characters long and use only ASCII letters and digits, `_`, `.`, and `-`
 * The schema must be valid against the JSON Schema draft 2020-12 meta-schema. Claude Code applies this check to schemas that declare no `$schema` and schemas that declare draft 2020-12. A schema that declares any other dialect skips this check, though the property-name check above still applies
 
 When Claude Code excludes a tool, it records the reason in the server's log and tells Claude which tools it excluded and why, so you can ask Claude why a tool is missing. If you fix the schema on the server, the tool comes back the next time Claude Code loads the server's tools.
 
-Claude Code turns the exclusion on through a feature flag it fetches from Anthropic. On a [deployment where flag fetching is off](https://code.claude.com/docs/en/env-vars.md#features-that-need-feature-flag-fetching), or on a machine whose flags have never arrived, such as an air-gapped machine, Claude Code still runs the checks and records in the server's log which tool would be rejected, but sends the tool's schema to the API anyway. The API rejects a request that includes that schema with [a 400 error naming the tool by its position](https://code.claude.com/docs/en/errors.md#tool-input-schema-is-invalid). Before v2.1.216, no deployment ran these checks.
+When [feature flag fetching](https://code.claude.com/docs/en/env-vars.md#features-that-need-feature-flag-fetching) is off or the flags have never arrived, as on an air-gapped machine, a tool that breaks a rule isn't excluded:
+
+* Claude gets the tool unchanged, and the server's log records `input schema would be rejected by the Anthropic API` for it
+* If the API then rejects the schema, see [Tools whose input schema the API refuses](#tools-whose-input-schema-the-api-refuses)
+
+Before v2.1.216, no deployment ran these checks.
 
 The [root-level combinator handling](#tool-input-schemas-with-a-root-level-combinator) is separate and keeps its own behavior when flag fetching is off or the flags have never arrived.
+
+### Tools whose input schema the API refuses
+
+If a line in the debug log contains `the API refused this tool's input schema`, it names a tool whose schema the API rejected in a request. Claude Code resends that request with the tool declared without parameters.
+
+* **If your session fails with a 400 error that names a tool by its position**: follow the steps in [Tool input schema is invalid](https://code.claude.com/docs/en/errors.md#tool-input-schema-is-invalid)
+* **If you use the server**: you don't need to do anything. Claude can still call the tool, but doesn't see its parameters
+* **If you maintain the server**: fix the tool's input schema on the server. The log line ends with `The API said:` and the API's reason for rejecting the schema. Validate the arguments the server receives, because Claude calls the tool without seeing its parameters
+
+Before v2.1.300, every turn that included the refused schema failed with [a 400 error naming the tool by its position](https://code.claude.com/docs/en/errors.md#tool-input-schema-is-invalid).
 
 ## Tools with names longer than 128 characters
 
