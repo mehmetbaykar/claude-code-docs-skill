@@ -246,6 +246,7 @@ The statuses in this list report a configuration decision rather than a connecti
 * ``⏸ Pending approval (run `claude` to approve)``: a project-scoped server from `.mcp.json` that you haven't approved yet. Claude Code shows it in both `claude mcp list` and `claude mcp get <name>`. Run `claude` interactively to review and approve it.
 * `✘ Rejected (see disabledMcpjsonServers in settings)`: a `.mcp.json` server that a [`disabledMcpjsonServers`](https://code.claude.com/docs/en/settings-reference#disabledmcpjsonservers) entry rejects. Claude Code shows it only in `claude mcp get <name>`.
 * `⊘ Disabled for this project (re-enable via /mcp)`: a server that the project's [`disabledMcpServers`](#disable-a-server-without-removing-it) list names. Claude Code shows it in both `claude mcp list` and `claude mcp get <name>`. Turn the server back on from the `/mcp` panel.
+* `✘ Blocked by enterprise managed policy`: a server that one of your organization's policies refuses. Claude Code shows it in both `claude mcp list` and `claude mcp get <name>`. A server blocked by an allowlist, a denylist, or another restriction in [managed MCP configuration](https://code.claude.com/docs/en/managed-mcp.md#how-restrictions-appear-to-users) is hidden from both commands rather than shown with this status. Ask your administrator which policy blocks the server.
 
 #### Project server approvals and workspace trust
 
@@ -462,7 +463,7 @@ The per-call limits still apply while the call runs in the background: the wall-
 To change or turn off automatic backgrounding:
 
 * Set the [`CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS`](https://code.claude.com/docs/en/env-vars) environment variable in milliseconds to change the threshold, or set it to `0` to turn automatic backgrounding off. With `0`, Claude also [waits for MCP tasks](#make-claude-wait-for-the-result-of-an-mcp-task) in an interactive session
-* Set [`CLAUDE_CODE_DISABLE_BACKGROUND_TASKS`](https://code.claude.com/docs/en/env-vars) to `1`, which turns it off together with background commands and background subagents
+* Set [`CLAUDE_CODE_DISABLE_BACKGROUND_TASKS`](https://code.claude.com/docs/en/env-vars) to `1` to turn off automatic backgrounding and [background commands](https://code.claude.com/docs/en/tools-reference.md#background-commands)
 
 Some calls never move to the background:
 
@@ -1101,9 +1102,16 @@ If the server later returns a 403 `insufficient_scope` for a tool call, the call
 
 If that scope isn't in your pinned `oauth.scopes`, add it, then run `/mcp` and authenticate the server again. Claude Code requests the pinned scopes rather than the scope the server named, so if you authenticate again without adding it, the token you get still lacks it.
 
+### Use OAuth with a server behind an authenticating proxy
+
+If your MCP server uses OAuth behind a proxy or gateway that checks a header of its own, sign-in fails when the OAuth requests arrive without that header. Signing in through the proxy requires Claude Code v2.1.299 or later, with the header and the sign-in both configured:
+
+* **The proxy's header**: pass it with [`--header`](#option-1-add-a-remote-http-server), the `headers` field, or a [`headersHelper`](#use-dynamic-headers-for-custom-authentication), under the name the proxy reads
+* **The OAuth sign-in**: keep `Authorization` out of the configured headers, then sign in with `claude mcp login <name>` in your shell. If you configure an `Authorization` header, Claude Code uses it as the server's credential and doesn't fall back to OAuth for that server.
+
 ### Use dynamic headers for custom authentication
 
-If your MCP server uses an authentication scheme other than OAuth, such as Kerberos, short-lived tokens, or an internal SSO, use `headersHelper` to generate request headers at connection time. Claude Code runs the command and merges its output into the connection headers.
+When authentication such as Kerberos, short-lived tokens, or internal SSO needs headers generated at connection time, set the server's `headersHelper` to a command. Claude Code runs it when connecting and merges its output into the headers it sends. This example uses a script:
 ```json
 {
   "mcpServers": {
@@ -1665,7 +1673,11 @@ Keep descriptions and instructions concise, and put critical details near the st
 
 Before v2.1.296, the shorter limit was 2,048 characters, and before v2.1.295 it applied to every tool description, including one loaded through tool search.
 
-Descriptions and instructions from some of the MCP servers that Anthropic hosts at `api.anthropic.com` reach Claude in full. To change the limits for the other MCP servers in your session, set [`CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH`](https://code.claude.com/docs/en/env-vars#variables) to a number of characters. The number you set replaces both limits: `8192`, for example, raises the shorter limit and lowers the longer one. This variable requires Claude Code v2.1.280 or later.
+#### Change the description length limits
+
+To change the [default limits](#for-mcp-server-authors) of 4,096 and 16,384 characters for the MCP servers in your session, set [`CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH`](https://code.claude.com/docs/en/env-vars#variables) to a number of characters. Claude Code uses that number for both limits. With `8192`, for example, you raise the 4,096-character limit on server instructions and tool descriptions loaded upfront, and lower the 16,384-character limit on tool descriptions loaded through tool search. This variable requires Claude Code v2.1.280 or later.
+
+Descriptions and instructions from some of the MCP servers that Anthropic hosts at `api.anthropic.com` reach Claude in full, and setting this variable doesn't cut them.
 
 #### Mark a tool to load upfront or stay deferred
 
