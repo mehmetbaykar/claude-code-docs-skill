@@ -994,8 +994,8 @@
       "title": "How Claude Code works"
     },
     "interactive-mode.md": {
-      "hash": "50ea8ed1b1710eaac48b04f689bf15055040dc3523b7b120054a08bccfaca4c8",
-      "last_updated": "2026-10-27T21:27:03+00:00",
+      "hash": "5f3d42d3ab2933c070ec5359f607df09522e9d02a9eb02ba03ac578165ebe45f",
+      "last_updated": "2026-10-28T03:31:19+00:00",
       "original_url": "https://code.claude.com/docs/en/interactive-mode",
       "path": "/docs/en/interactive-mode",
       "source_url": "https://code.claude.com/docs/en/interactive-mode.md",
@@ -1795,8 +1795,8 @@
       "title": "Voice dictation"
     },
     "vs-code.md": {
-      "hash": "3219473df8dfcaa115396e78ab4f1492e121c740485b6bfc566a16bc96b765ce",
-      "last_updated": "2026-10-26T21:33:48+00:00",
+      "hash": "f090afe8a43cc15254223886f0a8955a2c3d697a03337d6ed1f6ff7d9dde0f4a",
+      "last_updated": "2026-10-28T03:31:49+00:00",
       "original_url": "https://code.claude.com/docs/en/vs-code",
       "path": "/docs/en/vs-code",
       "source_url": "https://code.claude.com/docs/en/vs-code.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-28T00:51:03+00:00",
+  "last_updated": "2026-10-28T03:31:59+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
