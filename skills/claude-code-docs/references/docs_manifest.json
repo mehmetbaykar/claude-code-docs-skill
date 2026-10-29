@@ -1354,8 +1354,8 @@
       "title": "Manage mods for your organization"
     },
     "plugins__mods__api.md": {
-      "hash": "69cc834165625125d2aae32ee495e45bf2aee3d1b4a08ad572e9a4a837fbcbd0",
-      "last_updated": "2026-10-25T15:31:45+00:00",
+      "hash": "33abd718ca4f07a5a0fd680d0d933bb4a418513f7bd3f9552dc03aca0f2bce8d",
+      "last_updated": "2026-10-29T12:35:34+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/api",
       "path": "/docs/en/plugins/mods/api",
       "source_url": "https://code.claude.com/docs/en/plugins/mods/api.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-29T06:38:41+00:00",
+  "last_updated": "2026-10-29T12:35:53+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
