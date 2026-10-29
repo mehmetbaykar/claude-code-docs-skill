@@ -535,8 +535,8 @@
       "title": "Use Claude Code in the cloud"
     },
     "claude-directory.md": {
-      "hash": "8e0ec595a33b4e90c87e82a5bb277d7978037bdc4fd1fe96ada0ac468cec1c8e",
-      "last_updated": "2026-10-26T21:33:07+00:00",
+      "hash": "249c28ad01a4f0b6dbe3e974dc23ac17beae876e06978d4b82ff2ed10a5c0aee",
+      "last_updated": "2026-10-29T06:37:58+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-directory",
       "path": "/docs/en/claude-directory",
       "source_url": "https://code.claude.com/docs/en/claude-directory.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-28T21:29:06+00:00",
+  "last_updated": "2026-10-29T06:38:41+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
