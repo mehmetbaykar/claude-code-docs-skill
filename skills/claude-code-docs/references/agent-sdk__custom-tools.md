@@ -44,15 +44,17 @@ After defining a tool, wrap it in a server with [`createSdkMcpServer`](https://c
 
 Python examples on this page that make HTTP requests use [httpx](https://www.python-httpx.org/). Add it with the package manager your project uses:
 
-**Python (uv)**
-```bash
-uv add httpx
-```
+> [tab] Python (uv)
+>
+> ```bash theme={null}
+> uv add httpx
+> ```
 
-**Python (pip)**
-```bash
-pip install httpx
-```
+> [tab] Python (pip)
+>
+> ```bash theme={null}
+> pip install httpx
+> ```
 
 ### Weather tool example
 
@@ -190,22 +192,25 @@ for await (const message of query({
 
 Combine this snippet with the tool and server definitions from the [weather tool example](#weather-tool-example) in one file, `weather.py` or `weather.ts`, then run it from your terminal:
 
-**TypeScript**
-```bash
-npx tsx weather.ts
-```
+> [tab] TypeScript
+>
+> ```bash theme={null}
+> npx tsx weather.ts
+> ```
 
-**Python (uv)**
-```bash
-uv run weather.py
-```
+> [tab] Python (uv)
+>
+> ```bash theme={null}
+> uv run weather.py
+> ```
 
-**Python (pip)**
-
-Activate the virtual environment where you installed the SDK, then run:
-```bash
-python weather.py
-```
+> [tab] Python (pip)
+>
+> Activate the virtual environment where you installed the SDK, then run:
+>
+> ```bash theme={null}
+> python weather.py
+> ```
 
 Claude calls `get_temperature` and the script prints a one-line answer with the current temperature in San Francisco.
 
