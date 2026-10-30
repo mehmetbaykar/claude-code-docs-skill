@@ -1795,8 +1795,8 @@
       "title": "Voice dictation"
     },
     "vs-code.md": {
-      "hash": "c4315e16a0eaf3ca2678d2cabd4e0a0992a84574682f3adc4e45ff5c40ce41f7",
-      "last_updated": "2026-10-30T18:27:59+00:00",
+      "hash": "ac522c0246ad42a52a959612435e4ddf6b7a9c989465a909e463219787d9779d",
+      "last_updated": "2026-10-30T21:27:16+00:00",
       "original_url": "https://code.claude.com/docs/en/vs-code",
       "path": "/docs/en/vs-code",
       "source_url": "https://code.claude.com/docs/en/vs-code.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-10-30T18:28:08+00:00",
+  "last_updated": "2026-10-30T21:27:24+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
