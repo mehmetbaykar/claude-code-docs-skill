@@ -138,7 +138,7 @@ For Team and Enterprise members without billing access, the confirmation appears
 
 If you run `/usage-credits` again while your earlier request is waiting on an admin, Claude Code tells you a request has already been sent rather than sending a duplicate. After an admin dismisses your request, running the command again sends a new one. Before v2.1.222, a dismissed request also blocked new requests.
 
-On Pro and Max plans, when you reach your spend limit with usage credits still available, Claude Code prompts you to raise or remove the limit without leaving the CLI. If the server rejects the change, see [Could not update your spend limit](https://code.claude.com/docs/en/errors.md#could-not-update-your-spend-limit).
+On Pro, Max, and Ultra plans, when you reach your spend limit with usage credits left, Claude Code prompts you to raise or remove the limit without leaving the CLI. If the server rejects the change, see [Could not update your spend limit](https://code.claude.com/docs/en/errors.md#could-not-update-your-spend-limit).
 
 ## Manage costs for your organization
 
