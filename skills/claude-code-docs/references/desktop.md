@@ -314,7 +314,7 @@ To see how full this session's context window is, find your Code tab layout:
 
 In either layout, type `/context` in the prompt box to print a per-category breakdown of this session's context window in the chat.
 
-Both layouts have the usage ring next to the model picker. Click it to see your plan usage, which is shared across all your Claude Code surfaces.
+In both layouts, the usage ring is in the row under the prompt box. Click it to see your plan usage, which is shared across all your Claude Code surfaces.
 
 ## Let Claude use your computer
 
@@ -411,9 +411,9 @@ In the split view, the pane you opened or clicked last has focus, and the other 
 
 #### Run a session in its own worktree
 
-In a project that's a Git repository, turn on **Worktree** before you start a session to run it in its own [Git worktree](https://code.claude.com/docs/en/worktrees.md), an isolated copy of the project. By default, **Worktree** is off and Claude works in the project folder itself. On the [current layout](#check-which-layout-you-have), turn on the **Worktree** button in the [row under the prompt box](#start-a-session).
+In a project that's a Git repository, turn on **Worktree** before you start a session to run it in its own [Git worktree](https://code.claude.com/docs/en/worktrees.md), an isolated copy of the project. By default, **Worktree** is off and Claude works in the project folder itself. On the [current layout](#check-which-layout-you-have), turn on **Worktree** in the [row under the prompt box](#start-a-session).
 
-* **With a [third-party provider](https://code.claude.com/docs/en/third-party-integrations.md)**: if the row under the prompt box shows the project folder control but no **Worktree** button, click that control and turn on **Worktree**
+* **With a [third-party provider](https://code.claude.com/docs/en/third-party-integrations.md)**: if the row under the prompt box shows the project folder control but not **Worktree**, click the project folder control and turn on **Worktree**
 * **As the default for a [saved local or SSH environment](#create-a-saved-environment)**: set **Worktree** when you create or edit the environment
 * **[Earlier layout](#check-which-layout-you-have)**: select the **worktree** checkbox beside the branch name, above the prompt box
 

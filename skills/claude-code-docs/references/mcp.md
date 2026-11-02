@@ -1588,7 +1588,7 @@ For example, these fields in a `tools/list` entry mark the `set_issue_status` to
 
 ## Respond to MCP elicitation requests
 
-MCP servers can request structured input from you mid-task using elicitation. When a server needs information it can't get on its own, Claude Code displays an interactive dialog and passes your response back to the server. No configuration is required on your side: elicitation dialogs appear automatically when a server requests them.
+MCP servers can request structured input from you mid-task using elicitation. When a server needs information it can't get on its own, Claude Code displays an interactive dialog in the terminal and passes your response back to the server. No configuration is required on your side: elicitation dialogs appear automatically when a server requests them.
 
 Servers can request input in two ways:
 
@@ -1600,6 +1600,17 @@ In URL mode, Claude Code passes the URL as a command-line argument to your syste
 To auto-respond to elicitation requests without showing a dialog, use the [`Elicitation` hook](https://code.claude.com/docs/en/hooks#elicitation).
 
 If you're building an MCP server that uses elicitation, see the [MCP elicitation specification](https://modelcontextprotocol.io/docs/learn/client-concepts#elicitation) for protocol details and schema examples.
+
+### Answer an elicitation request in a cloud session
+
+When Claude's task in your cloud session waits on an MCP server's request, the server needs something from you, such as a value or a sign-in. If the request appears as a card at claude.ai/code or in the Desktop app's **Code** tab, answer on the card:
+
+* **Form mode**: fill in the fields, then click **Submit**
+* **URL mode**: click **Open link**, finish the flow it opens, then click **I’m done, continue** on the card
+
+To refuse the request, click **Decline**. Claude continues once the server responds.
+
+If you see no card in either place, you can't answer the request there. In your own session, click the stop button there to end the turn.
 
 ### Elicitation modes Claude Code declares
 

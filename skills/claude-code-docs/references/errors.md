@@ -61,6 +61,7 @@ Match the message you see to a section below.
 | `Could not resolve authentication method` | [Authentication](#could-not-resolve-authentication-method) |
 | `Invalid API key` | [Authentication](#invalid-api-key) |
 | `Your apiKeyHelper script is failing` | [Authentication](#your-apikeyhelper-script-is-failing) |
+| `Claude Code didn't send your claude.ai login, because the API key helper your administrator set isn't in effect` | [Authentication](#claude-code-didnt-send-your-claude-ai-login) |
 | `Invalid auth token · Fix external auth token` | [Authentication](#invalid-request-header-value) |
 | `Invalid ANTHROPIC_CUSTOM_HEADERS · Fix the environment variable` | [Authentication](#invalid-request-header-value) |
 | `Invalid request header from the environment · Fix the environment variable` | [Authentication](#invalid-request-header-value) |
@@ -824,7 +825,7 @@ Usage counts against the session and weekly allowances at the same time. A singl
 * Run `/usage-credits` to buy additional usage on Pro, Max, and Ultra, or to request it from your admin on Team and Enterprise. See [usage credits for paid plans](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) for how this is billed.
 * To upgrade your plan for higher base limits, see [claude.com/pricing](https://claude.com/pricing)
 
-Before a window runs out, Claude Code can warn you that you've used most of it, with a message such as `You've used 85% of your session limit · resets 3:45pm`. To watch your remaining allowance continuously, add the `rate_limits` fields to a [custom status line](https://code.claude.com/docs/en/statusline.md#rate-limit-usage), or in the Desktop app click the [usage ring](https://code.claude.com/docs/en/desktop.md#check-usage) next to the model picker.
+Before a window runs out, Claude Code can warn you that you've used most of it, with a message such as `You've used 85% of your session limit · resets 3:45pm`. To watch your remaining allowance, add the `rate_limits` fields to a [custom status line](https://code.claude.com/docs/en/statusline.md#rate-limit-usage), or in the Desktop app click the [usage ring](https://code.claude.com/docs/en/desktop.md#check-usage).
 
 ### Usage credits required for 1M context
 
@@ -1052,6 +1053,18 @@ Running `/login` doesn't help here: the helper's output [takes precedence](https
 * Fix the command so it prints only the key to stdout, as a single token of printable ASCII up to 16,384 characters, and exits with code 0. See [rotate credentials with apiKeyHelper](https://code.claude.com/docs/en/llm-gateway-connect.md#rotate-credentials-with-apikeyhelper) for a working setup.
 * Run `/status` to see the failure and confirm `apiKeyHelper` is the active credential source. The `apiKeyHelper` row shows `Failing` with the last failure's detail, such as the exit code and the command's error output, and disappears after the next successful run. Before v2.1.274, `/status` showed only the credential source, not the failure.
 * Each time the command fails, its exit code and error output also appear in an `Authentication` panel in the terminal. Before v2.1.212, the panel was titled `Cloud authentication`.
+
+### Claude Code didn't send your claude.ai login
+
+Send this full message to your administrator. It lists the changes they can make. The message means Claude Code refused your prompt. While you use your claude.ai login, Claude Code keeps refusing prompts, after a restart too:
+```text
+Claude Code didn't send your claude.ai login, because the API key helper your administrator set isn't in effect. Your organization's managed settings may be overriding it. Ask your administrator to keep the key helper and its API address in effect, to name Anthropic's API address in those managed settings, or to remove the key helper. Run /status to see your setting sources.
+```
+
+**What to do:**
+
+* To tell your administrator which managed sources your machine has, run `/status` at the Claude Code prompt and copy the [`Setting sources` line](https://code.claude.com/docs/en/managed-settings#read-the-source-in-/status). If a `Skipped sources` line appears, copy it too
+* If you administer the settings, see [why the machine's key helper isn't in effect](https://code.claude.com/docs/en/server-managed-settings.md#machine-apikeyhelper-not-in-effect)
 
 ### Invalid request header value
 
@@ -5860,14 +5873,14 @@ Claude Code sent a request for a model ID that your Claude Code version doesn't 
 In a script or harness that reads stderr, match on the `[claude-code:unrecognized_model]` prefix. After the prefix and one space, Claude Code writes a one-line JSON object. Claude Code can add fields to it in a later version, so ignore any field you don't expect. It writes at least these two:
 
 * `model`: the model string as you configured it
-* `query_source`: the request path that used the model. Claude Code reports `sdk` for a `-p` run and a value that starts with `agent:` for a subagent.
+* `query_source`: the request path that used the model. For example, the value is `sdk` for the main conversation of a `-p` run and starts with `agent:` for a subagent.
 
 Claude Code writes the line to one of two places, depending on how you run it:
 
 * In [non-interactive mode](https://code.claude.com/docs/en/headless.md) with `-p`, Claude Code writes it to stderr under every `--output-format`, so you can parse stdout without filtering the line out
 * In an interactive session or a [background session](https://code.claude.com/docs/en/agent-view.md), Claude Code writes it to the debug log instead; run with `--debug` to capture it at `~/.claude/debug/<session-id>.txt`
 
-Claude Code writes the line once per model string per process. It writes a separate line for each further unrecognized ID, such as one that a [subagent](https://code.claude.com/docs/en/sub-agents.md#choose-a-model) or [background functionality](https://code.claude.com/docs/en/costs.md#background-token-usage) uses.
+Claude Code writes the line once per model ID per process. It writes a separate line for each further unrecognized ID, such as one that a [subagent](https://code.claude.com/docs/en/sub-agents.md#choose-a-model) or [background functionality](https://code.claude.com/docs/en/model-config.md#environment-variables) uses.
 
 Claude Code doesn't write the line for provider IDs it resolves to a model it recognizes, such as Amazon Bedrock `us.anthropic.claude-...` IDs, Google Cloud's Agent Platform IDs with an `@` version suffix, and Microsoft Foundry deployment names that contain a Claude model ID. Claude Code checks the model behind an Amazon Bedrock [application inference profile ARN](https://code.claude.com/docs/en/amazon-bedrock.md#map-each-model-version-to-an-inference-profile) rather than the ARN itself. It writes no line for an ARN it can't resolve, such as a mistyped one.
 
