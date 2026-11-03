@@ -260,7 +260,7 @@ def http_headers(product: Product, accept: str) -> dict[str, str]:
     return {
         "User-Agent": (
             f"{product.skill}-skill-fetcher/{FETCH_TOOL_VERSION} "
-            f"(+https://github.com/{product.repository})"
+            f"(+{product.docs_url})"
         ),
         "Accept": accept,
         "Cache-Control": "no-cache",

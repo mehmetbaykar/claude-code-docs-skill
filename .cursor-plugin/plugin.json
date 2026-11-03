@@ -1,13 +1,10 @@
 {
   "name": "cc-docs",
   "version": "2026.1103.1808",
-  "description": "Answers Claude Code questions from a local mirror of the official documentation, refreshed every 3 hours.",
+  "description": "Unofficial: answers Claude Code questions from a local mirror of its documentation, refreshed every 3 hours.",
   "author": {
-    "name": "Mehmet Baykar"
+    "name": "Community contributors"
   },
-  "homepage": "https://github.com/mehmetbaykar/claude-code-docs-skill",
-  "repository": "https://github.com/mehmetbaykar/claude-code-docs-skill",
-  "license": "MIT",
   "keywords": [
     "claude-code",
     "documentation",

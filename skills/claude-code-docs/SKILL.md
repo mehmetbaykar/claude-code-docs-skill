@@ -14,7 +14,6 @@ compatibility: Any agent that reads Agent Skills, such as Claude Code, Codex, or
 allowed-tools: Read Grep Glob
 metadata:
   upstream: https://code.claude.com/docs/en/
-  repository: https://github.com/mehmetbaykar/claude-code-docs-skill
 ---
 
 # Claude Code Docs
