@@ -23,6 +23,7 @@ To see a sample in your own terminal, create the small mod in these steps and pa
 Create a directory named `gallery` with `.claude-plugin` and `hooks` directories inside it. [Create a mod](https://code.claude.com/docs/en/plugins/mods/create.md#write-a-mod-yourself) explains the files.
 
 Save the manifest as `gallery/.claude-plugin/plugin.json`:
+
 ```json gallery/.claude-plugin/plugin.json
 {
   "name": "gallery",
@@ -33,6 +34,7 @@ Save the manifest as `gallery/.claude-plugin/plugin.json`:
 ```
 
 Name your entry point in `gallery/hooks/hooks.json`:
+
 ```json gallery/hooks/hooks.json
 {
   "modules": ["./register.js"]
@@ -40,6 +42,7 @@ Name your entry point in `gallery/hooks/hooks.json`:
 ```
 
 Save the code as `gallery/hooks/register.js`. It adds a `/gallery` command that opens a pane, and draws `Plain text` in that pane:
+
 ```javascript gallery/hooks/register.js
 // Stands in for your own callback in the samples that take one
 const noop = () => {}
@@ -76,6 +79,7 @@ export function register(on) {
 **2. Run the mod**
 
 In your shell, start Claude Code from the directory that holds `gallery`:
+
 ```bash
 claude --plugin-dir ./gallery
 ```
@@ -103,6 +107,7 @@ Three elements put words on screen: `Text` for your own styling, `Markdown` for 
 ### `Text`
 
 `Text` draws a string with the styles you give it. This sample shows plain text and eight styles, one on each line:
+
 ```javascript
 Box({
   flexDirection: 'column',
@@ -127,6 +132,7 @@ Box({
 ### `Markdown`
 
 `Markdown` formats text the way Claude's replies are formatted. Pass the content in `text`, not in `children`:
+
 ```javascript
 Markdown({
   text: '## Release notes\n\nThis build has **two** fixes and one `flag`:\n\n- Faster start\n- Fewer prompts\n\n> Quoted text',
@@ -140,6 +146,7 @@ A heading draws in bold without its `#` marks. Inline code draws in color withou
 ### `Link`
 
 `Link` draws a label followed by its URL:
+
 ```javascript
 Link({ href: 'https://code.claude.com/docs', label: 'Claude Code docs' })
 ```
@@ -155,6 +162,7 @@ The terminal draws the URL as text after the label. Whether a click opens it dep
 ### `Code`
 
 Name the `language`, or pass a `path` for Claude Code to infer it from. With `startLine`, the lines are numbered from that number:
+
 ```javascript
 Code({
   language: 'javascript',
@@ -170,6 +178,7 @@ The colors come from the user's theme.
 ### `Code` as a diff
 
 With `format: 'diff'`, `source` is one or more unified diff hunks:
+
 ```javascript
 Code({
   format: 'diff',
@@ -186,6 +195,7 @@ Claude Code draws line numbers in place of the `@@` line. Where a removed line a
 ### `Box`
 
 `Box` lays out what's inside it in a row or a column, and can draw a border. This sample puts a row of words above a bordered box:
+
 ```javascript
 Box({
   flexDirection: 'column',
@@ -218,6 +228,7 @@ Open a pane with `focus: true` to request keyboard focus for it. Typed letters r
 ### `Button`
 
 A button runs `onPress`. This sample shows the default form, a `plain` button with a hotkey, and a dim one:
+
 ```javascript
 Box({
   flexDirection: 'column',
@@ -238,6 +249,7 @@ A button that has the focus draws in inverse video. Here the user has pressed Ta
 ### `Input`
 
 An `Input` is a text field that holds one line by default and runs `onSubmit` when the user presses Enter:
+
 ```javascript
 Input({
   key: 'title',
@@ -262,6 +274,7 @@ Typing replaces the placeholder:
 ![The same field holding the typed letters Rel, followed by the return sign and the word save.](https://mintcdn.com/claude-code/EXkwf0kKMewZsyod/images/mods-el-input-typed-light.png?fit=max\&auto=format\&n=EXkwf0kKMewZsyod\&q=85\&s=4eb6d4443763a21415dad4e426bc747a)
 
 Set `rows` to 2 or more for a field that holds several lines, such as a note or a commit message:
+
 ```javascript
 Input({
   key: 'note',
@@ -283,6 +296,7 @@ The field takes up the number of rows you set, even when it's empty, up to the h
 ### `Select`
 
 A `Select` lets the user pick one of several options, and runs `onSelect` with the option's `value`:
+
 ```javascript
 Select({
   key: 'format',
@@ -316,6 +330,7 @@ After the user picks an option, the list closes:
 ### `Raster`
 
 A `Raster` is a grid of colored character cells, for a heat map, a sparkline, or a game board. The terminal draws it. This sample uses the `cellsOf` function in the starter module, which packs the cells into the string a `Raster` takes. [Draw a grid of colored cells](https://code.claude.com/docs/en/plugins/mods/interface.md#draw-a-grid-of-colored-cells) explains it:
+
 ```javascript
 Raster({
   key: 'grid',
@@ -335,6 +350,7 @@ A `Raster` rounds each color to a smaller palette, so `0x2e7d32` draws as `#3377
 ### `Svg`
 
 An `Svg` draws an SVG document in the Desktop app and the VS Code extension:
+
 ```javascript
 Svg({
   alt: 'Three bars of rising height',
@@ -381,6 +397,7 @@ If an `Image` shows its `alt` text inside tmux, check these requirements along w
 * The mod's author passes the picture as `png` or `rgba` bytes, not as a `file` path. If you use a mod you didn't write and the other requirements hold, ask its author to check this one.
 
 For each tmux option that isn't already set as required, run its command in your shell:
+
 ```bash
 tmux set -g allow-passthrough on
 tmux set -g focus-events on

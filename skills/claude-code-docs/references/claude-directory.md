@@ -147,10 +147,10 @@ Session files in `sessions/`, auto memory, and Claude Desktop and Cowork transcr
 * **Auto memory**: the sweep doesn't delete the memory files in a project's [auto memory](https://code.claude.com/docs/en/memory.md#auto-memory) directory, `projects/<project>/memory/`. Claude Code removes that directory only if it has been empty for the whole retention period. Before v2.1.228, the sweep treated folders inside the memory directory as session data and could delete old files beneath it.
 * **Claude Desktop and Cowork transcripts**: Claude Code keeps the transcript of a session you started or most recently continued in Claude Desktop or Cowork at any age. To give these transcripts an age limit, set [`desktopSessionCleanupPeriodDays`](https://code.claude.com/docs/en/settings-reference#desktopsessioncleanupperioddays). Requires Claude Code v2.1.248 or later; earlier versions delete them after `cleanupPeriodDays`.
 
-Claude Code deletes these transcripts after `cleanupPeriodDays` instead in either of these cases:
+  Claude Code deletes these transcripts after `cleanupPeriodDays` instead in either of these cases:
 
-* [Managed settings](https://code.claude.com/docs/en/managed-settings.md) set `cleanupPeriodDays`
-* The [HIPAA configuration applies to your sessions](https://code.claude.com/docs/en/hipaa-setup.md#check-how-developers-sign-in-and-connect)
+  * [Managed settings](https://code.claude.com/docs/en/managed-settings.md) set `cleanupPeriodDays`
+  * The [HIPAA configuration applies to your sessions](https://code.claude.com/docs/en/hipaa-setup.md#check-how-developers-sign-in-and-connect)
 
 Claude Code skips the age-based sweep in these cases:
 
@@ -226,11 +226,13 @@ Before v2.1.288, the command was `claude project purge`.
 The examples below use `~/work/my-repo` as a placeholder. Replace it with the path to your project. If no state matches the path, the command prints an error and exits with status 1.
 
 Preview the plan without deleting anything:
+
 ```bash
 claude purge ~/work/my-repo --dry-run
 ```
 
 The plan lists each matching item and why it is included:
+
 ```text
 Purge plan for /home/user/work/my-repo:
 
@@ -247,6 +249,7 @@ Dry run: 3 item(s) would be deleted.
 ```
 
 Delete with a single confirmation prompt:
+
 ```bash
 claude purge ~/work/my-repo
 ```
@@ -256,6 +259,7 @@ The command prints the same plan, then asks `Delete 3 item(s) for /home/user/wor
 Omit the path to pick a project from an interactive list.
 
 Skip the confirmation prompt for use in scripts:
+
 ```bash
 claude purge ~/work/my-repo --yes
 ```

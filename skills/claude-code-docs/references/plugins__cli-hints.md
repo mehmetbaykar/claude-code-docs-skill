@@ -28,6 +28,7 @@ Claude Code sets `CLAUDECODE=1` in the commands it runs through the Bash and Pow
 The [environment variables reference](https://code.claude.com/docs/en/env-vars.md) has the details.
 
 The following examples gate on `CLAUDECODE` for the widest reach and emit a hint for a plugin named `example-cli` in the official marketplace:
+
 ```javascript Node.js
 if (process.env.CLAUDECODE) {
   process.stderr.write(
@@ -35,6 +36,7 @@ if (process.env.CLAUDECODE) {
   )
 }
 ```
+
 ```python Python
 import os, sys
 
@@ -44,12 +46,14 @@ if os.environ.get("CLAUDECODE"):
         file=sys.stderr,
     )
 ```
+
 ```go Go
 if os.Getenv("CLAUDECODE") != "" {
     fmt.Fprintln(os.Stderr,
         `<claude-code-hint v="1" type="plugin" value="example-cli@claude-plugins-official" />`)
 }
 ```
+
 ```shell Shell
 if [ -n "$CLAUDECODE" ]; then
   printf '%s\n' '<claude-code-hint v="1" type="plugin" value="example-cli@claude-plugins-official" />' >&2
@@ -91,6 +95,7 @@ The prompt appears only in interactive terminal sessions. In `claude -p` runs, i
 ## Preview what the user sees
 
 When the checks in [Check when the prompt appears](#check-when-the-prompt-appears) pass, Claude Code shows a **Plugin recommendation** dialog like the following:
+
 ```text
 ─────────────────────────────────────────────────────────────
   Plugin recommendation

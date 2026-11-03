@@ -76,6 +76,7 @@ This recording shows the finished mod. The spinner counts tool calls, `/tally` p
 Video: https://mintcdn.com/claude-code/dgiVO_Od1X1faduV/images/mods-first-mod-light.mp4?fit=max&auto=format&n=dgiVO_Od1X1faduV&q=85&s=eb561134afa90375777408453ba51c77
 
 You write three files:
+
 ```text
 first-mod/
 ├── .claude-plugin/
@@ -108,6 +109,7 @@ Create the two directories that hold the files:
 **2. Write the manifest**
 
 A mod is a plugin, and a mod needs a [manifest](https://code.claude.com/docs/en/plugins/manifest-reference.md). This mod's manifest has no special fields. Save this as `first-mod/.claude-plugin/plugin.json`:
+
 ```json first-mod/.claude-plugin/plugin.json
 {
   "name": "first-mod",
@@ -122,6 +124,7 @@ A mod is a plugin, and a mod needs a [manifest](https://code.claude.com/docs/en/
 When Claude Code loads a plugin, it reads the plugin's `hooks/hooks.json`. The `modules` key in that file gives the path to your code, and having it is what makes the plugin a mod. List one path, relative to `hooks.json`. Here it points to `register.js`, which you write in the next step.
 
 Save this as `first-mod/hooks/hooks.json`:
+
 ```json first-mod/hooks/hooks.json
 {
   "description": "The first-mod hooks module",
@@ -134,6 +137,7 @@ Save this as `first-mod/hooks/hooks.json`:
 This file is the mod's code, called the hooks module. When the mod loads, Claude Code calls the `register` function the file exports and passes it a function named [`on`](https://code.claude.com/docs/en/plugins/mods/reference#the-hook-function). Each call to `on` registers an event handler, called a hook, for the event it names.
 
 Save this as `first-mod/hooks/register.js`:
+
 ```javascript first-mod/hooks/register.js
 // The count, shared by the hooks below
 let calls = 0
@@ -186,6 +190,7 @@ The file keeps a count in `calls` and registers four hooks:
 **5. Load the mod**
 
 Start Claude Code with the `--plugin-dir` flag, which loads a plugin directory for one session without installing it:
+
 ```bash
 claude --plugin-dir ./first-mod
 ```
@@ -195,9 +200,11 @@ claude --plugin-dir ./first-mod
 Ask Claude to do something that takes a few tool calls, such as `list the files here and read the README`. While Claude works, the spinner's word is followed by a count that rises, as in `Thinking · tool calls: 2…`. When Claude finishes, type `/tally` and press Enter. The transcript shows `first-mod: Claude has made 2 tool calls since this mod loaded`, with your own count. Claude Code puts the plugin's name in front of the command's text.
 
 To check the command without an interactive session, run it in non-interactive mode:
+
 ```bash
 claude -p "/tally" --plugin-dir ./first-mod
 ```
+
 ```text
 first-mod: Claude has made 0 tool calls since this mod loaded
 ```
@@ -207,6 +214,7 @@ If `/tally` isn't in the command list, the module didn't load. See [Find out why
 **7. Change the code while the session runs**
 
 Leave the session open. In `register.js`, change `' · tool calls: '` to `' · tools used: '` in the `ui.render` hook and save. The highlighted line is the one that changes:
+
 ```javascript first-mod/hooks/register.js {4}
   // Runs each time Claude Code draws the spinner
   on('ui.render', { component: 'Spinner' }, async ($, e, next) => {
@@ -240,6 +248,7 @@ Once a mod loads, you can have Claude change it, check your code against the typ
 ### Change a mod with Claude
 
 To change a mod you already have, start the session with `--plugin-dir` pointed at the mod's directory, so that what Claude writes loads in the same session:
+
 ```bash
 claude --plugin-dir ./first-mod
 ```
@@ -269,11 +278,13 @@ The events and methods can change between releases, so trust these files over an
 ### Check what Claude Code reads from your mod
 
 To see your mod the way Claude Code sees it, without running your code or starting a session, use `claude plugin validate`. It checks the manifest and runs the same static analysis on the hooks module's source that Claude Code runs when it loads a mod. In your shell, run it on the mod's directory:
+
 ```bash
 claude plugin validate ./first-mod
 ```
 
 For `first-mod`, the output includes these lines.
+
 ```text
   ❯ ./register.js hooks: session.start, tool.call, command.run{command=tally}, ui.render{component=Spinner}
   ❯ ./register.js calls: $.command.register, $.ui.invalidate
@@ -299,6 +310,7 @@ Follow these rules so that static analysis can find every hook and call:
 You can write automated tests for a mod and run them from your shell with `claude plugin test`, with no session, sign-in, or network. A test fires the events your hooks handle and checks what the hooks did.
 
 This test fires two tool calls, runs `/tally`, and checks that the reply counts both. Save it as `first-mod/tests/first-mod.test.ts`:
+
 ```typescript first-mod/tests/first-mod.test.ts
 import { expect, test } from 'claude-code/testing'
 
@@ -317,11 +329,13 @@ test('/tally reports the tool calls the mod has seen', async ($, on) => {
 ```
 
 In your shell, run the tests from the `first-mod` directory:
+
 ```bash
 claude plugin test
 ```
 
 The output names each test and whether it passed, with timings that vary from run to run:
+
 ```text
 tests/first-mod.test.ts:
 (pass) /tally reports the tool calls the mod has seen [22.87ms]

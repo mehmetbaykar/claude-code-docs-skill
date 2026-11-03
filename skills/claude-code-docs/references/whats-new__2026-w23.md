@@ -17,6 +17,7 @@ v2.1.158
 Auto mode is now available on Amazon Bedrock, Google Cloud's Agent Platform, and Microsoft Foundry for Opus 4.7 and Opus 4.8, replacing permission prompts with background safety checks on third-party providers. Opt in by setting `CLAUDE_CODE_ENABLE_AUTO_MODE=1`.
 
 Opt in on a third-party provider, then cycle to auto mode with Shift+Tab:
+
 ```bash
 export CLAUDE_CODE_ENABLE_AUTO_MODE=1
 ```
@@ -29,6 +30,7 @@ v2.1.160
 Claude Code now prompts before writing files that can run code, even in `acceptEdits` mode. The protected set covers shell startup files such as `.zshenv` and `.bash_login`, git config under `~/.config/git/`, and build-tool configs such as `.npmrc`, `.bazelrc`, and `.pre-commit-config.yaml`. These writes are never auto-approved in any mode except `bypassPermissions`.
 
 Work in acceptEdits mode; Claude now pauses before writing these files:
+
 ```bash
 claude --permission-mode acceptEdits
 ```
@@ -41,6 +43,7 @@ v2.1.163
 The new `/plugin list` command prints your installed plugins inline, without opening the `/plugin` menu, and is also available as `claude plugin list` from the shell. In the interactive form, add `--enabled` or `--disabled` to show only plugins in that state.
 
 List the plugins that are currently turned on:
+
 ```text Claude Code
 > /plugin list --enabled
 ```
@@ -53,6 +56,7 @@ v2.1.163
 Two managed settings, `requiredMinimumVersion` and `requiredMaximumVersion`, let your organization require an approved Claude Code version range. A client outside the range exits at startup and tells the user to update through the organization's method. `claude update`, `claude install`, and `claude doctor` keep working so users can still recover.
 
 Add a floor to your managed settings so older clients refuse to start:
+
 ```json managed-settings.json
 {
   "requiredMinimumVersion": "2.1.163"

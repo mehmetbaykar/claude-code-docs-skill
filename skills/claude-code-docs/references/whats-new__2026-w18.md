@@ -17,6 +17,7 @@ v2.1.126
 `claude auth login` now accepts the OAuth code pasted directly into the terminal when the browser callback can't reach localhost. That covers WSL2, SSH sessions, and containers, where the redirect to a local port doesn't work. The same release also fixes login timeouts on slow or proxied connections and in IPv6-only devcontainers.
 
 Sign in, then paste the code from the browser:
+
 ```bash
 claude auth login
 ```
@@ -29,11 +30,13 @@ v2.1.124
 Delete all Claude Code state for a project: transcripts, tasks, file history, and the project's config entry. Supports `--dry-run` to preview, `-y`/`--yes` to skip confirmation, `-i`/`--interactive` to choose, and `--all` to clear every project.
 
 Preview what would be removed:
+
 ```bash
 claude project purge --dry-run
 ```
 
 Then run it for real:
+
 ```bash
 claude project purge
 ```
@@ -46,16 +49,19 @@ v2.1.122
 When you create a pull request with `gh pr create`, Claude Code links it to the session that produced it. Now you can get back to that session from the PR URL alone, without remembering its name.
 
 Open the session picker:
+
 ```text Claude Code
 > /resume
 ```
 
 Paste the PR URL into the picker. The first character of the paste drops you into search mode, and the list filters to the session that created that PR. Press Enter to resume it. GitHub, GitHub Enterprise, GitLab, and Bitbucket pull and merge request URLs all work.
+
 ```text Claude Code
 https://github.com/your-org/your-repo/pull/1234
 ```
 
 To open the picker already filtered to the PR, pass the PR number on the command line:
+
 ```bash
 claude --from-pr 1234
 ```

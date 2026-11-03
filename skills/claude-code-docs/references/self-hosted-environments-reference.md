@@ -144,6 +144,7 @@ One control is specific to self-hosted environments: `CLAUDE_CODE_BYOC_ENABLE_DA
 ## Health endpoint
 
 The runner serves `GET /healthz` on the configured health port. The response is `200 OK` whenever the process is alive, whatever state the poll loop is in, so an HTTP probe on this endpoint detects a dead process only. The JSON body describes current state:
+
 ```json
 {
   "status": "ok",
@@ -212,6 +213,7 @@ For autoscaling, pick the series that matches your scaling style and gate it bef
 During a full poll outage, every replica disconnected, the gated query returns no data. HPA holds the current replica count on a missing metric, but KEDA's Prometheus scaler at its default `ignoreNullValues: "true"` reads the empty result as zero and scales in; set `ignoreNullValues: "false"` on the ScaledObject, optionally with a `fallback` replica floor.
 
 The following Prometheus Operator `PodMonitor` covers both processes. It selects pods by the `app.kubernetes.io/part-of: claude-code-self-hosted-runner` label and the named `health` port that the [Kubernetes recipe](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#kubernetes) sets; adjust the namespaces to match your deployment:
+
 ```yaml
 # Example Prometheus Operator PodMonitor for the Claude Code self-hosted
 # runner + orchestrator. Adjust the namespace and label selectors to match
@@ -243,6 +245,7 @@ spec:
 ### Sample alert rules
 
 These sample alert rules are a starting point; tune the thresholds for your fleet size:
+
 ```yaml
 # Example Prometheus alert rules for the Claude Code self-hosted runner
 # + orchestrator. Tune thresholds for your fleet size and SLOs.
@@ -324,6 +327,7 @@ To be alerted when runners are lost, sessions wait, or the orchestrator is down,
 #### Alert when a fixed fleet loses runners
 
 `ClaudeRunnersBelowFloor` fires when fewer registered, scraped runners than the floor are left for 10 minutes:
+
 ```yaml
 groups:
   # Fixed fleets only. With on-demand runners the count follows demand,
@@ -345,6 +349,7 @@ groups:
 #### Alert when sessions wait for on-demand runners
 
 `ClaudeOrchestratorSessionsWaiting` fires when the number of sessions waiting for a runner stays above 0 for 10 minutes. `ClaudeOrchestratorQueueWaitHigh` fires when over 1% of queue waits in the last 10 minutes exceeded 160 seconds, and that holds for 5 minutes:
+
 ```yaml
 groups:
   # On-demand runners only. Needs no edit for the namespace.
@@ -378,6 +383,7 @@ groups:
 #### Alert when the orchestrator is down
 
 To learn that the [orchestrator](https://code.claude.com/docs/en/self-hosted-environments-configuration.md#on-demand-runners) itself is down, load `ClaudeOrchestratorAbsent`. It fires when no orchestrator in the namespace has been scraped for 5 minutes:
+
 ```yaml
 groups:
   # On-demand runners only. Replace claude-runners with the orchestrator's namespace.
@@ -404,6 +410,7 @@ At the default `--capacity 1`, the rewrite doesn't apply: the session's child bi
 #### Join a session's metrics to the runner's
 
 To see what idle sessions have cost, join the runner's `claude_code_self_hosted_runner_session_idle_seconds` to Claude Code's cost metric on `ccr_session_id`. The runner's metric doesn't carry that label, so give it one with `label_replace`, as in this query:
+
 ```text
 sum by (ccr_session_id) (claude_code_cost_usage_total)
 and on (ccr_session_id)

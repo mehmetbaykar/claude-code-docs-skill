@@ -1,10 +1,10 @@
 # Claude Code Docs Index
 
-Local mirror of Anthropic Claude Code documentation from https://code.claude.com/docs/en/.
+Local mirror of the Claude Code documentation from https://code.claude.com/docs/en/.
 
-Invoke this skill with a topic, for example `$claude-code-docs hooks` in Codex or `/claude-code-docs hooks` in Claude Code.
+Invoke this skill with a topic: `/claude-code-docs hooks` in Claude Code or Cursor, `$claude-code-docs hooks` in Codex.
 
-## Topics
+## Documentation
 
 - `accessibility` - [Use Claude Code with a screen reader](https://code.claude.com/docs/en/accessibility)
 - `admin-setup` - [Set up Claude Code for your organization](https://code.claude.com/docs/en/admin-setup)

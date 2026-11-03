@@ -146,9 +146,9 @@ The Bash tool runs each command in a separate process.
 ### What persists between commands
 
 * When Claude runs `cd` in the main session, the new working directory carries over to later Bash commands as long as it stays inside the project directory or an [additional working directory](https://code.claude.com/docs/en/permissions.md#working-directories) you added with `--add-dir`, `/add-dir`, or `additionalDirectories` in settings. This includes commands Claude runs in response to your later messages.
-* Subagent sessions never carry over working directory changes.
-* If `cd` lands outside those directories, Claude Code resets to the project directory and appends `Shell cwd was reset to <dir>` to the tool result.
-* To disable this carry-over so every Bash command starts in the project directory, set `CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1`.
+  * Subagent sessions never carry over working directory changes.
+  * If `cd` lands outside those directories, Claude Code resets to the project directory and appends `Shell cwd was reset to <dir>` to the tool result.
+  * To disable this carry-over so every Bash command starts in the project directory, set `CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1`.
 * Environment variables don't persist. An `export` in one command won't be available in the next.
 * Aliases and shell functions defined in your shell startup file are available. At session start, Claude Code sources `~/.zshrc`, `~/.bashrc`, or `~/.profile` depending on your shell, captures the resulting aliases, functions, and shell options, and applies them to every Bash command.
 
@@ -293,11 +293,11 @@ The tool appears only when all of the following are true:
 
 * **Model**: the session's model is Claude Opus 4.8, Claude Sonnet 5, Claude Fable 5, or a later version of one of those families.
 * **Surface**: an interactive terminal session, including a `claude` session in an IDE's integrated terminal, which is how the [JetBrains plugin](https://code.claude.com/docs/en/jetbrains.md) runs it. Other surfaces don't include the tool, such as:
-* non-interactive `-p` runs
-* sessions through the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview.md) TypeScript and Python packages
-* the [VS Code extension](https://code.claude.com/docs/en/vs-code.md) panel, which bundles its own CLI
-* [GitHub Actions](https://code.claude.com/docs/en/github-actions.md)
-* [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web.md)
+  * non-interactive `-p` runs
+  * sessions through the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview.md) TypeScript and Python packages
+  * the [VS Code extension](https://code.claude.com/docs/en/vs-code.md) panel, which bundles its own CLI
+  * [GitHub Actions](https://code.claude.com/docs/en/github-actions.md)
+  * [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web.md)
 * **Startup mode**: not a [`--bare`](https://code.claude.com/docs/en/headless#start-faster-with-bare-mode) session. Bare mode loads only shell and file tools, so the tool is never registered there.
 * **Provider**: not available on [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md), [Claude Platform on AWS](https://code.claude.com/docs/en/claude-platform-on-aws.md), [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md), or [Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry.md), or on sessions signed in through a [cloud gateway](https://code.claude.com/docs/en/claude-apps-gateway).
 
@@ -452,6 +452,7 @@ Match `Bash|PowerShell` in hooks that inspect shell commands; the [PowerShell ho
 ### Enable the PowerShell tool
 
 Set `CLAUDE_CODE_USE_POWERSHELL_TOOL=1` in your environment or in `settings.json`:
+
 ```json
 {
   "env": {
@@ -521,9 +522,9 @@ Read handles several file types beyond plain text:
 
 * **Images**: PNG, JPEG, GIF, and WebP files are returned as visual content that Claude can see, not as raw bytes. Claude Code resizes and recompresses large images to fit the model's image size limits before sending them, so Claude may see a downscaled version of a large screenshot.
 
-If Claude misses fine pixel-level detail in a large image, ask it to crop the region you care about, such as with ImageMagick via Bash, and then read the crop.
+  If Claude misses fine pixel-level detail in a large image, ask it to crop the region you care about, such as with ImageMagick via Bash, and then read the crop.
 
-Read refuses an image file larger than 128 MB with an error that tells Claude to resize the image or export a smaller copy, then read that copy. If Claude stops at the error instead of doing so, see [File is too large to read as an image](https://code.claude.com/docs/en/errors.md#file-is-too-large-to-read-as-an-image).
+  Read refuses an image file larger than 128 MB with an error that tells Claude to resize the image or export a smaller copy, then read that copy. If Claude stops at the error instead of doing so, see [File is too large to read as an image](https://code.claude.com/docs/en/errors.md#file-is-too-large-to-read-as-an-image).
 * **PDFs**: Claude reads short `.pdf` files whole. For PDFs longer than 10 pages, it reads in ranges with a `pages` parameter, such as `"1-5"`, up to 20 pages at a time. Page-range reads render pages with `pdftoppm` from poppler-utils, so install it with `brew install poppler` on macOS or `apt-get install poppler-utils` on Debian and Ubuntu. On Windows and other platforms, install a poppler build that puts `pdftoppm` on your `PATH`. Without it, a page-range read fails with `pdftoppm is not installed`.
 * **Jupyter notebooks**: `.ipynb` files return all cells with their outputs, including code, markdown, and visualizations. A notebook whose cells come to more than 256 KB, or more than the [token limit](#large-files), returns an error instead. Claude Code refuses to read a notebook file over 100 MB; the error tells Claude how to read a portion of the notebook instead, such as a slice of cells, with a shell command.
 
@@ -715,6 +716,7 @@ For partial changes to an existing file, Claude uses Edit instead of Write.
 ## Check which tools are available
 
 Your exact tool set depends on your provider, platform, and settings. To check what's loaded in a running session, ask Claude directly:
+
 ```text
 What tools do you have access to?
 ```

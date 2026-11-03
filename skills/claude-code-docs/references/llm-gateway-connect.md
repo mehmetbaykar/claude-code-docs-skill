@@ -44,7 +44,7 @@ To configure Claude Code for the gateway yourself, you need from your gateway te
 
 * The gateway's base URL
 * A credential: a key or token string, or a command that fetches one
-* If your gateway team didn't say which kind of credential it is, the [credential variable section](#set-the-credential-variable) below covers what to try
+  * If your gateway team didn't say which kind of credential it is, the [credential variable section](#set-the-credential-variable) below covers what to try
 
 The sections below cover the configuration in order:
 
@@ -105,6 +105,7 @@ To make the configuration apply everywhere Claude Code runs, including [backgrou
 > Don't put the credential in a project's `.claude/settings.json`. That file is committed and shared with everyone who clones the repository.
 
 The `env` block looks the same in either file:
+
 ```json
 {
   "env": {
@@ -168,6 +169,7 @@ The CLI reads the environment variables and settings files above. The other surf
 ### VS Code extension
 
 Set the gateway variables for the [VS Code extension](https://code.claude.com/docs/en/vs-code.md) in `claudeCode.environmentVariables`, in VS Code's own user settings opened with the **Preferences: Open User Settings (JSON)** command. The extension checks credentials from this setting before launching, so it's the reliable place for the gateway credential; values in `~/.claude/settings.json` reach the spawned process but not the extension's own login check.
+
 ```json
 {
   "claudeCode.environmentVariables": [
@@ -200,6 +202,7 @@ If the desktop app shows `Gateway was unreachable`, the app couldn't reach the c
 [Claude Code GitHub Actions](https://code.claude.com/docs/en/github-actions.md) reads `ANTHROPIC_BASE_URL` and `ANTHROPIC_CUSTOM_HEADERS` from the workflow's `env` block. Pass the credential as the action's `anthropic_api_key` input; the action sets it as `ANTHROPIC_API_KEY`, so it reaches the gateway in the `x-api-key` header.
 
 For an `x-api-key` gateway, set the base URL in `env` and pass the gateway key as the input:
+
 ```yaml
 env:
   ANTHROPIC_BASE_URL: https://llm-gateway.example.com
@@ -211,6 +214,7 @@ steps:
 ```
 
 For a bearer-token gateway, pass the same secret twice: as the `anthropic_api_key` input and as `ANTHROPIC_AUTH_TOKEN` in the workflow `env` block. The action requires `anthropic_api_key`, `CLAUDE_CODE_OAUTH_TOKEN`, or workload identity federation before it launches Claude Code, and it doesn't read `ANTHROPIC_AUTH_TOKEN`, so the input is there only to satisfy that launch check. The env variable is what puts the key in the `Authorization` header the gateway reads; the copy in `x-api-key` is ignored:
+
 ```yaml
 env:
   ANTHROPIC_BASE_URL: https://llm-gateway.example.com
@@ -230,6 +234,7 @@ The [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview.md) has no ga
 
 * TypeScript: the spawned process inherits the parent environment by default, but setting `options.env` replaces the environment entirely. Spread `process.env` into it to keep your gateway variables.
 * Python: `ClaudeAgentOptions(env=...)` merges on top of the inherited environment, so gateway variables set in the parent process carry through without spreading.
+
 ```ts TypeScript
 const result = query({
   prompt: "...",
@@ -242,6 +247,7 @@ const result = query({
   },
 })
 ```
+
 ```python Python
 options = ClaudeAgentOptions(
     env={
@@ -283,6 +289,7 @@ Some gateways route or tag requests using a custom header in addition to the cre
 > ```
 
 You can also set `ANTHROPIC_CUSTOM_HEADERS` in the `env` block of a settings file. Use `\n` between pairs there, since JSON strings can't span multiple lines:
+
 ```json
 {
   "env": {
@@ -486,6 +493,7 @@ See [Claude Platform on AWS](https://code.claude.com/docs/en/claude-platform-on-
 #### Confirm the provider route
 
 Start `claude` from the shell where you set the block and run `/status`. With the Amazon Bedrock block, the **Status** tab shows rows like these:
+
 ```text
 API provider: Amazon Bedrock
 Bedrock base URL: https://llm-gateway.example.com/bedrock

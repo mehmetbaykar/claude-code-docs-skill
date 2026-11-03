@@ -53,12 +53,12 @@ As the loop runs, the SDK yields a stream of messages. Each message carries a ty
 
 * **`SystemMessage`:** session lifecycle events. The `subtype` field distinguishes them:
 
-* `"init"`: session metadata for the run. When a `SessionStart` or `Setup` hook runs during session startup, its [hook lifecycle messages](https://code.claude.com/docs/en/agent-sdk/typescript.md#sdkhookstartedmessage) arrive before the `init` message
-* `"compact_boundary"`: fires after [compaction](#automatic-compaction)
-* `"informational"`: plain-text status banners from the loop
-* `"worker_shutting_down"`: the host is exiting or Remote Control disconnected
+  * `"init"`: session metadata for the run. When a `SessionStart` or `Setup` hook runs during session startup, its [hook lifecycle messages](https://code.claude.com/docs/en/agent-sdk/typescript.md#sdkhookstartedmessage) arrive before the `init` message
+  * `"compact_boundary"`: fires after [compaction](#automatic-compaction)
+  * `"informational"`: plain-text status banners from the loop
+  * `"worker_shutting_down"`: the host is exiting or Remote Control disconnected
 
-In TypeScript, each subtype other than `"init"` is its own type in the [`SDKMessage` union](https://code.claude.com/docs/en/agent-sdk/typescript#sdkmessage) rather than a subtype of `SDKSystemMessage`.
+  In TypeScript, each subtype other than `"init"` is its own type in the [`SDKMessage` union](https://code.claude.com/docs/en/agent-sdk/typescript#sdkmessage) rather than a subtype of `SDKSystemMessage`.
 * **`AssistantMessage`:** emitted for each content block in Claude's responses, including the final text-only one. Each carries a single content block, such as text or a tool call, and the messages from one response share a message ID.
 * **`UserMessage`:** emitted after each tool execution with the tool result content sent back to Claude. Also emitted for any user inputs you stream mid-loop.
 * **`StreamEvent`:** only emitted when partial messages are enabled. Contains raw API streaming events (text deltas, tool input chunks). See [Stream responses](https://code.claude.com/docs/en/agent-sdk/streaming-output.md).
@@ -366,6 +366,7 @@ Both SDKs support all the events above. The TypeScript SDK includes additional e
 This example combines the key concepts from this page into a single agent that fixes failing tests. It configures the agent with allowed tools (auto-approved so the agent runs autonomously), project settings, and safety limits on turns and reasoning effort. As the loop runs, it captures the session ID for potential resumption, handles the final result, and prints the total cost.
 
 Because a single-shot `query()` call raises after yielding an error result, the loop is wrapped in a try block so the script exits cleanly when a limit is hit.
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
@@ -414,6 +415,7 @@ async def run_agent():
 
 asyncio.run(run_agent())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 

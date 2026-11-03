@@ -21,6 +21,7 @@ This guide shows you how to detect each type of request and respond appropriatel
 ## Detect when Claude needs input
 
 Pass a `canUseTool` callback in your query options. The callback fires whenever Claude needs user input, receiving the tool name and input as arguments:
+
 ```python Python
 from claude_agent_sdk import ClaudeAgentOptions
 
@@ -30,6 +31,7 @@ async def handle_tool_request(tool_name, input_data, context):
 
 options = ClaudeAgentOptions(can_use_tool=handle_tool_request)
 ```
+
 ```typescript TypeScript
 import type { CanUseTool } from "@anthropic-ai/claude-agent-sdk";
 
@@ -81,6 +83,7 @@ See the SDK reference for complete input schemas: [Python](https://code.claude.c
 You can display this information to the user so they can decide whether to allow or reject the action, then return the appropriate response.
 
 The following example asks Claude to create and delete a test file. When Claude attempts each operation, the callback prints the tool request to the terminal and prompts for y/n approval.
+
 ```python Python
 import asyncio
 
@@ -141,6 +144,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 import * as readline from "readline";
@@ -389,6 +393,7 @@ The following steps show how to handle clarifying questions:
 **1. Pass a canUseTool callback**
 
 Pass a `canUseTool` callback in your query options. By default, `AskUserQuestion` is available. If you specify a `tools` array to restrict Claude's capabilities (for example, a read-only agent with only `Read`, `Glob`, and `Grep`), include `AskUserQuestion` in that array. Otherwise, Claude won't be able to ask clarifying questions:
+
 ```python Python
 async for message in query(
     prompt="Analyze this codebase",
@@ -400,6 +405,7 @@ async for message in query(
 ):
     print(message)
 ```
+
 ```typescript TypeScript
 for await (const message of query({
   prompt: "Analyze this codebase",
@@ -419,6 +425,7 @@ for await (const message of query({
 **2. Detect AskUserQuestion**
 
 In your callback, check if `toolName` equals `AskUserQuestion` to handle it differently from other tools:
+
 ```python Python
 async def can_use_tool(tool_name: str, input_data: dict, context):
     if tool_name == "AskUserQuestion":
@@ -427,6 +434,7 @@ async def can_use_tool(tool_name: str, input_data: dict, context):
     # Handle other tools normally
     return await prompt_for_approval(tool_name, input_data)
 ```
+
 ```typescript TypeScript
 canUseTool: async (toolName, input) => {
   if (toolName === "AskUserQuestion") {
@@ -441,6 +449,7 @@ canUseTool: async (toolName, input) => {
 **3. Parse the question input**
 
 The input contains Claude's questions in a `questions` array. Each question has a `question` (the text to display), `options` (the choices), and `multiSelect` (whether multiple selections are allowed):
+
 ```json
 {
   "questions": [
@@ -482,6 +491,7 @@ Build the `answers` object as a record where each key is the `question` text and
 | Selected option's `label` field (for example, `"Summary"`) | Value |
 
 For multi-select questions, pass an array of labels or join them with `", "`. If you [support free-text input](#support-free-text-input), use the user's custom text as the value.
+
 ```python Python
 return PermissionResultAllow(
     updated_input={
@@ -493,6 +503,7 @@ return PermissionResultAllow(
     }
 )
 ```
+
 ```typescript TypeScript
 return {
   behavior: "allow",
@@ -518,6 +529,7 @@ The input contains Claude's generated questions in a `questions` array. Each que
 | `multiSelect` | If `true`, users can select multiple options |
 
 The structure your callback receives:
+
 ```json
 {
   "questions": [
@@ -545,6 +557,7 @@ The structure your callback receives:
 | `"html"` | A styled `<div>` fragment (the SDK rejects `<script>`, `<style>`, and `<!DOCTYPE>` before your callback runs) |
 
 The format applies to all questions in the session. Claude includes `preview` on options where a visual comparison helps (layout choices, color schemes) and omits it where one wouldn't (yes/no confirmations, text-only choices). Check for `undefined` before rendering.
+
 ```typescript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -565,6 +578,7 @@ for await (const message of query({
 ```
 
 An option with an HTML preview:
+
 ```json
 {
   "label": "Compact",
@@ -584,6 +598,7 @@ Return an `answers` object mapping each question's `question` field to the selec
 | `response` | Optional freeform reply the user typed instead of answering the structured questions |
 
 For multi-select questions, pass an array of labels or join them with `", "`. For per-question free text such as an "Other" option, put the user's text in `answers[question]` as shown in [Support free-text input](#support-free-text-input). Set `response` only when your UI lets the user dismiss the question card and type a general reply that isn't an answer to any specific question. When `response` is set, Claude receives "The user responded: …" instead of the per-question answer list.
+
 ```jsonc
 {
   "questions": [
@@ -618,6 +633,7 @@ This example handles those questions in a terminal application. Here's what happ
 5. **Return to Claude**: The response includes both the original `questions` array and the `answers` mapping
 
 Save the TypeScript version as `ask.ts` and run it with `npx tsx ask.ts`, or save the Python version as `ask.py` and run it with `python ask.py`.
+
 ```python Python
 import asyncio
 
@@ -693,6 +709,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 import type { PermissionResult } from "@anthropic-ai/claude-agent-sdk";

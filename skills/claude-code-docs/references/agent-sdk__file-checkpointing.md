@@ -31,6 +31,7 @@ To use file checkpointing, enable it in your options, capture checkpoint UUIDs f
 The examples in this section use the prompt "Refactor the authentication module". Run them in a project that contains an authentication module, or change the prompt to name files that exist in your project, so you can watch files change and see the rewind restore them.
 
 This example enables checkpointing, captures the checkpoint UUID and session ID from the response stream, then resumes the session later to rewind files. The example's numbered comments match the steps that follow.
+
 ```python Python
 import asyncio
 from claude_agent_sdk import (
@@ -77,6 +78,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -156,6 +158,7 @@ Capturing the session ID (`message.session_id`) is optional; you only need it if
 To rewind after the stream completes, resume the session with an empty prompt and call `rewind_files()` (Python) or `rewindFiles()` (TypeScript) with your checkpoint UUID. Enable checkpointing on the resumed session's options too, and call rewind from inside the response loop. You can also rewind during the stream. See [Checkpoint before risky operations](#checkpoint-before-risky-operations) for that pattern.
 
 If you capture the session ID and checkpoint ID, you can also rewind from the CLI. This command requires the `claude` executable, which comes from [installing Claude Code](https://code.claude.com/docs/en/setup.md). The SDK enables checkpointing for you, but when you run `claude -p` directly you must set the `CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING` environment variable:
+
 ```bash
 CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING=true claude -p --resume <session-id> --rewind-files <checkpoint-uuid>
 ```
@@ -171,6 +174,7 @@ These patterns show different ways to capture and use checkpoint UUIDs depending
 This pattern keeps only the most recent checkpoint UUID, updating it before each agent turn. If something goes wrong during processing, you can immediately rewind to the last safe state and break out of the loop.
 
 Before running this example, replace `your_revert_condition` (Python) or `yourRevertCondition` (TypeScript) with your own check, such as error detection or a validation failure; the placeholder is not defined in the example.
+
 ```python Python
 import asyncio
 from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions, UserMessage
@@ -202,6 +206,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -242,6 +247,7 @@ main();
 If Claude makes changes across multiple turns, you might want to rewind to a specific point rather than all the way back. For example, if Claude refactors a file in turn one and adds tests in turn two, you might want to keep the refactor but undo the tests.
 
 This pattern stores all checkpoint UUIDs in an array with metadata. After the session completes, you can rewind to any previous checkpoint:
+
 ```python Python
 import asyncio
 from dataclasses import dataclass
@@ -299,6 +305,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -373,6 +380,7 @@ Before you begin, make sure you have the [Claude Agent SDK installed](https://co
 **1. Create a test file**
 
 Create a new file called `utils.py` (Python) or `utils.ts` (TypeScript) and paste the following code:
+
 ```python utils.py
 def add(a, b):
     return a + b
@@ -388,6 +396,7 @@ def divide(a, b):
         raise ValueError("Cannot divide by zero")
     return a / b
 ```
+
 ```typescript utils.ts
 export function add(a: number, b: number): number {
   return a + b;
@@ -414,6 +423,7 @@ export function divide(a: number, b: number): number {
 Create a new file called `try_checkpointing.py` (Python) or `try_checkpointing.ts` (TypeScript) in the same directory as your utility file, and paste the following code.
 
 This script asks Claude to add doc comments to your utility file, then gives you the option to rewind and restore the original.
+
 ```python try_checkpointing.py
 import asyncio
 from claude_agent_sdk import (
@@ -475,6 +485,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript try_checkpointing.ts
 import { query } from "@anthropic-ai/claude-agent-sdk";
 import * as readline from "readline";
@@ -625,6 +636,7 @@ This error occurs when the checkpoint data doesn't exist for the specified user 
 This error occurs when you attempt a non-interactive rewind without checkpointing enabled: running bare `claude -p` with `--rewind-files`, or running an SDK session, including a resumed one, whose options don't enable checkpointing. The SDK sets the `CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING` environment variable internally only when `enable_file_checkpointing` (Python) or `enableFileCheckpointing` (TypeScript) is enabled on the session performing the rewind; the bare CLI never sets it.
 
 **Solution**: For the bare CLI, set the environment variable when running the command:
+
 ```bash
 CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING=true claude -p --resume <session-id> --rewind-files <checkpoint-uuid>
 ```

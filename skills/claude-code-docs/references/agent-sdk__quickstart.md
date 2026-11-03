@@ -26,6 +26,7 @@ Use the Agent SDK to build an AI agent that reads your code, finds bugs, and fix
 **1. Create a project folder**
 
 Create a new directory for this quickstart:
+
 ```bash
 mkdir my-agent
 cd my-agent
@@ -129,6 +130,7 @@ See the setup guides for [Amazon Bedrock](https://code.claude.com/docs/en/amazon
 ## Create a buggy file
 
 This quickstart walks you through building an agent that can find and fix bugs in code. First, you need a file with some intentional bugs for the agent to fix. Create `utils.py` in the `my-agent` directory and paste the following code:
+
 ```python
 def calculate_average(numbers):
     total = 0
@@ -148,6 +150,7 @@ This code has two bugs:
 ## Build an agent that finds and fixes bugs
 
 Create `agent.py` if you're using the Python SDK, or `agent.ts` for TypeScript. Use `agent.mts` instead if your existing project uses CommonJS:
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, AssistantMessage, ResultMessage
@@ -173,6 +176,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -268,11 +272,13 @@ Now that your agent is set up, try some different prompts:
 You can modify your agent's behavior by changing the options. Here are a few examples:
 
 **Add web search capability:**
+
 ```python Python
 options = ClaudeAgentOptions(
     allowed_tools=["Read", "Edit", "Glob", "WebSearch"], permission_mode="acceptEdits"
 )
 ```
+
 ```typescript TypeScript hidelines={1,-1}
 const _ = {
   options: {
@@ -283,6 +289,7 @@ const _ = {
 ```
 
 **Give Claude a custom system prompt:**
+
 ```python Python
 options = ClaudeAgentOptions(
     allowed_tools=["Read", "Edit", "Glob"],
@@ -290,6 +297,7 @@ options = ClaudeAgentOptions(
     system_prompt="You are a senior Python developer. Always follow PEP 8 style guidelines.",
 )
 ```
+
 ```typescript TypeScript hidelines={1,-1}
 const _ = {
   options: {
@@ -301,11 +309,13 @@ const _ = {
 ```
 
 **Run commands in the terminal:**
+
 ```python Python
 options = ClaudeAgentOptions(
     allowed_tools=["Read", "Edit", "Glob", "Bash"], permission_mode="acceptEdits"
 )
 ```
+
 ```typescript TypeScript hidelines={1,-1}
 const _ = {
   options: {

@@ -37,6 +37,7 @@ The deployment consists of:
 * A TLS hostname for the gateway, typically an internal DNS name pointing at the load balancer
 
 Set the project and region once:
+
 ```bash
 export PROJECT_ID=<your-project>
 export REGION=us-east5   # a region where the Claude models you need are published in Model Garden
@@ -50,6 +51,7 @@ The steps below provision the full deployment with `gcloud` commands.
 **1. Enable APIs**
 
 Enable the service APIs the walkthrough uses:
+
 ```bash
 gcloud services enable \
   aiplatform.googleapis.com \
@@ -73,6 +75,7 @@ The APIs you need depend on the deployment path:
 **2. Create the service account and grant IAM**
 
 The gateway runs as a dedicated service account with permission to call Google Cloud's Agent Platform. It reaches Cloud SQL over the VPC with a password user, so no Cloud SQL IAM role is required:
+
 ```bash
 gcloud iam service-accounts create claude-gateway --display-name="Claude apps gateway"
 SA="claude-gateway@${PROJECT_ID}.iam.gserviceaccount.com"
@@ -86,6 +89,7 @@ Then enable the Claude models for the project in Model Garden; models publish to
 **3. Build and push the image to Artifact Registry**
 
 Build the image per the [container image requirements](https://code.claude.com/docs/en/claude-apps-gateway-deploy.md#container-image), using the `linux-x64` glibc binary, and push it:
+
 ```bash
 gcloud artifacts repositories create claude-gateway \
   --repository-format=docker --location="$REGION"
@@ -101,6 +105,7 @@ docker push "${REGION}-docker.pkg.dev/${PROJECT_ID}/claude-gateway/gateway:<vers
 **4. Provision Cloud SQL for PostgreSQL**
 
 Create the instance on a VPC via Private Services Access so it has no public IP; this also satisfies projects where `constraints/sql.restrictPublicIp` is enforced:
+
 ```bash
 VPC=cc-gateway-vpc
 gcloud compute networks create "$VPC" --subnet-mode=custom
@@ -146,6 +151,7 @@ Set `trusted_proxies` to match your front end. An external GKE Ingress of class 
 | GKE internal Ingress, class `gce-internal` | Your proxy-only subnet's CIDR |
 
 The example below uses the internal-load-balancer-in-front-of-Cloud-Run values.
+
 ```yaml gateway.yaml
 listen:
   host: 0.0.0.0

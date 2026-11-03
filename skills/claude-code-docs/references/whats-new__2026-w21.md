@@ -17,6 +17,7 @@ CLI
 Auto mode is now available on the Pro plan and supports Sonnet 4.6 alongside Opus. It replaces permission prompts with background safety checks: routine actions run without interrupting you, and destructive or suspicious ones are blocked and surfaced.
 
 Update Claude Code, then cycle modes with Shift+Tab; auto mode appears in the cycle once your account meets the requirements:
+
 ```bash
 claude update
 ```

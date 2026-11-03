@@ -19,6 +19,7 @@ Last week computer use landed in the Desktop app. This week it's in the CLI: Cla
 Video: https://mintcdn.com/claude-code/CfffsX01JHFnIKvD/images/whats-new/cli-computer-use.mp4?fit=max&auto=format&n=CfffsX01JHFnIKvD&q=85&s=c17a337902308d7c9121013ded0494db
 
 Requires macOS and a Pro or Max plan; otherwise, `computer-use` won't appear in `/mcp`. Run `/mcp`, find `computer-use`, and toggle it on. Then ask Claude to verify a change end to end:
+
 ```text title="Claude Code" wrap
 Open the iOS simulator, tap through onboarding, and screenshot each step
 ```
@@ -33,6 +34,7 @@ Interactive lessons that teach Claude Code features through animated demos, righ
 Video: https://mintcdn.com/claude-code/CfffsX01JHFnIKvD/images/whats-new/powerup.mp4?fit=max&auto=format&n=CfffsX01JHFnIKvD&q=85&s=fb88beddc0ecc8029da5ab029e4b28f1
 
 Run it:
+
 ```text title="Claude Code" wrap
 /powerup
 ```
@@ -47,6 +49,7 @@ Opt into a new alt-screen renderer with virtualized scrollback. The prompt input
 Video: https://mintcdn.com/claude-code/CfffsX01JHFnIKvD/images/whats-new/flicker-free.mp4?fit=max&auto=format&n=CfffsX01JHFnIKvD&q=85&s=7719e35e52a3f9734b0cf69edac333ad
 
 Set the env var and restart Claude Code:
+
 ```bash
 export CLAUDE_CODE_NO_FLICKER=1
 claude
@@ -60,6 +63,7 @@ v2.1.91
 MCP server authors can now raise the truncation cap on a specific tool by setting `anthropic/maxResultSizeChars` in the tool's `tools/list` entry, up to a hard ceiling of 500K characters. The cap used to be global, so tools that occasionally returned inherently large payloads like database schemas or full file trees hit the default limit and got persisted to disk with a file reference. Per-tool overrides keep those results inline when the tool really needs them.
 
 Annotate the tool in your server's `tools/list` response:
+
 ```json highlight={5}
 {
   "name": "get_schema",
@@ -78,6 +82,7 @@ v2.1.91
 Place an executable in a `bin/` directory at your plugin root and Claude Code adds that directory to the Bash tool's `PATH` while the plugin is enabled. Claude can then invoke the binary as a bare command from any Bash tool call, with no absolute path or wrapper script needed. Handy for packaging CLI helpers next to the commands, agents, and hooks that call them.
 
 Add a `bin/` directory at the plugin root:
+
 ```text highlight={4, 5}
 my-plugin/
 ├── .claude-plugin/

@@ -19,6 +19,7 @@ research preview
 Video: https://mintcdn.com/claude-code/ITvjicPxe1SM3GX7/images/whats-new/agent-view.mp4?fit=max&auto=format&n=ITvjicPxe1SM3GX7&q=85&s=0eefe6cbe75464c8f7902bba630ab7a4
 
 Open the dashboard from your shell:
+
 ```bash
 claude agents
 ```
@@ -33,6 +34,7 @@ Set a completion condition and Claude keeps working toward it across turns witho
 Video: https://mintcdn.com/claude-code/ITvjicPxe1SM3GX7/images/whats-new/goal.mp4?fit=max&auto=format&n=ITvjicPxe1SM3GX7&q=85&s=6806df3780c548b93a02d6fa71da276b
 
 Set a goal and let Claude run until it holds:
+
 ```text Claude Code
 > /goal all tests in test/auth pass and the lint step is clean
 ```
@@ -47,6 +49,7 @@ research preview
 ![The Claude Code model picker showing Opus 4.7 Fast 1M as the default with the Fast toggle on](https://mintcdn.com/claude-code/ITvjicPxe1SM3GX7/images/whats-new/fast-mode-opus-47.png?fit=max\&auto=format\&n=ITvjicPxe1SM3GX7\&q=85\&s=6b6d92f7748ce5328a1ee9a269fb1a87)
 
 Toggle fast mode, now running on Opus 4.7:
+
 ```text Claude Code
 > /fast
 ```

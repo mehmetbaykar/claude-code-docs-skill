@@ -163,6 +163,7 @@ For how each type is fetched, cached, and versioned, see [Plugin loading referen
 The path resolves from the marketplace root. `./plugins/formatter` is `<root>/plugins/formatter` even though the marketplace file is in `<root>/.claude-plugin/`.
 
 A path containing `..` fails validation. On macOS and Linux, Claude Code refuses an entry path that contains a backslash anywhere after the leading `./`, so write the path with forward slashes.
+
 ```json
 { "name": "formatter", "source": "./plugins/formatter" }
 ```
@@ -216,6 +217,7 @@ A bare name is a single directory name with no `/`, such as `"formatter"`. To wr
 ### github plugin source
 
 `repo` takes `owner/repo`. `ref` and `sha` are optional.
+
 ```json
 {
   "name": "formatter",
@@ -231,6 +233,7 @@ A bare name is a single directory name with no `/`, such as `"formatter"`. To wr
 ### url plugin source
 
 `url` is a full git URL: `https://`, `http://`, `file://`, or `git@`. A `.git` suffix isn't required, so Azure DevOps and AWS CodeCommit URLs work as written. This type doesn't take `owner/repo` shorthand.
+
 ```json
 {
   "name": "formatter",
@@ -245,6 +248,7 @@ A bare name is a single directory name with no `/`, such as `"formatter"`. To wr
 ### git-subdir plugin source
 
 `url` accepts a full git URL or GitHub `owner/repo` shorthand. `path` is the subdirectory that holds the plugin, and Claude Code checks out only that subdirectory. Over an `https` or SSH URL, Claude Code asks the server for a partial clone, so from a host that supports partial clones, a plugin in a large monorepo installs without downloading the rest of the repository.
+
 ```json
 {
   "name": "formatter",
@@ -273,6 +277,7 @@ Claude Code checks the `package` value before fetching anything. A refused value
 * **A tarball link over `http`**: refused unless it points at the installing user's own default npm registry
 
 The `registry` URL must use `https` unless it is the installing user's own default npm registry. With any other `http` registry, the install fails before npm contacts it.
+
 ```json
 {
   "name": "formatter",
@@ -292,6 +297,7 @@ The `registry` URL must use `https` unless it is the installing user's own defau
 The plugin root may be at the top of the zip or one directory down.
 
 `sha256` is the archive's digest as 64 hex characters, uppercase or lowercase. When you set it, Claude Code refuses a download that doesn't match.
+
 ```json
 {
   "name": "formatter",
@@ -312,6 +318,7 @@ A `command` source takes these fields:
 * `command`: a shell command that prints the plugin directory's absolute path as one line and exits 0. Claude Code shows users the whole string for review before it runs. Write it as printable ASCII, at most 500 characters, with no run of four or more spaces.
 * `timeout`: a whole number of seconds from 1 to 600. Defaults to 60.
 * `mode`: `copy`, the default, or `link`. See [Copy mode and link mode](#copy-mode-and-link-mode).
+
 ```json
 {
   "name": "formatter",
@@ -422,6 +429,7 @@ For match order, exact-`ref` semantics, and recipes, see [Manage plugins for you
 ### Source objects in settings
 
 An `extraKnownMarketplaces` value is a map from marketplace name to an object with `source`. This entry registers a marketplace from a git repository at its `main` branch:
+
 ```json
 {
   "extraKnownMarketplaces": {
@@ -437,6 +445,7 @@ An `extraKnownMarketplaces` value is a map from marketplace name to an object wi
 ```
 
 `strictKnownMarketplaces` and `blockedMarketplaces` are arrays of source objects. This allowlist admits one GitHub owner and one internal host:
+
 ```json
 {
   "strictKnownMarketplaces": [

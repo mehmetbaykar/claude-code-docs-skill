@@ -31,9 +31,9 @@ Before you start, you need:
 * Admin access to the repository where the Claude Code GitHub Action runs, to install a GitHub App and add secrets
 * Permission to create identity resources in your cloud account: IAM roles and OIDC identity providers on AWS, Workload Identity Federation resources and service accounts on Google Cloud, or Microsoft Entra applications on Azure
 * Claude model access on your provider:
-* **Amazon Bedrock**: access granted to Claude models. Cross-region inference profiles, such as the `us.` model IDs in this page's examples, need access granted in every region of their region group. See [Claude Code on Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md)
-* **Google Cloud's Agent Platform**: a project with the Agent Platform API enabled and access to Claude models. See [Claude Code on Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md)
-* **Microsoft Foundry**: a Foundry resource with a Claude model deployment. See [Claude Code on Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry.md)
+  * **Amazon Bedrock**: access granted to Claude models. Cross-region inference profiles, such as the `us.` model IDs in this page's examples, need access granted in every region of their region group. See [Claude Code on Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md)
+  * **Google Cloud's Agent Platform**: a project with the Agent Platform API enabled and access to Claude models. See [Claude Code on Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md)
+  * **Microsoft Foundry**: a Foundry resource with a Claude model deployment. See [Claude Code on Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry.md)
 
 ## Set up the integration
 

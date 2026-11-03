@@ -1,0 +1,16 @@
+{
+  "name": "claude-code-docs-skill",
+  "owner": {
+    "name": "Mehmet Baykar"
+  },
+  "metadata": {
+    "description": "Unofficial Claude Code documentation mirror packaged as an Agent Skill."
+  },
+  "plugins": [
+    {
+      "name": "cc-docs",
+      "source": "./",
+      "description": "Answers Claude Code questions from a local mirror of the official documentation, refreshed every 3 hours."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "cc-docs",
+  "version": "2026.1103.1808",
+  "description": "Answers Claude Code questions from a local mirror of the official documentation, refreshed every 3 hours.",
+  "author": {
+    "name": "Mehmet Baykar"
+  },
+  "homepage": "https://github.com/mehmetbaykar/claude-code-docs-skill",
+  "repository": "https://github.com/mehmetbaykar/claude-code-docs-skill",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "documentation",
+    "agent-skills"
+  ]
+}

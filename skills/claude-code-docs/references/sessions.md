@@ -31,16 +31,16 @@ When the conversation you resume with `claude --resume` or `/resume` belongs to 
 
 * **From your shell**: `claude --resume <session>` runs [`claude attach`](https://code.claude.com/docs/en/agent-view#attach-to-a-session) on that session in the same terminal instead of loading the transcript itself. A prompt you pass on the command line, as in `claude --resume <session> "check the tests too"`, goes to the session as its next turn first, and Claude Code prints `Sent your prompt to the background session (<id>); opening it…` before attaching. `claude -p --resume <session> "prompt"` typed at a terminal does the same, so `-p` doesn't keep that run non-interactive.
 
-Claude Code doesn't open the session when the command line has any of these:
+  Claude Code doesn't open the session when the command line has any of these:
 
-* Piped or redirected input or output
-* Flags that configure the session, such as `--permission-mode`, `--model`, or `--settings`
-* Flags that read the output, such as `--output-format json` or `--json-schema`
-* Flags that limit or rewind the run, such as `--max-turns` or `--max-budget-usd`
+  * Piped or redirected input or output
+  * Flags that configure the session, such as `--permission-mode`, `--model`, or `--settings`
+  * Flags that read the output, such as `--output-format json` or `--json-schema`
+  * Flags that limit or rewind the run, such as `--max-turns` or `--max-budget-usd`
 
-With any of these, or when [agent view is turned off](https://code.claude.com/docs/en/agent-view.md#turn-off-agent-view), Claude Code sends nothing and exits with status 1, printing that the session is running in the background along with the `claude attach <id>` command that opens it, or telling you to find it in `claude agents` when it can't determine the ID. Add `--fork-session` to resume a copy of the conversation instead. To continue the conversation itself in a session of your own, with your flags applied, run `claude stop <id>` and then repeat the command.
+  With any of these, or when [agent view is turned off](https://code.claude.com/docs/en/agent-view.md#turn-off-agent-view), Claude Code sends nothing and exits with status 1, printing that the session is running in the background along with the `claude attach <id>` command that opens it, or telling you to find it in `claude agents` when it can't determine the ID. Add `--fork-session` to resume a copy of the conversation instead. To continue the conversation itself in a session of your own, with your flags applied, run `claude stop <id>` and then repeat the command.
 
-A prompt that starts with `/` or `!` isn't sent, and neither is any prompt while the session waits on your answer to a question. In both cases Claude Code doesn't open the session, and the message includes `Your prompt was not sent to it` with the reason.
+  A prompt that starts with `/` or `!` isn't sent, and neither is any prompt while the session waits on your answer to a question. In both cases Claude Code doesn't open the session, and the message includes `Your prompt was not sent to it` with the reason.
 * **From inside a session**: `/resume` moves your current conversation to the background and attaches this terminal to the running session, printing `Opening "<title>", running in the background (<id>)`. Press `←` on an empty prompt to return to agent view, which also lists the conversation you left. When the current conversation can't move to the background, for example because you're already attached to a background session or session persistence is off, `/resume` prints the `claude attach` command to run instead.
 
 ### What a resumed session restores
@@ -161,7 +161,7 @@ Sessions you don't name still get two labels that Claude Code assigns. Only the 
 * Default display name: interactive sessions you never name still get a default display name when they start. The default combines the working directory's name with a two-character suffix, for example `my-app-3f`, and identifies the session in listings of running sessions, such as [agent view](https://code.claude.com/docs/en/agent-view.md) and `claude agents --json` output. The default isn't a resume handle. If you pass it to `claude --resume` or `/resume`, Claude Code doesn't find the session.
 * Generated title: if you don't name a session, Claude Code generates a session title for it. The title is a short summary of your first prompt, written by a background request to the small/fast model, normally a Haiku-class model. A `claude -p` run you start directly from a shell or script doesn't get one.
 
-Accepting a plan replaces the generated title with a title based on the plan. You can pass either title to `claude --resume` or `/resume`, and Claude Code resolves it the same way as a name you set.
+  Accepting a plan replaces the generated title with a title based on the plan. You can pass either title to `claude --resume` or `/resume`, and Claude Code resolves it the same way as a name you set.
 
 ## Use the session picker
 
@@ -192,6 +192,7 @@ If Claude Code can't load the session you select from the `claude --resume` pick
 Branching creates a copy of the conversation so far and switches you into it, leaving the original intact. Use it to try a different approach without losing the path you were on.
 
 From inside a session, run `/branch` with an optional name:
+
 ```text
 /branch try-streaming-approach
 ```
@@ -199,6 +200,7 @@ From inside a session, run `/branch` with an optional name:
 If you omit the name, Claude Code names the new branch after the first prompt in the conversation.
 
 From the command line, combine `--continue` or `--resume` with `--fork-session`:
+
 ```bash
 claude --continue --fork-session
 ```
@@ -240,6 +242,7 @@ Run `/export` to open a menu that lets you copy the current conversation to your
 * **Embed Claude in a TypeScript or Python app**: use the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview.md) to receive each message programmatically.
 
 The example below uses the second interface. It sends a follow-up prompt to an existing session and reads the answer with `jq`:
+
 ```bash
 claude -p --resume <session-id> --output-format json "summarize what we changed" | jq -r '.result'
 ```
@@ -271,6 +274,7 @@ Transcripts age out under the [retention sweep rules](https://code.claude.com/do
 By default, Claude Code derives the `<project>` name from the whole working directory path. To choose the name yourself, set `CLAUDE_CODE_PROJECT_DIR_NAME` alongside `CLAUDE_CONFIG_DIR`. Claude Code then stores that session's transcripts and [auto memory](https://code.claude.com/docs/en/memory.md#auto-memory) under your name. This suits a host that embeds Claude Code and gives each session its own config directory. Requires Claude Code v2.1.234 or later.
 
 For example, this launch keeps tenant A's data under `/srv/tenant-a` and names its project directory `work`:
+
 ```bash
 CLAUDE_CONFIG_DIR=/srv/tenant-a CLAUDE_CODE_PROJECT_DIR_NAME=work claude
 ```

@@ -57,6 +57,7 @@ Consider a recipe app where an agent searches the web and brings back recipes. W
 To use structured outputs, define a [JSON Schema](https://json-schema.org/understanding-json-schema/about) describing the shape of data you want, then pass it to `query()` via the `outputFormat` option (TypeScript) or `output_format` option (Python). When the agent finishes, the result message includes a `structured_output` field with validated data matching your schema.
 
 Before running the examples on this page, install the Claude Agent SDK by following the [quickstart](https://code.claude.com/docs/en/agent-sdk/quickstart.md#setup). The example below asks the agent to research Anthropic and return the company name, year founded, and headquarters as structured output.
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -93,6 +94,7 @@ try {
   console.error(`Session ended with an error: ${error}`);
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
@@ -135,6 +137,7 @@ Instead of writing JSON Schema by hand, you can use [Zod](https://zod.dev/) (Typ
 The example below defines a schema for a feature implementation plan with a summary, list of steps (each with complexity level), and potential risks. The agent plans the feature and returns a typed `FeaturePlan` object. You can then access properties like `plan.summary` and iterate over `plan.steps` with full type safety.
 
 The SDK validates schemas with JSON Schema draft-07, so schemas that declare a newer version are rejected. Zod targets draft 2020-12 by default, so pass `target: "draft-7"` when converting your schema.
+
 ```typescript TypeScript
 import { z } from "zod";
 import { query } from "@anthropic-ai/claude-agent-sdk";
@@ -189,6 +192,7 @@ try {
   console.error(`Session ended with an error: ${error}`);
 }
 ```
+
 ```python Python
 import asyncio
 from pydantic import BaseModel
@@ -251,6 +255,7 @@ The `format` keyword, such as `"format": "email"`, is accepted as an annotation 
 This example demonstrates how structured outputs work with multi-step tool use. The agent needs to find TODO comments in the codebase, then look up git blame information for each one. It autonomously decides which tools to use (Grep to search, Bash to run git commands) and combines the results into a single structured response.
 
 The schema includes optional fields (`author` and `date`) since git blame information might not be available for all files. The agent fills in what it can find and omits the rest.
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -305,6 +310,7 @@ try {
   console.error(`Session ended with an error: ${error}`);
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
@@ -379,6 +385,7 @@ When an error occurs, the result message has a `subtype` indicating what went wr
 | `error_max_structured_output_retries` | No valid output remained after multiple attempts (validation failures, or a model-fallback retraction with no successful retry) |
 
 A result can also end with subtype `success` but no `structured_output` value, for example when the run completes without the agent producing a structured output. Treat that case as a failure as well. The troubleshooting entry [structured\_output is None but the result says success](https://code.claude.com/docs/en/agent-sdk/troubleshooting.md#structured_output-is-none-but-the-result-says-success) covers this case. The example below treats a result as successful only when the `subtype` is `success` and `structured_output` is present, and handles every other result as a failure:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -419,6 +426,7 @@ try {
   console.log(`Session ended with an error: ${error}`);
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage

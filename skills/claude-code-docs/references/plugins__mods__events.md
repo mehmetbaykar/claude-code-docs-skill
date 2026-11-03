@@ -19,6 +19,7 @@ A hook sits between an event and what Claude Code would do about it, so it can o
 ### Observe an event
 
 To observe an event without changing it, do your work and return `next(e)`. This hook logs each tool Claude is about to use:
+
 ```javascript
 on('tool.call', async ($, e, next) => {
   // Runs before the tool does
@@ -31,6 +32,7 @@ on('tool.call', async ($, e, next) => {
 Before each tool runs, a dim line such as `● my-mod: Claude is about to use Bash` appears in the transcript, where `my-mod` is your plugin's name. The tool runs as it would without the mod.
 
 To act after the event, `await next(e)`, do your work, and return the result. This hook logs each tool after it has run:
+
 ```javascript
 on('tool.call', async ($, e, next) => {
   // Let the tool run, and wait for its result
@@ -47,6 +49,7 @@ The line now appears after each tool finishes. Claude reads the same result eith
 ### Rewrite an event
 
 To change what Claude Code acts on, such as the text of a prompt, call `next` with a modified copy of the event. The event itself is immutable: it's deeply frozen, and assigning to a field throws. This hook trims each prompt before it's sent:
+
 ```javascript
 on('prompt.submit', async ($, e, next) => {
   // Pass on a copy of the event with its text changed
@@ -59,6 +62,7 @@ Later handlers and Claude Code receive the trimmed prompt and never see the orig
 ### Answer an event
 
 To handle an event yourself, return a result without calling `next`. That short-circuits the chain, so later mods and Claude Code's own behavior don't run. This hook refuses every Bash command:
+
 ```javascript
 on('tool.call', { tool: 'Bash' }, async () => {
   // No call to next, so the command never runs
@@ -73,6 +77,7 @@ When Claude tries a Bash command, the command doesn't run, and Claude reads the 
 To run a hook for some events only, pass a filter as the second argument to `on`. Claude Code calls the filter a matcher. It's an object whose fields are compared with the event's, and the hook runs only when every field matches. A field can be a value, an array of allowed values, or a regular expression.
 
 Each line in this example registers the same function, `hook`, for a narrower set of tool calls:
+
 ```javascript
 // A string matches one value: Bash calls only
 on('tool.call', { tool: 'Bash' }, hook)
@@ -97,6 +102,7 @@ Handle these events to see or change a tool call, a prompt, a turn, or a setting
 A `tool.call` hook sees each tool Claude is about to use, so it can refuse the call, change its arguments, or let it through. `tool.call` fires when Claude Code is about to run a tool, including calls a subagent makes and calls to MCP tools. `e.tool` is the tool's name and the tool's arguments are fields of `e`, such as `e.command` for Bash. When you call `next(e)`, Claude Code runs the permission check and then the tool.
 
 This hook refuses a Bash command that force-pushes, and tells Claude why:
+
 ```javascript
 // The matcher limits the hook to Bash calls, so e.command is the shell command
 on('tool.call', { tool: 'Bash' }, async ($, e, next) => {
@@ -114,6 +120,7 @@ When Claude tries `git push --force`, the command doesn't run and no permission 
 If this hook throws or times out, Claude Code skips it and the command goes on as it would without the mod. To refuse the command instead, [add a `.catch` handler](#handle-a-hook-that-fails) to the hook.
 
 To act after a tool has run, `await next(e)`, do your work, and return what `next` gave you. This hook logs each `.mdx` file Claude changes, with [`$.ui.log`](https://code.claude.com/docs/en/plugins/mods/api#show-something-without-starting-a-turn), which adds a dim line to the transcript that Claude doesn't read:
+
 ```javascript
 on('tool.call', { tool: ['Edit', 'Write'] }, async ($, e, next) => {
   // Wait for the permission check and the tool, and keep what they produced
@@ -142,6 +149,7 @@ Hooks in your organization's [managed settings](https://code.claude.com/docs/en/
 A hook can pause a tool call and ask the user what to do before it goes ahead. A `tool.call` hook can `await` before it calls `next` or returns, and the tool call stays pending until then. To put the question to the user, call `$.ui.ask`. It shows your question above a numbered list of your options, in the dialog Claude uses to ask you something, and resolves to the label the user picks. After your options, the dialog adds a row for typing a different answer and a **Chat about this** row.
 
 The `RISKY` pattern in this example matches `rm -r`, `rm -rf`, `git reset --hard`, and `git push` with `--force`, and it misses other spellings such as `git push -f`. This module asks before it runs a Bash command that matches the pattern:
+
 ```javascript
 const RISKY = /\brm\s+-rf?\b|\bgit\s+reset\s+--hard\b|\bgit\s+push\b.*--force/
 
@@ -189,6 +197,7 @@ For a fixed command or path, use a [permission rule](https://code.claude.com/doc
 * **When `tool.check` fires**: after the [`PreToolUse` hooks](https://code.claude.com/docs/en/hooks#pretooluse) run, and before the permission prompt, [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode)'s classifier, or a [`PermissionRequest`](https://code.claude.com/docs/en/hooks#permissionrequest) hook
 
 This hook refuses `git push` while the current branch is `main`:
+
 ```javascript
 on('tool.check', { tool: 'Bash' }, async ($, e, next) => {
   // Claude Code's own decision
@@ -224,6 +233,7 @@ Some tools, such as Read, Grep, Glob, and WebSearch, report every call as read-o
 The value is the tool's own report, so don't approve a call on this field alone. For example, WebFetch and Agent calls report as read-only, though [WebFetch](https://code.claude.com/docs/en/tools-reference.md#webfetch-tool-behavior) requests a URL and [Agent](https://code.claude.com/docs/en/tools-reference.md#agent-tool-behavior) starts a subagent that runs tools of its own.
 
 This hook returns an `ask` for every `mcp__github__` call that isn't read-only and wasn't already denied:
+
 ```javascript
 on('tool.check', { tool: /^mcp__github__/ }, async ($, e, next) => {
   const decided = await next(e)
@@ -251,6 +261,7 @@ A `prompt.submit` hook sees each prompt before the turn starts, so it can rewrit
 | Stop the prompt from being sent | `{ drop: 'the reason' }` |
 
 This hook adds the current branch name for Claude whenever a prompt mentions a pull request:
+
 ```javascript
 on('prompt.submit', async ($, e, next) => {
   // Pass on a prompt that doesn't mention a pull request as it is
@@ -283,6 +294,7 @@ A turn is everything Claude does in answer to one prompt. Handle `turn.start`, `
 | `turn.complete` | The turn ended, including a turn the user interrupted, where `e.isAborted` is `true`. `e.answer` is Claude's final text, `e.durationMs` how long it took, and `e.usage` the turn's token totals. A subagent's turn fires it with `e.agentId` set. | Observe, or return an object with a `text` field, such as `{ text: 'Done in 12 seconds' }`, to show a line under the answer |
 
 Write a `turn.step` hook as an async generator, because the event streams. `yield* next(e)` forwards the response as it streams and evaluates to the finished result. This hook logs how much of each request the Claude API served from the [prompt cache](https://code.claude.com/docs/en/prompt-caching.md):
+
 ```javascript
 // function* makes the hook a generator, which can pass the response on piece by piece
 on('turn.step', async function* ($, e, next) {
@@ -360,6 +372,7 @@ On Claude Code's own read, build your `{ value }` from [`next(e)`'s `value`](#se
 First check [which mods get this event, and from which version](#settings-read-hook).
 
 To change one key, spread the `value` from [`next(e)`](https://code.claude.com/docs/en/plugins/mods/reference#the-hook-function) and set that key, as this hook does with [`spinnerTipsEnabled`](https://code.claude.com/docs/en/settings-reference#spinnertipsenabled). The hook doesn't check [`next.origin`](#settings-read-origin), so the hook changes the key on [Claude Code's own read](#settings-read-hook) and on a mod's merged read alike:
+
 ```javascript
 on('settings.read', async ($, e, next) => {
   const read = await next(e)
@@ -378,6 +391,7 @@ On Claude Code's own read, if your hook returns a value outside the key's schema
 Settings hooks are the command, HTTP, prompt, and agent hooks you configure in settings files. Each [settings hook event](https://code.claude.com/docs/en/hooks.md#hook-events), such as `Stop`, `SessionEnd`, or `PostToolUse`, is also an event named `classic.` followed by the settings hook event's name, such as `classic.Stop`. `e` is the JSON a settings hook receives on stdin, including `transcript_path`. Where the [built-in guard](https://code.claude.com/docs/en/plugins/mods/admin.md#know-what-happens-by-default) loads, [a hook on these events in a mod you install doesn't run](https://code.claude.com/docs/en/plugins/mods/admin.md#hooks-the-guard-passes-over).
 
 This hook uses `Stop`, which fires when Claude finishes responding, to log where the session's transcript is saved:
+
 ```javascript
 on('classic.Stop', async ($, e, next) => {
   // e has the same fields a Stop hook in a settings file reads from stdin
@@ -425,6 +439,7 @@ A hook that fails doesn't break the session, and you can decide what happens ins
 One line names the mod, the event, and the reason, such as `my-mod: tool.call hook skipped: threw Error: boom`. Where you read it depends on the session, as [Find out why a mod does nothing](https://code.claude.com/docs/en/plugins/mods/troubleshoot.md#find-out-why-a-mod-does-nothing) lists. A `ui.render` hook whose [tree doesn't validate](https://code.claude.com/docs/en/plugins/mods/interface.md#build-a-tree-from-elements) counts as one that returned the wrong shape.
 
 To make a hook that blocks calls fail closed, add a `.catch` error handler that answers in its place. Here, `guard` is your hook function, and the handler tests [`next.called`](https://code.claude.com/docs/en/plugins/mods/reference#the-hook-function) to tell whether `guard` had already called `next` when it failed:
+
 ```javascript
 // on returns a registration, and .catch attaches a handler to that one hook
 on('tool.call', { tool: 'Bash' }, guard).catch(async ($, e, next) => {

@@ -187,9 +187,11 @@ A one-off schedule runs the task a single time at a specific timestamp. For exam
 After the task runs, it turns itself off and the web UI marks it as **Completed**. To run it again, open the task's [edit dialog](#edit-and-control-scheduled-tasks) on the web and select **One-time** or **Once**, whichever label your dialog shows. Then set a new date and time in your local time zone and save.
 
 Create a one-off run from the CLI by describing the time in natural language. Claude resolves the phrase against the current time and confirms the absolute timestamp before saving.
+
 ```text
 /schedule tomorrow at 9am, summarize yesterday's merged PRs
 ```
+
 ```text
 /schedule in 2 weeks, open a cleanup PR that removes the feature flag
 ```
@@ -234,6 +236,7 @@ The `text` value doesn't reach the routine as a bare message. It arrives wrapped
 This means a routine's saved prompt must opt in to acting on fire text: write the prompt to reference the payload explicitly, for example "Investigate the alert described in the routine-fire-payload block", or the routine treats the text as inert context. Anyone holding the bearer token can send `text`, so the wrapper makes fire text from a leaked token arrive labeled as untrusted data rather than as direct instructions to your routine.
 
 The example below triggers a scheduled task from a shell. The task ID and token shown are placeholders: replace them with the URL and token you copied when [adding the API trigger](#add-an-api-trigger), or the request fails with a `401` authentication error:
+
 ```bash
 curl -X POST https://api.anthropic.com/v1/claude_code/routines/trig_01ABCDEFGHJKLMNOPQRSTUVW/fire \
   -H "Authorization: Bearer sk-ant-oat01-xxxxx" \
@@ -244,6 +247,7 @@ curl -X POST https://api.anthropic.com/v1/claude_code/routines/trig_01ABCDEFGHJK
 ```
 
 A successful request returns a JSON body with the new session ID and URL:
+
 ```json
 {
   "type": "routine_fire",

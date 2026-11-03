@@ -16,6 +16,7 @@ Plugins from .zip archives and URLs
 `--plugin-dir` now accepts a `.zip` plugin archive in addition to a directory, and the new `--plugin-url` flag fetches a plugin archive from a URL for the current session. Useful for trying a plugin before adding it to a marketplace, or for shipping internal plugins from an artifact store.
 
 Load a plugin straight from a URL:
+
 ```bash
 claude --plugin-url https://example.com/my-plugin.zip
 ```

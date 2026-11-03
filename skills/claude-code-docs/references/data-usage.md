@@ -57,7 +57,7 @@ Anthropic retains Claude Code data based on your account type and preferences.
 * [Zero data retention](https://code.claude.com/docs/en/zero-data-retention.md): available to qualified accounts for Claude Code on Claude for Enterprise. ZDR is not included in the standard Enterprise plan; it is enabled on a per-organization basis by your account team after confirming eligibility
 * Local caching: Claude Code clients store session transcripts locally in plaintext under `~/.claude/projects/` for 30 days by default to enable session resumption. Adjust the period with `cleanupPeriodDays`. See [application data](https://code.claude.com/docs/en/claude-directory.md#application-data) for what's stored and how to clear it.
 
-Transcripts of sessions started or most recently continued in Claude Desktop or Cowork are [exempt from that limit by default](https://code.claude.com/docs/en/claude-directory.md#cleaned-up-automatically).
+  Transcripts of sessions started or most recently continued in Claude Desktop or Cowork are [exempt from that limit by default](https://code.claude.com/docs/en/claude-directory.md#cleaned-up-automatically).
 
 You can delete individual cloud sessions at any time. Deleting a session permanently removes the session's event data. For instructions on how to delete sessions, see [Delete sessions](https://code.claude.com/docs/en/claude-code-on-the-web.md#delete-sessions).
 

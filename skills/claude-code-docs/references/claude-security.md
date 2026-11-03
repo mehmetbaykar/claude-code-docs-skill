@@ -39,6 +39,7 @@ On a third-party provider, the `sonnet` alias can resolve to a different version
 ## Install the plugin
 
 In the VS Code extension or the desktop app, install it by following [Install a plugin](https://code.claude.com/docs/en/plugins/install.md#install-a-plugin). In a terminal, start Claude Code by running `claude`, then enter this at its prompt to install from the [official Anthropic marketplace](https://code.claude.com/docs/en/plugins/anthropic-marketplaces.md):
+
 ```text
 /plugin install claude-security@claude-plugins-official
 ```
@@ -136,6 +137,7 @@ Before delivery, each patch is reviewed by an agent independent of the one that 
 ### Patches are never applied automatically
 
 Applying a patch is always your decision. Patches are written to the report's `patches/` folder, one `F<n>.patch` per finding with a note beside it explaining the change. Apply one from your shell, or ask Claude to apply it and open a pull request:
+
 ```bash
 git apply CLAUDE-SECURITY-<timestamp>/patches/F1.patch
 ```

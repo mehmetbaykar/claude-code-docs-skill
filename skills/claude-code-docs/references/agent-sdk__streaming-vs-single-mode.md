@@ -34,6 +34,7 @@ In streaming input mode, you work in a persistent session with these capabilitie
 ### Implementation Example
 
 These examples read an image named `diagram.png` from the working directory. Create one there first, or change the filename to point at your own image.
+
 ```typescript TypeScript
 import { query, type SDKUserMessage } from "@anthropic-ai/claude-agent-sdk";
 import { readFile } from "fs/promises";
@@ -89,6 +90,7 @@ for await (const message of query({
   }
 }
 ```
+
 ```python Python
 from claude_agent_sdk import (
     ClaudeSDKClient,
@@ -188,6 +190,7 @@ Use single message input when:
 If a query ends with an error result, such as `error_max_turns`, a single message `query()` call raises an error that includes the failure text after yielding the final result message, so wrap the loop in a try block if your code needs to continue. See [Handle the result](https://code.claude.com/docs/en/agent-sdk/agent-loop.md#handle-the-result) for the result subtypes.
 
 ### Implementation Example
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -226,6 +229,7 @@ try {
   console.error(`Query failed: ${error}`);
 }
 ```
+
 ```python Python
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
 import asyncio

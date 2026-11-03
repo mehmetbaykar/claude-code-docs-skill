@@ -58,9 +58,11 @@ Run `claude` from your IDE's integrated terminal, and all integration features w
 ### Connect from an external terminal
 
 Use the `/ide` command in any external terminal to connect Claude Code to your JetBrains IDE and activate all features:
+
 ```bash
 claude
 ```
+
 ```text
 /ide
 ```
@@ -102,8 +104,8 @@ If the ESC key doesn't interrupt Claude Code operations in JetBrains terminals:
 
 1. Go to **Settings → Tools → Terminal**
 2. Either:
-* Uncheck "Move focus to the editor with Escape", or
-* Click "Configure terminal keybindings" and delete the "Switch focus to Editor" shortcut
+   * Uncheck "Move focus to the editor with Escape", or
+   * Click "Configure terminal keybindings" and delete the "Switch focus to Editor" shortcut
 3. Apply the changes
 
 This allows the ESC key to properly interrupt Claude Code operations.
@@ -127,6 +129,7 @@ This is the recommended fix because it keeps your existing WSL2 networking mode.
 **1. Find your WSL2 IP address**
 
 From inside your WSL shell, run:
+
 ```bash
 hostname -I
 ```
@@ -136,6 +139,7 @@ Note your subnet: take the first two segments of the address and follow them wit
 **2. Create a firewall rule**
 
 Open PowerShell as Administrator and run the following, adjusting the IP range to match your subnet:
+
 ```powershell
 New-NetFirewallRule -DisplayName "Allow WSL2 Internal Traffic" -Direction Inbound -Protocol TCP -Action Allow -RemoteAddress 172.21.0.0/16 -LocalAddress 172.21.0.0/16
 ```
@@ -149,6 +153,7 @@ Close and reopen both so the new rule takes effect.
 Mirrored networking requires Windows 11 22H2 or later. If you're on Windows 10, use the firewall rule above instead.
 
 Add this to `.wslconfig` in your Windows user directory:
+
 ```ini
 [wsl2]
 networkingMode=mirrored

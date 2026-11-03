@@ -47,6 +47,7 @@ For the complete list of metric names, event names, and attributes, see the Clau
 Telemetry is off until you set `CLAUDE_CODE_ENABLE_TELEMETRY=1` and choose at least one exporter. The most common configuration sends all three signals over OTLP HTTP to a collector.
 
 The following example sets the variables in a dictionary and passes them through `options.env`. The agent runs a single task, and the CLI exports spans, metrics, and events to the collector at `collector.example.com` while the loop consumes the response stream:
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions
@@ -74,6 +75,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -117,6 +119,7 @@ To confirm that export is working, check your collector's logs for incoming span
 The CLI batches telemetry and exports on an interval. On a clean process exit it attempts to flush pending data, but the flush is bounded by a short timeout, so spans can still be dropped if the collector is slow to respond. If your process is killed before the CLI shuts down, anything still in the batch buffer is lost. Lowering the export intervals reduces both windows.
 
 By default, metrics export every 60 seconds and traces and logs export every 5 seconds. The following example shortens all three intervals so that data reaches the collector while a short task is still running:
+
 ```python Python
 OTEL_ENV = {
     # ... exporter configuration from the previous example ...
@@ -125,6 +128,7 @@ OTEL_ENV = {
     "OTEL_TRACES_EXPORT_INTERVAL": "1000",
 }
 ```
+
 ```typescript TypeScript
 const otelEnv = {
   // ... exporter configuration from the previous example ...
@@ -168,6 +172,7 @@ Auto-injection is skipped when you set `TRACEPARENT` explicitly in `options.env`
 By default, the CLI reports `service.name` as `claude-code`. If you run several agents, or run the SDK alongside other services that export to the same collector, override the service name and add resource attributes so you can filter by agent in your backend.
 
 The following example renames the service and attaches deployment metadata. These values are applied as OpenTelemetry resource attributes on every span, metric, and event the agent emits:
+
 ```python Python
 options = ClaudeAgentOptions(
     env={
@@ -177,6 +182,7 @@ options = ClaudeAgentOptions(
     },
 )
 ```
+
 ```typescript TypeScript
 const options = {
   env: {
@@ -194,6 +200,7 @@ const options = {
 The CLI attaches [identity attributes](https://code.claude.com/docs/en/monitoring-usage.md#standard-attributes) to every event based on the credential it uses to call Anthropic. When you build an application that serves many end users from one deployment, these attributes identify your service's credential, not the end user on whose behalf the agent acted.
 
 To make tool calls and MCP activity attributable to your application's end users, inject end-user identity as resource attributes on each `query()` call. Percent-encode values before interpolating them, since `OTEL_RESOURCE_ATTRIBUTES` [reserves commas, spaces, and equals signs](https://code.claude.com/docs/en/monitoring-usage.md#multi-team-organization-support). The following example attaches the requesting user and tenant to every span and event from one request. It assumes a `request` object from your web framework carrying the user and tenant IDs:
+
 ```python Python
 from urllib.parse import quote
 
@@ -205,6 +212,7 @@ options = ClaudeAgentOptions(
     },
 )
 ```
+
 ```typescript TypeScript
 const options = {
   env: {

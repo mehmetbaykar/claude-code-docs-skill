@@ -36,6 +36,7 @@ Write a manifest when you want metadata, a component outside its default directo
 Save the manifest at `.claude-plugin/plugin.json` under the plugin root. Put every other plugin file at the plugin root, not inside `.claude-plugin/`. That includes `skills/`, `commands/`, and `hooks/`.
 
 The following example sets most of the keys in the [Fields table](#fields). It passes validation in a plugin directory that contains each referenced path.
+
 ```json
 {
   "name": "deploy-tools",
@@ -100,6 +101,7 @@ An unrecognized top-level key is stripped, and an unrecognized key inside a `use
 ### Validate the manifest
 
 `claude plugin validate` is the authoritative check for a manifest. Run it from your shell against the plugin directory:
+
 ```bash
 claude plugin validate ./my-plugin
 ```
@@ -222,6 +224,7 @@ Every component key accepts a path relative to the plugin root. `hooks`, `mcpSer
 ### Path-only fields
 
 `agents`, `skills`, `outputStyles`, `workflows`, and `experimental.themes` take one path or an array of paths. `agents` entries must be `.md` files, and `skills` entries must be directories. The other three accept a directory or a file.
+
 ```json
 {
   "agents": ["./custom-agents/reviewer.md", "./custom-agents/tester.md"],
@@ -246,6 +249,7 @@ Each value sets exactly one of `source` or `content`, and an entry that sets bot
 | `allowedTools` | array of strings | Tools the command may use without prompting |
 
 This map declares one command from a file and one from inline content:
+
 ```json
 {
   "commands": {
@@ -262,6 +266,7 @@ This map declares one command from a file and one from inline content:
 A hooks file wraps the event map in a top-level `"hooks"` key, the shape [`hooks/hooks.json`](https://code.claude.com/docs/en/plugins/components#hooks) uses. A file that contains only the event map, without that wrapper, fails to load. An inline object is the event map itself, with no wrapper.
 
 Claude Code merges whatever you declare with `hooks/hooks.json` when that file exists. This array loads one hooks file and declares one inline `PostToolUse` hook:
+
 ```json
 {
   "hooks": [
@@ -281,6 +286,7 @@ Claude Code merges whatever you declare with `hooks/hooks.json` when that file e
 ```
 
 The file that array names carries the `"hooks"` wrapper around its own event map:
+
 ```json config/extra-hooks.json
 {
   "hooks": {
@@ -339,6 +345,7 @@ Each server config is a strict object with these fields. An unknown key fails va
 | `diagnostics` | No | Whether to push diagnostics into context after edits. Defaults to `true` |
 
 This inline config runs `gopls` for `.go` files:
+
 ```json
 {
   "lspServers": {
@@ -367,6 +374,7 @@ Each entry is a strict object with these fields.
 | `when` | No | With `"always"`, the default, the monitor starts at session start and on plugin reload. With `"on-skill-invoke:<skill>"`, it starts the first time that skill runs |
 
 This inline array declares one monitor that starts the first time the `deploy` skill runs:
+
 ```json
 {
   "experimental": {
@@ -437,6 +445,7 @@ Each value is a strict object with these fields. An unknown key fails validation
 Each option of each enabled plugin also appears as a row in the `/config` panel, except `sensitive` options and `multiple` lists. The `/config` rows require Claude Code v2.1.269 or later.
 
 This `userConfig` declares an endpoint and a masked token:
+
 ```json
 {
   "userConfig": {
@@ -460,6 +469,7 @@ This `userConfig` declares an endpoint and a masked token:
 Set `options` on a `userConfig` field to make users pick its value from a fixed list.
 
 To limit a `tone` field to three options, list them in `options` and set `default` to one of them:
+
 ```json
 {
   "userConfig": {
@@ -487,7 +497,7 @@ Non-sensitive values are saved under [`pluginConfigs`](https://code.claude.com/d
 Reference a saved value where the plugin needs it, in one of two forms:
 
 * **`${user_config.KEY}`**: substituted in MCP server config, LSP server config, [exec-form](https://code.claude.com/docs/en/hooks.md#exec-form-and-shell-form) hook `args`, and skill and agent content. In skill and agent content, only non-sensitive values are substituted, and a sensitive value there becomes a placeholder
-* **`CLAUDE_PLUGIN_OPTION_`**: exported to hook processes for every option, with `` uppercased. A shell-form hook reads `$CLAUDE_PLUGIN_OPTION_API_TOKEN` for `api_token`
+* **`CLAUDE_PLUGIN_OPTION_<KEY>`**: exported to hook processes for every option, with `<KEY>` uppercased. A shell-form hook reads `$CLAUDE_PLUGIN_OPTION_API_TOKEN` for `api_token`
 
 ### Fields that run through a shell
 
@@ -497,8 +507,8 @@ The table shows how the value can reach each of these fields instead.
 
 | Field | How the value can reach it |
 | :- | :- |
-| Shell-form hook commands | Use [exec form](https://code.claude.com/docs/en/hooks.md#exec-form-and-shell-form) with `args`, or read `CLAUDE_PLUGIN_OPTION_` from the hook's environment |
-| Monitor commands | Not through Claude Code. Monitor processes don't receive `CLAUDE_PLUGIN_OPTION_`, so the monitor script has to obtain the value on its own |
+| Shell-form hook commands | Use [exec form](https://code.claude.com/docs/en/hooks.md#exec-form-and-shell-form) with `args`, or read `CLAUDE_PLUGIN_OPTION_<KEY>` from the hook's environment |
+| Monitor commands | Not through Claude Code. Monitor processes don't receive `CLAUDE_PLUGIN_OPTION_<KEY>`, so the monitor script has to obtain the value on its own |
 | MCP `headersHelper` | Not through Claude Code. The helper's environment carries `CLAUDE_PLUGIN_ROOT`, `CLAUDE_CODE_MCP_SERVER_NAME`, and `CLAUDE_CODE_MCP_SERVER_URL` but no option values, so the helper script has to obtain the value on its own |
 
 ## Channels
@@ -514,6 +524,7 @@ Each entry is a strict object bound to one of the plugin's MCP servers, with the
 | `userConfig` | No | Options to prompt for, in the same shape as [top-level `userConfig`](#user-configuration). Saved values substitute into `${user_config.KEY}` references in the server's `env` |
 
 This manifest binds a channel to the plugin's `telegram` MCP server and prompts for a bot token that substitutes into the server's `env`:
+
 ```json
 {
   "mcpServers": {
@@ -560,7 +571,7 @@ In each plugin component, `${...}` references resolve inline in specific fields,
 
 | Plugin component | Fields where `${...}` resolves | Exported to the process |
 | :- | :- | :- |
-| Hook commands | Anywhere in `command` and `args` | `CLAUDE_PLUGIN_ROOT`, `CLAUDE_PLUGIN_DATA`, `CLAUDE_PROJECT_DIR`, and `CLAUDE_PLUGIN_OPTION_` |
+| Hook commands | Anywhere in `command` and `args` | `CLAUDE_PLUGIN_ROOT`, `CLAUDE_PLUGIN_DATA`, `CLAUDE_PROJECT_DIR`, and `CLAUDE_PLUGIN_OPTION_<KEY>` |
 | Monitor commands | Anywhere in `command` | Not exported |
 | MCP `stdio` servers | `command`, `args`, `env` | `CLAUDE_PLUGIN_ROOT`, `CLAUDE_PLUGIN_DATA` |
 | MCP `http`, `sse`, `ws` servers | `url`, `headers`, `headersHelper` | Not applicable |
@@ -579,6 +590,7 @@ Keep each substituted path a single argument:
 If you leave one of these variables outside quotes in a shell-form command in a hooks file, `claude plugin validate` warns about it unless the hook sets [`shell`](https://code.claude.com/docs/en/hooks#command-hook-fields) to `"powershell"`.
 
 This shell-form hook runs a script bundled with the plugin:
+
 ```json
 {
   "hooks": {
@@ -619,6 +631,7 @@ Each component type has a default location under the plugin root, used when the 
 | Settings | `settings.json` | `agent` and `subagentStatusLine` defaults applied while the plugin is enabled |
 
 A plugin that uses every default location, plus a `scripts/` folder that its hooks call, is laid out like this:
+
 ```text
 deploy-tools/
 ├── .claude-plugin/

@@ -19,6 +19,7 @@ v2.1.269
 ![Terminal output of claude plugin eval: a table of seven cases with each case's score with and without the plugin, the delta between them, the run count, and the cost, followed by a summary line with the mean delta, total duration, and total cost](https://mintcdn.com/claude-code/f9HTZGyMtxIFOUgt/images/whats-new/plugin-eval.jpg?fit=max\&auto=format\&n=f9HTZGyMtxIFOUgt\&q=85\&s=913066f6d4a2a15426e98a627802f47f)
 
 From your plugin's root directory, have Claude draft the suite:
+
 ```bash
 claude plugin eval init
 ```

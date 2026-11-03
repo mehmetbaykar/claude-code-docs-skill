@@ -46,6 +46,7 @@ Save the following as `.devcontainer/devcontainer.json` in your repository, or a
 The version tag at the end, such as `:1.0`, pins the feature's install script, not the Claude Code release. The feature installs the latest Claude Code, and Claude Code auto-updates itself inside the container by default.
 
 To pin the CLI version or disable auto-update, see [Enforce organization policy](#enforce-organization-policy).
+
 ```json .devcontainer/devcontainer.json
 {
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
@@ -87,6 +88,7 @@ See [Choose your API provider](https://code.claude.com/docs/en/admin-setup.md#ch
 By default, the container's home directory is discarded on rebuild, so engineers must sign in again each time. Claude Code stores its authentication token, user settings, and session history under the [`~/.claude`](https://code.claude.com/docs/en/claude-directory) directory. It stores your account details, personal MCP servers, and per-project trust in a separate file outside that directory: [`~/.claude.json`](https://code.claude.com/docs/en/settings-reference#global-config-settings).
 
 To keep the directory and the file, mount a named volume at `~/.claude` and set [`CLAUDE_CONFIG_DIR`](https://code.claude.com/docs/en/env-vars) to the same path so Claude Code writes `.claude.json` inside the volume. The following example mounts the volume and sets `CLAUDE_CONFIG_DIR` for a container whose `remoteUser` is `node`:
+
 ```json devcontainer.json
 "mounts": [
   "source=claude-code-config,target=/home/node/.claude,type=volume"
@@ -113,6 +115,7 @@ To carry authentication across codespaces, store `ANTHROPIC_API_KEY` or a `CLAUD
 A dev container is a convenient place to apply organization policy, because the same image and configuration run on every engineer's machine.
 
 Claude Code reads `/etc/claude-code/managed-settings.json` on Linux and applies it at the highest precedence in the [settings hierarchy](https://code.claude.com/docs/en/settings.md#settings-precedence), so values there override anything an engineer sets in `~/.claude` or the project's `.claude/` directory. Copy the file into place from your Dockerfile:
+
 ```dockerfile Dockerfile
 RUN mkdir -p /etc/claude-code
 COPY managed-settings.json /etc/claude-code/managed-settings.json
@@ -121,6 +124,7 @@ COPY managed-settings.json /etc/claude-code/managed-settings.json
 Because the Dockerfile lives in the repository, anyone with write access can change or remove this step. For policy that engineers cannot bypass by editing repository files, deliver managed settings through [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md) or your MDM instead. See [managed settings files](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms) for the available keys and the other delivery paths.
 
 To set [environment variables](https://code.claude.com/docs/en/env-vars.md) that apply to every Claude Code session in the container, add them to `containerEnv` in your `devcontainer.json`. The following example opts out of telemetry and error reporting and prevents Claude Code from auto-updating after install:
+
 ```json devcontainer.json
 "containerEnv": {
   "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",

@@ -68,6 +68,7 @@ Any process that can write to a system path with administrator privileges can de
 | Windows | `C:\Program Files\ClaudeCode\managed-mcp.json` |
 
 The file uses the same format as a project [`.mcp.json`](https://code.claude.com/docs/en/mcp#project-scope) file:
+
 ```json
 {
   "mcpServers": {
@@ -124,13 +125,14 @@ If you used `allowedMcpServers` to keep some of your `managed-mcp.json` servers 
 To confirm the file is in effect, run two checks on a managed machine:
 
 1. `claude mcp list` shows only the servers in `managed-mcp.json`, plus any you provide through `managedMcpServers`. Two other results mean something is wrong:
-* If a user's own servers still appear, Claude Code isn't reading the file, so check its path and the permissions on its parent directories.
-* If the file's servers don't appear and the `MCP config diagnostics` section marks the enterprise config as failed to parse, Claude Code can't read or parse the file. Fix the error that section names, then have the user restart Claude Code.
+   * If a user's own servers still appear, Claude Code isn't reading the file, so check its path and the permissions on its parent directories.
+   * If the file's servers don't appear and the `MCP config diagnostics` section marks the enterprise config as failed to parse, Claude Code can't read or parse the file. Fix the error that section names, then have the user restart Claude Code.
 2. `claude mcp add --transport http test https://example.com/mcp` fails with `Cannot add MCP server: enterprise MCP configuration is active and has exclusive control over MCP servers`. The URL doesn't need to be a real server, since the policy check rejects the command before anything is contacted.
 
 ### Disable MCP entirely
 
 Deploy a `managed-mcp.json` containing an empty server map to block every MCP server except the ones that [load under exclusive control](#exclusive-control-with-managed-mcp-json):
+
 ```json
 {
   "mcpServers": {}
@@ -160,6 +162,7 @@ To let users run Claude in Chrome alongside the managed set, set `"allowClaudeIn
 To give every user a set of remote MCP servers without taking exclusive control of MCP, list them under `managedMcpServers` in a [managed settings source](https://code.claude.com/docs/en/admin-setup.md#decide-how-settings-reach-devices): server-managed settings, a [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway-config.md#what-goes-in-cli) policy, an MDM profile or registry policy, or `managed-settings.json`. Users keep the servers they add themselves and receive yours in addition. Requires Claude Code v2.1.259 or later. Earlier clients ignore the key.
 
 The value is an object keyed by server name. Each entry has the same shape as an HTTP or SSE server in a project [`.mcp.json`](https://code.claude.com/docs/en/mcp#project-scope) file, including the optional `headers` and `oauth` members described in [Authenticate with remote MCP servers](https://code.claude.com/docs/en/mcp.md#authenticate-with-remote-mcp-servers). This example provides a search server that each user signs in to with OAuth, and a records server that sends a header your organization issues:
+
 ```json
 {
   "managedMcpServers": {
@@ -375,6 +378,7 @@ A `managed-mcp.json` server that uses `${VAR}` expansion in its command, argumen
 ### Example configuration
 
 The configuration below sets up a hard allowlist with a denylist. The highlighted lines change how the rest of the list is evaluated, and the callouts after the block explain each one:
+
 ```json {3,5,11}
 {
   "allowedMcpServers": [
@@ -495,6 +499,7 @@ The accordions below walk through how a server is evaluated against other allowl
 ### Restrict the allowlist to managed settings only
 
 To make the managed allowlist the only one that applies, set `allowManagedMcpServersOnly` in the managed settings file:
+
 ```json
 {
   "allowManagedMcpServersOnly": true,

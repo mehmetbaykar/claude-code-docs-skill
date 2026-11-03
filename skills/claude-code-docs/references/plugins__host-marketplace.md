@@ -83,6 +83,7 @@ To share files between your plugin and other parts of the same marketplace, crea
 For plugins installed from a local path, or from a [`command` source](https://code.claude.com/docs/en/plugins/marketplace-reference#command-plugin-source) whose `mode` is the default `copy`, Claude Code preserves only symlinks that resolve within the plugin's own directory and skips all others.
 
 The following command creates a link from inside a marketplace plugin to a shared skill defined by a sibling plugin. On Windows, use `mklink /D` from an elevated Command Prompt or enable Developer Mode:
+
 ```bash
 ln -s ../../shared-plugin/skills/foo ./skills/foo
 ```
@@ -225,6 +226,7 @@ To offer stable and early-access tracks, host two marketplaces whose entries poi
 Give the two `marketplace.json` files different `name` values. Claude Code identifies a marketplace by its `name`, so a user can't have two marketplaces with the same name registered at once.
 
 With these two catalogs, users who add `stable-tools` install `code-formatter` from the `stable` branch, and users who add `latest-tools` install it from `latest`:
+
 ```json
 {
   "name": "stable-tools",
@@ -234,6 +236,7 @@ With these two catalogs, users who add `stable-tools` install `code-formatter` f
   ]
 }
 ```
+
 ```json
 {
   "name": "latest-tools",
@@ -259,6 +262,7 @@ To change the label users see in `/plugin` without breaking anything, set `displ
 When you must change a `name`, add a top-level `renames` map to `marketplace.json` so Claude Code migrates existing users instead of reporting [`Plugin "<name>" not found in marketplace`](https://code.claude.com/docs/en/plugins/troubleshooting#plugin-not-found-in-marketplace). Do the same when you remove an entry from `plugins`.
 
 Map each former name to its current name, or to `null` when the plugin is gone. This marketplace renames `formatter` to `code-formatter` and records that `legacy-linter` was removed:
+
 ```json
 {
   "name": "your-marketplace",
@@ -316,6 +320,7 @@ Where both places set a header of the same name, Claude Code sends the entry's v
 ### Add a headersHelper to a plugin entry
 
 This entry sets `headersHelper` beside `source`. It also sets [`"strict": false`](https://code.claude.com/docs/en/plugins/marketplace-reference#strict-mode), which Claude Code requires of a `marketplace.json` entry that sets `headersHelper`:
+
 ```json
 {
   "name": "my-plugin",
@@ -342,6 +347,7 @@ Whether you set `headersHelper` on a marketplace's `url` source or on a plugin e
 * **Variables Claude Code sets**: `CLAUDE_CODE_MARKETPLACE_URL` and `CLAUDE_CODE_MARKETPLACE_NAME` for a `url` source's command, and `CLAUDE_CODE_PLUGIN_NAME` and `CLAUDE_CODE_PLUGIN_ARCHIVE_URL` for an entry's command. `CLAUDE_CODE_MARKETPLACE_NAME` is unset on the first fetch after a user adds a marketplace by URL, because that fetch is what supplies the name.
 
 A command that mints a bearer token prints an object like this one:
+
 ```json
 {"Authorization": "Bearer eyJhbGciOiJSUzI1NiJ9"}
 ```

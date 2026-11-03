@@ -45,7 +45,7 @@ In the TypeScript SDK, if you set a custom tool's `permission_policy` to [`alway
 Apply the active [permission mode](#permission-modes):
 
 * In `bypassPermissions` mode, Claude Code approves everything that reaches this step except recognized [critical-path removals](https://code.claude.com/docs/en/permission-modes.md#critical-paths) and Bash commands flagged [`Dangerous rm operation not ruled out`](https://code.claude.com/docs/en/permission-modes#dangerous-rm-operation-not-ruled-out), which fall through instead.
-* To run those removals with no prompt, see [Turn off the critical-path removal prompt](https://code.claude.com/docs/en/permission-modes.md#turn-off-the-critical-path-removal-prompt-in-bypasspermissions-mode).
+  * To run those removals with no prompt, see [Turn off the critical-path removal prompt](https://code.claude.com/docs/en/permission-modes.md#turn-off-the-critical-path-removal-prompt-in-bypasspermissions-mode).
 * In `acceptEdits` mode, Claude Code approves the file operations listed under [Accept edits mode](#accept-edits-mode-acceptedits).
 * In `plan` mode, Claude Code sends file-edit tools to your `canUseTool` callback regardless of allow rules.
 * In other modes, the request falls through.
@@ -116,6 +116,7 @@ Use `//path` for an absolute filesystem path: a deny rule of `Edit(//secrets/**)
 > For checks that must run on every tool call, use a [`PreToolUse` hook](https://code.claude.com/docs/en/agent-sdk/hooks): hooks run before every other step, and a hook deny applies even in `bypassPermissions` mode.
 
 For a locked-down agent, pair `allowedTools` with `permissionMode: "dontAsk"`:
+
 ```typescript
 const options = {
   allowedTools: ["Read", "Glob", "Grep"],

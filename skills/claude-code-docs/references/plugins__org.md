@@ -50,6 +50,7 @@ To apply every source instead, set [`managedSourcesBehavior`](https://code.claud
 ### Require a marketplace and its plugins
 
 Add the marketplace under `extraKnownMarketplaces`, keyed by the marketplace's own `name` from its `marketplace.json`. Then add each plugin under `enabledPlugins` as `plugin-name@marketplace-name`. Each marketplace entry carries a `source` object with a `source` field naming the type, such as `github`. This managed settings example registers an organization marketplace and force-enables two plugins from it:
+
 ```json
 {
   "extraKnownMarketplaces": {
@@ -128,6 +129,7 @@ A seed also serves users who have no git-host account.
 **1. Install into the seed at build time**
 
 Set `CLAUDE_CODE_PLUGIN_CACHE_DIR` to the seed path so the marketplace and plugins install there instead of `~/.claude/plugins`:
+
 ```bash
 CLAUDE_CODE_PLUGIN_CACHE_DIR=/opt/claude-seed claude plugin marketplace add your-org/your-marketplace
 CLAUDE_CODE_PLUGIN_CACHE_DIR=/opt/claude-seed claude plugin install code-formatter@your-marketplace
@@ -255,6 +257,7 @@ This lockdown doesn't cover the plugins [synced from claude.ai](https://code.cla
 * An entry without `ref` or `path` blocks every ref and path of the repositories it matches.
 
 This entry blocks every repository under one GitHub owner:
+
 ```json
 {
   "blockedMarketplaces": [
@@ -272,6 +275,7 @@ A blocklist that names only that entry doesn't count as an active restriction, s
 ### Allow the official marketplace and your own
 
 Most organizations allow the official marketplace and their own, and register both so every machine has them. This managed settings policy allows both marketplaces, registers both, force-enables two plugins, and rejects `--plugin-dir`:
+
 ```json
 {
   "strictKnownMarketplaces": [
@@ -319,6 +323,7 @@ Plugin auto-update runs in the background after startup for marketplaces that ha
 ### Turn updates off for the whole fleet
 
 To turn plugin auto-update off for every marketplace, set `DISABLE_AUTOUPDATER` in the managed `env` block, as this example does. The same variable also stops Claude Code's own updates:
+
 ```json
 {
   "env": {
@@ -339,6 +344,7 @@ To run stable and early-access channels, host two marketplaces that point at dif
 * Define one [Claude apps gateway policy](https://code.claude.com/docs/en/claude-apps-gateway-config.md#managed) per group. By default, the gateway applies the first policy whose match rule fits a user, so order the policies so that each user reaches their group's policy. That policy's `extraKnownMarketplaces` map doesn't merge with any other policy's, so list every marketplace the group needs in it, not only its channel marketplace.
 
 With either mechanism, the stable group receives this configuration:
+
 ```json
 {
   "extraKnownMarketplaces": {

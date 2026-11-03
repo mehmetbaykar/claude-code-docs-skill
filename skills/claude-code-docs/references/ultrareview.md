@@ -25,6 +25,7 @@ Ultrareview requires authentication with a claude.ai account because it runs as 
 ## Run ultrareview from the CLI
 
 Start a review from any git repository:
+
 ```text
 /code-review ultra
 ```
@@ -40,6 +41,7 @@ The command runs only when you invoke it with `/code-review ultra`; Claude doesn
 ### Review against a different base
 
 To compare against a base other than the default branch, pass the branch name. This example reviews your current branch against `develop` instead:
+
 ```text
 /code-review ultra develop
 ```
@@ -51,6 +53,7 @@ A commit id or tag also works as the base, and the review then covers the change
 ### Review a pull request
 
 To review a pull request on `github.com` instead of a local branch, pass the PR number:
+
 ```text
 /code-review ultra 1234
 ```
@@ -85,6 +88,7 @@ When the post finishes, Claude tells you the outcome:
 ### Pass a request in plain words
 
 You can also describe what you're working on in plain words:
+
 ```text
 /code-review ultra check my auth changes
 ```
@@ -95,7 +99,7 @@ Claude Code treats your text as a note only when it has more than one word and i
 
 > [!TIP]
 >
-> If your repository is too large to bundle, Claude Code prompts you to use PR mode instead. For a repository on `github.com`, push your branch and open a draft PR, then run `/code-review ultra `.
+> If your repository is too large to bundle, Claude Code prompts you to use PR mode instead. For a repository on `github.com`, push your branch and open a draft PR, then run `/code-review ultra <PR-number>`.
 
 ### Diff limits and fallbacks
 
@@ -105,10 +109,10 @@ Ultrareview checks the diff before any review work runs and tells you when it ca
 * **Nothing to review**: when the diff against the base is empty, ultrareview refuses and names the branch or commit it compared against and the case you're in, such as being on the base branch itself with nothing uncommitted, or a branch whose commits are all part of the base already. It also suggests the way out for that case, such as switching to the branch with your work, staging or committing local edits, or passing a different base
 * **First commit**: a repository's first commit has nothing earlier to compare with, so ultrareview reviews every file in it after you confirm in the launch dialog. If you have untracked files, it refuses instead and tells you to `git add` the ones you want reviewed. The same size limits apply.
 
-A first commit is reviewed whole only after that confirmation, so the `claude ultrareview` subcommand and `claude -p` refuse it and point you to an interactive session instead. Requires Claude Code v2.1.277 or later
+  A first commit is reviewed whole only after that confirmation, so the `claude ultrareview` subcommand and `claude -p` refuse it and point you to an interactive session instead. Requires Claude Code v2.1.277 or later
 * **No merge base**: when your branch shares no history with the base branch, or the repository has no base branch to compare with, ultrareview reviews every tracked file in the repository instead. The fallback requires a full clone and applies the same size limits. It launches only when you confirm in the launch dialog or run the `claude ultrareview` subcommand yourself. In `claude -p` and anywhere else neither happens, ultrareview refuses, says the review would cover every file, and points you to an interactive session.
 
-On a checkout with no branches or other refs, such as a detached HEAD created by checking out `FETCH_HEAD` after fetching a URL, Claude Code [refuses the review](https://code.claude.com/docs/en/errors.md#your-checkout-has-no-branches) and suggests creating a branch first
+  On a checkout with no branches or other refs, such as a detached HEAD created by checking out `FETCH_HEAD` after fetching a URL, Claude Code [refuses the review](https://code.claude.com/docs/en/errors.md#your-checkout-has-no-branches) and suggests creating a branch first
 
 ## Pricing and free runs
 
@@ -147,6 +151,7 @@ When the review finishes, Claude Code shows the verified findings as a notificat
 ## Run ultrareview non-interactively
 
 Use the `claude ultrareview` subcommand to start an ultrareview from CI or a script without an interactive session. The subcommand launches the same review as `/code-review ultra`, blocks until the remote review finishes, and prints the findings to stdout. If the run exits with `Error: Workspace not trusted`, see [Trust the folder before the review runs](#trust-the-folder-before-the-review-runs).
+
 ```bash
 claude ultrareview
 claude ultrareview 1234
@@ -193,11 +198,12 @@ For automatic reviews on GitHub pull requests, [Code Review](https://code.claude
 When `claude ultrareview` asks `Trust <folder>? [y/N]`, answer `y` to [trust the folder](https://code.claude.com/docs/en/permissions.md#project-allow-rules-and-workspace-trust). Trust it only if you trust its code, because git and Claude Code can then run programs named in its git configuration and project settings.
 
 When it can't ask you, such as in a CI job or with output sent to a file, it exits with [`Error: Workspace not trusted`](https://code.claude.com/docs/en/errors#workspace-not-trusted-when-running-claude-ultrareview). Append `--trust-workspace` to trust the folder for that run:
+
 ```bash
 claude ultrareview 1234 --trust-workspace
 ```
 
-To review an untrusted pull request, run `claude ultrareview  --trust-workspace` from a branch you trust. The PR is [cloned in the cloud](#review-a-pull-request), so you don't need its branch locally.
+To review an untrusted pull request, run `claude ultrareview <PR number> --trust-workspace` from a branch you trust. The PR is [cloned in the cloud](#review-a-pull-request), so you don't need its branch locally.
 
 ## How ultrareview compares to /code-review
 

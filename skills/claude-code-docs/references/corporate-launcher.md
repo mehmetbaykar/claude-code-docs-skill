@@ -51,6 +51,7 @@ With a launcher configured, `ps` and Activity Monitor no longer show Claude Code
 **1. Write the launcher script**
 
 Create an executable script at an absolute path, such as `/opt/corp/launcher`. Claude Code runs it with the full Claude Code command as its arguments, and the script must end by calling `exec "$@"` so it replaces itself with Claude Code:
+
 ```bash
 #!/bin/sh
 # Your organization's setup: enter the sandbox, apply
@@ -69,6 +70,7 @@ Make it executable with `chmod +x`. The setup portion is whatever your launcher 
 Set the variable in the `env` block of a settings file so the detached background service inherits it. A shell `export` isn't enough: the background service starts on demand, outlives your shell, and never re-reads shell profiles.
 
 For one machine, add it to `~/.claude/settings.json`. To deploy it to every machine in your organization, put the same block in [managed settings](https://code.claude.com/docs/en/managed-settings.md):
+
 ```json
 {
   "env": {
@@ -80,6 +82,7 @@ For one machine, add it to `~/.claude/settings.json`. To deploy it to every mach
 When more than one source sets the variable, the managed settings value overrides both `~/.claude/settings.json` and a value exported in the shell, so users can't point self-spawns at a different launcher.
 
 The [`processWrapper` setting](https://code.claude.com/docs/en/settings-reference#processwrapper) carries the same value as a named, top-level settings key. Set it when your organization pushes settings as individual keys rather than an `env` block. The `processWrapper` setting requires Claude Code v2.1.210 or later. The following settings file sets the same launcher through the key:
+
 ```json
 {
   "processWrapper": "/opt/corp/launcher"
@@ -109,8 +112,8 @@ When the launcher can't run, Claude Code refuses to start the process instead of
 * **End with `exec "$@"`.** A launcher that forks a child and exits leaves an orphaned Claude Code process the background service can't track. Agent view marks such a session failed with a message naming the launcher, and the service reaps what the launcher left behind.
 * **Don't reorder, absorb, or add to Claude Code's arguments.** Remove the launcher's [own arguments](#pass-arguments-to-the-launcher), which come first, and pass the rest to `exec` as it arrived.
 * **Pass every inherited environment variable through to `exec`.** Adding variables, such as injected credentials, is fine; dropping inherited ones is not.
-* The per-session authentication tokens, the model and provider selection, and `CLAUDE_CODE_PROCESS_WRAPPER` itself all travel on the inherited environment, so a launcher that rebuilds it from an allow list breaks the sessions it starts, and `/status` reports a launcher mismatch.
-* If the launcher must enter a namespace or sandbox that resets the environment, re-export the inherited environment inside it verbatim.
+  * The per-session authentication tokens, the model and provider selection, and `CLAUDE_CODE_PROCESS_WRAPPER` itself all travel on the inherited environment, so a launcher that rebuilds it from an allow list breaks the sessions it starts, and `/status` reports a launcher mismatch.
+  * If the launcher must enter a namespace or sandbox that resets the environment, re-export the inherited environment inside it verbatim.
 * **Reach `exec` within about three seconds each time the launcher runs.** A background session can run the launcher three times in series before its first output. Do slow work such as a single sign-on exchange lazily or from a cache, and give any step that waits on the network its own time limit.
 * **Tolerate being invoked from inside itself.** Claude Code applies the launcher to every nested self-spawn, so a launcher that acquires an exclusive resource must detect that it already holds it.
 * **Don't write to the terminal or standard output before Claude Code starts.** Anything printed before the `exec` is reported as the crash cause if the session dies before initializing. Text on standard output also reaches a program that reads Claude Code's output, such as a script that parses `claude -p` results.
@@ -136,6 +139,7 @@ In a settings file, write the array form inside a JSON string and escape its quo
 ### Pass arguments to the launcher
 
 Write the launcher's own arguments after its path in [the value](#format-of-the-launcher-value), and remove them in the script before the `exec` call. They reach the script first, ahead of the Claude Code command. The following script, written for the value `/opt/corp/launcher --profile cc`, saves the profile name and then removes both arguments with `shift`:
+
 ```bash
 #!/bin/sh
 if [ "$1" = "--profile" ]; then

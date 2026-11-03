@@ -43,6 +43,7 @@ When the session opens, a warning line below the input box reads `Prompt from an
 ## Build a link
 
 A deep link starts with `claude-cli://open`, followed by optional query parameters. The minimal form opens Claude Code in your home directory with an empty prompt:
+
 ```text
 claude-cli://open
 ```
@@ -60,11 +61,13 @@ Add parameters to control where the session starts and what the prompt box conta
 `cwd` and `repo` are [two ways to set the working directory](#choose-between-cwd-and-repo). If you pass both, `cwd` takes precedence and `repo` is ignored, even if the `cwd` path does not exist.
 
 The following link points at a repository called `acme/payments` with a two-line diagnostic prompt. Replace `acme/payments` with your repository's `owner/name` slug when you build your own:
+
 ```text
 claude-cli://open?repo=acme/payments&q=Investigate%20the%20failed%20deploy%20of%20payments-api.%0ACheck%20recent%20commits%20to%20main%20and%20the%20last%20successful%20build.
 ```
 
 Clicking it opens a new terminal window, starts Claude Code in your local clone of `acme/payments`, and fills the prompt box with the decoded text:
+
 ```text
 Investigate the failed deploy of payments-api.
 Check recent commits to main and the last successful build.
@@ -94,6 +97,7 @@ A deep link in a runbook gives whoever is triaging a one-click way to start inve
 The prompt is part of the URL and must be URL-encoded. To produce the encoded value, pass your prompt text through `encodeURIComponent` in a browser console or any URL encoder.
 
 The example below adds an investigation entry point to an incident runbook for a service called `web-gateway`:
+
 ```markdown
 ## High 5xx rate on web-gateway
 

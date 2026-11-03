@@ -51,6 +51,7 @@ The SDK reads CLAUDE.md when the matching setting source is enabled: `'project'`
 #### Load CLAUDE.md with the SDK
 
 To load CLAUDE.md, set `settingSources` to include the level where you keep your CLAUDE.md. The example below loads a project-level CLAUDE.md alongside the `claude_code` preset, so Claude has both the coding-agent prompt and your project's conventions:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -71,6 +72,7 @@ for await (const message of query({
 
 // Now Claude has access to your project guidelines from CLAUDE.md
 ```
+
 ```python Python
 import asyncio
 
@@ -111,6 +113,7 @@ An output style is a markdown file with [frontmatter](https://code.claude.com/do
 A custom output style leaves the `claude_code` preset's software engineering instructions out and uses your own. To keep them and layer your instructions on top, set `keep-coding-instructions: true` in the frontmatter. Those instructions are only in Claude Code's full system prompt, so the setting has no effect in a session on the shorter system prompt; set [`CLAUDE_CODE_SIMPLE_SYSTEM_PROMPT`](https://code.claude.com/docs/en/env-vars#variables) to `0` to select the full prompt on any model. Keep them when your agent is still doing software engineering work. Leave them out when you're replacing the role entirely.
 
 The example below defines a code-review persona that keeps the coding instructions, since reviewing code still benefits from Claude Code's security and code-quality guidance. Save it as `~/.claude/output-styles/code-reviewer.md` to make it available across projects:
+
 ```markdown ~/.claude/output-styles/code-reviewer.md
 ---
 name: Code Reviewer
@@ -134,9 +137,10 @@ Once created, activate output styles via:
 * **CLI**: run `/output-style <style>`, for example `/output-style concise`, or run `/config` and select one. The `/output-style` command requires Claude Code v2.1.269 or later.
 * **Settings**: set `outputStyle` in `.claude/settings.local.json`
 * **TypeScript SDK**: set `outputStyle` inside the inline `settings` object passed to `query()`, or point `settings` at a settings file that sets it. `outputStyle` is not a top-level `Options` field:
-```typescript
+
+  ```typescript
   const options = { settings: { outputStyle: "Explanatory" } };
-```
+  ```
 
 In the Python SDK, set `outputStyle` through the `settings` option, which takes a JSON string such as `'{"outputStyle": "Explanatory"}'` or a path to a settings file that sets it.
 
@@ -145,6 +149,7 @@ In the Python SDK, set `outputStyle` through the `settings` option, which takes 
 ### Append to the `claude_code` preset
 
 You can use the Claude Code preset with an `append` property to add your custom instructions while preserving all built-in functionality.
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -166,6 +171,7 @@ for await (const message of query({
   }
 }
 ```
+
 ```python Python
 import asyncio
 
@@ -204,6 +210,7 @@ To make the system prompt identical across sessions, set `excludeDynamicSections
 > `excludeDynamicSections` requires `@anthropic-ai/claude-agent-sdk` v0.2.98 or later, or `claude-agent-sdk` v0.1.58 or later for Python. Set it on the preset object form only. The SDK ignores it when you pass a custom prompt instead of the preset; to keep a custom prompt's instructions cached in the TypeScript SDK, see [Cache the static part of a custom prompt](#cache-the-static-part-of-a-custom-prompt).
 
 The following example pairs a shared `append` block with `excludeDynamicSections` so a fleet of agents can reuse the same cached system prompt:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -221,6 +228,7 @@ for await (const message of query({
   // ...
 }
 ```
+
 ```python Python
 import asyncio
 
@@ -250,6 +258,7 @@ For the equivalent flag in non-interactive CLI mode, see [`--exclude-dynamic-sys
 ### Custom system prompts
 
 You can provide a custom string as `systemPrompt` to replace the default entirely with your own instructions.
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -275,6 +284,7 @@ for await (const message of query({
   }
 }
 ```
+
 ```python Python
 import asyncio
 
@@ -313,6 +323,7 @@ In the TypeScript SDK, you can pass a custom prompt as an array of strings inste
 > Claude Code splits the prompt only when it calls the Claude API directly or runs on [Claude Platform on AWS](https://code.claude.com/docs/en/claude-platform-on-aws.md). In every other configuration, such as Amazon Bedrock, Google Cloud's Agent Platform, Microsoft Foundry, or an [LLM gateway](https://code.claude.com/docs/en/llm-gateway-connect.md), it sends the whole prompt as one block, the same as passing one string. The same happens whenever you set [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1`](https://code.claude.com/docs/en/llm-gateway-protocol#disable-pre-release-capabilities).
 
 To split the prompt, import `SYSTEM_PROMPT_DYNAMIC_BOUNDARY` from `@anthropic-ai/claude-agent-sdk` and pass it as its own array element between the two parts. The SDK sends the strings before the marker as one text block and the strings after it as a second block, each with its own cache breakpoint. In the example below, a support agent loads its triage instructions from a file and receives details about one ticket on each request, so the instructions stay cached while the ticket details change:
+
 ```typescript TypeScript
 import { readFile } from "node:fs/promises";
 import { query, SYSTEM_PROMPT_DYNAMIC_BOUNDARY } from "@anthropic-ai/claude-agent-sdk";
@@ -387,6 +398,7 @@ System reminders are text Claude Code adds to the conversation alongside the pro
 Claude Code introduces your CLAUDE.md files with a line telling Claude that the instructions override default behavior.
 
 If you pass your own string as `systemPrompt`, add a sentence to it that says what a system reminder is. The `claude_code` preset has one, and your string replaces the whole preset. Without it, nothing in your prompt tells Claude that reminders such as CLAUDE.md content and hook output come from the application rather than the user. For example:
+
 ```text
 The application adds system reminders to this conversation. Treat them as context from the application, not as messages from the user.
 ```
@@ -411,6 +423,7 @@ Set `includeGitInstructions` to `false` to keep out the built-in commit and pull
 * To stop only `@` file mentions from expanding, set [`CLAUDE_CODE_DISABLE_FILE_MENTIONS=1`](https://code.claude.com/docs/en/env-vars#variables) instead, on Claude Code v2.1.299 or later. Claude then gets the mentioned paths plus a note to read them with its file tools, and your `PreToolUse` hooks see each file read as a tool call.
 
 The following example is for an agent that carries its own commit rules in `append`. It sets both `attribution` keys to empty strings to remove the trailer and footer, and turns off `includeGitInstructions` so Claude Code's own commit workflow instructions don't compete with yours:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -432,6 +445,7 @@ for await (const message of query({
   if (message.type === "result") console.log(message.subtype);
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions
@@ -489,6 +503,7 @@ The approaches compose. A persistent output style or CLAUDE.md sets the long-liv
 ### Combine an output style with session-specific additions
 
 The example below assumes a Code Reviewer output style is already active. The `append` block layers session-specific focus areas on top of the persona, so a single review session can prioritize OAuth and token storage without changing the saved output style:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -514,6 +529,7 @@ for await (const message of query({
   messages.push(message);
 }
 ```
+
 ```python Python
 import asyncio
 

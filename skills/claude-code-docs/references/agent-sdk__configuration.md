@@ -20,6 +20,7 @@ Every `query()` call accepts an options object: `Options` in TypeScript, `Claude
 * **`allowedTools` / `allowed_tools`**: pre-approves a read-only tool list
 * **`maxTurns` / `max_turns`**: caps the turn count
 * **`cwd`**: sets the working directory
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -37,6 +38,7 @@ for await (const message of query({
   }
 }
 ```
+
 ```python Python
 import asyncio
 
@@ -82,12 +84,14 @@ Set `fallbackModel` (TypeScript) or `fallback_model` (Python) to name a backup m
 In either language, the option accepts a single model or a comma-separated list of backups. For the order and the chain cap, see [Fallback model chains](https://code.claude.com/docs/en/model-config.md#fallback-model-chains). In TypeScript, a fallback equal to `model` throws an error at startup.
 
 The examples below show a fallback list in TypeScript and a single fallback in Python:
+
 ```typescript TypeScript
 const options = {
   model: "claude-fable-5",
   fallbackModel: "claude-opus-5,claude-sonnet-5",
 };
 ```
+
 ```python Python
 options = ClaudeAgentOptions(
     model="claude-fable-5",
@@ -109,11 +113,13 @@ The `env` option sets environment variables for the Claude Code process that run
 In TypeScript, spread `process.env` into `env` to keep inherited variables such as `PATH`, `HOME`, and `ANTHROPIC_API_KEY`. When you leave `env` unset, the subprocess inherits your environment in both languages.
 
 The example routes API traffic through a gateway by setting `ANTHROPIC_BASE_URL`.
+
 ```typescript TypeScript
 const options = {
   env: { ...process.env, ANTHROPIC_BASE_URL: "https://gateway.example.com" },
 };
 ```
+
 ```python Python
 options = ClaudeAgentOptions(
     env={"ANTHROPIC_BASE_URL": "https://gateway.example.com"},
@@ -164,10 +170,11 @@ TypeScript also has `applyFlagSettings()` and `updateSettings()`:
 
 * **`applyFlagSettings()`**: applies settings at runtime, as in `await session.applyFlagSettings({ effortLevel: "high" })`. The method takes settings file keys rather than options fields, so check the [`applyFlagSettings()` reference](https://code.claude.com/docs/en/agent-sdk/typescript#applyflagsettings) for the schema and for which keys take effect mid-session.
 * **`updateSettings()`**: writes one allowlisted key to a settings file. The [`updateSettings()` reference](https://code.claude.com/docs/en/agent-sdk/typescript#updatesettings) names the key each source accepts and the version floors.
-* Pass `"localSettings"` to write the project's local settings file, as in `await session.updateSettings("localSettings", { outputStyle: "Explanatory" })`. The written key takes effect on the session's next request and persists for later sessions that load `local` settings.
-* Pass `"userSettings"` to write `effortLevel`, the only key that source accepts. Claude Code saves it as the default effort level for the session's current model, and the running session's effort doesn't change.
+  * Pass `"localSettings"` to write the project's local settings file, as in `await session.updateSettings("localSettings", { outputStyle: "Explanatory" })`. The written key takes effect on the session's next request and persists for later sessions that load `local` settings.
+  * Pass `"userSettings"` to write `effortLevel`, the only key that source accepts. Claude Code saves it as the default effort level for the session's current model, and the running session's effort doesn't change.
 
 The example below runs a two-turn session, changes the configuration between the turns, and prints the model that answered each turn. In TypeScript, the prompt stream holds the second message until the setters have run, and the second turn runs on the new model.
+
 ```typescript TypeScript
 import { query, type SDKUserMessage } from "@anthropic-ai/claude-agent-sdk";
 
@@ -214,6 +221,7 @@ for await (const message of session) {
   }
 }
 ```
+
 ```python Python
 import asyncio
 

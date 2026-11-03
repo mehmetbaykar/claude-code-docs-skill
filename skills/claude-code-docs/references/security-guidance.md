@@ -24,6 +24,7 @@ On first run the plugin creates a virtual environment under `~/.claude/security/
 ## Install the plugin
 
 In a terminal Claude Code session, install from the [official Anthropic marketplace](https://code.claude.com/docs/en/plugins/anthropic-marketplaces.md):
+
 ```text
 /plugin install security-guidance@claude-plugins-official
 ```
@@ -46,6 +47,7 @@ Check the install summary. If it reports `Run /reload-plugins to apply.`, see [A
 ### Enable for your team in local sessions
 
 To turn the plugin on in the local sessions your teammates start in the repository, declare it in the project's checked-in settings:
+
 ```json .claude/settings.json
 {
   "enabledPlugins": {
@@ -116,6 +118,7 @@ The plugin has two extension points: a Markdown guidance file for the model-back
 Create `.claude/claude-security-guidance.md` in your project and describe your threat model and review checklist in plain language. The model-backed reviews load it as additional context alongside the built-in vulnerability checklist.
 
 The following example is for a web service with role-gated admin routes and a customer-data logging policy:
+
 ```markdown .claude/claude-security-guidance.md
 # Security guidance for this repo
 
@@ -129,6 +132,7 @@ These rules are guidance for the reviewer, not deterministic guardrails. The plu
 ### Add custom per-edit patterns
 
 Create `.claude/security-patterns.yaml` to add regex or substring rules to the [per-edit pattern check](#on-each-file-edit). These run as deterministic string matches alongside the built-in patterns:
+
 ```yaml .claude/security-patterns.yaml
 patterns:
   - rule_name: internal_api_key
@@ -184,11 +188,13 @@ To turn off individual layers while keeping the rest, set the matching environme
 | `SECURITY_GUIDANCE_DISABLE=1` | Disable the plugin entirely without uninstalling |
 
 To pause the plugin in your user scope:
+
 ```text
 /plugin disable security-guidance@claude-plugins-official
 ```
 
 To remove it from your user scope:
+
 ```text
 /plugin uninstall security-guidance@claude-plugins-official
 ```

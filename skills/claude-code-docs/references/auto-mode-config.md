@@ -37,6 +37,7 @@ If you want a human checkpoint before Claude's push and pull request commands, a
 ### Add a human checkpoint
 
 The most direct mechanism is [`permissions.ask`](https://code.claude.com/docs/en/permissions#permission-rule-syntax). Content-scoped ask rules like the ones below are evaluated before the classifier and always force a permission prompt, even in auto mode, because an explicit ask rule is your stated intent to be prompted for that action. Add the rules in your [settings](https://code.claude.com/docs/en/settings.md#where-settings-live):
+
 ```json
 {
   "permissions": {
@@ -85,26 +86,27 @@ For most organizations, `autoMode.environment` is the only field you need to set
 `claude auto-mode defaults` prints three kinds of environment entry.
 
 * **Context slots**: describe your organization, stack, and security posture so the classifier reads the other rules in your context. Each defaults to `None configured` or to the conservative assumption named next to it:
-* **Organization**
-* **Primary use of Claude Code**: defaults to software development
-* **Cloud provider(s)**
-* **Repository visibility**: a repository is assumed private unless its remote host and name indicate otherwise, or the classifier reads a visibility check earlier in the conversation showing it is public.
+  * **Organization**
+  * **Primary use of Claude Code**: defaults to software development
+  * **Cloud provider(s)**
+  * **Repository visibility**: a repository is assumed private unless its remote host and name indicate otherwise, or the classifier reads a visibility check earlier in the conversation showing it is public.
 
-In the classifier requests sent by Claude Code itself, the classifier reads your messages and the commands Claude runs, not their output. The evidence has to be something the classifier can read, such as your own message naming the repository as public; the output of a `gh repo view` on its own doesn't reach it.
-* **Internal sharing / snippet hosting**: public paste and gist services are treated as outside the trust boundary until you name one
-* **Org-specific CLIs**
-* **Secrets management**
-* **CI/CD deploy targets**
-* **Network posture**
-* **Host containment**: defaults to an ordinary developer machine or CI runner with open internet. If Claude Code runs in a container, VM, or pod with an egress allow-list or neighbors it must not touch, name the allowed hosts, whether the cloud metadata endpoint should be reachable, and which cloud project, cluster, or registry the task uses and under what identity. Until this entry names that identity, the classifier [blocks](https://code.claude.com/docs/en/permission-modes.md#what-the-classifier-blocks-by-default) requests for the host's own credentials. Requires Claude Code v2.1.257 or later
-* **Protected deployment namespaces / environments**: falls back to the Sensitive remote targets heuristic until you name them
-* **Data retention / declassification**
+    In the classifier requests sent by Claude Code itself, the classifier reads your messages and the commands Claude runs, not their output. The evidence has to be something the classifier can read, such as your own message naming the repository as public; the output of a `gh repo view` on its own doesn't reach it.
+  * **Internal sharing / snippet hosting**: public paste and gist services are treated as outside the trust boundary until you name one
+  * **Org-specific CLIs**
+  * **Secrets management**
+  * **CI/CD deploy targets**
+  * **Network posture**
+  * **Host containment**: defaults to an ordinary developer machine or CI runner with open internet. If Claude Code runs in a container, VM, or pod with an egress allow-list or neighbors it must not touch, name the allowed hosts, whether the cloud metadata endpoint should be reachable, and which cloud project, cluster, or registry the task uses and under what identity. Until this entry names that identity, the classifier [blocks](https://code.claude.com/docs/en/permission-modes.md#what-the-classifier-blocks-by-default) requests for the host's own credentials. Requires Claude Code v2.1.257 or later
+  * **Protected deployment namespaces / environments**: falls back to the Sensitive remote targets heuristic until you name them
+  * **Data retention / declassification**
 * **Trust slots**: name what the classifier treats as inside your boundary. The slots are Trusted repo, Source control, Trusted internal domains, Trusted cloud buckets, Key internal services, and Internal package registry. The repo and source-control entries default to the working repository and its configured remotes. Every other trust slot defaults to `None configured`, so nothing else is trusted until you add it. A repository's visibility scopes only confidential material: a private repository is an acceptable destination for confidential material, but making a repository private never clears secrets or personal or entrusted data into it, and the classifier treats content ported, repointed, or first read from outside the working repository as not that repository's own work.
 * **Sensitivity slots**: name what the protective rules treat as high-risk. The slots are Sensitive data locations & audiences, Sensitive remote targets, and Protected IaC scopes. Each defaults to a broad heuristic, such as treating any host or namespace whose name carries `prod` or `production` as a sensitive remote target, so the protective rules are active before you configure anything. Naming concrete targets in a sensitivity slot makes those rules apply to the named targets instead of the heuristic.
 
 To add your own entries alongside the defaults, include the literal string `"$defaults"` in the array. The default entries are spliced in at that position, so your custom entries can go before or after them.
 
 The following example keeps the default entries and adds an organization's repos, buckets, domains, and services.
+
 ```json
 {
   "autoMode": {
@@ -135,6 +137,7 @@ Entries are prose, not regex or tool patterns. The classifier reads them as natu
 * **Additional context**: regulated-industry constraints, multi-tenant infrastructure, or compliance requirements that affect what the classifier should treat as risky
 
 A useful starting template: fill in the bracketed fields and remove any lines that don't apply.
+
 ```json
 {
   "autoMode": {
@@ -190,6 +193,7 @@ Then run `claude auto-mode config` to [see the effective result](#inspect-the-de
 Once auto mode has blocked several actions and you still have no `autoMode.environment` entries, Claude Code shows a dialog titled "Teach auto mode about your environment?" at the end of a turn and offers to run `/auto-mode-setup` for you. To stop the offer but keep the command, select **Don't show again** in that dialog.
 
 To turn off both the command and the offer, add this [`skillOverrides`](https://code.claude.com/docs/en/skills#override-skill-visibility-from-settings) entry to `~/.claude/settings.json`:
+
 ```json
 {
   "skillOverrides": {
@@ -234,6 +238,7 @@ To loosen, add to `allow` when the classifier repeatedly flags a routine pattern
 To keep the built-in rules while adding your own, include the literal string `"$defaults"` in the array. The default rules are spliced in at that position, so your custom rules can go before or after them, and you continue to inherit updates as the built-in list changes across releases.
 
 The following example keeps the defaults in all four lists and adds organization-specific rules to each.
+
 ```json
 {
   "autoMode": {
@@ -281,6 +286,7 @@ Claude Code shows entries from [managed settings](https://code.claude.com/docs/e
 By default, narrow Bash and PowerShell allow rules such as `Bash(npm test)` stay in effect in auto mode. Claude Code resolves them before the classifier runs, unless the command carries [per-command allowed domains](https://code.claude.com/docs/en/sandboxing.md#per-command-allowed-domains-in-auto-mode). Claude Code suspends only the broad rules that grant arbitrary code execution, such as `Bash(*)` or wildcarded interpreters, together with every rule that names [`Monitor`](https://code.claude.com/docs/en/tools-reference#monitor-tool), because Monitor commands run through the shell. This means a narrow rule can still let a destructive argument through without the classifier seeing it, for example a script path or flag the rule's prefix didn't anticipate.
 
 Set `autoMode.classifyAllShell` to `true` to suspend every Bash and PowerShell allow rule while auto mode is active, so the classifier evaluates every shell command regardless of your allow list, except [critical-path removals](https://code.claude.com/docs/en/permission-modes.md#critical-paths).
+
 ```json
 {
   "autoMode": {
@@ -298,6 +304,7 @@ The setting applies only while auto mode is active, and your allow rules behave 
 The `claude auto-mode` subcommands help you inspect, validate, and reset your configuration.
 
 Print the built-in `environment`, `allow`, `soft_deny`, and `hard_deny` rules as JSON:
+
 ```bash
 claude auto-mode defaults
 ```
@@ -305,11 +312,13 @@ claude auto-mode defaults
 To read one rule's full wording without piping through `jq`, pass `--label` with the start of the rule's label, such as `claude auto-mode defaults --label 'Git Destructive'`. Matching is a case-insensitive prefix on each rule's label, and sections with no match print as empty lists.
 
 Print what the classifier actually uses as JSON, with your settings applied where set and defaults otherwise:
+
 ```bash
 claude auto-mode config
 ```
 
 Both `defaults` and `config` print the four rule lists as a single JSON object, with each rule as a prose string. This is a truncated example:
+
 ```json
 {
   "allow": [
@@ -331,6 +340,7 @@ Both `defaults` and `config` print the four rule lists as a single JSON object, 
 ```
 
 Get AI feedback on your custom `allow`, `soft_deny`, `hard_deny`, and `environment` entries:
+
 ```bash
 claude auto-mode critique
 ```
@@ -338,6 +348,7 @@ claude auto-mode critique
 If you've written custom rules, `claude auto-mode critique` reviews them and flags entries that are ambiguous, redundant, or likely to cause false positives.
 
 To discard your customizations and return to the built-in defaults, run the reset subcommand, which removes the `autoMode` section from your user settings file:
+
 ```bash
 claude auto-mode reset
 ```

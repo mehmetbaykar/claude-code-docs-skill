@@ -72,6 +72,7 @@ To get a review without a code change, comment [`@claude review`](#comment-comma
 ### Read the result from a script
 
 To gate a merge or post a summary from your own CI, parse the last line of the Details text with `gh` and jq. That line is an HTML comment that holds the severity counts as JSON:
+
 ```text
 <!-- bughunter-severity: {"nit":1,"normal":2,"pre_existing":0} -->
 ```
@@ -81,6 +82,7 @@ The lines above it can include file names from the pull request. If you parse th
 **1. Find the check run ID**
 
 From your shell, list the commit's check runs and take the `id` of the `Claude Code Review` run. Replace `OWNER` and `REPO` with your repository owner and name, and `<commit-sha>` with the pull request's head commit:
+
 ```bash
 gh api repos/OWNER/REPO/commits/<commit-sha>/check-runs --jq '.check_runs[] | {id, name}'
 ```
@@ -90,6 +92,7 @@ If the commit has had more than one `Claude Code Review` run, such as after a **
 **2. Read the severity counts**
 
 Read the counts from the check run's `output.text` field, which holds the Details text. Replace `CHECK_RUN_ID` with the ID:
+
 ```bash
 gh api repos/OWNER/REPO/check-runs/CHECK_RUN_ID --jq '
   (.output.text | split("\n") | last

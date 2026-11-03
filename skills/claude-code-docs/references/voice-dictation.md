@@ -29,6 +29,7 @@ The Claude Code [VS Code extension](https://code.claude.com/docs/en/vs-code.md) 
 ## Enable voice dictation
 
 Run `/voice` to enable dictation. When you enable it, Claude Code runs a microphone check. On macOS, this triggers the system microphone permission prompt for your terminal if it has never been granted.
+
 ```
 /voice
 Voice mode enabled (hold). Hold space to record. Dictation language: en (/config to change).
@@ -44,6 +45,7 @@ Voice mode enabled (hold). Hold space to record. Dictation language: en (/config
 | `/voice off` | Disable |
 
 Voice dictation persists across sessions. Set it directly in your [user settings file](https://code.claude.com/docs/en/settings.md) instead of running `/voice`:
+
 ```json
 {
   "voice": {
@@ -72,6 +74,7 @@ Holding or tapping `Space` starts dictation only where the keypress would otherw
 > To skip the warmup, switch to [tap mode](#tap-to-record-and-send) with `/voice tap`, or [rebind to a modifier combination](#rebind-the-dictation-key) like `meta+k`. Modifier combos start recording on the first keypress.
 
 Your speech appears in the prompt as you speak, dimmed until the transcript is finalized. Release `Space` to stop recording and finalize the text. The transcript is inserted at your cursor position and the cursor stays at the end of the inserted text, so you can mix typing and dictation in any order. Hold `Space` again to append another recording, or move the cursor first to insert speech elsewhere in the prompt:
+
 ```
 > refactor the auth middleware to ▮
   # hold space, speak "use the new token validation helper"
@@ -130,6 +133,7 @@ Voice dictation uses the same [`language` setting](https://code.claude.com/docs/
 > | Ukrainian | `uk` |
 
 Set the language in `/config` or directly in settings. You can use either the [BCP 47 language code](https://en.wikipedia.org/wiki/IETF_language_tag) or the language name:
+
 ```json
 {
   "language": "japanese"
@@ -141,6 +145,7 @@ If your `language` setting is not in the supported list, `/voice` warns you on e
 ## Rebind the dictation key
 
 The dictation key is bound to `voice:pushToTalk` in the `Chat` context and defaults to `Space`. The same binding controls both hold and tap modes. Rebind it in [`~/.claude/keybindings.json`](https://code.claude.com/docs/en/keybindings):
+
 ```json
 {
   "bindings": [

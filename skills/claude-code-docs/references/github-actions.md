@@ -170,6 +170,7 @@ The examples on this page show API key authentication. If you authenticate with 
 ### Respond to @claude mentions
 
 This workflow runs the Claude Code GitHub Action in interactive mode, so Claude responds whenever someone mentions `@claude` in an issue or PR comment.
+
 ```yaml
 name: Claude Code
 on:
@@ -204,6 +205,7 @@ The parts of this workflow that aren't boilerplate:
 * `if`: keeps runners from starting on comments that don't mention `@claude`. The Claude Code GitHub Action also checks the trigger phrase itself before responding
 
 Once the workflow is in place, mention `@claude` in any issue or PR comment with a request:
+
 ```text wrap
 @claude implement this feature based on the issue description
 @claude how should I implement user authentication for this endpoint?
@@ -220,6 +222,7 @@ The `prompt` input accepts a [skill](https://code.claude.com/docs/en/skills.md) 
 * For a skill packaged in a [plugin](https://code.claude.com/docs/en/plugins/overview.md), install the plugin with the `plugin_marketplaces` and `plugins` inputs, then pass the namespaced `/plugin-name:skill-name` as the `prompt`. The `plugins` input takes `plugin-name@marketplace-name`, where the marketplace name comes from the marketplace's own manifest rather than its repository URL.
 
 The following workflow installs the `code-review` plugin and runs its skill when a pull request is opened, updated, reopened, or marked ready for review. It runs the same plugin as the review workflow from quick setup. Use a workflow like this when you want to control the prompt, model, and triggers yourself. For automatic reviews without maintaining a workflow file, see [Code Review](https://code.claude.com/docs/en/code-review.md). On public repositories, GitHub withholds secrets from runs triggered by fork pull requests, so the review runs only on pull requests from branches in the same repository.
+
 ```yaml
 name: Code Review
 on:
@@ -258,6 +261,7 @@ Claude skips draft and closed pull requests, pull requests it judges not to need
 With a `prompt` input, the Claude Code GitHub Action runs in automation mode on any GitHub event, including a cron schedule. For a plain-text prompt, Claude has no shell or GitHub API access until you grant the tools the prompt needs, with `--allowedTools` in `claude_args` or a [`permissions.allow` rule](https://code.claude.com/docs/en/permissions#permission-rule-syntax) in the `settings` input. If you invoke a skill instead, Claude can use the tools its [`allowed-tools` frontmatter](https://code.claude.com/docs/en/skills#pre-approve-tools-for-a-skill) grants. GitHub runs scheduled workflows only from the default branch and, in public repositories, disables the schedule after 60 days without repository activity.
 
 This workflow generates a report in the workflow run log at 09:00 UTC each day. Its `claude_args` line [passes CLI arguments](#pass-cli-arguments) that select the model and allow two GitHub MCP tools. Claude reads commits and issues through the GitHub API with those tools, so you can omit the checkout step:
+
 ```yaml
 name: Daily Report
 on:
@@ -372,6 +376,7 @@ For the full input list, see the Claude Code GitHub Action's [configuration refe
 ### Pass CLI arguments
 
 The `claude_args` parameter accepts any [Claude Code CLI argument](https://code.claude.com/docs/en/cli-reference.md):
+
 ```yaml
 claude_args: "--max-turns 5 --model claude-sonnet-5 --mcp-config /path/to/config.json"
 ```

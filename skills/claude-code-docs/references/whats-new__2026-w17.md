@@ -19,11 +19,13 @@ Now in public research preview. Ultrareview runs a fleet of bug-hunting agents i
 Video: https://mintcdn.com/claude-code/FTi4SBJ9YRs7d-5X/images/whats-new/ultrareview.mp4?fit=max&auto=format&n=FTi4SBJ9YRs7d-5X&q=85&s=0fb1271365d38f414ad155aeb8edb08e
 
 Review the branch you're on:
+
 ```text Claude Code
 > /ultrareview
 ```
 
 Or point it at a PR:
+
 ```text Claude Code
 > /ultrareview 1234
 ```
@@ -38,6 +40,7 @@ Switch focus away from a session and come back to a one-line recap of what happe
 Video: https://mintcdn.com/claude-code/FTi4SBJ9YRs7d-5X/images/whats-new/session-recap.mp4?fit=max&auto=format&n=FTi4SBJ9YRs7d-5X&q=85&s=0a8db1470bd0161a47efeb2f322af76f
 
 Generate a recap on demand, or turn the automatic one off from `/config`:
+
 ```text Claude Code
 > /recap
 ```
@@ -50,6 +53,7 @@ v2.1.118
 Build and switch between named color themes from `/theme`, or hand-edit JSON files in `~/.claude/themes/`. Each theme picks a base preset and overrides only the tokens you care about. Plugins can ship themes too.
 
 Open the theme picker and create a new one:
+
 ```text Claude Code
 > /theme
 ```

@@ -53,6 +53,7 @@ After you install the binary, confirm it's on the `PATH` of the shell you start 
 **2. Install the plugin**
 
 In the VS Code extension or the desktop app, follow [Install a plugin](https://code.claude.com/docs/en/plugins/install.md#install-a-plugin) instead of this step. In a terminal, start Claude Code by running `claude`, then enter this at its prompt, replacing `typescript-lsp` with the plugin the step 1 table lists for your language:
+
 ```
 /plugin install typescript-lsp@claude-plugins-official
 ```

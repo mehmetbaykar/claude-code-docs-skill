@@ -19,6 +19,7 @@ Claude Opus 5 is the new default Opus model in Claude Code. It's the default on 
 Video: https://mintcdn.com/claude-code/N3yEaTYPXMXFrF6k/images/whats-new/opus-5.mp4?fit=max&auto=format&n=N3yEaTYPXMXFrF6k&q=85&s=8536b1cb3180e539008f39930403e47b
 
 Switch to Opus 5 by name, or pick it from the model picker:
+
 ```text Claude Code
 > /model claude-opus-5
 ```
@@ -33,6 +34,7 @@ Claude Code Desktop on macOS gets an iOS Simulator pane, in public beta on Pro, 
 ![Claude Code Desktop with the iOS Simulator pane showing an iPhone app next to the conversation](https://mintcdn.com/claude-code/N3yEaTYPXMXFrF6k/images/whats-new/ios-simulator.jpg?fit=max\&auto=format\&n=N3yEaTYPXMXFrF6k\&q=85\&s=6c88418ed14ed0fb12cc1af75b17f2ee)
 
 Ask Claude to run or test your app, and the pane opens when the app launches:
+
 ```text Claude Code
 > Build the app and run it in the simulator to check the onboarding flow.
 ```
@@ -45,6 +47,7 @@ plugin
 The Claude Security plugin runs a multi-agent vulnerability scan of your codebase inside a Claude Code session: agents map your architecture, build a threat model, hunt for vulnerabilities, and independently review every finding before writing the report to a `CLAUDE-SECURITY-<timestamp>/` directory. Scan a whole repository or only a branch's diff, a pull request, or a single commit, then turn the findings you choose into reviewed patches that you apply yourself.
 
 Install the plugin from the official Anthropic marketplace, run `/reload-plugins`, then start a scan with `/claude-security`:
+
 ```text Claude Code
 > /plugin install claude-security@claude-plugins-official
 ```

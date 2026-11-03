@@ -46,6 +46,7 @@ In a Team or Enterprise organization, if the page says you don't have access, as
 Add your configuration as JSON. All [settings available in `settings.json`](https://code.claude.com/docs/en/settings-reference#all-settings) are supported except those restricted to OS-level policy delivery; see [Current limitations](#current-limitations) for that short list. This includes [hooks](https://code.claude.com/docs/en/hooks.md), [environment variables](https://code.claude.com/docs/en/env-vars.md), and [managed-only settings](https://code.claude.com/docs/en/managed-settings.md#managed-only-settings) like `allowManagedPermissionRulesOnly`.
 
 This example enforces a permission deny list, prevents users from bypassing permissions, and restricts permission rules to those defined in managed settings. The `Bash(curl *)` rule matches `curl` [as Claude writes it](https://code.claude.com/docs/en/permissions.md#bash-rule-limits), not `/usr/bin/curl` or `sh -c 'curl …'`; for network enforcement that doesn't depend on the command text, add a [`sandbox` block with `allowManagedDomainsOnly`](https://code.claude.com/docs/en/sandboxing#configure-the-sandbox-for-your-organization).
+
 ```json
 {
   "permissions": {
@@ -64,6 +65,7 @@ This example enforces a permission deny list, prevents users from bypassing perm
 Hooks use the same format as in `settings.json`.
 
 This example runs an audit script after every file edit across the organization:
+
 ```json
 {
   "hooks": {
@@ -126,7 +128,7 @@ Server-managed settings have the following limitations:
 * Settings apply uniformly to all users in the organization. Per-group configurations are not yet supported.
 * You can't distribute a [`managed-mcp.json`](https://code.claude.com/docs/en/managed-mcp) file through server-managed settings. Deliver the `allowedMcpServers` and `deniedMcpServers` policy keys there instead. On Claude Code v2.1.259 or later, you can also provide remote servers with [`managedMcpServers`](https://code.claude.com/docs/en/managed-mcp#provide-servers-through-managed-settings), which accepts `http` and `sse` servers only and doesn't take exclusive control the way the file does.
 
-Claude Code reads a `managed-mcp.json` deployed at its [system path](https://code.claude.com/docs/en/managed-mcp.md#exclusive-control-with-managed-mcp-json) separately from the managed settings tier, so the file still applies when server-managed settings are in effect.
+  Claude Code reads a `managed-mcp.json` deployed at its [system path](https://code.claude.com/docs/en/managed-mcp.md#exclusive-control-with-managed-mcp-json) separately from the managed settings tier, so the file still applies when server-managed settings are in effect.
 * Settings restricted to OS-level policy sources, such as `policyHelper` and `wslInheritsWindowsSettings`, aren't honored. Deploy them through MDM or a system `managed-settings.json` file instead. A `policyHelper` deployed that way runs only when its source is the one selected under [precedence within the managed tier](https://code.claude.com/docs/en/managed-settings.md#precedence-within-the-managed-tier).
 
 ## Settings delivery
@@ -149,10 +151,10 @@ These keys are exceptions to the no-merge rule:
 
 * **Cross-source lock keys**: a small set of keys, such as the sandbox allowlist locks, [listed on the managed settings page](https://code.claude.com/docs/en/managed-settings.md#precedence-within-the-managed-tier). Claude Code honors them when any admin-controlled managed source sets them; the user-writable HKCU registry tier is excluded.
 
-When a [`policyHelper`](https://code.claude.com/docs/en/settings-reference#policyhelper) supplies managed settings, its output is the only source these checks read, apart from [`forceRemoteSettingsRefresh`](https://code.claude.com/docs/en/settings-reference#forceremotesettingsrefresh), which Claude Code reads from the admin sources directly at startup.
+  When a [`policyHelper`](https://code.claude.com/docs/en/settings-reference#policyhelper) supplies managed settings, its output is the only source these checks read, apart from [`forceRemoteSettingsRefresh`](https://code.claude.com/docs/en/settings-reference#forceremotesettingsrefresh), which Claude Code reads from the admin sources directly at startup.
 * **The `env` block**: apart from the telemetry unit and routing variables paired with a credential key, both covered below, it merges per key across the admin-controlled sources. For each environment variable, the highest-priority source defining it wins, and lower admin sources fill in variables the higher sources leave unset. An endpoint-managed `env` entry therefore applies whenever the server-managed configuration leaves that variable unset, or while a cached server value for it is [withheld pending server confirmation](#fetch-and-caching-behavior). Requires Claude Code v2.1.223 or later. Before v2.1.223, Claude Code applies the selected source's whole `env` block only.
-* **Telemetry unit**: the `OTEL_EXPORTER_OTLP_*` exporter keys, the `OTEL_LOG_*` content-capture toggles, `OTEL_LOGS_EXPORTER`, and the beta tracing variables `ENABLE_BETA_TRACING_DETAILED` and `BETA_TRACING_ENDPOINT` follow the highest source that sets any of them as a unit. A source that delivers the `otelHeadersHelper` credential key claims the unit too, but lands these variables only when it is the selected source: a source that isn't selected but delivers the key contributes none of them and still blocks lower sources from filling them in. Either way, an exporter endpoint from one source can never pair with credentials from another.
-* **Credential-paired routing**: a source that pairs routing variables with a selected-source-only credential key, such as `apiKeyHelper` or `otelHeadersHelper`, contributes those routing variables only when it wins the slot.
+  * **Telemetry unit**: the `OTEL_EXPORTER_OTLP_*` exporter keys, the `OTEL_LOG_*` content-capture toggles, `OTEL_LOGS_EXPORTER`, and the beta tracing variables `ENABLE_BETA_TRACING_DETAILED` and `BETA_TRACING_ENDPOINT` follow the highest source that sets any of them as a unit. A source that delivers the `otelHeadersHelper` credential key claims the unit too, but lands these variables only when it is the selected source: a source that isn't selected but delivers the key contributes none of them and still blocks lower sources from filling them in. Either way, an exporter endpoint from one source can never pair with credentials from another.
+  * **Credential-paired routing**: a source that pairs routing variables with a selected-source-only credential key, such as `apiKeyHelper` or `otelHeadersHelper`, contributes those routing variables only when it wins the slot.
 * **`allowedProviders`**: a list set on the machine and a server-managed list combine as [its entry's Scope note](https://code.claude.com/docs/en/settings-reference.md#allowedproviders) states. Requires Claude Code v2.1.285 or later
 * **First-party sign-in keys**: [`forceLoginOrgUUID`](https://code.claude.com/docs/en/settings-reference#forceloginorguuid) and the `"claudeai"` and `"console"` values of [`forceLoginMethod`](https://code.claude.com/docs/en/settings-reference#forceloginmethod). If you also deploy an MDM policy or managed settings file, set them there and in server-managed settings from claude.ai until every client runs v2.1.299 or later. For where to set the keys afterward, and which source's value applies, see [Which managed source supplies login keys](https://code.claude.com/docs/en/managed-settings.md#which-managed-source-supplies-login-keys).
 * **Gateway sign-in keys**: Claude Code never reads [`forceLoginGatewayUrl`](https://code.claude.com/docs/en/settings-reference#forcelogingatewayurl), [`gatewayInternalNetworks`](https://code.claude.com/docs/en/settings-reference#gatewayinternalnetworks), or the `"gateway"` value of [`forceLoginMethod`](https://code.claude.com/docs/en/settings-reference#forceloginmethod) from server-managed settings, so a value there neither applies nor hides one set in an MDM policy or managed settings file. The [`managedSourcesBehavior` entry](https://code.claude.com/docs/en/settings-reference#managedsourcesbehavior) says which admin source on the machine supplies them.
@@ -212,16 +214,16 @@ When part of a payload fails schema validation, Claude Code surfaces a validatio
 Server-managed delivery adds these behaviors:
 
 * A startup that runs on the cache at `~/.claude/remote-settings.json` treats invalid entries the way the fetch that wrote the cache did:
-* Entries that failed validation stay dropped.
-* [Keys that fail closed](https://code.claude.com/docs/en/managed-settings.md#keys-that-fail-closed) keep their stricter values.
-* An invalid `cleanupPeriodDays` or `desktopSessionCleanupPeriodDays` value stays in the cached copy and is never applied.
+  * Entries that failed validation stay dropped.
+  * [Keys that fail closed](https://code.claude.com/docs/en/managed-settings.md#keys-that-fail-closed) keep their stricter values.
+  * An invalid `cleanupPeriodDays` or `desktopSessionCleanupPeriodDays` value stays in the cached copy and is never applied.
 * Claude Code applies nothing from a payload and leaves the cache unchanged when all three of these are true:
 
-* Every setting in the payload fails validation.
-* None of them falls back to a stricter value.
-* The payload holds a key other than those two retention keys.
+  * Every setting in the payload fails validation.
+  * None of them falls back to a stricter value.
+  * The payload holds a key other than those two retention keys.
 
-The startup notice, `/status`, and `claude doctor` then report the [failed load](https://code.claude.com/docs/en/errors.md#remote-managed-settings-failed-to-load) with the cause `no setting in the server response could be applied as written`, and that entry says which policy the session runs on. Clients that [enforce fail-closed startup](#enforce-fail-closed-startup) exit at startup instead.
+  The startup notice, `/status`, and `claude doctor` then report the [failed load](https://code.claude.com/docs/en/errors.md#remote-managed-settings-failed-to-load) with the cause `no setting in the server response could be applied as written`, and that entry says which policy the session runs on. Clients that [enforce fail-closed startup](#enforce-fail-closed-startup) exit at startup instead.
 * The [security approval dialog](#security-approval-dialogs) evaluates the salvaged payload, so a stripped invalid entry is never presented for approval and never executes.
 
 To debug delivery issues, run `claude --debug-file <path>` and search the log for `Remote settings`. Validate a payload change with `claude doctor` on a test machine before rolling it out to the organization.
@@ -240,6 +242,7 @@ Clients signed in through a [Claude apps gateway](#platform-availability) wait f
 When this setting is active in a session that fetches server-managed settings, the CLI blocks at startup until remote settings are freshly fetched. If the fetch fails, the CLI exits rather than proceeding without the policy. This setting self-perpetuates: once delivered from the server, it is also cached locally so that subsequent startups enforce the same behavior even before the first successful fetch of a new session. A session that [doesn't fetch server-managed settings](#platform-availability) starts without waiting.
 
 To enable this, add the key to your managed settings configuration:
+
 ```json
 {
   "forceRemoteSettingsRefresh": true
@@ -277,9 +280,9 @@ Claude Code records your approval in your configuration directory, `~/.claude` u
 * **A claude.ai login saved by `/login` or `claude auth login`, or the [keyless Console sign-in](https://code.claude.com/docs/en/authentication.md#sign-in-without-an-api-key)**: one approval per organization, held by the account that approved most recently.
 * **A [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway) sign-in**: one approval per gateway.
 
-If you sign out and back in to the same gateway, Claude Code doesn't show the dialog again while the settings that require approval are unchanged. Claude Code shows it again when those settings change, when you sign in to a different gateway, and when you accept a new certificate for the same gateway.
+  If you sign out and back in to the same gateway, Claude Code doesn't show the dialog again while the settings that require approval are unchanged. Claude Code shows it again when those settings change, when you sign in to a different gateway, and when you accept a new certificate for the same gateway.
 
-Claude Code saves no approval for a loopback development gateway reached over plain HTTP, so the dialog appears again after each sign-in.
+  Claude Code saves no approval for a loopback development gateway reached over plain HTTP, so the dialog appears again after each sign-in.
 * **Any other credential**, such as an API key or `CLAUDE_CODE_OAUTH_TOKEN`: one approval for the delivered settings, kept with the cached copy of the settings in that configuration directory. Claude Code shows the dialog again when the settings that require approval change, and after you run `/logout` or `claude auth logout`, either of which deletes the cached copy.
 
 An approval for `sandbox.credentials` or `sandbox.network.tlsTerminate` also covers the [`sandbox.network.allowedDomains`](https://code.claude.com/docs/en/settings-reference#sandbox-network-alloweddomains) entries in those same delivered settings, because both settings act on that allowlist. The dialog appears again when your administrator adds or removes one of those entries, even though `sandbox.network.allowedDomains` doesn't require approval on its own.
@@ -295,11 +298,11 @@ Claude Code can't always show the dialog. Each case below says which settings ap
 * **`claude install` or `claude update`**: Claude Code doesn't show the dialog during either command. The command runs with the last-approved settings, and the dialog appears in your next interactive session. If Claude Code waits for the settings fetch at startup, such as with [`forceRemoteSettingsRefresh`](#enforce-fail-closed-startup) set or on a [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway) deployment, it shows the dialog during the command instead, and an install run from a pipe fails; see [`Raw mode is not supported` during install](https://code.claude.com/docs/en/troubleshoot-install#raw-mode-is-not-supported-during-install). Before v2.1.246, Claude Code tried to show the dialog during these commands too.
 * **A `claude plugin` command that prints to a terminal but can't read from the keyboard**: when Claude Code doesn't wait for the settings fetch at startup, the command doesn't apply the delivered settings. Without [cached settings](#fetch-and-caching-behavior), a command that changes your plugins or marketplaces [stops with an error](https://code.claude.com/docs/en/errors.md#managed-settings-need-your-approval). With cached settings, it runs with the last-approved settings. The dialog appears when you next run `claude` in a terminal.
 
-The command can't read from the keyboard when you pipe or redirect its input and, on macOS and Linux, it also can't open `/dev/tty`. If you pipe or redirect its output too, the run is non-interactive instead, and the delivered settings apply for that run only.
+  The command can't read from the keyboard when you pipe or redirect its input and, on macOS and Linux, it also can't open `/dev/tty`. If you pipe or redirect its output too, the run is non-interactive instead, and the delivered settings apply for that run only.
 * **An error closes the dialog before you answer**: Claude Code doesn't apply the delivered settings and keeps the last-approved settings. It shows the dialog again in the next session that can show it.
 * **A non-interactive run**, such as `claude -p`, an Agent SDK session, or a session in the VS Code extension's chat panel or the desktop app's Code tab: Claude Code can't show the dialog. When the delivered settings would require approval, they apply for that run only.
 
-Claude Code doesn't record the settings as approved or write them to the [local cache](#fetch-and-caching-behavior), and the next interactive session shows the dialog. Until a user approves in an interactive session, each non-interactive run fetches the settings again at startup.
+  Claude Code doesn't record the settings as approved or write them to the [local cache](#fetch-and-caching-behavior), and the next interactive session shows the dialog. Until a user approves in an interactive session, each non-interactive run fetches the settings again at startup.
 
 #### Environment variables and the approval dialog
 

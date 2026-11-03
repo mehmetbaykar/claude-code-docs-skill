@@ -27,11 +27,13 @@ Migrating from the OpenAI Agents SDK instead? The [OpenAI Agents SDK migration r
 ### Migrate a TypeScript or JavaScript project
 
 **1. Uninstall the old package:**
+
 ```bash
 npm uninstall @anthropic-ai/claude-code
 ```
 
 **2. Install the new package:**
+
 ```bash
 npm install @anthropic-ai/claude-agent-sdk
 ```
@@ -39,6 +41,7 @@ npm install @anthropic-ai/claude-agent-sdk
 **3. Update your imports:**
 
 Change all imports from `@anthropic-ai/claude-code` to `@anthropic-ai/claude-agent-sdk`:
+
 ```typescript
 // Before
 import { query, tool, createSdkMcpServer } from "@anthropic-ai/claude-code";
@@ -58,6 +61,7 @@ Make any code changes needed to complete the migration.
 ### Migrate a Python project
 
 **1. Uninstall the old package:**
+
 ```bash
 pip uninstall -y claude-code-sdk
 ```
@@ -65,6 +69,7 @@ pip uninstall -y claude-code-sdk
 If the old package isn't installed, pip prints `WARNING: Skipping claude-code-sdk as it is not installed.` That's expected and you can continue to the next step.
 
 **2. Install the new package:**
+
 ```bash
 pip install claude-agent-sdk
 ```
@@ -74,6 +79,7 @@ If `claude-code-sdk` is listed in your `requirements.txt` or `pyproject.toml`, r
 **3. Update your imports:**
 
 Change all imports from `claude_code_sdk` to `claude_agent_sdk`:
+
 ```python
 # Before
 from claude_code_sdk import query, ClaudeCodeOptions
@@ -97,6 +103,7 @@ Make any code changes needed to complete the migration.
 **What changed:** The Python SDK type `ClaudeCodeOptions` has been renamed to `ClaudeAgentOptions`.
 
 **Migration:**
+
 ```python
 # BEFORE (claude-code-sdk)
 from claude_code_sdk import query, ClaudeCodeOptions
@@ -114,6 +121,7 @@ options = ClaudeAgentOptions(model="claude-opus-4-7", permission_mode="acceptEdi
 **What changed:** The SDK no longer uses Claude Code's system prompt by default.
 
 **Migration:**
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -137,6 +145,7 @@ const customResult = query({
   }
 });
 ```
+
 ```python Python
 from claude_agent_sdk import query, ClaudeAgentOptions
 import asyncio

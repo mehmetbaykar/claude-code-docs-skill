@@ -187,6 +187,7 @@ Now suppose Claude Code decides to run `Bash "rm -rf /tmp/build"` against the ma
 **1. Event fires**
 
 The `PreToolUse` event fires. Claude Code sends the tool input as JSON on stdin to the hook:
+
 ```json
 { "tool_name": "Bash", "tool_input": { "command": "rm -rf /tmp/build" }, ... }
 ```
@@ -202,6 +203,7 @@ The `if` condition `"Bash(rm *)"` matches because `rm -rf /tmp/build` is a subco
 **4. Hook handler runs**
 
 The script inspects the full command and finds `rm -rf`, so it prints a decision to stdout:
+
 ```json
 {
   "hookSpecificOutput": {
@@ -315,6 +317,7 @@ Matching `StopFailure` on `cloud_credential_error` requires Claude Code v2.1.267
 For most events, Claude Code evaluates the matcher against a field from the [JSON input](#hook-input-and-output) it sends to your hook on stdin. For tool events, that field is `tool_name`. For `PreModelSwitch` and `PostModelSwitch`, Claude Code evaluates the matcher against the canonical name it derives from `to_model`, as described under [PreModelSwitch](#premodelswitch). Each [hook event](#hook-events) section lists the full set of matcher values and the input schema for that event.
 
 This example runs a linting script only when Claude writes or edits a file:
+
 ```json
 {
   "hooks": {
@@ -356,6 +359,7 @@ To match every tool from a server, append `.*` to the server prefix. The `.*` is
 Tools from a [plugin-bundled MCP server](https://code.claude.com/docs/en/mcp.md#plugin-provided-mcp-servers) use a scoped server segment that includes the plugin name: `mcp__plugin_<plugin-name>_<server-name>__<tool>`. A matcher written against the bare server key never fires for these tools. For a plugin named `my-plugin` that bundles a server under the key `db`, a `query` tool appears as `mcp__plugin_my-plugin_db__query`, so the matcher for every tool from that server is `mcp__plugin_my-plugin_db__.*`. Use the same scoped tool name in a handler's [`if` field](#common-fields). See [Plugin-provided MCP servers](https://code.claude.com/docs/en/mcp.md#plugin-provided-mcp-servers) for how the scoped name is built.
 
 This example logs all memory server operations and validates write operations from any MCP server:
+
 ```json
 {
   "hooks": {
@@ -457,6 +461,7 @@ A command hook runs as exec form when `args` is set, and shell form when `args` 
 > On Windows, exec form requires `command` to resolve to a real executable such as a `.exe`. The `.cmd` and `.bat` shims that npm, npx, eslint, and other tools install in `node_modules/.bin` are not executables and can't be spawned without a shell. To run them in exec form, invoke the underlying script with `node` directly, for example `"command": "node", "args": ["${CLAUDE_PLUGIN_ROOT}/node_modules/eslint/bin/eslint.js"]`. The `node` plus script-path pattern works on every platform because `node.exe` is a real binary. To run a `.cmd` or `.bat` shim by name, use shell form.
 
 This example runs a Node script bundled with a plugin. Exec form passes the resolved script path as one argument with no quoting:
+
 ```json
 {
   "type": "command",
@@ -466,6 +471,7 @@ This example runs a Node script bundled with a plugin. Exec form passes the reso
 ```
 
 The equivalent shell form needs quoting to handle paths with spaces or special characters:
+
 ```json
 {
   "type": "command",
@@ -477,7 +483,7 @@ Both forms support the same [path placeholders](#reference-scripts-by-path), and
 
 Plugin hooks additionally substitute [`${user_config.*}`](https://code.claude.com/docs/en/plugins/manifest-reference#user-configuration) values, in exec form only: the value is substituted into `command` and into each `args` element as a plain string, so no shell re-parses it.
 
-A shell-form plugin hook whose `command` references `${user_config.*}` fails with an [error](https://code.claude.com/docs/en/errors.md#plugin-command-references-user-config) instead of running. To use an option value from a shell-form hook, read the `$CLAUDE_PLUGIN_OPTION_` environment variable, such as `$CLAUDE_PLUGIN_OPTION_WEBHOOK_URL` for a `webhook_url` option, or set `args` to switch the hook to exec form. Before v2.1.207, shell-form plugin hook commands also substituted `${user_config.*}`.
+A shell-form plugin hook whose `command` references `${user_config.*}` fails with an [error](https://code.claude.com/docs/en/errors.md#plugin-command-references-user-config) instead of running. To use an option value from a shell-form hook, read the `$CLAUDE_PLUGIN_OPTION_<KEY>` environment variable, such as `$CLAUDE_PLUGIN_OPTION_WEBHOOK_URL` for a `webhook_url` option, or set `args` to switch the hook to exec form. Before v2.1.207, shell-form plugin hook commands also substituted `${user_config.*}`.
 
 > [!NOTE]
 >
@@ -499,6 +505,7 @@ Claude Code sends the hook's [JSON input](#hook-input-and-output) as the POST re
 Error handling differs from command hooks; see [HTTP response handling](#http-response-handling).
 
 This example sends `PreToolUse` events to a local validation service, authenticating with a token from the `MY_TOKEN` environment variable:
+
 ```json
 {
   "hooks": {
@@ -533,6 +540,7 @@ In addition to the [common fields](#common-fields), MCP tool hooks accept these 
 | `input` | no | Arguments passed to the tool. String values support `${path}` substitution from the hook's [JSON input](#hook-input-and-output), such as `"${tool_input.file_path}"` |
 
 This example calls the `security_scan` tool on the `my_server` MCP server after each `Write` or `Edit`, passing the edited file's path:
+
 ```json
 {
   "hooks": {
@@ -655,6 +663,7 @@ In addition to settings files and plugins, hooks can be defined directly in [ski
 * **Skill hooks**: Claude Code registers them when you or Claude invoke the skill and keeps running them for the rest of the session, on turns after the skill's own turn as well. To have Claude Code remove a hook after its first successful run instead, set [`once: true`](#common-fields) on it.
 
 This skill defines a `PreToolUse` hook that runs a security validation script before each `Bash` command:
+
 ```yaml
 ---
 name: secure-operations
@@ -679,14 +688,14 @@ Frontmatter hooks in a project subagent run only after you accept the [workspace
 When a skill's frontmatter hooks don't fire after you or Claude invoke the skill, run [`/hooks`](#the-%2Fhooks-menu) in that session. If it lists them, see [Hook not firing](https://code.claude.com/docs/en/hooks-guide.md#hook-not-firing). If it lists none of them, the skill may be under a plugin-only lock or past a hook limit, and runs without any of its frontmatter hooks. Check for each case:
 
 * **Plugin-only lock**: your organization's administrator can lock hooks to plugins and managed settings with the [`strictPluginOnlyCustomization`](https://code.claude.com/docs/en/settings-reference#strictpluginonlycustomization-hooks) managed setting. A skill keeps its frontmatter hooks under that lock only if it's a plugin skill, a [bundled skill](https://code.claude.com/docs/en/skills.md#bundled-skills), or a skill in the [managed settings directory](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms). The hooks in your own settings files don't run either.
-* **Check**: type `/status` in a Claude Code session. If the [`Setting sources` line](https://code.claude.com/docs/en/settings#check-what-your-organization-enforces) includes `Enterprise managed settings`, ask your administrator whether `strictPluginOnlyCustomization` locks hooks.
-* **Fix**: move the skill into a [plugin](https://code.claude.com/docs/en/plugins/create.md#convert-an-existing-claude-setup), because plugin skills keep their frontmatter hooks. List the plugin in a [marketplace](https://code.claude.com/docs/en/plugins/create-marketplace.md#create-a-marketplace), then install it from there. If Claude Code refuses the marketplace with [`is blocked by enterprise policy`](https://code.claude.com/docs/en/plugins/troubleshooting#marketplace-source-is-blocked-by-enterprise-policy), ask your administrator to allow that marketplace.
+  * **Check**: type `/status` in a Claude Code session. If the [`Setting sources` line](https://code.claude.com/docs/en/settings#check-what-your-organization-enforces) includes `Enterprise managed settings`, ask your administrator whether `strictPluginOnlyCustomization` locks hooks.
+  * **Fix**: move the skill into a [plugin](https://code.claude.com/docs/en/plugins/create.md#convert-an-existing-claude-setup), because plugin skills keep their frontmatter hooks. List the plugin in a [marketplace](https://code.claude.com/docs/en/plugins/create-marketplace.md#create-a-marketplace), then install it from there. If Claude Code refuses the marketplace with [`is blocked by enterprise policy`](https://code.claude.com/docs/en/plugins/troubleshooting#marketplace-source-is-blocked-by-enterprise-policy), ask your administrator to allow that marketplace.
 * **Hook limit**: in Claude Code v2.1.304 or later, each source of skills has its own limit per session. Your project, your personal skills folder, and each plugin count as separate sources. The skills from one source can register at most 1,024 hooks. Those hooks' matchers can total at most 16,384 characters. A matcher with several hooks under it counts once for each hook.
-* **Check**: repeat the session where the hook didn't fire, with debug logging on:
-1. Start a new session from your shell with `claude --debug`. If you don't start sessions from a shell, type [`/debug`](https://code.claude.com/docs/en/commands#all-commands) first in the new session instead.
-2. Invoke the same skills in the same order, including the ones Claude invoked, because both totals build up skill by skill. Ask Claude to invoke any skill you can't type as a command.
-3. Search the [debug log](#debug-hooks) for `registers none of its hooks`. A line containing that text names the skill that went past the limit.
-* **Fix**: declare fewer hooks or shorter matchers in that skill or in the other skills from its source, then start a new session. If those skills aren't yours to edit, ask their author for that change. Until then, start a new session and invoke the skill you need before any other skill from its source.
+  * **Check**: repeat the session where the hook didn't fire, with debug logging on:
+    1. Start a new session from your shell with `claude --debug`. If you don't start sessions from a shell, type [`/debug`](https://code.claude.com/docs/en/commands#all-commands) first in the new session instead.
+    2. Invoke the same skills in the same order, including the ones Claude invoked, because both totals build up skill by skill. Ask Claude to invoke any skill you can't type as a command.
+    3. Search the [debug log](#debug-hooks) for `registers none of its hooks`. A line containing that text names the skill that went past the limit.
+  * **Fix**: declare fewer hooks or shorter matchers in that skill or in the other skills from its source, then start a new session. If those skills aren't yours to edit, ask their author for that change. Until then, start a new session and invoke the skill you need before any other skill from its source.
 
 If neither case is yours, check for [frontmatter that didn't parse](https://code.claude.com/docs/en/skills.md#skill-not-triggering).
 
@@ -745,6 +754,7 @@ There is no `$CLAUDE_MODEL` environment variable. The hook can read `$ANTHROPIC_
 A hook process inherits the parent environment, apart from the `OTEL_*` exporter variables that Claude Code [removes from every subprocess it spawns](https://code.claude.com/docs/en/monitoring-usage.md#administrator-configuration) and, when [`CLAUDE_CODE_SUBPROCESS_ENV_SCRUB`](https://code.claude.com/docs/en/env-vars#variables) is set to `1`, the variables it strips. In a session that [gets the HIPAA configuration](https://code.claude.com/docs/en/hipaa-setup.md#check-how-developers-sign-in-and-connect), Claude Code also [removes Anthropic credentials](https://code.claude.com/docs/en/hipaa-setup.md#anthropic-credentials-in-commands-hooks-and-mcp-servers) from the hook's environment.
 
 For example, a `PreToolUse` hook for a Bash command receives this on stdin:
+
 ```json
 {
   "session_id": "abc123",
@@ -819,6 +829,7 @@ Exit 2 blocks even when your hook prints JSON:
 * **JSON that fails schema validation**: the hook still blocks. Claude Code uses your stderr as the blocking reason and records the validation failure in the debug log.
 
 This script blocks `rm` commands by exiting 2 and leaves every other command to the normal permission flow:
+
 ```bash
 #!/bin/bash
 # Reads JSON input from stdin, checks the command
@@ -834,6 +845,7 @@ exit 0  # No decision: the normal permission flow applies
 ```
 
 With this script registered as a `PreToolUse` hook on `Bash`, a command that starts with `rm` is blocked, and Claude receives the hook's stderr as the tool's error, prefixed with the event name, the tool name, and the hook's command:
+
 ```text
 PreToolUse:Bash hook error: [${CLAUDE_PROJECT_DIR}/.claude/hooks/no-rm.sh]: Blocked: rm commands are not allowed
 ```
@@ -843,11 +855,13 @@ PreToolUse:Bash hook error: [${CLAUDE_PROJECT_DIR}/.claude/hooks/no-rm.sh]: Bloc
 A `<hook name> hook error` notice with `Failed with non-blocking status code:` means your hook's exit code wasn't 0 or 2 and its stdout was plain text or empty. Unless the hook is one [whose failure blocks the action](#block-the-action-when-a-hook-fails), this is a [non-blocking error](#exit-code-output), so your hook didn't stop the action. To capture your hook's full stderr rather than the first line the notice shows, enable [debug logging](#debug-hooks).
 
 For example, when a `PreToolUse` hook on `Bash` prints `something broke` to stderr and exits 1, the `PreToolUse:Bash hook error` notice carries this line:
+
 ```text
 Failed with non-blocking status code: something broke
 ```
 
 If the notice carries the shell's `No such file or directory` message, as in the following line, the hook never ran, for example because its script path doesn't exist:
+
 ```text
 Failed with non-blocking status code: /bin/sh: /path/to/hook.sh: No such file or directory
 ```
@@ -873,6 +887,7 @@ If your command hook makes its decision in a background process and exits, a den
 Print the decision before you start a background process, and redirect that process's stdout and stderr. If your script prints an allow, then starts a background process without redirecting that process's stdout and stderr, Claude Code blocks the tool call. The hook error includes `refusing to honor the suspect capture`.
 
 This `PreToolUse` hook script prints the decision with `policy-check.sh`, then uploads metrics in the background:
+
 ```bash
 #!/bin/bash
 "$CLAUDE_PROJECT_DIR"/.claude/hooks/policy-check.sh || exit $?
@@ -895,6 +910,7 @@ On most events, when a hook fails or times out, Claude Code still carries out th
 > On Windows without Git Bash, a shell-form `PreToolUse` or `PermissionRequest` command hook that fails with `onFailure` unset can instead [block the tool call](#failed-hooks-on-windows-without-git-bash).
 
 This `PreToolUse` hook in `.claude/settings.json` runs a project script before each Bash command, and blocks the command if the script fails:
+
 ```json
 {
   "hooks": {
@@ -916,6 +932,7 @@ This `PreToolUse` hook in `.claude/settings.json` runs a project script before e
 ```
 
 To test it, leave `check-command.js` missing and ask Claude to run a Bash command such as `ls`. Claude Code blocks the call, and the error includes `failed; blocking because onFailure is "block"` followed by node's own error output, trimmed here to one line:
+
 ```text
 PreToolUse:Bash hook error: [node ${CLAUDE_PROJECT_DIR}/.claude/hooks/check-command.js]: failed; blocking because onFailure is "block"
 Error: Cannot find module '/path/to/project/.claude/hooks/check-command.js'
@@ -941,6 +958,7 @@ The field has no effect on these hooks:
 #### Failed hooks on Windows without Git Bash
 
 If the error for a blocked tool call includes this text, a `PreToolUse` or `PermissionRequest` command hook failed or timed out and blocked the call:
+
 ```text
 blocking because Git Bash wasn't found, so only exit code 0 or 2 counts as this hook's verdict.
 ```
@@ -1052,6 +1070,7 @@ The JSON object supports three kinds of fields:
 | `terminalSequence` | none | A terminal escape sequence for Claude Code to emit on your behalf, such as a desktop notification, window title, or bell. Restricted to OSC `0`/`1`/`2`/`9`/`99`/`777` and BEL. If the value contains anything outside the allowlist, the field is ignored. Use this instead of writing to `/dev/tty`, which is unavailable to hooks |
 
 To stop Claude entirely:
+
 ```json
 { "continue": false, "stopReason": "Build failed, fix errors before continuing" }
 ```
@@ -1078,6 +1097,7 @@ Claude Code writes the sequence itself when it processes your hook's output, so 
 * A `WorktreeCreate` command hook can't return JSON, because Claude Code reads its stdout as the worktree path. An HTTP `WorktreeCreate` hook returns JSON and can include the field.
 
 The example below fires a desktop notification from a `Notification` hook. The escape sequence is built with `printf` octal escapes so the control bytes never appear on the shell command line, and `jq -n --arg` builds the JSON output so quotes, backslashes, and newlines in the notification message are escaped correctly:
+
 ```bash
 #!/bin/bash
 # Notification hook: ping the desktop when Claude Code needs attention.
@@ -1095,6 +1115,7 @@ The `{ "terminalSequence": "..." }` shape is the same from any shell or language
 The `additionalContext` field passes a string from your hook into Claude's context window. Claude Code wraps the string in a [system reminder](https://code.claude.com/docs/en/glossary.md#system-reminder) and inserts it into the conversation at the point where the hook fired. Claude reads the reminder on the next model request, but it doesn't appear as a chat message in the interface.
 
 Return `additionalContext` inside `hookSpecificOutput` alongside the event name:
+
 ```json
 {
   "hookSpecificOutput": {
@@ -1257,6 +1278,7 @@ When `source` is `"resume"` or `"fork"` and the transcript contains at least one
 | `estimated_cache_write_usd` | Estimated cost in US dollars of writing `context_tokens` to the prompt cache on the session's model, excluding the response |
 
 This example shows the input for a session resumed 90 minutes after its last response:
+
 ```json
 {
   "session_id": "abc123",
@@ -1285,6 +1307,7 @@ A SessionStart hook can add context for Claude, supply the first user message, s
 | `reloadSkills` | Boolean. When `true`, Claude Code re-scans the [skill](https://code.claude.com/docs/en/skills.md) and command directories after the SessionStart hooks complete. See [Reload skills that a hook installs](#reload-skills-that-a-hook-installs) |
 
 This output adds context and names the session:
+
 ```json
 {
   "hookSpecificOutput": {
@@ -1304,6 +1327,7 @@ If your plugin's SessionStart hook supplies `initialUserMessage` or `sessionTitl
 To make skills that a SessionStart hook installs available in the same session, return `reloadSkills`. Skill discovery normally runs before SessionStart hooks finish, so without it, files a hook writes into `~/.claude/skills/` or `.claude/skills/` can be missing when the first prompt runs.
 
 This example syncs a shared skills repository and requests the re-scan:
+
 ```bash
 #!/bin/bash
 
@@ -1320,6 +1344,7 @@ The repository URL is a placeholder. Replace it with your own skills repository.
 SessionStart hooks have access to the `CLAUDE_ENV_FILE` environment variable, which provides a file path where you can persist environment variables for the shell commands Claude runs later in the session.
 
 To set individual environment variables, write `export` statements to `CLAUDE_ENV_FILE`. Use append (`>>`) to preserve variables set by other hooks:
+
 ```bash
 #!/bin/bash
 
@@ -1333,6 +1358,7 @@ exit 0
 ```
 
 To capture all environment changes from setup commands, compare the exported variables before and after:
+
 ```bash
 #!/bin/bash
 
@@ -1387,6 +1413,7 @@ Because Setup doesn't fire on every launch, a plugin that needs a dependency ins
 #### Setup input
 
 In addition to the [common input fields](#common-input-fields), Setup hooks receive a `trigger` field set to either `"init"` or `"maintenance"`:
+
 ```json
 {
   "session_id": "abc123",
@@ -1423,6 +1450,7 @@ In addition to the [common input fields](#common-input-fields), InstructionsLoad
 | `globs` | Path glob patterns from the file's `paths:` frontmatter, if any. Present only for `path_glob_match` loads |
 | `trigger_file_path` | Path to the file whose access triggered this load, for lazy loads |
 | `parent_file_path` | Path to the parent instruction file that included this one, for `include` loads |
+
 ```json
 {
   "session_id": "abc123",
@@ -1468,6 +1496,7 @@ A hook can block the prompt at the same moment you interrupt. The prompt then st
 In addition to the [common input fields](#common-input-fields), UserPromptSubmit hooks receive the `prompt` field containing the submitted text. Pasted content that collapsed to a `[Pasted text #N]` placeholder arrives expanded in place. In sessions where Claude Code [marks pasted text for Claude](https://code.claude.com/docs/en/terminal-config.md#how-claude-treats-pasted-text), that expanded content sits between a `<pasted_content id="…">` line and a `</pasted_content id="…">` line, so account for those lines if your hook parses the prompt.
 
 UserPromptSubmit hooks also receive `session_title` when the session has a custom title, with the same meaning as the [SessionStart `session_title` field](#sessionstart-input).
+
 ```json
 {
   "session_id": "abc123",
@@ -1503,6 +1532,7 @@ To block a prompt, return a JSON object with `decision` set to `"block"`:
 | `suppressOriginalPrompt` | If `true` when the hook blocks the prompt, leaves the prompt text out of the block message. See [What a blocked prompt leaves behind](#what-a-blocked-prompt-leaves-behind) |
 
 A hook that blocks by exiting 2 routes the same way as `reason`: the block message shows the stderr text to the user, and it isn't added to context.
+
 ```json
 {
   "decision": "block",
@@ -1533,6 +1563,7 @@ Matches on `command_name`. Leave the matcher empty to fire on every prompt-type 
 #### UserPromptExpansion input
 
 In addition to the [common input fields](#common-input-fields), UserPromptExpansion hooks receive `expansion_type`, `command_name`, `command_args`, `command_source`, and the original `prompt` string. The `expansion_type` field is `slash_command` for skill and custom commands, or `mcp_prompt` for MCP server prompts.
+
 ```json
 {
   "session_id": "abc123",
@@ -1559,6 +1590,7 @@ In addition to the [common input fields](#common-input-fields), UserPromptExpans
 | `additionalContext` | String added to Claude's context alongside the expanded prompt. See [Add context for Claude](#add-context-for-claude) |
 
 A hook that blocks by exiting 2 routes the same way as `reason`: the block message shows the stderr text to the user.
+
 ```json
 {
   "decision": "block",
@@ -1599,6 +1631,7 @@ In addition to the [common input fields](#common-input-fields), MessageDisplay h
 | `index` | Zero-based index of this batch within the message |
 | `final` | `true` on the message's last batch. Each message has exactly one final batch |
 | `delta` | The newly completed lines since the prior batch, terminating newlines included. Always whole lines, except the final batch which may end mid-line. In interactive runs, the final batch's delta is empty when the message ends on a newline, so treat `final`, not a non-empty delta, as the end-of-message signal. In Agent SDK and `claude -p` runs, the single call carries the entire message |
+
 ```json
 {
   "session_id": "abc123",
@@ -1732,6 +1765,7 @@ For the file tools `Write`, `Edit`, and `Read`, `tool_input.file_path` is always
 * Normalize separators before comparing: `FILE_PATH="${FILE_PATH//\\//}"` in Bash, or `file_path.replace("\\", "/")` in Python, then match a path segment such as `/src/` rather than anchoring with `^`, since the path is absolute
 
 A `Write` call on Windows delivers:
+
 ```json
 {
   "hook_event_name": "PreToolUse",
@@ -1936,6 +1970,7 @@ When multiple PreToolUse hooks return different decisions, precedence is `deny` 
 A hook that blocks by exiting 2 routes the same way as `"deny"`: Claude sees the stderr message as the denial reason.
 
 When a hook returns `"ask"`, the permission prompt displayed to the user includes a label identifying where the hook came from: `[settings]` for a hook from any settings file or from agent frontmatter, `[plugin:<name>]` for a plugin's hook, or `[skill]` for a hook from skill frontmatter. This helps users understand which configuration source is requesting confirmation.
+
 ```json
 {
   "hookSpecificOutput": {
@@ -1976,6 +2011,7 @@ A `PreToolUse` hook satisfies that requirement when it does the following:
 Returning `"allow"` alone is not sufficient for these tools.
 
 For `AskUserQuestion`, echo back the original `questions` array and add an [`answers`](#askuserquestion) object mapping each question's text to the chosen answer. This output answers one question with `React`:
+
 ```json
 {
   "hookSpecificOutput": {
@@ -2011,6 +2047,7 @@ The `AskUserQuestion` tool is the typical case: Claude wants to ask the user som
 5. The hook returns `permissionDecision: "allow"` with the answer in `updatedInput`. The tool executes and Claude continues.
 
 The `deferred_tool_use` field carries the tool's `id`, `name`, and `input`. The `input` is the parameters Claude generated for the tool call, captured before execution:
+
 ```json
 {
   "type": "result",
@@ -2060,6 +2097,7 @@ PermissionRequest hooks receive `tool_name` and `tool_input` fields like PreTool
 The `permission_suggestions` array isn't an exact list of the options you see, because each permission dialog builds its own options. Some dialogs, such as the one for file edits, don't read the array at all and derive their options from the request itself. A dialog that does read it can still withhold an option whose suggestion stays in the array, for example when [`allowManagedPermissionRulesOnly`](https://code.claude.com/docs/en/settings-reference#allowmanagedpermissionrulesonly) hides rule-saving options. It can also offer options that have no suggestion entry, such as [**Yes, and switch to auto mode**](https://code.claude.com/docs/en/permission-modes.md#switch-permission-modes), which changes the permission mode directly rather than through a permission update.
 
 PreToolUse hooks run before every tool call, whether or not it needs permission. PermissionRequest hooks run only when Claude Code is about to ask you for permission, or when it would otherwise auto-deny a call that can't prompt. Neither event fires for [`EndConversation`](https://code.claude.com/docs/en/tools-reference#endconversation-tool-behavior).
+
 ```json
 {
   "session_id": "abc123",
@@ -2096,6 +2134,7 @@ PreToolUse hooks run before every tool call, whether or not it needs permission.
 | `interrupt` | For `"deny"` only: if `true`, stops Claude |
 
 A hook that exits 2 without a `decision` object leaves the permission flow unchanged, and its stderr is discarded. To grant or deny the request, return the `decision` object.
+
 ```json
 {
   "hookSpecificOutput": {
@@ -2154,6 +2193,7 @@ Match more broadly when the tool name isn't the right filter:
 #### PostToolUse input
 
 `PostToolUse` hooks fire after a tool has already executed successfully. The input includes both `tool_input`, the arguments sent to the tool, and `tool_response`, the result it returned. The exact schema for both depends on the tool. File-tool `tool_input` paths arrive in the same format as for [PreToolUse](#pretooluse-input): always absolute, with the platform's native separators, so backslashes on Windows. For an MCP tool, the input also carries the [`mcp_server`](#pretooluse-input) object.
+
 ```json
 {
   "session_id": "abc123",
@@ -2193,6 +2233,7 @@ Match more broadly when the tool name isn't the right filter:
 | `updatedMCPToolOutput` | Replaces the output for [MCP tools](#match-mcp-tools) only. Prefer `updatedToolOutput`, which works for all tools |
 
 The example below replaces the output of a `Bash` call. The replacement value matches the `Bash` tool's output shape:
+
 ```json
 {
   "hookSpecificOutput": {
@@ -2219,6 +2260,7 @@ The example below replaces the output of a `Bash` call. The replacement value ma
 Return `classifierContext` to send a short note about the tool call's result to the [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode) classifier rather than to Claude. The classifier [never receives tool results themselves](https://code.claude.com/docs/en/permission-modes.md#how-the-classifier-evaluates-actions), so this field is the supported way to tell it something about what a call returned before it reviews later actions. The field requires Claude Code v2.1.236 or later.
 
 The example below tells the classifier where a query's output came from:
+
 ```json
 {
   "hookSpecificOutput": {
@@ -2257,6 +2299,7 @@ Matches on tool name, same values as PreToolUse.
 #### PostToolUseFailure input
 
 PostToolUseFailure hooks receive the same `tool_name` and `tool_input` fields as PostToolUse, along with error information as top-level fields. For an MCP tool, they also receive the [`mcp_server`](#pretooluse-input) object. For example, a failed `npm test` command might deliver:
+
 ```json
 {
   "session_id": "abc123",
@@ -2295,6 +2338,7 @@ The `error` string is generally the same text Claude receives as the failed tool
 | Field | Description |
 | :- | :- |
 | `additionalContext` | String added to Claude's context alongside the error. See [Add context for Claude](#add-context-for-claude) |
+
 ```json
 {
   "hookSpecificOutput": {
@@ -2311,6 +2355,7 @@ Runs once after every tool call in a batch has resolved, before Claude Code send
 #### PostToolBatch input
 
 In addition to the [common input fields](#common-input-fields), PostToolBatch hooks receive `tool_calls`, an array describing every tool call in the batch:
+
 ```json
 {
   "session_id": "abc123",
@@ -2348,6 +2393,7 @@ In addition to the [common input fields](#common-input-fields), PostToolBatch ho
 | Field | Description |
 | :- | :- |
 | `additionalContext` | Context string injected once before the next model call. See [Add context for Claude](#add-context-for-claude) for delivery details, what to put in it, and how resumed sessions handle past values |
+
 ```json
 {
   "hookSpecificOutput": {
@@ -2368,6 +2414,7 @@ Matches on tool name, same values as PreToolUse.
 #### PermissionDenied input
 
 In addition to the [common input fields](#common-input-fields), PermissionDenied hooks receive `tool_name`, `tool_input`, `tool_use_id`, and `reason`. For an MCP tool, they also receive the [`mcp_server`](#pretooluse-input) object.
+
 ```json
 {
   "session_id": "abc123",
@@ -2392,6 +2439,7 @@ In addition to the [common input fields](#common-input-fields), PermissionDenied
 #### PermissionDenied decision control
 
 PermissionDenied hooks can tell the model it may retry the denied tool call. Return a JSON object with `hookSpecificOutput.retry` set to `true`:
+
 ```json
 {
   "hookSpecificOutput": {
@@ -2452,6 +2500,7 @@ Claude Code times `permission_prompt` differently in sessions where it sends per
 Before v2.1.233, `permission_prompt` didn't fire in these sessions.
 
 Use separate matchers to run different handlers depending on the notification type. This configuration triggers a permission-specific alert script when Claude needs permission approval and a different notification when Claude has been idle:
+
 ```json
 {
   "hooks": {
@@ -2482,6 +2531,7 @@ Use separate matchers to run different handlers depending on the notification ty
 #### Notification input
 
 In addition to the [common input fields](#common-input-fields), Notification hooks receive `message` with the notification text, an optional `title`, and `notification_type` indicating which type fired.
+
 ```json
 {
   "session_id": "abc123",
@@ -2505,6 +2555,7 @@ For subagents shipped by a [plugin](https://code.claude.com/docs/en/plugins/over
 #### SubagentStart input
 
 In addition to the [common input fields](#common-input-fields), SubagentStart hooks receive `agent_id` with the unique identifier for the subagent and `agent_type` with the agent name that the matcher filters on.
+
 ```json
 {
   "session_id": "abc123",
@@ -2521,6 +2572,7 @@ SubagentStart hooks can't block subagent creation, but they can inject context i
 | Field | Description |
 | :- | :- |
 | `additionalContext` | String added to the subagent's context at the start of its conversation, before its first prompt. See [Add context for Claude](#add-context-for-claude) |
+
 ```json
 {
   "hookSpecificOutput": {
@@ -2547,6 +2599,7 @@ A `matcher` that names agent types doesn't match an empty `agent_type`. A hook w
 On Claude Code v2.1.271 or later, a subagent that runs with the [`SubagentHandback`](https://code.claude.com/docs/en/tools-reference) tool delivers its report through that tool before it stops. The `last_assistant_message` field then holds the subagent's closing text, if any, which is not the delivered report. The report is that call's `message` input, which a `PreToolUse` or `PostToolUse` hook matched on `SubagentHandback` receives as `tool_input.message`.
 
 SubagentStop hooks also receive the `background_tasks` and `session_crons` arrays described under [Stop input](#stop-input). Both arrays are scoped to the parent session, not the subagent.
+
 ```json
 {
   "session_id": "abc123",
@@ -2575,6 +2628,7 @@ TaskCreated hooks don't support matchers and fire on every occurrence.
 #### TaskCreated input
 
 In addition to the [common input fields](#common-input-fields), TaskCreated hooks receive `task_id`, `task_subject`, and optionally `task_description`, `teammate_name`, and `team_name`.
+
 ```json
 {
   "session_id": "abc123",
@@ -2606,6 +2660,7 @@ A TaskCreated hook can block the creation with exit code 2 or with a JSON decisi
 * **JSON `{"decision": "block", "reason": "..."}`**: Claude Code returns `reason` as the message.
 
 This example blocks tasks whose subjects don't follow the required format:
+
 ```bash
 #!/bin/bash
 INPUT=$(cat)
@@ -2628,6 +2683,7 @@ TaskCompleted hooks don't support matchers and fire on every occurrence.
 #### TaskCompleted input
 
 In addition to the [common input fields](#common-input-fields), TaskCompleted hooks receive `task_id`, `task_subject`, and optionally `task_description`, `teammate_name`, and `team_name`.
+
 ```json
 {
   "session_id": "abc123",
@@ -2660,6 +2716,7 @@ TaskCompleted hooks support two ways to control task completion:
 * **JSON `{"continue": false, "stopReason": "..."}`**: when a teammate finishing its turn triggered the event, stops the teammate entirely, matching `Stop` hook behavior. The `stopReason` is shown to the user. When the `TaskUpdate` tool triggered the event, Claude Code ignores `continue: false`; exit code 2 still blocks the completion.
 
 This example runs tests and blocks task completion if they fail:
+
 ```bash
 #!/bin/bash
 INPUT=$(cat)
@@ -2718,6 +2775,7 @@ Each entry in `session_crons` describes one session-scoped scheduled wakeup, sou
 | `prompt` | Prompt submitted when the cron fires, capped at 1000 characters with the same `… [+N chars]` marker |
 
 This example shows a Stop input with one in-flight shell task and one recurring cron:
+
 ```json
 {
   "session_id": "abc123",
@@ -2758,6 +2816,7 @@ This example shows a Stop input with one in-flight shell task and one recurring 
 | `hookSpecificOutput.additionalContext` | Non-error feedback for Claude. The conversation continues so Claude can act on it, but unlike `decision: "block"` it is shown in the transcript as hook feedback rather than a hook error |
 
 A hook that blocks by exiting 2 routes the same way as `reason`: Claude receives the stderr message as the explanation for why it should continue.
+
 ```json
 {
   "decision": "block",
@@ -2766,6 +2825,7 @@ A hook that blocks by exiting 2 routes the same way as `reason`: Claude receives
 ```
 
 Use `additionalContext` when the hook is working as designed and giving Claude guidance, such as "run the test suite before finishing". It keeps the conversation going through the same loop protections as `decision: "block"`, namely the `stop_hook_active` input and the 8-consecutive-continuation cap, but the transcript labels it `Stop hook feedback` and no hook error notification is shown:
+
 ```json
 {
   "hookSpecificOutput": {
@@ -2788,6 +2848,7 @@ In addition to the [common input fields](#common-input-fields), StopFailure hook
 | `error` | Error type: `rate_limit`, `overloaded`, `authentication_failed`, `oauth_org_not_allowed`, `account_on_hold`, `billing_error`, `invalid_request`, `model_not_found`, `server_error`, `max_output_tokens`, `cloud_credential_error`, or `unknown` |
 | `error_details` | Additional details about the error, when available |
 | `last_assistant_message` | The rendered error text shown in the conversation. Unlike `Stop` and `SubagentStop`, where this field holds Claude's conversational output, for `StopFailure` it contains the API error string itself, such as `"API Error: Rate limit reached"` |
+
 ```json
 {
   "session_id": "abc123",
@@ -2811,6 +2872,7 @@ TeammateIdle hooks don't support matchers and fire on every occurrence.
 #### TeammateIdle input
 
 In addition to the [common input fields](#common-input-fields), TeammateIdle hooks receive `teammate_name` and `team_name`.
+
 ```json
 {
   "session_id": "abc123",
@@ -2837,6 +2899,7 @@ TeammateIdle hooks support two ways to control teammate behavior:
 * **JSON `{"continue": false, "stopReason": "..."}`**: stops the teammate entirely, matching `Stop` hook behavior. The `stopReason` is shown to the user.
 
 This example checks that a build artifact exists before allowing a teammate to go idle:
+
 ```bash
 #!/bin/bash
 
@@ -2865,6 +2928,7 @@ The matcher filters on the configuration source:
 | `skills` | A skill file in `.claude/skills/` changes |
 
 This example logs all configuration changes for security auditing:
+
 ```json
 {
   "hooks": {
@@ -2886,6 +2950,7 @@ This example logs all configuration changes for security auditing:
 #### ConfigChange input
 
 In addition to the [common input fields](#common-input-fields), ConfigChange hooks receive `source` and optionally `file_path`. The `source` field indicates which configuration type changed, and `file_path` provides the path to the specific file that was modified.
+
 ```json
 {
   "session_id": "abc123",
@@ -2905,6 +2970,7 @@ ConfigChange hooks can block configuration changes from taking effect. Use exit 
 | :- | :- |
 | `decision` | `"block"` prevents the configuration change from being applied. Omit to allow the change |
 | `reason` | Accepted but never shown |
+
 ```json
 {
   "decision": "block",
@@ -2927,6 +2993,7 @@ CwdChanged doesn't support matchers and fires on every occurrence.
 #### CwdChanged input
 
 In addition to the [common input fields](#common-input-fields), CwdChanged hooks receive `old_cwd` and `new_cwd`.
+
 ```json
 {
   "session_id": "abc123",
@@ -2979,6 +3046,7 @@ In addition to the [common input fields](#common-input-fields), DirectoryAdded h
 | :- | :- |
 | `directory` | Absolute path of the directory that was added |
 | `source` | How the directory was added, `"slash_command"` for `/add-dir` or `"register_repo_root"` for the SDK control request |
+
 ```json
 {
   "session_id": "abc123",
@@ -3005,6 +3073,7 @@ The `matcher` for this event serves two roles:
 * **Filter which hooks run**: when a watched file changes, the same value filters which hook groups run using the standard [matcher rules](#matcher-patterns) against the changed file's basename.
 
 This example normalizes line endings in `data.csv` after any change, including a `Bash` command or an external script rewriting the file:
+
 ```json
 {
   "hooks": {
@@ -3024,6 +3093,7 @@ This example normalizes line endings in `data.csv` after any change, including a
 ```
 
 The hook reads the changed file's absolute path from the `file_path` field of the [JSON input](#filechanged-input) on stdin. Its `grep` guard tests for the same thing `perl` removes, a CR at the end of a line, so the run after a normalization exits without touching the file. A looser guard loops forever, because `perl -i` rewrites the file even when it substitutes nothing and Claude Code runs the hook again after every rewrite. Save this script at `/path/to/normalize-line-endings.sh` and make it executable:
+
 ```bash
 #!/bin/bash
 FILE=$(jq -r .file_path)
@@ -3046,6 +3116,7 @@ In addition to the [common input fields](#common-input-fields), FileChanged hook
 | :- | :- |
 | `file_path` | Absolute path to the file that changed |
 | `event` | What happened: `"change"` for a modified file, `"add"` for a created file, or `"unlink"` for a deleted file |
+
 ```json
 {
   "session_id": "abc123",
@@ -3094,6 +3165,7 @@ The hook must return the path to the created worktree directory. Claude Code use
 Claude Code acts on the hook's success and the returned path, and discards `systemMessage` and `continue`.
 
 This example creates an SVN working copy and prints the path for Claude Code to use. Replace the repository URL with your own:
+
 ```json
 {
   "hooks": {
@@ -3116,6 +3188,7 @@ The hook reads the worktree `name` from the JSON input on stdin, checks out a fr
 #### WorktreeCreate input
 
 In addition to the [common input fields](#common-input-fields), WorktreeCreate hooks receive the `name` field. This is a slug identifier for the new worktree, either specified by the user or auto-generated, for example `bold-oak-a3f2`.
+
 ```json
 {
   "session_id": "abc123",
@@ -3157,9 +3230,9 @@ Claude Code uses git to look for changed or untracked files, so it finds none in
 For git-based worktrees, Claude Code handles cleanup automatically with `git worktree remove`. If you configured a WorktreeCreate hook, pair it with a WorktreeRemove hook to control cleanup:
 
 * **No WorktreeRemove hook**: Claude Code falls back to git for a removal at exit or through `ExitWorktree`, and keeps the worktree when `claude remote-control` cleans up:
-* **You exit a worktree session, or Claude calls `ExitWorktree`**: Claude Code removes the path your WorktreeCreate hook returned as `git worktree remove --force` would, so a worktree git recognizes is removed. A worktree git doesn't recognize, for example one your hook created with a non-git version control system, stays on disk.
-* **`claude remote-control` cleans up a session's worktree**: the worktree stays on disk, and the terminal running `claude remote-control` shows `worktree removal failed, kept: <path>`.
-* **You delete a background session**: see [What deleting a session removes](https://code.claude.com/docs/en/agent-view.md#what-deleting-a-session-removes).
+  * **You exit a worktree session, or Claude calls `ExitWorktree`**: Claude Code removes the path your WorktreeCreate hook returned as `git worktree remove --force` would, so a worktree git recognizes is removed. A worktree git doesn't recognize, for example one your hook created with a non-git version control system, stays on disk.
+  * **`claude remote-control` cleans up a session's worktree**: the worktree stays on disk, and the terminal running `claude remote-control` shows `worktree removal failed, kept: <path>`.
+  * **You delete a background session**: see [What deleting a session removes](https://code.claude.com/docs/en/agent-view.md#what-deleting-a-session-removes).
 * **Hook exits 0**: the worktree counts as removed. Claude Code reads nothing else from the hook, so make sure your hook deleted the directory.
 * **Hook exits non-zero**: the removal fails if the directory at `worktree_path` still exists afterward, and the worktree stays on disk with no git fallback. A hook that deleted the directory before exiting non-zero counts as removed. For how the failure is reported, see [WorktreeRemove input](#worktreeremove-input).
 
@@ -3168,6 +3241,7 @@ Claude Code never deletes a branch belonging to a hook-created worktree, because
 For a background-session delete, Claude Code verifies the stored worktree path before running the hook, refusing a path that is a symlink or passes through one below the repository root. On that route, the hook runs for a worktree that still contains files only when you confirm the delete in [agent view](https://code.claude.com/docs/en/agent-view.md#what-deleting-a-session-removes). For such a worktree, [`claude rm`](https://code.claude.com/docs/en/agent-view#manage-sessions-from-the-shell) keeps the session and worktree instead.
 
 Claude Code passes the path returned by WorktreeCreate as `worktree_path` in the hook input. This example reads that path and removes the directory:
+
 ```json
 {
   "hooks": {
@@ -3188,6 +3262,7 @@ Claude Code passes the path returned by WorktreeCreate as `worktree_path` in the
 #### WorktreeRemove input
 
 In addition to the [common input fields](#common-input-fields), WorktreeRemove hooks receive the `worktree_path` field, which is the absolute path to the worktree being removed.
+
 ```json
 {
   "session_id": "abc123",
@@ -3224,6 +3299,7 @@ Claude Code discards a PreCompact hook's `systemMessage` and `continue` fields.
 #### PreCompact input
 
 In addition to the [common input fields](#common-input-fields), PreCompact hooks receive `trigger` and `custom_instructions`. For `manual`, `custom_instructions` contains what the user passes into `/compact` and is `null` when they pass nothing. For `auto`, `custom_instructions` is `null`.
+
 ```json
 {
   "session_id": "abc123",
@@ -3249,6 +3325,7 @@ The same matcher values apply as for `PreCompact`:
 #### PostCompact input
 
 In addition to the [common input fields](#common-input-fields), PostCompact hooks receive `trigger` and `compact_summary`. The `compact_summary` field contains the conversation summary generated by the compact operation.
+
 ```json
 {
   "session_id": "abc123",
@@ -3363,6 +3440,7 @@ In addition to the [common input fields](#common-input-fields), PreModelSwitch h
 | `pricing` | string | How Claude Code priced `estimated_cache_write_usd`: `"configured"` at your organization's own rates when it has configured them, `"catalog"` at list price, or `"default"` when `to_model` has no known price and Claude Code assumed a default rate |
 
 This example shows the input for `/model opus` in a session running Sonnet 5:
+
 ```json
 {
   "session_id": "abc123",
@@ -3395,6 +3473,7 @@ For finer control, return `permissionDecision` and `permissionDecisionReason` in
 Only `/model` in an interactive session can show the `"ask"` prompt. On every other surface, including non-interactive mode with the `-p` flag, `/config`, and `set_model` requests, Claude Code treats `"ask"` as a refusal.
 
 This example asks the user to confirm and quotes the token count from `context_tokens`:
+
 ```json
 {
   "hookSpecificOutput": {
@@ -3431,6 +3510,7 @@ Claude Code doesn't run PostModelSwitch hooks when a model from a [fallback mode
 The matcher follows the same rules as [PreModelSwitch](#premodelswitch): Claude Code compares it against the canonical name of the model the session switched to.
 
 This example adds guidance whenever the session's model changes to any Opus model:
+
 ```json
 {
   "hooks": {
@@ -3486,6 +3566,7 @@ The `reason` field in the hook input indicates why the session ended:
 #### SessionEnd input
 
 In addition to the [common input fields](#common-input-fields), SessionEnd hooks receive a `reason` field indicating why the session ended. See the [reason table](#sessionend) above for all values.
+
 ```json
 {
   "session_id": "abc123",
@@ -3504,6 +3585,7 @@ SessionEnd hooks have a default timeout of 1.5 seconds. It applies when you exit
 * **`CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS`**: set this environment variable in milliseconds to override the budget explicitly. The value you set also becomes the timeout for each hook without its own `timeout`.
 
 This example sets the budget to 5 seconds:
+
 ```bash
 CLAUDE_CODE_SESSIONEND_HOOKS_TIMEOUT_MS=5000 claude
 ```
@@ -3523,6 +3605,7 @@ The matcher field matches against the MCP server name.
 In addition to the [common input fields](#common-input-fields), Elicitation hooks receive `mcp_server_name`, `message`, and optional `mode`, `url`, `elicitation_id`, and `requested_schema` fields.
 
 For form-mode elicitation, the most common case:
+
 ```json
 {
   "session_id": "abc123",
@@ -3542,6 +3625,7 @@ For form-mode elicitation, the most common case:
 ```
 
 For URL-mode elicitation, used for browser-based authentication:
+
 ```json
 {
   "session_id": "abc123",
@@ -3567,6 +3651,7 @@ An Elicitation hook can answer the request for the user, decline or cancel it, o
 | Leave the request to the user | No output, with exit code 0 | The user's answer from the [dialog](https://code.claude.com/docs/en/mcp.md#respond-to-mcp-elicitation-requests) |
 
 This output answers the form-mode request shown under [Elicitation input](#elicitation-input). The keys in `content` are the property names from that request's `requested_schema`:
+
 ```json
 {
   "hookSpecificOutput": {
@@ -3580,6 +3665,7 @@ This output answers the form-mode request shown under [Elicitation input](#elici
 ```
 
 This output declines a request:
+
 ```json
 {
   "hookSpecificOutput": {
@@ -3605,6 +3691,7 @@ Your hook can also decline in these ways. The server receives the same `decline`
 When several hooks match the same request, a decline from one of them overrides an `accept` or `cancel` from another.
 
 This script declines URL-mode requests and leaves form requests to the dialog:
+
 ```bash
 #!/bin/bash
 if [ "$(jq -r '.mode')" = "url" ]; then
@@ -3714,6 +3801,7 @@ The matcher field matches against the MCP server name.
 #### ElicitationResult input
 
 In addition to the [common input fields](#common-input-fields), ElicitationResult hooks receive `mcp_server_name`, `action`, and optional `mode`, `elicitation_id`, and `content` fields.
+
 ```json
 {
   "session_id": "abc123",
@@ -3739,6 +3827,7 @@ An ElicitationResult hook can let the user's response through, change its values
 | Cancel the request | `"action": "cancel"` | `cancel`, along with the values the user submitted. To withhold them, return `"decline"` |
 
 This output changes the response shown under [ElicitationResult input](#elicitationresult-input), so the server receives `alice@example.com` where the user submitted `alice`:
+
 ```json
 {
   "hookSpecificOutput": {
@@ -3754,6 +3843,7 @@ This output changes the response shown under [ElicitationResult input](#elicitat
 Your `content` replaces the user's whole `content` object, so include the fields you aren't changing. Return `action` along with it, because Claude Code ignores a `hookSpecificOutput` that has no `action`.
 
 ElicitationResult hooks also run when the user declines or cancels, and your `action` replaces theirs. Check that the input's `action` is `accept` before you return `accept`, or your hook turns a declined request into an accepted one. This script makes the same change when the user accepted, keeps the other fields, and prints nothing otherwise:
+
 ```bash
 #!/bin/bash
 input=$(cat)
@@ -3764,6 +3854,7 @@ fi
 ```
 
 This output blocks the response:
+
 ```json
 {
   "hookSpecificOutput": {
@@ -3836,6 +3927,7 @@ Set `type` to `"prompt"` and provide a `prompt` string instead of a `command`. U
 In a prompt or [agent hook](#agent-based-hooks), you can write the `prompt` as a rule about what to block or allow, such as "Block any Bash command that reads `.env` files", or as a condition that must hold, such as "All unit tests pass".
 
 This `Stop` hook asks the LLM to evaluate whether all tasks are complete before allowing Claude to finish:
+
 ```json
 {
   "hooks": {
@@ -3864,6 +3956,7 @@ This `Stop` hook asks the LLM to evaluate whether all tasks are complete before 
 ### Response schema
 
 The LLM must respond with JSON containing:
+
 ```json
 {
   "ok": true | false,
@@ -3895,6 +3988,7 @@ If you need finer control on any event, use a [command hook](#command-hook-field
 ### Check multiple conditions before stopping
 
 This `Stop` hook uses a detailed prompt to check three conditions before allowing Claude to stop. `SubagentStop` hooks use the same format to evaluate whether a [subagent](https://code.claude.com/docs/en/sub-agents.md) should stop. If the model returns `"ok": false` because the condition isn't met yet, Claude continues working with the provided reason as its next instruction:
+
 ```json
 {
   "hooks": {
@@ -3939,6 +4033,7 @@ Set `type` to `"agent"` and provide a `prompt` string, using `$ARGUMENTS` as a p
 The response schema is `{ "ok": true }` to allow or `{ "ok": false, "reason": "..." }` to block. On `ok: false`, Claude Code handles an agent hook the way it handles a [prompt hook with `continueOnBlock: true`](#response-schema) on the same event; agent hooks have no `continueOnBlock` field, and don't support the prompt-hook `impossible` field.
 
 This `Stop` hook verifies that all unit tests pass before allowing Claude to finish:
+
 ```json
 {
   "hooks": {
@@ -3966,6 +4061,7 @@ By default, hooks block Claude's execution until they complete. For long-running
 Add `"async": true` to a command hook's configuration to run it in the background without blocking Claude. This field is only available on `type: "command"` hooks.
 
 This hook runs a test script after every `Write` tool call. Claude continues working immediately while `run-tests.sh` executes. When the script finishes, its output is delivered on the next conversation turn:
+
 ```json
 {
   "hooks": {
@@ -4010,6 +4106,7 @@ Async hook completion notifications are suppressed by default. To see them, enab
 ### Run tests after file changes
 
 This hook starts a test suite in the background whenever Claude writes a file, then reports the results back to Claude when the tests finish. Save this script to `.claude/hooks/run-tests-async.sh` in your project and make it executable with `chmod +x`:
+
 ```bash
 #!/bin/bash
 # run-tests-async.sh
@@ -4036,6 +4133,7 @@ jq -nc --arg msg "$MSG" '{hookSpecificOutput: {hookEventName: "PostToolUse", add
 ```
 
 Then add this configuration to `.claude/settings.json` in your project root. The `async: true` flag lets Claude keep working while tests run:
+
 ```json
 {
   "hooks": {
@@ -4094,6 +4192,7 @@ Keep these practices in mind when writing hooks:
 ## Windows PowerShell tool
 
 On Windows, you can run individual hooks in PowerShell by setting `"shell": "powershell"` on a command hook. Claude Code auto-detects `pwsh.exe`, the PowerShell 7 and later executable, and falls back to `powershell.exe` for Windows PowerShell 5.1.
+
 ```json
 {
   "hooks": {
@@ -4120,6 +4219,7 @@ To reference the project root from a PowerShell shell-form command, write `${CLA
 Don't write the bare `$CLAUDE_PROJECT_DIR` spelling in a PowerShell hook. PowerShell parses it as an undefined local variable and resolves it to `$null`, which leaves the script path without its project-root prefix. Claude Code doesn't rewrite that form; it logs a warning in the [debug log](#debug-hooks) instead.
 
 The example below shows a `settings.json` hook that runs a project script with the `$env:` form:
+
 ```json
 {
   "type": "command",
@@ -4133,12 +4233,13 @@ The example below shows a `settings.json` hook that runs a project script with t
 Hook execution details are written to the debug log file. Start Claude Code with `claude --debug-file <path>` to write the log to a known location, or run `claude --debug` and read the log at `~/.claude/debug/<session-id>.txt`. The `--debug` flag doesn't print to the terminal.
 
 For example, a `PostToolUse` hook on `Write` whose command prints `hook-ran` produces entries like:
+
 ```text
 2026-07-19T02:03:24.382Z [DEBUG] Hook output does not start with {, treating as plain text
 2026-07-19T02:03:24.382Z [DEBUG] "Hook PostToolUse:Write (PostToolUse) success:\nhook-ran"
 ```
 
-To find a slow hook, search the log for `Hooks:` lines that end in a duration. In Claude Code v2.1.296 or later, each command hook on a tool event, `UserPromptSubmit`, `SessionStart`, `Stop`, and several other events leaves one when it finishes, whatever it printed. The line gives the event name, joined by a colon to the tool name or other value the hook matched on, then the hook's command in brackets, the plugin it came from if any, how the run ended, and how long it took, as in `Hooks: PostToolUse:Write [.claude/hooks/log-write.sh] finished with status 0 (31ms)`. A run can also end as `timed out after ms`, `cancelled`, `moved to the background`, or `failed to start`. On some events, such as `Notification`, `SessionEnd`, and `PreCompact`, a command hook leaves a `completed with status` line without a duration instead.
+To find a slow hook, search the log for `Hooks:` lines that end in a duration. In Claude Code v2.1.296 or later, each command hook on a tool event, `UserPromptSubmit`, `SessionStart`, `Stop`, and several other events leaves one when it finishes, whatever it printed. The line gives the event name, joined by a colon to the tool name or other value the hook matched on, then the hook's command in brackets, the plugin it came from if any, how the run ended, and how long it took, as in `Hooks: PostToolUse:Write [.claude/hooks/log-write.sh] finished with status 0 (31ms)`. A run can also end as `timed out after <N>ms`, `cancelled`, `moved to the background`, or `failed to start`. On some events, such as `Notification`, `SessionEnd`, and `PreCompact`, a command hook leaves a `completed with status` line without a duration instead.
 
 For more granular hook matching details, set `CLAUDE_CODE_DEBUG_LOG_LEVEL=verbose` to see additional log lines such as hook matcher counts and query matching.
 

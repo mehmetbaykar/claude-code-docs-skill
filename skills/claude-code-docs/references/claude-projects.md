@@ -55,10 +55,10 @@ A project is one coordinating conversation with Claude plus the threads it start
 * **The project conversation**: one long-running session where Claude acts as coordinator. It takes what you send, decides what becomes a thread, and keeps track of every thread it started. It sees what threads report back, not every step they take.
 * **Threads**: the workers. Each is a separate session with its own context window that does one piece of work and reports back to the conversation when it finishes. A cloud thread works on its own branch and opens a pull request when the work calls for one.
 * **What every cloud thread starts with**:
-* The project's repositories and files, plus its [instructions and memory](#give-a-project-standing-context)
-* The `CLAUDE.md` in [each of the project's repositories](#what-threads-pick-up-from-your-repositories), but not the repositories' skills, `.claude/settings.json`, or `.mcp.json`
-* The [connectors](#get-skills-plugins-connectors-and-tools-into-threads) on your claude.ai account
-* A [cloud environment](#choose-an-environment-for-threads) that sets its network access, environment variables, network secrets, and installed tools
+  * The project's repositories and files, plus its [instructions and memory](#give-a-project-standing-context)
+  * The `CLAUDE.md` in [each of the project's repositories](#what-threads-pick-up-from-your-repositories), but not the repositories' skills, `.claude/settings.json`, or `.mcp.json`
+  * The [connectors](#get-skills-plugins-connectors-and-tools-into-threads) on your claude.ai account
+  * A [cloud environment](#choose-an-environment-for-threads) that sets its network access, environment variables, network secrets, and installed tools
 * **The Overview pane**: where you [see all the threads at once](#see-what-needs-you-in-overview) and which of them need you. Its other tabs are **Library** for the files you added and the files threads produced, **Pull requests** for the ones threads opened, and **Scheduled tasks** for scheduled work in the project.
 
 Cloud threads don't pick up anything from the Claude Code setup on your own machine. [Get skills, plugins, connectors, and tools into threads](#get-skills-plugins-connectors-and-tools-into-threads) covers how to give them what they'd otherwise be missing.
@@ -307,6 +307,7 @@ Project instructions are the brief every new thread starts from. Click the gear 
 * What needs your go-ahead first
 
 For example:
+
 ```text
 This project holds p95 latency for the payments API under 200 ms: profiling, query and caching fixes, and the dependency upgrades that come with them, in the payments-api repository.
 
@@ -432,7 +433,7 @@ Several Claude Code features let more than one session work at the same time, so
 
 * **Claude Tag**: [Claude Tag](https://claude.com/docs/claude-tag/overview) is Claude in your team's Slack channels, on Team and Enterprise plans. Anyone in a channel can give it work, everyone in the channel sees and steers it, and it uses connections an admin set up for that channel.
 
-Projects are on Pro, Max, and Ultra. A project is yours alone: you're the only one who sends it work or sees its threads, and it uses your own GitHub access and connectors. [How Claude Tag differs from Cowork and Claude Code](https://claude.com/docs/claude-tag/concepts/how-it-works#how-claude-tag-differs-from-cowork-and-claude-code) has the side-by-side.
+  Projects are on Pro, Max, and Ultra. A project is yours alone: you're the only one who sends it work or sees its threads, and it uses your own GitHub access and connectors. [How Claude Tag differs from Cowork and Claude Code](https://claude.com/docs/claude-tag/concepts/how-it-works#how-claude-tag-differs-from-cowork-and-claude-code) has the side-by-side.
 * **Cloud sessions**: every thread is a [cloud session](https://code.claude.com/docs/en/claude-code-on-the-web.md) unless you ask Claude to run it on your machine. Either way, Claude starts and tracks it instead of you. You can also bring the work of a cloud session you started yourself into a project: choose [**Continue in project**](#start-from-an-existing-cloud-session) in that session's sidebar menu.
 * **Scheduled tasks**: when you ask for scheduled work in a project, Claude creates a [cloud scheduled task](https://code.claude.com/docs/en/routines.md) that runs as threads in that project and appears on its **Scheduled tasks** tab. Scheduled tasks you create outside a project keep working on their own.
 * **Remote Control**: [Remote Control](https://code.claude.com/docs/en/remote-control.md) connects claude.ai to a Claude Code session running on your machine. When you ask Claude in a project to run a thread on your computer, the project [uses Remote Control to do it](#run-a-thread-on-your-own-computer).

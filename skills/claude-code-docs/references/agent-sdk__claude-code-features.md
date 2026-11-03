@@ -17,6 +17,7 @@ When you omit `settingSources`, `query()` reads the same filesystem settings as 
 The setting sources option ([`setting_sources`](https://code.claude.com/docs/en/agent-sdk/python#claudeagentoptions) in Python, [`settingSources`](https://code.claude.com/docs/en/agent-sdk/typescript#settingsource) in TypeScript) controls which filesystem-based settings the SDK loads. Pass an explicit list to opt in to specific sources, or pass an empty array to disable user, project, and local settings.
 
 This example loads both user-level and project-level settings by setting `settingSources` to `["user", "project"]`:
+
 ```python Python
 from claude_agent_sdk import query, ClaudeAgentOptions, AssistantMessage, ResultMessage
 import asyncio
@@ -41,6 +42,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -124,6 +126,7 @@ For how to structure and organize CLAUDE.md content, see [Manage Claude's memory
 Skills are markdown files that give your agent specialized knowledge and invocable workflows. Unlike `CLAUDE.md` (which loads every session), skills load on demand. The agent receives skill descriptions at startup and loads the full content when relevant.
 
 Skills are discovered from the filesystem through `settingSources`. When the `skills` option on `query()` is omitted, discovered user and project skills are enabled and the Skill tool is available, matching CLI behavior. To control which skills are enabled, pass `skills` as `"all"`, a list of skill names, or `[]` to disable all. When `skills` is set, the SDK adds the Skill tool to `allowedTools` automatically. If you also pass an explicit `tools` list, include `"Skill"` in that list so Claude can invoke skills.
+
 ```python Python
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
 import asyncio
@@ -144,6 +147,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -175,6 +179,7 @@ The SDK supports two ways to define hooks, and they run side by side:
 * **Programmatic hooks:** callback functions passed directly to `query()`. These run in your application process and can return structured decisions. See [Control execution with hooks](https://code.claude.com/docs/en/agent-sdk/hooks.md).
 
 Hook callbacks receive the tool input and return a decision dict. Returning `{}` means allow the tool to proceed. To block execution, return a `hookSpecificOutput` object with `permissionDecision: "deny"` and a `permissionDecisionReason`. The reason is sent to Claude as the tool result. See the [hooks guide](https://code.claude.com/docs/en/agent-sdk/hooks.md) for the full callback signature and return types.
+
 ```python Python
 from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher, ResultMessage
 import asyncio
@@ -214,6 +219,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query, type HookInput, type HookJSONOutput } from "@anthropic-ai/claude-agent-sdk";
 

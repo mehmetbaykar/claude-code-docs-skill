@@ -38,6 +38,7 @@ Each setting below is independent. They layer rather than replace each other, so
 ### The example monorepo
 
 The examples throughout this page refer to a monorepo with three packages. The same patterns work in a large single-tree codebase: where an example uses `packages/api/`, substitute your own subsystem directory such as `src/backend/` or `lib/core/`.
+
 ```text
 monorepo/
   CLAUDE.md                     # root instructions
@@ -82,6 +83,7 @@ A common split is two levels:
 Commit these files to the repository so teammates inherit them. Each directory's owner typically maintains its file.
 
 To trim a file that is already checked in, run the [`/doctor` checkup](https://code.claude.com/docs/en/memory#my-claude-md-is-too-large). The root `CLAUDE.md` holds the rules that apply in every package:
+
 ```markdown CLAUDE.md
 Run package scripts from the package directory, not the monorepo root.
 Prefix commit subjects with the package name, for example `api: add rate limiting`.
@@ -89,6 +91,7 @@ Never edit files under packages/*/generated/. Run `npm run codegen` in the packa
 ```
 
 Each subdirectory's `CLAUDE.md`, here `packages/api/CLAUDE.md`, adds the conventions specific to that area:
+
 ```markdown packages/api/CLAUDE.md
 Copy `.env.example` to `.env` before running anything. Tests and the dev server fail without it.
 Write database queries with the Knex query builder. Never put raw SQL strings in route handlers.
@@ -123,6 +126,7 @@ When you start Claude from the repository root, each subdirectory's CLAUDE.md ca
 Use this for directories you never work in, such as other teams' packages, legacy code, or vendored subtrees. The exclusion list is static, not a per-task switch. To focus on one package today and another tomorrow, [start Claude from that package's directory](#choose-where-to-start-claude) instead of editing exclusions.
 
 If you only want these exclusions for yourself, put the setting in `.claude/settings.local.json`. Claude Code adds that file to your global gitignore when it saves a setting there. Since you are creating it by hand here, add it to your gitignore yourself. Patterns use glob syntax matched against absolute file paths, so start relative-style patterns with `**/` to match anywhere in the tree. The example below excludes a package owned by another team:
+
 ```json .claude/settings.local.json
 {
   "claudeMdExcludes": [
@@ -158,10 +162,11 @@ The deny rules can cover everyone working in the repository, only you, or every 
 * **Everyone working in the repository**: commit the rules to `.claude/settings.json`, at the repository root if you start Claude there, or in each package's `.claude/` if you start from subdirectories. Like other project settings on this page, that file isn't inherited from parent directories.
 * **Yourself only**: use `.claude/settings.local.json` at the repository root. It loads in every CLI session inside the repository regardless of starting directory, except in the cases where Claude Code [doesn't use the repository root](https://code.claude.com/docs/en/settings.md#where-claude-code-looks-for-each-file), such as on Windows.
 
-Relative patterns like the example's `Read(./**/vendor/**/*)` still [anchor at the session's current working directory](https://code.claude.com/docs/en/permissions.md#read-and-edit) rather than the repository root. If you start sessions from subdirectories, write the rules in this file as `//`-absolute paths, such as `Read(//absolute/path/to/repo/**/vendor/**/*)`.
+  Relative patterns like the example's `Read(./**/vendor/**/*)` still [anchor at the session's current working directory](https://code.claude.com/docs/en/permissions.md#read-and-edit) rather than the repository root. If you start sessions from subdirectories, write the rules in this file as `//`-absolute paths, such as `Read(//absolute/path/to/repo/**/vendor/**/*)`.
 * **Everyone, enforced in every session**: set the rules in [managed settings](https://code.claude.com/docs/en/managed-settings.md), which user and project settings cannot override.
 
 The example below blocks build artifacts and a vendored SDK. Its directory patterns end with `/**/*` rather than `/**` so that each rule covers everything inside the directory but not the directory itself. Claude can then still list those directories or change into them, for example with `ls dist` or `cd build`.
+
 ```json .claude/settings.json
 {
   "permissions": {
@@ -184,6 +189,7 @@ Deny rules don't cover subprocesses that open files themselves. For the full pat
 In a large codebase, finding where a symbol is defined or used can cost many file reads and grep calls. [Code intelligence plugins](https://code.claude.com/docs/en/plugins/code-intelligence.md) connect Claude to a language server so it can jump to definitions, find references, and surface type errors directly instead of scanning the tree.
 
 The official marketplace has plugins for TypeScript, Python, Go, Rust, and other common languages. In the VS Code extension or the desktop app, install one by following [Install a plugin](https://code.claude.com/docs/en/plugins/install.md#install-a-plugin). In a terminal, start Claude Code by running `claude`, then enter this at its prompt to install the TypeScript plugin:
+
 ```shell
 /plugin install typescript-lsp@claude-plugins-official
 ```
@@ -212,6 +218,7 @@ If everyone working in this directory needs the same paths, commit the setting t
 The JSON examples on this page show one setting at a time. If your `.claude/settings.json` already contains other keys, such as the `permissions.deny` rules above, add the `worktree` key alongside them rather than replacing the file. [Put it together](#put-it-together) shows the combined result.
 
 The example below shows the committed file:
+
 ```json .claude/settings.json
 {
   "worktree": {
@@ -233,6 +240,7 @@ List directories in `sparsePaths`, not individual files. Root-level files like `
 Sparse checkout requires git to enable `extensions.worktreeConfig` in the repository's shared `.git/config` while a sparse worktree exists. Claude Code removes that entry after the last worktree is removed, but only if Claude Code added it. It never removes a value you set yourself.
 
 To avoid duplicating large directories like `node_modules` across worktrees, pair `sparsePaths` with `symlinkDirectories` in the same `.claude/settings.json`:
+
 ```json .claude/settings.json
 {
   "worktree": {
@@ -263,6 +271,7 @@ This section applies when you start Claude from a subdirectory, or when a task s
 When you start Claude from `packages/api/`, it can read and write files within that directory. If a task requires changes across packages, such as updating a shared type that both `api` and `web` import, you need to grant access to the sibling directory. The same mechanism grants access to a separately checked-out repository.
 
 The `additionalDirectories` setting in `.claude/settings.json` gives Claude access to directories outside the working directory. The example below grants access to two sibling packages:
+
 ```json packages/api/.claude/settings.json
 {
   "permissions": {
@@ -277,6 +286,7 @@ The `additionalDirectories` setting in `.claude/settings.json` gives Claude acce
 Relative paths resolve against the directory you start Claude from. With this configuration, Claude can read and edit files in `packages/shared/` and `packages/web/` while working from `packages/api/`.
 
 You can also grant access at runtime without editing settings by passing `--add-dir` when you start Claude:
+
 ```bash
 claude --add-dir ../shared
 ```
@@ -289,6 +299,7 @@ However you add a directory, Claude can read and edit files in it. Whether the d
 | `--add-dir` flag or `/add-dir` command | Only with the environment variable below | Yes |
 
 To load CLAUDE.md and rules files from a directory added with `--add-dir` or `/add-dir`, set the `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD` environment variable:
+
 ```bash
 CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1 claude --add-dir ../shared
 ```
@@ -304,11 +315,13 @@ Any subdirectory can define [skills](https://code.claude.com/docs/en/skills.md) 
 Skills live under `.claude/skills/` inside the directory. Commit them alongside that area's code so anyone who clones the repository gets them. In a monorepo this can be one set of skills per package. In a large single-tree codebase it's one set per subsystem such as `src/db/.claude/skills/`.
 
 Create a skill directory inside the subdirectory:
+
 ```bash
 mkdir -p packages/api/.claude/skills/api-testing
 ```
 
 Then write `SKILL.md` inside that directory, here `packages/api/.claude/skills/api-testing/SKILL.md`. This example teaches Claude the API package's testing patterns:
+
 ```markdown packages/api/.claude/skills/api-testing/SKILL.md
 ---
 name: api-testing
@@ -383,6 +396,7 @@ For example, you can write a script that reads the launch directory from the [ho
 The combined configuration below uses the monorepo layout. The same files work for any subdirectory in a large single tree. Each subdirectory's `.claude/settings.json` must be self-contained rather than layered on a root file.
 
 The example commits `worktree`, `additionalDirectories`, and the `Read` deny rules in `.claude/settings.json` so every developer in `packages/api/` gets the same sibling access, sparse paths, and exclusions. The file below is the committed per-area settings for `packages/api/`:
+
 ```json packages/api/.claude/settings.json
 {
   "worktree": {
@@ -410,6 +424,7 @@ The example commits `worktree`, `additionalDirectories`, and the `Read` deny rul
 Because this session starts from `packages/api/`, sibling packages' CLAUDE.md files are already out of scope, so `claudeMdExcludes` is not needed here. Add it to the repository root's `.claude/settings.local.json` instead if you also start sessions from the root.
 
 The `additionalDirectories` entry applies when you start Claude from `packages/api/` directly. Inside a worktree created from this session, the working directory is the worktree root, so this settings file does not load. The sibling packages are already reachable inside the worktree without it, but the deny rules need a second copy in the repository root's `.claude/settings.json` so worktree sessions pick them up, as the [worktree settings note](#check-out-only-the-directories-you-need) describes:
+
 ```json .claude/settings.json
 {
   "permissions": {
@@ -422,6 +437,7 @@ The `additionalDirectories` entry applies when you start Claude from `packages/a
 ```
 
 After setup, the repository has this layout:
+
 ```text
 monorepo/
   CLAUDE.md

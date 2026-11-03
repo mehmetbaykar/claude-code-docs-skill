@@ -105,7 +105,7 @@ Check the [permission mode](https://code.claude.com/docs/en/permission-modes.md#
 * In Auto or Edit automatically mode, Claude edits [most files](https://code.claude.com/docs/en/permission-modes.md#protected-paths) in your workspace without asking.
 * In Manual mode, when Claude wants to edit a file, it shows a side-by-side comparison of the original and proposed changes, then asks for permission. You can accept, reject, or tell Claude what to do instead. If you edit the proposed content directly in the diff view before accepting, Claude is told that you modified it so it doesn't assume the file matches its original proposal.
 
-![VS Code showing a diff of Claude's proposed changes with a permission prompt asking whether to make the edit](https://mintcdn.com/claude-code/FVYz38sRY-VuoGHA/images/vs-code-edits.png?fit=max\&auto=format\&n=FVYz38sRY-VuoGHA\&q=85\&s=e005f9b41c541c5c7c59c082f7c4841c)
+  ![VS Code showing a diff of Claude's proposed changes with a permission prompt asking whether to make the edit](https://mintcdn.com/claude-code/FVYz38sRY-VuoGHA/images/vs-code-edits.png?fit=max\&auto=format\&n=FVYz38sRY-VuoGHA\&q=85\&s=e005f9b41c541c5c7c59c082f7c4841c)
 
 To review a proposed edit one change at a time, use the **Accept this change** and **Reject this change** buttons under each change in the diff. Rejecting a change reverts it in the proposed content; accepting marks it as reviewed. Per-change review requires Claude Code v2.1.275 or later.
 
@@ -124,89 +124,90 @@ For more ideas on what you can do with Claude Code, see [Common workflows](https
 The prompt box supports several features:
 
 * **Permission modes**: click the mode indicator at the bottom of the prompt box to switch permission modes. With Claude Code v2.1.283 or later, Auto is the built-in starting permission mode, and on earlier versions only on Pro, Max, Ultra, and Team plans. See [how the extension chooses the starting permission mode](https://code.claude.com/docs/en/permission-modes.md#switch-permission-modes) for what changes that, and every permission mode the indicator offers.
-* **Auto**: a classifier reviews most actions instead of asking you. See [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode) for what it reviews and blocks.
-* **Manual**: Claude asks permission before file edits and most shell commands.
-* **Plan**: Claude describes what it will do and waits for approval before making changes. VS Code automatically opens the plan as a full Markdown document where you can add inline comments to give feedback before Claude begins.
+  * **Auto**: a classifier reviews most actions instead of asking you. See [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode) for what it reviews and blocks.
+  * **Manual**: Claude asks permission before file edits and most shell commands.
+  * **Plan**: Claude describes what it will do and waits for approval before making changes. VS Code automatically opens the plan as a full Markdown document where you can add inline comments to give feedback before Claude begins.
 
-You can also type `/plan` in the prompt box. Requires Claude Code v2.1.280 or later.
+    You can also type `/plan` in the prompt box. Requires Claude Code v2.1.280 or later.
 
-* `/plan`: switches to plan mode. If you're already in plan mode, shows the current plan instead.
-* `/plan` with a task, such as `/plan fix the auth bug`: switches to plan mode and starts planning that task.
-* `/plan open`: when you're already in plan mode, opens the plan file in the editor.
-* **Edit automatically**: Claude makes edits without asking.
+    * `/plan`: switches to plan mode. If you're already in plan mode, shows the current plan instead.
+    * `/plan` with a task, such as `/plan fix the auth bug`: switches to plan mode and starts planning that task.
+    * `/plan open`: when you're already in plan mode, opens the plan file in the editor.
+  * **Edit automatically**: Claude makes edits without asking.
 * **Model**: select **Switch model…** from the command menu to change the model mid-session. You can also click the model name at the bottom of the prompt box to open the same picker. With Claude Code v2.1.284 or later, typing `/model` on its own in the prompt box opens the picker too.
 
-When the current model supports [effort levels](https://code.claude.com/docs/en/model-config.md#adjust-effort-level), the picker also shows an **Effort** row and the model name button shows the selected level. When you pick a level other than `max`, Claude Code saves it for the current model as your default, under [`modelSettings`](https://code.claude.com/docs/en/settings-reference#modelsettings) in your user settings; `max` applies to the current session only. The model name button and the **Effort** row require Claude Code v2.1.257 or later.
+  When the current model supports [effort levels](https://code.claude.com/docs/en/model-config.md#adjust-effort-level), the picker also shows an **Effort** row and the model name button shows the selected level. When you pick a level other than `max`, Claude Code saves it for the current model as your default, under [`modelSettings`](https://code.claude.com/docs/en/settings-reference#modelsettings) in your user settings; `max` applies to the current session only. The model name button and the **Effort** row require Claude Code v2.1.257 or later.
 
-When [dynamic workflows](https://code.claude.com/docs/en/workflows.md) are enabled and the current model supports it, an **Ultracode** switch appears under the **Effort** row. Turn it on to have Claude plan a [workflow](https://code.claude.com/docs/en/workflows.md#let-claude-decide-with-ultracode) for each substantive task in this session, at the selected effort level. While it's on, the model name button shows `· Ultracode` after the level. The switch requires Claude Code v2.1.284 or later.
+  When [dynamic workflows](https://code.claude.com/docs/en/workflows.md) are enabled and the current model supports it, an **Ultracode** switch appears under the **Effort** row. Turn it on to have Claude plan a [workflow](https://code.claude.com/docs/en/workflows.md#let-claude-decide-with-ultracode) for each substantive task in this session, at the selected effort level. While it's on, the model name button shows `· Ultracode` after the level. The switch requires Claude Code v2.1.284 or later.
 * **Command menu**: click `/` or type `/` to open the command menu. Options include attaching files and switching models.
 
-The Customize section includes entries such as MCP servers, commands, output styles, hooks, memory, instructions, permissions, and plugins. Items with a terminal icon open in the integrated terminal.
+  The Customize section includes entries such as MCP servers, commands, output styles, hooks, memory, instructions, permissions, and plugins. Items with a terminal icon open in the integrated terminal.
 
-* To browse commands such as `/usage` or [`/remote-control`](https://code.claude.com/docs/en/remote-control), select **Slash commands** in the Customize section. A dialog lists them with a filter box. Pick one to run it. Typing `/` in the prompt box still suggests commands inline. Requires Claude Code v2.1.257 or later.
+  * To browse commands such as `/usage` or [`/remote-control`](https://code.claude.com/docs/en/remote-control), select **Slash commands** in the Customize section. A dialog lists them with a filter box. Pick one to run it. Typing `/` in the prompt box still suggests commands inline. Requires Claude Code v2.1.257 or later.
 
-Typing `/skills` also opens this dialog. Each [skill](https://code.claude.com/docs/en/skills.md) row shows its [visibility](https://code.claude.com/docs/en/skills.md#override-skill-visibility-from-settings), such as **On** or **Name only**. Click the visibility to change it, except on rows marked **locked**, such as plugin skills. The `/skills` shortcut and the visibility controls require Claude Code v2.1.280 or later.
-* Select **Output styles** in the Customize section to pick an [output style](https://code.claude.com/docs/en/output-styles.md), including your custom styles. Requires Claude Code v2.1.257 or later.
+    Typing `/skills` also opens this dialog. Each [skill](https://code.claude.com/docs/en/skills.md) row shows its [visibility](https://code.claude.com/docs/en/skills.md#override-skill-visibility-from-settings), such as **On** or **Name only**. Click the visibility to change it, except on rows marked **locked**, such as plugin skills. The `/skills` shortcut and the visibility controls require Claude Code v2.1.280 or later.
+  * Select **Output styles** in the Customize section to pick an [output style](https://code.claude.com/docs/en/output-styles.md), including your custom styles. Requires Claude Code v2.1.257 or later.
 
-To create a custom style instead, select **Build a custom style** from the **Output styles** menu. Claude Code writes the [style file](https://code.claude.com/docs/en/output-styles.md#create-a-custom-output-style) for you at the project or user level. Requires Claude Code v2.1.261 or later.
-* Select **Hooks** in the Customize section to view the [hooks](https://code.claude.com/docs/en/hooks.md) loaded in the session, grouped by event. You can add, edit, or remove hooks saved in your user, project, and local settings files. Hooks from other sources, such as managed settings or plugins, are read-only. Requires Claude Code v2.1.269 or later.
-* Select **Permissions** in the Customize section to view the session's [permission rules](https://code.claude.com/docs/en/permissions.md), grouped into Allow, Ask, and Deny. You can add rules to your user, project, or local settings and remove rules saved there. Rules from other sources, such as managed settings or approvals made for this session only, are read-only. Requires Claude Code v2.1.269 or later.
-* Select **Memory** in the Customize section to turn [auto memory](https://code.claude.com/docs/en/memory.md#auto-memory) on or off. While it's on, you can also browse the memories Claude has saved and reveal the folders that store them in your file manager. Requires Claude Code v2.1.274 or later.
+    To create a custom style instead, select **Build a custom style** from the **Output styles** menu. Claude Code writes the [style file](https://code.claude.com/docs/en/output-styles.md#create-a-custom-output-style) for you at the project or user level. Requires Claude Code v2.1.261 or later.
+  * Select **Hooks** in the Customize section to view the [hooks](https://code.claude.com/docs/en/hooks.md) loaded in the session, grouped by event. You can add, edit, or remove hooks saved in your user, project, and local settings files. Hooks from other sources, such as managed settings or plugins, are read-only. Requires Claude Code v2.1.269 or later.
+  * Select **Permissions** in the Customize section to view the session's [permission rules](https://code.claude.com/docs/en/permissions.md), grouped into Allow, Ask, and Deny. You can add rules to your user, project, or local settings and remove rules saved there. Rules from other sources, such as managed settings or approvals made for this session only, are read-only. Requires Claude Code v2.1.269 or later.
+  * Select **Memory** in the Customize section to turn [auto memory](https://code.claude.com/docs/en/memory.md#auto-memory) on or off. While it's on, you can also browse the memories Claude has saved and reveal the folders that store them in your file manager. Requires Claude Code v2.1.274 or later.
 
-Click a saved memory to read it in the dialog, where you can edit the text, delete the memory, or open its file in the editor. Viewing, editing, and deleting a memory in the dialog require Claude Code v2.1.275 or later.
-* Select **Instructions** in the Customize section to edit the [CLAUDE.md files](https://code.claude.com/docs/en/memory.md#claude-md-files) Claude reads. Pick a file to open it in the editor. If the file doesn't exist yet, Claude Code creates it first. Requires Claude Code v2.1.274 or later.
-* Select **Status** in the Customize section, or type `/status`, to check the session's Claude Code version, account, model, and MCP server details. Requires Claude Code v2.1.280 or later.
-* Select **Sandbox** in the Customize section, or type `/sandbox`, to see whether Claude's Bash commands run [sandboxed](https://code.claude.com/docs/en/sandboxing.md). You can switch the sandbox mode and add [excluded commands](https://code.claude.com/docs/en/settings-reference.md#sandbox-excludedcommands) there. Requires Claude Code v2.1.280 or later.
-* Select **Claude in Chrome** in the Customize section, or type `/chrome`, to check and manage the [Claude in Chrome](https://code.claude.com/docs/en/chrome.md) connection. Both require signing in with a claude.ai account. Requires Claude Code v2.1.280 or later.
-* Select **Export conversation** in the Context section, or type `/export`, to copy the conversation as plain text or save it to a file. Add a file name, such as `/export notes.txt`, to skip the dialog and choose where to save the file. Requires Claude Code v2.1.280 or later.
-* The Settings section includes **Enable Remote Control for all sessions**, which sets [`remoteControlAtStartup`](https://code.claude.com/docs/en/settings-reference#remotecontrolatstartup) to control whether [new interactive sessions connect to Remote Control automatically](https://code.claude.com/docs/en/remote-control.md#enable-remote-control-for-all-sessions). Requires Claude Code v2.1.203 or later.
+    Click a saved memory to read it in the dialog, where you can edit the text, delete the memory, or open its file in the editor. Viewing, editing, and deleting a memory in the dialog require Claude Code v2.1.275 or later.
+  * Select **Instructions** in the Customize section to edit the [CLAUDE.md files](https://code.claude.com/docs/en/memory.md#claude-md-files) Claude reads. Pick a file to open it in the editor. If the file doesn't exist yet, Claude Code creates it first. Requires Claude Code v2.1.274 or later.
+  * Select **Status** in the Customize section, or type `/status`, to check the session's Claude Code version, account, model, and MCP server details. Requires Claude Code v2.1.280 or later.
+  * Select **Sandbox** in the Customize section, or type `/sandbox`, to see whether Claude's Bash commands run [sandboxed](https://code.claude.com/docs/en/sandboxing.md). You can switch the sandbox mode and add [excluded commands](https://code.claude.com/docs/en/settings-reference.md#sandbox-excludedcommands) there. Requires Claude Code v2.1.280 or later.
+  * Select **Claude in Chrome** in the Customize section, or type `/chrome`, to check and manage the [Claude in Chrome](https://code.claude.com/docs/en/chrome.md) connection. Both require signing in with a claude.ai account. Requires Claude Code v2.1.280 or later.
+  * Select **Export conversation** in the Context section, or type `/export`, to copy the conversation as plain text or save it to a file. Add a file name, such as `/export notes.txt`, to skip the dialog and choose where to save the file. Requires Claude Code v2.1.280 or later.
+  * The Settings section includes **Enable Remote Control for all sessions**, which sets [`remoteControlAtStartup`](https://code.claude.com/docs/en/settings-reference#remotecontrolatstartup) to control whether [new interactive sessions connect to Remote Control automatically](https://code.claude.com/docs/en/remote-control.md#enable-remote-control-for-all-sessions). Requires Claude Code v2.1.203 or later.
 
-When you turn the toggle on or off in a VS Code window, the change isn't limited to sessions you start afterwards. It also applies to the sessions already open in that VS Code window. If you turn it off, the open sessions disconnect. With Claude Code v2.1.261 or later, the change also reaches sessions open in your other VS Code windows.
-* The Settings section also includes **Focus view**, which hides tool calls, tool results, and thinking behind expandable rows, leaving your prompts and Claude's responses. Toggle it there, with `Ctrl+Option+F` (Mac) / `Ctrl+Alt+F` (Windows/Linux), or from the Command Palette with **Claude Code: Toggle Focus view**. The change applies to every open session and persists across sessions. Requires Claude Code v2.1.221 or later.
+    When you turn the toggle on or off in a VS Code window, the change isn't limited to sessions you start afterwards. It also applies to the sessions already open in that VS Code window. If you turn it off, the open sessions disconnect. With Claude Code v2.1.261 or later, the change also reaches sessions open in your other VS Code windows.
+  * The Settings section also includes **Focus view**, which hides tool calls, tool results, and thinking behind expandable rows, leaving your prompts and Claude's responses. Toggle it there, with `Ctrl+Option+F` (Mac) / `Ctrl+Alt+F` (Windows/Linux), or from the Command Palette with **Claude Code: Toggle Focus view**. The change applies to every open session and persists across sessions. Requires Claude Code v2.1.221 or later.
 
-Claude's latest to-do list stays visible, and so does the text a pending question from Claude is asking about; this requires Claude Code v2.1.225 or later. While Claude runs [subagents](https://code.claude.com/docs/en/sub-agents.md), live progress rows with their latest activity appear under the tool-call group that started them. This requires Claude Code v2.1.269 or later.
-* To sign out of your Anthropic account, select **Sign out** in the Settings section, or type `/logout`. On a [third-party provider](#use-third-party-providers), the menu doesn't offer either. Requires Claude Code v2.1.277 or later.
-* To report a bug, click **Report a problem** at the bottom of the menu, or type `/bug` or `/feedback` with an optional description that prefills the report. When you submit the report and you're signed in to Anthropic on a first-party connection, Claude Code sends it to Anthropic. Requires Claude Code v2.1.229 or later.
+    Claude's latest to-do list stays visible, and so does the text a pending question from Claude is asking about; this requires Claude Code v2.1.225 or later. While Claude runs [subagents](https://code.claude.com/docs/en/sub-agents.md), live progress rows with their latest activity appear under the tool-call group that started them. This requires Claude Code v2.1.269 or later.
+  * To sign out of your Anthropic account, select **Sign out** in the Settings section, or type `/logout`. On a [third-party provider](#use-third-party-providers), the menu doesn't offer either. Requires Claude Code v2.1.277 or later.
+  * To report a bug, click **Report a problem** at the bottom of the menu, or type `/bug` or `/feedback` with an optional description that prefills the report. When you submit the report and you're signed in to Anthropic on a first-party connection, Claude Code sends it to Anthropic. Requires Claude Code v2.1.229 or later.
 
-On a third-party provider, or without Anthropic credentials, nothing is sent. The dialog says so before you write. Submitting saves the report as a [local archive under `~/.claude/feedback-bundles/`](https://code.claude.com/docs/en/data-usage#telemetry-services) with known API key and token patterns redacted. Saving the report on your computer requires Claude Code v2.1.284 or later.
+    On a third-party provider, or without Anthropic credentials, nothing is sent. The dialog says so before you write. Submitting saves the report as a [local archive under `~/.claude/feedback-bundles/`](https://code.claude.com/docs/en/data-usage#telemetry-services) with known API key and token patterns redacted. Saving the report on your computer requires Claude Code v2.1.284 or later.
 
-After the report is saved, the confirmation names the file and includes a **Show folder** button. Send that file to your Anthropic account representative or attach it to a support request.
+    After the report is saved, the confirmation names the file and includes a **Show folder** button. Send that file to your Anthropic account representative or attach it to a support request.
 
-If your organization's policy turns product feedback off, **Report a problem** doesn't appear in the menu, and `/bug` and `/feedback` show a `Feedback is turned off by your organization's policy or this environment's settings.` notice instead of opening the report. With Claude Code v2.1.284 or later, if you set the `DISABLE_FEEDBACK_COMMAND` or `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` environment variable, feedback is also turned off and opening the report shows that notice instead.
+    If your organization's policy turns product feedback off, **Report a problem** doesn't appear in the menu, and `/bug` and `/feedback` show a `Feedback is turned off by your organization's policy or this environment's settings.` notice instead of opening the report. With Claude Code v2.1.284 or later, if you set the `DISABLE_FEEDBACK_COMMAND` or `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` environment variable, feedback is also turned off and opening the report shows that notice instead.
 * **Side questions**: type `/btw` followed by a question to ask about your session [without adding to the conversation](https://code.claude.com/docs/en/interactive-mode.md#side-questions-with-%2Fbtw). The answer opens in a panel beside the chat, where you can ask follow-up questions. Requires Claude Code v2.1.227 or later.
 
-The thread survives window reloads. Claude Code keeps the newest 20 exchanges and expires stored threads on the [`cleanupPeriodDays`](https://code.claude.com/docs/en/settings-reference#cleanupperioddays) schedule, as long as Claude Code can [safely determine the retention period](https://code.claude.com/docs/en/claude-directory.md#cleaned-up-automatically). To clear a thread, click the trash icon in the panel.
+  The thread survives window reloads. Claude Code keeps the newest 20 exchanges and expires stored threads on the [`cleanupPeriodDays`](https://code.claude.com/docs/en/settings-reference#cleanupperioddays) schedule, as long as Claude Code can [safely determine the retention period](https://code.claude.com/docs/en/claude-directory.md#cleaned-up-automatically). To clear a thread, click the trash icon in the panel.
 * **Copy a response**: hover over a response and click **Copy response** to copy it to your clipboard, or type `/copy` to copy the latest response. `/copy 2` copies the second-to-last. Requires Claude Code v2.1.277 or later.
 * **Bookmarks**: hover over a response and click **Bookmark response** to save it, or click **Remove bookmark** on a saved response to remove it.
 
-To review saved responses, open the Bookmarks panel. You can click the bookmark icon at the top of the Claude Code panel, select **Bookmarks** in the Context section of the command menu, or type `/bookmarks`. Requires Claude Code v2.1.286 or later.
+  To review saved responses, open the Bookmarks panel. You can click the bookmark icon at the top of the Claude Code panel, select **Bookmarks** in the Context section of the command menu, or type `/bookmarks`. Requires Claude Code v2.1.286 or later.
 * **Files Claude sends you**: when the session is connected to [Remote Control](https://code.claude.com/docs/en/remote-control.md#start-a-remote-control-session) and Claude sends you files with the [`SendUserFile` tool](https://code.claude.com/docs/en/tools-reference), the conversation shows a row such as **Sent report.md, chart.png**. Click a file's name to open it in the editor. The row stays visible in Focus view. Requires Claude Code v2.1.295 or later.
 
-A file appears as a full path you can't click, such as `\\server\share\report.md`, when its path names a network host. Claude Code doesn't link that file because opening it would contact that host and, on Windows, [could send your Windows credentials to that host](https://code.claude.com/docs/en/permissions.md#read-only-commands).
+  A file appears as a full path you can't click, such as `\\server\share\report.md`, when its path names a network host. Claude Code doesn't link that file because opening it would contact that host and, on Windows, [could send your Windows credentials to that host](https://code.claude.com/docs/en/permissions.md#read-only-commands).
 * **Context indicator**: the prompt box shows how much of Claude's context window you're using. Claude automatically compacts when needed, or you can run `/compact` manually.
 * **Prompt cache clock**: a clock icon next to the context indicator estimates how much time the conversation's [prompt cache](https://code.claude.com/docs/en/prompt-caching.md) has left before it expires. It counts down from the cache's five-minute or one-hour [lifetime](https://code.claude.com/docs/en/prompt-caching.md#cache-lifetime), and each response that uses the cache restarts the countdown. Apart from compaction, the [actions that invalidate the cache](https://code.claude.com/docs/en/prompt-caching.md#actions-that-invalidate-the-cache) don't reset the clock, so it can still show minutes left after you switch models.
-* Until the countdown runs out, the icon shows the minutes left, such as **12m**.
-* When the countdown runs out, the minutes disappear and the icon turns red, or your theme's error color, until the next response. The cache has likely expired, so expect a slower, more expensive response to your next message while the cache rebuilds. If the five-minute lifetime keeps running out between your messages, see [Choose the TTL yourself](https://code.claude.com/docs/en/prompt-caching.md#choose-the-ttl-yourself).
-* Right after the conversation is [compacted](https://code.claude.com/docs/en/prompt-caching.md#compacting-the-conversation), the icon also turns red without minutes until the next response, because the cache doesn't cover the compacted conversation yet.
+  * Until the countdown runs out, the icon shows the minutes left, such as **12m**.
+  * When the countdown runs out, the minutes disappear and the icon turns red, or your theme's error color, until the next response. The cache has likely expired, so expect a slower, more expensive response to your next message while the cache rebuilds. If the five-minute lifetime keeps running out between your messages, see [Choose the TTL yourself](https://code.claude.com/docs/en/prompt-caching.md#choose-the-ttl-yourself).
+  * Right after the conversation is [compacted](https://code.claude.com/docs/en/prompt-caching.md#compacting-the-conversation), the icon also turns red without minutes until the next response, because the cache doesn't cover the compacted conversation yet.
 * **Agent map**: when the conversation includes [subagents](https://code.claude.com/docs/en/sub-agents.md), an agent count such as **2 agents** appears at the bottom of the prompt box. Its dot shows whether any subagent is working or waiting for your permission.
 
-Click the agent count to open the agent map, which draws the conversation's subagents as a tree under the main agent, each with its status, elapsed time, and token count. Click a subagent to see its prompt and tool calls, open its read-only transcript, or stop it while it runs. Requires Claude Code v2.1.269 or later.
+  Click the agent count to open the agent map, which draws the conversation's subagents as a tree under the main agent, each with its status, elapsed time, and token count. Click a subagent to see its prompt and tool calls, open its read-only transcript, or stop it while it runs. Requires Claude Code v2.1.269 or later.
 
-The map also lists the session's other [background tasks](https://code.claude.com/docs/en/tools-reference.md#background-commands), such as background shell commands and [monitors](https://code.claude.com/docs/en/tools-reference.md#monitor-tool), below the agents. Click a row to open the task's card and stop it there.
+  The map also lists the session's other [background tasks](https://code.claude.com/docs/en/tools-reference.md#background-commands), such as background shell commands and [monitors](https://code.claude.com/docs/en/tools-reference.md#monitor-tool), below the agents. Click a row to open the task's card and stop it there.
 
-To open the map when no agent count is showing, such as when Claude has started a background shell but no subagents, type `/tasks` in the prompt box. Background tasks in the map and the typed `/tasks` require Claude Code v2.1.277 or later.
+  To open the map when no agent count is showing, such as when Claude has started a background shell but no subagents, type `/tasks` in the prompt box. Background tasks in the map and the typed `/tasks` require Claude Code v2.1.277 or later.
 
-With Claude Code v2.1.286 or later, when you click **Stop** or press `Esc`, the current turn ends. Background agents keep running until they finish or you stop them from the map.
+  With Claude Code v2.1.286 or later, when you click **Stop** or press `Esc`, the current turn ends. Background agents keep running until they finish or you stop them from the map.
 * **Extended thinking**: lets Claude spend more time reasoning through complex problems. To turn it off or back on, use the **Thinking** switch in the Model section of the command menu (`/`). On models where [thinking can't be turned off](https://code.claude.com/docs/en/model-config.md#extended-thinking), the menu has no **Thinking** switch and thinking stays on.
 
-A thinking block that shows only a label, such as `Thought for 12s`, has no text and doesn't open when you click it. To see thinking summaries, set [`showThinkingSummaries`](https://code.claude.com/docs/en/settings-reference#showthinkingsummaries) to `true` in `~/.claude/settings.json`, then run **Developer: Reload Window** from the Command Palette.
+  A thinking block that shows only a label, such as `Thought for 12s`, has no text and doesn't open when you click it. To see thinking summaries, set [`showThinkingSummaries`](https://code.claude.com/docs/en/settings-reference#showthinkingsummaries) to `true` in `~/.claude/settings.json`, then run **Developer: Reload Window** from the Command Palette.
 
-Thinking blocks you already have stay empty. In responses after the reload, click a block or press `Ctrl+O` to expand them all.
+  Thinking blocks you already have stay empty. In responses after the reload, click a block or press `Ctrl+O` to expand them all.
 * **Multi-line input**: press `Shift+Enter` to add a new line without sending. This also works in the "Other" free-text input of question dialogs.
 
 ### Reference files and folders
 
 Use @-mentions to give Claude context about specific files or folders. When you type `@` followed by a file or folder name, Claude reads that content and can answer questions about it or make changes to it. Claude Code supports fuzzy matching, so you can type partial names to find what you need:
+
 ```text wrap
 Explain the logic in @auth (fuzzy matches auth.js, AuthService.ts, etc.)
 What's in @src/components/ (include a trailing slash for folders)
@@ -305,6 +306,7 @@ To continue in this window when a notice says the conversation is still open som
 * **You have the conversation open somewhere else**: close it there first, for example by exiting `claude` in a terminal or closing its tab in another VS Code window
 
 When the conversation is still open in another Claude Code process, this notice appears in place of the prompt box:
+
 ```text
 This conversation is still open somewhere else. Using it in two places at once can mix up its messages. If the extension restarted recently, a Claude process from before the restart may still be finishing. It usually ends on its own within about 10 minutes. This notice stays until you choose Open here anyway.
 ```
@@ -343,15 +345,15 @@ Run `/usage` to open the Account & usage dialog, which shows your signed-in acco
 
 * **claude.ai plan**: usage bars for your plan's limits, such as the current session and the week.
 
-The dialog also breaks down what is contributing to your plan limits:
+  The dialog also breaks down what is contributing to your plan limits:
 
-* **Recommendations**: suggested changes, one per row, such as `Trim ~/code/api/CLAUDE.md · 49k tokens per request`
-* **Fix button**: to have Claude Code apply the recommendations it can, click the button under them, such as **Fix both**. To learn which rows the button acts on and what then happens in your session, see [Apply recommendations with the fix shortcut](https://code.claude.com/docs/en/costs.md#apply-recommendations-with-the-fix-shortcut). Requires Claude Code v2.1.305 or later.
+  * **Recommendations**: suggested changes, one per row, such as `Trim ~/code/api/CLAUDE.md · 49k tokens per request`
+  * **Fix button**: to have Claude Code apply the recommendations it can, click the button under them, such as **Fix both**. To learn which rows the button acts on and what then happens in your session, see [Apply recommendations with the fix shortcut](https://code.claude.com/docs/en/costs.md#apply-recommendations-with-the-fix-shortcut). Requires Claude Code v2.1.305 or later.
 
-The button isn't shown while [Remote Control](https://code.claude.com/docs/en/remote-control.md) is connected. If a warning reads `The usage fix wasn’t fully sent. Open usage and try again.` after Remote Control connected, [disconnect Remote Control](https://code.claude.com/docs/en/remote-control.md#check-connection-status) before you try again.
-* **Attribution**: tables of how much usage came from each skill, subagent, plugin, and MCP server
+    The button isn't shown while [Remote Control](https://code.claude.com/docs/en/remote-control.md) is connected. If a warning reads `The usage fix wasn’t fully sent. Open usage and try again.` after Remote Control connected, [disconnect Remote Control](https://code.claude.com/docs/en/remote-control.md#check-connection-status) before you try again.
+  * **Attribution**: tables of how much usage came from each skill, subagent, plugin, and MCP server
 
-Use the Day and Week toggle to switch between the last 24 hours and the last 7 days. The figures are approximate and computed from local sessions on this machine, so usage from other devices or claude.ai is not included.
+  Use the Day and Week toggle to switch between the last 24 hours and the last 7 days. The figures are approximate and computed from local sessions on this machine, so usage from other devices or claude.ai is not included.
 * **Other sign-ins**: when plan limits don't apply to your sign-in, such as on a [third-party provider](#use-third-party-providers) or with an API key, the Usage section shows the session's own cost and token usage instead. The CLI's `/usage` shows the same totals in its [Session block](https://code.claude.com/docs/en/costs.md#track-your-costs). The sessions list in the Activity Bar also shows the active session's totals under its **Account & usage** header. Requires Claude Code v2.1.277 or later.
 
 For more on tracking and reducing usage, see [Track your costs](https://code.claude.com/docs/en/costs.md#track-your-costs).
@@ -408,6 +410,7 @@ If you set [`CLAUDE_CODE_RESUME_INTERRUPTED_TURN`](https://code.claude.com/docs/
 #### A conversation was not reopened
 
 After a reload, a new chat with a notice like this above its prompt box means the panel left your conversation closed because the conversation's last two opens didn't finish:
+
 ```text
 “Fix the login bug” was not reopened. It did not finish opening the last 2 times, and opening it again may stop Claude Code from responding here.
 ```
@@ -461,8 +464,8 @@ The plugin dialog shows two tabs: **Plugins** and **Marketplaces**.
 In the Plugins tab:
 
 * **Installed plugins** appear at the top with toggle switches to enable or disable them.
-* If you turn off a plugin that your project's shared `.claude/settings.json` turns on, the extension asks first: **Disable for me** turns it off only for you, while **Disable for everyone** changes the shared file.
-* A plugin that failed to load shows a short reason on its row. Click the reason for what you can do about it, including copying the full error message to look up in [Troubleshoot plugins](https://code.claude.com/docs/en/plugins/troubleshooting.md).
+  * If you turn off a plugin that your project's shared `.claude/settings.json` turns on, the extension asks first: **Disable for me** turns it off only for you, while **Disable for everyone** changes the shared file.
+  * A plugin that failed to load shows a short reason on its row. Click the reason for what you can do about it, including copying the full error message to look up in [Troubleshoot plugins](https://code.claude.com/docs/en/plugins/troubleshooting.md).
 * **Available plugins** from your configured marketplaces appear below
 * Search to filter plugins by name or description
 * Click **Install** on any available plugin
@@ -489,6 +492,7 @@ The extension asks first in two cases:
 ### Share a plugin install link
 
 To send someone straight to installing a specific plugin, give them the extension's `install-plugin` URL. Opening it launches or focuses VS Code, opens the Claude Code panel, and opens the **Manage plugins** dialog on that plugin's scope choice. Nothing installs until the person picks a scope. If the plugin's marketplace isn't configured in their Claude Code yet, the dialog first asks them to add it.
+
 ```text
 vscode://anthropic.claude-code/install-plugin?plugin=code-review&marketplace=anthropics/claude-plugins-official
 ```
@@ -555,6 +559,7 @@ To stop a plugin from drawing, turn the plugin off in the [plugin dialog](#insta
 Connect Claude to your Chrome browser to test web apps, debug with console logs, and automate browser workflows without leaving VS Code. This requires the [Claude in Chrome extension](https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn) version 1.0.36 or later.
 
 Type `@browser` in the prompt box followed by what you want Claude to do:
+
 ```text wrap
 @browser go to localhost:3000 and check the console for errors
 ```
@@ -576,6 +581,7 @@ Claude Code integrates with git to help with version control workflows directly 
 ### Create commits and pull requests
 
 Claude can stage changes, write commit messages, and create pull requests based on your work:
+
 ```text wrap
 commit my changes with a descriptive message
 create a pr for this feature
@@ -692,6 +698,7 @@ The handler accepts two optional query parameters:
 | `session` | ID of a session to resume, from the folder open in VS Code. With Claude Code v2.1.300 or later, a session from the main checkout or a [worktree](https://code.claude.com/docs/en/worktrees.md) of that folder's repository also resumes. If the session isn't found, a fresh conversation starts instead. If the session is already open in a tab, that tab is focused. To capture a session ID programmatically, see [Continue conversations](https://code.claude.com/docs/en/headless.md#continue-conversations). |
 
 For example, to open a tab pre-filled with "review my changes":
+
 ```text
 vscode://anthropic.claude-code/open?prompt=review%20my%20changes
 ```
@@ -836,6 +843,7 @@ To manage MCP servers without leaving VS Code, type `/mcp` in the chat panel. Fr
 Adding and removing servers in the dialog requires Claude Code v2.1.261 or later.
 
 You can also run `claude mcp add` in VS Code's integrated terminal (`` Ctrl+` `` or `` Cmd+` ``). The dialog and the terminal command save to the same MCP configuration, and changes from either take effect in conversations you start afterwards. The example below adds GitHub's remote MCP server, which authenticates with a [personal access token](https://github.com/settings/personal-access-tokens) passed as a header:
+
 ```bash
 claude mcp add --transport http github https://api.githubcopilot.com/mcp/ \
   --header "Authorization: Bearer YOUR_GITHUB_PAT"
@@ -884,6 +892,7 @@ The server is named `ide` and is hidden from `/mcp` because there's nothing to c
 Hooks and permission rules see the chat panel's diagnostics tool as `mcp__claude-vscode__getDiagnostics`. To cover diagnostics in both the CLI and the chat panel, name both `mcp__ide__getDiagnostics` and `mcp__claude-vscode__getDiagnostics` in your hook or rule.
 
 This `settings.json` example denies both tools:
+
 ```json
 {
   "permissions": {
@@ -959,6 +968,7 @@ Alternatively, rebind the extension to a different key: open the VS Code [Keyboa
 To stop `Ctrl+J` from adding a new line in the prompt box, [unbind the key](https://code.claude.com/docs/en/keybindings.md#unbind-default-shortcuts) in Claude Code's `keybindings.json` file. The extension reads this file in version 2.1.309 or later, so update an older extension in the Extensions view first.
 
 This example is the whole file with the one entry that unbinds the key, `"ctrl+j": null` in a `Chat` block:
+
 ```json
 {
   "bindings": [
@@ -1014,11 +1024,11 @@ If none of the math in Claude's responses is typeset, check the extension's vers
 If one formula shows as written while others near it are typeset, check it for these causes:
 
 * **The formula is inline and the panel doesn't treat it as math**: ask Claude to send it again as a `$$` block on its own lines. The panel leaves an inline formula as written when the text between its `$…$` delimiters:
-* Is more than simple arithmetic yet has no character such as `=`, `+`, or `^` to mark it as math, as in `$O(n log n)$`
-* Starts with a digit and has no such character, as in `$30$` and `$1/N$`
-* Has spaces inside the dollar signs, as in `$ x^2 $`
-* Is longer than 60 characters
-* Is split across two lines. A `\(…\)` formula split across two lines isn't typeset either.
+  * Is more than simple arithmetic yet has no character such as `=`, `+`, or `^` to mark it as math, as in `$O(n log n)$`
+  * Starts with a digit and has no such character, as in `$30$` and `$1/N$`
+  * Has spaces inside the dollar signs, as in `$ x^2 $`
+  * Is longer than 60 characters
+  * Is split across two lines. A `\(…\)` formula split across two lines isn't typeset either.
 * **The formula has a TeX syntax error**: ask Claude to rewrite it with the error corrected.
 * **The formula defines a macro**: a formula with a macro definition such as `\newcommand` or `\def` shows as written. Ask Claude to rewrite it without the macro.
 * **The formula contains an unescaped `%`**: ask Claude to rewrite it with `\%` for a percent sign.
@@ -1031,9 +1041,9 @@ When dictation or the Web tab fails with a certificate error such as `unable to 
 
 * **Dictation**: the microphone button shows the error text after `Dictation error: WebSocket error:`.
 * **Web tab**: the tab that lists [cloud sessions](#resume-cloud-sessions-from-claude-ai) shows `Remote server is not connected` without the error text. To read it in the logs:
-1. Run **Claude Code: Show Logs** from the [Command Palette](#vs-code-commands-and-shortcuts) to open the `Claude VSCode` output channel.
-2. Click **Reconnect** on the tab and wait until it stops showing `Connecting…`.
-3. Search the channel for `Error fetching remote sessions:` or `Failed to fetch organization UUID:`, then read the error text after that prefix on the newest matching line.
+  1. Run **Claude Code: Show Logs** from the [Command Palette](#vs-code-commands-and-shortcuts) to open the `Claude VSCode` output channel.
+  2. Click **Reconnect** on the tab and wait until it stops showing `Connecting…`.
+  3. Search the channel for `Error fetching remote sessions:` or `Failed to fetch organization UUID:`, then read the error text after that prefix on the newest matching line.
 * **Log warning**: a warning naming `an authority that Claude Code does not trust` reports a certificate error. Behind a TLS-inspecting proxy, set `NODE_EXTRA_CA_CERTS` in `env` in `~/.claude/settings.json`. Versions before v2.1.309 don't log this warning.
 
 This fix requires extension version 2.1.307 or later, so update the extension first. Then set `NODE_EXTRA_CA_CERTS` to the certificate file's full path, written without `~`. For a Windows path, write each backslash twice in `settings.json`, as in `C:\\certs\\example-ca.pem`.
@@ -1043,6 +1053,7 @@ This fix requires extension version 2.1.307 or later, so update the extension fi
 > In a window connected to WSL, an SSH host, a dev container, or another system, save the certificate file and edit `~/.claude/settings.json` on that system, not on your local computer.
 
 This example names a certificate file at the Linux or macOS path `/etc/ssl/certs/example-ca.pem`:
+
 ```json ~/.claude/settings.json
 {
   "env": {
@@ -1082,16 +1093,19 @@ If you run `claude` in a VS Code integrated terminal, Claude Code reinstalls the
 To also remove extension data and reset all settings, delete the extension's storage directory for your platform.
 
 On macOS:
+
 ```bash
 rm -rf ~/Library/"Application Support"/Code/User/globalStorage/anthropic.claude-code
 ```
 
 On Linux:
+
 ```bash
 rm -rf ~/.config/Code/User/globalStorage/anthropic.claude-code
 ```
 
 On Windows, in PowerShell:
+
 ```powershell
 Remove-Item -Recurse -Force "$env:APPDATA\Code\User\globalStorage\anthropic.claude-code"
 ```

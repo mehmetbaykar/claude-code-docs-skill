@@ -47,6 +47,7 @@ Open a terminal in the directory where you want to keep the plugin, such as `~/p
 **1. Create the plugin directory**
 
 Create the plugin directory, with a `.claude-plugin/` folder inside it to hold the manifest:
+
 ```bash
 mkdir -p my-first-plugin/.claude-plugin
 ```
@@ -54,6 +55,7 @@ mkdir -p my-first-plugin/.claude-plugin
 **2. Write the manifest**
 
 The [manifest](https://code.claude.com/docs/en/plugins/manifest-reference.md) is a JSON file named `plugin.json` that tells Claude Code the plugin's name and describes it. Save this one as `my-first-plugin/.claude-plugin/plugin.json`:
+
 ```json my-first-plugin/.claude-plugin/plugin.json
 {
   "name": "my-first-plugin",
@@ -79,11 +81,13 @@ Only `plugin.json` goes inside `.claude-plugin/`. The skill you add next goes di
 **3. Add a skill**
 
 This plugin's one component is a skill. Each skill is a directory under `skills/` that contains a `SKILL.md` file. Create the skill's directory:
+
 ```bash
 mkdir -p my-first-plugin/skills/hello
 ```
 
 Then create `my-first-plugin/skills/hello/SKILL.md` with this content:
+
 ```markdown my-first-plugin/skills/hello/SKILL.md
 ---
 name: hello
@@ -99,6 +103,7 @@ The `disable-model-invocation: true` line means Claude doesn't run the skill on 
 **4. Validate the plugin**
 
 Check the manifest and the skill's frontmatter before you run anything:
+
 ```bash
 claude plugin validate ./my-first-plugin
 ```
@@ -108,11 +113,13 @@ The command prints the manifest path it checked and `✔ Validation passed`. If 
 **5. Run Claude Code with the plugin**
 
 Start a session with the plugin loaded:
+
 ```bash
 claude --plugin-dir ./my-first-plugin
 ```
 
 Once Claude Code starts, run the skill:
+
 ```text
 /my-first-plugin:hello
 ```
@@ -169,6 +176,7 @@ You can load a plugin for a single session in three ways: from a directory or `.
 #### Load a plugin from a directory or `.zip`
 
 When you start `claude` from your shell, pass `--plugin-dir` with the plugin's root directory or a `.zip` archive of it. Repeat the flag to load several plugins:
+
 ```bash
 claude --plugin-dir ./my-first-plugin --plugin-dir ./other-plugin.zip
 ```
@@ -191,6 +199,7 @@ A message appears in the session for each of these changes. If loading or unload
 #### Load a plugin from a URL
 
 When you start `claude` from your shell, pass `--plugin-url` with the address of a `.zip` archive, such as a build artifact your CI publishes:
+
 ```bash
 claude --plugin-url https://example.com/my-first-plugin.zip
 ```
@@ -214,6 +223,7 @@ Your personal skills directory is `~/.claude/skills/`, and a folder there that c
 #### Scaffold the plugin with `claude plugin init`
 
 `claude plugin init` writes a starter plugin under `~/.claude/skills/`. Scaffold one from your shell:
+
 ```bash
 claude plugin init my-tool
 ```
@@ -279,11 +289,13 @@ Run the commands in these steps from the project root, which is the directory th
 **1. Create the plugin structure**
 
 Create the plugin directory and its `.claude-plugin/` folder alongside `.claude/`. You can move the plugin anywhere afterwards.
+
 ```bash
 mkdir -p my-plugin/.claude-plugin
 ```
 
 Create `my-plugin/.claude-plugin/plugin.json`:
+
 ```json my-plugin/.claude-plugin/plugin.json
 {
   "name": "my-plugin",
@@ -295,12 +307,15 @@ Create `my-plugin/.claude-plugin/plugin.json`:
 **2. Copy your existing files**
 
 Copy each configuration directory you have to the plugin root, and skip the command for any directory you don't have.
+
 ```bash
 cp -r .claude/commands my-plugin/
 ```
+
 ```bash
 cp -r .claude/agents my-plugin/
 ```
+
 ```bash
 cp -r .claude/skills my-plugin/
 ```
@@ -310,6 +325,7 @@ Run `ls -a my-plugin` to confirm that each directory you copied appears next to 
 **3. Move your hooks**
 
 If you have hooks in `.claude/settings.json` or `.claude/settings.local.json`, create a hooks directory:
+
 ```bash
 mkdir -p my-plugin/hooks
 ```
@@ -317,6 +333,7 @@ mkdir -p my-plugin/hooks
 Create `my-plugin/hooks/hooks.json` and copy the `hooks` object from your settings file into it. The format is the same.
 
 This example shows the shape with one hook that runs a linter on each file Claude writes or edits. Replace the example with your own `hooks` object.
+
 ```json my-plugin/hooks/hooks.json
 {
   "hooks": {
@@ -333,6 +350,7 @@ This example shows the shape with one hook that runs a linter on each file Claud
 **4. Test the migrated plugin**
 
 Load the plugin for a session:
+
 ```bash
 claude --plugin-dir ./my-plugin
 ```

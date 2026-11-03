@@ -11,6 +11,7 @@ path: /docs/en/agent-sdk/python
 ## Installation
 
 Install the package into a virtual environment. On recent Debian, Ubuntu, and Homebrew Python installs, running `pip install` against system Python fails with `error: externally-managed-environment`.
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
@@ -46,6 +47,7 @@ Use `ClaudeSDKClient` for interactive applications such as chat interfaces, or w
 ### `query()`
 
 Creates a new session for each interaction with Claude Code by default. Returns an async iterator that yields messages as they arrive. Each call to `query()` starts fresh with no memory of previous interactions unless you pass `continue_conversation=True` or `resume` in [`ClaudeAgentOptions`](#claudeagentoptions). See [Sessions](https://code.claude.com/docs/en/agent-sdk/sessions.md).
+
 ```python
 async def query(
     *,
@@ -68,6 +70,7 @@ async def query(
 Returns an `AsyncIterator[Message]` that yields messages from the conversation.
 
 #### Example - With options
+
 ```python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions
@@ -87,6 +90,7 @@ asyncio.run(main())
 ### `tool()`
 
 Decorator for defining MCP tools with type safety.
+
 ```python
 def tool(
     name: str,
@@ -108,12 +112,13 @@ def tool(
 #### Input schema options
 
 1. **Simple type mapping** (recommended):
-```python
+
+   ```python
    {"text": str, "count": int, "enabled": bool}
-```
+   ```
 
 2. **JSON Schema format** (for complex validation):
-```python
+   ```python
    {
        "type": "object",
        "properties": {
@@ -122,13 +127,14 @@ def tool(
        },
        "required": ["text"],
    }
-```
+   ```
 
 3. **TypedDict class**: a typed schema whose `NotRequired` keys are left out of `required`.
 
-* **Python 3.11 and later**: import `TypedDict` and `NotRequired` from `typing`.
-* **Python 3.10**: `typing` has no `NotRequired`. Import `TypedDict` and `NotRequired` from `typing_extensions`, which the SDK installs on Python 3.10.
-```python
+   * **Python 3.11 and later**: import `TypedDict` and `NotRequired` from `typing`.
+   * **Python 3.10**: `typing` has no `NotRequired`. Import `TypedDict` and `NotRequired` from `typing_extensions`, which the SDK installs on Python 3.10.
+
+   ```python
    from typing import Annotated, Any, NotRequired, TypedDict
    from claude_agent_sdk import tool
 
@@ -140,7 +146,7 @@ def tool(
    async def get_forecast(args: dict[str, Any]) -> dict[str, Any]:
        hours = args.get("hours", 12)
        return {"content": [{"type": "text", "text": f"{hours}-hour forecast for {args['latitude']}"}]}
-```
+   ```
 
 In the simple mapping and TypedDict forms, wrap a type in `Annotated[type, "description"]` to set the field's description.
 
@@ -149,6 +155,7 @@ In the simple mapping and TypedDict forms, wrap a type in `Annotated[type, "desc
 A decorator function that wraps the tool implementation and returns an `SdkMcpTool` instance.
 
 #### Example
+
 ```python
 from claude_agent_sdk import tool
 from typing import Any
@@ -174,6 +181,7 @@ All fields are optional. Clients shouldn't rely on the hints for security decisi
 | `idempotentHint` | `bool \| None` | `False` | If `True`, repeated calls with the same arguments have no additional effect (only meaningful when `readOnlyHint` is `False`) |
 | `openWorldHint` | `bool \| None` | `True` | If `True`, the tool interacts with external entities (for example, web search). If `False`, the tool's domain is closed (for example, a memory tool) |
 | `maxResultSizeChars` | `int \| None` | `None` | Number of characters up to which Claude Code keeps this tool's text result inline in the conversation instead of saving it to a file, up to 500,000. Results that contain images aren't affected. A Claude Code setting rather than an MCP hint: the SDK sends it in the tool's `_meta` as `anthropic/maxResultSizeChars`. See [Raise the limit for a specific tool](https://code.claude.com/docs/en/mcp.md#raise-the-limit-for-a-specific-tool) |
+
 ```python
 from claude_agent_sdk import tool, ToolAnnotations
 from typing import Any
@@ -191,6 +199,7 @@ async def search(args: dict[str, Any]) -> dict[str, Any]:
 ### `create_sdk_mcp_server()`
 
 Create an in-process MCP server that runs within your Python application.
+
 ```python
 def create_sdk_mcp_server(
     name: str,
@@ -212,6 +221,7 @@ def create_sdk_mcp_server(
 Returns an `McpSdkServerConfig` object that can be passed to `ClaudeAgentOptions.mcp_servers`.
 
 #### Example
+
 ```python
 from claude_agent_sdk import tool, create_sdk_mcp_server, ClaudeAgentOptions
 
@@ -239,6 +249,7 @@ options = ClaudeAgentOptions(
 ### `list_sessions()`
 
 Lists past sessions with metadata. Filter by project directory or list sessions across all projects. Synchronous; returns immediately.
+
 ```python
 def list_sessions(
     directory: str | None = None,
@@ -275,6 +286,7 @@ def list_sessions(
 #### Example
 
 Print the 10 most recent sessions for a project. Results are sorted by `last_modified` descending, so the first item is the newest. Omit `directory` to search across all projects.
+
 ```python
 from claude_agent_sdk import list_sessions
 
@@ -285,6 +297,7 @@ for session in list_sessions(directory="/path/to/project", limit=10):
 ### `get_session_messages()`
 
 Retrieves messages from a past session. Synchronous; returns immediately.
+
 ```python
 def get_session_messages(
     session_id: str,
@@ -315,6 +328,7 @@ def get_session_messages(
 | `parent_agent_id` | `str \| None` | For messages from a [nested subagent](https://code.claude.com/docs/en/sub-agents.md#let-subagents-spawn-their-own-subagents), the agent id of the parent subagent. `None` for main-session messages, top-level subagent messages, and older sessions. Requires Python Agent SDK 0.2.140 or later |
 
 #### Example
+
 ```python
 from claude_agent_sdk import list_sessions, get_session_messages
 
@@ -328,6 +342,7 @@ if sessions:
 ### `get_session_info()`
 
 Reads metadata for a single session by ID without scanning the full project directory. Synchronous; returns immediately.
+
 ```python
 def get_session_info(
     session_id: str,
@@ -347,6 +362,7 @@ Returns [`SDKSessionInfo`](#return-type-sdksessioninfo), or `None` if the sessio
 #### Example
 
 Look up a single session's metadata without scanning the project directory. Useful when you already have a session ID from a previous run.
+
 ```python
 from claude_agent_sdk import get_session_info
 
@@ -358,6 +374,7 @@ if info:
 ### `rename_session()`
 
 Renames a session by appending a custom-title entry. Repeated calls are safe; the most recent title wins. Synchronous.
+
 ```python
 def rename_session(
     session_id: str,
@@ -379,6 +396,7 @@ Raises `ValueError` if `session_id` is not a valid UUID or `title` is empty; `Fi
 #### Example
 
 Rename the most recent session so it's easier to find later. The new title appears in [`SDKSessionInfo.custom_title`](#return-type-sdksessioninfo) on subsequent reads.
+
 ```python
 from claude_agent_sdk import list_sessions, rename_session
 
@@ -390,6 +408,7 @@ if sessions:
 ### `tag_session()`
 
 Tags a session. Pass `None` to clear the tag. Repeated calls are safe; the most recent tag wins. Synchronous.
+
 ```python
 def tag_session(
     session_id: str,
@@ -411,6 +430,7 @@ Raises `ValueError` if `session_id` is not a valid UUID or `tag` is empty after 
 #### Example
 
 Tag a session, then filter by that tag on a later read. Pass `None` to clear an existing tag.
+
 ```python
 from claude_agent_sdk import list_sessions, tag_session
 
@@ -428,6 +448,7 @@ for session in list_sessions(directory="/path/to/project"):
 ### `fork_session()`
 
 Copies a session's transcript into a new session so you can take the conversation in another direction while the original stays unchanged. To branch from an earlier point in the conversation, pass `up_to_message_id`. Synchronous.
+
 ```python
 def fork_session(
     session_id: str,
@@ -457,6 +478,7 @@ Returns a `ForkSessionResult` whose `session_id` is the new session's UUID. Pass
 #### Example
 
 Fork the most recent session under a new title, then resume the fork. The original session keeps its own history.
+
 ```python
 from claude_agent_sdk import fork_session, list_sessions
 
@@ -471,6 +493,7 @@ if sessions:
 ### `ClaudeSDKClient`
 
 **Maintains a conversation session across multiple exchanges.** This is the Python equivalent of how the TypeScript SDK's `query()` function works internally - it creates a client object that can continue conversations. See the [comparison with `query()`](#choosing-between-query-and-claudesdkclient).
+
 ```python
 class ClaudeSDKClient:
     def __init__(self, options: ClaudeAgentOptions | None = None, transport: Transport | None = None)
@@ -515,6 +538,7 @@ class ClaudeSDKClient:
 #### Context Manager Support
 
 The client can be used as an async context manager for automatic connection management:
+
 ```python
 import asyncio
 from claude_agent_sdk import ClaudeSDKClient
@@ -531,6 +555,7 @@ asyncio.run(main())
 > **Important:** When iterating over messages, avoid using `break` to exit early as this can cause asyncio cleanup issues. Instead, let the iteration complete naturally or use flags to track when you've found what you need.
 
 #### Example - Continuing a conversation
+
 ```python
 import asyncio
 from claude_agent_sdk import ClaudeSDKClient, AssistantMessage, TextBlock, ResultMessage
@@ -571,6 +596,7 @@ asyncio.run(main())
 #### Example - Streaming input with ClaudeSDKClient
 
 `query()` also accepts an async iterable of user message dicts, so you can assemble the prompt at send time or include content blocks such as images. Claude Code starts responding to the first yielded message as soon as it arrives, without waiting for the iterable to finish, and `receive_response()` stops at the `ResultMessage` that ends that response. Put everything Claude should read before answering into one message, as this generator does, and pair each `query()` call with its own `receive_response()` loop.
+
 ```python
 import asyncio
 from claude_agent_sdk import ClaudeSDKClient
@@ -606,6 +632,7 @@ asyncio.run(main())
 ```
 
 #### Example - Using interrupts
+
 ```python
 import asyncio
 from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions, ResultMessage
@@ -647,6 +674,7 @@ asyncio.run(interruptible_task())
 > **Buffer behavior after interrupt:** `interrupt()` sends a stop signal but does not clear the message buffer. Messages already produced by the interrupted task, including its `ResultMessage`, remain in the stream. You must drain them with `receive_response()` before reading the response to a new query. If you send a new query immediately after `interrupt()` and call `receive_response()` only once, you'll receive the interrupted task's messages, not the new query's response.
 
 #### Example - Advanced permission control
+
 ```python
 import asyncio
 from claude_agent_sdk import ClaudeSDKClient, ClaudeAgentOptions
@@ -700,6 +728,7 @@ asyncio.run(main())
 ### `SdkMcpTool`
 
 Definition for an SDK MCP tool created with the `@tool` decorator.
+
 ```python
 @dataclass
 class SdkMcpTool(Generic[T]):
@@ -725,6 +754,7 @@ Abstract base class for custom transport implementations. Use this to communicat
 > [!WARNING]
 >
 > This is a low-level internal API. The interface may change in future releases. Custom implementations must be updated to match any interface changes.
+
 ```python
 from abc import ABC, abstractmethod
 from collections.abc import AsyncIterator
@@ -764,6 +794,7 @@ Import: `from claude_agent_sdk import Transport`
 ### `ClaudeAgentOptions`
 
 Configuration dataclass for Claude Code queries.
+
 ```python
 @dataclass
 class ClaudeAgentOptions:
@@ -873,6 +904,7 @@ class ClaudeAgentOptions:
 #### Handle slow or stalled API responses
 
 The CLI subprocess reads several environment variables that control API timeouts and stall detection. Pass them through `ClaudeAgentOptions.env`:
+
 ```python
 from claude_agent_sdk import ClaudeAgentOptions
 
@@ -888,17 +920,18 @@ options = ClaudeAgentOptions(
 * [`API_TIMEOUT_MS`](https://code.claude.com/docs/en/env-vars): how long each request attempt can wait for response headers, in milliseconds. It doesn't limit how long a streaming response runs after the headers arrive. Default `600000`. Applies to the main loop and all subagents.
 * `CLAUDE_CODE_MAX_RETRIES`: maximum API retries. Default `10`, capped at `15`. Each retry gets its own `API_TIMEOUT_MS` window.
 
-For unattended runs that need to wait through longer outages, set [`CLAUDE_CODE_RETRY_WATCHDOG=1`](https://code.claude.com/docs/en/errors#tune-retry-behavior): it retries transient capacity errors indefinitely and, on Claude Code v2.1.199 or later, raises the default for other transient errors to `300` and removes the cap on this variable.
+  For unattended runs that need to wait through longer outages, set [`CLAUDE_CODE_RETRY_WATCHDOG=1`](https://code.claude.com/docs/en/errors#tune-retry-behavior): it retries transient capacity errors indefinitely and, on Claude Code v2.1.199 or later, raises the default for other transient errors to `300` and removes the cap on this variable.
 * `CLAUDE_ASYNC_AGENT_STALL_TIMEOUT_MS`: stall watchdog for subagents. While the stream watchdog is on, the default is `CLAUDE_STREAM_IDLE_TIMEOUT_MS` plus 5 minutes, which comes to `600000` unless you raise that variable. With the stream watchdog off, the default is `600000`. Before v2.1.257, the default was always `600000`.
 
-The timer resets on each stream event. On a stall, Claude Code aborts the subagent and reports the stall to the parent. For a background subagent, it also marks the task failed and attaches any partial result.
+  The timer resets on each stream event. On a stall, Claude Code aborts the subagent and reports the stall to the parent. For a background subagent, it also marks the task failed and attaches any partial result.
 * `CLAUDE_ENABLE_STREAM_WATCHDOG` with `CLAUDE_STREAM_IDLE_TIMEOUT_MS`: stream watchdog that aborts the request when headers have arrived but the response body stops streaming. The watchdog is on by default for all providers; set `CLAUDE_ENABLE_STREAM_WATCHDOG=0` to disable it. `CLAUDE_STREAM_IDLE_TIMEOUT_MS` defaults to `300000` and is clamped to that minimum. After the abort, [Automatic retries](https://code.claude.com/docs/en/errors.md#automatic-retries) covers what Claude Code does, based on how far the response had progressed.
 
-While the watchdog waits out a response that a gateway behind `ANTHROPIC_BASE_URL` holds open with keep-alive pings, a host that sets `include_partial_messages` keeps receiving `ping` [`StreamEvent`](#streamevent) messages. Read those frames as liveness rather than timing the session out on silence. Before v2.1.257, the frames stopped 5 minutes after the last real stream event.
+  While the watchdog waits out a response that a gateway behind `ANTHROPIC_BASE_URL` holds open with keep-alive pings, a host that sets `include_partial_messages` keeps receiving `ping` [`StreamEvent`](#streamevent) messages. Read those frames as liveness rather than timing the session out on silence. Before v2.1.257, the frames stopped 5 minutes after the last real stream event.
 
 ### `OutputFormat`
 
 Configuration for structured output validation. Pass this as a `dict` to the `output_format` field on `ClaudeAgentOptions`:
+
 ```python
 # Expected dict shape for output_format
 {
@@ -915,6 +948,7 @@ Configuration for structured output validation. Pass this as a `dict` to the `ou
 ### `SystemPromptPreset`
 
 Configuration for using Claude Code's preset system prompt with optional additions.
+
 ```python
 class SystemPromptPreset(TypedDict):
     type: Literal["preset"]
@@ -935,6 +969,7 @@ class SystemPromptPreset(TypedDict):
 ### `SystemPromptCustom`
 
 A custom system prompt in object form, equivalent to passing a string as `system_prompt`, that can also set `snapshot`. Requires `claude-agent-sdk` v0.2.153 or later.
+
 ```python
 class SystemPromptCustom(TypedDict):
     type: Literal["custom"]
@@ -951,6 +986,7 @@ class SystemPromptCustom(TypedDict):
 ### `SystemPromptFile`
 
 Configuration for loading a custom system prompt from a file instead of passing it as a string. The SDK maps this to the CLI [`--system-prompt-file`](https://code.claude.com/docs/en/cli-reference#system-prompt-flags) flag. Use the file form when the prompt is large: the SDK passes a string `system_prompt` on the CLI subprocess argv, which is subject to OS command-line length limits before the SDK sends any API request. On Linux a single argument longer than roughly 128 KB fails at process spawn with `Argument list too long`. On Windows the whole command line is capped at roughly 32 KB, so the string form fails at a lower threshold.
+
 ```python
 class SystemPromptFile(TypedDict):
     type: Literal["file"]
@@ -965,6 +1001,7 @@ class SystemPromptFile(TypedDict):
 ### `SettingSource`
 
 Controls which filesystem-based configuration sources the SDK loads settings from.
+
 ```python
 SettingSource = Literal["user", "project", "local"]
 ```
@@ -982,6 +1019,7 @@ When `setting_sources` is omitted or `None` and `skills` is not set, `query()` l
 #### Why use setting\_sources
 
 **Disable filesystem settings:**
+
 ```python
 # Do not load user, project, or local settings from disk
 import asyncio
@@ -1004,6 +1042,7 @@ asyncio.run(main())
 > In Python SDK 0.1.59 and earlier, an empty list was treated the same as omitting the option, so `setting_sources=[]` did not disable filesystem settings. Upgrade to a newer release if you need an empty list to take effect. The TypeScript SDK is not affected.
 
 **Load only specific setting sources:**
+
 ```python
 # Load only project settings, ignore user and local
 import asyncio
@@ -1022,6 +1061,7 @@ asyncio.run(main())
 ```
 
 **SDK-only applications:**
+
 ```python
 # Define everything programmatically.
 # Pass [] to opt out of filesystem setting sources.
@@ -1062,6 +1102,7 @@ Programmatic options such as `agents`, `allowed_tools`, and `settings` override 
 ### `AgentDefinition`
 
 Configuration for a subagent defined programmatically.
+
 ```python
 @dataclass
 class AgentDefinition:
@@ -1103,6 +1144,7 @@ class AgentDefinition:
 ### `PermissionMode`
 
 Permission modes for controlling tool execution.
+
 ```python
 PermissionMode = Literal[
     "default",  # Standard permission behavior
@@ -1117,6 +1159,7 @@ PermissionMode = Literal[
 ### `EffortLevel`
 
 Effort levels for guiding thinking depth.
+
 ```python
 EffortLevel = Literal[
     "low",  # Minimal thinking, fastest responses
@@ -1130,6 +1173,7 @@ EffortLevel = Literal[
 ### `CanUseTool`
 
 Type alias for tool permission callback functions.
+
 ```python
 CanUseTool = Callable[
     [str, dict[str, Any], ToolPermissionContext], Awaitable[PermissionResult]
@@ -1151,6 +1195,7 @@ An allow rule doesn't pre-approve the [actions no mode auto-approves](https://co
 ### `ToolPermissionContext`
 
 Context information passed to tool permission callbacks.
+
 ```python
 @dataclass
 class ToolPermissionContext:
@@ -1180,6 +1225,7 @@ class ToolPermissionContext:
 ### `PermissionResult`
 
 Union type for permission callback results.
+
 ```python
 PermissionResult = PermissionResultAllow | PermissionResultDeny
 ```
@@ -1187,6 +1233,7 @@ PermissionResult = PermissionResultAllow | PermissionResultDeny
 ### `PermissionResultAllow`
 
 Result indicating the tool call should be allowed.
+
 ```python
 @dataclass
 class PermissionResultAllow:
@@ -1206,6 +1253,7 @@ If you return `PermissionResultAllow` with more than 4,096 items in `updated_per
 ### `PermissionResultDeny`
 
 Result indicating the tool call should be denied.
+
 ```python
 @dataclass
 class PermissionResultDeny:
@@ -1223,6 +1271,7 @@ class PermissionResultDeny:
 ### `PermissionUpdate`
 
 Configuration for updating permissions programmatically.
+
 ```python
 @dataclass
 class PermissionUpdate:
@@ -1255,6 +1304,7 @@ class PermissionUpdate:
 ### `PermissionRuleValue`
 
 A rule to add, replace, or remove in a permission update.
+
 ```python
 @dataclass
 class PermissionRuleValue:
@@ -1265,6 +1315,7 @@ class PermissionRuleValue:
 ### `ToolsPreset`
 
 Preset tools configuration for using Claude Code's default tool set.
+
 ```python
 class ToolsPreset(TypedDict):
     type: Literal["preset"]
@@ -1274,6 +1325,7 @@ class ToolsPreset(TypedDict):
 ### `ThinkingConfig`
 
 Controls extended thinking behavior. A union of three configurations:
+
 ```python
 ThinkingDisplay = Literal["summarized", "omitted"]
 
@@ -1301,6 +1353,7 @@ ThinkingConfig = ThinkingConfigAdaptive | ThinkingConfigEnabled | ThinkingConfig
 The optional `display` field controls whether thinking text is returned `"summarized"` or `"omitted"`. On Claude Opus 4.7 and later, the API default is `"omitted"`, so set `"summarized"` to receive thinking content in [`ThinkingBlock`](#thinkingblock) outputs. Claude Code doesn't pass your `display` value to some providers, such as Amazon Bedrock and Google Cloud's Agent Platform. On those providers, Opus 4.7 and later return empty `ThinkingBlock` outputs even when you set `display` to `"summarized"`.
 
 Because these are `TypedDict` classes, they're plain dicts at runtime. Either construct them as dict literals or call the class like a constructor; both produce a `dict`. Access fields with `config["budget_tokens"]`, not `config.budget_tokens`:
+
 ```python
 from claude_agent_sdk import ClaudeAgentOptions, ThinkingConfigEnabled
 
@@ -1316,6 +1369,7 @@ print(config["budget_tokens"])  # 20000
 ### `TaskBudget`
 
 API-side task budget in tokens, used with the `task_budget` field in `ClaudeAgentOptions`.
+
 ```python
 class TaskBudget(TypedDict):
     total: int
@@ -1330,6 +1384,7 @@ Because this is a `TypedDict`, pass it as a plain dict, such as `ClaudeAgentOpti
 ### `SdkBeta`
 
 Literal type for SDK beta features.
+
 ```python
 SdkBeta = Literal["context-1m-2025-08-07"]
 ```
@@ -1343,6 +1398,7 @@ Use with the `betas` field in `ClaudeAgentOptions` to enable beta features.
 ### `McpSdkServerConfig`
 
 Configuration for SDK MCP servers created with `create_sdk_mcp_server()`.
+
 ```python
 class McpSdkServerConfig(TypedDict):
     type: Literal["sdk"]
@@ -1353,6 +1409,7 @@ class McpSdkServerConfig(TypedDict):
 ### `McpServerConfig`
 
 Union type for MCP server configurations.
+
 ```python
 McpServerConfig = (
     McpStdioServerConfig | McpSSEServerConfig | McpHttpServerConfig | McpSdkServerConfig
@@ -1360,6 +1417,7 @@ McpServerConfig = (
 ```
 
 #### `McpStdioServerConfig`
+
 ```python
 class McpStdioServerConfig(TypedDict):
     type: NotRequired[Literal["stdio"]]  # Optional for backwards compatibility
@@ -1369,6 +1427,7 @@ class McpStdioServerConfig(TypedDict):
 ```
 
 #### `McpSSEServerConfig`
+
 ```python
 class McpSSEServerConfig(TypedDict):
     type: Literal["sse"]
@@ -1377,6 +1436,7 @@ class McpSSEServerConfig(TypedDict):
 ```
 
 #### `McpHttpServerConfig`
+
 ```python
 class McpHttpServerConfig(TypedDict):
     type: Literal["http"]
@@ -1387,6 +1447,7 @@ class McpHttpServerConfig(TypedDict):
 ### `McpServerStatusConfig`
 
 The configuration of an MCP server as reported by [`get_mcp_status()`](#methods). This is the union of all [`McpServerConfig`](#mcpserverconfig) transport variants plus an output-only `claudeai-proxy` variant for servers proxied through claude.ai.
+
 ```python
 McpServerStatusConfig = (
     McpStdioServerConfig
@@ -1402,6 +1463,7 @@ McpServerStatusConfig = (
 ### `McpStatusResponse`
 
 Response from [`ClaudeSDKClient.get_mcp_status()`](#methods). Wraps the list of server statuses under the `mcpServers` key.
+
 ```python
 class McpStatusResponse(TypedDict):
     mcpServers: list[McpServerStatus]
@@ -1410,6 +1472,7 @@ class McpStatusResponse(TypedDict):
 ### `McpServerStatus`
 
 Status of a connected MCP server, contained in [`McpStatusResponse`](#mcpstatusresponse).
+
 ```python
 class McpServerStatus(TypedDict):
     name: str
@@ -1436,6 +1499,7 @@ class McpServerStatus(TypedDict):
 Response from [`ClaudeSDKClient.get_context_usage()`](#methods). The response includes the payload Claude Code renders for the `/context` command in an interactive session. Alongside the token counts, that payload carries display fields such as `color` and `gridRows` that Claude Code uses to draw the `/context` usage grid.
 
 Claude Code builds this payload by sending several requests to the [token-counting](https://platform.claude.com/docs/en/build-with-claude/token-counting) API. These requests don't appear in the message stream, so cost tracking that reads the stream won't see them. On the Anthropic API, token counting isn't billed.
+
 ```python
 class ContextUsageResponse(TypedDict):
     categories: list[ContextUsageCategory]
@@ -1464,6 +1528,7 @@ Each `ContextUsageCategory` entry carries `name`, `tokens`, `color`, and an opti
 ### `SdkPluginConfig`
 
 Configuration for loading plugins in the SDK.
+
 ```python
 class SdkPluginConfig(TypedDict):
     type: Literal["local"]
@@ -1476,6 +1541,7 @@ class SdkPluginConfig(TypedDict):
 | `path` | `str` | Absolute or relative path to the plugin directory |
 
 **Example:**
+
 ```python
 plugins = [
     {"type": "local", "path": "./my-plugin"},
@@ -1490,6 +1556,7 @@ For complete information on creating and using plugins, see [Plugins](https://co
 ### `Message`
 
 Union type of all possible messages.
+
 ```python
 Message = (
     UserMessage
@@ -1505,6 +1572,7 @@ Message = (
 ### `UserMessage`
 
 User input message.
+
 ```python
 @dataclass
 class UserMessage:
@@ -1530,6 +1598,7 @@ The CLI omits the key when the result has no links and on results from subagents
 ### `AssistantMessage`
 
 Assistant response message with content blocks.
+
 ```python
 @dataclass
 class AssistantMessage:
@@ -1559,6 +1628,7 @@ class AssistantMessage:
 ### `AssistantMessageError`
 
 Possible error types for assistant messages.
+
 ```python
 AssistantMessageError = Literal[
     "authentication_failed",
@@ -1575,6 +1645,7 @@ The underlying CLI process can emit error types this Literal doesn't list, such 
 ### `SystemMessage`
 
 System message with metadata.
+
 ```python
 @dataclass
 class SystemMessage:
@@ -1587,6 +1658,7 @@ Subtypes that have no dataclass of their own arrive as `SystemMessage`. To follo
 ### `ResultMessage`
 
 Final result message with cost and usage information.
+
 ```python
 @dataclass
 class ResultMessage:
@@ -1616,11 +1688,11 @@ The `subtype` field determines which other fields are populated. It is one of `"
 Several fields carry diagnostic detail about how the conversation ended:
 
 * `is_error`: `True` when the conversation ended in an error state. Always `True` on the `error_*` subtypes. On `subtype="success"` it is `True` in three cases. Check `stop_reason` to tell them apart:
-* `"refusal"`: the model declined to respond. Read the refusal text in `result`, or in the preceding `AssistantMessage` when `result` is empty.
-* `"tool_deferred_unavailable"`: the [deferred tool](https://code.claude.com/docs/en/hooks.md#defer-a-tool-call-for-later) was no longer available when you resumed the session, for example because its MCP server wasn't connected. In the two cases below, a prompt you send after resuming counts the same as one passed with the resume:
-* No prompt: the call is still pending. Make the tool available and resume again without a prompt, and the call runs first.
-* A prompt: Claude Code answers it without the tool's result, and the deferred call is gone. Send a new prompt if you still need the tool called.
-* Any other value: the turn ended on an error that Claude Code reported in place of a model response, such as an API error. Read `terminal_reason` for the cause, `result` for the message, and `api_error_status` for the HTTP status when the API returned one.
+  * `"refusal"`: the model declined to respond. Read the refusal text in `result`, or in the preceding `AssistantMessage` when `result` is empty.
+  * `"tool_deferred_unavailable"`: the [deferred tool](https://code.claude.com/docs/en/hooks.md#defer-a-tool-call-for-later) was no longer available when you resumed the session, for example because its MCP server wasn't connected. In the two cases below, a prompt you send after resuming counts the same as one passed with the resume:
+    * No prompt: the call is still pending. Make the tool available and resume again without a prompt, and the call runs first.
+    * A prompt: Claude Code answers it without the tool's result, and the deferred call is gone. Send a new prompt if you still need the tool called.
+  * Any other value: the turn ended on an error that Claude Code reported in place of a model response, such as an API error. Read `terminal_reason` for the cause, `result` for the message, and `api_error_status` for the HTTP status when the API returned one.
 * `api_error_status`: the HTTP status code of the terminating API error. `None` when the turn ended without one. Populated only on `subtype="success"`.
 * `result`: text of the final assistant message on `subtype="success"`, or `None` on the `error_*` subtypes. When `subtype="success"` and `is_error=True`, this holds the API error string if one is available but can be empty, so check `api_error_status` and the preceding `AssistantMessage` content for detail.
 * `errors`: loop-level error strings such as the max-turns message. Populated only on the `error_*` subtypes.
@@ -1662,6 +1734,7 @@ Each value in `model_usage` is a `ModelUsage` TypedDict, imported via `from clau
 ### `StreamEvent`
 
 Stream event for partial message updates during streaming. Only received when `include_partial_messages=True` in `ClaudeAgentOptions`. Import via `from claude_agent_sdk.types import StreamEvent`.
+
 ```python
 @dataclass
 class StreamEvent:
@@ -1681,6 +1754,7 @@ class StreamEvent:
 ### `RateLimitEvent`
 
 Emitted when rate limit status changes (for example, from `"allowed"` to `"allowed_warning"`). Use this to warn users before they hit a hard limit, or to back off when status is `"rejected"`.
+
 ```python
 @dataclass
 class RateLimitEvent:
@@ -1698,6 +1772,7 @@ class RateLimitEvent:
 ### `RateLimitInfo`
 
 Rate limit state carried by [`RateLimitEvent`](#ratelimitevent).
+
 ```python
 RateLimitStatus = Literal["allowed", "allowed_warning", "rejected"]
 RateLimitType = Literal[
@@ -1730,6 +1805,7 @@ class RateLimitInfo:
 ### `ConversationResetMessage`
 
 Emitted when the conversation is replaced without ending the connection, such as after `/clear`. See [Track costs in streaming input mode](https://code.claude.com/docs/en/agent-sdk/cost-tracking.md#track-costs-in-streaming-input-mode) for how a reset affects the running totals on later `ResultMessage` objects. Requires Python Agent SDK 0.2.137 or later.
+
 ```python
 @dataclass
 class ConversationResetMessage:
@@ -1747,6 +1823,7 @@ class ConversationResetMessage:
 ### `TaskStartedMessage`
 
 Emitted when a background task starts. A background task is anything tracked outside the main turn: a backgrounded Bash command, a [Monitor](#monitor) watch, a subagent spawned via the Agent tool, or a remote agent. The `task_type` field tells you which. This naming is unrelated to the `Task`-to-`Agent` tool rename.
+
 ```python
 @dataclass
 class TaskStartedMessage(SystemMessage):
@@ -1770,6 +1847,7 @@ class TaskStartedMessage(SystemMessage):
 ### `TaskUsage`
 
 Token and timing data for a background task.
+
 ```python
 class TaskUsage(TypedDict):
     total_tokens: int
@@ -1780,6 +1858,7 @@ class TaskUsage(TypedDict):
 ### `TaskProgressMessage`
 
 Emitted periodically with progress updates for a running background task.
+
 ```python
 @dataclass
 class TaskProgressMessage(SystemMessage):
@@ -1805,6 +1884,7 @@ class TaskProgressMessage(SystemMessage):
 ### `TaskNotificationMessage`
 
 Emitted when a background task completes, fails, or is stopped. Background tasks include `run_in_background` Bash commands, Monitor watches, and background subagents.
+
 ```python
 @dataclass
 class TaskNotificationMessage(SystemMessage):
@@ -1838,6 +1918,7 @@ The dataclass has no field for `resource_links`. Read it from the `data` dict th
 ### `ContentBlock`
 
 Union type of all content blocks.
+
 ```python
 ContentBlock = (
     TextBlock
@@ -1852,6 +1933,7 @@ ContentBlock = (
 ### `TextBlock`
 
 Text content block.
+
 ```python
 @dataclass
 class TextBlock:
@@ -1861,6 +1943,7 @@ class TextBlock:
 ### `ThinkingBlock`
 
 Thinking content block (for models with thinking capability).
+
 ```python
 @dataclass
 class ThinkingBlock:
@@ -1871,6 +1954,7 @@ class ThinkingBlock:
 ### `ToolUseBlock`
 
 Tool use request block.
+
 ```python
 @dataclass
 class ToolUseBlock:
@@ -1882,6 +1966,7 @@ class ToolUseBlock:
 ### `ToolResultBlock`
 
 Tool execution result block.
+
 ```python
 @dataclass
 class ToolResultBlock:
@@ -1897,6 +1982,7 @@ The types below define what your code catches. For entries keyed to the error me
 ### `ClaudeSDKError`
 
 Base exception class for all SDK errors.
+
 ```python
 class ClaudeSDKError(Exception):
     """Base error for Claude SDK."""
@@ -1907,6 +1993,7 @@ When a single-shot `query()` ends with an error result, for example a turn-limit
 ### `CLINotFoundError`
 
 Raised when Claude Code CLI is not installed or not found.
+
 ```python
 class CLINotFoundError(CLIConnectionError):
     def __init__(
@@ -1922,6 +2009,7 @@ class CLINotFoundError(CLIConnectionError):
 ### `CLIConnectionError`
 
 Raised when connection to Claude Code fails.
+
 ```python
 class CLIConnectionError(ClaudeSDKError):
     """Failed to connect to Claude Code."""
@@ -1930,6 +2018,7 @@ class CLIConnectionError(ClaudeSDKError):
 ### `ProcessError`
 
 Raised when the Claude Code process fails.
+
 ```python
 class ProcessError(ClaudeSDKError):
     def __init__(
@@ -1942,6 +2031,7 @@ class ProcessError(ClaudeSDKError):
 ### `ResultError`
 
 Raised when the Claude Code process exits because the run ended with an error [result message](#resultmessage), such as a turn-limit error or an API error. `ResultError` subclasses `ProcessError`, so an existing `except ProcessError` handler also catches it. Its attributes carry the fields of that result message, so you can branch on why the run failed without parsing the message text. Requires Python Agent SDK 0.2.140 or later.
+
 ```python
 class ResultError(ProcessError):
     subtype: str | None  # "error_max_turns", "error_during_execution", ...; "success" when the run ended on a failed request
@@ -1958,6 +2048,7 @@ To tell failures apart, check `data["stop_reason"]` first, then `terminal_reason
 ### `CLIJSONDecodeError`
 
 Raised when JSON parsing fails.
+
 ```python
 class CLIJSONDecodeError(ClaudeSDKError):
     def __init__(self, line: str, original_error: Exception):
@@ -1977,6 +2068,7 @@ For a comprehensive guide on using hooks with examples and common patterns, see 
 ### `HookEvent`
 
 Supported hook event types.
+
 ```python
 HookEvent = Literal[
     "PreToolUse",  # Called before tool execution
@@ -1999,6 +2091,7 @@ HookEvent = Literal[
 ### `HookCallback`
 
 Type definition for hook callback functions.
+
 ```python
 HookCallback = Callable[[HookInput, str | None, HookContext], Awaitable[HookJSONOutput]]
 ```
@@ -2014,6 +2107,7 @@ Returns a [`HookJSONOutput`](#hookjsonoutput).
 ### `HookContext`
 
 Context information passed to hook callbacks.
+
 ```python
 class HookContext(TypedDict):
     signal: Any | None  # Future: abort signal support
@@ -2022,6 +2116,7 @@ class HookContext(TypedDict):
 ### `HookMatcher`
 
 Configuration for matching hooks to specific events or tools.
+
 ```python
 @dataclass
 class HookMatcher:
@@ -2040,6 +2135,7 @@ class HookMatcher:
 ### `HookInput`
 
 Union type of all hook input types. The actual type depends on the `hook_event_name` field.
+
 ```python
 HookInput = (
     PreToolUseHookInput
@@ -2058,6 +2154,7 @@ HookInput = (
 ### `BaseHookInput`
 
 Base fields present in all hook input types.
+
 ```python
 class BaseHookInput(TypedDict):
     session_id: str
@@ -2076,6 +2173,7 @@ class BaseHookInput(TypedDict):
 ### `PreToolUseHookInput`
 
 Input data for `PreToolUse` hook events.
+
 ```python
 class PreToolUseHookInput(BaseHookInput):
     hook_event_name: Literal["PreToolUse"]
@@ -2098,6 +2196,7 @@ class PreToolUseHookInput(BaseHookInput):
 ### `PostToolUseHookInput`
 
 Input data for `PostToolUse` hook events.
+
 ```python
 class PostToolUseHookInput(BaseHookInput):
     hook_event_name: Literal["PostToolUse"]
@@ -2122,6 +2221,7 @@ class PostToolUseHookInput(BaseHookInput):
 ### `PostToolUseFailureHookInput`
 
 Input data for `PostToolUseFailure` hook events. Called when a tool execution fails.
+
 ```python
 class PostToolUseFailureHookInput(BaseHookInput):
     hook_event_name: Literal["PostToolUseFailure"]
@@ -2148,6 +2248,7 @@ class PostToolUseFailureHookInput(BaseHookInput):
 ### `UserPromptSubmitHookInput`
 
 Input data for `UserPromptSubmit` hook events.
+
 ```python
 class UserPromptSubmitHookInput(BaseHookInput):
     hook_event_name: Literal["UserPromptSubmit"]
@@ -2162,6 +2263,7 @@ class UserPromptSubmitHookInput(BaseHookInput):
 ### `StopHookInput`
 
 Input data for `Stop` hook events.
+
 ```python
 class StopHookInput(BaseHookInput):
     hook_event_name: Literal["Stop"]
@@ -2176,6 +2278,7 @@ class StopHookInput(BaseHookInput):
 ### `SubagentStopHookInput`
 
 Input data for `SubagentStop` hook events.
+
 ```python
 class SubagentStopHookInput(BaseHookInput):
     hook_event_name: Literal["SubagentStop"]
@@ -2196,6 +2299,7 @@ class SubagentStopHookInput(BaseHookInput):
 ### `PreCompactHookInput`
 
 Input data for `PreCompact` hook events.
+
 ```python
 class PreCompactHookInput(BaseHookInput):
     hook_event_name: Literal["PreCompact"]
@@ -2212,6 +2316,7 @@ class PreCompactHookInput(BaseHookInput):
 ### `NotificationHookInput`
 
 Input data for `Notification` hook events.
+
 ```python
 class NotificationHookInput(BaseHookInput):
     hook_event_name: Literal["Notification"]
@@ -2230,6 +2335,7 @@ class NotificationHookInput(BaseHookInput):
 ### `SubagentStartHookInput`
 
 Input data for `SubagentStart` hook events.
+
 ```python
 class SubagentStartHookInput(BaseHookInput):
     hook_event_name: Literal["SubagentStart"]
@@ -2246,6 +2352,7 @@ class SubagentStartHookInput(BaseHookInput):
 ### `PermissionRequestHookInput`
 
 Input data for `PermissionRequest` hook events. Allows hooks to handle permission decisions programmatically.
+
 ```python
 class PermissionRequestHookInput(BaseHookInput):
     hook_event_name: Literal["PermissionRequest"]
@@ -2268,6 +2375,7 @@ class PermissionRequestHookInput(BaseHookInput):
 ### `HookJSONOutput`
 
 Union type for hook callback return values.
+
 ```python
 HookJSONOutput = AsyncHookJSONOutput | SyncHookJSONOutput
 ```
@@ -2275,6 +2383,7 @@ HookJSONOutput = AsyncHookJSONOutput | SyncHookJSONOutput
 #### `SyncHookJSONOutput`
 
 Synchronous hook output with control and decision fields.
+
 ```python
 class SyncHookJSONOutput(TypedDict):
     # Control fields
@@ -2298,6 +2407,7 @@ class SyncHookJSONOutput(TypedDict):
 #### `HookSpecificOutput`
 
 A discriminated union of event-specific `TypedDict` output types. The `hookEventName` field determines which fields are valid. For full details on available fields per hook event, see [Control execution with hooks](https://code.claude.com/docs/en/agent-sdk/hooks.md#outputs).
+
 ```python
 class PreToolUseHookSpecificOutput(TypedDict):
     hookEventName: Literal["PreToolUse"]
@@ -2346,6 +2456,7 @@ HookSpecificOutput = (
 #### `AsyncHookJSONOutput`
 
 Async hook output that defers hook execution.
+
 ```python
 class AsyncHookJSONOutput(TypedDict):
     async_: Literal[True]  # Set to True to defer execution
@@ -2359,6 +2470,7 @@ class AsyncHookJSONOutput(TypedDict):
 ### Hook Usage Example
 
 This example registers two hooks: one that blocks dangerous Bash commands like `rm -rf /`, and another that logs all tool usage for auditing. The security hook only runs on Bash commands (via the `matcher`), while the logging hook runs on all tools.
+
 ```python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, HookMatcher, HookContext
@@ -2421,6 +2533,7 @@ Each output shown is the value you read from [`UserMessage.tool_use_result`](#us
 The `tools` list in the init [`SystemMessage`](#systemmessage) reports this tool as `Task` for backward compatibility.
 
 **Input:**
+
 ```python
 {
     "description": str,  # A short (3-5 word) description of the task
@@ -2446,6 +2559,7 @@ When Claude leaves `run_in_background` out of an `Agent` call, by default your m
 Before Python SDK v0.2.169, agents that your subagents started also ran in the background by default. That release is the first to bundle Claude Code v2.1.302 or later.
 
 **Output (status: `"completed"`):**
+
 ```python
 {
     "status": "completed",
@@ -2494,6 +2608,7 @@ Before Python SDK v0.2.169, agents that your subagents started also ran in the b
 ```
 
 **Output (status: `"async_launched"`):**
+
 ```python
 {
     "status": "async_launched",
@@ -2509,6 +2624,7 @@ Before Python SDK v0.2.169, agents that your subagents started also ran in the b
 ```
 
 **Output (status: `"remote_launched"`):**
+
 ```python
 {
     "status": "remote_launched",
@@ -2533,6 +2649,7 @@ Claude Code fills `usage` and `totalTokens` from the subagent's final API reques
 Asks the user clarifying questions during execution. See [Handle approvals and user input](https://code.claude.com/docs/en/agent-sdk/user-input.md#handle-clarifying-questions) for usage details.
 
 **Input:**
+
 ```python
 {
     "questions": [  # Questions to ask the user (1-4 questions)
@@ -2562,6 +2679,7 @@ Asks the user clarifying questions during execution. See [Handle approvals and u
 ```
 
 **Output:**
+
 ```python
 {
     "questions": [  # The questions that were asked
@@ -2589,6 +2707,7 @@ Asks the user clarifying questions during execution. See [Handle approvals and u
 For what sets the foreground ceiling, see [Timeout and output limits](https://code.claude.com/docs/en/tools-reference.md#timeout-and-output-limits). For the background time limit, see [Time limit for background commands](https://code.claude.com/docs/en/tools-reference.md#time-limit-for-background-commands).
 
 **Input:**
+
 ```python
 {
     "command": str,  # The command to execute
@@ -2599,6 +2718,7 @@ For what sets the foreground ceiling, see [Timeout and output limits](https://co
 ```
 
 **Output:**
+
 ```python
 {
     "stdout": str,  # The command's output; stdout and stderr arrive merged into this one interleaved stream
@@ -2618,6 +2738,7 @@ Runs a background source and delivers each event to Claude so it can react witho
 When Monitor runs a command, it follows the same permission rules as Bash; a WebSocket watch prompts for approval separately. The `ws` source requires Claude Code v2.1.195 or later. See the [Monitor tool reference](https://code.claude.com/docs/en/tools-reference.md#monitor-tool) for behavior and provider availability.
 
 **Input:**
+
 ```python
 {
     "command": str | None,  # Shell script; each stdout line is an event, exit ends the watch
@@ -2628,6 +2749,7 @@ When Monitor runs a command, it follows the same permission rules as Bash; a Web
 ```
 
 **Output:**
+
 ```python
 {
     "taskId": str,  # ID of the background monitor task
@@ -2641,6 +2763,7 @@ When Monitor runs a command, it follows the same permission rules as Bash; a Web
 **Tool name:** `Edit`
 
 **Input:**
+
 ```python
 {
     "file_path": str,  # The absolute path to the file to modify
@@ -2651,6 +2774,7 @@ When Monitor runs a command, it follows the same permission rules as Bash; a Web
 ```
 
 **Output:**
+
 ```python
 {
     "filePath": str,  # The file that was edited
@@ -2685,6 +2809,7 @@ When Monitor runs a command, it follows the same permission rules as Bash; a Web
 **Tool name:** `Read`
 
 **Input:**
+
 ```python
 {
     "file_path": str,  # The absolute path to the file to read
@@ -2696,6 +2821,7 @@ When Monitor runs a command, it follows the same permission rules as Bash; a Web
 The output takes one of the following shapes depending on what Claude read. Check the `type` key to tell them apart.
 
 **Output (type: `"text"`):**
+
 ```python
 {
     "type": "text",
@@ -2711,6 +2837,7 @@ The output takes one of the following shapes depending on what Claude read. Chec
 ```
 
 **Output (type: `"image"`):**
+
 ```python
 {
     "type": "image",
@@ -2729,6 +2856,7 @@ The output takes one of the following shapes depending on what Claude read. Chec
 ```
 
 **Output (type: `"notebook"`):**
+
 ```python
 {
     "type": "notebook",
@@ -2740,6 +2868,7 @@ The output takes one of the following shapes depending on what Claude read. Chec
 ```
 
 **Output (type: `"pdf"`):**
+
 ```python
 {
     "type": "pdf",
@@ -2752,6 +2881,7 @@ The output takes one of the following shapes depending on what Claude read. Chec
 ```
 
 **Output (type: `"parts"`):**
+
 ```python
 {
     "type": "parts",
@@ -2766,6 +2896,7 @@ The output takes one of the following shapes depending on what Claude read. Chec
 ```
 
 **Output (type: `"file_unchanged"`):**
+
 ```python
 {
     "type": "file_unchanged",  # The file is unchanged since Claude last read it in this session, so the content isn't repeated
@@ -2781,6 +2912,7 @@ The output takes one of the following shapes depending on what Claude read. Chec
 **Tool name:** `Write`
 
 **Input:**
+
 ```python
 {
     "file_path": str,  # The absolute path to the file to write
@@ -2789,6 +2921,7 @@ The output takes one of the following shapes depending on what Claude read. Chec
 ```
 
 **Output:**
+
 ```python
 {
     "type": "create" | "update",  # Whether the write created a new file or overwrote an existing one
@@ -2822,6 +2955,7 @@ The output takes one of the following shapes depending on what Claude read. Chec
 **Tool name:** `Glob`
 
 **Input:**
+
 ```python
 {
     "pattern": str,  # The glob pattern to match files against
@@ -2830,6 +2964,7 @@ The output takes one of the following shapes depending on what Claude read. Chec
 ```
 
 **Output:**
+
 ```python
 {
     "durationMs": int,  # Time taken to run the search, in milliseconds
@@ -2848,6 +2983,7 @@ The output takes one of the following shapes depending on what Claude read. Chec
 **Tool name:** `Grep`
 
 **Input:**
+
 ```python
 {
     "pattern": str,  # The regular expression pattern
@@ -2869,6 +3005,7 @@ The output takes one of the following shapes depending on what Claude read. Chec
 ```
 
 **Output:**
+
 ```python
 {
     "mode": "content" | "files_with_matches" | "count" | None,  # The output mode that was used
@@ -2893,6 +3030,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 **Tool name:** `NotebookEdit`
 
 **Input:**
+
 ```python
 {
     "notebook_path": str,  # Absolute path to the Jupyter notebook
@@ -2904,6 +3042,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 ```
 
 **Output:**
+
 ```python
 {
     "new_source": str,  # The source written to the cell
@@ -2924,6 +3063,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 **Tool name:** `WebFetch`
 
 **Input:**
+
 ```python
 {
     "url": str,  # The URL to fetch content from
@@ -2933,6 +3073,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 ```
 
 **Output:**
+
 ```python
 {
     "bytes": int,  # Size of the fetched content in bytes
@@ -2949,6 +3090,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 **Tool name:** `WebSearch`
 
 **Input:**
+
 ```python
 {
     "query": str,  # The search query to use
@@ -2958,6 +3100,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 ```
 
 **Output:**
+
 ```python
 {
     "query": str,  # The search query
@@ -2987,6 +3130,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 > See [Model availability](https://code.claude.com/docs/en/agent-sdk/todo-tracking.md#model-availability) to opt in.
 
 **Input:**
+
 ```python
 {
     "todos": [
@@ -3000,6 +3144,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 ```
 
 **Output:**
+
 ```python
 {
     "oldTodos": [  # The todo list before the update
@@ -3024,6 +3169,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 **Tool name:** `TaskCreate`
 
 **Input:**
+
 ```python
 {
     "subject": str,  # Short task title
@@ -3034,6 +3180,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 ```
 
 **Output:**
+
 ```python
 {
     "task": {"id": str, "subject": str},  # Created task with assigned ID
@@ -3045,6 +3192,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 **Tool name:** `TaskUpdate`
 
 **Input:**
+
 ```python
 {
     "taskId": str,  # ID of the task to patch
@@ -3060,6 +3208,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 ```
 
 **Output:**
+
 ```python
 {
     "success": bool,
@@ -3075,6 +3224,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 **Tool name:** `TaskGet`
 
 **Input:**
+
 ```python
 {
     "taskId": str,  # ID of the task to read
@@ -3082,6 +3232,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 ```
 
 **Output:**
+
 ```python
 {
     "task": {
@@ -3100,11 +3251,13 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
 **Tool name:** `TaskList`
 
 **Input:**
+
 ```python
 {}
 ```
 
 **Output:**
+
 ```python
 {
     "tasks": [
@@ -3130,6 +3283,7 @@ A `disallowed_tools` entry or a deny rule that still names either name is ignore
 **Tool name:** `TaskStop`. You can still use the previous names `KillShell` and `KillBash` in permission rules, in hook matchers, and in the `tools`, `allowed_tools`, and `disallowed_tools` options.
 
 **Input:**
+
 ```python
 {
     "task_id": str | None,  # The ID of the background task to stop
@@ -3138,6 +3292,7 @@ A `disallowed_tools` entry or a deny rule that still names either name is ignore
 ```
 
 **Output:**
+
 ```python
 {
     "message": str,  # Status message about the operation
@@ -3152,6 +3307,7 @@ A `disallowed_tools` entry or a deny rule that still names either name is ignore
 **Tool name:** `ExitPlanMode`
 
 **Input:**
+
 ```python
 {
     "plan": str  # The plan to run by the user for approval
@@ -3159,6 +3315,7 @@ A `disallowed_tools` entry or a deny rule that still names either name is ignore
 ```
 
 **Output:**
+
 ```python
 {
     "plan": str | None,  # The plan that was presented to the user
@@ -3176,6 +3333,7 @@ A `disallowed_tools` entry or a deny rule that still names either name is ignore
 **Tool name:** `ListMcpResourcesTool`
 
 **Input:**
+
 ```python
 {
     "server": str | None  # Optional server name to filter resources by
@@ -3185,6 +3343,7 @@ A `disallowed_tools` entry or a deny rule that still names either name is ignore
 The result is a list rather than a dict, so `tool_use_result` holds a `list` for this tool.
 
 **Output:**
+
 ```python
 [  # One entry per resource
     {
@@ -3202,6 +3361,7 @@ The result is a list rather than a dict, so `tool_use_result` holds a `list` for
 **Tool name:** `ReadMcpResourceTool`
 
 **Input:**
+
 ```python
 {
     "server": str,  # The MCP server name
@@ -3210,6 +3370,7 @@ The result is a list rather than a dict, so `tool_use_result` holds a `list` for
 ```
 
 **Output:**
+
 ```python
 {
     "contents": [
@@ -3227,6 +3388,7 @@ The result is a list rather than a dict, so `tool_use_result` holds a `list` for
 ## Build a continuous conversation interface
 
 The following example keeps one `ClaudeSDKClient` connected across turns, so Claude remembers earlier messages. Type `new` to disconnect and reconnect for a fresh session, or `exit` to end the conversation.
+
 ```python
 from claude_agent_sdk import (
     ClaudeSDKClient,
@@ -3306,6 +3468,7 @@ asyncio.run(main())
 The following example wraps a `query()` call in handlers for four of the [error types](#error-types) the SDK raises.
 
 This example catches [`ResultError`](#resulterror), which requires Python Agent SDK 0.2.140 or later.
+
 ```python
 import asyncio
 
@@ -3348,6 +3511,7 @@ asyncio.run(main())
 ### `SandboxSettings`
 
 Configuration for sandbox behavior. Use this to enable command sandboxing and configure network restrictions programmatically.
+
 ```python
 class SandboxSettings(TypedDict, total=False):
     enabled: bool
@@ -3378,6 +3542,7 @@ class SandboxSettings(TypedDict, total=False):
 To keep sandboxed commands from writing to a file, list its absolute path under [`denyWrite`](https://code.claude.com/docs/en/settings-reference#sandbox-filesystem-denywrite) in your sandbox settings, such as `"filesystem": {"denyWrite": ["/home/user/project/.env"]}`. The SDK forwards `filesystem` to Claude Code along with the declared `SandboxSettings` fields. Once the sandbox starts, it blocks writes to each absolute path you listed.
 
 #### Example usage
+
 ```python
 import asyncio
 
@@ -3412,6 +3577,7 @@ asyncio.run(main())
 ### `SandboxNetworkConfig`
 
 Network-specific configuration for sandbox mode. These settings apply to sandboxed Bash commands when `enabled` is `True` in the parent [`SandboxSettings`](#sandboxsettings). They do not restrict the WebFetch tool, which uses [permission rules](https://code.claude.com/docs/en/permissions.md#webfetch) instead.
+
 ```python
 class SandboxNetworkConfig(TypedDict, total=False):
     allowedDomains: list[str]
@@ -3444,6 +3610,7 @@ class SandboxNetworkConfig(TypedDict, total=False):
 ### `SandboxIgnoreViolations`
 
 Configuration for ignoring specific sandbox violations.
+
 ```python
 class SandboxIgnoreViolations(TypedDict, total=False):
     file: list[str]
@@ -3462,6 +3629,7 @@ When `allowUnsandboxedCommands` is enabled, the model can request to run command
 Your `excludedCommands` entries instead take a call out of the sandbox with no model involvement; [`sandbox.excludedCommands`](https://code.claude.com/docs/en/settings-reference#sandbox-excludedcommands) covers when an entry applies.
 
 The following example logs each unsandboxed request and denies it unless your own authorization logic allows it:
+
 ```python
 import asyncio
 from claude_agent_sdk import (

@@ -21,6 +21,7 @@ A few hook environment variables on this page still use `pool`, such as `CLAUDE_
 Use a wrapper script when each session needs setup the runner can't do on its own: provisioning short-lived credentials scoped to the session creator, exporting environment-specific secrets, preparing language toolchains, or applying resource limits around the child process. The runner starts your wrapper in place of the Claude Code binary, once per session. End the wrapper by `exec`-ing into `$CLAUDE_RUNNER_CLAUDE_BIN`, the runner's own binary, so signals and exit codes propagate correctly.
 
 Point `--exec-path`, or `SELF_HOSTED_RUNNER_EXEC_PATH`, at the wrapper when you start the runner, replacing `<writable-dir>` as the [quickstart](https://code.claude.com/docs/en/self-hosted-environments-quickstart.md#set-up-manually) describes:
+
 ```bash
 claude self-hosted-runner --environment-secret-file /etc/claude/environment-secret --base-dir '<writable-dir>' --exec-path /etc/claude/session-wrapper.sh
 ```
@@ -66,6 +67,7 @@ Quote every argument and variable that the runner passes to your wrapper or [`co
 The child's stdin is the runner's control channel. Token rotations and session-end signals arrive on it. The runner also opens a pipe on file descriptor 3 and reads the child's activity signals from it to drive idle and startup timeouts. A plain `exec "$CLAUDE_RUNNER_CLAUDE_BIN" "$@"` preserves both automatically.
 
 If your wrapper backgrounds the child with a bare `&`, it severs the child's stdin. The session looks healthy until the initial OAuth token's roughly 30-minute lifetime expires, and then every API call that uses the token fails with `401 authentication_error`. If your wrapper must background the child, for example to keep a teardown trap alive, save stdin on file descriptor 9 and re-attach it explicitly:
+
 ```bash
 exec 9<&0   # the runner uses 3, and from v2.1.309 reserves 4 and 5
 "$CLAUDE_RUNNER_CLAUDE_BIN" "$@" <&9 9<&- &
@@ -94,6 +96,7 @@ In your wrapper script or [`command` hook](#command), handle these flags as foll
 #### Fix `Argument list too long` at session start
 
 On Linux, if you join the control plane's prompt and your own text into one `--append-system-prompt` argument, the runner logs a line like this once the argument reaches 128 KB:
+
 ```text
 Session <id> finished: failed — reason: child exited 126: /opt/wrapper.sh: line 9: /usr/local/bin/claude: Argument list too long
 ```
@@ -101,6 +104,7 @@ Session <id> finished: failed — reason: child exited 126: /opt/wrapper.sh: lin
 Linux limits each single argument to 32 memory pages, or 128 KB with the usual 4 KB pages. The figure from `getconf ARG_MAX`, often 2 MB, is a separate limit on all arguments and the environment together.
 
 On Claude Code v2.1.283 or later, leave the file flags in `"$@"` and pass only your own text as `--append-system-prompt`. Claude Code [uses both](https://code.claude.com/docs/en/cli-reference.md#system-prompt-flags), the control plane's prompt first and then your own text:
+
 ```bash
 exec "$CLAUDE_RUNNER_CLAUDE_BIN" "$@" --append-system-prompt "$(cat /opt/team-instructions.md)"
 ```
@@ -112,6 +116,7 @@ On v2.1.281 or v2.1.282, that command exits with `Cannot use both --append-syste
 ### Provision credentials scoped to the session creator
 
 Use the `decode-token` subcommand to read claims from the session JWT. It reads the token from an argument, from `CLAUDE_CODE_SESSION_ACCESS_TOKEN`, or from stdin, in that order; see [Verify the token inside the session](https://code.claude.com/docs/en/self-hosted-environments-identity.md#verify-the-token-inside-the-session) for what it checks. The example below decodes the creator identity, exchanges it for short-lived AWS credentials, and execs into Claude Code:
+
 ```bash
 #!/bin/bash
 # Key on the stable Anthropic user ID and require a human creator.
@@ -167,10 +172,10 @@ The hook fails when it exits non-zero, or exits 0 without leaving a usable check
 
 * **A repository the session pushes results to**: the runner fails the session, and on a non-zero exit surfaces the tail of the script's stderr to the user. Write the reason to stderr as one short line, write it last, and then exit non-zero. Don't print secrets to stderr, and remove `set -x` before you deploy the hook.
 
-If git's `couldn't find remote ref` appears in roughly the last 4 KB of the hook's stderr, the runner reports a deleted branch instead. The session's error message then says the branch no longer exists on the remote and asks the user to restore it. If that branch exists, see [A session fails with `no longer exists on the remote` or `couldn't find remote ref`](https://code.claude.com/docs/en/self-hosted-environments-deploy#no-longer-exists-on-the-remote).
+  If git's `couldn't find remote ref` appears in roughly the last 4 KB of the hook's stderr, the runner reports a deleted branch instead. The session's error message then says the branch no longer exists on the remote and asks the user to restore it. If that branch exists, see [A session fails with `no longer exists on the remote` or `couldn't find remote ref`](https://code.claude.com/docs/en/self-hosted-environments-deploy#no-longer-exists-on-the-remote).
 * **A repository the session only reads from**, such as a repository added to a running session: the runner skips it and continues with the remaining repositories. The runner posts a `Skipped` step to the session and removes whatever the hook left at the checkout path.
 
-When the `Skipped` step mentions the checkout hook, find the failure detail on the `[runner:warn] checkout hook failed` line in the runner's log. When the step says a source ref `no longer exists on remote`, see [A session fails with `no longer exists on the remote` or `couldn't find remote ref`](https://code.claude.com/docs/en/self-hosted-environments-deploy#no-longer-exists-on-the-remote). If skipping leaves the session with no repository at all, the runner fails the session anyway.
+  When the `Skipped` step mentions the checkout hook, find the failure detail on the `[runner:warn] checkout hook failed` line in the runner's log. When the step says a source ref `no longer exists on remote`, see [A session fails with `no longer exists on the remote` or `couldn't find remote ref`](https://code.claude.com/docs/en/self-hosted-environments-deploy#no-longer-exists-on-the-remote). If skipping leaves the session with no repository at all, the runner fails the session anyway.
 
 When the hook succeeds, the runner removes the checkout path after the session ends.
 
@@ -197,17 +202,18 @@ The hook fires on every session end where a child process was spawned, whatever 
 * `completed`: the session ended cleanly. The Claude Code process exited normally, or exited by itself after the session was archived or deleted.
 * `failed`: the Claude Code process crashed, or setup failed after it started.
 * `interrupted`: the runner stopped the session, in one of these cases:
-* The runner released the session to free the slot.
-* The session timed out at startup.
-* The server moved the session off this runner.
-* The runner's poll noticed an archive or delete before the process exited.
-* The runner was draining.
-* The session outlasted its [`--kill-session-after-min`](https://code.claude.com/docs/en/self-hosted-environments-reference#runner-cli-flags) limit.
+  * The runner released the session to free the slot.
+  * The session timed out at startup.
+  * The server moved the session off this runner.
+  * The runner's poll noticed an archive or delete before the process exited.
+  * The runner was draining.
+  * The session outlasted its [`--kill-session-after-min`](https://code.claude.com/docs/en/self-hosted-environments-reference#runner-cli-flags) limit.
 * `abandoned`: reserved for a session another runner claimed. The hook doesn't currently fire in that case.
 
 If you compare hook receipts with the [session lifecycle counters](https://code.claude.com/docs/en/self-hosted-environments-reference.md#session-lifecycle-counter-semantics), expect some `interrupted` receipts to count as `completed` there. The counters count a release, a startup timeout, a server move, and an archive or delete that the runner's poll noticed first as `completed`, because the runner handed the slot back cleanly.
 
 The hook's exit status never affects the session outcome; a failure is logged and ignored. The runner waits up to `--post-session-hook-timeout-sec`, 60 seconds by default, on every session end including runner shutdown. This example saves uncommitted work to a rescue branch:
+
 ```bash
 #!/usr/bin/env bash
 set -u
@@ -282,6 +288,7 @@ Instead of running a fixed fleet, you can boot one runner per session. The orche
 On-demand runners improve credential hygiene. On a fixed fleet, the environment secret lives on every runner host, which is the same host that runs user sessions. With the orchestrator, the environment secret stays only on the orchestrator host, which never runs user code; each spawned runner receives a single-use work order that registers exactly one runner and then expires.
 
 To start the orchestrator, pass the environment secret and a hooks directory containing an executable `spawn-runner` script:
+
 ```bash
 claude self-hosted-runner orchestrator \
   --environment-secret-file /etc/claude/environment-secret \
@@ -324,13 +331,13 @@ The contract has four rules, whichever platform your hook provisions on:
 2. **Don't retry the workload.** One order ID means at most one created workload. If the runner never registers, Anthropic re-requests with a fresh order ID after `--expected-spawn-seconds`.
 3. **Use the exit-code contract.** Exit with the status that matches the outcome:
 
-* **Exit 0**: submitted.
-* **Exit 1, or still running when `--hook-timeout` ends**: retryable failure. The session backs off and is re-offered. After 10 failed requests in a row, it's blocked as it is after exit 2 or higher.
-* **Exit 2 or higher**: non-retryable failure. The session is blocked from spawning again until a user sends it a new message or an [Owner](https://code.claude.com/docs/en/cloud-environments.md#organization-shared-environments) selects **Retry** on it in the environment's **Activity** tab.
+   * **Exit 0**: submitted.
+   * **Exit 1, or still running when `--hook-timeout` ends**: retryable failure. The session backs off and is re-offered. After 10 failed requests in a row, it's blocked as it is after exit 2 or higher.
+   * **Exit 2 or higher**: non-retryable failure. The session is blocked from spawning again until a user sends it a new message or an [Owner](https://code.claude.com/docs/en/cloud-environments.md#organization-shared-environments) selects **Retry** on it in the environment's **Activity** tab.
 
-While a session backs off, it shows **Queued** in the **Activity** tab with no spawn error, so read the hook's output in the orchestrator's log. Once blocked, the session shows **Failed**. Expand it to read the spawn error, taken from the last 512 characters of the hook's stderr. Write an actionable error to stderr, and no secrets. In a shell hook, [keep transient failures retryable](#keep-transient-failures-retryable-in-a-shell-hook).
+   While a session backs off, it shows **Queued** in the **Activity** tab with no spawn error, so read the hook's output in the orchestrator's log. Once blocked, the session shows **Failed**. Expand it to read the spawn error, taken from the last 512 characters of the hook's stderr. Write an actionable error to stderr, and no secrets. In a shell hook, [keep transient failures retryable](#keep-transient-failures-retryable-in-a-shell-hook).
 
-A pre-warming request has no session to fail: the orchestrator logs a non-zero exit locally only, and the server re-requests the spawn after the `--expected-spawn-seconds` lease expires.
+   A pre-warming request has no session to fail: the orchestrator logs a non-zero exit locally only, and the server re-requests the spawn after the `--expected-spawn-seconds` lease expires.
 4. **Set `--expected-spawn-seconds` to at least your p99 time from spawn request to runner registration.** Measure from when the orchestrator receives the spawn request, and include any wait for capacity on your platform as well as boot time. This value is the server-side lease, and the work order expires with it, so a runner whose workload takes longer can't register. All orchestrator replicas must use the same value.
 
 Everything the hook writes to stdout or stderr appears in the orchestrator's log with credentials automatically redacted. If sessions stay queued, check the orchestrator's `/healthz` body for queue counts, then open your environment's **Activity** tab on the [**Cloud environments** admin page](https://claude.ai/admin-settings/cloud-environments): expand a failed session there for its spawn error, and select **Retry** to re-request it.
@@ -338,6 +345,7 @@ Everything the hook writes to stdout or stderr appears in the orchestrator's log
 #### Fix re-opened sessions that stay Queued or show Failed
 
 If re-opened sessions stay **Queued** or show **Failed**, or your hook times out on them, one cause is a hook that names or deduplicates workloads by the session ID. A session is re-opened when its user sends it a message after its runner has exited. For example, take a hook that builds each workload's name like this:
+
 ```bash
 name="runner-${CLAUDE_RUNNER_SESSION_ID}"
 ```
@@ -360,6 +368,7 @@ Open your own hook and read what it does when the workload already exists, for e
 In the last row's spawn error, `60000` is your `--hook-timeout` in milliseconds. When a hook waits until `--hook-timeout` ends, the orchestrator's log also gets a `timed out after` line.
 
 To fix the hook, build each name or key from `CLAUDE_RUNNER_ORDER_ID`, as [rule 1 of the hook contract](#the-spawn-runner-hook) requires. In the example, the name becomes:
+
 ```bash
 name="runner-${CLAUDE_RUNNER_ORDER_ID}"
 ```
@@ -384,6 +393,7 @@ Remove the workload when the runner exits, for example by setting `ttlSecondsAft
 #### Send a background process's output to a file
 
 If your `spawn-runner` hook leaves a process running in the background, send that process's output to a file that the hook's user can create. For example, append `>> "$HOME/claude-runner.log" 2>&1` to the command that starts the process, ahead of any `&`. This hook line shows where the redirect goes, with `your-background-command` standing in for the command your hook backgrounds:
+
 ```bash
 your-background-command >> "$HOME/claude-runner.log" 2>&1 &
 ```
@@ -416,6 +426,7 @@ In a shell hook that uses `set -e`, a failure that a retry could have cleared ca
 A session the hook has already blocked stays blocked until a user sends it a new message or an [Owner](https://code.claude.com/docs/en/cloud-environments.md#organization-shared-environments) selects **Retry** on it in the environment's **Activity** tab.
 
 To turn such a failure into exit 1 instead, put these lines directly below the hook's `#!` line, above anything that can fail:
+
 ```bash
 set -e
 PERMANENT=; permanent() { printf '%s\n' "$*" >&2; PERMANENT=1; exit 2; }
@@ -427,23 +438,25 @@ These lines change how the rest of the hook behaves, so check it for each of the
 * **Bare `exit 2` or higher**: with the trap set, it becomes exit 1. For an error that no retry can fix, call `permanent` with the reason instead, such as `permanent "namespace claude-runners does not exist"`. Call it in the main shell, not inside `$( )`, `( )`, or a pipe.
 * **`exec`**: don't start the hook's last command with `exec`, because `exec` replaces the shell and the trap doesn't run.
 * **Second `EXIT` trap**: a second `trap ... EXIT` replaces the first, so merge the two into a single trap. Put your cleanup commands directly after `rc=$?;` and end each with `|| true;`. Cleanup then runs on failure as well as on success, and a failing cleanup command doesn't set the hook's exit status. This merged trap shows the shape, with `your-cleanup-command` standing in for your own:
-```bash
+
+  ```bash
   trap 'rc=$?; your-cleanup-command || true; [ "$rc" -eq 0 ] || [ -n "${PERMANENT:-}" ] || exit 1' EXIT
-```
+  ```
 * **Commands that are allowed to fail**: if the hook didn't use `set -e` before, it now stops at the first command that returns non-zero, such as a lookup that finds nothing. If the hook acts on the result, make that command the condition of an `if`. If it ignores the result, follow the command with `|| true`.
 * **The command that submits the workload**: don't follow it with `|| true`. With `|| true`, the hook exits 0 even when your platform refuses the submit, for example over quota, and the session waits for a runner that was never started.
 
-Name the workload after `CLAUDE_RUNNER_ORDER_ID`, as [the hook's first rule](#the-spawn-runner-hook) says. An already-exists answer is then a redelivery of the same request, so treat that answer alone as success. For anything else, print the answer to stderr and exit 1, or call `permanent` if no retry can fix it. This example does that for `kubectl create`, with a `job.yaml` that holds only the workload:
-```bash
+  Name the workload after `CLAUDE_RUNNER_ORDER_ID`, as [the hook's first rule](#the-spawn-runner-hook) says. An already-exists answer is then a redelivery of the same request, so treat that answer alone as success. For anything else, print the answer to stderr and exit 1, or call `permanent` if no retry can fix it. This example does that for `kubectl create`, with a `job.yaml` that holds only the workload:
+
+  ```bash
   if ! out=$(kubectl create -f job.yaml 2>&1); then
     case "$out" in
       *AlreadyExists*) ;;
       *) printf '%s\n' "${out:-kubectl create failed}" >&2; exit 1 ;;
     esac
   fi
-```
+  ```
 
-The orchestrator's log then shows that message. If the hook creates other objects, name each after the order ID, give it its own command, and treat its already-exists answer as success in the same way. For an object that holds a secret, print a fixed message in place of the command's output.
+  The orchestrator's log then shows that message. If the hook creates other objects, name each after the order ID, give it its own command, and treat its already-exists answer as success in the same way. For an object that holds a secret, print a fixed message in place of the command's output.
 
 To confirm the trap works, add a line directly below the `trap` line that calls a command that doesn't exist, such as `no-such-command`. Run the hook file from your shell and check that `echo $?` prints `1`, then remove the line.
 
@@ -452,6 +465,7 @@ To confirm the trap works, add a line directly below the `trap` line that calls 
 To stop or restart the orchestrator without cutting off running `spawn-runner` hooks, start it with [`--shutdown-drain-sec`](https://code.claude.com/docs/en/self-hosted-environments-reference#orchestrator-cli-flags). On `SIGTERM` it then gives running hooks up to the number of seconds you set to finish. To choose the value and set up your process supervisor to match, see [Size `--shutdown-drain-sec` and the orchestrator's stop timeout](#size-shutdown-drain-sec-and-the-supervisors-stop-timeout-for-the-orchestrator).
 
 This start command allows 70 seconds:
+
 ```bash
 claude self-hosted-runner orchestrator \
   --environment-secret-file /etc/claude/environment-secret \
@@ -545,6 +559,7 @@ Start these runners with [`--confine-repo-settings enforce`](https://code.claude
 **4. Check that the variables reached a session**
 
 Your own shell on the host is a different process, so check from inside a session. Start one in the environment and ask Claude to run this command:
+
 ```bash
 env | grep -E 'CLAUDE_CODE_USE_(BEDROCK|VERTEX)'
 ```
@@ -561,14 +576,15 @@ A session that sends model requests to Amazon Bedrock or Google Cloud's Agent Pl
 * **Account skills**: these sessions don't download the skills enabled for a person's claude.ai account. See [How each session's config is assembled](#how-each-session’s-config-is-assembled).
 * **Files**: files that people attach to a session in claude.ai or the mobile or desktop app don't reach it, and Claude can't send files back with the [`SendUserFile` tool](https://code.claude.com/docs/en/tools-reference). Put input files in the repository or on the runner instead.
 * **Model selection**: Anthropic's control plane sends each session's model, and when a session starts without one, Claude Code uses its default for the provider. You can't choose the model with `ANTHROPIC_MODEL` or `ANTHROPIC_DEFAULT_MODEL` in the runner's environment, but you can pin what an alias resolves to:
-* **`ANTHROPIC_MODEL` and `ANTHROPIC_DEFAULT_MODEL`**: the runner removes them from the environment it passes to sessions, even though the provider pages' examples set `ANTHROPIC_MODEL`.
-* **Per-family pinning variables**: the variables in Pin model versions for [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md#4-pin-model-versions) and [Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md#5-pin-model-versions) do reach sessions. They decide what an alias such as `opus` resolves to, not what a full model ID resolves to.
+  * **`ANTHROPIC_MODEL` and `ANTHROPIC_DEFAULT_MODEL`**: the runner removes them from the environment it passes to sessions, even though the provider pages' examples set `ANTHROPIC_MODEL`.
+  * **Per-family pinning variables**: the variables in Pin model versions for [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md#4-pin-model-versions) and [Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md#5-pin-model-versions) do reach sessions. They decide what an alias such as `opus` resolves to, not what a full model ID resolves to.
 * **Models your account doesn't serve**: a session can fail on a message with an error that names the model. Enable the models your developers can choose, the background model described in Pin model versions, and the classifier model that [auto mode](https://code.claude.com/docs/en/permission-modes.md#enable-auto-mode-on-bedrock-agent-platform-or-foundry) uses. On Amazon Bedrock, allow each of them in your policy.
 * **Web search and fast mode**: [web search](https://code.claude.com/docs/en/tools-reference.md#websearch-tool-behavior) isn't available on Amazon Bedrock, and [fast mode](https://code.claude.com/docs/en/fast-mode.md) isn't available on either provider. For other capabilities that differ by provider, see [CLI capabilities that vary by provider](https://code.claude.com/docs/en/feature-availability.md#cli-capabilities-that-vary-by-provider).
 
 ## MCP servers
 
 To make [MCP servers](https://code.claude.com/docs/en/mcp.md) available in every session, add them at image build time with the same `claude mcp add` command used on a desktop install. If your runner is a bare process rather than a container, run the same command as the runner's user on the host, then restart the runner: it reads host config once at startup. The `--scope user` flag is required; the default local scope writes under a per-directory key that the runner doesn't seed into sessions. For example, in your Dockerfile:
+
 ```dockerfile
 RUN claude mcp add --scope user sidecar -- /usr/local/bin/mcp-sidecar
 RUN claude mcp add --scope user --transport http internal http://mcp-gateway.svc.cluster.local:8080
@@ -601,6 +617,7 @@ A self-hosted session waits briefly for MCP servers that are still connecting, a
 * **First turn**: after the message arrives, the first turn waits up to 2 seconds for stdio servers that are still connecting. While the session waits here, the first reply is slower. To change how long this wait lasts, set [`CLAUDE_CODE_MCP_STARTUP_WAIT_MS`](https://code.claude.com/docs/en/env-vars) in the runner's environment. It doesn't change which servers the wait covers. Requires Claude Code v2.1.274 or later.
 
 `claude mcp add` has no `alwaysLoad` flag. To set the key, add the server with `claude mcp add-json` instead, which takes it in the server's JSON and writes it to `.claude.json`. In your Dockerfile:
+
 ```dockerfile
 RUN claude mcp add-json core '{"type":"http","url":"https://mcp.example.com/mcp","alwaysLoad":true}' --scope user
 ```
@@ -612,6 +629,7 @@ If a server's tools don't appear on later turns either, check whether the server
 Anthropic's control plane attaches its own MCP server, named Claude Code Remote, to cloud sessions. Claude uses the server's tools to create [cloud scheduled tasks](https://code.claude.com/docs/en/routines.md), start and steer other cloud sessions, attach more repositories, and follow pull request activity.
 
 To turn off the whole server, add a [server-level deny rule](https://code.claude.com/docs/en/permissions.md#mcp) to your settings. The control plane registers the server under one of three names, depending on how the session was created. Claude Code matches the name in a rule exactly, including case, so write the rule once per name as shown:
+
 ```json
 {
   "permissions": {
@@ -635,6 +653,7 @@ To confirm the rules took effect, start a session on the environment and ask Cla
 Anthropic-hosted sessions run a [`Stop` hook](https://code.claude.com/docs/en/hooks#stop), the Claude Code hook that runs when Claude finishes responding, that prompts Claude to commit and push its work. The runner doesn't install one. Without it, a session that ends with uncommitted changes leaves that work only on the runner's disk, and the **Create PR** button in claude.ai/code stays inactive until the branch exists on the remote.
 
 The reference implementation below has two parts. Merge the settings block into `~/.claude/settings.json` on the runner host, which the runner seeds into every session, and save the script as `~/.claude/hooks/stop-hook-nudge.sh` on the runner host and make it executable:
+
 ```json
 {
   "hooks": {
@@ -652,6 +671,7 @@ The reference implementation below has two parts. Merge the settings block into 
   }
 }
 ```
+
 ```sh
 #!/bin/sh
 # Stop-hook reference implementation for self-hosted runners.
@@ -778,6 +798,7 @@ A self-hosted session has no terminal attached, so an unanswered permission prom
 > Only pin auto mode on an environment whose session containers run with [default-deny network egress](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#default-deny-egress) and the rest of the [hardening section](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#harden-your-deployment) in place. Routine tool calls, including `Bash` network requests, run without a human in the loop on both the default pre-approved tool set and in auto mode, so the network boundary is what limits where those calls can reach.
 
 To keep prompts to a minimum regardless of what the control plane sends, pin [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode) from your wrapper script or [`command` hook](#command). Auto mode lets sessions run without routine permission prompts: a separate classifier model reviews actions before they run and blocks the ones it rejects, and explicit ask rules still force a prompt; the permission modes page covers what the classifier checks. The runner appends server-computed flags before invoking the wrapper, and for single-value flags such as `--permission-mode` the parser honors the last occurrence, so a flag you append after `"$@"` overrides the server-sent value:
+
 ```bash
 #!/bin/bash
 exec "$CLAUDE_RUNNER_CLAUDE_BIN" "$@" --permission-mode auto
@@ -820,6 +841,7 @@ Before you add the key, check whether the environment runs Claude Tag channel se
 * **Bedrock or Agent Platform**: sessions on these providers [don't fetch server-managed settings](#what-differs-from-sessions-on-the-anthropic-api), so they start whether or not you set the key. Enforce your rules from the same `managed-settings.json` instead.
 
 This `managed-settings.json` sets the key:
+
 ```json managed-settings.json
 {
   "forceRemoteSettingsRefresh": true

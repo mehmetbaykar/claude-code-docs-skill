@@ -37,6 +37,7 @@ The tabs are two buttons in a row. The mod keeps track of which one is active an
 A mod is a plugin with a manifest, a `hooks.json` that points to your code, and the code file. [Create a mod](https://code.claude.com/docs/en/plugins/mods/create.md#write-a-mod-yourself) explains each one. Create a directory named `hello-tabs` with `.claude-plugin` and `hooks` directories inside it, then save the first two files.
 
 Save the manifest as `hello-tabs/.claude-plugin/plugin.json`:
+
 ```json hello-tabs/.claude-plugin/plugin.json
 {
   "name": "hello-tabs",
@@ -47,6 +48,7 @@ Save the manifest as `hello-tabs/.claude-plugin/plugin.json`:
 ```
 
 Name your entry point in `hello-tabs/hooks/hooks.json`:
+
 ```json hello-tabs/hooks/hooks.json
 {
   "modules": ["./register.js"]
@@ -64,6 +66,7 @@ This list says what each hook does, in the order they appear in the code:
 Two module-level variables, `tab` and `count`, hold the pane's state.
 
 Save this as `hello-tabs/hooks/register.js`:
+
 ```javascript hello-tabs/hooks/register.js
 // The pane's id, used to open the pane and to recognize it when drawing
 const PANE = 'hello-tabs'
@@ -267,6 +270,7 @@ At a site Claude Code already draws, your hook can change a detail, replace the 
 > ```
 
 At these sites, `next(e)` returns a reference to Claude Code's drawing, `{ type: 'engine', ref }`, unless a mod that runs after yours returned a tree of its own. To change what's in that drawing, pass `next` a copy of the event with different props, as the **Change a detail** tab does. You can return the reference as it is, or place it in a `Box` beside elements of your own:
+
 ```javascript
 on('ui.render', { component: 'Spinner' }, async ($, e, next) => {
   const { Box, Text } = $.ui.resolve(e)
@@ -284,11 +288,13 @@ The permission prompt isn't a render site, so a mod can't change what it shows. 
 A pane appears only when your mod opens it. How and when you open it decides whether it takes keyboard focus, how much room it asks for, and whether it shows at all in a narrow terminal.
 
 To open a pane, call [`$.ui.open`](https://code.claude.com/docs/en/plugins/mods/reference#mods-api-methods) with an `id` you choose. The `id` is the pane's name: your `ui.render` hook checks for it, and you pass it again to close the pane.
+
 ```javascript
 await $.ui.open({ id: 'hello-tabs', title: 'Hello tabs', focus: true })
 ```
 
 To close the pane, call `$.ui.close` with the `id` you opened it with:
+
 ```javascript
 await $.ui.close({ id: 'hello-tabs' })
 ```
@@ -307,6 +313,7 @@ Besides `id`, `$.ui.open` takes these optional fields:
 The [VS Code extension](#draw-in-the-vs-code-extension) ignores `rows` and `columns` and sizes the pane itself.
 
 `focus`, `closeOnEscape`, and `holdToasts` are optional and accept only `true`. To leave one off, omit it. Passing `false` throws an error such as `ui.open: focus is true or left out`. To set one of them conditionally, add the field only when the condition holds. This call asks for keyboard focus only when `items` isn't empty:
+
 ```javascript
 const pane = { id: 'hello-tabs', title: 'Hello tabs' }
 await $.ui.open(items.length > 0 ? { ...pane, focus: true } : pane)
@@ -434,6 +441,7 @@ The [interface gallery](https://code.claude.com/docs/en/plugins/mods/gallery.md)
 If your module is a `.tsx` or `.jsx` file, you can write the tree as JSX. Destructure the elements from `$.ui.resolve(e)` first.
 
 If your drawing doesn't show up, check its tree for a prop an element doesn't take or a child where none goes. A hook that returns such a tree [fails](https://code.claude.com/docs/en/plugins/mods/events.md#handle-a-hook-that-fails), and a [`hook skipped` line](https://code.claude.com/docs/en/plugins/mods/troubleshoot#a-pane-or-band-is-empty) names your mod and the rule the tree broke. For a `Text` in a pane with a prop named `bogusProp`, that line reads:
+
 ```text
 my-mod: ui.render hook skipped: returned the wrong shape (a tree Pane refuses: Text prop "bogusProp" is not allowed)
 ```
@@ -459,6 +467,7 @@ If your mod handles [`ui.fault`](https://code.claude.com/docs/en/plugins/mods/re
 For a heat map, a sparkline, or a game board in the terminal, draw one `Raster` and not a `Box` for each cell. A `Raster` takes a `key`, its size in `columns` and `rows`, and `cells`, a base64 string that packs every cell. Each cell is three numbers: the character's code point, its color, and its background color. A color is a 24-bit RGB value in hexadecimal, such as `0xc62828` for a red. The value `0x01000000`, one above that range, means the terminal's default.
 
 Apps other than the terminal have no `Raster`, so check `e.surface` and draw text there. This pane body draws a three by two heat map:
+
 ```javascript
 // The value that means "use the terminal's default color"
 const DEFAULT_COLOR = 0x01000000
@@ -572,6 +581,7 @@ In the terminal, while a mod draws in the band, the user can collapse the band t
 * **Press Ctrl+X then Ctrl+A**: this works whether the prompt, the band, or a pane has keyboard focus. The user can [bind other keys](https://code.claude.com/docs/en/keybindings.md#above-prompt-actions) to it through the `abovePrompt:toggle` action.
 
 A collapsed band hides everything the mods draw there and shows one dim row instead, which names the keys that expand it as the user has them bound:
+
 ```text
 ▸ plugin panel hidden · ctrl+x ctrl+a or click to show
 ```
@@ -583,6 +593,7 @@ The band stays collapsed until the user expands it, even after `/clear`, and is 
 ### Take typed input and draw a row for each item
 
 Many panes are a text field with a list under it. The example in this section is a notes pane: you type a note and press Enter to add it, and each note has an `x` button that deletes it. With two notes added, the terminal draws the pane this way:
+
 ```text
 ╭────────────────────────────────────────────────────────✕─╮
 │ Note: Type a note and press Enter ⏎ add                  │
@@ -599,6 +610,7 @@ The example uses these techniques:
 * **Draw a list**: map your data to one row each, and give every row's button its own `key`
 
 This hook draws the pane's content:
+
 ```javascript
 // The list the pane draws
 let notes = []
@@ -686,6 +698,7 @@ Claude Code runs your `ui.render` hook again when the site's props change or the
 ### Redraw when your data changes
 
 To have your sites drawn again after your own data changes, call `$.ui.invalidate('ui.render')`. This pane counts presses. The button's callback changes `count`, then asks for a redraw:
+
 ```javascript
 let count = 0
 
@@ -718,6 +731,7 @@ A value you keep in [`$.state`](#keep-a-value-in-\$-state) doesn't need the call
 ### Redraw on a timer
 
 To keep a clock, a countdown, or a value from outside the session current, redraw on a schedule. Start a timer in the module's `session.start` hook. If the module already has one, as `hello-tabs` does, add the [`$.clock.every`](https://code.claude.com/docs/en/plugins/mods/api#run-work-in-the-background) line to it:
+
 ```javascript
 on('session.start', async ($, e, next) => {
   // Every 1000 milliseconds, ask Claude Code to draw your sites again
@@ -755,6 +769,7 @@ To set it up, declare your values, point your manifest at the declaration, then 
 #### Declare the values
 
 Declare the values in a type declaration file. The outer key is your plugin's name, and each entry under it is a value and its type. Save this as `hello-tabs/types/index.d.ts`:
+
 ```typescript hello-tabs/types/index.d.ts
 declare module 'claude-code' {
   interface PluginState {
@@ -769,6 +784,7 @@ declare module 'claude-code' {
 #### Point the manifest at the declaration
 
 To let `claude plugin validate` check your code against that file, add a `types` field to the manifest with its path:
+
 ```json hello-tabs/.claude-plugin/plugin.json
 {
   "name": "hello-tabs",
@@ -782,6 +798,7 @@ To let `claude plugin validate` check your code against that file, add a `types`
 #### Define, read, and write a value
 
 In your module, define each value with a default, read it while drawing, and write it from a callback. `atom` names a value and its default, `read` returns it, and `update` writes it. The three helpers call `$.state.get` and `$.state.set` for you:
+
 ```javascript
 import { atom, read, update } from 'claude-code'
 
@@ -820,6 +837,7 @@ Keep `redraw` for the tab buttons, because `tab` is still a variable.
 If your mod copies a saved value from `$.store` into `$.state` at `session.start`, it has to copy it again after `/clear`, `/resume`, or `/branch`. Those commands reset every `$.state` value to its default, and `session.start` doesn't fire again. [`classic.SessionStart`](https://code.claude.com/docs/en/plugins/mods/events#hook-the-settings-hook-events) does fire after each of them, with `e.source` set to `clear`, `resume`, or `fork`, so copy the value again in a hook on it. Otherwise your drawing shows the default, and a callback that saves the `$.state` value writes the default over what you stored.
 
 This code loads `count` from both hooks. It builds on the `$.state` version of `hello-tabs`, where `count` is an atom and `update` is imported. Put `loadCount` above `register`, and add the `loadCount` call to the `session.start` hook you already have. `classic.SessionStart` also fires at startup and after compaction, which doesn't reset `$.state`, so the filter on `source` keeps the hook to the three resets:
+
 ```javascript
 // Copy the saved count from $.store into $.state, or 0 if nothing is saved
 async function loadCount($) {
@@ -856,6 +874,7 @@ To make that less likely:
 * **Read again right before you write**: for a value that several sessions change, `get` the key in the callback and build the new value from that, not from a copy you loaded at `session.start`. Another session's write is still lost if it lands between your `get` and your `set`.
 
 This button adds one to whatever the store holds now, then updates the drawing:
+
 ```javascript
 onPress: async () => {
   // Read what the store holds now, which another session may have changed

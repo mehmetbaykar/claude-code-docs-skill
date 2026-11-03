@@ -14,10 +14,10 @@ For the `model` setting in Claude Code, you can configure either:
 
 * A **model alias**
 * A **model name**
-* Anthropic API: a full **[model name](https://platform.claude.com/docs/en/about-claude/models/overview)**
-* Amazon Bedrock: an inference profile ARN
-* Microsoft Foundry: a deployment name
-* Google Cloud's Agent Platform: a version name
+  * Anthropic API: a full **[model name](https://platform.claude.com/docs/en/about-claude/models/overview)**
+  * Amazon Bedrock: an inference profile ARN
+  * Microsoft Foundry: a deployment name
+  * Google Cloud's Agent Platform: a version name
 
 For guidance on which model and effort level fit different kinds of work, see [Choosing a Claude model and effort level in Claude Code](https://claude.com/blog/claude-model-and-effort-level-in-claude-code) on the blog.
 
@@ -170,16 +170,19 @@ If you set the model with the `--model` flag, the `ANTHROPIC_MODEL` environment 
 When the requested model has a scheduled retirement date or is automatically remapped to a newer version, Claude Code shows a warning that names the requested model. Interactive sessions show it as a startup notice. From v2.1.182, the same warning is written to stderr in [non-interactive mode](https://code.claude.com/docs/en/headless.md) when using the default text output format. The check also covers a `model` set in [subagent frontmatter](https://code.claude.com/docs/en/sub-agents.md). The stderr warning is suppressed for `--output-format json` and `stream-json`; read the actual model from the `modelUsage` field of the [result message](https://code.claude.com/docs/en/headless.md#get-structured-output) instead.
 
 For example, start a session on Opus:
+
 ```bash
 claude --model opus
 ```
 
 Then switch models from within the session:
+
 ```text
 /model sonnet
 ```
 
 Example settings file:
+
 ```json
 {
     "permissions": {
@@ -249,9 +252,9 @@ Claude Code handles any other blocked selection according to where the model was
 * **[`ANTHROPIC_DEFAULT_MODEL`](#set-a-default-model-for-new-sessions)**: Claude Code ignores the variable
 * **Subagent or teammate override**: Claude Code runs the subagent or teammate on a fallback model rather than failing the request. See [Choose a model](https://code.claude.com/docs/en/sub-agents.md#choose-a-model) for the subagent fallback and [Specify teammates and models](https://code.claude.com/docs/en/agent-teams.md#specify-teammates-and-models) for the teammate fallback.
 
-In interactive sessions, Claude Code warns you when it substitutes a subagent's model, by this fallback or by the newest-permitted-version substitution above, naming the requested and substituted models; it doesn't report a teammate's fallback.
+  In interactive sessions, Claude Code warns you when it substitutes a subagent's model, by this fallback or by the newest-permitted-version substitution above, naming the requested and substituted models; it doesn't report a teammate's fallback.
 
-Where the newest-permitted-version substitution above operates, a blocked family alias follows it instead. Before v2.1.222, an alias fell back like any other blocked value on every provider
+  Where the newest-permitted-version substitution above operates, a blocked family alias follows it instead. Before v2.1.222, an alias fell back like any other blocked value on every provider
 * **Skill or command override**: Claude Code ignores the override, including a blocked family alias, and the skill or command runs on the session model. A skill or command that [runs in a subagent](https://code.claude.com/docs/en/skills.md#run-skills-in-a-subagent) follows the subagent behavior above instead
 * **`advisorModel` setting**: the advisor is disabled for the session
 * **`--advisor` flag**: Claude Code exits with an error at launch. In a [background session](https://code.claude.com/docs/en/agent-view.md), it starts the session without the advisor instead of exiting
@@ -270,6 +273,7 @@ Model changes that Claude Code makes on your behalf are checked the same way:
 * **[Auto mode classifier](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode)**: when the allowlist excludes the [default classifier model](https://code.claude.com/docs/en/permission-modes.md#default-classifier-model), classifier requests that would use that model run on the session model, or an Opus model in [Fable](#work-with-fable) sessions. On providers other than the Anthropic API, that Opus fallback runs on the model you set in `ANTHROPIC_DEFAULT_OPUS_MODEL` or otherwise on Opus 5, without consulting the allowlist. Requires Claude Code v2.1.210 or later
 * **[Fast mode](https://code.claude.com/docs/en/fast-mode.md)**: enabling fast mode is refused when the model the session would run on afterward is outside the allowlist
 * **Availability fallback on Amazon Bedrock and Google Cloud's Agent Platform**: when your account loses access to a model mid-session, the switch to another model skips excluded models. The startup model checks on [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md#when-your-organization-enforces-a-model-allowlist) and [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md#when-your-organization-enforces-a-model-allowlist) skip excluded models only when managed settings also set [`enforceAvailableModels`](#enforce-the-allowlist-for-the-default-model)
+
 ```json
 {
   "availableModels": ["sonnet", "haiku"]
@@ -302,6 +306,7 @@ With `availableModels: []`, named model selections are blocked and `enforceAvail
 ### Enforce the allowlist for the Default model
 
 Set `enforceAvailableModels: true` alongside a non-empty `availableModels` in managed settings to extend the allowlist to the Default option. This requires Claude Code v2.1.175 or later.
+
 ```json
 {
   "availableModels": ["sonnet", "haiku"],
@@ -328,6 +333,7 @@ To fully control the model experience, combine these settings:
 * **`ANTHROPIC_DEFAULT_SONNET_MODEL`** / **`ANTHROPIC_DEFAULT_OPUS_MODEL`** / **`ANTHROPIC_DEFAULT_HAIKU_MODEL`** / **`ANTHROPIC_DEFAULT_FABLE_MODEL`**: control what the `sonnet`, `opus`, `haiku`, and `fable` aliases resolve to, and which version the [account-type default](#default-model-setting) uses
 
 This example starts users on Sonnet 4.5, limits the picker to Sonnet and Haiku, and ensures Default resolves to a model on the allowlist rather than the tier default:
+
 ```json
 {
   "model": "claude-sonnet-4-5",
@@ -361,6 +367,7 @@ An `availableModels` entry such as `claude-opus-5` also permits later releases t
 Earlier versions ignore both keys, so also set [`requiredMinimumVersion`](https://code.claude.com/docs/en/settings-reference#requiredminimumversion) to keep those versions from starting.
 
 This example permits Opus and Sonnet models and blocks Opus 5.5 in every spelling, including dated and provider-specific IDs:
+
 ```json
 {
   "availableModels": ["opus", "sonnet"],
@@ -486,11 +493,13 @@ When the primary model is overloaded, unavailable, or returns another non-retrya
 Configure one or more fallback models and Claude Code tries them in order, showing a notice when it switches. The switch lasts for the current turn only, so your next message tries the primary model first again. Claude Code caps chains at three models after duplicate removal and ignores extra entries.
 
 Set a chain for one session with the `--fallback-model` flag, which accepts a comma-separated list:
+
 ```bash
 claude --fallback-model sonnet,haiku
 ```
 
 To persist a chain across sessions, set `fallbackModel` in [settings](https://code.claude.com/docs/en/settings.md) as an array:
+
 ```json
 {
   "fallbackModel": ["claude-sonnet-5", "claude-haiku-4-5"]
@@ -709,6 +718,7 @@ Before v2.1.242, Claude Code could queue `/effort` itself until the turn finishe
 #### Send no effort level
 
 When Claude Code sends no effort level to a [supported model](#adjust-effort-level), the [API's default](https://platform.claude.com/docs/en/build-with-claude/effort) applies instead of Claude Code's. To have Claude Code send none, start `claude` from a shell that exports `CLAUDE_CODE_EFFORT_LEVEL` with the value `auto` or the value `unset`, which do the same thing:
+
 ```bash
 export CLAUDE_CODE_EFFORT_LEVEL=auto
 ```
@@ -765,6 +775,7 @@ On the Anthropic API, the 1M context window uses standard model pricing with no 
 #### Select 1M context for Opus 4.6 or Sonnet 4.6
 
 To select a 1M variant by name, append the `[1m]` suffix to a model alias or a full model name:
+
 ```text
 # Append [1m] to a full model name
 /model claude-opus-4-6[1m]
@@ -827,7 +838,7 @@ Find your warning's wording in the first column, then read across for the window
 
 | Your warning contains | Window the session uses | What to change |
 | :- | :- | :- |
-| `reads as  tokens, so Claude Code treats it as the 100k minimum` | The smaller of 100,000 tokens and your model's context window | Set at least `100000`, such as `200000`, or `200k` if you meant `200` as thousands |
+| `reads as <N> tokens, so Claude Code treats it as the 100k minimum` | The smaller of 100,000 tokens and your model's context window | Set at least `100000`, such as `200000`, or `200k` if you meant `200` as thousands |
 | `is too large, so Claude Code treats it as the 1M maximum` | The smaller of 1,000,000 tokens and your model's context window | You already have the largest window. To stop the warning, set `1M` or `1000000` |
 | `isn't a usable size, so Claude Code ignores it` | The window from `--autocompact`, `/autocompact`, or `autoCompactWindow`, or the [default](#default-auto-compact-thresholds) when none is set | Set a number such as `200000`, or unset the variable |
 
@@ -848,6 +859,7 @@ See the [`idleCompaction`](https://code.claude.com/docs/en/settings-reference#id
 ### Correct the window for a gateway or custom model ID
 
 Either of these startup warnings means Claude Code doesn't recognize your session's model ID, so it can't tell the model's context window and assumes 200K tokens:
+
 ```text
 ⚠ Model "my-gateway-opus" isn't recognized · context assumed to be 200k tokens · ...
 Claude Code doesn't recognize the model "my-gateway-opus", so it assumes a context window of 200k tokens. Update Claude Code, or see https://code.claude.com/docs/en/model-config#correct-the-window-for-a-gateway-or-custom-model-id to set the window.
@@ -873,10 +885,10 @@ An unrecognized provider or custom spelling, the same spelling with `[1m]`, and 
 * If Claude Code can't resolve a provider or custom spelling to a model it recognizes and the ID doesn't contain `[1m]`, the variable applies directly and proactive compaction continues at the declared window.
 * If Claude Code can't resolve a provider or custom spelling to a model it recognizes and the ID contains `[1m]`, in any casing, Claude Code assumes a 1M window for it and the variable doesn't apply on its own. To correct the window while keeping proactive compaction, also set [`CLAUDE_CODE_DISABLE_1M_CONTEXT=1`](https://code.claude.com/docs/en/env-vars). With that variable set, Claude Code sizes the ID like the same spelling without `[1m]`, so `CLAUDE_CODE_MAX_CONTEXT_TOKENS` applies when it would apply to that untagged spelling.
 
-With a declared window above 200K, the warning that [the 200K limit isn't enforced](https://code.claude.com/docs/en/errors.md#the-200k-limit-isnt-enforced) is expected in this configuration.
+  With a declared window above 200K, the warning that [the 200K limit isn't enforced](https://code.claude.com/docs/en/errors.md#the-200k-limit-isnt-enforced) is expected in this configuration.
 * If the ID resolves to a model Claude Code recognizes, or the ID is a bare `claude-` name with no suffix for Claude Code to strip, in any casing, the variable takes effect only when you also set [`DISABLE_COMPACT`](https://code.claude.com/docs/en/env-vars), which disables all compaction.
 
-For example, an ID that contains a Claude model name that Claude Code knows, such as `anthropic/claude-opus-4-8`, `us.anthropic.claude-…-v1:0`, or the dated `claude-sonnet-4-5@20250929`, resolves to that model. This includes IDs that also contain `[1m]`: Claude Code resolves `claude-opus-4-8[1m]` to Opus 4.8 even with `CLAUDE_CODE_DISABLE_1M_CONTEXT` set.
+  For example, an ID that contains a Claude model name that Claude Code knows, such as `anthropic/claude-opus-4-8`, `us.anthropic.claude-…-v1:0`, or the dated `claude-sonnet-4-5@20250929`, resolves to that model. This includes IDs that also contain `[1m]`: Claude Code resolves `claude-opus-4-8[1m]` to Opus 4.8 even with `CLAUDE_CODE_DISABLE_1M_CONTEXT` set.
 
 For a model ID Claude Code doesn't recognize, set [`CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT=1`](https://code.claude.com/docs/en/env-vars) to have Claude Code compact only after the API rejects the conversation with a [too-long error Claude Code recognizes](https://code.claude.com/docs/en/errors.md#prompt-is-too-long). Claude Code doesn't run that recovery when a gateway [rewrites the error](https://code.claude.com/docs/en/llm-gateway-connect.md#troubleshoot-gateway-errors) to wording Claude Code doesn't recognize.
 
@@ -894,6 +906,7 @@ Use `ANTHROPIC_CUSTOM_MODEL_OPTION` to add a single custom entry to the `/model`
 To list several models instead, in your own order and under labels you choose, set [`modelPicker`](https://code.claude.com/docs/en/settings-reference#modelpicker). Its entry says which rows the picker keeps when that lineup replaces the built-in one.
 
 This example sets all three variables to make a gateway-routed Opus deployment selectable. Claude Code reads environment variables at startup, so run the exports before launching `claude`, or restart an existing session to pick them up:
+
 ```bash
 export ANTHROPIC_CUSTOM_MODEL_OPTION="my-gateway/claude-opus-5-5"
 export ANTHROPIC_CUSTOM_MODEL_OPTION_NAME="Opus via Gateway"
@@ -955,6 +968,7 @@ Apply the same pattern for `ANTHROPIC_DEFAULT_FABLE_MODEL`, `ANTHROPIC_DEFAULT_S
 A pinned model with a native 1M window, such as Opus 4.8 or Sonnet 5, runs with the [1M context window](#extended-context) without any suffix when Claude Code can match the pinned ID to that model. The ID matches when it contains the model's Anthropic API ID, as `us.anthropic.claude-opus-4-8` contains `claude-opus-4-8`, or when a [`modelOverrides`](#override-model-ids-per-version) entry maps the model to it. On a pinned ID that Claude Code can't match to a model, sessions run with a 200K window by default unless the ID carries the `[1m]` suffix.
 
 For a model that reaches 1M through its `[1m]` variant, such as Opus 4.6 or Sonnet 4.6, enable extended context by appending `[1m]` to the model ID in `ANTHROPIC_DEFAULT_OPUS_MODEL` or `ANTHROPIC_DEFAULT_SONNET_MODEL`:
+
 ```bash
 export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-6[1m]'
 ```
@@ -1013,6 +1027,7 @@ Claude Code enables features like [effort levels](#adjust-effort-level) and [ext
 When `_SUPPORTED_CAPABILITIES` is set, Claude Code enables the listed capabilities and disables the unlisted ones for the matching pinned model. When the variable is unset, Claude Code falls back to built-in detection based on the model ID.
 
 This example pins Opus to an Amazon Bedrock custom model ARN, sets a friendly name, and declares its capabilities:
+
 ```bash
 export ANTHROPIC_DEFAULT_OPUS_MODEL='arn:aws:bedrock:us-east-1:123456789012:custom-model/abc'
 export ANTHROPIC_DEFAULT_OPUS_MODEL_NAME='Opus via Bedrock'
@@ -1031,6 +1046,7 @@ The family-level environment variables above configure one model ID per family a
 This lets enterprise administrators route each model version to a specific Amazon Bedrock inference profile ARN, Google Cloud's Agent Platform version name, or Microsoft Foundry deployment name for governance, cost allocation, or regional routing.
 
 Set `modelOverrides` in your [settings file](https://code.claude.com/docs/en/settings.md#where-settings-live):
+
 ```json
 {
   "modelOverrides": {

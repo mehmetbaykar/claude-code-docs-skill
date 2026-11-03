@@ -71,6 +71,7 @@ When you add an environment or edit one of your own, select the dialog's [**Netw
 Environment variables use `.env` format, one `KEY=value` pair per line. Plain values don't need quotes, and if you quote a value with a matching pair, the quotes don't become part of the value. Quote a value that spans multiple lines or contains a `#`: in an unquoted value, `#` starts a comment and the rest of the line is dropped.
 
 The following example defines three variables.
+
 ```text
 NODE_ENV=development
 LOG_LEVEL=debug
@@ -101,8 +102,8 @@ Network secrets are available on Pro, Max, Ultra, Team, and Enterprise plans. To
 These requirements decide whether you can add a secret and whether the agent proxy can use it once added:
 
 * **Role**: on every plan, you can add and delete secrets on your own environments whatever your role. On Team and Enterprise, Owners hold an organization admin role in your claude.ai organization and Admins don't, which changes what you see in these cases:
-* **Your own environment**: without an organization admin role, **Add secret** opens a [shorter form](#add-a-secret-without-the-role)
-* **A shared environment**: Owners [add and delete its secrets](#add-a-credential) from admin settings. Without an organization admin role, ask an Owner to add the secret, because the environment's dialog has no **Network secrets** section
+  * **Your own environment**: without an organization admin role, **Add secret** opens a [shorter form](#add-a-secret-without-the-role)
+  * **A shared environment**: Owners [add and delete its secrets](#add-a-credential) from admin settings. Without an organization admin role, ask an Owner to add the secret, because the environment's dialog has no **Network secrets** section
 * **Environment type**: an Anthropic-hosted cloud environment that already exists. A [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments) doesn't have network secrets
 * **API reachability**: the API accepts connections from the internet, because requests leave from Anthropic's network
 * **Encryption keys**: if your organization uses customer-managed encryption keys, you can't save network secrets
@@ -172,8 +173,8 @@ Archiving affects new sessions, not running ones:
 * The environment disappears from the selector and from `/remote-env`, so you can't pick it for new sessions.
 * Network secrets on the environment stay attached in its running sessions. Delete any you no longer want before you archive.
 * No new session can start in an archived environment, on any surface:
-* **Saved CLI default**: if the environment was your saved [CLI default](#select-an-environment-from-the-cli), Claude Code starts CLI cloud sessions in the Anthropic-hosted environment when your list has one. Otherwise, it starts them in the first environment in your list that isn't a [Remote Control bridge environment](#the-default-environment).
-* **Configured explicitly**: anything configured with the environment explicitly, such as a [cloud scheduled task](https://code.claude.com/docs/en/routines.md#environments-and-network-access), can't start new sessions in it. Point it at another environment.
+  * **Saved CLI default**: if the environment was your saved [CLI default](#select-an-environment-from-the-cli), Claude Code starts CLI cloud sessions in the Anthropic-hosted environment when your list has one. Otherwise, it starts them in the first environment in your list that isn't a [Remote Control bridge environment](#the-default-environment).
+  * **Configured explicitly**: anything configured with the environment explicitly, such as a [cloud scheduled task](https://code.claude.com/docs/en/routines.md#environments-and-network-access), can't start new sessions in it. Point it at another environment.
 
 When you no longer need an Anthropic-hosted environment, archive it. Neither the environment dialog nor the **Cloud environments** admin page has an option to delete an Anthropic-hosted environment. If the environment is [self-hosted](https://code.claude.com/docs/en/self-hosted-environments), an Owner can delete it from the **Cloud environments** page in admin settings. If you aren't an Owner, ask one to delete it.
 
@@ -232,6 +233,7 @@ Whichever level you pick, sessions can still reach these, because each one takes
 ### Allow specific domains
 
 To allow domains that aren't in the Trusted list, select **Custom** in the environment's network access settings, then list one domain per line in the **Allowed domains** field. This example allows three hosts an internal project might need.
+
 ```text
 api.example.com
 *.internal.example.com
@@ -306,6 +308,7 @@ Anyone who uses the environment can read its environment variables and setup scr
 #### Add personal preferences without committing to the repo
 
 In an Anthropic-hosted environment, add a [setup script](#setup-scripts) that writes `~/.claude/CLAUDE.md` for preferences you'd rather not put in a shared repository. Claude Code loads that file as [user instructions](https://code.claude.com/docs/en/memory.md#choose-where-to-put-claude-md-files) in the session. This example sets a commit-message preference:
+
 ```bash
 #!/bin/bash
 mkdir -p ~/.claude
@@ -367,6 +370,7 @@ Each cloud session has a transcript URL on claude.ai, and the session can read i
 Commits that Claude creates in a cloud session include a `Claude-Session: <url>` git trailer, and PR bodies include the session URL on its own line. To omit the trailer and the PR-body link, set [`attribution.sessionUrl`](https://code.claude.com/docs/en/settings-reference#attribution-sessionurl) to `false`.
 
 To include the session link in something other than a commit or PR, such as a Slack message Claude posts or a report file it writes, have Claude run the following command and use its output. The command converts the `cse_` prefix in the environment variable's value to the `session_` prefix that the transcript URL expects:
+
 ```bash
 echo "https://claude.ai/code/${CLAUDE_CODE_REMOTE_SESSION_ID/#cse_/session_}"
 ```
@@ -382,9 +386,11 @@ Claude runs tests as part of working on a task. Ask for it in your prompt, like 
 #### Start services
 
 PostgreSQL and Redis are pre-installed but not running by default. Ask Claude to start whichever you need; the commands it runs are:
+
 ```bash
 service postgresql start
 ```
+
 ```bash
 service redis-server start
 ```
@@ -413,7 +419,7 @@ In Anthropic-hosted environments, these time limits apply to long-running work i
 
 * **Commands Claude runs**: a cloud environment doesn't set its own command timeout, so the Bash tool's defaults apply. Claude waits 2 minutes for a foreground command by default and can ask for up to 10 minutes.
 
-When a command reaches its [timeout](https://code.claude.com/docs/en/tools-reference.md#timeout-and-output-limits), Claude Code [moves it to the background](https://code.claude.com/docs/en/tools-reference.md#foreground-commands-that-move-to-the-background) instead of stopping it, unless the command starts with `sleep`. A command moved this way can keep running for up to 30 more minutes before Claude Code stops it at its [background time limit](https://code.claude.com/docs/en/tools-reference.md#time-limit-for-background-commands). Setting `BASH_DEFAULT_TIMEOUT_MS` above `1800000` milliseconds lengthens that limit as well as the foreground default.
+  When a command reaches its [timeout](https://code.claude.com/docs/en/tools-reference.md#timeout-and-output-limits), Claude Code [moves it to the background](https://code.claude.com/docs/en/tools-reference.md#foreground-commands-that-move-to-the-background) instead of stopping it, unless the command starts with `sleep`. A command moved this way can keep running for up to 30 more minutes before Claude Code stops it at its [background time limit](https://code.claude.com/docs/en/tools-reference.md#time-limit-for-background-commands). Setting `BASH_DEFAULT_TIMEOUT_MS` above `1800000` milliseconds lengthens that limit as well as the foreground default.
 * **SessionStart hooks**: Claude Code cancels a `command` hook after 600 seconds unless you set [`timeout`](https://code.claude.com/docs/en/hooks#common-fields), in seconds, on the hook entry. Claude Code doesn't enforce the timeout on a hook you run with [`async: true`](https://code.claude.com/docs/en/hooks#run-hooks-in-the-background).
 * **Setup script**: a script that takes longer than roughly five minutes isn't cached. [Script requirements](#script-requirements) covers how to stay under that.
 * **Idle sessions**: after a few minutes without activity, a session's VM pauses with its files saved, and a paused VM can later be reclaimed. [Set environment variables](#set-environment-variables) describes what a session picks up in each case, and [Environment expired](https://code.claude.com/docs/en/claude-code-on-the-web.md#environment-expired) covers how to reopen a session whose VM was reclaimed.
@@ -431,6 +437,7 @@ Scripts run as root on Ubuntu 24.04, so `apt install` and most language package 
 To add a setup script to your own environment, you can type or paste it, or load a text file such as `setup.sh`. [Add or edit the environment](#configure-your-environment) and select the **Setup script** row. Enter the script in the box that opens, or select **Choose file** to replace the box's contents with the text of a file up to 64 KB. Then select **Add environment** or **Save changes**.
 
 This example installs [ShellCheck](https://www.shellcheck.net/), which isn't pre-installed.
+
 ```bash
 #!/bin/bash
 apt update && apt install -y shellcheck
@@ -477,6 +484,7 @@ If you have SessionStart hooks in your user-level `~/.claude/settings.json`, don
 To install dependencies only in cloud sessions outside a [project](https://code.claude.com/docs/en/claude-projects.md#what-threads-pick-up-from-your-repositories)'s threads, pair a SessionStart hook with a script that checks where it's running.
 
 First, add a SessionStart hook to your repo's `.claude/settings.json`. This configuration tells Claude Code to run `scripts/install_pkgs.sh` from your repository whenever a session starts or resumes:
+
 ```json
 {
   "hooks": {
@@ -498,6 +506,7 @@ First, add a SessionStart hook to your repo's `.claude/settings.json`. This conf
 The `matcher` limits the hook to the `startup` and `resume` events, and `$CLAUDE_PROJECT_DIR` resolves to the repository root, so the hook finds the script regardless of the session's working directory.
 
 Next, create the script at `scripts/install_pkgs.sh`. It exits immediately outside the cloud, then installs your dependencies. It skips `npm install` while `package.json`, `package-lock.json`, and the script itself are unchanged since the last successful install:
+
 ```bash
 #!/bin/bash
 

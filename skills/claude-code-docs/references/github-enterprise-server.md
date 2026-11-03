@@ -94,12 +94,14 @@ Hosted pre-session flows, such as the repository picker, run on Anthropic's side
 Claude Code detects your GHES hostname automatically from the git remote in your working directory.
 
 Clone a repository from your GHES instance as you normally would, replacing `github.example.com` and the repository path with your GHES hostname and repository:
+
 ```bash
 git clone git@github.example.com:platform/api-service.git
 cd api-service
 ```
 
 Then start a cloud session. Claude detects the GHES host from your git remote and routes the session through your organization's configured instance:
+
 ```bash
 claude --cloud "Add retry logic to the payment webhook handler"
 ```
@@ -129,11 +131,13 @@ Host plugin marketplaces on your GHES instance to distribute internal tooling ac
 ### Add a GHES marketplace
 
 The `owner/repo` shorthand always resolves to github.com. For GHES-hosted marketplaces, use the full git URL, replacing `github.example.com` and the repository path with your own. HTTPS URLs are recommended:
+
 ```bash
 /plugin marketplace add https://github.example.com/platform/claude-plugins.git
 ```
 
 SSH URLs work if the machine already trusts your GHES host:
+
 ```bash
 /plugin marketplace add git@github.example.com:platform/claude-plugins.git
 ```
@@ -145,6 +149,7 @@ See [Create and distribute a plugin marketplace](https://code.claude.com/docs/en
 ### Pre-register GHES marketplaces with managed settings
 
 The `extraKnownMarketplaces` setting pre-registers a marketplace so developers get it without manual setup. It works from [any settings file](https://code.claude.com/docs/en/settings-reference.md#extraknownmarketplaces), including a repository's `.claude/settings.json`; managed settings deliver it organization-wide:
+
 ```json
 {
   "extraKnownMarketplaces": {
@@ -168,6 +173,7 @@ Claude Code installs these marketplaces locally: it registers each entry and clo
 ### Allowlist GHES marketplaces in managed settings
 
 If your organization uses [managed settings](https://code.claude.com/docs/en/settings.md) to restrict which marketplaces developers can add, use the `hostPattern` source type to allow all marketplaces from your GHES instance without enumerating each repository. See [Delivery mechanisms](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms) for file locations on each platform. Add the JSON to your `managed-settings.json` file or equivalent MDM policy:
+
 ```json
 {
   "strictKnownMarketplaces": [

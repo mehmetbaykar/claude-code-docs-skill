@@ -26,6 +26,7 @@ Save the two files below on the runner host:
 
 * The settings block: merge into `~/.claude/settings.json` on the runner host
 * The script: save as `~/.claude/hooks/e2e-stop-hook-capture.sh` on the runner host and make it executable
+
 ```json
 {
   "hooks": {
@@ -43,6 +44,7 @@ Save the two files below on the runner host:
   }
 }
 ```
+
 ```sh
 #!/bin/sh
 # Stop hook for testing a self-hosted environment end to end: writes each
@@ -80,9 +82,9 @@ Install this hook only on runners serving your test environment. It writes every
 The `--environment` and `--ref` dispatch flags require Claude Code v2.1.224 or later on the machine that runs the script, the same floor as the runner itself. With the hook in place and a runner started on this host, the test script:
 
 1. Creates a session on the test environment with `claude -p "<prompt>" --environment <environment-id> --output-format json`. Run the command from a git checkout so the CLI can auto-detect the repository from the `origin` remote. The optional `--ref <branch>` bases the session's checkout on a named ref instead of local HEAD. The command exits without waiting for Claude's reply. What it prints tells your script the outcome:
-* **Session created**: one line of JSON such as `{"ok":true,"session_id":"session_...","title":"...","url":"...","pool_id":"..."}`
-* **Session creation failed**: the line `{"ok":false,"error":"..."}`, and the command exits with status 1
-* **Some earlier errors**, such as cloud sessions being unavailable for your organization or a missing prompt: the error on stderr with no JSON line, and the command exits with status 1
+   * **Session created**: one line of JSON such as `{"ok":true,"session_id":"session_...","title":"...","url":"...","pool_id":"..."}`
+   * **Session creation failed**: the line `{"ok":false,"error":"..."}`, and the command exits with status 1
+   * **Some earlier errors**, such as cloud sessions being unavailable for your organization or a missing prompt: the error on stderr with no JSON line, and the command exits with status 1
 2. Waits for the reply to appear in `$E2E_REPLY_DIR/<session_id>.txt`, written by the Stop hook on the runner once the turn completes.
 3. Sends a follow-up with `claude -p "<message>" --cloud <session_id> --output-format json` (see [Send a follow-up message to a running session](https://code.claude.com/docs/en/claude-code-on-the-web.md#send-follow-ups-from-the-cli)), which posts a user event to the existing session and exits.
 4. Waits for the follow-up's reply the same way as step 2.
@@ -103,6 +105,7 @@ The example script runs on the same machine as the test runner. Before you run i
 * **Environment ID**: set `CLAUDE_TEST_ENVIRONMENT_ID` to your test environment's `ccpool_...` ID, shown in the environment's detail dialog on the admin page or returned by the [create-environment call](#create-a-dedicated-test-environment).
 
 The script below runs the full loop against `$CLAUDE_TEST_ENVIRONMENT_ID` and asserts on a sentinel phrase in each reply.
+
 ```bash
 #!/usr/bin/env bash
 # End-to-end test against a self-hosted environment, using Stop-hook read-back.
@@ -176,6 +179,7 @@ Replace the `TURN1`/`TURN2` prompts and `EXPECT1`/`EXPECT2` sentinels with whate
 ## Remote test runners
 
 If your test runners are on separate infrastructure, such as a persistent Kubernetes fleet your CI job can't share a filesystem with, swap the file write in the Stop hook for a POST to an endpoint your driver listens on:
+
 ```sh
 #!/bin/sh
 # Variant of the capture hook for runners on separate infrastructure.
@@ -221,6 +225,7 @@ Create and delete environments programmatically so each CI run gets a clean one;
 ### Create the environment
 
 Capture the response without echoing it: `pool_secret` is a long-lived credential that can register runners into the environment, so store it as a masked CI secret and print only the environment ID. The `-H @-` form that keeps the token out of the process list requires curl 7.55 or later; older curl treats `@-` as a literal header and sends the request without authorization.
+
 ```bash
 create=$(curl -fsS -X POST -H @- \
   -H "anthropic-beta: ccr-byoc-2025-07-29" -H "anthropic-version: 2023-06-01" \
@@ -239,6 +244,7 @@ Start a runner on this host with `SELF_HOSTED_RUNNER_ENVIRONMENT_SECRET=$ENVIRON
 ### Delete the environment
 
 Delete the environment when the run finishes, so each CI run starts clean:
+
 ```bash
 curl -fsS -X DELETE -H @- \
   -H "anthropic-beta: ccr-byoc-2025-07-29" -H "anthropic-version: 2023-06-01" \

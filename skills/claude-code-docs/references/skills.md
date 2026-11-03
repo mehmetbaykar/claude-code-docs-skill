@@ -106,6 +106,7 @@ This example creates a skill that summarizes the uncommitted changes in your git
 **1. Create the skill directory**
 
 Create a directory for the skill in your personal skills folder. Personal skills are available across all your projects.
+
 ```bash
 mkdir -p ~/.claude/skills/summarize-changes
 ```
@@ -115,6 +116,7 @@ mkdir -p ~/.claude/skills/summarize-changes
 Every skill needs a `SKILL.md` file with two parts: YAML frontmatter between `---` markers that tells Claude when to use the skill, and markdown content with the instructions Claude follows when the skill runs. The directory name, or the frontmatter `name` when you set one, becomes the command you type, and the `description` helps Claude decide when to load the skill automatically.
 
 Save this to `~/.claude/skills/summarize-changes/SKILL.md`:
+
 ```yaml
 ---
 description: Summarizes uncommitted changes and flags anything risky. Use when the user asks what changed, wants a commit message, or asks to review their diff.
@@ -136,11 +138,13 @@ The `` !`git diff HEAD` `` line uses [dynamic context injection](#inject-dynamic
 Open a git project, make a small edit to any file, and start Claude Code by running `claude`. You can test the skill two ways.
 
 **Let Claude invoke it automatically** by asking something that matches the description:
+
 ```text
 What did I change?
 ```
 
 **Or invoke it directly** with the skill name:
+
 ```text
 /summarize-changes
 ```
@@ -340,6 +344,7 @@ Skills are configured through YAML frontmatter at the top of `SKILL.md` and the 
 Skill files can contain any instructions, but thinking about how you want to invoke them helps guide what to include:
 
 **Reference content** adds knowledge Claude applies to your current work. Conventions, patterns, style guides, domain knowledge. This content runs inline so Claude can use it alongside your conversation context.
+
 ```yaml
 ---
 name: api-conventions
@@ -353,6 +358,7 @@ When writing API endpoints:
 ```
 
 **Task content** gives Claude step-by-step instructions for a specific action, like deployments, commits, or code generation. These are often actions you want to invoke directly with `/skill-name` rather than letting Claude decide when to run them. Add `disable-model-invocation: true` to prevent Claude from triggering it automatically. The example below adds `context: fork`, which runs the skill in its own subagent context; see [Run skills in a subagent](#run-skills-in-a-subagent).
+
 ```yaml
 ---
 name: deploy
@@ -372,6 +378,7 @@ Keep the body itself concise. Once a skill loads, its content [stays in context 
 ### Frontmatter reference
 
 Configure a skill with YAML [frontmatter](https://code.claude.com/docs/en/glossary.md#frontmatter) between `---` markers at the top of `SKILL.md`, and write the skill's instructions as Markdown after the closing `---`. Field names use lowercase words separated by hyphens, except `when_to_use`. A [command file](#where-skills-live) in `.claude/commands/` accepts the same fields except `name` and `paths`. This example sets four fields:
+
 ```yaml
 ---
 name: my-skill
@@ -422,6 +429,7 @@ Claude Code accepts every field in the table above. Outside Claude Code, you can
 When you enable a personal skill for your claude.ai account, for example to use it in [Cowork and cloud sessions](#skills-in-cowork-and-cloud-sessions) and scheduled tasks, you upload it to claude.ai. The same rules apply to that upload.
 
 If you include any field the spec doesn't allow, packaging or upload fails with a hard error instead of ignoring the field:
+
 ```
 Unexpected key(s) in SKILL.md frontmatter: argument-hint. Allowed properties are: allowed-tools, compatibility, description, license, metadata, name
 ```
@@ -486,6 +494,7 @@ Skills support string substitution for dynamic values in the skill content:
 | `${CLAUDE_PLUGIN_DATA}` | The plugin's [persistent data directory](https://code.claude.com/docs/en/plugins/components.md#path-variables-and-persistent-data), which survives plugin updates. Substituted only in plugin skills. Use this to reference installed dependencies, generated files, or caches that must outlive an update. |
 
 Claude Code substitutes `${CLAUDE_SKILL_DIR}` and `${CLAUDE_PROJECT_DIR}` in two places: the skill's markdown content, and Bash rules in the [`allowed-tools`](#frontmatter-reference) frontmatter. In a plugin skill, Claude Code substitutes `${CLAUDE_PLUGIN_ROOT}` and `${CLAUDE_PLUGIN_DATA}` in the same two places. Using the same variable in both places lets a skill run a bundled script without a permission prompt. The following skill shows the pattern:
+
 ```yaml
 ---
 name: render-chart
@@ -507,6 +516,7 @@ If you pass an argument value that itself contains text such as `$1` or `$ARGUME
 To include a literal `$` before a digit, `ARGUMENTS`, or a declared argument name, such as `$1.00` in prose, escape it with a backslash: `\$1.00`. A backslash before any other `$` is left unchanged. Only a single backslash directly before the token escapes it. A doubled backslash such as `\\$1` leaves both backslashes in place, and `$1` still expands to the argument value. The backslash escape covers only these argument placeholders. A backslash doesn't prevent substitution of a `${CLAUDE_*}` variable where the variable applies.
 
 **Example using substitutions:**
+
 ```yaml
 ---
 name: session-logger
@@ -521,6 +531,7 @@ $ARGUMENTS
 ### Add supporting files
 
 Skills can include multiple files in their directory. This keeps `SKILL.md` focused on the essentials while letting Claude access detailed reference material only when needed. Large reference docs, API specifications, or example collections don't need to load into context every time the skill runs.
+
 ```text
 my-skill/
 ├── SKILL.md (required - overview and navigation)
@@ -531,6 +542,7 @@ my-skill/
 ```
 
 Reference supporting files from `SKILL.md` so Claude knows what each file contains and when to load it:
+
 ```markdown
 ## Additional resources
 
@@ -551,6 +563,7 @@ By default, both you and Claude can invoke any skill. You can type `/skill-name`
 * **`user-invocable: false`**: Only Claude can invoke the skill. Use this for background knowledge that isn't actionable as a command. A `legacy-system-context` skill explains how an old system works. Claude should know this when relevant, but `/legacy-system-context` isn't a meaningful action for users to take.
 
 This example creates a deploy skill. If you set `disable-model-invocation: true`, Claude can't run the skill automatically:
+
 ```yaml
 ---
 name: deploy
@@ -608,6 +621,7 @@ The `allowed-tools` field grants permission for the listed tools during the turn
 Workspace trust doesn't gate this field. Claude Code applies a project skill's `allowed-tools` even in a `-p` run in a folder you've never trusted. A skill can grant itself broad tool access, so review the `allowed-tools` of skills checked into a repository before you run Claude Code there. To withhold the field from repository skills across your organization, see [When only managed permission rules apply](#when-only-managed-permission-rules-apply).
 
 This skill lets Claude run git commands without per-use approval whenever you invoke it:
+
 ```yaml
 ---
 name: commit
@@ -637,6 +651,7 @@ The tools an affected skill lists go through your organization's managed rules a
 Both you and Claude can pass arguments when invoking a skill. Arguments are available via the `$ARGUMENTS` placeholder.
 
 This skill fixes a GitHub issue by number. The `$ARGUMENTS` placeholder gets replaced with whatever follows the skill name:
+
 ```yaml
 ---
 name: fix-issue
@@ -658,6 +673,7 @@ When you run `/fix-issue 123`, Claude receives "Fix GitHub issue 123 following o
 If you invoke a skill with arguments but no placeholder in the skill's content receives one, Claude Code appends `ARGUMENTS: <your input>` to the end of the skill content so Claude still sees what you typed. A placeholder is `$ARGUMENTS`, an indexed form such as `$1`, or a named argument. An indexed placeholder with no argument at its position stays as literal text and doesn't count as receiving one. A named placeholder counts even when its position has no argument, because it expands to an empty string.
 
 To access individual arguments by position, use `$ARGUMENTS[N]` or the shorter `$N`:
+
 ```yaml
 ---
 name: migrate-component
@@ -669,6 +685,7 @@ Preserve all existing behavior and tests.
 ```
 
 Running `/migrate-component SearchBar JavaScript TypeScript` replaces `$ARGUMENTS[0]` with `SearchBar`, `$ARGUMENTS[1]` with `JavaScript`, and `$ARGUMENTS[2]` with `TypeScript`. The same skill using the `$N` shorthand:
+
 ```yaml
 ---
 name: migrate-component
@@ -692,6 +709,7 @@ Claude Code expands the first skill plus up to five more stacked after it. Expan
 The `` !`<command>` `` syntax runs shell commands before the skill content is sent to Claude. The command output replaces the placeholder, so Claude receives actual data, not the command itself. Claude Code doesn't run these commands on your machine when the skill is [synced from your claude.ai account](#how-claude-code-handles-the-body-of-a-synced-skill). This restriction requires Claude Code v2.1.228 or later.
 
 This skill summarizes a pull request by fetching live PR data with the GitHub CLI. The `` !`gh pr diff` `` and other commands run first, and their output gets inserted into the prompt:
+
 ```yaml
 ---
 name: pr-summary
@@ -715,6 +733,7 @@ Substitution runs once over the original file. Command output is inserted as pla
 The inline form is only recognized when `!` appears at the start of a line or immediately after whitespace. If `!` follows another character, as in `` KEY=!`cmd` ``, the placeholder is left as literal text and the command does not run.
 
 For multi-line commands, use a fenced code block opened with ` ```! ` instead of the inline form:
+
 ````markdown
 ## Environment
 ``` !
@@ -814,6 +833,7 @@ For the inverse, where you define a custom subagent that uses skills as referenc
 #### Example: Research skill using Explore agent
 
 This skill runs research in a forked Explore agent. The skill content becomes the task, and the agent provides read-only tools optimized for codebase exploration:
+
 ```yaml
 ---
 name: deep-research
@@ -845,12 +865,14 @@ By default, Claude can invoke any skill that doesn't have `disable-model-invocat
 Three ways to control which skills Claude can invoke:
 
 **Disable all skills** by denying the Skill tool in `/permissions`:
+
 ```text
 # Add to deny rules:
 Skill
 ```
 
 **Allow or deny specific skills** using [permission rules](https://code.claude.com/docs/en/permissions.md):
+
 ```text
 # Allow only specific skills
 Skill(commit)
@@ -904,6 +926,7 @@ The `/skills` menu labels the `"user-invocable-only"` state `user-only`.
 `"off"` also hides the skill from the command lists advertised to [Remote Control](https://code.claude.com/docs/en/remote-control.md) clients and to [Agent SDK](https://code.claude.com/docs/en/agent-sdk/skills.md#discover-available-commands) callers, in addition to the terminal `/` menu. Invoking a hidden skill by its full name returns the `skillOverrides` error instead of running it.
 
 A skill that is absent from `skillOverrides` is treated as `"on"`. The example below collapses one skill to its name and turns another off entirely:
+
 ```json
 {
   "skillOverrides": {
@@ -943,6 +966,7 @@ Two tools automate the baseline comparison. For a skill that ships in a [plugin]
 ### Run evals with skill-creator
 
 The [`skill-creator` plugin](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/skill-creator) automates the comparison loop inside Claude Code. In the VS Code extension or the desktop app, install it from the official marketplace by following [Install a plugin](https://code.claude.com/docs/en/plugins/install.md#install-a-plugin). In a terminal, start Claude Code by running `claude`, then enter this at its prompt:
+
 ```text
 /plugin install skill-creator@claude-plugins-official
 ```
@@ -979,11 +1003,13 @@ Skills can bundle and run scripts in any language, giving Claude capabilities be
 This example creates a codebase explorer: an interactive tree view where you can expand and collapse directories, see file sizes at a glance, and identify file types by color.
 
 Create the Skill directory:
+
 ```bash
 mkdir -p ~/.claude/skills/codebase-visualizer/scripts
 ```
 
 Save this to `~/.claude/skills/codebase-visualizer/SKILL.md`. The description tells Claude when to activate this Skill, and the instructions tell Claude to run the bundled script. The script path uses [`${CLAUDE_SKILL_DIR}`](#available-string-substitutions) so it resolves correctly whether the skill is installed at the personal, project, or plugin level:
+
 ````yaml
 ---
 name: codebase-visualizer
@@ -998,6 +1024,7 @@ Generate an interactive HTML tree view that shows your project's file structure 
 ## Usage
 
 Run the visualization script from your project root:
+
 ```bash
 python3 ${CLAUDE_SKILL_DIR}/scripts/visualize.py .
 ```
@@ -1019,6 +1046,7 @@ Save this to `~/.claude/skills/codebase-visualizer/scripts/visualize.py`. This s
 * A **collapsible tree** where you can expand and collapse directories, with color-coded file type indicators
 
 The script requires Python 3 but uses only built-in libraries, so there are no packages to install:
+
 ```python expandable
 #!/usr/bin/env python3
 """Generate an interactive collapsible tree visualization of a codebase."""

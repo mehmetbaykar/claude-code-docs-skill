@@ -48,6 +48,7 @@ Use subagents when you need quick, focused workers that report back. Use agent t
 ## Enable agent teams
 
 Agent teams are disabled by default. Enable them by setting the `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` environment variable to `1`, either in your shell environment or through [settings.json](https://code.claude.com/docs/en/settings.md):
+
 ```json settings.json
 {
   "env": {
@@ -65,6 +66,7 @@ Spawning teammates also requires an interactive session. In [non-interactive mod
 After enabling agent teams, describe the task and the teammates you want in natural language. Claude spawns them and coordinates work based on your prompt.
 
 This example works well because the three roles are independent and can explore the problem without waiting on each other:
+
 ```text wrap
 I'm designing a CLI tool that helps developers track TODO comments across
 their codebase. Spawn three teammates to explore this from different angles:
@@ -107,6 +109,7 @@ The default is `"in-process"`. Set `"auto"` to enable split panes when you're al
 Set `"iterm2"` to use iTerm2 native split panes explicitly. This mode requires the [`it2` CLI](https://github.com/mkusaka/it2) and shows an error with the install command if `it2` is missing. The setup prompt that offers to install `it2` or switch to tmux appears under `"auto"` or `"tmux"` when your terminal is iTerm2 and tmux is available as a fallback.
 
 To override the default, set [`teammateMode`](https://code.claude.com/docs/en/settings-reference#teammatemode) in `~/.claude/settings.json`:
+
 ```json
 {
   "teammateMode": "auto"
@@ -114,6 +117,7 @@ To override the default, set [`teammateMode`](https://code.claude.com/docs/en/se
 ```
 
 To set the mode for a single session, pass it as a flag:
+
 ```bash
 claude --teammate-mode auto
 ```
@@ -128,6 +132,7 @@ Split-pane mode requires either [tmux](https://github.com/tmux/tmux/wiki) or iTe
 ### Specify teammates and models
 
 Claude decides the number of teammates to spawn based on your task, or you can specify exactly what you want:
+
 ```text wrap
 Spawn 4 teammates to refactor these modules in parallel. Use Sonnet for
 each teammate.
@@ -160,6 +165,7 @@ By default, teammates inherit the lead's [effort level](https://code.claude.com/
 ### Have teammates plan before implementing
 
 For complex or risky tasks, you can have teammates plan before implementing. A teammate that Claude spawns while the lead is in [plan mode](https://code.claude.com/docs/en/permission-modes.md#analyze-before-you-edit-with-plan-mode) works in read-only plan mode until its plan is ready. Switch the lead into plan mode first, then ask for the teammate:
+
 ```text wrap
 Spawn an architect teammate to refactor the authentication module.
 ```
@@ -198,6 +204,7 @@ Task claiming uses file locking to prevent race conditions when multiple teammat
 ### Shut down teammates
 
 To gracefully end a teammate's session, refer to it by name. For example, with a teammate named researcher:
+
 ```text wrap
 Ask the researcher teammate to shut down
 ```
@@ -261,6 +268,7 @@ There is no project-level equivalent of the team config. A file like `.claude/te
 When spawning a teammate in either display mode, you can reference a [subagent](https://code.claude.com/docs/en/sub-agents.md) type from the project, user, managed, or plugin [subagent scope](https://code.claude.com/docs/en/sub-agents.md#choose-the-subagent-scope). This lets you define a role once, such as a security-reviewer or test-runner, and reuse it both as a delegated subagent and as an agent team teammate.
 
 To use a subagent definition, name it when you ask Claude to spawn the teammate:
+
 ```text wrap
 Spawn a teammate using the security-reviewer agent type to audit the auth module.
 ```
@@ -328,6 +336,7 @@ These examples show how agent teams handle tasks where parallel exploration adds
 ### Run a parallel code review
 
 A single reviewer tends to gravitate toward one type of issue at a time. Splitting review criteria into independent domains means security, performance, and test coverage all get thorough attention simultaneously. The prompt assigns each teammate a distinct lens so they don't overlap:
+
 ```text wrap
 Spawn three teammates to review PR #142:
 - One focused on security implications
@@ -341,6 +350,7 @@ Each reviewer works from the same PR but applies a different filter. The lead sy
 ### Investigate with competing hypotheses
 
 When the root cause is unclear, a single agent tends to find one plausible explanation and stop looking. The prompt fights this by making teammates explicitly adversarial: each one's job is not only to investigate its own theory but to challenge the others'.
+
 ```text wrap
 Users report the app exits after one message instead of staying connected.
 Spawn 5 agent teammates to investigate different hypotheses. Have them talk to
@@ -357,6 +367,7 @@ With multiple independent investigators actively trying to disprove each other, 
 ### Give teammates enough context
 
 Teammates load project context automatically, including CLAUDE.md, MCP servers, and skills, but they don't inherit the lead's conversation history. See [Context and communication](#context-and-communication) for details. Include task-specific details in the spawn prompt:
+
 ```text wrap
 Spawn a security reviewer teammate with the prompt: "Review the authentication module
 at src/auth/ for security vulnerabilities. Focus on token handling, session
@@ -389,6 +400,7 @@ Scale up only when the work benefits from having teammates work simultaneously. 
 ### Wait for teammates to finish
 
 Sometimes the lead starts implementing tasks itself instead of waiting for teammates. If you notice this:
+
 ```text wrap
 Wait for your teammates to complete their tasks before proceeding
 ```
@@ -415,9 +427,9 @@ If teammates aren't appearing after you ask Claude to spawn them:
 * A teammate row that disappeared after sitting idle has been hidden, not stopped. Idle rows hide 30 seconds after the whole panel goes idle and reappear on the teammate's next turn. When more than three teammates are idle, their surplus rows collapse into a single `N idle agents` row that Enter expands. Send the teammate a message by name to bring a hidden row back.
 * Check that the task you gave Claude was complex enough to warrant a team. Claude decides whether to spawn teammates based on the task.
 * If you explicitly requested split panes, ensure tmux is installed and available in your PATH:
-```bash
+  ```bash
   which tmux
-```
+  ```
 * For iTerm2, verify the `it2` CLI is installed and the Python API is enabled in iTerm2 preferences.
 
 ### Claude spawns teammates instead of subagents
@@ -425,6 +437,7 @@ If teammates aren't appearing after you ask Claude to spawn them:
 While agent teams are enabled, a subagent that Claude names in the lead's session launches as a teammate. Claude [can name subagents on its own](#how-claude-starts-agent-teams), so this can happen during delegation you never framed as team work.
 
 To make named subagents launch as subagents again, turn agent teams off by setting `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` to `0`:
+
 ```json settings.json
 {
   "env": {
@@ -460,6 +473,7 @@ The lead can stop early too, deciding the team is finished before all tasks are 
 ### Orphaned tmux sessions
 
 If a tmux session persists after the Claude Code session ends, it may not have been fully cleaned up. List sessions and end the one created by the team:
+
 ```bash
 tmux ls
 tmux kill-session -t <session-name>

@@ -75,6 +75,7 @@ The assignment line prints nothing on success. To confirm the variable is set, p
 ### Set variables in settings files
 
 Add variables under the `env` key in a `settings.json` file, creating the file if it doesn't exist. Claude Code reads them directly from the file, so they take effect no matter how `claude` was launched. A running session applies new and changed values to its environment when you save the file, but a feature that reads its variables once at startup, such as [OpenTelemetry monitoring](https://code.claude.com/docs/en/monitoring-usage.md), keeps its startup values until you relaunch. Removing a variable from the file doesn't unset it in a running session; the removal takes effect the next time you launch `claude`.
+
 ```json ~/.claude/settings.json
 {
   "env": {

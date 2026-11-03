@@ -59,6 +59,7 @@ You can also pass a skill as the prompt, for example `/loop 20m /review-pr 1234`
 ### Run on a fixed interval
 
 When you supply an interval, Claude converts it to a cron expression, schedules the job, and confirms the cadence and job ID.
+
 ```text
 /loop 5m check if the deployment finished and tell me what happened
 ```
@@ -72,6 +73,7 @@ Seconds are rounded up to the nearest minute since cron has one-minute granulari
 When you omit the interval, Claude chooses one dynamically instead of running on a fixed cron schedule. After each iteration it picks a delay between one minute and one hour based on what it observed: short waits while a build is finishing or a PR is active, longer waits when nothing is pending. The chosen delay and the reason for it are printed at the end of each iteration.
 
 The example below checks CI and review comments, with Claude waiting longer between iterations once the PR goes quiet:
+
 ```text
 /loop check whether CI passed and address any review comments
 ```
@@ -93,6 +95,7 @@ When you omit the prompt, Claude uses a built-in maintenance prompt instead of o
 * run cleanup passes such as bug hunts or simplification when nothing else is pending
 
 Claude does not start new initiatives outside that scope, and irreversible actions such as pushing or deleting only proceed when they continue something the transcript already authorized.
+
 ```text
 /loop
 ```
@@ -111,6 +114,7 @@ Claude looks for the file in two locations and uses the first one it finds.
 | `~/.claude/loop.md` | User-level. Applies in any project that does not define its own. |
 
 The file is plain Markdown with no required structure. Write it as if you were typing the `/loop` prompt directly. The following example keeps a release branch healthy:
+
 ```markdown title=".claude/loop.md"
 Check the `release/next` PR. If CI is red, pull the failing job log,
 diagnose, and push a minimal fix. If new review comments have arrived,
@@ -134,9 +138,11 @@ When you're [attached to a background session](https://code.claude.com/docs/en/a
 ## Set a one-time reminder
 
 For one-shot reminders, describe what you want in natural language instead of using `/loop`. Claude schedules a single-fire task that deletes itself after running.
+
 ```text
 remind me at 3pm to push the release branch
 ```
+
 ```text
 in 45 minutes, check whether the integration tests passed
 ```
@@ -146,9 +152,11 @@ Claude pins the fire time to a specific minute and hour using a cron expression 
 ## Manage session-scoped scheduled tasks
 
 Ask Claude in natural language to list or cancel tasks, or reference the underlying tools directly.
+
 ```text
 what scheduled tasks do I have?
 ```
+
 ```text
 cancel the deploy check job
 ```

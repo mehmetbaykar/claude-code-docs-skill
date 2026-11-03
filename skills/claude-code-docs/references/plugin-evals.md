@@ -64,6 +64,7 @@ This walkthrough writes one case for your own plugin, runs it, and reads the res
 **1. Create the cases**
 
 From the plugin root, run:
+
 ```bash
 claude plugin eval init
 ```
@@ -81,6 +82,7 @@ If you'd rather write a case yourself to see exactly what the files contain, fol
 **2. Run the suite**
 
 Back at your shell in the plugin root, run every case under `evals/`:
+
 ```bash
 claude plugin eval .
 ```
@@ -92,6 +94,7 @@ Each case runs three times with your plugin and three times without it, so one c
 **3. Read the summary**
 
 When the suite finishes you see a summary table, followed by where the report went:
+
 ```text
 CASE        WITH  W/OUT Δ      RUNS COST    NOTES
 first-case  1.00  0.33  +0.67  6    $0.41
@@ -110,6 +113,7 @@ Open the `Published:` URL, or the `Report:` path when no `Published:` line appea
 The most common first finding is a `Δ` near zero with the case's `tool_used: Skill` grader failing, which means Claude isn't choosing your skill on natural phrasing. Adjust the skill's [`description`](https://code.claude.com/docs/en/skills#frontmatter-reference), run `claude plugin eval .` again, and compare.
 
 To iterate on one case with fewer runs, run a single arm once. A single run is noisy, so confirm any change at the default three runs before you trust it. With one arm the table shows `SCORE` and `PASS%` columns instead of `WITH`, `W/OUT`, and `Δ`:
+
 ```bash
 claude plugin eval . --case <case-name> --runs 1 --ablation none
 ```
@@ -121,6 +125,7 @@ Replace `<case-name>` with one of the directory names under `evals/`.
 The cases `claude plugin eval init` writes are plain files you can open, change, and add to. A case is a directory under the plugin's eval directory that contains a `prompt.md`, a `case.yaml`, or both. Give each case at least one grader, as a `graders/<name>.md` file or a `graders:` entry in `case.yaml`, because a case without one fails to load. To group cases, nest them under a directory that isn't itself a case; anything inside a case directory, such as `graders/` and fixture files, belongs to that case.
 
 This is the layout `claude plugin eval init` writes and the one to use for new suites. The [eval suite reference](#eval-suite-reference) has the complete tree, including mocks and results:
+
 ```text
 my-plugin/
 ├── .claude-plugin/plugin.json
@@ -140,9 +145,11 @@ my-plugin/
 ### Write a case manually
 
 Having Claude write the cases with `claude plugin eval init` is the recommended path. To write one yourself instead, start from a blank template. The following command writes a case named `first-case` with a placeholder `prompt.md` and one placeholder grader, and runs nothing:
+
 ```bash
 claude plugin eval init --bare first-case
 ```
+
 ```text
 evals/first-case/
 ├── prompt.md            # the prompt sent to Claude, plus run limits
@@ -151,6 +158,7 @@ evals/first-case/
 ```
 
 In `prompt.md` you write the message Claude receives in each run, and set the run's limits and the tools the case may use in its frontmatter. Open `evals/first-case/prompt.md` and replace the placeholder body with a request one of your skills should handle, phrased the way a user would type it rather than naming the skill. This example is for a skill that drafts commit messages; use your own request:
+
 ```markdown
 ---
 max_turns: 10
@@ -165,6 +173,7 @@ Each run starts in an empty working directory, so put whatever the task needs in
 The [full list of frontmatter fields](#prompt-md-fields) covers the model, timeout, tags, and environment variables.
 
 Each file under `graders/` is one check applied after the run. Open `evals/first-case/graders/criteria.md` and replace the placeholder with a rubric for the judge model, written as concrete PASS and FAIL conditions:
+
 ```markdown
 ---
 type: llm
@@ -175,6 +184,7 @@ FAIL if <what a wrong or missing response looks like>.
 ```
 
 Then add a second grader that checks whether your skill is what produced the answer. Create `evals/first-case/graders/skill-fired.md`, replacing `your-skill-name` with the skill's directory name under `skills/`, which is the name Claude invokes it by:
+
 ```markdown
 ---
 type: tool_used
@@ -260,6 +270,7 @@ Each run starts in an empty workspace. When a case needs more than the prompt, a
 A `case.yaml` also needs `schema_version: "1.1"` and `name`; the [case.yaml fields](#case-yaml-fields) reference has the full list.
 
 This `case.yaml` seeds a workspace from a script and lets Claude read fixtures from a `resources/` directory:
+
 ```yaml
 schema_version: "1.1"
 name: changelog-from-diff
@@ -278,6 +289,7 @@ You can evaluate a plugin whose skills call MCP tools without the real service b
 A run never starts your plugin's real MCP servers unless you ask. Claude Code registers a substitute server under each server's own name. Tools with a mock file answer from it and are allowed without an `--allow-tools` grant, and a tool with no mock file isn't available to Claude. A server with no mocks at all appears in the case's `mocked:` progress line as `plugin_<plugin>_<server>[not started: no mock]`.
 
 The file's body is what the tool returns to Claude. This mock substitutes for a `create_issue` tool on a server named `tracker`, checks the input Claude sends, and echoes the title back. Save it as `evals/mocks/tracker/create_issue.md`:
+
 ```markdown
 ---
 expect:
@@ -335,6 +347,7 @@ Put the target before `--tag`, `--allow-tools`, and `--json`. The first two take
 Runs never stop to ask for permission. Built-in tools that need a grant you didn't give, such as `Bash`, `Write`, `Edit`, `WebFetch`, and `WebSearch`, are removed from the session, so Claude can't call them at all.
 
 A run allows only the read-only tools the case lists in `allowed_tools`, from `Read`, `Glob`, `Grep`, `NotebookRead`, `Skill`, `AskUserQuestion`, `Agent`, `TodoWrite`, and the task tools `TaskCreate`, `TaskGet`, `TaskList`, `TaskUpdate`, and `TaskStop`, plus whatever you grant with `--allow-tools`. That grant applies to every case in the run. To let cases use `Bash`, `Write`, `Edit`, `WebFetch`, or `WebSearch`, grant them yourself:
+
 ```bash
 claude plugin eval . --allow-tools Write Edit "Bash(npm test *)"
 ```
@@ -370,6 +383,7 @@ This table covers the options for run count, models, scoring, cost, tool grants,
 ### Run evals in CI
 
 In your CI job, run the suite with `--json` to write the result for archiving, and fail the build on the exit code. Pass `--trust-plugin` so the job never waits at the [first-run trust prompt](#security), pin both models so scores are comparable over time, keep the report local, and set a cost ceiling as an upper limit:
+
 ```bash
 claude plugin eval . \
   --trust-plugin \
@@ -477,6 +491,7 @@ Each run gets a temporary home directory, working directory, and Claude Code con
 ## Eval suite reference
 
 Everything an eval suite can contain lives under the plugin's eval directory, `evals/` unless you [configured another](#use-a-different-eval-directory). A directory counts as a case when it holds a `prompt.md` or a `case.yaml`, and a case without at least one grader fails to load with an `invalid case.yaml` error that names `graders`. This tree shows every file `claude plugin eval` reads or writes in the eval directory:
+
 ```text
 evals/
 ├── <case>/                        # one directory per case; nest under a non-case directory to group
@@ -618,6 +633,7 @@ This is the first run against a directory Claude Code doesn't trust yet, and it 
 ### "is too old for claude plugin eval"
 
 The `git` on your `PATH` is older than 2.31, so `claude plugin eval` stopped before running any case and exited 1 with a message naming your version:
+
 ```text
 git 2.30 is too old for claude plugin eval: it ignores the environment configuration (GIT_CONFIG_COUNT, added in git 2.31) that switches off the repository's git hooks and helper programs for the run. Install git 2.31 or newer.
 ```
@@ -629,6 +645,7 @@ Before v2.1.283, `claude plugin eval` didn't check the git version, and on an ol
 ### "cannot be evaluated where sessions load it"
 
 You ran `claude plugin eval` in your shell with the name of a plugin installed from a marketplace you [added from a local path](https://code.claude.com/docs/en/plugins/loading.md#in-place-and-copied-plugins). No session could load the plugin from that marketplace now, so the command refuses with this message and exits with code 1.
+
 ```text
 Error: formatter@my-marketplace cannot be evaluated where sessions load it: no session could load it now. Its marketplace is a folder whose catalog could not be read, or lists it no more. Check the marketplace with `claude plugin marketplace list`, or pass ./<dir> to evaluate a directory.
 ```

@@ -29,8 +29,8 @@ In [screen reader mode](https://code.claude.com/docs/en/accessibility.md), Claud
 Claude Code carries these into the relaunched session:
 
 * The conversation as it appears on screen. After a [`/rewind`](https://code.claude.com/docs/en/checkpointing#rewind-and-summarize), that means:
-* If you rewound earlier in the session, Claude Code relaunches from the rewound point, not from the longer transcript saved on disk. For example, if you rewound past your last three messages, the relaunched session opens without them
-* If you rewound to before your first message, Claude Code relaunches with an empty conversation
+  * If you rewound earlier in the session, Claude Code relaunches from the rewound point, not from the longer transcript saved on disk. For example, if you rewound past your last three messages, the relaunched session opens without them
+  * If you rewound to before your first message, Claude Code relaunches with an empty conversation
 * Your [permission mode](https://code.claude.com/docs/en/permission-modes.md) and [effort level](https://code.claude.com/docs/en/model-config.md#adjust-effort-level)
 * The model you last picked with [`/model`](https://code.claude.com/docs/en/model-config#setting-your-model)
 * Rules you passed with [`--allowed-tools` or `--disallowed-tools`](https://code.claude.com/docs/en/cli-reference#cli-flags), and your `--agent`, `--agents`, `--append-system-prompt`, and `--system-prompt-snapshot` flags
@@ -44,6 +44,7 @@ Claude Code declines to relaunch if the session has a restriction it can't pass 
 In that case Claude Code prints [`Cannot switch renderers in this session`](https://code.claude.com/docs/en/errors#cannot-switch-renderers-in-this-session) with the reasons. It doesn't switch or save anything.
 
 You can also set the `CLAUDE_CODE_NO_FLICKER` environment variable before starting Claude Code:
+
 ```bash
 CLAUDE_CODE_NO_FLICKER=1 claude
 ```
@@ -99,16 +100,16 @@ Fullscreen rendering captures mouse events and handles them inside Claude Code:
 * **Click a setting's value in the `/config` panel** to change it, and scroll the settings list with the mouse wheel. Requires Claude Code v2.1.271 or later.
 * **Scroll a select or multi-select menu with the mouse wheel** when it has more options than it shows at once, such as the `/model` list in a short terminal window. The wheel scrolls the list while the pointer is over its options. Requires Claude Code v2.1.280 or later.
 * **Scroll an overflowing list with its scrollbar.** In list panels such as `/skills`, `/mcp`, and `/plugin`'s Installed list, a scrollbar appears beside a list with more rows than fit while the pointer is over it. Click the track to jump to that point, or drag the thumb. Requires Claude Code v2.1.281 or later.
-* Where the bar has `↑` and `↓` arrows at its ends, click an arrow to scroll a single row, or hold it to keep scrolling. The arrows require Claude Code v2.1.286 or later.
+  * Where the bar has `↑` and `↓` arrows at its ends, click an arrow to scroll a single row, or hold it to keep scrolling. The arrows require Claude Code v2.1.286 or later.
 * **Click the `↑ N more` or `↓ N more` row at the edge of a list** to jump to that end of the list without choosing an option. Requires Claude Code v2.1.286 or later.
 * **Click a collapsed tool result** to expand it and see the full output. Click again to collapse. The tool call and its result expand together. Only messages that have more to show are clickable.
-* Clicking also expands the output of a `!` shell command, whether an older truncated result or the live progress row while the command runs. Requires Claude Code v2.1.257 or later.
-* Clicking also expands a dim `Message from @<sender>` line when the sender is a [teammate](https://code.claude.com/docs/en/agent-teams.md) or another agent running in your session.
+  * Clicking also expands the output of a `!` shell command, whether an older truncated result or the live progress row while the command runs. Requires Claude Code v2.1.257 or later.
+  * Clicking also expands a dim `Message from @<sender>` line when the sender is a [teammate](https://code.claude.com/docs/en/agent-teams.md) or another agent running in your session.
 * **Hold `Cmd` on macOS, or `Ctrl` on Linux and Windows, and click a URL or file path** to open it. Plain `http://` and `https://` URLs open in your browser. When Claude Code handles the click, file paths in tool output, like the ones printed after an Edit or Write, open in your file manager with the file selected. A plain click without the modifier doesn't open links, matching native terminal behavior.
-* On Linux and WSL, clicking a file path needs a file manager that provides the `org.freedesktop.FileManager1` D-Bus interface. Without one, nothing opens.
-* Claude Code renders a network (UNC) path, such as `\\server\share\file.ts`, as plain text with no link, because opening a network path can send your Windows credentials to the host it names.
-* Some macOS terminals forward `Cmd`+click to the running app instead of opening the link themselves, and the terminal mouse protocol has no way to encode the `Cmd` key, so Claude Code receives a plain click. In Ghostty, and in Warp on macOS, Claude Code detects this and lets a plain click on a link open it, and holding `Cmd` still works.
-* In the VS Code integrated terminal and similar xterm.js-based terminals, Claude Code defers to the terminal's own link handler, which uses the same gesture.
+  * On Linux and WSL, clicking a file path needs a file manager that provides the `org.freedesktop.FileManager1` D-Bus interface. Without one, nothing opens.
+  * Claude Code renders a network (UNC) path, such as `\\server\share\file.ts`, as plain text with no link, because opening a network path can send your Windows credentials to the host it names.
+  * Some macOS terminals forward `Cmd`+click to the running app instead of opening the link themselves, and the terminal mouse protocol has no way to encode the `Cmd` key, so Claude Code receives a plain click. In Ghostty, and in Warp on macOS, Claude Code detects this and lets a plain click on a link open it, and holding `Cmd` still works.
+  * In the VS Code integrated terminal and similar xterm.js-based terminals, Claude Code defers to the terminal's own link handler, which uses the same gesture.
 * **Click and drag** to select text anywhere in the conversation. Double-click selects a word, matching iTerm2's word boundaries so a file path selects as one unit. Double-clicking a URL selects the whole URL, including the scheme. Triple-click selects the line.
 * **Scroll with the mouse wheel** to move through the conversation.
 
@@ -169,6 +170,7 @@ Mouse wheel scrolling requires your terminal to forward mouse events to Claude C
 If mouse wheel scrolling feels slow, your terminal may be sending one scroll event per physical notch with no multiplier. Some terminals, like Ghostty and iTerm2 with faster scrolling enabled, already amplify wheel events. Others, including the VS Code integrated terminal, send exactly one event per notch. Claude Code can't detect which.
 
 Set `CLAUDE_CODE_SCROLL_SPEED` to multiply the base scroll distance:
+
 ```bash
 export CLAUDE_CODE_SCROLL_SPEED=3
 ```
@@ -228,6 +230,7 @@ If the display looks garbled or partially blank, press `Ctrl+L` to redraw the sc
 Fullscreen rendering works inside tmux, with three caveats.
 
 Mouse wheel scrolling requires tmux's mouse mode. If your `~/.tmux.conf` doesn't already enable it, add this line and reload your config:
+
 ```bash
 set -g mouse on
 ```
@@ -264,6 +267,7 @@ Hold that key while you click and drag. Your terminal handles the selection itse
 Over SSH or inside tmux, Claude Code can't always detect the terminal you're connecting from, so the hint lists the candidate keys instead.
 
 If you rely on native selection all the time, set `CLAUDE_CODE_DISABLE_MOUSE=1` to opt out of mouse capture while keeping the flicker-free rendering and flat memory:
+
 ```bash
 CLAUDE_CODE_NO_FLICKER=1 CLAUDE_CODE_DISABLE_MOUSE=1 claude
 ```
@@ -283,12 +287,14 @@ Fullscreen rendering sends only the cells that changed between frames. Some term
 Set [`CLAUDE_CODE_ALT_SCREEN_FULL_REPAINT=1`](https://code.claude.com/docs/en/env-vars) to repaint every cell on every frame instead of sending incremental updates.
 
 On Windows PowerShell:
+
 ```powershell
 $env:CLAUDE_CODE_ALT_SCREEN_FULL_REPAINT = "1"
 claude
 ```
 
 On macOS or Linux:
+
 ```bash
 CLAUDE_CODE_ALT_SCREEN_FULL_REPAINT=1 claude
 ```

@@ -71,6 +71,7 @@ Before running these examples, install the Claude Agent SDK by following the [qu
 The following example watches the assistant stream for `TaskCreate` and `TaskUpdate` `tool_use` blocks and prints a `+` line with each new task's subject and an update line with each status change's task ID and new status. Use this shape when you want a log of task activity rather than a rendered display. The `+` lines don't include the assigned IDs, so this log can't match updates back to their creates. To keep that correlation, capture the IDs as [Display progress in real time](#display-progress-in-real-time) does.
 
 The streamed `tool_use` input is the raw shape the model emitted. Claude Code repairs some close-but-incorrect key names before execution, mapping `id` or `task_id` to `taskId` and `active_form` to `activeForm`, but that repair is not reflected in the stream. Read `TaskUpdate` input fields defensively, as both examples on this page do, rather than assuming the canonical name is always present.
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -103,6 +104,7 @@ try {
   console.log(`Session ended with an error: ${error}`);
 }
 ```
+
 ```python Python
 import asyncio
 
@@ -142,6 +144,7 @@ asyncio.run(main())
 The following example watches the assistant stream for `TaskCreate` and `TaskUpdate` `tool_use` blocks and keeps a map of tasks keyed by task ID in a `TaskTracker` class, rerendering a progress summary on every change. The summary counts completed and in-progress tasks and shows each active item's `activeForm` label in place of its `subject`. Use this shape when your application maintains a progress display instead of logging each event.
 
 The assigned task ID isn't in the `TaskCreate` input. Claude Code delivers each tool's structured output on the user message that carries its `tool_result` block, in the `tool_use_result` field. For `TaskCreate`, that object is documented for TypeScript as `TaskCreateOutput` under [Tool Output Types](https://code.claude.com/docs/en/agent-sdk/typescript.md#tool-output-types), and in Python the field is a plain dict of the same shape. The tracker pairs each `tool_result` block with its `tool_use` call by `tool_use_id` and reads `task.id` from the paired message's `tool_use_result`. Claude can read the list back with `TaskList` and one task's full details with `TaskGet`.
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -247,6 +250,7 @@ class TaskTracker {
 const tracker = new TaskTracker();
 await tracker.trackQuery("Build a complete authentication system with todos");
 ```
+
 ```python Python
 import asyncio
 

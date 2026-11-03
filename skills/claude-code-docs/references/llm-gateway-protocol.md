@@ -241,9 +241,9 @@ When the upstream rejects one of these capabilities, Claude Code can retry the r
 * When the upstream rejects a [thinking signature](https://platform.claude.com/docs/en/build-with-claude/extended-thinking), including with a `400` whose message says the block is `bound to a different conversation`, Claude Code removes earlier thinking blocks from the request, retries, and keeps them out of every later request. New responses still include thinking
 * When the gateway or its upstream rejects the [advisor tool](https://code.claude.com/docs/en/advisor.md) entry in `tools` as an unrecognized tool type, Claude Code retries once without that entry and its `anthropic-beta` value. [Later requests](#how-long-a-rejected-beta-value-stays-out) omit them. Claude Code recognizes this rejection by a `400` or `422` response whose message names the tool type after `Input tag`, such as `Input tag 'advisor_20260301'`. Before v2.1.280, Claude Code didn't retry this rejection
 * When the upstream rejects `output_config.effort` or its `anthropic-beta` value, the gateway sees the request once more without them. [Later requests](#how-long-a-rejected-beta-value-stays-out) omit them. Your gateway needs no change if it forwards the upstream's `400` unmodified and the message:
-* Names `output_config.effort` alongside `Extra inputs are not permitted`
-* Says the model doesn't support the effort parameter
-* Starts with `Unexpected value(s)` and lists `effort-2025-11-24` for the `anthropic-beta` header. Requires v2.1.310 or later. Developers whose [`ANTHROPIC_BETAS`](https://code.claude.com/docs/en/env-vars) lists the value keep sending it and getting the `400`, so have them remove that entry
+  * Names `output_config.effort` alongside `Extra inputs are not permitted`
+  * Says the model doesn't support the effort parameter
+  * Starts with `Unexpected value(s)` and lists `effort-2025-11-24` for the `anthropic-beta` header. Requires v2.1.310 or later. Developers whose [`ANTHROPIC_BETAS`](https://code.claude.com/docs/en/env-vars) lists the value keep sending it and getting the `400`, so have them remove that entry
 * When the upstream rejects the `context_management` field or its `anthropic-beta` value, the gateway sees the request once more without them. [Later requests](#how-long-a-rejected-beta-value-stays-out) omit them. Claude Code recognizes this rejection by its message, for example one containing `context_management: Extra inputs are not permitted`. Before v2.1.304, Claude Code didn't retry this rejection
 * When a `400` rejects another `anthropic-beta` value by name, the gateway sees the request once more without it if [the retry covers that value](#retry-without-a-rejected-beta-value)
 * When the upstream rejects a beta tool field other than `defer_loading`, such as `strict`, the `400` reaches the developer. Before it does, the gateway can see the request again [without the tool search fields](#retry-without-tool-search). To stop sending such fields, have developers set [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1`](#disable-pre-release-capabilities)
@@ -342,6 +342,7 @@ Claude Code also sends any headers from `ANTHROPIC_CUSTOM_HEADERS`. When a custo
 When neither credential header's value resolves, Claude Code skips discovery and writes a `[gatewayDiscovery] skipped` line to the debug log of a `claude --debug` session. If you supply a credential only through `ANTHROPIC_CUSTOM_HEADERS`, Claude Code still skips discovery.
 
 Claude Code reads `id`, the optional `display_name`, and the optional `description` from each entry in the response's `data` array:
+
 ```json
 {
   "data": [

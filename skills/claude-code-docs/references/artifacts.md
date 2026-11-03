@@ -36,9 +36,11 @@ An artifact is a capture of work: one self-contained page with no backend, so it
 ## Create an artifact
 
 Claude may publish an artifact on its own when the output suits a page, or you can ask for one directly. To ask, name the feature or describe the visual output you want in plain language. A good candidate is anything easier to see than to read as text, such as an annotated diff, a chart, or a set of options to compare. The prompts below are two examples; see [What you can build](#what-you-can-build) for more patterns.
+
 ```text wrap
 Make an artifact that walks through this PR with the diff annotated inline.
 ```
+
 ```text wrap
 Build a dashboard artifact of last week's deploy failures by service and keep it updated as you investigate.
 ```
@@ -76,6 +78,7 @@ If a publish prompt includes a sentence such as `Also makes 1 edit to that file 
 ## Update an artifact
 
 Ask Claude to revise the page, or let a long-running task republish as it makes progress. Claude edits the underlying file and publishes again to the same URL.
+
 ```text wrap
 Add a per-region breakdown below the summary chart and republish.
 ```
@@ -83,6 +86,7 @@ Add a per-region breakdown below the summary chart and republish.
 Anyone with the page open sees the update in place. Each publish becomes a version, and from the **Share** control in the page header you can choose which version viewers see.
 
 To update an artifact from a different session, give Claude its URL, or attach it with [`/artifacts`](#find-an-artifact-again). Without either, a new session creates a new artifact instead of updating one.
+
 ```text wrap
 Update https://claude.ai/code/artifact/5fbea6f3-... with today's numbers.
 ```
@@ -114,6 +118,7 @@ Who you can share with depends on your plan:
 ### Link to a specific view
 
 If a page has several views, such as tabs or sections, you can link to one of them directly. Ask Claude for the links:
+
 ```text wrap
 Give me a link to each tab of the deploy failures dashboard.
 ```
@@ -155,6 +160,7 @@ Claude can reply to or resolve only an activated thread. Other threads stay open
 If you share an artifact publicly, people whose only access is the public link don't see its comments and can't add any. Existing comment threads stay on the artifact, and you and its editors can still read and reply to them.
 
 To ask for the comments yourself, give Claude the URL:
+
 ```text wrap
 Read the comments on https://claude.ai/code/artifact/5fbea6f3-... and make the changes the commenters ask for.
 ```
@@ -196,6 +202,7 @@ If the service that delivers comments becomes unavailable or stops answering, Cl
 An artifact can call [MCP connectors](https://code.claude.com/docs/en/mcp.md#use-mcp-servers-from-claude-ai) each time someone views it, so the page shows current data rather than a snapshot from the session that built it. Connector calls from artifacts are available on Pro, Max, Ultra, Team, and Enterprise plans and require Claude Code v2.1.209 or later. On earlier versions, Claude publishes the page with whatever data the session gathered while building it.
 
 To create a connector-backed page, name the connector and the data you want in your prompt:
+
 ```text wrap
 Build a dashboard artifact of our open pull requests that pulls the live list through my GitHub connector when the page loads.
 ```
@@ -225,7 +232,7 @@ When a connector-backed page renders but its live sections stay empty for a view
 * **Connector calls are turned off for the organization**: an Owner controls the [**Enable artifact connectors** toggle](#control-connector-calls-from-artifacts) in admin settings.
 * **The page calls tool names the connector doesn't expose**: the affected sections stay empty for everyone, including you. This can happen when a page names the individual tools behind a gateway-style connector that exposes only a few tools of its own. Ask Claude to fix the tool names the page calls and publish it again.
 
-When Claude publishes the page and that connector's tools are available in your session, Claude Code checks the tool names the page declares against them, warns Claude about names that don't match, and refuses the publish when none do. Before v2.1.265, it published the page without checking them.
+  When Claude publishes the page and that connector's tools are available in your session, Claude Code checks the tool names the page declares against them, warns Claude about names that don't match, and refuses the publish when none do. Before v2.1.265, it published the page without checking them.
 
 ## Offer a file download
 
@@ -234,6 +241,7 @@ An artifact can offer viewers a file the page generates, such as a CSV export of
 Viewers can't save a file from an ordinary download link or a script on the page, because the artifact viewer on claude.ai blocks any download the page starts itself, including links to `data:` or `blob:` URLs. If a page has download buttons built that way, ask Claude to rebuild them with the downloads capability.
 
 To offer a file, ask for the control and the file format in your prompt:
+
 ```text wrap
 Add a button that downloads this table as a CSV file.
 ```
@@ -247,6 +255,7 @@ An artifact is a single HTML page, so anything you can express in HTML, CSS, and
 ### Walk through a change
 
 Ask for a page that renders a diff or a design change with annotations beside the relevant lines, so reviewers can read your reasoning next to the code instead of reconstructing it from a description.
+
 ```text wrap
 Make an artifact that walks through this PR. Render the diff with margin annotations and color-code findings by severity.
 ```
@@ -254,6 +263,7 @@ Make an artifact that walks through this PR. Render the diff with margin annotat
 ### Compare alternatives
 
 Ask for several variants on one page so you can evaluate them against each other. This works for layouts, copy, API shapes, or implementation plans.
+
 ```text wrap
 Make an artifact with four distinctly different layouts for the settings panel. Vary density and grouping, and lay them out as a grid with a one-line tradeoff under each.
 ```
@@ -261,6 +271,7 @@ Make an artifact with four distinctly different layouts for the settings panel. 
 ### Tune with interactive controls
 
 Ask for sliders, toggles, or input fields bound to whatever you are adjusting, so you can explore values directly instead of describing them.
+
 ```text wrap
 Build an artifact with sliders for the easing curve, duration, and delay so I can try values on this transition. Show the animation live as I move them.
 ```
@@ -268,6 +279,7 @@ Build an artifact with sliders for the easing curve, duration, and delay so I ca
 ### Bring the result back to your session
 
 An artifact can act as a lightweight editor for a decision you then send back to Claude. Ask for an export control that produces text you can paste into the terminal, so the result of interacting with the page flows back into the session instead of staying on the page.
+
 ```text wrap
 Make a triage board artifact with each open issue as a draggable card across Now, Next, Later, and Cut columns. Add a "Copy as prompt" button that gives me the final ordering to paste back here.
 ```
@@ -275,6 +287,7 @@ Make a triage board artifact with each open issue as a draggable card across Now
 ### Track work in progress
 
 Ask Claude to keep an artifact current while a long task runs, so anyone with the link can follow along without reading the terminal.
+
 ```text wrap
 Turn this migration plan into a checklist artifact. Check items off as you complete them and add a note for anything you skip.
 ```
@@ -282,6 +295,7 @@ Turn this migration plan into a checklist artifact. Check items off as you compl
 ## Improve the visual design
 
 Claude applies a built-in design skill when it builds an artifact, so pages get a deliberate palette, typography, and layout without extra prompting. That skill also looks for an existing design system in your project before choosing its own. Design tokens are the named color, typography, and spacing values your design system reuses. To keep artifacts consistent with your product's branding, record them where Claude can find them, such as the project's [CLAUDE.md](https://code.claude.com/docs/en/memory.md) or a theme file in your repository:
+
 ```markdown
 ## Design system
 
@@ -307,6 +321,7 @@ To start from a template, describe what you want, such as "turn the migration no
 ### Make a slide deck
 
 Run `/slides` with a brief that says what the deck covers and who it's for:
+
 ```text wrap
 /slides a quarterly review of the platform team's reliability work, for the engineering all-hands
 ```
@@ -316,6 +331,7 @@ Claude creates a Claude Slides artifact and gives you the link. Open it in a des
 ### Draft a design canvas
 
 To mock up a UI, a screen flow, a landing page, or a poster rather than build a page, run `/design` with a brief. Claude drafts the design as artboards on one canvas and publishes the canvas as a Claude Design artifact. The brief names what you want drawn:
+
 ```text wrap
 /design a settings screen for a mobile banking app
 ```

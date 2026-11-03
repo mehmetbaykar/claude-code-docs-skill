@@ -96,6 +96,7 @@ The three result-level fields differ in what they count when the agent spawns [s
 In [single message input mode](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode.md#single-message-input), when background subagents are still running at the end of the final turn, Claude Code waits for them, up to the cap described in [background tasks at exit](https://code.claude.com/docs/en/headless.md#background-tasks-at-exit), before emitting the result. The result's `total_cost_usd`, `duration_api_ms`, and `modelUsage`, or `model_usage` in Python, include the work done during that wait.
 
 The following examples iterate over the message stream from a `query()` call and print the total cost when the `result` message arrives:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -113,6 +114,7 @@ try {
   console.error(`Session ended with an error: ${error}`);
 }
 ```
+
 ```python Python
 from claude_agent_sdk import query, ResultMessage
 import asyncio
@@ -146,6 +148,7 @@ Each assistant message contains a nested `BetaMessage` (accessed via `message.me
 > The deduplicated per-step values are accurate for input and cache tokens. Per-step `output_tokens` is a placeholder, so [read output tokens from the result message](#read-output-tokens-from-the-result-message).
 
 The following example accumulates input tokens across all steps, counting each unique main-loop message ID only once and skipping subagent messages, and reads the output total from the result message, which covers the main loop:
+
 ```typescript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -188,6 +191,7 @@ The result message includes [`modelUsage`](https://code.claude.com/docs/en/agent
 Each entry's `costBasis` says which price table priced that model's latest request: `list` for list price, `managed` for a [`modelPricing`](https://code.claude.com/docs/en/settings-reference#modelpricing) table, or `unknown` when neither matched the model ID. The field requires Claude Code v2.1.246 or later.
 
 The following example runs a query and prints the cost and token breakdown for each model used:
+
 ```typescript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -223,6 +227,7 @@ Either way, the combined figure is still a [client-side estimate](#estimates-not
 In streaming input mode, read each call's total as described in [Track costs in streaming input mode](#track-costs-in-streaming-input-mode). For a call that ended in a crash, see [Recover totals after a session crash](#recover-totals-after-a-session-crash).
 
 The following examples run two `query()` calls sequentially, add each call's `total_cost_usd` to a running total, and print both the per-call and combined cost:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -253,6 +258,7 @@ for (const prompt of prompts) {
 
 console.log(`Total spend: $${totalSpend.toFixed(4)}`);
 ```
+
 ```python Python
 from claude_agent_sdk import query, ResultMessage
 import asyncio
@@ -313,9 +319,9 @@ Where you have the choice, account from `total_cost_usd` or `modelUsage` rather 
 When the Claude Code process crashes, it emits a final `error_during_execution` result and exits, in single-shot and streaming input mode alike. That result may carry zeroed `usage`, `total_cost_usd`, and `modelUsage`, so recover the call's totals from what arrived before it. Step 1 recovers the full totals whenever an earlier result exists; the fallback in step 2 recovers only the main loop's input and cache tokens.
 
 1. Use the result of the turn before the crash. In streaming input mode, it holds the running total described in [Track costs in streaming input mode](#track-costs-in-streaming-input-mode). Go to step 2 instead when that result can't help you:
-* The call was single-shot, so no earlier result exists.
-* The crash happened on the first turn.
-* The turn before the crash was the `/clear` itself, so its result covers only the reset.
+   * The call was single-shot, so no earlier result exists.
+   * The crash happened on the first turn.
+   * The turn before the crash was the `/clear` itself, so its result covers only the reset.
 2. Sum the `usage` on the assistant messages instead, counting each API response once, as the [Track per-step usage](#track-per-step-usage) example does. In single-shot mode, sum all of them; in streaming input mode, sum the ones that arrived after the last result. This gives you the main loop's input and cache tokens. Subagent usage isn't recoverable this way, and neither are output tokens or USD cost, because [per-step `output_tokens` is a placeholder](#read-output-tokens-from-the-result-message).
 
 ### Track cache tokens
@@ -336,6 +342,7 @@ Cache entries for your own turns use a 5-minute TTL by default when you authenti
 To request a 1-hour TTL on cache writes, set the [`ENABLE_PROMPT_CACHING_1H`](https://code.claude.com/docs/en/env-vars) environment variable. You can export it in your shell or container environment, or pass it through `options.env`.
 
 The following example enables 1-hour TTL for an agent running on Amazon Bedrock. Because it sets `CLAUDE_CODE_USE_BEDROCK`, it requires working AWS credentials for [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md); without them the query fails.
+
 ```python Python
 from claude_agent_sdk import ClaudeAgentOptions, query
 import asyncio
@@ -353,6 +360,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 

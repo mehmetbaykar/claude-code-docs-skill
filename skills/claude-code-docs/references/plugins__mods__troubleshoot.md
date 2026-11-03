@@ -233,6 +233,7 @@ A mod's band is also missing when the tree its own hook returned doesn't validat
 ### A pane or band is empty or shows Claude Code's usual content
 
 The [tree](https://code.claude.com/docs/en/plugins/mods/interface.md#build-a-tree-from-elements) your hook returned didn't validate. A [`hook skipped`](#hook-skipped) line [in the transcript or the debug log](#find-out-why-a-mod-does-nothing) names your mod and the reason, as in this one for a `Box` in a pane:
+
 ```text
 first-mod: ui.render hook skipped: returned the wrong shape (a tree Pane refuses: Box prop "flexDirection" must be one of row, column, row-reverse, column-reverse)
 ```
@@ -246,6 +247,7 @@ If the line instead says `refused:` right after the site's name, as in `ui.rende
 `ui.render (<site>) refused:`, or `ui.render (<site>): the chain settled on a tree that does not validate` in the [debug log](#read-the-debug-log), means the [tree](https://code.claude.com/docs/en/plugins/mods/interface.md#build-a-tree-from-elements) at that site exceeds a [size limit](https://code.claude.com/docs/en/plugins/mods/reference.md#limits). Either line names the [render site](https://code.claude.com/docs/en/plugins/mods/reference.md#render-sites) and then the reason, and the reason names the limit.
 
 Change the mods that draw at that site so their [`ui.render`](https://code.claude.com/docs/en/plugins/mods/reference#interface) hooks return smaller trees, or ask their authors to. If the transcript line starts with `hooks`, more than one loaded mod has a `ui.render` hook for that site, so check each of those mods' trees. For several mods whose bands above the prompt nest into a tree more than 32 levels deep, the line reads:
+
 ```text
 hooks: ui.render (AbovePrompt) refused: deeper than 32; nothing was drawn
 ```
@@ -256,8 +258,8 @@ Before v2.1.307, a `refused:` line for any site reported any tree that didn't va
 
 An element in the tree your `ui.render` hook returns has no valid [`key`](https://code.claude.com/docs/en/plugins/mods/interface#which-controls-need-a-key), or two elements share one. Find the message you got:
 
-* **` needs a key` or ` needs a key`**: the element has no `key` prop, or its `key` is empty or isn't a string, as in `key: 3`. Give it a non-empty string as its `key`.
-* **` needs a key`**: give the button a non-empty string as its `key`
+* **`<Input> needs a key` or `<Select> needs a key`**: the element has no `key` prop, or its `key` is empty or isn't a string, as in `key: 3`. Give it a non-empty string as its `key`.
+* **`<Button> needs a key`**: give the button a non-empty string as its `key`
 * **`is drawn twice; each takes its own key`**: two elements of the kind the message names have the same `key`, as in `Input "size" is drawn twice; each takes its own key`. Give each element its own `key`.
 * **`key each once` from `press` in a [test](https://code.claude.com/docs/en/plugins/mods/test.md#test-a-drawing)**: the drawing has more than one button with the key you passed. Buttons with the same label and no `key` prop share that label as their key. Give each button its own `key`.
 
@@ -359,6 +361,7 @@ If no line explains the key, check the mods that run before yours for a `setting
 ### `the answer for <key> is no value the key can hold`
 
 This [debug log](#read-the-debug-log) line means Claude Code refused the value a [`settings.read`](https://code.claude.com/docs/en/plugins/mods/events#settings-read-hook) hook returned for the named key, and that key alone:
+
 ```text
 settings.read: the answer for <key> is no value the key can hold; the settings' own value stands
 ```
@@ -373,6 +376,7 @@ While the value doesn't fit, the key keeps the value merged from the settings so
 ### `settings.read: refused to the engine`
 
 You see this line in the [debug log](#read-the-debug-log) when [Claude Code's own read](https://code.claude.com/docs/en/plugins/mods/events.md#settings-read-hook) is refused, and Claude Code drops every hook's value. When a `settings.read` hook refuses that read with [`{ deny: reason }`](https://code.claude.com/docs/en/plugins/mods/events#settings-read-returns), the line carries that hook's reason:
+
 ```text
 settings.read: refused to the engine (engine: $.settings.read: <reason>); the settings' own values stand
 ```
@@ -381,24 +385,27 @@ Search your code for the reason in the parentheses:
 
 * **Your code has it**: your hook refused the read. Make it return `{ value }` when [`next.origin`](https://code.claude.com/docs/en/plugins/mods/events#settings-read-origin) shows Claude Code's own read.
 * **Your code doesn't have it**: [turn off](https://code.claude.com/docs/en/plugins/mods/overview.md#turn-mods-on-or-off) your other mods one at a time. If your organization deployed a mod, ask its administrator to turn it off. After each:
-1. Start the session from your shell with `claude --debug-file ./settings-read-2.log`, followed by the flags it started with. Use a new path each time.
-2. Search that file for `refused to the engine`. If the line is there, turn off the next mod. If not, the last mod you turned off refused the read, so keep it off.
+  1. Start the session from your shell with `claude --debug-file ./settings-read-2.log`, followed by the flags it started with. Use a new path each time.
+  2. Search that file for `refused to the engine`. If the line is there, turn off the next mod. If not, the last mod you turned off refused the read, so keep it off.
 
 If the line stays with no other mod left, set the keys your hook returns in a [settings file](https://code.claude.com/docs/en/settings.md). Its values hold while the read is refused.
 
 ## Read the debug log
 
 The debug log has a line for every module Claude Code loads or refuses, every hook that fails, and every result it refuses, so it's where to look when the transcript shows nothing. To write one, in your shell start Claude Code with `--debug`, or with `--debug-file <path>` to choose where it goes:
+
 ```bash
 claude --debug-file ./mod-debug.log --plugin-dir ./first-mod
 ```
 
 In another terminal, follow the file and filter for your mod's name:
+
 ```bash
 tail -f ./mod-debug.log | grep first-mod
 ```
 
 A mod that loaded has a line that names it and lists the events it handles. A mod loaded with `--plugin-dir` appears under its name followed by `@inline`:
+
 ```text
 hooks module first-mod@inline loaded (worker, environment 2, tier user); events: session.start,tool.call,command.run,ui.render
 ```

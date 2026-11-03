@@ -57,6 +57,7 @@ Setting [`CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS`](https://code.claude.com/docs/
 Tool search applies to all registered tools, whether they come from remote MCP servers or [custom SDK MCP servers](https://code.claude.com/docs/en/agent-sdk/custom-tools.md). When you use `auto`, the SDK counts every definition that tool search can defer toward one combined threshold: each MCP tool that isn't marked [`alwaysLoad`](https://code.claude.com/docs/en/mcp#exempt-a-server-from-deferral), from any server, plus the built-in tools that load on demand. The SDK loads core built-in tools such as Bash, Read, and Edit upfront and doesn't count them toward the threshold. A [mod](https://code.claude.com/docs/en/plugins/mods/reference.md#tools) in one of your plugins can also defer a tool or load it upfront, which changes that count.
 
 Set the value in the `env` option on `query()`. In TypeScript, `env` replaces the subprocess environment, so spread `...process.env` to keep inherited variables. In Python, `env` is merged on top of the inherited environment. This example connects to a remote MCP server that exposes many tools, pre-approves all of them with a wildcard, and uses `auto:5` so tool search activates when the definitions it can defer reach 5% of the context window:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -87,6 +88,7 @@ try {
   console.log(`Session ended with an error: ${error}`);
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
@@ -130,6 +132,7 @@ Because this is a single-shot `query()` call, the SDK raises after yielding an e
 The search mechanism matches queries against tool names and descriptions. Names like `search_slack_messages` surface for a wider range of requests than `query_slack`. Descriptions with specific keywords ("Search Slack messages by keyword, channel, or date range") match more queries than generic ones ("Query Slack").
 
 You can also add a system prompt section listing available tool categories. This gives the agent context about what kinds of tools are available to search for. Pass the text in the `systemPrompt` option of `query()` in TypeScript, or `system_prompt` in Python. Use the `claude_code` preset with `append`, which adds your text to the preset's prompt instead of replacing it:
+
 ```typescript TypeScript
 options: {
   systemPrompt: {
@@ -139,6 +142,7 @@ options: {
   }
 }
 ```
+
 ```python Python
 options = ClaudeAgentOptions(
     system_prompt={

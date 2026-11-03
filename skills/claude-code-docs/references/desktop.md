@@ -45,10 +45,10 @@ For [scheduled recurring work](https://code.claude.com/docs/en/desktop-scheduled
 Before you send your first message, choose the environment, project folder, permission mode, and model in the row under the prompt box:
 
 * **Environment**: use the environment selector, the first control in the row, to choose where Claude runs. See [environment configuration](#environment-configuration).
-* If a new session shows no environment under the prompt box, follow the [earlier layout's steps](#check-which-layout-you-have).
+  * If a new session shows no environment under the prompt box, follow the [earlier layout's steps](#check-which-layout-you-have).
 * **Project folder**: click the project folder control, next to the environment selector, to choose the folder Claude works in.
-* **Cloud session**: select [repositories](#run-long-running-tasks-in-the-cloud) instead of a folder
-* **[Saved local or SSH environment](#create-a-saved-environment)**: the environment already holds its folders, so the row shows no project folder control. To change the folders, [edit the environment](#use-edit-or-remove-a-saved-environment).
+  * **Cloud session**: select [repositories](#run-long-running-tasks-in-the-cloud) instead of a folder
+  * **[Saved local or SSH environment](#create-a-saved-environment)**: the environment already holds its folders, so the row shows no project folder control. To change the folders, [edit the environment](#use-edit-or-remove-a-saved-environment).
 * **Permission mode**: use the [mode selector](#choose-a-permission-mode) to choose how much autonomy Claude has. You can change the permission mode during the session.
 * **Model**: pick a [model](https://code.claude.com/docs/en/model-config.md#available-models) from the model picker toward the right end of the row. You can change the model during the session.
 
@@ -78,9 +78,9 @@ Turn off **Prompt suggestions** in **Settings > Code** or **Settings > Claude Co
 To give Claude a file, @mention it or attach it in the prompt box:
 
 * **@mention files**: type `@` followed by a filename to add a file to the conversation context.
-* **In a cloud session**: `@` can list files only after you send your first message. If `@` lists none, send your first message without the file, then @mention the file in your next message.
+  * **In a cloud session**: `@` can list files only after you send your first message. If `@` lists none, send your first message without the file, then @mention the file in your next message.
 * **Attach files**: attach images, PDFs, and other files to your prompt from the **+** button next to the prompt box, or drag and drop files directly into the prompt. This is useful for sharing screenshots of bugs, design mockups, or reference documents.
-* **In a [WSL session](https://code.claude.com/docs/en/desktop-wsl.md)**: if the **+** menu shows **Add image** instead of **Add files or photos**, you can attach only images. To give Claude any other file from the session's folder, @mention it.
+  * **In a [WSL session](https://code.claude.com/docs/en/desktop-wsl.md)**: if the **+** menu shows **Add image** instead of **Add files or photos**, you can attach only images. To give Claude any other file from the session's folder, @mention it.
 
 ### Choose a permission mode
 
@@ -194,8 +194,8 @@ To have Claude fix failing checks, or to have GitHub merge the pull request, tur
 
 * **Auto-fix**: in a local session, Claude also addresses new review comments that someone other than you leaves. The comment's author has to be the repository's owner, an organization member, a collaborator, or a GitHub App.
 * **Merge when ready**: turns on GitHub's auto-merge for the PR. In a local session, Desktop requests a squash merge unless the base branch uses a merge queue.
-* **In SSH and WSL sessions**: **Merge when ready** is disabled, so turn on auto-merge for the pull request on GitHub
-* **If the repository doesn't allow auto-merge**: **Merge when ready** doesn't turn on, so enable auto-merge in your [GitHub repository settings](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-auto-merge-for-pull-requests-in-your-repository) first
+  * **In SSH and WSL sessions**: **Merge when ready** is disabled, so turn on auto-merge for the pull request on GitHub
+  * **If the repository doesn't allow auto-merge**: **Merge when ready** doesn't turn on, so enable auto-merge in your [GitHub repository settings](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-auto-merge-for-pull-requests-in-your-repository) first
 * **[Earlier layout](#check-which-layout-you-have)**: once the session has a pull request, click **CI** on its status bar.
 
 To archive the session automatically once the PR merges or closes, turn on [auto-archive](#archive-a-session) in **Settings > Code** or **Settings > Claude Code**.
@@ -619,6 +619,7 @@ The plugin browser is not available in cloud sessions, and plugins you install f
 Claude automatically detects your dev server setup and stores the configuration in `.claude/launch.json` at the root of the folder you selected when starting the session. Preview uses this folder as its working directory, so if you selected a parent folder, subfolders with their own dev servers won't be detected automatically. To work with a subfolder's server, either start a session in that folder directly or add a configuration manually.
 
 To customize how your server starts, for example to use `yarn dev` instead of `npm run dev` or to change the port, edit `.claude/launch.json`. The file supports JSON with comments.
+
 ```json
 {
   "version": "0.0.1",
@@ -640,6 +641,7 @@ You can define multiple configurations to run different servers from the same pr
 When `autoVerify` is enabled, Claude automatically verifies code changes after editing files. It takes screenshots, checks for errors, and confirms changes work before completing its response.
 
 Auto-verify is on by default. Disable it per-project by adding `"autoVerify": false` to `.claude/launch.json`, or turn off **Auto-verify changes** in the Browser pane's **⋮** menu.
+
 ```json
 {
   "version": "0.0.1",
@@ -683,6 +685,7 @@ Use `program` when you have a standalone script you want to run with `node` dire
 ##### Open the preview at a specific URL
 
 By default, the preview opens `http://localhost:<port>`. Set `url` when your server needs a different address. Common cases are servers that require local HTTPS, apps that use `*.localhost` subdomains, and apps that sign you in through a redirect.
+
 ```json
 {
   "version": "0.0.1",
@@ -703,6 +706,7 @@ Localhost addresses open directly, exactly like the default port address. This i
 For any other address, Desktop asks for your permission the first time the preview opens it, the same as when you browse to a new site in the preview. External addresses may include paths. Choose **Always allow** to skip the prompt for that site in the future. Organization policies that restrict external sites in the preview still apply.
 
 To preview a server you already run yourself, set `url` without a command. Claude attaches the preview to your running server instead of starting one:
+
 ```json
 {
   "version": "0.0.1",
@@ -995,9 +999,9 @@ A Linux or macOS remote machine needs a supported processor, an SSH server with 
 * **System**: an x86\_64 or arm64 processor. The machine also has to meet Claude Code's [system requirements](https://code.claude.com/docs/en/setup.md#system-requirements). On Linux, Claude Code needs glibc 2.17 or later, or musl. To see which one the machine has, run `ldd --version` there. On a musl-based distribution such as Alpine Linux, also install the [packages that Claude Code needs](https://code.claude.com/docs/en/setup.md#alpine-linux-and-musl-based-distributions).
 * **SFTP**: the SSH server has to offer the SFTP subsystem, which a `Subsystem sftp` line in its `sshd_config` turns on. To check, connect to the same host and port with `sftp` in a terminal on your computer. A working server shows the `sftp>` prompt.
 * **`MaxSessions 1` on the server**: to connect to a server whose `sshd_config` sets `MaxSessions 1`, do one of these:
-* **Your computer runs macOS or Linux**: update to Claude Desktop v3.1623.0 or later
-* **Your computer runs Windows**: make sure that Desktop [connects through the OpenSSH client](#use-your-ssh-configuration), because Desktop's built-in SSH client can't connect to that server
-* **You can change the server**: raise `MaxSessions`, for example to OpenSSH's default of 10
+  * **Your computer runs macOS or Linux**: update to Claude Desktop v3.1623.0 or later
+  * **Your computer runs Windows**: make sure that Desktop [connects through the OpenSSH client](#use-your-ssh-configuration), because Desktop's built-in SSH client can't connect to that server
+  * **You can change the server**: raise `MaxSessions`, for example to OpenSSH's default of 10
 * **Logins with `MaxSessions 1`**: use a login that works without a prompt, such as a key that your SSH agent holds. Desktop logs in at least twice each time it connects or reconnects. Expect at least one more login for each [terminal](#run-commands-in-the-terminal) tab, and for each Desktop session in which you run commands that start with `!`. Expect none for commands that Claude runs.
 * **One-time codes with `MaxSessions 1`**: if every login prompts you, as with one-time codes, `!` commands fail. Run those commands in a terminal tab instead, which prompts in its own pane.
 * **Install folder**: Desktop installs a helper program and Claude Code under `~/.claude/remote/` in your home directory. It runs them from there, so that folder can't be on a file system mounted `noexec`. Allow about 1 GB of disk space in the home directory of each user who connects. For what that folder holds, see [Files and processes on the remote machine](#files-and-processes-on-the-remote-machine).
@@ -1035,6 +1039,7 @@ In an SSH session, Claude Code doesn't get the variables from those files, even 
 **1. Add the variables**
 
 For the CA file, use [`NODE_EXTRA_CA_CERTS`](https://code.claude.com/docs/en/network-config#custom-ca-certificates), because Claude Code doesn't trust a CA from `SSL_CERT_FILE` in `~/.claude/settings.json`. This example sets a proxy and a CA file:
+
 ```json ~/.claude/settings.json
 {
   "env": {
@@ -1071,11 +1076,11 @@ You can use your SSH configuration on macOS, Linux, and Windows when Desktop con
 * **macOS and Linux**: Desktop connects by running the OpenSSH client on your computer, so it uses your `~/.ssh/config`. Connecting through the OpenSSH client requires Claude Desktop v1.37937.0 or later.
 * **Windows**: when Desktop connects through the OpenSSH client, it uses your `%USERPROFILE%\.ssh\config`. If you use a Claude account rather than a third-party provider, connecting through the OpenSSH client requires all of these:
 
-* Claude Desktop v2.2553.0 or later. To find your version, see [Check your version](#check-your-version).
-* Microsoft's OpenSSH 9.4 or later
-* Desktop installed with the download buttons at the top of this page, because Desktop from the Microsoft Store doesn't connect through the OpenSSH client
+  * Claude Desktop v2.2553.0 or later. To find your version, see [Check your version](#check-your-version).
+  * Microsoft's OpenSSH 9.4 or later
+  * Desktop installed with the download buttons at the top of this page, because Desktop from the Microsoft Store doesn't connect through the OpenSSH client
 
-If you can't meet these requirements, or you use a third-party provider, see [Connect on Windows without the OpenSSH client](#connect-on-windows-without-the-openssh-client).
+  If you can't meet these requirements, or you use a third-party provider, see [Connect on Windows without the OpenSSH client](#connect-on-windows-without-the-openssh-client).
 
 With the OpenSSH client, enter a `Host` name from your configuration file in the **SSH host** field. Desktop then uses settings from that `Host` entry, such as `HostName`, `User`, `IdentityFile`, `CertificateFile`, `ProxyJump`, and `ProxyCommand`.
 
@@ -1104,6 +1109,7 @@ With the built-in client, you can still enter a `Host` name from your SSH config
 ##### Reach a machine behind a jump host
 
 To reach a machine behind a jump host, also called a bastion, set `ProxyJump` or `ProxyCommand` in the entry. The following entry reaches `devbox.internal.example.com` through `bastion.example.com`:
+
 ```text ~/.ssh/config
 Host devbox
   HostName devbox.internal.example.com
@@ -1122,6 +1128,7 @@ To run a session inside a container that publishes no SSH port, reach it with a 
 **1. Add the entry**
 
 Add the following entry at the end of your `~/.ssh/config`, or directly above your first `Host *` entry if you have one. Replace the Docker container `devbox`, its user `dev`, and the machine `build.example.com` with your own. The entry's command starts an SSH server inside the container for each connection:
+
 ```text ~/.ssh/config
 Host devbox-container
   User dev
@@ -1145,8 +1152,8 @@ Run `ssh devbox-container` in a terminal on your computer. Fix what it reports, 
 * **If `ssh` asks for a password, passphrase, or code**: switch to a login that works without a prompt, such as a key that your SSH agent holds
 * **If `ssh` reports `Cannot execute command-line and remote command.` or `Bad packet length`**: take `RemoteCommand` and `RequestTTY` out of your entry for `build.example.com`. After that, `ssh build.example.com` in a terminal on your computer opens a shell on that machine, not in the container.
 * **If `ssh` reports `Connection closed by UNKNOWN port 65535`**: run `ssh build.example.com docker exec devbox /usr/sbin/sshd -t` in the same terminal.
-* If it prints `Missing privilege separation directory: /run/sshd`, create that folder in the container.
-* If it prints `no hostkeys available` and the container has host keys, add `-u root` after `exec` in this command and in the entry.
+  * If it prints `Missing privilege separation directory: /run/sshd`, create that folder in the container.
+  * If it prints `no hostkeys available` and the container has host keys, add `-u root` after `exec` in this command and in the entry.
 
 Then enter `devbox-container` in the **SSH host** field.
 
@@ -1169,6 +1176,7 @@ If the AWS CLI has no other source for a region or credentials, it fails with `Y
 **1. Add a profile with a region and a source of credentials**
 
 This example adds a profile named `corp` that gets its credentials from a helper program:
+
 ```ini ~/.aws/config
 [profile corp]
 region = us-east-1
@@ -1182,6 +1190,7 @@ credential_process = /full/path/to/your-credential-helper
 **2. Name the profile in the ProxyCommand**
 
 This example adds `--profile` to the [command that AWS documents for Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started-enable-ssh-connections.html):
+
 ```text ~/.ssh/config
 Host i-*
   ProxyCommand sh -c "aws ssm start-session --profile corp --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"
@@ -1194,6 +1203,7 @@ Run `ssh` with the host in a terminal to confirm that the entry still connects t
 ##### Raise the SSH connection timeout
 
 If your session times out while it connects through a jump host or a `ProxyCommand`, raise `ConnectTimeout` in the remote machine's entry in your `~/.ssh/config`. Use more than 90 seconds. Add any time that a jump host or a `ProxyCommand` waits for you, for example at a login prompt or for a phone push:
+
 ```text ~/.ssh/config
 Host devbox
   HostName devbox.internal.example.com
@@ -1219,11 +1229,13 @@ If the remote machine itself waits for an approval on your phone, approve within
 If Desktop uses a setting that `ssh devbox` in a terminal doesn't, look for a `Match host` block above the entry's `HostName` line. In a terminal, `ssh` reads a block there before the `HostName` line, so it compares the block with `devbox`. Desktop gives `ssh` the `HostName` value on the command line, so `ssh` compares the block with that value.
 
 To check, run `ssh -G` in a terminal on your computer with the entry's `HostName` and `User` values on the command line, as Desktop does:
+
 ```bash
 ssh -G -o HostName=devbox.internal.example.com -l alice devbox
 ```
 
 Compare the output with that of `ssh -G devbox`. If the block's settings, such as `proxycommand`, show only in the first output, the block takes effect only in Desktop. To have Desktop skip it too, add `!originalhost devbox` to its `Match` line:
+
 ```text ~/.ssh/config
 Match host *.internal.example.com !originalhost devbox
 ```
@@ -1244,6 +1256,7 @@ Look in both outputs for a `forwardagent` line that says anything but `no`, and 
 #### Reach a port on the remote machine
 
 To open a server that runs on the remote machine, such as a dev server on port 3000, forward the port yourself. In a terminal on your computer, run `ssh` with `-L` and the host you connect to, such as `devbox`:
+
 ```bash
 ssh -N -L 3000:localhost:3000 devbox
 ```
@@ -1501,6 +1514,7 @@ The lines of 8.0 to 8.2 have no address. To get one, set `LogLevel VERBOSE` in `
 ##### Check whether the SSH server itself refuses the address
 
 If connections are refused from an address that many computers with Desktop share, look in the SSH server's log for a line that ends like this one:
+
 ```text
 drop connection #0 from [203.0.113.7]:51234 on [192.0.2.10]:22 penalty: connections without attempting authentication
 ```
@@ -1519,6 +1533,7 @@ If fail2ban 0.10.5 or later banned an address that Desktop connects from, find y
 If the mode is `normal`, fail2ban doesn't count the lines of Desktop's tests, so look for another cause of the ban.
 
 For another mode, copy the lines from your own log to a file on the remote machine. Copy each line whole, from its date to its end, and both lines where a test leaves two. Run `fail2ban-regex` there with the file and your jail's mode, for example `aggressive`:
+
 ```bash
 fail2ban-regex -o ip lines.log "sshd[mode=aggressive]"
 ```
@@ -1543,6 +1558,7 @@ A `claude://code/new` link opens Desktop's new-session page, and it can name an 
 SSH links require Claude Desktop v2.110.0 or later.
 
 The following link names the user `dev` on `build.example.com`, port 2222, and the folder `/srv/payments`, and fills in a prompt:
+
 ```text
 claude://code/new?ssh_host=dev%40build.example.com&ssh_port=2222&ssh_folder=/srv/payments&q=Investigate%20the%20failed%20deploy
 ```
@@ -1604,6 +1620,7 @@ Desktop runs the command only when you create the connection or [create another 
 >   * While the command runs, you cancel it, remove its entry, change its `command` or `id`, or quit Desktop
 
 The following example adds a connection named Dev box. If the file doesn't exist, create it. If it already holds settings, add the key beside them. The command `acme-dev create` stands for your own tool, and `~/project` is the folder that Desktop selects on each machine your command makes:
+
 ```json ~/.claude/settings.json
 {
   "sshHostCommands": [
@@ -1646,6 +1663,7 @@ The program has to exit with code 0 and print only the host on standard output, 
 * **One JSON object**: `sshHost`, and optionally a numeric `sshPort` and a `startDirectory` that replaces the entry's, such as `{"sshHost": "dev@devbox-1234.example.com", "sshPort": 2222}`
 
 To see the output that Desktop reads, run the command in a terminal with no input and with standard output in a file:
+
 ```bash
 acme-dev create < /dev/null > host.txt
 ```
@@ -1653,6 +1671,7 @@ acme-dev create < /dev/null > host.txt
 The file has to hold only the host. When you run this test, your tool makes a machine too, so delete it with your tool afterward.
 
 If your tool prints other lines before the host, such as progress messages, wrap it in a script that prints only the host. The following script prints the last line of your tool's output. If your tool fails, the script exits with the same code, so that Desktop reports the failure:
+
 ```bash
 #!/bin/bash
 out=$(mktemp) || exit
@@ -1711,6 +1730,7 @@ If you're an administrator and removed a managed entry, your users' sessions sta
 To give your team a connection, set `sshHostCommands` in Claude Code's [managed settings](https://code.claude.com/docs/en/managed-settings.md) file or MDM policy on each computer, not in the desktop app's own [device management policy](#device-management-policies). Users see your entries alongside their own, and the app offers no way to edit or remove an entry, theirs or yours.
 
 The following managed settings file gives users a connection named Dev box and turns off their own entries, along with Claude Code hooks from user, project, and local settings:
+
 ```json managed-settings.json
 {
   "sshHostCommands": [
@@ -1761,6 +1781,7 @@ Administrators can distribute SSH connections to team members by setting `sshCon
 * **What users can change**: users can select a managed connection and [set their own **Worktree folder**](#set-the-worktree-folder-on-an-existing-connection) for it. They can't edit its other fields or delete it in the app.
 
 The following example pre-configures a single connection:
+
 ```json
 {
   "sshConfigs": [
@@ -1784,6 +1805,7 @@ If you leave `user@` out of `sshHost`, Desktop connects as the `User` that each 
 Administrators can limit Desktop's SSH sessions to an approved set of hosts by setting `sshHostAllowlist` in [managed settings](https://code.claude.com/docs/en/managed-settings.md). When set, users can only connect to hosts whose resolved hostname matches one of the patterns. Set it to an empty array to disable SSH sessions. The [`sshHostAllowlist` reference entry](https://code.claude.com/docs/en/settings-reference#sshhostallowlist) says how an empty array combines with lists in other managed sources.
 
 The following example allows connections to any host under `devboxes.example.com` and to a single named bastion host:
+
 ```json
 {
   "sshHostAllowlist": ["*.devboxes.example.com", "bastion.example.com"]
@@ -1809,6 +1831,7 @@ Add each jump host that Desktop checks to `sshHostAllowlist`, by its own resolve
 > The list has one kind of entry, so users can also start a session on any host that you list. List only jump hosts that you'd also let users run sessions on.
 
 Desktop checks jump hosts in the `ProxyJump` that the user's `~/.ssh/config` sets for the session's host, or in a `ProxyCommand` written as `ssh -W %h:%p <host>`. If one that it checks isn't on the list when Desktop connects or reconnects a session, the connection fails. When a user starts a session or sends a message, the error's details give that jump host's `HostName`, which is the name to add:
+
 ```text
 SSH host "bastion.example.com" is not allowed by your organization's managed settings. It is a jump host on the way to "devbox".
 ```
@@ -1836,6 +1859,7 @@ To turn off local sessions and limit SSH sessions to hosts that you choose, depl
 > This setup is for users who sign in with a Claude account. With a [third-party provider](https://code.claude.com/docs/en/third-party-integrations.md), SSH sessions are off by default, and setting `sshHostAllowlist` can turn them on. Read [SSH remote sessions in Claude Desktop on 3P](https://claude.com/docs/third-party/claude-desktop/ssh-remote-sessions) before you deploy these keys.
 
 The following example turns off local sessions, adds one connection, and limits SSH sessions to that connection's host:
+
 ```json managed-settings.json
 {
   "disableDesktopLocalSessions": true,
@@ -1974,6 +1998,7 @@ To restrict which claude.ai organizations can sign in to Claude Desktop, set `fo
 The key requires Claude Desktop v1.2581.0 or later.
 
 On Linux, a policy file that sets only this key reads:
+
 ```json /etc/claude-desktop/managed-settings.json
 {
   "forceLoginOrgUUID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
@@ -1991,6 +2016,7 @@ If you set `forceLoginMethod` and `forceLoginOrgUUID` in Claude Code's [managed 
 ### Network access requirements
 
 Desktop loads its application code and user content from Anthropic CDN hosts.
+
 ```text
 anthropic.com
 *.anthropic.com
@@ -2009,6 +2035,7 @@ Traffic is HTTPS on port 443 unless you configure a custom port for [OTLP](https
 For proxy servers, custom certificate authorities, mTLS, and the domains the standalone CLI needs, see [network configuration](https://code.claude.com/docs/en/network-config.md).
 
 To reduce the number of firewall wildcards, allow these Anthropic hosts instead. Certain subdomains are dynamically generated and must remain wildcards.
+
 ```text
 anthropic.com
 api.anthropic.com
@@ -2063,6 +2090,7 @@ If you already use the Claude Code CLI, Desktop runs the same underlying engine 
 To move a CLI session into Desktop, run `/desktop` in the terminal. Claude saves your session and opens it in the desktop app, then exits the CLI. This command is available on macOS and x64 Windows when you are signed in with a Claude subscription. It is not available with API key authentication or on Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry.
 
 From your shell, [`claude --desktop`](https://code.claude.com/docs/en/cli-reference#cli-flags) opens Desktop directly without starting a terminal session. It requires Claude Code v2.1.285 or later and has the same platform and sign-in requirements as `/desktop`. With no other arguments, it opens Desktop on the current directory. To open an existing CLI session in Desktop, add `--continue` for the most recent conversation in this directory, or `--resume` with the session ID that `/status` shows:
+
 ```bash
 claude --desktop --resume <session-id>
 ```
@@ -2151,8 +2179,8 @@ The following features aren't available in Desktop, except where noted:
 * **Inline code suggestions**: Desktop doesn't offer autocomplete-style code completions. It works through conversational prompts and explicit code changes, and can [suggest your next prompt](#accept-a-suggested-prompt) after Claude replies.
 * **Agent teams**: coordinated teams, where Claude as the team lead assigns tasks to teammates from a shared task list, are available in the [CLI](https://code.claude.com/docs/en/agent-teams.md), not in Desktop. For multi-agent work inside one session, use [dynamic workflows](https://code.claude.com/docs/en/workflows.md), which run in Desktop; Claude can also [message and manage your other sessions](#work-across-sessions) directly.
 * **Terminal-dialog commands**: built-in commands that open an interactive panel in the terminal behave differently in the Code tab. Edit [settings files](https://code.claude.com/docs/en/settings.md) directly to manage permission rules and configuration, or run the commands from the standalone CLI.
-* Commands with no argument form, such as `/permissions`, reply with `isn't available in this environment`.
-* `/config` opens **Settings > Code** or **Settings > Claude Code**.
+  * Commands with no argument form, such as `/permissions`, reply with `isn't available in this environment`.
+  * `/config` opens **Settings > Code** or **Settings > Claude Code**.
 
 ## Troubleshooting
 
@@ -2238,9 +2266,9 @@ Desktop usually refuses a key because it differs from the one saved on your comp
 
 #### Check the host key from a terminal
 
-Run `ssh ` on your computer, with the **SSH host** value of your [SSH connection](#ssh-sessions) in Desktop. Add `-p ` if the connection has an **SSH port** value. On Windows, use PowerShell, because Desktop doesn't connect with the `ssh` in Git Bash or WSL. If PowerShell finds no `ssh`, [install Microsoft's OpenSSH client](#ssh-host-key-refused-on-windows-without-an-openssh-client).
+Run `ssh <SSH host>` on your computer, with the **SSH host** value of your [SSH connection](#ssh-sessions) in Desktop. Add `-p <SSH port>` if the connection has an **SSH port** value. On Windows, use PowerShell, because Desktop doesn't connect with the `ssh` in Git Bash or WSL. If PowerShell finds no `ssh`, [install Microsoft's OpenSSH client](#ssh-host-key-refused-on-windows-without-an-openssh-client).
 
-Note which machine `ssh` names in its message, which can be a jump host and not ``, then follow the case that fits:
+Note which machine `ssh` names in its message, which can be a jump host and not `<SSH host>`, then follow the case that fits:
 
 * **`ssh` asks whether to continue connecting**: [compare](#check-a-remote-machines-host-key) the fingerprint that it shows with that machine's own. Answer `yes` only if they match.
 * **`ssh` warns that the host key has changed**: [compare](#check-a-remote-machines-host-key) the warning's fingerprint with that machine's own. Only if they match, delete the line that `Offending <type> key in <file>:<line>` names and rerun `ssh`. If `ssh` warns again about another line, compare, delete and rerun as before.
@@ -2310,6 +2338,7 @@ Look through those files too before you send them.
 ### "Branch doesn't exist yet" when opening in CLI
 
 Cloud sessions can create branches that don't exist on your local machine. Click the branch name in the session and select **Copy branch name**, then fetch it locally:
+
 ```bash
 git fetch origin <branch-name>
 git checkout <branch-name>

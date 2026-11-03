@@ -87,6 +87,7 @@ A mod can restyle much of Claude Code's interface, but not the permission prompt
 ### List what a mod does before you install one
 
 Before you install a mod, you can list which events it handles and what it asks Claude Code to do, such as read a file or make a network request, without running it. Get the plugin's files first, for example by cloning its repository. Then, in your shell, run `claude plugin validate` on the plugin's directory:
+
 ```bash
 claude plugin validate ./some-mod
 ```
@@ -123,6 +124,7 @@ To see which mods a terminal session loaded, run `/plugin` at the Claude Code pr
 ## How a mod works
 
 A mod is a [plugin](https://code.claude.com/docs/en/plugins/overview.md) whose code registers event handlers, called hooks. Claude Code runs a hook when its event happens, such as when Claude calls a tool or when the spinner is drawn. A small mod has three files:
+
 ```text
 first-mod/
 ├── .claude-plugin/
@@ -137,6 +139,7 @@ first-mod/
 * **`register.js`**: [your code](https://code.claude.com/docs/en/plugins/mods/create.md#write-a-mod-yourself), called the hooks module. It tells Claude Code which events to run your functions on.
 
 This is a complete `register.js`. It counts the tool calls Claude makes and shows the count beside the spinner while Claude works, as in `Thinking · tool calls: 3…`.
+
 ```javascript hooks/register.js
 // The count, shared by the two hooks below
 let calls = 0

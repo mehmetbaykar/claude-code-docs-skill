@@ -64,16 +64,19 @@ Post wherever your team already reads. The goal is to place examples in the path
 A screenshot accompanied by a single line of context, or a brief before-and-after description, is generally the right level of detail. Keep each post short enough that someone scrolling past still absorbs the point. A long write-up tends to be saved for later and forgotten, whereas a short post with a screenshot tends to be copied and tried.
 
 The example posts below illustrate tone and length; adapt them rather than copying verbatim.
+
 ```text
 Learned today that @-mentioning a directory works. I pointed it at
 @src/components/ and asked which components were missing tests, and it
 surfaced two I had forgotten about.
 ```
+
 ```text
 I configured a Stop hook so I receive a desktop notification when a long
 task completes. I started a refactor, stepped away, and was notified when
 it finished. Configuration is in the thread.
 ```
+
 ```text
 Plan mode is the reason I am comfortable using this on code that matters.
 Press Shift+Tab until you see "plan"; it lays out the changes it proposes
@@ -87,6 +90,7 @@ Once you have shared a few examples, questions will follow. This is where a cham
 ### Answer with a prompt rather than an explanation
 
 When a colleague asks how you accomplished something, the most useful response is the prompt you actually used. They will learn more from running that prompt against their own problem than from any description you could write, and it gives them something they can act on immediately.
+
 ```text
 Colleague: How did you get it to find that race condition?
 

@@ -154,6 +154,7 @@ This version is deliberately stripped to one ask: install it and run it on one r
 ### Pilot group variant
 
 Use for a phased rollout. Send to the pilot cohort only.
+
 ```text
 Subject: You're in the Claude Code pilot
 
@@ -177,6 +178,7 @@ trust it.
 ### Champion recruitment DM
 
 After launch, DM the two or three people who are most active in `#claude-code`.
+
 ```text
 Hey [name], your #claude-code posts are doing more for adoption than my
 announcement did. A couple of people told me your [thread / screenshot]
@@ -194,6 +196,7 @@ Ready-to-paste Slack or Teams messages designed to drive feature activation afte
 ### Get started
 
 **Choosing the right model**
+
 ```markdown
 🎯 *Tip: Match the model to the moment*
 
@@ -228,6 +231,7 @@ the right default for most tasks.
 | Haiku | Quick questions, formatting, mechanical edits, rapid iteration |
 
 **Quick wins to try first**
+
 ```markdown
 🚀 *Tip: Three things to try in your first 10 minutes*
 
@@ -250,6 +254,7 @@ message in.
 ### Project memory
 
 **`/init` and CLAUDE.md**
+
 ```markdown
 📁 *Tip: Stop re-explaining your repo every session*
 
@@ -268,6 +273,7 @@ seconds, pays off every session after.
 ```
 
 **@-references**
+
 ```markdown
 📎 *Tip: Stop pasting file contents into the chat*
 
@@ -288,6 +294,7 @@ Works for whole directories too.
 ### Control and safety
 
 **Permission modes**
+
 ```markdown
 🛡️ *Tip: One keystroke between "look but don't touch" and "just do it"*
 
@@ -308,6 +315,7 @@ then describe the change. You'll get a full proposal to review.
 ```
 
 **Checkpointing and `/rewind`**
+
 ```markdown
 ⏪ *Tip: There is an undo button for the whole conversation*
 
@@ -327,6 +335,7 @@ Pick the point before things went sideways.
 ### Connect your tools
 
 **MCP connectors**
+
 ```markdown
 🔌 *Tip: Let Claude read your issue tracker so you don't have to paste tickets*
 
@@ -347,6 +356,7 @@ in this repo". It will write the config for you.
 ### Automate your workflows
 
 **Skills**
+
 ```markdown
 ⚡ *Tip: Turn that prompt you keep retyping into a command*
 
@@ -364,6 +374,7 @@ on today from git log", then run `/standup` tomorrow morning.
 ```
 
 **Hooks**
+
 ```markdown
 🔔 *Tip: Get pinged when your refactor finishes*
 
@@ -383,6 +394,7 @@ when you finish". It will write the script and wire it up.
 ### Day-to-day development
 
 **Screenshots and images**
+
 ```markdown
 📸 *Tip: Stop describing the error dialog. Just show it.*
 
@@ -400,6 +412,7 @@ right into the prompt. Then just type "what's wrong here?"
 ```
 
 **Git workflows**
+
 ```markdown
 🌿 *Tip: Hand off the whole git ceremony*
 
@@ -420,6 +433,7 @@ just type "commit this with a good message and open a PR".
 ### Share and scale
 
 **Plugins**
+
 ```markdown
 📦 *Tip: Someone probably already built that skill*
 
@@ -439,6 +453,7 @@ thing you didn't know you wanted.
 ### Security and admin
 
 **Security architecture**
+
 ```markdown
 🔐 *Tip: The answer to "is this safe?" for the next time you're asked*
 
@@ -458,6 +473,7 @@ They answer most security-review questions.
 ```
 
 **Best practices**
+
 ```markdown
 ✅ *Tip: The 4 habits that separate "tried it once" from "use it daily"*
 

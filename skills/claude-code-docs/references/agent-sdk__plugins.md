@@ -22,6 +22,7 @@ For complete information on plugin structure and how to create plugins, see [Plu
 Load plugins by providing their local file system paths in your options configuration. The `type` field must be `"local"`, the only value the SDK accepts. The SDK supports loading multiple plugins from different locations.
 
 To use a plugin distributed through a [marketplace](https://code.claude.com/docs/en/plugins/overview.md) or remote repository, download it first and provide the local directory path. For the directory layout a plugin needs, see the [Plugin structure reference](#plugin-structure-reference) below.
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -37,6 +38,7 @@ for await (const message of query({
   // Plugin commands, agents, and other features are now available
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions
@@ -73,6 +75,7 @@ Plugin paths can be:
 In the TypeScript SDK, call [`reloadPlugins()`](https://code.claude.com/docs/en/agent-sdk/typescript#load-more-plugin-folders-with-addplugins) on the `Query` object that `query()` returned, and list the plugin directory in that call's `addPlugins` option. Each `addPlugins` entry is a `{ type: "local", path }` object with an absolute `path`. Requires TypeScript Agent SDK v0.3.301 or later.
 
 In this example, `q` is the `Query` object that `query()` returned. The example adds one plugin directory to the running session and, after `reloadPlugins()` returns, prints the path of every plugin in the session:
+
 ```typescript
 const result = await q.reloadPlugins({
   addPlugins: [{ type: "local", path: "/home/user/plugins/another-plugin" }]
@@ -86,6 +89,7 @@ If the plugin loaded, the printed list includes `/home/user/plugins/another-plug
 ## Verifying plugin installation
 
 When plugins load successfully, they appear in the system initialization message. You can verify that your plugins are available:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -110,6 +114,7 @@ for await (const message of query({
   }
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage
@@ -140,6 +145,7 @@ asyncio.run(main())
 ## Use plugin skills
 
 Skills from plugins are automatically namespaced with the plugin name to avoid conflicts. To invoke one directly, send `/plugin-name:skill-name` as the prompt.
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -156,6 +162,7 @@ for await (const message of query({
   }
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, AssistantMessage, TextBlock
@@ -184,6 +191,7 @@ asyncio.run(main())
 ## Complete example
 
 Here's a full example demonstrating plugin loading and usage:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 import { fileURLToPath } from "node:url";
@@ -214,6 +222,7 @@ async function runWithPlugin() {
 
 runWithPlugin().catch(console.error);
 ```
+
 ```python Python
 #!/usr/bin/env python3
 """Example demonstrating how to use plugins with the Agent SDK."""
@@ -260,6 +269,7 @@ if __name__ == "__main__":
 ## Plugin structure reference
 
 A plugin directory typically contains a `.claude-plugin/plugin.json` manifest file. The manifest is optional. When omitted, Claude Code auto-discovers components from the directory layout. The directory can include:
+
 ```text
 my-plugin/
 ├── .claude-plugin/
@@ -283,6 +293,7 @@ my-plugin/
 ## Multiple plugin sources
 
 Combine plugins from different locations:
+
 ```typescript
 import * as os from "node:os";
 import * as path from "node:path";
