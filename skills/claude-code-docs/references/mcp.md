@@ -922,7 +922,12 @@ Claude Code marks a remote server as needing authentication when the server resp
 * For a server whose `Authorization` header you configured, in `headers` or through a [`headersHelper`](#use-dynamic-headers-for-custom-authentication), a `401` or `403` while connecting doesn't flag the server, because the credential to fix is the one you configured. Claude Code reports the connection as failed instead. If you set that header from a `${VAR}` reference, check whether that variable is one Claude Code [reads as empty](#credential-variables-that-read-as-empty).
 * For a connector [delivered to a cloud session](#how-connectors-reach-claude-code), Claude Code doesn't run a sign-in flow, because the session's proxy authenticates to the connector with the authorization you granted in claude.ai. When a connector there needs authorizing again, reconnect it at [claude.ai/customize/connectors](https://claude.ai/customize/connectors) rather than from the session.
 
-When an OAuth server you already signed in to rejects your stored token with `401 Unauthorized`, Claude Code refreshes the token, reconnects, and retries the request once. It flags the server in `/mcp` only if that retry also fails. In a `claude -p` or Agent SDK run on macOS, a request that Claude Code sent while it couldn't read your stored token fails with a [stored-credentials error](https://code.claude.com/docs/en/errors.md#couldnt-read-the-stored-credentials-for-mcp-server) instead.
+When an OAuth server you already signed in to rejects your stored token with `401 Unauthorized`, Claude Code reconnects with or without a new token:
+
+* **Your stored login has a refresh token**: it refreshes the token, reconnects, and retries the request once. The server is flagged in `/mcp` only if that retry also fails.
+* **Your stored login has no refresh token**: it connects once without the token. If the server answers, its tools work while you're signed out, and the rejected token is deleted. If the server rejects that connection too, `/mcp` shows that the server needs authentication.
+
+In a `claude -p` or Agent SDK run on macOS, a request that Claude Code sent while it couldn't read your stored token fails with a [stored-credentials error](https://code.claude.com/docs/en/errors.md#couldnt-read-the-stored-credentials-for-mcp-server).
 
 When the server rejects the stored refresh token, Claude Code immediately shows a notice pointing at `/mcp`. Open `/mcp` and select **Re-authenticate** on the server to sign in again before the next tool call fails.
 
@@ -1768,9 +1773,9 @@ If you deny `ToolSearch` or leave it out of [`--tools`](https://code.claude.com/
 > * **You've set `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS`**: see [how it affects tool search](#configure-tool-search)
 > * **A request failed with an error that names `defer_loading` or `tool_reference`**: see [Extra inputs are not permitted](https://code.claude.com/docs/en/errors.md#extra-inputs-are-not-permitted)
 
-When `ANTHROPIC_BASE_URL` points to a gateway, tool search is on by default, so requests include `defer_loading` tool fields and `tool_reference` blocks for the gateway to forward. While tool search is on, MCP tools are [deferred](#scale-with-mcp-tool-search). To load every tool upfront instead, set `ENABLE_TOOL_SEARCH=false` in your shell or your [settings `env`](https://code.claude.com/docs/en/settings-reference#env). Before v2.1.304, tool search was off behind a gateway unless `ENABLE_TOOL_SEARCH` was `true`, `auto`, or `auto:N`.
+When `ANTHROPIC_BASE_URL` points to a gateway, Claude Code expects the gateway to forward `defer_loading` tool fields and `tool_reference` blocks [along with the `anthropic-beta` header](https://code.claude.com/docs/en/llm-gateway-protocol#beta-header-and-body-field-pairs). Tool search is on by default behind the gateway, so MCP tools are [deferred](#scale-with-mcp-tool-search) and requests include those fields and blocks. Before v2.1.304, tool search was off behind a gateway unless `ENABLE_TOOL_SEARCH` was `true`, `auto`, or `auto:N`.
 
-On v2.1.305 or later, Claude Code can [retry a request without tool search](https://code.claude.com/docs/en/llm-gateway-protocol.md#retry-without-tool-search) after a `400` or `422` whose cause it doesn't recognize. When the retry works, nothing shows on screen and you don't need to do anything: MCP tools load upfront instead. Claude Code tries tool search again later, at the cost of another rejected request. To skip those requests, set `ENABLE_TOOL_SEARCH=false`.
+On v2.1.305 or later, Claude Code can [retry a request without tool search](https://code.claude.com/docs/en/llm-gateway-protocol.md#retry-without-tool-search) after a `400` or `422`. When the retry works, nothing shows on screen and you don't need to do anything: MCP tools load upfront instead. Claude Code tries tool search again later, at the cost of another rejected request.
 
 #### Tools that stay deferred below the `ENABLE_TOOL_SEARCH=auto` threshold
 
