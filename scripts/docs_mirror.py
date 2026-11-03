@@ -899,20 +899,29 @@ def normalize_markdown_indentation(content: str) -> str:
 # as data and rendered as Markdown lists instead.
 
 PRESENTATION_KEYS = {
+    "active",
     "alt",
     "backgroundImage",
     "class",
     "className",
+    "client:load",
+    "collapsed",
     "color",
     "emptyStateMessage",
+    "expanded",
     "hero",
+    "hidden",
+    "highlight",
     "icon",
     "id",
     "illustration",
     "image",
     "maxVisibleEntries",
+    "open",
+    "placeholder",
     "searchLabel",
     "searchPlaceholder",
+    "selected",
     "theme",
     "variant",
     "video",
@@ -921,11 +930,16 @@ LABEL_KEYS = ("title", "key", "label", "name", "term")
 DETAIL_KEYS = ("description", "definition", "comment", "summary")
 
 
+class CleaningError(ValueError):
+    """A page cannot be cleaned without losing content, so it keeps its raw source."""
+
+
 def js_literal_to_python(expression: str) -> object:
     """Convert a JavaScript object or array literal to Python data.
 
-    Handles unquoted keys, single-quoted strings, and trailing commas, which
-    is what generated docs pages use. Raises ValueError for anything else.
+    Handles unquoted keys, single-quoted strings, template literals without
+    substitutions, and trailing commas, which is what generated docs pages
+    use. Raises ValueError for anything else.
     """
 
     out: list[str] = []
@@ -950,7 +964,12 @@ def js_literal_to_python(expression: str) -> object:
             index = end + 1
             continue
         if char == "`":
-            raise ValueError("Template literals are not supported")
+            end = expression.find("`", index + 1)
+            if end == -1 or "${" in expression[index + 1 : end]:
+                raise ValueError("Template literals with substitutions are not supported")
+            out.append(json.dumps(expression[index + 1 : end]))
+            index = end + 1
+            continue
         if char.isalpha() or char in "_$":
             word = re.match(r"[A-Za-z_$][\w$]*", expression[index:]).group(0)
             rest = expression[index + len(word) :].lstrip()
@@ -1026,6 +1045,37 @@ def parse_jsx_props(text: str) -> dict[str, object]:
     return props
 
 
+def _opening_tag_end(text: str) -> tuple[int, bool] | None:
+    """Find where a component's opening tag ends in the text after its name.
+
+    Returns the offset just past the closing ``>`` and whether the tag is
+    self-closing, or None when the tag never closes. Braces and quotes are
+    respected, so a ``>`` inside a prop value does not end the tag.
+    """
+
+    depth = 0
+    quote: str | None = None
+    index = 0
+    while index < len(text):
+        char = text[index]
+        if quote:
+            if char == "\\":
+                index += 2
+                continue
+            if char == quote:
+                quote = None
+        elif char in "\"'" or (char == "`" and depth > 0):
+            quote = char
+        elif char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+        elif char == ">" and depth == 0:
+            return index + 1, text[index - 1 : index] == "/"
+        index += 1
+    return None
+
+
 def _humanize(key: str) -> str:
     return re.sub(r"(?<!^)(?=[A-Z])", " ", key).capitalize()
 
@@ -1039,12 +1089,29 @@ def _text(value: str) -> str:
     return html.escape(value, quote=False)
 
 
+def _scalar(value: object) -> str | None:
+    """Render a data value for an item's extras, or None when it is not a scalar."""
+
+    if isinstance(value, str):
+        return _text(value)
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    if isinstance(value, (int, float)):
+        return str(value)
+    if isinstance(value, list) and value and all(isinstance(entry, (str, int, float)) for entry in value):
+        return ", ".join(_scalar(entry) or "" for entry in value)
+    return None
+
+
 def _render_items(items: list[object], level: int, indent: str = "") -> list[str]:
     """Render component data: titled groups become headings, the rest nested bullets."""
 
     lines: list[str] = []
     for item in items:
         if not isinstance(item, dict):
+            rendered = _scalar(item)
+            if rendered:
+                lines.append(f"{indent}- {rendered}")
             continue
         label = _text(next((item[key] for key in LABEL_KEYS if isinstance(item.get(key), str)), ""))
         href = item.get("href") or item.get("url")
@@ -1066,11 +1133,11 @@ def _render_items(items: list[object], level: int, indent: str = "") -> list[str
 
         text = f"[{label}]({href})" if label and isinstance(href, str) else label
         extras = [
-            f"{_humanize(key)}: {_text(value)}"
+            f"{_humanize(key)}: {rendered}"
             for key, value in item.items()
-            if isinstance(value, str)
-            and key not in {*LABEL_KEYS, *DETAIL_KEYS, "href", "url"}
+            if key not in {*LABEL_KEYS, *DETAIL_KEYS, "href", "url"}
             and key not in PRESENTATION_KEYS
+            and (rendered := _scalar(value)) is not None
         ]
         line = f"{indent}- {text}" if text else f"{indent}-"
         if detail:
@@ -1099,7 +1166,13 @@ def render_component_data(props: dict[str, object]) -> str:
 
 
 def expand_data_components(content: str) -> str:
-    """Render multi-line, self-closing MDX components that carry list data."""
+    """Render self-closing MDX components that carry list data as Markdown.
+
+    Only a component whose opening tag closes itself and passes an array prop
+    counts; containers with children are left to the tag pass. Raises
+    CleaningError when such a component cannot be read, so the page keeps its
+    raw source instead of silently losing the data.
+    """
 
     lines = content.split("\n")
     output: list[str] = []
@@ -1110,21 +1183,22 @@ def expand_data_components(content: str) -> str:
         if line.lstrip().startswith("```"):
             in_fence = not in_fence
         opening = None if in_fence else re.match(r"^<([A-Z][A-Za-z0-9]*)\s*$", line)
-        if opening:
-            end = next(
-                (cursor for cursor in range(index + 1, len(lines)) if lines[cursor].strip() == "/>"),
-                None,
-            )
-            if end is not None:
-                try:
-                    props = parse_jsx_props("\n".join(lines[index + 1 : end]))
-                except (ValueError, json.JSONDecodeError) as error:
-                    logger.debug("Leaving component %s unexpanded: %s", opening.group(1), error)
-                else:
-                    if any(isinstance(value, list) for value in props.values()):
-                        output.append(render_component_data(props))
-                        index = end + 1
-                        continue
+        rest = "\n".join(lines[index + 1 :]) if opening else ""
+        tag = _opening_tag_end(rest) if opening else None
+        if opening and tag and tag[1] and re.search(r"=\s*\{\s*\[", rest[: tag[0]]):
+            end, _ = tag
+            try:
+                props = parse_jsx_props(rest[: end - 2])
+            except (ValueError, json.JSONDecodeError) as error:
+                raise CleaningError(f"Cannot read <{opening.group(1)}> data: {error}") from error
+            output.append(render_component_data(props))
+            last = index + 1 + rest[:end].count("\n")
+            tail = rest[:end].rsplit("\n", 1)[-1]
+            remainder = lines[last][len(tail) :]
+            if remainder.strip():
+                output.append(remainder)
+            index = last + 1
+            continue
         output.append(line)
         index += 1
     return "\n".join(output)
@@ -1301,11 +1375,15 @@ def process_page(session: requests.Session, product: Product, page: Page) -> Out
     resolve = link_resolver(product)
     content = product.clean(page, raw)
     if section.mdx:
-        content = clean_mdx(content, resolve)
+        try:
+            content = clean_mdx(content, resolve)
+        except CleaningError as error:
+            logger.warning("%s on %s", error, page.path)
+            content = ""  # fall through to the raw fallback below
     else:
         content = apply_outside_fences(content, lambda text: absolutize_links(text, resolve))
     content = finish_markdown(content)
-    title = extract_title(content, page.title)
+    title = extract_title(content, extract_title(raw, page.title))
 
     if section.fetch == "html":
         has_heading = any(line.startswith("#") for line in content.splitlines())

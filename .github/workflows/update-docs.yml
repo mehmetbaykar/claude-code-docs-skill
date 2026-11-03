@@ -121,19 +121,19 @@ jobs:
             done
           } | git commit --quiet -F -
 
-          # Another push can land while the refresh runs; rebase and retry.
-          for attempt in 1 2 3; do
-            if git push --quiet; then
-              exit 0
-            fi
-            echo "Push rejected on attempt ${attempt}; rebasing onto the latest main."
-            if ! git pull --rebase --quiet; then
-              git rebase --abort || true
-              echo "Rebase conflicted; the next run will retry from a fresh checkout." >&2
-              exit 1
-            fi
-          done
-          echo "Could not push after 3 attempts." >&2
+          if git push --quiet; then
+            exit 0
+          fi
+
+          # A push to main during the refresh starts its own run, queued behind
+          # this one, and that run regenerates the mirror from the new head.
+          # Rebasing this tree onto it would publish output from older code.
+          git fetch --quiet origin main
+          if [ "$(git rev-parse FETCH_HEAD)" != "$(git rev-parse HEAD~1)" ]; then
+            echo "::notice::main moved during the refresh; the run started by that push publishes the mirror."
+            exit 0
+          fi
+          echo "The push was rejected although main did not move." >&2
           exit 1
 
   report:
