@@ -426,11 +426,37 @@ def test_tree_components_render_as_nested_bullets() -> None:
     assert "mt-4" not in cleaned
 
 
-def test_unparseable_components_are_left_for_tag_removal() -> None:
+def test_unreadable_data_components_raise_instead_of_dropping_data() -> None:
     raw = "# Page\n\n<Widget\n  data={[ someVariable ]}\n/>\n\nReal text stays here.\n"
+    with pytest.raises(dm.CleaningError, match="Widget"):
+        clean(raw)
+
+
+def test_containers_with_children_are_left_to_the_tag_pass() -> None:
+    raw = (
+        "# Sandboxing\n\nIntro text for the sandboxing page.\n\n"
+        '<Tabs\n  items={["macOS", "Linux"]}\n  label="Platform"\n>\n'
+        '<Tab title="macOS">\nSeatbelt runs the command.\n</Tab>\n'
+        '<Diagram\n  nodes={["plan", "build"]}\n/>\n'
+        "</Tabs>\n"
+    )
     cleaned = clean(raw)
-    assert "Real text stays here." in cleaned
-    assert "someVariable" not in cleaned
+    assert "**macOS**" in cleaned
+    assert "Seatbelt runs the command." in cleaned
+    assert "- plan\n- build" in cleaned
+
+
+def test_data_values_beyond_strings_are_kept() -> None:
+    raw = (
+        "# Config\n\nIntro line for the configuration page.\n\n<ConfigTable\n  options={[\n"
+        '    { key: `enabled`, type: "boolean", default: false },\n'
+        '    { key: "retry", type: "integer", default: 3, values: ["fast", "slow"], open: true },\n'
+        "  ]}\n/>\n"
+    )
+    cleaned = clean(raw)
+    assert "- enabled (Type: boolean; Default: false)" in cleaned
+    assert "- retry (Type: integer; Default: 3; Values: fast, slow)" in cleaned
+    assert "Open" not in cleaned
 
 
 @pytest.mark.parametrize(
@@ -448,6 +474,8 @@ def test_js_literal_to_python(literal: str, expected: object) -> None:
 def test_js_literal_to_python_rejects_code() -> None:
     with pytest.raises(ValueError):
         dm.js_literal_to_python("{ a: someFunction() }")
+    with pytest.raises(ValueError):
+        dm.js_literal_to_python("{ a: `hello ${name}` }")
 
 
 def test_html_to_markdown_keeps_main_content_only() -> None:
@@ -674,6 +702,17 @@ def test_raw_fallback_is_kept_then_removed_once_cleaning_recovers(tmp_path: Path
     assert not raw_copy.exists()
     assert not raw_copy.parent.exists()
     assert "raw_fallback" not in second["files"]["landing.md"]
+
+
+def test_unreadable_data_components_keep_the_raw_source(tmp_path: Path) -> None:
+    pages = {f"page{n}": page_markdown(f"Page {n}") for n in range(9)}
+    pages["config"] = page_markdown("Config") + "\n<ConfigTable\n  options={[ { key: someVariable } ]}\n/>\n"
+
+    manifest = run_mirror(tmp_path, site(**pages))
+
+    assert manifest["files"]["config.md"]["raw_fallback"] is True
+    assert "someVariable" in (references(tmp_path) / "_raw" / "config.md").read_text()
+    assert manifest["fetch_metadata"]["raw_fallback_pages"] == 1
 
 
 def test_product_hooks_exclude_clean_and_special_fetch(tmp_path: Path) -> None:
