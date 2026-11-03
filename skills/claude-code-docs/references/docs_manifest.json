@@ -1003,8 +1003,8 @@
       "title": "Interactive mode"
     },
     "jetbrains.md": {
-      "hash": "f82374a9671be2f5aedc59dc93c010de58f43a4a748541325e3df646c9c0590b",
-      "last_updated": "2026-10-30T18:27:35+00:00",
+      "hash": "424dea5f5be215e0b7c21a5ac3ba5f3340bbcec5ccb6a1740ca0860da7272ef5",
+      "last_updated": "2026-11-03T06:33:47+00:00",
       "original_url": "https://code.claude.com/docs/en/jetbrains",
       "path": "/docs/en/jetbrains",
       "source_url": "https://code.claude.com/docs/en/jetbrains.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-03T03:28:12+00:00",
+  "last_updated": "2026-11-03T06:34:20+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
