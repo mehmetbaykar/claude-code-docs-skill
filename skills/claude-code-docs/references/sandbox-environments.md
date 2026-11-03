@@ -98,8 +98,8 @@ Allow write access to at least:
 * Your project directory.
 * Claude Code's configuration paths `~/.claude` and `~/.claude.json`.
 * The directory where Claude Code writes runtime files. Unless you set [`CLAUDE_CODE_TMPDIR`](https://code.claude.com/docs/en/env-vars), that directory is:
-* **Linux and WSL2**: `/tmp`
-* **macOS**: `/private/tmp`. `/tmp` is a symlink to that directory, and Seatbelt checks the resolved path.
+  * **Linux and WSL2**: `/tmp`
+  * **macOS**: `/private/tmp`. `/tmp` is a symlink to that directory, and Seatbelt checks the resolved path.
 
 Allow the network domains your session needs:
 
@@ -107,16 +107,19 @@ Allow the network domains your session needs:
 * `claude.ai` and `platform.claude.com`, which [OAuth sign-in and token refresh](https://code.claude.com/docs/en/network-config.md#network-access-requirements) require. Runs authenticated with an API key can drop these two.
 
 On Linux and WSL2, the runtime applies write grants only to paths that already exist. In a fresh environment, create Claude Code's configuration paths before the first launch:
+
 ```bash
 mkdir -p ~/.claude && { [ -f ~/.claude.json ] || echo '{}' > ~/.claude.json; }
 ```
 
 Install the runtime globally, under a prefix outside every path you allow writes to:
+
 ```bash
 npm install -g @anthropic-ai/sandbox-runtime
 ```
 
 Once the settings file is in place, launch Claude Code through the runtime from your project directory:
+
 ```bash
 srt claude
 ```

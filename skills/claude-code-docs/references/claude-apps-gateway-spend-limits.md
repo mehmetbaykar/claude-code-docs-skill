@@ -17,6 +17,7 @@ By default, a Claude apps gateway forwards all inference through one shared upst
 With the [`admin:`](https://code.claude.com/docs/en/claude-apps-gateway-config#admin) block configured in `gateway.yaml`, the gateway serves an admin API at `/v1/organizations/spend_limits` and enforces caps live on every inference request. Caps themselves are set through that API, not in `gateway.yaml`; each `POST /v1/organizations/spend_limits` request creates or replaces one cap from `{scope, amount, period}`. The API mirrors the wire shapes of Anthropic's public [Admin API](https://platform.claude.com/docs/en/manage-claude/admin-api) spend-limits endpoints, so an HTTP client written against that contract can target the gateway by changing its base URL.
 
 This request sets an org-wide default of \$500 per month for every developer:
+
 ```bash
 curl -sS https://claude-gateway.internal.example.com/v1/organizations/spend_limits \
   -H "x-api-key: $GATEWAY_ADMIN_WRITE_KEY" \
@@ -25,6 +26,7 @@ curl -sS https://claude-gateway.internal.example.com/v1/organizations/spend_limi
 ```
 
 This request layers a tighter \$100-per-day cap on each member of the `contractors` group:
+
 ```bash
 curl -sS https://claude-gateway.internal.example.com/v1/organizations/spend_limits \
   -H "x-api-key: $GATEWAY_ADMIN_WRITE_KEY" \

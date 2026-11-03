@@ -26,9 +26,11 @@ Start with [Measure what a plugin costs](#measure-what-a-plugin-costs).
 To see what a plugin adds to Claude's context, run [`claude plugin details`](https://code.claude.com/docs/en/plugins/cli-reference#plugin-details) with the plugin's name. You run it in your shell, not at the prompt of a running Claude Code session. The plugin has to be loaded: installed, in a skills directory, or passed with `--plugin-dir` in the same command, as in `claude --plugin-dir ./formatter plugin details formatter`.
 
 This example reads an installed plugin named `formatter` that has two skills, a command, an agent, a hook, and an MCP server:
+
 ```bash
 claude plugin details formatter
 ```
+
 ```text
 formatter 1.0.0
   Description: Formats and lints code on save

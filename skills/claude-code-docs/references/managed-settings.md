@@ -19,6 +19,7 @@ This is the quickest way to put a policy on each machine: a `managed-settings.js
 **1. Write managed-settings.json**
 
 Write a `managed-settings.json` that holds the keys you've decided to enforce, in the same JSON shape as `settings.json`. The [Decide what to enforce](https://code.claude.com/docs/en/admin-setup.md#decide-what-to-enforce) table lists the keys behind each control, and each entry in the [settings reference](https://code.claude.com/docs/en/settings-reference.md) says whether a managed source can set it. This file blocks two file reads, turns off bypass mode, and makes Claude Code ignore permission rules from user, project, and local files and from `--allowedTools`:
+
 ```json managed-settings.json
 {
   "permissions": {
@@ -83,14 +84,14 @@ A deployed policy reaches the developer's sessions as follows:
 * **Claude Tag sessions**: [Claude Tag](https://claude.com/docs/claude-tag/overview) sessions run in cloud environments but don't receive server-managed settings. In a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments), they still read the managed settings file in the runner image. Configure Claude Tag itself in the [Claude Tag admin settings](https://claude.com/docs/claude-tag/admins/customize).
 * **Cowork sessions**: [Cowork](https://claude.com/docs/cowork/overview) in the Claude Desktop app runs its sessions on Claude Code. In a Cowork session, Claude Code never fetches server-managed settings from the claude.ai admin console, even when the user signs in with a Team or Enterprise account, so which policy applies depends on where the session runs:
 
-* **On the user's machine**: by default, Claude Code in a Cowork session reads the MDM or OS-level policy and the managed settings file on that device, so deploy policy there.
-* **In a full VM sandbox**: when your Claude Desktop managed configuration sets [`requireCoworkFullVmSandbox`](https://claude.com/docs/third-party/claude-desktop/configuration#requirecoworkfullvmsandbox), Claude Code runs inside a virtual machine where the device's MDM policy and managed settings file aren't present.
-* **Remote Cowork sessions**: these run on Anthropic-managed VMs, where Claude Code has no device policy to read.
+  * **On the user's machine**: by default, Claude Code in a Cowork session reads the MDM or OS-level policy and the managed settings file on that device, so deploy policy there.
+  * **In a full VM sandbox**: when your Claude Desktop managed configuration sets [`requireCoworkFullVmSandbox`](https://claude.com/docs/third-party/claude-desktop/configuration#requirecoworkfullvmsandbox), Claude Code runs inside a virtual machine where the device's MDM policy and managed settings file aren't present.
+  * **Remote Cowork sessions**: these run on Anthropic-managed VMs, where Claude Code has no device policy to read.
 
-Wherever the session runs, claude.ai applies the admin console's [`strictKnownMarketplaces`](https://code.claude.com/docs/en/settings-reference#strictknownmarketplaces) and [`blockedMarketplaces`](https://code.claude.com/docs/en/settings-reference#blockedmarketplaces) lists itself when anyone adds a marketplace from a git repository on claude.ai or from **Customize** in Cowork. [How restrictions work](https://code.claude.com/docs/en/plugins/org.md#restrict-what-users-can-install) describes that check. The [surface coverage](https://code.claude.com/docs/en/model-config.md#surface-coverage) table compares Cowork with the other surfaces.
+  Wherever the session runs, claude.ai applies the admin console's [`strictKnownMarketplaces`](https://code.claude.com/docs/en/settings-reference#strictknownmarketplaces) and [`blockedMarketplaces`](https://code.claude.com/docs/en/settings-reference#blockedmarketplaces) lists itself when anyone adds a marketplace from a git repository on claude.ai or from **Customize** in Cowork. [How restrictions work](https://code.claude.com/docs/en/plugins/org.md#restrict-what-users-can-install) describes that check. The [surface coverage](https://code.claude.com/docs/en/model-config.md#surface-coverage) table compares Cowork with the other surfaces.
 * **Running sessions**: most changes reach a running session on the schedule in the [delivery mechanism table](#choose-a-delivery-mechanism), without a restart.
-* Changes to [`forceRemoteSettingsRefresh`](https://code.claude.com/docs/en/settings-reference#forceremotesettingsrefresh), [`requiredMinimumVersion`](https://code.claude.com/docs/en/settings-reference#requiredminimumversion), and [some user-editable keys](https://code.claude.com/docs/en/settings.md#when-edits-take-effect) take effect at the next session start.
-* A new or changed [`policyHelper`](https://code.claude.com/docs/en/settings-reference#policyhelper) entry takes effect at the next launch. If server-managed settings shadow the helper at that launch, the helper runs as soon as a fetch reports those settings removed.
+  * Changes to [`forceRemoteSettingsRefresh`](https://code.claude.com/docs/en/settings-reference#forceremotesettingsrefresh), [`requiredMinimumVersion`](https://code.claude.com/docs/en/settings-reference#requiredminimumversion), and [some user-editable keys](https://code.claude.com/docs/en/settings.md#when-edits-take-effect) take effect at the next session start.
+  * A new or changed [`policyHelper`](https://code.claude.com/docs/en/settings-reference#policyhelper) entry takes effect at the next launch. If server-managed settings shadow the helper at that launch, the helper runs as soon as a fetch reports those settings removed.
 * **Changes that need approval**: apart from the [updates that wait for the next launch](https://code.claude.com/docs/en/server-managed-settings.md#fetch-and-caching-behavior), a server-managed change to a setting that [needs approval](https://code.claude.com/docs/en/server-managed-settings.md#security-approval-dialogs), such as a hook or an `env` variable, waits for the developer to accept the dialog in an interactive session, and applies for the current run in a session an IDE extension or the Agent SDK hosts. Other server-managed changes apply on the next poll.
 * **Long-lived sessions**: a session left open for weeks can still lag a rollout. [`requiredMinimumVersion`](https://code.claude.com/docs/en/settings-reference#requiredminimumversion) blocks an outdated binary from starting and doesn't end a session that's already running.
 
@@ -103,7 +104,7 @@ The keys are the same everywhere, but each mechanism stores them in a different 
 * **Windows HKLM registry**: the JSON as a `REG_SZ` or `REG_EXPAND_SZ` value named `Settings` under `HKLM\SOFTWARE\Policies\ClaudeCode`.
 * **File-based**: `managed-settings.json`, an optional `managed-settings.d/` directory, and `managed-mcp.json` in the system directory: `/Library/Application Support/ClaudeCode/` on macOS, `/etc/claude-code/` on Linux and WSL, and `C:\Program Files\ClaudeCode\` on Windows. Claude Code doesn't read the legacy Windows path `C:\ProgramData\ClaudeCode\managed-settings.json`.
 
-You can deploy any of these files as a symbolic link, and Claude Code reads the file the link leads to. The policy still applies when the link leads outside the system directory or Claude Code can't confirm that it stays inside. A warning naming the file then appears in `/status` and `claude doctor`. To clear the warning, point the link at a target inside the system directory.
+  You can deploy any of these files as a symbolic link, and Claude Code reads the file the link leads to. The policy still applies when the link leads outside the system directory or Claude Code can't confirm that it stays inside. A warning naming the file then appears in `/status` and `claude doctor`. To clear the warning, point the link at a target inside the system directory.
 * **Windows HKCU registry**: the same `Settings` value under `HKCU\SOFTWARE\Policies\ClaudeCode`.
 
 ### Split a file-based policy across teams
@@ -165,16 +166,16 @@ The cross-source keys include:
 * `allowAllClaudeAiMcps`
 * `allowManagedMcpServersOnly`: a `true` in any admin source turns the MCP allowlist lock on. While the lock is on, the managed `allowedMcpServers` list comes from the highest-ranked admin source that sets one. A server-managed list replaces a lower source's list rather than combining with it.
 
-If no admin source sets a list, every server that passes the denylist loads, unless [parent settings](#let-an-embedding-host-add-policy) supply a list.
+  If no admin source sets a list, every server that passes the denylist loads, unless [parent settings](#let-an-embedding-host-add-policy) supply a list.
 
-Without the lock, Claude Code reads `allowedMcpServers` from the managed source it applies, so under `"first-wins"` an unselected admin source's list is ignored. Requires Claude Code v2.1.273 or later
+  Without the lock, Claude Code reads `allowedMcpServers` from the managed source it applies, so under `"first-wins"` an unselected admin source's list is ignored. Requires Claude Code v2.1.273 or later
 * `deniedMcpServers` and [`disableClaudeAiConnectors`](https://code.claude.com/docs/en/settings-reference#disableclaudeaiconnectors): an entry or a `true` in any admin source applies. Requires Claude Code v2.1.273 or later
 * The sandbox binary paths `sandbox.bwrapPath` and `sandbox.socatPath`
 * The sandbox `ripgrep` binary, [`sandbox.ripgrep`](https://code.claude.com/docs/en/settings-reference#sandbox-ripgrep)
 * `sandbox.filesystem.disabled` and `sandbox.network.strictAllowlist`
 * [`useAutoModeDuringPlan`](https://code.claude.com/docs/en/settings-reference#useautomodeduringplan), [`syncClaudeAiSkills`](https://code.claude.com/docs/en/settings-reference#syncclaudeaiskills), and [`syncClaudeAiPlugins`](https://code.claude.com/docs/en/settings-reference#syncclaudeaiplugins), where a `false` from any admin source turns the behavior off. Each key can only deny:
-* A `false` in the developer's user or local settings turns it off too
-* For `useAutoModeDuringPlan`, a `false` in a user or local file the developer leaves out with an option such as [`--setting-sources`](https://code.claude.com/docs/en/cli-reference#cli-flags) doesn't count. Ignoring a left-out file requires Claude Code v2.1.314 or later
+  * A `false` in the developer's user or local settings turns it off too
+  * For `useAutoModeDuringPlan`, a `false` in a user or local file the developer leaves out with an option such as [`--setting-sources`](https://code.claude.com/docs/en/cli-reference#cli-flags) doesn't count. Ignoring a left-out file requires Claude Code v2.1.314 or later
 * [`enableArtifact`](https://code.claude.com/docs/en/settings-reference#enableartifact), where a `false` from any admin source turns the [Artifact tool](https://code.claude.com/docs/en/artifacts.md) off. A `false` in the developer's user, project, or local settings turns it off too, and no source turns it back on; see [which lower-level values still count](https://code.claude.com/docs/en/settings.md#exceptions-to-managed-settings-precedence). Requires Claude Code v2.1.242 or later
 * [`maxEffortLevel`](https://code.claude.com/docs/en/settings-reference#maxeffortlevel), where the lowest cap in any admin source applies. If a developer sets a lower cap in their own settings or with `--settings`, Claude Code applies that one; no source can raise the cap. Requires Claude Code v2.1.267 or later
 * A commit-trailer opt-out in `attribution`, or in the deprecated `includeCoAuthoredBy`, from any tier
@@ -243,7 +244,7 @@ Claude Code also applies these checks to parent-supplied values on their own:
 * When any admin source sets `allowManagedPermissionRulesOnly`, Claude Code drops [parent-supplied](https://code.claude.com/docs/en/claude-apps-gateway#restrict-parent-settings) permission allow rules and `additionalDirectories` as it reads them, even when a higher-priority source leaves the key unset. The key's effect on your own permission rules comes from the managed settings Claude Code applies, or from parent settings you've chosen to merge
 * Claude Code enforces the `forceLoginOrgUUID` or `allowedMcpServers` value in the managed settings it applies and blocks a parent-supplied one. If you deliver more than one managed source, see [which source supplies `forceLoginOrgUUID`](#which-managed-source-supplies-login-keys).
 
-On Claude Code v2.1.273 or later, while `allowManagedMcpServersOnly` is on, the `allowedMcpServers` list from the highest-ranked admin source that sets one applies and blocks the parent's, as a [cross-source key](#keys-read-from-every-admin-source). The parent's list applies only when no admin source sets one. The [`managedSourcesBehavior`](https://code.claude.com/docs/en/settings-reference#managedsourcesbehavior) entry says which source supplies each key under `"merge"`. Before v2.1.223, a value in any admin source blocked the parent's
+  On Claude Code v2.1.273 or later, while `allowManagedMcpServersOnly` is on, the `allowedMcpServers` list from the highest-ranked admin source that sets one applies and blocks the parent's, as a [cross-source key](#keys-read-from-every-admin-source). The parent's list applies only when no admin source sets one. The [`managedSourcesBehavior`](https://code.claude.com/docs/en/settings-reference#managedsourcesbehavior) entry says which source supplies each key under `"merge"`. Before v2.1.223, a value in any admin source blocked the parent's
 * For `availableModels`, Claude Code enforces the value in the managed settings it applies and blocks a parent-supplied list
 * For `strictKnownMarketplaces`, Claude Code likewise enforces the list in the managed settings it applies and blocks a parent-supplied one. The parent's list applies only when no applied managed source sets one. Requires Claude Code v2.1.282 or later
 * For `allowedProviders`, a list in the [selected managed source](#which-managed-source-claude-code-uses) blocks a parent-supplied one, and under the [`managedSourcesBehavior`](https://code.claude.com/docs/en/settings-reference#managedsourcesbehavior) `"merge"` opt-in a list in any admin source does. Requires Claude Code v2.1.285 or later
@@ -254,6 +255,7 @@ On Claude Code v2.1.273 or later, while `allowManagedMcpServersOnly` is on, the 
 [Cowork](https://claude.com/docs/cowork/overview) in the Claude Desktop app runs its sessions on Claude Code and grants each session access to its working folders, such as the folder the user connects, through allow rules it supplies when it launches the session. When your managed policy sets [`allowManagedPermissionRulesOnly`](https://code.claude.com/docs/en/settings-reference#allowmanagedpermissionrulesonly), Claude Code keeps only the allow rules in the managed policy: it drops allow rules a host supplies as parent settings, as `--allowedTools`, or in a settings file, so writes to those folders lose their pre-approval. In a Cowork session that asks before edits, Cowork can't show the prompt, and Claude reports each write as blocked because the path resolves to a protected location or a path outside the connected folder.
 
 To restore the writes, add allow rules for those folders to the managed source Claude Code [selects](#precedence-within-the-managed-tier) on those machines: on an MDM-managed fleet, that's the MDM policy rather than a separate managed settings file. This example uses the file form, and an MDM policy takes the same keys. It keeps `allowManagedPermissionRulesOnly` set and allows edits under a `CoworkProjects` folder in each user's home directory; replace the path with the folders your users connect:
+
 ```json managed-settings.json
 {
   "allowManagedPermissionRulesOnly": true,
@@ -299,9 +301,9 @@ When the policy isn't applying, the `Setting sources` line tells you which of tw
 
 * **The line is missing**: Claude Code found no managed source that delivers a policy key.
 
-If you deployed a managed settings file, check that it sits at the path for the OS and that it contains a [policy key](#how-claude-code-combines-managed-sources) rather than only the control keys. A file that isn't valid JSON doesn't produce this state; Claude Code [refuses to start](#find-entries-claude-code-dropped) instead.
+  If you deployed a managed settings file, check that it sits at the path for the OS and that it contains a [policy key](#how-claude-code-combines-managed-sources) rather than only the control keys. A file that isn't valid JSON doesn't produce this state; Claude Code [refuses to start](#find-entries-claude-code-dropped) instead.
 
-When you deployed through server-managed settings instead, run `claude doctor`, which reports the [fetch outcome](https://code.claude.com/docs/en/server-managed-settings.md#verify-settings-delivery).
+  When you deployed through server-managed settings instead, run `claude doctor`, which reports the [fetch outcome](https://code.claude.com/docs/en/server-managed-settings.md#verify-settings-delivery).
 * **The line names a source other than the one you deployed**: a higher-priority source is present and Claude Code ignored yours, and `Skipped sources` lists it. [How Claude Code combines managed sources](#how-claude-code-combines-managed-sources) gives the order.
 
 ### Find entries Claude Code dropped
@@ -439,6 +441,7 @@ The table covers the permission, plugin, and delivery controls. For any key not 
 ## Turn telemetry off for your organization
 
 Claude Code sends Anthropic operational [telemetry](https://code.claude.com/docs/en/data-usage.md#telemetry-services) by default on sessions that use the Anthropic API, whether directly, through an LLM gateway, or through a custom `ANTHROPIC_BASE_URL`; [Default behaviors by API provider](https://code.claude.com/docs/en/data-usage.md#default-behaviors-by-api-provider) says which providers send it. To turn it off for every developer without relying on each person's shell, deliver `DISABLE_TELEMETRY` through the `env` block of your managed settings. This example sets `DISABLE_TELEMETRY` for everyone the policy reaches:
+
 ```json
 {
   "env": {

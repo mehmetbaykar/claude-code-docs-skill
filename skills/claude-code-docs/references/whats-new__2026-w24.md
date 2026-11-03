@@ -17,6 +17,7 @@ v2.1.169
 The new `/cd` command moves the current session to a different working directory without rebuilding the prompt cache: the new directory's `CLAUDE.md` is appended as a message instead of replacing the system prompt. The session relocates to the new directory's project storage, so `--resume` and `--continue` find it there. Claude prompts you to trust the directory if you haven't worked in it before.
 
 Move the session into another project without restarting:
+
 ```text Claude Code
 > /cd ../other-project
 ```
@@ -29,6 +30,7 @@ v2.1.172
 Subagents can now spawn their own subagents. The subagent panel below the prompt shows the full tree: each row carries a count of its descendants and a path back to `main`. Subagent chains are capped at five levels deep to prevent runaway concurrent trees.
 
 Open the agents view to watch the nested tree as work fans out:
+
 ```text Claude Code
 > /agents
 ```
@@ -41,6 +43,7 @@ v2.1.169
 Start Claude Code with `--safe-mode`, or set `CLAUDE_CODE_SAFE_MODE`, to launch with all customizations disabled: `CLAUDE.md`, skills, plugins, hooks, MCP servers, and custom commands and agents do not load. Authentication, model selection, built-in tools, and permissions still work. If a problem disappears in safe mode, one of those surfaces is the cause.
 
 Launch a clean session to isolate a broken configuration:
+
 ```bash
 claude --safe-mode
 ```

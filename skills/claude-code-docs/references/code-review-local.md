@@ -21,6 +21,7 @@ The command works on any plan. The review runs in your own session, so it counts
 **1. Run /code-review**
 
 Run the command:
+
 ```text
 /code-review
 ```
@@ -125,6 +126,7 @@ Claude can start `/code-review` on its own, without you typing the command:
 A session-scoped scheduled task never launches the [cloud review](#escalate-to-ultrareview), so schedule `/code-review` without the `ultra` argument.
 
 To stop both Claude and scheduled tasks from starting the review while keeping `/code-review` available for you to type, add a [`skillOverrides`](https://code.claude.com/docs/en/skills#override-skill-visibility-from-settings) entry to a [settings file](https://code.claude.com/docs/en/settings.md#where-settings-live) such as `~/.claude/settings.json`:
+
 ```json
 {
   "skillOverrides": {

@@ -49,6 +49,7 @@ If you signed in earlier and first-launch setup shows the login prompt instead o
 ### Log in with multiple accounts
 
 To stay signed in to multiple accounts at once, such as work and personal accounts, give each account its own configuration directory. When you start `claude`, set the [`CLAUDE_CONFIG_DIR`](https://code.claude.com/docs/en/env-vars#variables) environment variable to the directory for the account you want to use. Each directory has its own settings, session history, and claude.ai login or API key. For example, in Bash or Zsh, add this alias to `~/.bashrc` or `~/.zshrc` so that `claude-work` uses your work account while `claude` keeps your personal one:
+
 ```bash
 alias claude-work='CLAUDE_CONFIG_DIR=~/.claude-work claude'
 ```
@@ -197,6 +198,7 @@ The keys also decide whether a session that doesn't use a login credential can s
 ### Restrict which API providers a machine may use
 
 [`allowedProviders`](https://code.claude.com/docs/en/settings-reference#allowedproviders) in [managed settings](https://code.claude.com/docs/en/managed-settings.md) lists which services a managed machine may reach Claude through, such as the Anthropic API, Amazon Bedrock, or an LLM gateway. It complements `forceLoginMethod` and `forceLoginOrgUUID`, which govern which account a session uses when it talks to Anthropic. Requires Claude Code v2.1.285 or later.
+
 ```json managed-settings.json
 {
   "forceLoginMethod": "claudeai",
@@ -216,11 +218,11 @@ With this file, a developer signed in to your claude.ai organization or configur
 Claude Code securely manages your authentication credentials:
 
 * **Storage location**:
-* On macOS, credentials are stored in the encrypted macOS Keychain. When the Keychain rejects the write, such as when it's locked in an SSH session, Claude Code stores your login in `~/.claude/.credentials.json` with file mode `0600` instead, the same storage it uses on Linux. A Console login that creates an API key fails until the Keychain is writable. To move your login back into the Keychain, follow [the recovery steps](https://code.claude.com/docs/en/troubleshoot-install.md#not-logged-in-or-token-expired).
-* On Linux, credentials are stored in `~/.claude/.credentials.json` with file mode `0600`.
-* On Windows, credentials are stored in `%USERPROFILE%\.claude\.credentials.json` and inherit the access controls of your user profile directory, which restricts the file to your user account by default.
-* If you've set the `CLAUDE_CONFIG_DIR` environment variable, Claude Code keeps the `.credentials.json` file under that directory instead, including the file the macOS fallback writes, and keys the macOS Keychain entry to that directory too, so a session with a different `CLAUDE_CONFIG_DIR` reads a different entry.
-* Claude Code manages `.credentials.json` through `/login` and `/logout`. To route requests through a custom API endpoint, set the [`ANTHROPIC_BASE_URL`](https://code.claude.com/docs/en/env-vars) environment variable instead.
+  * On macOS, credentials are stored in the encrypted macOS Keychain. When the Keychain rejects the write, such as when it's locked in an SSH session, Claude Code stores your login in `~/.claude/.credentials.json` with file mode `0600` instead, the same storage it uses on Linux. A Console login that creates an API key fails until the Keychain is writable. To move your login back into the Keychain, follow [the recovery steps](https://code.claude.com/docs/en/troubleshoot-install.md#not-logged-in-or-token-expired).
+  * On Linux, credentials are stored in `~/.claude/.credentials.json` with file mode `0600`.
+  * On Windows, credentials are stored in `%USERPROFILE%\.claude\.credentials.json` and inherit the access controls of your user profile directory, which restricts the file to your user account by default.
+  * If you've set the `CLAUDE_CONFIG_DIR` environment variable, Claude Code keeps the `.credentials.json` file under that directory instead, including the file the macOS fallback writes, and keys the macOS Keychain entry to that directory too, so a session with a different `CLAUDE_CONFIG_DIR` reads a different entry.
+  * Claude Code manages `.credentials.json` through `/login` and `/logout`. To route requests through a custom API endpoint, set the [`ANTHROPIC_BASE_URL`](https://code.claude.com/docs/en/env-vars) environment variable instead.
 * **Supported authentication types**: claude.ai credentials, Claude API credentials, Microsoft Foundry Auth, Bedrock Auth, Vertex Auth, Anthropic profile and [Workload Identity Federation](https://platform.claude.com/docs/en/manage-claude/workload-identity-federation) credentials, and [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway) session tokens.
 * **Custom credential scripts**: configure the [`apiKeyHelper`](https://code.claude.com/docs/en/settings-reference#apikeyhelper) setting to run a shell script that returns an API key.
 * **Refresh intervals**: see [`apiKeyHelper`](https://code.claude.com/docs/en/settings-reference#apikeyhelper) for the cases in which Claude Code re-runs the helper.
@@ -293,6 +295,7 @@ Features that need your claude.ai login, such as [claude.ai connectors](https://
 ### Generate a long-lived token
 
 For CI pipelines, scripts, or other environments where interactive browser login isn't available, generate a one-year OAuth token with `claude setup-token`:
+
 ```bash
 claude setup-token
 ```

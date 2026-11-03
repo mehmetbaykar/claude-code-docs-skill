@@ -41,10 +41,10 @@ A few other features run Claude without you driving each step, but they solve a 
 The right approach depends on who coordinates the work, whether the workers need to communicate, and whether they edit the same files:
 
 * **Who coordinates the work?**
-* Claude delegates and collects results inside one conversation: [subagents](https://code.claude.com/docs/en/sub-agents.md)
-* You hand off independent tasks and check back later: [agent view](https://code.claude.com/docs/en/agent-view.md)
-* Claude plans, assigns, and supervises a group of workers: [agent teams](https://code.claude.com/docs/en/agent-teams.md), experimental and disabled by default
-* A script holds the plan instead of Claude's turn-by-turn judgment: [dynamic workflows](https://code.claude.com/docs/en/workflows.md). See [how workflows compare to subagents and skills](https://code.claude.com/docs/en/workflows.md#when-to-use-a-workflow)
+  * Claude delegates and collects results inside one conversation: [subagents](https://code.claude.com/docs/en/sub-agents.md)
+  * You hand off independent tasks and check back later: [agent view](https://code.claude.com/docs/en/agent-view.md)
+  * Claude plans, assigns, and supervises a group of workers: [agent teams](https://code.claude.com/docs/en/agent-teams.md), experimental and disabled by default
+  * A script holds the plan instead of Claude's turn-by-turn judgment: [dynamic workflows](https://code.claude.com/docs/en/workflows.md). See [how workflows compare to subagents and skills](https://code.claude.com/docs/en/workflows.md#when-to-use-a-workflow)
 * **Do the workers need to talk to each other?** Claude can pass findings with [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging.md) between sessions you run yourself, including the sessions you dispatch from agent view. Subagents report results back to the conversation that spawned them, and agent view sessions report results only to you. Teammates in an agent team message each other directly and, when they [have the Task tools](https://code.claude.com/docs/en/tools-reference.md#task-tool-availability), share a task list.
 * **Do the tasks touch the same files?** Isolate the work with [worktrees](https://code.claude.com/docs/en/worktrees.md). Subagents and sessions you run yourself can each use a separate worktree. Agent teams don't isolate teammates in worktrees, so [partition the work](https://code.claude.com/docs/en/agent-teams.md#avoid-file-conflicts) so each teammate owns a different set of files.
 

@@ -19,6 +19,7 @@ Type `/resume` in the Claude Code Desktop prompt box to pick up any session you 
 Video: https://mintcdn.com/claude-code/f9HTZGyMtxIFOUgt/images/whats-new/desktop-resume-cli-session.mp4?fit=max&auto=format&n=f9HTZGyMtxIFOUgt&q=85&s=41e4a5fda6b9d63280589f2cbdabf44f
 
 In a Desktop session, run the command to list your terminal sessions:
+
 ```text Claude Code
 > /resume
 ```
@@ -35,6 +36,7 @@ When a tool keeps failing, Claude can't help with a request, or you point out a 
 ![A Claude Code session where Claude has drafted a bug report titled Sandbox image pull fails behind proxy, shown as a card above the prompt with options to review, send, or dismiss](https://mintcdn.com/claude-code/f9HTZGyMtxIFOUgt/images/whats-new/claude-drafted-feedback.jpg?fit=max\&auto=format\&n=f9HTZGyMtxIFOUgt\&q=85\&s=5cacb3be0dffd1cbd417381f3721637e)
 
 Run `/feedback` with no argument to open your queue of drafts from every session:
+
 ```text Claude Code
 > /feedback
 ```
@@ -49,6 +51,7 @@ v2.1.248
 Restricted mode starts Claude Code without the built-in tools that run commands or code. Use it when an evaluation harness drives `claude` on a shared machine. Start it with `--restricted` or set `CLAUDE_CODE_RESTRICTED=1`. Claude Code also removes `WebFetch`, confines the file tools to the working directories, loads only managed settings and `--settings`, and refuses the `bypassPermissions` permission mode.
 
 Run a non-interactive query without the command-running tools:
+
 ```bash
 claude --restricted -p "review src/ for SQL injection risks"
 ```

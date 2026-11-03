@@ -31,12 +31,14 @@ You need a plugin to list. The example uses `my-first-plugin` from [Create your 
 **1. Set up the marketplace directory**
 
 A marketplace is a directory with a `.claude-plugin/marketplace.json` file, plus the plugins it lists. Create the marketplace directory and its `.claude-plugin/` folder, then copy your plugin in under `plugins/`:
+
 ```bash
 mkdir -p my-marketplace/.claude-plugin my-marketplace/plugins
 cp -r my-first-plugin my-marketplace/plugins/
 ```
 
 Check that the plugin is valid where it now sits, so that any later error is about the marketplace and not the plugin:
+
 ```bash
 claude plugin validate ./my-marketplace/plugins/my-first-plugin
 ```
@@ -48,6 +50,7 @@ The last line of the output reads `✔ Validation passed`.
 Save `marketplace.json` at `my-marketplace/.claude-plugin/marketplace.json`. The file requires a `name`, an `owner`, and a `plugins` array.
 
 Each object in `plugins` is a plugin entry and needs a `name` and a `source`. Write the entry's `source` as a path from the marketplace root. The root is `my-marketplace/`, the directory that contains `.claude-plugin/`.
+
 ```json my-marketplace/.claude-plugin/marketplace.json
 {
   "name": "my-marketplace",
@@ -68,6 +71,7 @@ Each object in `plugins` is a plugin entry and needs a `name` and a `source`. Wr
 **3. Validate the marketplace**
 
 Run `claude plugin validate` on the marketplace directory to check the JSON syntax, the required fields, and each plugin entry in its `.claude-plugin/marketplace.json`.
+
 ```bash
 claude plugin validate ./my-marketplace
 ```
@@ -77,6 +81,7 @@ For the file as written in step 2, the last line of the output reads `✔ Valida
 **4. Add the marketplace and install the plugin**
 
 Register the directory as a marketplace.
+
 ```bash
 claude plugin marketplace add ./my-marketplace
 ```
@@ -84,6 +89,7 @@ claude plugin marketplace add ./my-marketplace
 The command prints `✔ Successfully added marketplace: my-marketplace (declared in user settings)`, which means the marketplace is recorded in your user settings file.
 
 Install the plugin. The install id is the entry's `name`, an `@`, and the marketplace `name`.
+
 ```bash
 claude plugin install my-first-plugin@my-marketplace
 ```
@@ -95,6 +101,7 @@ Inside a session, `/plugin marketplace add ./my-marketplace` registers the marke
 **5. Confirm the plugin loaded**
 
 List installed plugins.
+
 ```bash
 claude plugin list
 ```
@@ -102,6 +109,7 @@ claude plugin list
 The output lists `my-first-plugin@my-marketplace` with `Status: ✔ enabled`.
 
 To see what the plugin loaded, show its details.
+
 ```bash
 claude plugin details my-first-plugin
 ```
@@ -199,8 +207,8 @@ Problems that `claude plugin validate` doesn't report appear when you add the ma
 
 * **When you add the marketplace**: the exact [official marketplace names](https://code.claude.com/docs/en/plugins/marketplace-reference.md#reserved-names), such as `claude-plugins-official`, pass validation. When you add a marketplace with one of those names, Claude Code refuses it with a message that starts `The name '<name>' is reserved for official Anthropic marketplaces`.
 * **When you install a plugin**:
-* Claude Code first fetches a `github`, `git-subdir`, or other remote source when you install the plugin, so a wrong `repo` or `path` appears then.
-* A relative `source` whose directory doesn't exist also fails at install, with `Source path does not exist: <path>`.
+  * Claude Code first fetches a `github`, `git-subdir`, or other remote source when you install the plugin, so a wrong `repo` or `path` appears then.
+  * A relative `source` whose directory doesn't exist also fails at install, with `Source path does not exist: <path>`.
 
 ### Test an edit to a plugin
 

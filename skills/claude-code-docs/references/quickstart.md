@@ -88,6 +88,7 @@ To install Claude Code, open a terminal and run the command for your system. If 
 You can also install with [apt, dnf, or apk](https://code.claude.com/docs/en/setup.md#install-with-linux-package-managers) on Debian, Fedora, RHEL, and Alpine.
 
 To confirm the installation worked, run:
+
 ```bash
 claude --version
 ```
@@ -97,6 +98,7 @@ The command prints a version number followed by `(Claude Code)`.
 ## Step 2: Start your first session
 
 Open your terminal in any project directory and start Claude Code:
+
 ```bash
 cd /path/to/your/project
 claude
@@ -120,28 +122,35 @@ The Claude Code prompt appears with the version, current model, and working dire
 ## Step 3: Ask your first question
 
 Try one of these commands:
+
 ```text wrap
 what does this project do?
 ```
 
 Claude will analyze your files and provide a summary. You can also ask more specific questions:
+
 ```text wrap
 what technologies does this project use?
 ```
+
 ```text wrap
 where is the main entry point?
 ```
+
 ```text wrap
 explain the folder structure
 ```
 
 You can also ask Claude about its own capabilities:
+
 ```text wrap
 what can Claude Code do?
 ```
+
 ```text wrap
 how do I create custom skills in Claude Code?
 ```
+
 ```text wrap
 can Claude Code work with Docker?
 ```
@@ -153,6 +162,7 @@ can Claude Code work with Docker?
 ## Step 4: Make your first code change
 
 Try a small task:
+
 ```text wrap
 add a hello world function to the main file
 ```
@@ -164,20 +174,25 @@ The session's [permission mode](https://code.claude.com/docs/en/permission-modes
 ## Step 5: Use Git with Claude Code
 
 Claude Code makes Git operations conversational:
+
 ```text wrap
 what files have I changed?
 ```
+
 ```text wrap
 commit my changes with a descriptive message
 ```
 
 You can also prompt for more complex Git operations:
+
 ```text wrap
 create a new branch called feature/quickstart
 ```
+
 ```text wrap
 show me the last 5 commits
 ```
+
 ```text wrap
 help me resolve merge conflicts
 ```
@@ -185,11 +200,13 @@ help me resolve merge conflicts
 ## Step 6: Fix a bug or add a feature
 
 Describe what you want in natural language:
+
 ```text wrap
 add input validation to the user registration form
 ```
 
 Or fix existing issues:
+
 ```text wrap
 there's a bug where users can submit empty forms - fix it
 ```
@@ -197,15 +214,19 @@ there's a bug where users can submit empty forms - fix it
 ## Step 7: Test out other common workflows
 
 Try a few more prompts. You can ask Claude to refactor code, write tests, update documentation, or review your changes:
+
 ```text wrap
 refactor the authentication module to use async/await instead of callbacks
 ```
+
 ```text wrap
 write unit tests for the calculator functions
 ```
+
 ```text wrap
 update the README with installation instructions
 ```
+
 ```text wrap
 review my changes and suggest improvements
 ```

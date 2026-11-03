@@ -1,5 +1,7 @@
 interface:
   display_name: "Claude Code Docs"
-  short_description: "Search and read Claude Code documentation locally."
+  short_description: "Answer Claude Code questions from a local docs mirror"
+  default_prompt: "Use $claude-code-docs to answer my question about Claude Code."
+
 policy:
   allow_implicit_invocation: true

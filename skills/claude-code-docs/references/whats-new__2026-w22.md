@@ -19,6 +19,7 @@ Opus 4.8 is now the default on Max, Team Premium, Enterprise pay-as-you-go, and 
 Video: https://mintcdn.com/claude-code/QsIrGXGFg6xd7joy/images/whats-new/opus-4-8.mp4?fit=max&auto=format&n=QsIrGXGFg6xd7joy&q=85&s=6ebcf5fe136467da2b254de1fe749ea7
 
 Switch to Opus 4.8 by name, or pick it from the model picker:
+
 ```text title="Claude Code" wrap
 /model claude-opus-4-8
 ```
@@ -33,6 +34,7 @@ A workflow is an orchestration script Claude writes for your task and runs acros
 ![Claude Code on Opus 4.8 showing a Dynamic workflow requested indicator for a prompt that asks for a workflow to migrate every internal fetch() call](https://mintcdn.com/claude-code/QsIrGXGFg6xd7joy/images/whats-new/dynamic-workflows.png?fit=max\&auto=format\&n=QsIrGXGFg6xd7joy\&q=85\&s=26671fa8607cec3453ed9753f821bd4f)
 
 Describe the task and ask for a workflow:
+
 ```text title="Claude Code" wrap
 create a workflow that migrates every internal fetch() call to the new HttpClient wrapper
 ```
@@ -47,11 +49,13 @@ The security-guidance plugin reviews Claude's code changes for vulnerabilities a
 Video: https://mintcdn.com/claude-code/QsIrGXGFg6xd7joy/images/whats-new/security-guidance.mp4?fit=max&auto=format&n=QsIrGXGFg6xd7joy&q=85&s=c91d865936411586f42b24c558bcdd1d
 
 Install it from the official Anthropic marketplace:
+
 ```text title="Claude Code" wrap
 /plugin install security-guidance@claude-plugins-official
 ```
 
 Then activate it in the current session:
+
 ```text title="Claude Code" wrap
 /reload-plugins
 ```
@@ -64,6 +68,7 @@ research preview
 Fast mode now defaults to Opus 4.8 at \$10/\$50 per MTok: 2x the standard rate for about 2.5x the speed. Opus 4.7 and 4.6 stay at \$30/\$150. Opus 4.6 fast mode is deprecated.
 
 Toggle fast mode, now on Opus 4.8:
+
 ```text title="Claude Code" wrap
 /fast
 ```

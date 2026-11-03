@@ -42,6 +42,7 @@ One goal can be active per session. The same command sets, checks, and clears it
 ### Set a goal
 
 Run `/goal` followed by the condition you want satisfied. If a goal is already active, the new one replaces it.
+
 ```text
 /goal all tests in test/auth pass and the lint step is clean
 ```
@@ -69,6 +70,7 @@ To bound how long a goal runs, include a turn or time clause in the condition, s
 ### Check status
 
 Run `/goal` with no arguments to see the current state.
+
 ```text
 /goal
 ```
@@ -88,6 +90,7 @@ If no goal is active but one was achieved earlier in the session, the status sho
 ### Clear a goal
 
 Run `/goal clear` to remove an active goal before it resolves.
+
 ```text
 /goal clear
 ```
@@ -105,6 +108,7 @@ Claude Code carries the condition over but resets the turn count, timer, and tok
 ### Run non-interactively
 
 `/goal` works in [non-interactive mode](https://code.claude.com/docs/en/headless.md), in the [desktop app](https://code.claude.com/docs/en/desktop.md), and through [Remote Control](https://code.claude.com/docs/en/remote-control.md). Setting a goal with `-p` runs the loop to completion in a single invocation:
+
 ```bash
 claude -p "/goal CHANGELOG.md has an entry for every PR merged this week"
 ```

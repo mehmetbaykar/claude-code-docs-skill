@@ -41,6 +41,7 @@ Install on the host before you start:
 * **Git 2.24 or newer**. Some git options on the deploy page need newer versions; [Configure git](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#configure-git) states each floor.
 
 Confirm the host is ready:
+
 ```bash
 claude self-hosted-runner --help
 ```
@@ -59,6 +60,7 @@ The guided setup walks you through creating the environment in the admin UI, sta
 * **Version**: confirm the [version check](#software-on-the-runner-host) passed. On versions older than 2.1.224, the setup command starts a Claude session with the words as the prompt instead of the guided setup.
 
 To start the guided setup, run the setup subcommand in your shell and follow the prompts:
+
 ```bash
 claude self-hosted-runner setup
 ```
@@ -78,11 +80,13 @@ If you lose the secret or need to rotate it, create a new secret from the enviro
 **2. Start a runner**
 
 Create the secret directory. This command and the next use `/etc/claude`, which needs root, and the secret file they create is readable only by the user who runs them. If the runner will run as another user, it exits with `error: Failed to read environment secret file <path> (EACCES: permission denied, open '<path>')`. In that case, run both commands as the runner's user with a directory that user can write to in place of `/etc/claude`, and pass the same path to `--environment-secret-file`. Any path the runner process can read works.
+
 ```bash
 mkdir -p /etc/claude
 ```
 
 Write the environment secret to a file. The command below reads from your terminal so the secret stays out of shell history: paste the value you copied, press Enter, then Ctrl-D, and the subshell's `umask` makes the file readable only by its owner.
+
 ```bash
 (umask 077 && cat > /etc/claude/environment-secret)
 ```
@@ -96,6 +100,7 @@ Choose a base directory, replacing `<writable-dir>` in the runner command below 
 If the runner can't create or write to the base directory, it exits at startup with an error naming the directory instead of registering. See [Troubleshooting](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#troubleshooting).
 
 Then start the runner with `--environment-secret-file` and `--base-dir`:
+
 ```bash
 claude self-hosted-runner --environment-secret-file '/etc/claude/environment-secret' --base-dir '<writable-dir>'
 ```
@@ -116,18 +121,18 @@ If the session doesn't start working, match what you see:
 
 * **The session sits queued**: see [Troubleshooting](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#troubleshooting).
 * **The session fails to start with a git error**: if the error includes git's `could not read Username for` followed by your git host's URL, the runner had no HTTPS credentials for that host.
-* **Supply HTTPS credentials**: see [Configure git](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#configure-git)
-* **Clone over SSH instead**: if the runner host already has an SSH key, see [Rewrite git URLs for private networks](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#rewrite-git-urls-for-private-networks)
-* **After either fix**: start the runner again and watch the failed session instead of starting a new one. If it has failed several times, wait several minutes for the runner to log `Picked up session`.
-* **To use a different repository instead**: [archive](https://code.claude.com/docs/en/claude-code-on-the-web.md#archive-sessions) or [delete](https://code.claude.com/docs/en/claude-code-on-the-web.md#delete-sessions) the failed session, then start the runner again and start a new session. Otherwise, the runner can pick up the failed session instead of the new one.
+  * **Supply HTTPS credentials**: see [Configure git](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#configure-git)
+  * **Clone over SSH instead**: if the runner host already has an SSH key, see [Rewrite git URLs for private networks](https://code.claude.com/docs/en/self-hosted-environments-deploy.md#rewrite-git-urls-for-private-networks)
+  * **After either fix**: start the runner again and watch the failed session instead of starting a new one. If it has failed several times, wait several minutes for the runner to log `Picked up session`.
+  * **To use a different repository instead**: [archive](https://code.claude.com/docs/en/claude-code-on-the-web.md#archive-sessions) or [delete](https://code.claude.com/docs/en/claude-code-on-the-web.md#delete-sessions) the failed session, then start the runner again and start a new session. Otherwise, the runner can pick up the failed session instead of the new one.
 
 ### If the runner exits
 
 If the runner exits during this quickstart, start it again. The runner can exit on its own:
 
 * **Nothing left running**: the log shows `[runner:exit] account workload drained — exiting`. The runner [exits by design](https://code.claude.com/docs/en/self-hosted-environments#runner-lifecycle) once it's no longer running any session, for example:
-* **You archived or deleted the session**: start the runner again
-* **The session failed to start**: [fix the cause](#session-doesnt-start), then start the runner again
+  * **You archived or deleted the session**: start the runner again
+  * **The session failed to start**: [fix the cause](#session-doesnt-start), then start the runner again
 * **Lost contact**: the log shows a `[runner:fatal]` line with `runner record gone server-side` or with `poll auth failed`. If the runner loses contact with Anthropic for a while, for example because the host sleeps, it can exit when it next reaches Anthropic.
 
 A finished turn doesn't end your test session. After the first turn the session is still attached and the runner is still up, so you can [send the session a follow-up message](#send-a-follow-up-message-to-a-running-session) without restarting the runner first.
@@ -137,6 +142,7 @@ For production, deploy the runner under an orchestrator that restarts it on exit
 ## Send a follow-up message to a running session
 
 Once a session is running on your environment, send it a follow-up from the `claude` CLI on any machine where you're logged in with `claude auth login`; the command doesn't need to run from the machine that started the session. The command posts one message:
+
 ```bash
 claude -p "your message" --cloud <session-id>
 ```

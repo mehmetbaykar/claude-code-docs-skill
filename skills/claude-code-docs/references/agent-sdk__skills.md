@@ -34,9 +34,11 @@ Unlike subagents, which you can define in the [`agents` option](https://code.cla
 Set the `skills` option on `query()` to control which skills Claude can invoke in the session. When omitted, discovered skills are enabled and the Skill tool is available, matching CLI behavior. Pass `"all"` to let Claude invoke every discovered skill, a list of skill names to allow only those, or `[]` to let Claude invoke none.
 
 For example, to let Claude invoke only two named skills:
+
 ```python Python
 options = ClaudeAgentOptions(skills=["pdf", "docx"])
 ```
+
 ```typescript TypeScript
 const options = { skills: ["pdf", "docx"] };
 ```
@@ -48,6 +50,7 @@ When you set `skills`, the SDK adds the Skill tool to `allowedTools` automatical
 Once configured, Claude automatically discovers skills from the filesystem and invokes them when relevant to the user's request.
 
 The following example enables every discovered skill in a session and pre-approves the tools that skills commonly need. The example sets `cwd` to the process's current working directory, so run it from inside a project that has a `.claude/skills/` directory in the current directory or any parent up to the repository root:
+
 ```python Python
 import asyncio
 import os
@@ -69,6 +72,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -119,6 +123,7 @@ By default, both you and Claude can invoke any skill. You can restrict either pa
 ### Discover available commands
 
 You can dispatch commands that work without an interactive terminal through the SDK. The `system/init` message lists the ones available in your session in its `slash_commands` field. Commands that need an interactive terminal, such as `/theme` and `/terminal-setup`, don't appear in the list. Access the field when your session starts:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -131,6 +136,7 @@ for await (const message of query({
   }
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage
@@ -144,6 +150,7 @@ asyncio.run(main())
 ```
 
 The printed list mixes built-in commands, bundled skills, your user-invocable skills, and `.claude/commands/` files:
+
 ```text
 Available commands: ["clear", "compact", "context", "usage", "code-review", "verify", "security-check", ...]
 ```
@@ -165,6 +172,7 @@ A `/<name>` that matches a built-in Claude Code command that isn't available in 
 ### Compact history with `/compact`
 
 The `/compact` command reduces the size of your conversation history by summarizing older messages while preserving important context. Compaction needs an existing conversation with enough prior messages to summarize. This example has a conversation first, then compacts it and reads the `compact_boundary` system message that reports the result:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -200,6 +208,7 @@ for await (const message of query({
   }
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage, SystemMessage
@@ -250,6 +259,7 @@ The `/clear` command resets the conversation to an empty context, so subsequent 
 Create each skill as a directory containing a `SKILL.md` file with YAML frontmatter and Markdown content. The `description` field determines when Claude invokes your skill.
 
 **Example directory structure**:
+
 ```text
 .claude/skills/security-check/
 └── SKILL.md
@@ -267,6 +277,7 @@ If you have existing custom command files in `.claude/commands/`, they keep work
 ### Create and dispatch your first skill
 
 To see the full flow, create `.claude/skills/security-check/SKILL.md`:
+
 ```markdown
 ---
 name: security-check
@@ -281,6 +292,7 @@ Analyze the codebase for security vulnerabilities including:
 ```
 
 Once the file exists, the skill is available through the SDK. Claude invokes it when a request matches its description, and you can dispatch it directly:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -293,6 +305,7 @@ for await (const message of query({
   }
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
@@ -308,6 +321,7 @@ asyncio.run(main())
 ```
 
 A successful run ends with a `success` result whose text carries the scan findings. Against a small Express app with seeded issues, the result text begins:
+
 ```text
 **Security scan of `app.js` — 4 findings (most severe first):**
 
@@ -328,6 +342,7 @@ The skill's name also appears in the init message's `slash_commands` array.
 > In SDK sessions, you can pre-approve tools for a project or personal skill with the skill's [`allowed-tools`](https://code.claude.com/docs/en/skills#pre-approve-tools-for-a-skill) frontmatter or with the `allowedTools` option (`allowed_tools` in Python) in your query configuration. If your organization sets [`allowManagedPermissionRulesOnly`](https://code.claude.com/docs/en/settings-reference#allowmanagedpermissionrulesonly) in managed settings, Claude Code ignores both. Skills [synced from claude.ai](https://code.claude.com/docs/en/skills.md#how-claude-code-handles-the-frontmatter-of-a-synced-skill) follow their own frontmatter rules.
 
 Skills run with the session's tools. The example below pre-approves `Read`, `Grep`, and `Glob` with `allowedTools` (`allowed_tools` in Python), so Claude can inspect files while running the [security-check skill](#create-and-dispatch-your-first-skill) without stopping for approval:
+
 ```python Python
 import asyncio
 
@@ -345,6 +360,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -369,6 +385,7 @@ The list pre-approves the named tools rather than restricting the others. For th
 ### Skills not found
 
 **Check settingSources configuration**: the SDK discovers skills through the `user` and `project` setting sources. If you set `settingSources`/`setting_sources` explicitly and omit those sources, the SDK doesn't load skills:
+
 ```python Python
 # Skills not loaded: setting_sources excludes user and project
 options = ClaudeAgentOptions(setting_sources=[], skills="all")
@@ -379,6 +396,7 @@ options = ClaudeAgentOptions(
     skills="all",
 )
 ```
+
 ```typescript TypeScript
 // Skills not loaded: settingSources excludes user and project
 const optionsWithoutSkills = {
@@ -396,6 +414,7 @@ const optionsWithSkills = {
 For which skill directories each source loads, see the [filesystem sources table](https://code.claude.com/docs/en/agent-sdk/claude-code-features.md#control-filesystem-settings-with-settingsources). For more details on `settingSources`/`setting_sources`, see the [TypeScript SDK reference](https://code.claude.com/docs/en/agent-sdk/typescript.md#settingsource) or [Python SDK reference](https://code.claude.com/docs/en/agent-sdk/python.md#settingsource).
 
 **Check working directory**: the SDK loads skills from `.claude/skills/` in the `cwd` option and in every parent directory up to the repository root. Ensure `cwd` points at or below the directory containing `.claude/skills/`, within the same repository:
+
 ```python Python
 # Ensure your cwd points to the directory containing .claude/skills/
 options = ClaudeAgentOptions(
@@ -404,6 +423,7 @@ options = ClaudeAgentOptions(
     skills="all",
 )
 ```
+
 ```typescript TypeScript
 // Ensure your cwd points to the directory containing .claude/skills/
 const options = {
@@ -416,6 +436,7 @@ const options = {
 See [Use skills with the Agent SDK](#use-skills-with-the-agent-sdk) for the complete pattern.
 
 **Verify filesystem location**:
+
 ```bash
 # Check project skills
 ls .claude/skills/*/SKILL.md

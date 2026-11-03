@@ -45,6 +45,7 @@ The spinner tip and the session-start notification both stop appearing when the 
 ## Add relevance to a plugin entry
 
 Add a `relevance` object to the plugin's entry in your `marketplace.json`. The following example declares that the `terraform-helpers` plugin is relevant when Claude reads a `.tf` file or runs `terraform`:
+
 ```json
 {
   "name": "your-marketplace",
@@ -121,6 +122,7 @@ Each `manifestDeps` entry pairs two JavaScript `RegExp` source strings:
 * `pattern`: matched case-sensitively against that file's contents.
 
 The following example uses `manifestDeps` to suggest your plugin once Claude has read a `package.json` that depends on your SDK's npm package, named `your-sdk` here.
+
 ```json
 {
   "name": "your-plugin",
@@ -143,6 +145,7 @@ In this example, the `file` pattern uses `[/\\\\]` so it matches both forward-sl
 ## Validate your marketplace
 
 In your shell, run `claude plugin validate` against your marketplace directory to check the `relevance` block before publishing:
+
 ```bash
 claude plugin validate ./my-marketplace
 ```
@@ -167,6 +170,7 @@ To allowlist a marketplace, edit your managed settings as follows:
 On a machine where the marketplace isn't registered, or is registered under the allowlisted name from a different source, no suggestions from it appear. The source check stops an unrelated source from registering under an allowlisted name to get its plugins suggested across your org.
 
 The following `managed-settings.json` registers an org marketplace from a GitHub repository and enables its suggestions:
+
 ```json
 {
   "extraKnownMarketplaces": {
@@ -182,6 +186,7 @@ The following `managed-settings.json` registers an org marketplace from a GitHub
 ```
 
 The official marketplace's name can only register from the official Anthropic source, so it needs no source declaration. For the official marketplace, allowlist the name alone:
+
 ```json
 {
   "pluginSuggestionMarketplaces": ["claude-plugins-official"]
@@ -191,12 +196,14 @@ The official marketplace's name can only register from the official Anthropic so
 ## Preview what the user sees
 
 When a plugin's `relevance` signal matches during a session, the tip below the spinner reads:
+
 ```text
 Working with Terraform? Install the terraform-helpers plugin:
 /plugin install terraform-helpers@your-marketplace
 ```
 
 When a `cwd` signal matches at session start, the one-line notification reads:
+
 ```text
 plugin suggestion: terraform-helpers@your-marketplace · /plugin
 ```

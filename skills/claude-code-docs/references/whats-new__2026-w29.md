@@ -19,6 +19,7 @@ A published artifact can now call MCP connectors each time someone views it, so 
 Video: https://mintcdn.com/claude-code/ItzF3QVI6L0QypjJ/images/whats-new/artifacts-mcp.mp4?fit=max&auto=format&n=ItzF3QVI6L0QypjJ&q=85&s=ff8b81ed52b26c773899dc28cec959e6
 
 Name the connector and the data you want in your prompt:
+
 ```text title="Claude Code" wrap
 Build a dashboard artifact of open pull requests that pulls the live list through my GitHub connector when the page loads.
 ```
@@ -31,6 +32,7 @@ CLI
 Screen reader mode replaces the visual terminal interface with plain, linear text: instead of boxes, spinners, and in-place redraws, Claude Code prints labeled lines that a screen reader such as VoiceOver or NVDA reads in order, so you can approve permissions and review output end to end. Turn it on per session with a flag, per shell with the `CLAUDE_AX_SCREEN_READER` environment variable, or everywhere with the `axScreenReader` setting.
 
 Start a session in screen reader mode:
+
 ```bash
 claude --ax-screen-reader
 ```

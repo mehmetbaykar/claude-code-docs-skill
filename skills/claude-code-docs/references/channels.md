@@ -235,6 +235,7 @@ To try the fakechat demo, you'll need:
 **1. Install the fakechat channel plugin**
 
 Start Claude Code by running `claude` in your terminal, then enter the install command at its prompt:
+
 ```text
 /plugin install fakechat@claude-plugins-official
 ```
@@ -251,6 +252,7 @@ If the install summary reports `Run /reload-plugins to apply.`, you don't need t
 **2. Restart with the channel enabled**
 
 Exit Claude Code, then restart with `--channels` and pass the fakechat plugin you installed:
+
 ```bash
 claude --channels plugin:fakechat@claude-plugins-official
 ```
@@ -264,6 +266,7 @@ The fakechat server starts automatically. The startup screen shows a channels no
 **3. Push a message in**
 
 Open the fakechat UI at [http://localhost:8787](http://localhost:8787) and type a message:
+
 ```text
 what's in my working directory?
 ```
@@ -318,6 +321,7 @@ Once enabled, users in your organization can use `--channels` to opt channel ser
 ### Restrict which channel plugins can run
 
 By default, any plugin on the Anthropic-maintained allowlist can register as a channel. Admins on Team and Enterprise plans can replace that allowlist with their own by setting `allowedChannelPlugins` in managed settings. Use this to restrict which official plugins are allowed, approve channels from your own internal marketplace, or both. Each entry names a plugin and the marketplace it comes from:
+
 ```json
 {
   "channelsEnabled": true,

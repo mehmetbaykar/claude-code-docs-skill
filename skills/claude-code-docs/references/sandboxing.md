@@ -62,6 +62,7 @@ The sandbox is built into Claude Code. What you install depends on your platform
 **1. Run /sandbox**
 
 Start a Claude Code session and run the `/sandbox` command:
+
 ```text
 /sandbox
 ```
@@ -91,6 +92,7 @@ If sandboxed commands fail with `Operation not permitted` inside a container, se
 When you select a mode in the panel, Claude Code saves it to your project's local settings at `.claude/settings.local.json`, which apply to the current project. Claude Code adds that file to your global gitignore when it saves a setting there. To enable the sandbox across all of your projects, set [`sandbox.enabled`](https://code.claude.com/docs/en/settings-reference#sandbox-enabled) to `true` in your user settings at `~/.claude/settings.json`. To enforce sandboxing for every developer in an organization, use [managed settings](#enforce-sandboxing-with-managed-settings).
 
 To change the sandbox for one session without writing to a settings file, start Claude Code with [`--settings`](https://code.claude.com/docs/en/settings#change-a-setting-for-one-session). For example, this command starts a sandboxed session in which Claude can't retry a blocked command outside the sandbox:
+
 ```bash
 claude --settings '{"sandbox": {"enabled": true, "allowUnsandboxedCommands": false}}'
 ```
@@ -251,6 +253,7 @@ Unsandboxed commands inherit your shell's `$TMPDIR` when it is set, so while fil
 Customize sandbox behavior through your `settings.json` file. See [Settings](https://code.claude.com/docs/en/settings-reference.md#sandbox-settings) for the complete configuration reference.
 
 By default, sandboxed commands can write to the current working directory, the per-user temp directory, and any [directories you've added](https://code.claude.com/docs/en/permissions.md#additional-directories-grant-file-access-not-configuration) with `--add-dir`, `/add-dir`, or `permissions.additionalDirectories`. If subprocess commands like `kubectl`, `terraform`, or `npm` need to write outside those directories, use `sandbox.filesystem.allowWrite` to grant access to specific paths:
+
 ```json
 {
   "sandbox": {
@@ -281,6 +284,7 @@ You can also deny write or read access using `sandbox.filesystem.denyWrite` and 
 | `"allowRead": ["~/"]` with `"denyRead": ["~/**/.env"]` | Every `.env` under the home directory stays blocked and the rest is readable. A [wildcard deny](https://code.claude.com/docs/en/settings-reference.md#sandbox-path-prefixes) holds inside a wider allow the same way an exact path does |
 
 The example below blocks reading from the entire home directory while still allowing reads from the current project. Place it in your project's `.claude/settings.json`, because the relative path `.` resolves to the project root when the configuration lives in project settings:
+
 ```json
 {
   "sandbox": {
@@ -302,6 +306,7 @@ To deny sandboxed commands read access to home directories and mounted volumes w
 List a command pattern in [`sandbox.excludedCommands`](https://code.claude.com/docs/en/settings-reference#sandbox-excludedcommands) to run matching commands outside the sandbox, which means no filesystem restrictions and no network proxy. Use it for a tool that can't work inside the sandbox and that you trust with your full access. A tool that needs one more directory or one more host may work with `allowWrite` or `allowedDomains`, which keep the command sandboxed.
 
 This example takes `docker compose` commands out of the sandbox. Save it in `~/.claude/settings.json` to apply it to all of your projects:
+
 ```json
 {
   "sandbox": {
@@ -335,6 +340,7 @@ To confirm an entry matches, switch to Manual mode and ask Claude to run a match
 ### Disable filesystem isolation
 
 Set `sandbox.filesystem.disabled` to `true` to skip filesystem isolation while keeping network isolation. The example below turns off filesystem isolation while keeping an allowlist of network domains:
+
 ```json
 {
   "sandbox": {
@@ -381,7 +387,7 @@ Two other things change:
 
 * Sandboxed commands inherit your shell's `$TMPDIR` instead of the per-user temp directory, because every temp directory is writable and Claude Code no longer redirects commands to the per-user one.
 
-On Linux the variable is often unset in the parent shell. The Bash tool guidance tells Claude to create scratch directories with `mktemp -d` instead of relying on `$TMPDIR`.
+  On Linux the variable is often unset in the parent shell. The Bash tool guidance tells Claude to create scratch directories with `mktemp -d` instead of relying on `$TMPDIR`.
 * [`autoAllowBashIfSandboxed`](https://code.claude.com/docs/en/settings-reference#sandbox-autoallowbashifsandboxed) still defaults to `true`, so sandboxed commands keep running without prompts. Set it to `false` to prompt for sandboxed commands.
 
 ### Protect credentials
@@ -391,6 +397,7 @@ The `sandbox.credentials` setting declares credential files and environment vari
 For entries with `"mode": "deny"`, file paths are denied for reads inside the sandbox, the same restriction that `filesystem.denyRead` applies, and environment variables are unset before each sandboxed command runs. The file protection is part of the filesystem layer, so it doesn't apply if you [disable filesystem isolation](#disable-filesystem-isolation); the environment variable protection still does.
 
 The example below blocks reads of the AWS credentials file and the SSH directory and removes `GITHUB_TOKEN` and `NPM_TOKEN` from the environment of sandboxed commands:
+
 ```json
 {
   "sandbox": {
@@ -439,6 +446,7 @@ Masking requires the following:
 To mask an environment variable, set `"mode": "mask"` on its `credentials.envVars` entry. The command and anything it logs never hold the real credential, but its requests still authenticate. When the same variable is listed with `deny` in any scope, `deny` takes precedence.
 
 This example masks two tokens. `GH_TOKEN` is substituted only on requests to `api.github.com`, while `NPM_TOKEN` has no `injectHosts` and is substituted on requests to every host in `network.allowedDomains`:
+
 ```json
 {
   "sandbox": {
@@ -482,6 +490,7 @@ To mask a credential file, set `"mode": "mask"` on its `credentials.files` entry
 * **macOS**: sandboxed commands can't read the file at all. Claude Code builds no sentinel copy, so tools that authenticate with the file don't work inside the sandbox, the same effect as `deny`. The read block holds even when you [disable filesystem isolation](#disable-filesystem-isolation).
 
 This example masks a GitHub token stored in `~/.config/gh/hosts.yml`. The `extract` pattern marks which part of the file is the secret, so on Linux and WSL2 `gh` still parses the rest of its config:
+
 ```json
 {
   "sandbox": {
@@ -696,6 +705,7 @@ Administrators can require sandboxing for every user, keep developers from widen
 To require the sandbox for every developer, deliver the `sandbox` keys through [managed settings](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms), either as a file managed by your MDM or through [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md) on claude.ai.
 
 The following managed settings configuration enables the sandbox, refuses to start Claude Code when the platform is unsupported or a dependency is missing, and prevents the model from retrying commands outside the sandbox:
+
 ```json
 {
   "sandbox": {
@@ -788,6 +798,7 @@ To inspect, filter, or log sandbox traffic with your own tooling, replace the bu
 To route sandbox traffic through a corporate proxy elsewhere on your network, set `HTTPS_PROXY` instead, as the **Corporate proxy** entry under [Network isolation](#network-isolation) describes. That way, Claude Code's allowlist still applies.
 
 To direct sandboxed commands to your proxy, set the localhost ports it listens on in [sandbox settings](https://code.claude.com/docs/en/settings-reference.md#sandbox-settings):
+
 ```json
 {
   "sandbox": {
@@ -917,11 +928,13 @@ On Linux and WSL2, check these if the connection still fails:
 * **The key is readable as a file**: the sandbox can block the `ssh-agent` socket, and a `denyRead` or `credentials` entry for `~/.ssh` hides your key files
 
 On macOS, switch the remote to HTTPS, which needs HTTPS credentials such as a personal access token:
+
 ```bash
 git remote set-url origin https://git.example.com/example-org/example-repo.git
 ```
 
 If you have to keep the SSH remote, take git's network commands out of the sandbox with [`excludedCommands`](#run-commands-outside-the-sandbox-with-excludedcommands):
+
 ```json
 {
   "sandbox": {
@@ -946,6 +959,7 @@ The failure looks like a network or name resolution error:
 A tool that uses the proxy fails differently when its host isn't allowed. You get a network prompt, or the tool receives a `403` response from the proxy.
 
 To let the tool connect, run the command that needs it outside the sandbox with [`excludedCommands`](#run-commands-outside-the-sandbox-with-excludedcommands). This example excludes one script and adds an [ask rule](https://code.claude.com/docs/en/permissions.md) so that you approve each run:
+
 ```json
 {
   "sandbox": {
@@ -967,6 +981,7 @@ By default, a sandboxed command can't connect directly to a server that's runnin
 * **Linux and WSL2**: a sandboxed command's `localhost` is private to that command. The command can listen on a port and reach servers it started itself. A direct connection to `localhost` or `127.0.0.1` doesn't reach servers on the host, and `allowLocalBinding` has no effect. Run the command that needs the host's server outside the sandbox with [`excludedCommands`](#run-commands-outside-the-sandbox-with-excludedcommands), where it has no filesystem or network limits. For connections that go through the sandbox proxy, see [Hostnames that resolve to local addresses](#hostnames-that-resolve-to-local-addresses)
 
 This example turns the setting on for macOS:
+
 ```json
 {
   "sandbox": {
@@ -984,6 +999,7 @@ An `allowedDomains` entry for `localhost` applies to connections that go through
 The sandbox proxy refuses an allowed hostname that [resolves to a local address](#hostnames-that-resolve-to-local-addresses), which affects development names such as `myapp.test` that point at `127.0.0.1`. The command sees a `403` response whose body names the kind of address, such as `Connection to myapp.test blocked: resolved to a loopback address`.
 
 Add the IP address the name resolves to alongside the hostname in `allowedDomains`, each with the port your server listens on:
+
 ```json
 {
   "sandbox": {
@@ -1025,6 +1041,7 @@ Managed settings and `--settings` rank above local settings. To see which of the
 ### `/sandbox` prints `Sandbox settings not changed`
 
 This line means `/sandbox` couldn't save the choice you made in its panel to your project's `.claude/settings.local.json`:
+
 ```text
 ✗ Sandbox settings not changed: /home/you/project/.claude/settings.local.json couldn't be updated (EACCES). Start Claude Code in a project folder you can write to.
 ```
@@ -1032,6 +1049,7 @@ This line means `/sandbox` couldn't save the choice you made in its panel to you
 If the reason in parentheses is `EACCES`, `EPERM`, or `EROFS`, start Claude Code in a project folder you can write to, then run `/sandbox` again in that session. If the reason begins with `Invalid JSON syntax in settings file`, correct the JSON in your project's `.claude/settings.local.json`, then run `/sandbox` again.
 
 If no writable project folder is available to you, turn the sandbox on from your user settings instead. Add this to `~/.claude/settings.json`:
+
 ```json
 {
   "sandbox": {

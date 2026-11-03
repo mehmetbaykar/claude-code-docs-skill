@@ -19,6 +19,7 @@ MCP servers can run as local processes, connect over HTTP, or execute directly w
 ## Quickstart
 
 This example connects to the [Claude Code documentation](https://code.claude.com/docs) MCP server using [HTTP transport](#http%2Fsse-servers) and uses [`allowedTools`](#allow-mcp-tools) with a wildcard to permit all tools from the server.
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -39,6 +40,7 @@ for await (const message of query({
   }
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
@@ -73,6 +75,7 @@ You can configure MCP servers in code when calling `query()`, or in a `.mcp.json
 ### Add a server in code
 
 Pass MCP servers directly in the `mcpServers` option. This example starts a local filesystem MCP server for `/Users/me/projects`. Replace that path with a directory on your machine:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -93,6 +96,7 @@ for await (const message of query({
   }
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
@@ -122,6 +126,7 @@ asyncio.run(main())
 ### Add a server from a config file
 
 Create a `.mcp.json` file at your project root. The file is picked up when the `project` setting source is enabled, which it is for default `query()` options. If you set `settingSources` explicitly, include `"project"` for this file to load. Replace `/Users/me/projects` with a directory on your machine:
+
 ```json
 {
   "mcpServers": {
@@ -199,6 +204,7 @@ Use the full tool names in `allowedTools` and in [MCP permission rules](https://
 ### Auto-approve with allowedTools
 
 Use `allowedTools` to auto-approve specific MCP tools so Claude can use them without a permission prompt:
+
 ```typescript TypeScript hidelines={1,-1}
 const _ = {
   options: {
@@ -213,6 +219,7 @@ const _ = {
   }
 };
 ```
+
 ```python Python
 options = ClaudeAgentOptions(
     mcp_servers={
@@ -239,6 +246,7 @@ To see what tools an MCP server provides, check the server's documentation or in
 Claude Code emits the init message after the [first-turn connection wait](#connection-timing) for servers passed in `options.mcpServers`, so the `tools` array lists the `mcp__` tools of each server that has connected by then, plus those of servers with a [cached tool list](#connection-timing), which connect on first use. Tools of any other server that hasn't connected are absent; see [Error handling](#error-handling) for reading each server's status.
 
 This filter prints the MCP tool names:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -255,6 +263,7 @@ for await (const message of query({ prompt: "...", options })) {
   }
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage
@@ -286,6 +295,7 @@ MCP servers communicate with your agent using different transport protocols. Che
 ### stdio servers
 
 Local processes that communicate via stdin/stdout. Use this for MCP servers you run on the same machine. For the `.mcp.json` form, use the same fields shown at [Add a server from a config file](#from-a-config-file). In code, pass the command and its arguments. Replace `/Users/me/projects` with a directory on your machine:
+
 ```typescript TypeScript hidelines={1,-1}
 const _ = {
   options: {
@@ -299,6 +309,7 @@ const _ = {
   }
 };
 ```
+
 ```python Python
 options = ClaudeAgentOptions(
     mcp_servers={
@@ -318,6 +329,7 @@ options = ClaudeAgentOptions(
 ### HTTP/SSE servers
 
 Use HTTP or SSE for cloud-hosted MCP servers and remote APIs. For the `.mcp.json` form, use the same fields as the example at [HTTP headers for remote servers](#http-headers-for-remote-servers), with `"type": "sse"` for an SSE server. In code, pass the server's URL:
+
 ```typescript TypeScript hidelines={1,-1}
 const _ = {
   options: {
@@ -334,6 +346,7 @@ const _ = {
   }
 };
 ```
+
 ```python Python
 options = ClaudeAgentOptions(
     mcp_servers={
@@ -485,6 +498,7 @@ The [MCP specification supports OAuth 2.1](https://modelcontextprotocol.io/speci
 In either case, the agent run continues without that server's tools. The `mcp_servers` array of the [system init message](https://code.claude.com/docs/en/agent-sdk/typescript.md#sdksystemmessage) may still show `pending` for that server when it's emitted. To confirm whether a server needs credentials, poll `mcpServerStatus()` in the TypeScript SDK or [`get_mcp_status()`](https://code.claude.com/docs/en/agent-sdk/python#methods) in Python.
 
 To supply credentials, complete the OAuth flow in your own application and pass the resulting access token in the server's `headers`:
+
 ```typescript TypeScript
 // After completing OAuth flow in your app.
 // Implement getAccessTokenFromOAuthFlow for your OAuth provider.
@@ -503,6 +517,7 @@ const options = {
   allowedTools: ["mcp__oauth-api__*"]
 };
 ```
+
 ```python Python
 # After completing OAuth flow in your app.
 # Implement get_access_token_from_oauth_flow for your OAuth provider.
@@ -527,9 +542,11 @@ options = ClaudeAgentOptions(
 This example connects to the remote [GitHub MCP server](https://github.com/github/github-mcp-server) to list recent issues. The example includes debug logging to verify the MCP connection and tool calls.
 
 Before running, create a [GitHub personal access token](https://github.com/settings/personal-access-tokens) with read access to the repositories you want to query and set it as an environment variable:
+
 ```bash
 export GITHUB_TOKEN=YOUR_GITHUB_PAT
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -568,6 +585,7 @@ for await (const message of query({
   }
 }
 ```
+
 ```python Python
 import asyncio
 import os
@@ -619,6 +637,7 @@ In the `MCP servers:` line, a `status` of `connected` for `github` confirms the 
 This example uses [DBHub](https://github.com/bytebase/dbhub) to query a Postgres database. The agent automatically discovers the database schema, writes the SQL query, and returns the results.
 
 DBHub's `execute_sql` tool runs whatever SQL the agent emits, including writes, unless you restrict it. Setting `readonly = true` in the [DBHub configuration file](https://dbhub.ai/config/toml) makes DBHub reject `INSERT`, `UPDATE`, `DELETE`, and DDL statements, so the example cannot modify your data even if the agent emits a write. DBHub resolves `${DATABASE_URL}` from the process environment when it loads the config, so the connection string stays out of the file. Create this `dbhub.toml` next to your script:
+
 ```toml dbhub.toml
 [[sources]]
 id = "production"
@@ -631,9 +650,11 @@ readonly = true
 ```
 
 The script then points DBHub at the config file instead of passing a connection string directly. Before running, set the `DATABASE_URL` environment variable to your connection string. Replace the placeholder values with your own database details:
+
 ```bash
 export DATABASE_URL=postgresql://user:password@localhost:5432/mydb
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -656,6 +677,7 @@ for await (const message of query({
   }
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
@@ -701,6 +723,7 @@ In the init message, don't treat `"pending"` as a failure on its own. It can mea
 * The connection deadline expired. Such a server reports `"pending"` or `"failed"` depending on timing
 
 Check for `"failed"` or `"needs-auth"` to detect servers that won't be usable:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -738,6 +761,7 @@ try {
   console.log(`Session ended with an error: ${error}`);
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, SystemMessage, ResultMessage
@@ -784,6 +808,7 @@ After five reconnection attempts fail, the server reports `"failed"`, or `"needs
 ### Server shows "failed" status
 
 Check the `init` message to see which servers failed to connect:
+
 ```typescript TypeScript
 if (message.type === "system" && message.subtype === "init") {
   for (const server of message.mcp_servers) {
@@ -793,6 +818,7 @@ if (message.type === "system" && message.subtype === "init") {
   }
 }
 ```
+
 ```python Python
 if isinstance(message, SystemMessage) and message.subtype == "init":
     for server in message.data.get("mcp_servers", []):
@@ -812,6 +838,7 @@ Common causes:
 ### Tools not being called
 
 If Claude sees tools but doesn't use them, check that you've granted permission with `allowedTools`:
+
 ```typescript TypeScript hidelines={1,-1}
 const _ = {
   options: {
@@ -822,6 +849,7 @@ const _ = {
   }
 };
 ```
+
 ```python Python
 options = ClaudeAgentOptions(
     mcp_servers={
@@ -834,6 +862,7 @@ options = ClaudeAgentOptions(
 ### A tool is missing from an SDK MCP server
 
 In the TypeScript SDK, when a tool's input schema can't be converted to JSON Schema, the server you created with [`createSdkMcpServer()`](https://code.claude.com/docs/en/agent-sdk/typescript#createsdkmcpserver) leaves that tool out when it lists its tools. The SDK emits a warning at that point. Under Node.js the warning is a process warning with code `CLAUDE_SDK_MCP_TOOL_SCHEMA_UNCONVERTIBLE`, and it starts with this text:
+
 ```text
 Tool "<name>" on SDK MCP server "<server>" was left out of the server's tool list, because its input schema cannot be converted to JSON Schema
 ```

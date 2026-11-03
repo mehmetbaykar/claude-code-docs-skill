@@ -106,6 +106,7 @@ CLAUDE.md files can import additional files using `@path/to/import` syntax. Impo
 Both relative and absolute paths are allowed. Relative paths resolve relative to the file containing the import, not the working directory. Imported files can recursively import other files, with a maximum depth of four hops.
 
 To import a file whose path contains spaces, put a backslash before each space. Without the backslashes, the path ends at the first space, even when the import is on a line of its own. A path wrapped in quotes isn't imported at all, with or without the backslashes. This import loads a file from a folder named `Design Docs`:
+
 ```text
 - API conventions @Design\ Docs/api-conventions.md
 ```
@@ -113,6 +114,7 @@ To import a file whose path contains spaces, put a backslash before each space. 
 Import parsing skips Markdown code spans and fenced code blocks. To mention a path in your CLAUDE.md without importing it, wrap it in backticks: writing `` `@README` `` keeps the text literal, while `@README` outside backticks imports the file.
 
 To pull in a README, package.json, and a workflow guide, reference them with `@` syntax anywhere in your CLAUDE.md:
+
 ```text
 See @README for project overview and @package.json for available npm commands for this project.
 
@@ -123,6 +125,7 @@ See @README for project overview and @package.json for available npm commands fo
 For private per-project preferences that shouldn't be checked into version control, create a `CLAUDE.local.md` at the project root. It loads alongside `CLAUDE.md` and is treated the same way. Add `CLAUDE.local.md` to your `.gitignore` so it isn't committed. With `CLAUDE_CODE_NEW_INIT=1` set, running `/init` and choosing the personal option does this for you.
 
 If you work across multiple git worktrees of the same repository, a gitignored `CLAUDE.local.md` only exists in the worktree where you created it. To share personal instructions across worktrees, import a file from your home directory instead:
+
 ```text
 # Individual Preferences
 - @~/.claude/my-project-instructions.md
@@ -153,6 +156,7 @@ Block-level HTML comments (`<!-- maintainer notes -->`) in CLAUDE.md files are s
 The `--add-dir` flag gives Claude access to additional directories outside your main working directory. By default, CLAUDE.md files from these directories are not loaded.
 
 To also load memory files from additional directories, set the `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD` environment variable:
+
 ```bash
 CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1 claude --add-dir ../shared-config
 ```
@@ -172,6 +176,7 @@ For larger projects, you can organize instructions into multiple files using the
 #### Set up rules
 
 Place markdown files in your project's `.claude/rules/` directory. Each file should cover one topic, with a descriptive filename like `testing.md` or `api-design.md`. All `.md` files are discovered recursively, so you can organize rules into subdirectories like `frontend/` or `backend/`:
+
 ```text
 your-project/
 ├── .claude/
@@ -189,6 +194,7 @@ Project rules are skipped if you exclude `project` from [`--setting-sources`](ht
 #### Path-specific rules
 
 Rules can be scoped to specific files using YAML frontmatter with the `paths` field. These conditional rules only apply when Claude is working with files matching the specified patterns.
+
 ```markdown
 ---
 paths:
@@ -222,6 +228,7 @@ Use glob patterns in the `paths` field to match files by extension, directory, o
 | `src/components/*.tsx` | `.tsx` files directly in the base directory's `src/components/`, not in subfolders |
 
 You can specify multiple patterns and use brace expansion to match multiple extensions in one pattern:
+
 ```markdown
 ---
 paths:
@@ -256,6 +263,7 @@ Claude Code treats a symlink whose target is outside your working directory like
 Claude Code asks for that approval once per project, in a dialog at the start of an interactive session. The dialog lists the linked rule files alongside any external `@path` imports. To load shared rules without that approval, keep them in [`~/.claude/rules/`](#user-level-rules), where they apply to every project on your machine.
 
 This example links both a shared directory and an individual file:
+
 ```bash
 ln -s ~/shared-claude-rules .claude/rules/shared
 ln -s ~/company-standards/security.md .claude/rules/security.md
@@ -266,6 +274,7 @@ If you point a `.claude/rules/` or `CLAUDE.md` symlink at a network path such as
 #### User-level rules
 
 Personal rules in `~/.claude/rules/` apply to every project on your machine. Use them for preferences that aren't project-specific:
+
 ```text
 ~/.claude/rules/
 ├── preferences.md    # Your personal coding preferences
@@ -301,6 +310,7 @@ The `claudeMd` key lets you put managed CLAUDE.md content directly inside `manag
 **Where it's honored**: managed and policy settings only. Setting `claudeMd` in user, project, or local settings has no effect.
 
 The example below adds behavioral instructions directly in a managed settings file:
+
 ```json
 {
   "claudeMd": "Always run `make lint` before committing.\nNever push directly to main."
@@ -326,6 +336,7 @@ Settings rules are enforced by the client regardless of what Claude decides to d
 In large monorepos, ancestor CLAUDE.md files may contain instructions that aren't relevant to your work. The `claudeMdExcludes` setting lets you skip specific files by path or glob pattern. You can't exclude a [managed CLAUDE.md file](#deploy-organization-wide-claude-md) with `claudeMdExcludes`.
 
 This example excludes a top-level CLAUDE.md and a rules directory from a parent folder. Add it to `.claude/settings.local.json` so the exclusion stays local to your machine:
+
 ```json
 {
   "claudeMdExcludes": [
@@ -385,6 +396,7 @@ To change which files Claude reads, type `/config` in a Claude Code session to o
 | `managed-only` | Only your organization's managed `CLAUDE.md` and [auto memory](#auto-memory) at launch. Your project, local, and user `CLAUDE.md` files, your `.claude/rules/` files, and every `AGENTS.md` are left out. A subdirectory's `CLAUDE.md` and `.claude/rules/` files, and [path-scoped rules](#path-specific-rules), still load on demand |
 
 You can also set the value in a settings file instead of `/config`. Add it to [`pluginConfigs`](https://code.claude.com/docs/en/settings-reference#pluginconfigs) under `cc-plugin-agents-md@builtin`, the ID of the built-in plugin that reads `AGENTS.md`. Claude Code reads the entry from `~/.claude/settings.json`, a `--settings` file, or [managed settings](https://code.claude.com/docs/en/managed-settings.md), and ignores it in project and local settings files. This example has Claude read both files:
+
 ```json settings.json
 {
   "pluginConfigs": {
@@ -431,6 +443,7 @@ If you set Claude Code up to read `AGENTS.md` before it did so on its own, here'
 ### Share one file with other coding tools
 
 When Claude isn't reading your `AGENTS.md` directly, you can still keep it as the one file every tool shares by putting an `@AGENTS.md` import in a `CLAUDE.md` next to it. Do this when your project also has a `CLAUDE.md`, when you've set **Project instructions** to `claude-md`, or in sessions that [can't load `AGENTS.md`](#when-agents-md-support-is-unavailable). Add any Claude-specific instructions below the import, and Claude reads the imported file first, then the rest:
+
 ```markdown CLAUDE.md
 @AGENTS.md
 
@@ -440,6 +453,7 @@ Use plan mode for changes under `src/billing/`.
 ```
 
 If you don't need Claude-specific content, a symlink also works:
+
 ```bash
 ln -s AGENTS.md CLAUDE.md
 ```
@@ -488,6 +502,7 @@ The toggle turns auto memory off but doesn't turn it back on in these sessions:
 While auto memory is off there, the toggle reads `off · can't be turned on here; use a session started outside Claude Code`. To turn auto memory back on, run `claude` directly in your terminal and use the `/memory` toggle in that session.
 
 To turn it off for a single project, set `autoMemoryEnabled` in that project's settings:
+
 ```json
 {
   "autoMemoryEnabled": false
@@ -503,6 +518,7 @@ Each project gets its own memory directory at `~/.claude/projects/<project>/memo
 If you set [`CLAUDE_CODE_PROJECT_DIR_NAME`](https://code.claude.com/docs/en/sessions#name-the-project-directory-yourself) beside `CLAUDE_CONFIG_DIR`, Claude Code uses that name as the `<project>` directory under `<config dir>/projects/` instead, whichever repository you launch it in, so projects launched with that config directory share one auto memory directory. Requires Claude Code v2.1.234 or later.
 
 To store auto memory in a different location, set `autoMemoryDirectory` in your `settings.json`. It is read from any [settings scope](https://code.claude.com/docs/en/settings.md#settings-precedence): user, project, local, policy, or `--settings`.
+
 ```json
 {
   "autoMemoryDirectory": "~/my-custom-memory-dir"
@@ -514,6 +530,7 @@ The value must be an absolute path or start with `~/`.
 When you set it in a project's `.claude/settings.json` or `.claude/settings.local.json`, Claude Code honors it under the same [workspace trust rule as hooks in settings files](https://code.claude.com/docs/en/permissions.md#what-runs-before-you-trust-a-folder). While [`permissions.blockReadsOutsideWorkingDirectories`](https://code.claude.com/docs/en/settings-reference#permissions-blockreadsoutsideworkingdirectories) is on, Claude Code loads no auto memory from a directory that a [repository-supplied settings file](https://code.claude.com/docs/en/permissions.md#when-your-local-settings-file-needs-trust) chooses and saves none to it, wherever that directory sits.
 
 The directory contains a `MEMORY.md` index and one topic file per memory:
+
 ```text
 ~/.claude/projects/<project>/memory/
 ├── MEMORY.md           # Index, one line per memory, loaded into every session
@@ -621,16 +638,16 @@ When a subdirectory `CLAUDE.md` or a rules file that loads on demand is over a p
 Check whether your file is over the limit, and shrink it if it is:
 
 1. Confirm that the limit applies to your file. The limit applies to these files, which load on demand:
-* `CLAUDE.md` and `CLAUDE.local.md` in a subdirectory of the directory where you started Claude Code, and the files they [import](#import-additional-files) with `@path`
-* Rules files in a subdirectory's `.claude/rules/`
-* [Path-scoped rules](#path-specific-rules) in your project's `.claude/rules/` or in `~/.claude/rules/`
+   * `CLAUDE.md` and `CLAUDE.local.md` in a subdirectory of the directory where you started Claude Code, and the files they [import](#import-additional-files) with `@path`
+   * Rules files in a subdirectory's `.claude/rules/`
+   * [Path-scoped rules](#path-specific-rules) in your project's `.claude/rules/` or in `~/.claude/rules/`
 2. Find the limit for your session's [context window](https://code.claude.com/docs/en/model-config.md#extended-context):
-* **200K context window**: 40,000 characters
-* **1M context window**: 200,000 characters on Claude Opus 4.6 and Claude Sonnet 4.6, and 150,000 characters on later models
+   * **200K context window**: 40,000 characters
+   * **1M context window**: 200,000 characters on Claude Opus 4.6 and Claude Sonnet 4.6, and 150,000 characters on later models
 3. In Bash or Zsh, run `wc -m path/to/CLAUDE.md` to print your file's character count.
 4. Compare the count with your limit:
-* **Over the limit**: trim the file, or move part of it into one or more rules files, which each count against the limit on their own
-* **Under the limit**: look for another cause under [Claude isn't following my CLAUDE.md](#claude-isn’t-following-my-claude-md)
+   * **Over the limit**: trim the file, or move part of it into one or more rules files, which each count against the limit on their own
+   * **Under the limit**: look for another cause under [Claude isn't following my CLAUDE.md](#claude-isn’t-following-my-claude-md)
 
 Before v2.1.309, Claude Code didn't apply this limit to files that load on demand.
 

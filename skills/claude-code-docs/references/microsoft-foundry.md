@@ -35,11 +35,11 @@ First, create a Claude resource in Azure:
 2. Create a new resource, noting your resource name
 3. Create deployments for the Claude models, noting the deployment name you give each; you'll set these names as the model variables in step 4:
 
-* Claude Opus
-* Claude Sonnet
-* Claude Haiku
+   * Claude Opus
+   * Claude Sonnet
+   * Claude Haiku
 
-When you configure a deployment, you also choose its [hosting option](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#hosting-options), which determines whether inference runs on Azure or on Anthropic infrastructure.
+   When you configure a deployment, you also choose its [hosting option](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry#hosting-options), which determines whether inference runs on Azure or on Anthropic infrastructure.
 
 ### 2. Configure Azure credentials
 
@@ -61,6 +61,7 @@ Copy a key from the Microsoft Foundry portal, then set it as an environment vari
 2. Open the **Endpoints and keys** section
 3. Copy **API Key**
 4. Set the environment variable, replacing `your-azure-api-key` with the key you copied:
+
 ```bash
 export ANTHROPIC_FOUNDRY_API_KEY=your-azure-api-key
 ```
@@ -71,6 +72,7 @@ Leave `ANTHROPIC_FOUNDRY_API_KEY` and `ANTHROPIC_FOUNDRY_AUTH_TOKEN` unset. Clau
 This supports a variety of methods for authenticating local and remote workloads.
 
 On a local machine, sign in with the Azure CLI:
+
 ```bash
 az login
 ```
@@ -82,6 +84,7 @@ For the roles your identity needs, see [Azure RBAC configuration](#azure-rbac-co
 Claude Code sends the value of `ANTHROPIC_FOUNDRY_AUTH_TOKEN` on every request as the `Authorization: Bearer` header. Use this option when another process, such as a host application or a sign-in script, has already obtained an access token for you.
 
 Set the variable to a bearer token that Microsoft Entra ID issued for your resource:
+
 ```bash
 export ANTHROPIC_FOUNDRY_AUTH_TOKEN=your-entra-access-token
 ```
@@ -91,6 +94,7 @@ export ANTHROPIC_FOUNDRY_AUTH_TOKEN=your-entra-access-token
 ### 3. Configure Claude Code
 
 Set the following environment variables to enable Microsoft Foundry:
+
 ```bash
 # Enable Microsoft Foundry integration
 export CLAUDE_CODE_USE_FOUNDRY=1
@@ -112,6 +116,7 @@ Set `ANTHROPIC_FOUNDRY_RESOURCE` to the resource name alone, such as `my-resourc
 Set the model variables to match the deployment names you created in step 1.
 
 Without `ANTHROPIC_DEFAULT_OPUS_MODEL`, the `opus` alias on Microsoft Foundry resolves to Opus 4.6. Set it to the ID of a newer Opus model, such as Opus 4.8:
+
 ```bash
 export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-8'
 export ANTHROPIC_DEFAULT_SONNET_MODEL='claude-sonnet-5'
@@ -123,6 +128,7 @@ Background tasks such as session title generation use the small/fast model, norm
 For current and legacy model IDs, see [Models overview](https://platform.claude.com/docs/en/about-claude/models/overview). See [Model configuration](https://code.claude.com/docs/en/model-config.md#pin-models-for-third-party-deployments) for the full list of environment variables.
 
 [Prompt caching](https://code.claude.com/docs/en/prompt-caching.md) is enabled automatically. To request a 1-hour cache TTL instead of the 5-minute default, set the following variable; cache writes with a 1-hour TTL are billed at a higher rate:
+
 ```bash
 export ENABLE_PROMPT_CACHING_1H=1
 ```
@@ -132,6 +138,7 @@ To set different TTLs for your main conversation and for the requests Claude Cod
 ### 5. Run Claude Code
 
 With the environment variables set, start Claude Code from your project directory:
+
 ```bash
 claude
 ```
@@ -145,6 +152,7 @@ To verify your setup, run `/status` inside Claude Code. The API provider line sh
 The `Azure AI User` and `Cognitive Services User` default roles include all required permissions for invoking Claude models.
 
 For more restrictive permissions, create a custom role with the following:
+
 ```json
 {
   "permissions": [
@@ -164,6 +172,7 @@ For details, see [Microsoft Foundry RBAC documentation](https://learn.microsoft.
 On Microsoft Foundry, when Claude Code can tell which model your deployment serves, Fable models, Sonnet 5 and later, and Opus 4.7 and later run with the [1M token context window](https://platform.claude.com/docs/en/build-with-claude/context-windows#context-window-sizes-by-model) by default, with no `[1m]` suffix needed. Claude Code reads the model from the deployment name in your model variables. Name each deployment with its model ID, such as `claude-opus-4-8`, or map the model to your deployment name with [`modelOverrides`](https://code.claude.com/docs/en/model-config#override-model-ids-per-version). For a deployment name it can't match to a model, Claude Code assumes a 200K window unless you [declare a different one](https://code.claude.com/docs/en/model-config.md#correct-the-window-for-a-gateway-or-custom-model-id).
 
 This `settings.json` entry tells Claude Code that a deployment named `team-opus-prod` serves Opus 4.8:
+
 ```json
 {
   "modelOverrides": {

@@ -29,6 +29,7 @@ This walkthrough covers the core agent view loop: dispatch a task, watch its row
 **1. Open agent view**
 
 From your shell, run:
+
 ```bash
 claude agents
 ```
@@ -74,6 +75,7 @@ To have `claude` with no arguments open agent view instead of a new conversation
 **1. Turn on the setting**
 
 In a regular `claude` session, run `/config` and turn on **Open agents view by default**. To skip the menu, set the [`defaultToAgentsView`](https://code.claude.com/docs/en/settings-reference#defaulttoagentsview) key directly:
+
 ```text
 /config defaultToAgentsView=true
 ```
@@ -81,6 +83,7 @@ In a regular `claude` session, run `/config` and turn on **Open agents view by d
 **2. Start Claude Code**
 
 Exit the session, then run `claude` with no arguments:
+
 ```bash
 claude
 ```
@@ -96,6 +99,7 @@ Run `claude agents` to open agent view. It takes over the full terminal and list
 The name is tinted with the color set by [`/color`](https://code.claude.com/docs/en/commands) in that session, including when you [background a session](#from-inside-a-session) with `←` or `/background`.
 
 By default the list shows every background session you've started, across all your projects. A session working in one repository and another in a different worktree both appear here, regardless of which directory you opened agent view from. To narrow the list to one project, pass `--cwd`:
+
 ```bash
 claude agents --cwd ~/projects/my-app
 ```
@@ -103,6 +107,7 @@ claude agents --cwd ~/projects/my-app
 This shows only sessions started under that directory. It still lists a session that has [moved into a worktree](#how-file-edits-are-isolated) under `~/projects/my-app/.claude/worktrees/`.
 
 Interactive sessions you have open in other terminals don't appear until you [background them](#from-inside-a-session). [Subagents](https://code.claude.com/docs/en/sub-agents.md) and [teammates](https://code.claude.com/docs/en/agent-teams.md) a session spawns aren't listed as separate rows.
+
 ```text
 Pinned
   ✽ clawd walk cycle          Drawing the walk-cycle sprite frames          3m
@@ -422,11 +427,11 @@ A new session runs in the directory you opened agent view from. To target a diff
 * Open `claude agents` in that directory.
 * Open `claude agents` in a parent directory and mention a child repository with `@<repo>` in the prompt. Typing `@` lists these targets:
 
-* Git repositories one level below the launch directory
-* The registered [git worktrees](https://code.claude.com/docs/en/worktrees.md) of the repository you launched from that live inside its directory tree, such as the ones Claude creates under `.claude/worktrees/`, labeled with their checked-out branch. Worktrees added outside the repository, such as with `git worktree add ../feature`, aren't listed
-* Any directory that already has a session in the list
+  * Git repositories one level below the launch directory
+  * The registered [git worktrees](https://code.claude.com/docs/en/worktrees.md) of the repository you launched from that live inside its directory tree, such as the ones Claude creates under `.claude/worktrees/`, labeled with their checked-out branch. Worktrees added outside the repository, such as with `git worktree add ../feature`, aren't listed
+  * Any directory that already has a session in the list
 
-A directory whose name contains a space isn't listed.
+  A directory whose name contains a space isn't listed.
 * From the shell, `cd` into the directory and run `claude --bg "<prompt>"`.
 
 When agent view is grouped by directory, dispatching sends the prompt to the selected row's directory, so you can select a group and dispatch into it without retyping the path.
@@ -503,6 +508,7 @@ When Claude relaunches the workflow, any of its subagents that were still runnin
 ### Dispatch an agent from your shell
 
 Pass `--bg` or its long form `--background` to start a session that goes straight to the background:
+
 ```bash
 claude --bg "investigate the flaky SettingsChangeDetector test"
 ```
@@ -512,6 +518,7 @@ The prompt is the positional argument, not a `-p` value. Claude Code rejects `--
 If you run `claude --bg` from a terminal in a directory you haven't [trusted](https://code.claude.com/docs/en/permissions.md#project-allow-rules-and-workspace-trust), the workspace trust dialog appears first and the session starts once you accept. If you decline, Claude Code exits without starting a session. Where no dialog can appear, such as in a script, the command exits with a [`Workspace not trusted`](https://code.claude.com/docs/en/errors#workspace-not-trusted-when-dispatching-a-background-session) error instead.
 
 To run a specific [subagent](https://code.claude.com/docs/en/sub-agents.md) you have defined, such as a `code-reviewer`, as the session's main agent, combine `--bg` with `--agent`:
+
 ```bash
 claude --agent code-reviewer --bg "address review comments on PR 1234"
 ```
@@ -521,6 +528,7 @@ If the name doesn't match any of your subagents, the launch fails: Claude Code p
 When the backgrounded session later resumes or restarts, Claude Code restores the agent and its tool restrictions; for its system prompt, see [System prompt flags in resumed conversations](https://code.claude.com/docs/en/cli-reference.md#system-prompt-flags-in-resumed-conversations). It searches the session's own directory for the agent first, provided you've [trusted that workspace](https://code.claude.com/docs/en/permissions.md#project-allow-rules-and-workspace-trust), so a project-scoped agent still loads when the session is resumed from another directory. If the agent no longer exists, the session continues with the default tools and its transcript opens with a [warning naming the agent](https://code.claude.com/docs/en/errors.md#session-agent-no-longer-available).
 
 To continue an existing conversation in the background, pass its full session ID with `--resume`:
+
 ```bash
 claude --resume 1f0e2c9a-6d0b-4c11-9f39-2a77c1d4e8b5 --bg "pick up where you left off and finish the migration"
 ```
@@ -530,11 +538,13 @@ On Claude Code v2.1.257 or later, Claude Code either continues that session unde
 When you combine `--bg` with `--continue`, a bare `--resume`, or `--resume` with a name or file path, Claude Code always starts such a copy. Add `--fork-session` to start a copy on purpose, without the note.
 
 Pass `--name` to set the session's display name in agent view instead of the auto-generated one:
+
 ```bash
 claude --bg --name "flaky-test-fix" "investigate the flaky SettingsChangeDetector test"
 ```
 
 After backgrounding, Claude prints the session's short ID and the commands for managing it. When the service that hosts background sessions isn't already running, `--bg` may first print `Starting background service…` above this output. When you pass `--name`, the name appears after the short ID:
+
 ```text
 backgrounded · 7c5dcf5d · flaky-test-fix
   claude agents             list sessions
@@ -546,6 +556,7 @@ backgrounded · 7c5dcf5d · flaky-test-fix
 #### Prompts that contain `--bg`
 
 A prompt that mentions `--bg` or `--background` is delivered as typed, and so is a reply of `--bg` that you send to a background session. For example, this command starts one background session, and the second `--bg` is part of its prompt:
+
 ```bash
 claude --bg "find out why --bg sessions are slow to start on this machine"
 ```
@@ -557,6 +568,7 @@ Where the position is ambiguous, such as after a run of combined short flags, Cl
 #### Run a shell command
 
 To run a shell command as a background job instead of a Claude session, pass `--exec`. The following example runs `pytest -x` as a background job:
+
 ```bash
 claude --bg --exec 'pytest -x'
 ```
@@ -580,6 +592,7 @@ Claude skips the worktree when:
 * The write is outside the working directory
 
 To turn off worktree isolation for a repository where git worktrees are impractical, set [`worktree.bgIsolation`](https://code.claude.com/docs/en/settings-reference#worktree-bgisolation) to `"none"`. Background sessions then edit your working copy directly without moving into a worktree first. Add the setting to the project's `.claude/settings.json`:
+
 ```json
 {
   "worktree": {
@@ -618,30 +631,30 @@ What happens to a worktree Claude created for the session:
 * Neither agent view nor `claude rm` removes a worktree that another running session is using or has locked, and deleting again doesn't change that. Claude Code keeps the worktree and the session, and names the kept directory and the reason; in agent view, the session's row shows `not deleted`. Close the other session, then delete again.
 * When you delete a session whose worktree has commits that Claude Code can't confirm are saved elsewhere, Claude Code keeps the worktree and the session, and the message names the worktree's branch and how many commits are unpushed. The message also offers the two ways forward: push the commits, or delete again to discard them.
 
-Commits on a remote don't block the delete. Neither do commits on the local copy of your `origin` remote's default branch, as long as that branch is checked out in your main checkout, the repository directory itself rather than a worktree.
+  Commits on a remote don't block the delete. Neither do commits on the local copy of your `origin` remote's default branch, as long as that branch is checked out in your main checkout, the repository directory itself rather than a worktree.
 
-After that refusal, you choose:
+  After that refusal, you choose:
 
-* To keep the commits, push them, or merge them into that default branch, then delete the session again.
-* To discard them, delete the session again without pushing: press `Ctrl+X` twice on its row in agent view, or run the `claude rm <id> --discard-unpushed` command the refusal printed. This removes the session and the worktree along with its branch, discarding the unpushed commits and any uncommitted changes.
+  * To keep the commits, push them, or merge them into that default branch, then delete the session again.
+  * To discard them, delete the session again without pushing: press `Ctrl+X` twice on its row in agent view, or run the `claude rm <id> --discard-unpushed` command the refusal printed. This removes the session and the worktree along with its branch, discarding the unpushed commits and any uncommitted changes.
 
-When you delete again, Claude Code discards only what the refusal showed: if the worktree has gained a commit since, Claude Code keeps it again and shows the updated state.
+  When you delete again, Claude Code discards only what the refusal showed: if the worktree has gained a commit since, Claude Code keeps it again and shows the updated state.
 
-When another finished session's records also name the worktree, it stays when you delete again; push the commits, then delete again.
+  When another finished session's records also name the worktree, it stays when you delete again; push the commits, then delete again.
 * A worktree git no longer recognizes, for example after `git worktree prune`, doesn't block the delete. Claude Code deletes the session and leaves the directory on disk.
 * When git or your [`WorktreeRemove` hook](https://code.claude.com/docs/en/hooks#worktreeremove) fails to remove the worktree, Claude Code keeps the worktree and the session, and the message names the cause. For a hook, the message says how it ended, such as `exited 1`, and quotes the start of its stderr. The message also tells you which of these to do next:
 
-* Delete the session again to remove the directory anyway, by pressing `Ctrl+X` twice on its row in agent view or running the `claude rm <id> --force-remove-worktree <worktree-id>` command that the `claude rm` refusal printed. The worktree's branch stays in the repository.
+  * Delete the session again to remove the directory anyway, by pressing `Ctrl+X` twice on its row in agent view or running the `claude rm <id> --force-remove-worktree <worktree-id>` command that the `claude rm` refusal printed. The worktree's branch stays in the repository.
 
-Claude Code offers this only when it can confirm all of the following:
+    Claude Code offers this only when it can confirm all of the following:
 
-* The directory is one of the repository's linked worktrees under `.claude/worktrees/`
-* Neither the worktree nor a checked-out submodule has uncommitted changes to tracked files
-* No other session's record names it
+    * The directory is one of the repository's linked worktrees under `.claude/worktrees/`
+    * Neither the worktree nor a checked-out submodule has uncommitted changes to tracked files
+    * No other session's record names it
 
-When Claude Code can't verify a submodule checkout's state, such as one replaced by a separate git repository, it doesn't offer this either.
-* Fix what stands in the way, such as committing or stashing the uncommitted changes, moving a separate git repository out of the worktree, closing whatever is using the directory, or fixing the hook, then delete the session again.
-* Remove the directory yourself, then delete the session again.
+    When Claude Code can't verify a submodule checkout's state, such as one replaced by a separate git repository, it doesn't offer this either.
+  * Fix what stands in the way, such as committing or stashing the uncommitted changes, moving a separate git repository out of the worktree, closing whatever is using the directory, or fixing the hook, then delete the session again.
+  * Remove the directory yourself, then delete the session again.
 
 A worktree you created yourself and started the session inside is left in place either way.
 
@@ -665,6 +678,7 @@ Give the value after the command, or type the command alone to choose one from a
 To undo a choice, give `default` as the value, for example `/effort default`.
 
 The following example dispatches one session on Opus and the next on Sonnet:
+
 ```text
 /model opus
 refactor auth
@@ -713,7 +727,7 @@ For a session you dispatch from an agent view opened with `←`, Claude Code tak
 1. The target directory's [`permissions.defaultMode`](https://code.claude.com/docs/en/settings-reference#permissions-defaultmode). `auto` and `bypassPermissions` [take effect only from managed settings, a `--settings` file, or `~/.claude/settings.json`](https://code.claude.com/docs/en/settings-reference#permissions-defaultmode). Claude Code refuses a `defaultMode` from the project's `.claude/settings.json` or `.claude/settings.local.json` that selects a more permissive mode than the session you came from was in.
 2. The permission mode of the session you came from.
 
-If that session was in `bypassPermissions` mode, the new session can start in Manual mode instead, with the notice `Bypass permissions was requested at launch and ignored`. That happens when your acceptance of the bypass disclaimer is only in `.claude/settings.local.json` or a `--settings` file. Continue in Manual mode, or [add that acceptance to `~/.claude/settings.json`](https://code.claude.com/docs/en/permission-modes#bypass-permissions-ignored-in-a-background-session).
+   If that session was in `bypassPermissions` mode, the new session can start in Manual mode instead, with the notice `Bypass permissions was requested at launch and ignored`. That happens when your acceptance of the bypass disclaimer is only in `.claude/settings.local.json` or a `--settings` file. Continue in Manual mode, or [add that acceptance to `~/.claude/settings.json`](https://code.claude.com/docs/en/permission-modes#bypass-permissions-ignored-in-a-background-session).
 
 When Claude Code refuses a source's mode as too permissive, the next source in the list decides. For example, if you dispatch from a plan-mode session into a directory whose checked-in settings ask for `acceptEdits`, the new session starts in plan mode. If you move that `defaultMode` to `~/.claude/settings.json`, it applies regardless of the permission mode of the session you came from.
 
@@ -722,6 +736,7 @@ Permissiveness runs plan, then Manual and `dontAsk`, then `acceptEdits` and auto
 #### Dispatch defaults
 
 To set defaults for every session you dispatch from agent view, pass any of `--permission-mode`, `--model`, `--effort`, or `--agent` when opening it:
+
 ```bash
 claude agents --permission-mode plan --model opus --effort high
 ```
@@ -766,6 +781,7 @@ Repeat `--add-dir`, `--plugin-dir`, or `--mcp-config` once per value. `claude ag
 You can place `--settings`, `--setting-sources`, and `--plugin-dir` before or after `agents`. Keep `--add-dir` and `--mcp-config` after `agents`: if you place either before `agents`, [`claude agents --json`](#manage-sessions-from-the-shell) fails with an `unknown option` error.
 
 The following example opens agent view with a settings override and one extra directory:
+
 ```bash
 claude agents --settings ./ci-settings.json --add-dir ../shared-lib
 ```
@@ -852,6 +868,7 @@ The supervisor and its sessions authenticate with the same stored credentials as
 #### Keep sessions running after the supervisor stops
 
 If agent view prints this notice as it exits, no [supervisor](#the-supervisor-process) is running:
+
 ```text
 Background sessions still running will stop in about a minute. Run 'claude agents' to keep them.
 ```
@@ -963,6 +980,7 @@ Free up memory on the machine, then attach or reply to the row and the superviso
 ### Agent view says the background service did not respond
 
 If attaching, peeking, or `claude logs` reports that the background service did not respond, the supervisor process has likely stalled. Stop it and let the next `claude agents` start a fresh one. To keep your background sessions running through the restart, pass `--keep-workers`:
+
 ```bash
 claude daemon stop --any --keep-workers
 ```
@@ -981,6 +999,7 @@ If the stop command instead printed one of these four messages, the old process 
 ### Dispatch fails with `Could not resolve authentication method`
 
 If a background dispatch fails with `Could not resolve authentication method` while interactive sessions authenticate normally, the worker that received the dispatch didn't pick up credentials. Background sessions get their credentials from the [supervisor](#the-supervisor-process), so this error means no stored credential was available to the supervisor process itself. Confirm you have run `/login` or configured an API key, then stop the supervisor:
+
 ```bash
 claude daemon stop --any --keep-workers
 ```
@@ -996,7 +1015,7 @@ If a background session shows [`No LLM gateway`](https://code.claude.com/docs/en
 You see the message, for example, after you dispatch into a repository with [`@<repo>`](#dispatch-to-a-specific-directory) or wake a stopped session by running `claude attach` from another directory. To give the session your gateway, pick the fix that matches where your gateway is set:
 
 * **You exported the gateway in your terminal**: in a terminal where you've exported the gateway variables, `cd` to the folder the message names and run the message's [`claude respawn <id>`](#manage-sessions-from-the-shell) command.
-* The gateway reaches the session only when the [supervisor](#the-supervisor-process) was itself started from a shell that exported the same gateway. If the supervisor wasn't, restart it from the terminal where you ran the respawn command, as [Dispatch fails with `Could not resolve authentication method`](#dispatch-fails-with-could-not-resolve-authentication-method) describes, then run that command again.
+  * The gateway reaches the session only when the [supervisor](#the-supervisor-process) was itself started from a shell that exported the same gateway. If the supervisor wasn't, restart it from the terminal where you ran the respawn command, as [Dispatch fails with `Could not resolve authentication method`](#dispatch-fails-with-could-not-resolve-authentication-method) describes, then run that command again.
 * **You used agent view in a project whose settings set the gateway**: put `ANTHROPIC_BASE_URL` and its credential in [a settings file's `env` block](https://code.claude.com/docs/en/llm-gateway-connect#set-in-a-settings-file). Use `~/.claude/settings.json`, or `.claude/settings.local.json` in the session's own project, both of which a respawned session reads. Then run [`claude respawn <id>`](#manage-sessions-from-the-shell) in your shell from any directory to restart this session on the gateway.
 
 ### Background sessions can't read Desktop, Documents, or Downloads on macOS

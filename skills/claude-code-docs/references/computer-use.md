@@ -43,6 +43,7 @@ Computer use is available as a built-in MCP server called `computer-use`. It's o
 **1. Open the MCP menu**
 
 In an interactive Claude Code session, run:
+
 ```text
 /mcp
 ```
@@ -63,6 +64,7 @@ The first time Claude tries to use your computer, you'll see a prompt to grant t
 The prompt includes links to open the relevant System Settings pane. Grant both, then select **Try again** in the prompt. macOS may require you to restart Claude Code after granting Screen Recording.
 
 After setup, ask Claude to do something that needs the GUI:
+
 ```text
 Build the app target, launch it, and click through each tab to make
 sure nothing crashes. Screenshot any error states you find.
@@ -139,6 +141,7 @@ These examples show common ways to combine computer use with coding tasks.
 ### Validate a native build
 
 After making changes to a macOS or iOS app, have Claude compile and verify in one pass:
+
 ```text
 Build the MenuBarStats target, launch it, open the preferences window,
 and verify the interval slider updates the label. Screenshot the
@@ -150,6 +153,7 @@ Claude runs `xcodebuild`, launches the app, interacts with the UI, and reports w
 ### Reproduce a layout bug
 
 When a visual bug only appears at certain window sizes, let Claude find it:
+
 ```text
 The settings modal clips its footer on narrow windows. Resize the app
 window down until you can reproduce it, screenshot the clipped state,
@@ -161,6 +165,7 @@ Claude resizes the window, captures the broken state, and reads the relevant sty
 ### Test a simulator flow
 
 Drive the iOS Simulator without writing XCTest:
+
 ```text
 Open the iOS Simulator, launch the app, tap through the onboarding
 screens, and tell me if any screen takes more than a second to load.

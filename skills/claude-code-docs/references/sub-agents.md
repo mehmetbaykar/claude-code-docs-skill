@@ -100,6 +100,7 @@ This walkthrough creates a user-level subagent that reviews code and suggests im
 **1. Ask Claude to create the subagent**
 
 In Claude Code, describe the subagent you want and where to save it:
+
 ```text wrap
 Create a personal code-improver subagent in ~/.claude/agents/ that scans
 files and suggests improvements for readability, performance, and best
@@ -112,6 +113,7 @@ Claude writes the file with a `name`, a `description`, a `tools` list, a `model`
 **2. Review the file**
 
 Open `~/.claude/agents/code-improver.md` and confirm the frontmatter matches what you asked for. The result looks like this:
+
 ```markdown
 ---
 name: code-improver
@@ -129,6 +131,7 @@ Because the file lives in `~/.claude/agents/`, the subagent is available in ever
 **3. Try it out**
 
 Ask Claude to delegate to the new subagent:
+
 ```text wrap
 Use the code-improver agent to suggest improvements in this project
 ```
@@ -249,6 +252,7 @@ Subagent files use YAML frontmatter for configuration, followed by the system pr
 > * The watcher covers only directories that existed when the session started, so after creating a scope's first agent file in a new `agents` directory, restart to load it.
 > * Claude Code doesn't watch `.claude/agents/` inside directories added with `--add-dir` or `/add-dir`, so after adding or editing a subagent there, restart to load the change.
 > * Sessions started with `--disable-slash-commands` don't watch these directories at all.
+
 ```markdown .claude/agents/code-reviewer.md
 ---
 name: code-reviewer
@@ -314,6 +318,7 @@ Multi-word field names use camelCase, such as `maxTurns` and `disallowedTools`, 
 | `experimental` | No | Map of experimental options. Set its `cacheTtl` key to `5m` or `1h` to choose the [prompt cache lifetime](https://code.claude.com/docs/en/prompt-caching.md#choose-the-ttl-yourself) for this subagent's requests, at the frontmatter's place in the [cache lifetime precedence](https://code.claude.com/docs/en/prompt-caching.md#choose-the-ttl-yourself). Claude Code ignores any other value, ignores `1h` while your Claude subscription is using usage credits, and reads the field only from subagent files. Requires Claude Code v2.1.248 or later |
 
 Write `cacheTtl` inside the `experimental` map, not at the top level of the frontmatter.
+
 ```yaml
 ---
 name: repo-auditor
@@ -390,6 +395,7 @@ As of v2.1.198, subagents also inherit the main conversation's [extended thinkin
 * If you set only `CLAUDE_CODE_SUBAGENT_MODEL_FORCE`, subagents run on the main conversation's model, except that the built-in Explore subagent runs on the [model listed for it under Built-in subagents](#built-in-subagents).
 
 For example, to run every subagent on Haiku, set both variables in the `env` block of a [settings file](https://code.claude.com/docs/en/settings.md):
+
 ```json
 {
   "env": {
@@ -442,6 +448,7 @@ Teammates in [agent teams](https://code.claude.com/docs/en/agent-teams.md) addit
 To restrict tools, use the `tools` field as an allowlist or the `disallowedTools` field as a denylist. If both are set, `disallowedTools` is applied first, then `tools` is resolved against the remaining pool. A tool listed in both is removed.
 
 This example uses `tools` to allow only Read, Grep, Glob, and Bash. The subagent can't edit files, write files, or use any MCP tools:
+
 ```yaml
 ---
 name: safe-researcher
@@ -451,6 +458,7 @@ tools: Read, Grep, Glob, Bash
 ```
 
 This example uses `disallowedTools` to inherit the subagent's tool pool except Write and Edit. The subagent keeps Bash, MCP tools, and the rest of its pool:
+
 ```yaml
 ---
 name: no-writes
@@ -470,6 +478,7 @@ The `tools` and `disallowedTools` fields also take entries for a whole MCP serve
 | Withhold every MCP tool from any server | `disallowedTools` | `mcp__*` |
 
 This example removes every tool from the `github` MCP server while keeping tools from other servers and the built-in tools in the subagent's pool:
+
 ```yaml
 ---
 name: local-only
@@ -494,6 +503,7 @@ When an agent runs as the main thread with `claude --agent`, it can spawn subage
 > [!NOTE]
 >
 > In version 2.1.63, the Task tool was renamed to Agent. Existing `Task(...)` references in settings and agent definitions still work as aliases.
+
 ```yaml
 ---
 name: coordinator
@@ -505,6 +515,7 @@ tools: Agent(worker, researcher), Read, Bash
 This is an allowlist: only the `worker` and `researcher` subagents can be spawned. If the agent tries to spawn any other type, the request fails and the agent sees only the allowed types in its prompt. To block specific agents while allowing all others, use [`permissions.deny`](#disable-specific-subagents) instead.
 
 To allow spawning any subagent without restrictions, use `Agent` without parentheses:
+
 ```yaml
 tools: Agent, Read, Bash
 ```
@@ -527,6 +538,7 @@ Use the `mcpServers` field to give a subagent access to [MCP](https://code.claud
 > When the agent is the main session, inline server definitions connect at startup alongside servers from [`.mcp.json`](https://code.claude.com/docs/en/mcp) and settings files, under the same [trust rule for the agent file's folder](#inline-server-trust). In `/mcp`, a remote (HTTP or SSE) server you've used before can show the [`cached` status](https://code.claude.com/docs/en/mcp#managing-your-servers) instead; Claude Code connects it when Claude first calls one of its tools.
 
 Each entry in the list is either an inline server definition or a string referencing an MCP server already configured in your session:
+
 ```yaml
 ---
 name: browser-tester
@@ -580,8 +592,8 @@ The main conversation's permission mode decides whether Claude Code uses the val
 * When the main conversation is in `bypassPermissions`, `acceptEdits`, or [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode), the subagent runs in that same mode and Claude Code ignores the `permissionMode` you set. Under auto mode, the classifier evaluates the subagent's tool calls with the main conversation's block and allow rules. When the subagent finishes, the classifier also reviews its work and its final report before the report is delivered, as [How auto mode handles subagents](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode) describes.
 * When the main conversation is in `plan` mode, the subagent stays in plan mode whichever `permissionMode` you set, unless it runs as an [agent team teammate](#subagent-names) under the [agent teams rules](https://code.claude.com/docs/en/agent-teams.md#have-teammates-plan-before-implementing). If you set `dontAsk`, the subagent also doesn't prompt you: an action that plan mode would ask you to approve is denied instead.
 * When the main conversation is in `default` or `dontAsk` mode, the subagent runs in the permission mode you set. It keeps the main conversation's permission mode instead in these cases:
-* You set `bypassPermissions`. The `bypassPermissions` exception requires Claude Code v2.1.267 or later.
-* You set `auto` and [auto mode isn't available](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode) to the subagent, such as when a settings file sets [`disableAutoMode`](https://code.claude.com/docs/en/settings-reference#disableautomode) or the subagent's model doesn't support auto mode.
+  * You set `bypassPermissions`. The `bypassPermissions` exception requires Claude Code v2.1.267 or later.
+  * You set `auto` and [auto mode isn't available](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode) to the subagent, such as when a settings file sets [`disableAutoMode`](https://code.claude.com/docs/en/settings-reference#disableautomode) or the subagent's model doesn't support auto mode.
 
 `permissionMode` accepts these values, and `manual` as an alias for `default`:
 
@@ -597,6 +609,7 @@ The main conversation's permission mode decides whether Claude Code uses the val
 #### Preload skills into subagents
 
 Use the `skills` field to inject skill content into a subagent's context at startup. This gives the subagent domain knowledge without requiring it to discover and load skills during execution.
+
 ```yaml
 ---
 name: api-developer
@@ -622,6 +635,7 @@ If a listed skill is missing or disabled, for example by your organization's pol
 #### Enable persistent memory
 
 The `memory` field gives the subagent a persistent directory that survives across conversations. The subagent uses this directory to build up knowledge over time, such as codebase patterns, debugging insights, and architectural decisions.
+
 ```yaml
 ---
 name: code-reviewer
@@ -655,18 +669,20 @@ When memory is enabled:
 * Ask the subagent to consult its memory before starting work: "Review this PR, and check your memory for patterns you've seen before."
 * Ask the subagent to update its memory after completing a task: "Now that you're done, save what you learned to your memory." Over time, this builds a knowledge base that makes the subagent more effective.
 * Include memory instructions directly in the subagent's markdown file so it proactively maintains its own knowledge base:
-```markdown
+
+  ```markdown
   Update your agent memory as you discover codepaths, patterns, library
   locations, and key architectural decisions. This builds up institutional
   knowledge across conversations. Write concise notes about what you found
   and where.
-```
+  ```
 
 #### Conditional rules with hooks
 
 For more dynamic control over tool usage, use `PreToolUse` hooks to validate operations before they execute. This is useful when you need to allow some operations of a tool while blocking others.
 
 This example creates a subagent that only allows read-only database queries. The `PreToolUse` hook runs the script specified in `command` before each Bash command executes:
+
 ```yaml
 ---
 name: db-reader
@@ -682,6 +698,7 @@ hooks:
 ```
 
 Claude Code [passes hook input as JSON](https://code.claude.com/docs/en/hooks.md#pretooluse-input) via stdin to hook commands. The validation script reads this JSON, extracts the Bash command, and [exits with code 2](https://code.claude.com/docs/en/hooks.md#exit-code-2-behavior-per-event) to block write operations:
+
 ```bash
 #!/bin/bash
 # ./scripts/validate-readonly-query.sh
@@ -699,6 +716,7 @@ exit 0
 ```
 
 On macOS and Linux, make the script executable, or the hook fails instead of blocking anything:
+
 ```bash
 chmod +x ./scripts/validate-readonly-query.sh
 ```
@@ -710,6 +728,7 @@ See [Hook input](https://code.claude.com/docs/en/hooks.md#pretooluse-input) for 
 #### Disable specific subagents
 
 You can prevent Claude from using specific subagents by adding them to the `deny` array in your [settings](https://code.claude.com/docs/en/settings-reference.md#permission-settings). Use the format `Agent(subagent-name)` where `subagent-name` matches the subagent's name field.
+
 ```json
 {
   "permissions": {
@@ -719,6 +738,7 @@ You can prevent Claude from using specific subagents by adding them to the `deny
 ```
 
 This works for both built-in and custom subagents. You can also use the `--disallowedTools` CLI flag:
+
 ```bash
 claude --disallowedTools "Agent(Explore)"
 ```
@@ -755,6 +775,7 @@ All [hook events](https://code.claude.com/docs/en/hooks.md#hook-events) are supp
 | `Stop` | (none) | When the subagent finishes (converted to `SubagentStop` at runtime) |
 
 This example validates Bash commands with the `PreToolUse` hook and runs a linter after file edits with `PostToolUse`:
+
 ```yaml
 ---
 name: code-reviewer
@@ -787,6 +808,7 @@ Configure hooks in `settings.json` that respond to subagent lifecycle events in 
 Both events support matchers to target specific agent types by name. The matcher value is the agent's frontmatter `name` for project-level and user-level subagents, or the plugin-scoped identifier such as `my-plugin:db-agent` for [plugin subagents](https://code.claude.com/docs/en/plugins/components.md#agents). A scoped name contains a colon, so it is evaluated as an [unanchored regular expression](https://code.claude.com/docs/en/hooks.md#matcher-patterns); anchor it with `^` and `$`, as in `^my-plugin:db-agent$`, to match only that agent.
 
 This example runs a setup script only when the `db-agent` subagent starts, and a cleanup script when any subagent stops:
+
 ```json
 {
   "hooks": {
@@ -830,12 +852,14 @@ When automatic delegation isn't enough, you can request a subagent yourself. Thr
 * **Session-wide**: the whole session runs as that subagent via the `--agent` flag or the `agent` setting
 
 For natural language, there's no special syntax. Name the subagent and Claude typically delegates:
+
 ```text wrap
 Use the test-runner subagent to fix failing tests
 Have the code-reviewer subagent look at my recent changes
 ```
 
 **@-mention the subagent.** Type `@` and pick the subagent from the typeahead, the same way you @-mention files. This ensures that specific subagent runs rather than leaving the choice to Claude:
+
 ```text wrap
 @"code-reviewer (agent)" look at the auth changes
 ```
@@ -847,6 +871,7 @@ Subagents provided by an enabled [plugin](https://code.claude.com/docs/en/plugin
 You can also type the mention manually without using the picker: `@agent-<name>` for local subagents, or `@agent-` followed by the scoped name for plugin subagents, for example `@agent-my-plugin:code-reviewer`. While you type this form the typeahead shows file matches rather than agents. The agent mention still resolves when you submit.
 
 **Run the whole session as a subagent.** Pass [`--agent <name>`](https://code.claude.com/docs/en/cli-reference) to start a session where the main thread itself takes on that subagent's tool restrictions and model:
+
 ```bash
 claude --agent code-reviewer
 ```
@@ -858,11 +883,13 @@ The agent name appears as `@<name>` in the startup header so you can confirm it'
 This works with built-in and custom subagents, and the choice persists when you resume the session: Claude Code restores the agent's tool restrictions and model along with the conversation. If the agent no longer exists when you resume, the session continues with the default tools and shows a [warning naming the agent](https://code.claude.com/docs/en/errors.md#session-agent-no-longer-available). For the system prompt in either case, see [System prompt flags in resumed conversations](https://code.claude.com/docs/en/cli-reference.md#system-prompt-flags-in-resumed-conversations).
 
 For a plugin-provided subagent, you can pass only the agent name and Claude Code finds it:
+
 ```bash
 claude --agent security-reviewer
 ```
 
 If multiple plugins provide agents with the same name, pass the scoped name to disambiguate:
+
 ```bash
 claude --agent my-plugin:security-reviewer
 ```
@@ -870,6 +897,7 @@ claude --agent my-plugin:security-reviewer
 If the plugin places the agent in a subfolder of its `agents/` directory, include the subfolder in the scoped name, for example `claude --agent my-plugin:review:security`.
 
 To make it the default for every session in a project, set `agent` in `.claude/settings.json`:
+
 ```json
 {
   "agent": "code-reviewer"
@@ -897,13 +925,14 @@ For a skill with `context: fork`, Claude Code follows the rules in [Run skills i
 #### Let Claude wait for a subagent
 
 1. Turn [fork mode](#turn-fork-mode-on-or-off) off by setting `CLAUDE_CODE_FORK_SUBAGENT` to `0`, for example in [`settings.json`](https://code.claude.com/docs/en/settings):
-```json
+
+   ```json
    {
      "env": {
        "CLAUDE_CODE_FORK_SUBAGENT": "0"
      }
    }
-```
+   ```
 
 2. Run `claude` again from your shell, or open a new VS Code conversation.
 
@@ -948,6 +977,7 @@ A subagent whose run ends on an API error, such as a usage limit or a repeated s
 * **Background**: the subagent is marked failed, and the message Claude receives when it ends names the API error and includes the subagent's last output, so partial work isn't lost.
 
 If a subagent's report opens with the following line, the subagent finished on a fallback model:
+
 ```text
 ⚠ This agent switched to <model> because its earlier model could not be used.
 ```
@@ -974,6 +1004,7 @@ A [background subagent's report](#run-subagents-in-foreground-or-background) arr
 #### Isolate high-volume operations
 
 One of the most effective uses for subagents is isolating operations that produce large amounts of output. Running tests, fetching documentation, or processing log files can consume significant context. By delegating these to a subagent, the verbose output stays in the subagent's context while only the relevant summary returns to your main conversation.
+
 ```text wrap
 Use a subagent to run the test suite and report only the failing tests with their error messages
 ```
@@ -981,6 +1012,7 @@ Use a subagent to run the test suite and report only the failing tests with thei
 #### Run parallel research
 
 For independent investigations, spawn multiple subagents to work simultaneously:
+
 ```text wrap
 Research the authentication, database, and API modules in parallel using separate subagents
 ```
@@ -996,6 +1028,7 @@ For work that needs to keep running in parallel or won't fit in one context wind
 #### Chain subagents
 
 For multi-step workflows, ask Claude to use subagents in sequence. Each subagent completes its task and returns results to Claude, which then passes relevant context to the next subagent.
+
 ```text wrap
 Use the code-reviewer subagent to find performance issues, then use the optimizer subagent to fix them
 ```
@@ -1029,6 +1062,7 @@ Nested subagents suit a delegated task that itself splits into parallel subtasks
 * **`claude -p` and the Agent SDK**: the spawning subagent waits while [fork mode](#turn-fork-mode-on-or-off) is on. If you turn fork mode off, nested subagents start in the [background](#run-subagents-in-foreground-or-background) instead. The spawning subagent doesn't wait for a background nested subagent, which reports to your main conversation if it outlasts the spawning subagent.
 
 To change the limit, set [`CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH`](https://code.claude.com/docs/en/env-vars) to the number of subagent layers you want below your main conversation. For example, this entry in [`settings.json`](https://code.claude.com/docs/en/settings) caps nesting at two layers:
+
 ```json
 {
   "env": {
@@ -1096,6 +1130,7 @@ Resumed subagents retain their full conversation history, including all previous
 Claude uses the `SendMessage` tool with the agent's ID or name as the `to` field to resume it. `SendMessage` doesn't require [agent teams](https://code.claude.com/docs/en/agent-teams.md) to be enabled; only structured team-protocol messages such as `shutdown_request` and `plan_approval_response` do. Beyond subagents and teammates, in sessions where cross-session messaging is enabled, Claude can use the same tool to message [your other Claude Code sessions](https://code.claude.com/docs/en/cross-session-messaging.md), on this machine or [beyond it](https://code.claude.com/docs/en/cross-session-messaging.md#message-sessions-on-other-machines).
 
 To resume a subagent, ask Claude to continue the previous work:
+
 ```text wrap
 Use the code-reviewer subagent to review the authentication module
 [Agent completes]
@@ -1141,6 +1176,7 @@ After one message by ID, the subagent's name works again, unless a newer agent h
 Subagents support automatic compaction. Compaction triggers as the subagent's own context window fills, and `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` applies to subagents as well. See [environment variables](https://code.claude.com/docs/en/env-vars.md) for when the override takes effect.
 
 Compaction events are logged in subagent transcript files:
+
 ```json
 {
   "type": "system",
@@ -1159,6 +1195,7 @@ The `preTokens` value shows how many tokens were used before compaction occurred
 To make one subagent compact earlier than it otherwise would, set `autoCompactWindow` in its [frontmatter](#supported-frontmatter-fields) to a token count from `100000` to `1000000`. If you set [`CLAUDE_CODE_AUTO_COMPACT_WINDOW`](https://code.claude.com/docs/en/env-vars#variables), the subagent uses that variable's window instead and the field has no effect, unless Claude Code [ignores the variable's value](https://code.claude.com/docs/en/model-config.md#claude_code_auto_compact_window-values). Requires Claude Code v2.1.296 or later.
 
 This frontmatter sets `autoCompactWindow` to 200,000 tokens for a subagent that reads long log files:
+
 ```yaml
 ---
 name: log-reader
@@ -1185,6 +1222,7 @@ A fork is a subagent that inherits the entire conversation so far instead of sta
 Claude can start a fork on its own while fork mode is on, as it is by default. To stop forks, see [Turn fork mode off](#turn-fork-mode-on-or-off).
 
 You can start a fork yourself with `/subtask` followed by a task, whether or not fork mode is on. Claude Code names the fork from the first words of the task. The following example forks the conversation to draft test cases while you continue with the implementation in the main session:
+
 ```text wrap
 /subtask draft unit tests for the parser changes so far
 ```
@@ -1253,6 +1291,7 @@ These examples demonstrate effective patterns for building subagents. Use them a
 ### Code reviewer
 
 A read-only subagent that reviews code without modifying it. This example shows how to design a focused subagent with limited tool access that excludes Edit and Write, and a detailed prompt that specifies exactly what to look for and how to format output.
+
 ```markdown
 ---
 name: code-reviewer
@@ -1289,6 +1328,7 @@ Include specific examples of how to fix issues.
 ### Debugger
 
 A subagent that can both analyze and fix issues. Unlike the code reviewer, this one includes Edit because fixing bugs requires modifying code. The prompt provides a clear workflow from diagnosis to verification.
+
 ```markdown
 ---
 name: debugger
@@ -1325,6 +1365,7 @@ Focus on fixing the underlying issue, not the symptoms.
 ### Data scientist
 
 A domain-specific subagent for data analysis work. This example shows how to create subagents for specialized workflows outside of typical coding tasks. It explicitly sets `model: sonnet` for more capable analysis.
+
 ```markdown
 ---
 name: data-scientist
@@ -1361,6 +1402,7 @@ Always ensure queries are efficient and cost-effective.
 ### Database query validator
 
 A subagent that allows Bash access but validates commands to permit only read-only SQL queries. This example shows how to use `PreToolUse` hooks for conditional validation when you need finer control than the `tools` field provides.
+
 ```markdown
 ---
 name: db-reader
@@ -1387,6 +1429,7 @@ You cannot modify data. If asked to INSERT, UPDATE, DELETE, or modify schema, ex
 Claude Code [passes hook input as JSON](https://code.claude.com/docs/en/hooks.md#pretooluse-input) via stdin to hook commands. The validation script reads this JSON, extracts the command being executed, and checks it against a list of SQL write operations. If a write operation is detected, the script [exits with code 2](https://code.claude.com/docs/en/hooks.md#exit-code-2-behavior-per-event) to block execution and returns an error message to Claude via stderr.
 
 Create the validation script anywhere in your project. The path must match the `command` field in your hook configuration:
+
 ```bash
 #!/bin/bash
 # Blocks SQL write operations, allows SELECT queries
@@ -1411,6 +1454,7 @@ exit 0
 ```
 
 On macOS and Linux, make the script executable:
+
 ```bash
 chmod +x ./scripts/validate-readonly-query.sh
 ```

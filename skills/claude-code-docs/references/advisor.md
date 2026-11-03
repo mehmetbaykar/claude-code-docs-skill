@@ -39,6 +39,7 @@ On some plans, Fable as the advisor also needs your one-time [consent to bill Fa
 ### Use the `/advisor` command
 
 Run `/advisor` without arguments to open a picker listing the available advisor models, or pass the model directly:
+
 ```
 /advisor opus
 ```
@@ -60,6 +61,7 @@ On some plans, Fable as the advisor also needs your one-time [consent to bill Fa
 ### Set `advisorModel` in settings
 
 To configure the advisor as a default without opening a session, set it in your settings file:
+
 ```json
 {
   "advisorModel": "opus"
@@ -69,6 +71,7 @@ To configure the advisor as a default without opening a session, set it in your 
 ### Use the `--advisor` flag
 
 To set the advisor for a single session without changing your saved setting, launch with the flag:
+
 ```bash
 claude --advisor opus
 ```
@@ -181,6 +184,7 @@ The advisor tool requires all of the following:
 ## Turn the advisor off
 
 To stop using the advisor, run `/advisor off` or choose **No advisor** in the `/advisor` picker:
+
 ```
 /advisor off
 ```

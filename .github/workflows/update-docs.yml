@@ -1,171 +1,185 @@
-name: Update Claude Code Documentation
+# Identical in claude-code-docs-skill, codex-docs-skill, and cursor-docs-skill.
+# Product settings live in scripts/fetch_docs.py.
+name: Update docs mirror
 
 on:
   schedule:
-    # Staggered across the docs-skill repositories to spread upstream load.
-    - cron: "25 */3 * * *"
+    - cron: "17 */3 * * *"
   workflow_dispatch:
   pull_request:
-    paths:
-      - "scripts/**"
-      - "tests/**"
-      - ".github/workflows/update-docs.yml"
   push:
     branches: [main]
-    paths:
-      - "scripts/**"
-      - "tests/**"
-      - ".github/workflows/update-docs.yml"
 
 permissions:
   contents: read
 
 jobs:
   test:
+    name: Test
     runs-on: ubuntu-latest
     timeout-minutes: 10
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Set up Python
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
-          python-version: "3.14"
+          python-version: "3.15"
+          check-latest: true
           cache: pip
           cache-dependency-path: scripts/requirements-dev.txt
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r scripts/requirements-dev.txt
+        run: python -m pip install -r scripts/requirements-dev.txt
 
-      - name: Run tests
-        run: python -m pytest tests -q
+      - name: Run the offline tests
+        run: python -m pytest -q
 
-  update-docs:
-    needs: test
-    if: github.event_name != 'pull_request'
+  drift:
+    name: Shared files match the sibling repositories
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-    permissions:
-      contents: write
-      issues: write
-    concurrency:
-      group: update-docs
-      cancel-in-progress: false
-
+    timeout-minutes: 5
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Set up Python
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
-          python-version: "3.14"
+          python-version: "3.15"
+          check-latest: true
           cache: pip
           cache-dependency-path: scripts/requirements.txt
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r scripts/requirements.txt
+        run: python -m pip install -r scripts/requirements.txt
 
-      - name: Fetch latest documentation
-        run: python scripts/fetch_claude_code_docs.py
+      - name: Compare the shared files
+        run: python scripts/fetch_docs.py --check-drift
 
-      - name: Stage and commit if anything changed
+  update-docs:
+    name: Refresh the mirror
+    needs: test
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    concurrency:
+      group: update-docs
+      cancel-in-progress: false
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.15"
+          check-latest: true
+          cache: pip
+          cache-dependency-path: scripts/requirements-dev.txt
+
+      - name: Install dependencies
+        run: python -m pip install -r scripts/requirements-dev.txt
+
+      - name: Fetch the latest documentation
+        run: python scripts/fetch_docs.py
+
+      - name: Validate the refreshed mirror
+        run: python -m pytest tests/test_repository.py -q
+
+      - name: Commit and push changes
         run: |
-          git add -A skills/claude-code-docs/references/
+          git add -A skills plugin.json .claude-plugin .cursor-plugin
           if git diff --cached --quiet; then
             echo "No documentation changes to commit."
             exit 0
           fi
 
-          added=$(git diff --name-status --cached | awk '$1 == "A" {print $2}')
-          modified=$(git diff --name-status --cached | awk '$1 == "M" {print $2}')
-          removed=$(git diff --name-status --cached | awk '$1 == "D" {print $2}')
+          changes=$(git diff --cached --no-renames --name-status -- skills)
+          count() { printf '%s\n' "$changes" | awk -v status="$1" '$1 == status' | wc -l | tr -d ' '; }
+          files() { printf '%s\n' "$changes" | awk -v status="$1" '$1 == status {print $2}'; }
+          product=$(python scripts/fetch_docs.py --product-name)
+          subject="Update ${product} docs - $(date -u +%Y-%m-%d) (+$(count A) ~$(count M) -$(count D))"
 
-          count() {
-            if [ -z "$1" ]; then echo 0; else printf '%s\n' "$1" | wc -l | tr -d ' '; fi
-          }
-
-          subject="Update Claude Code docs - $(date +'%Y-%m-%d') (+$(count "$added") ~$(count "$modified") -$(count "$removed"))"
-
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           {
-            printf '%s\n\n' "$subject"
-            if [ -n "$added" ]; then printf 'Added:\n%s\n\n' "$added"; fi
-            if [ -n "$modified" ]; then printf 'Updated:\n%s\n\n' "$modified"; fi
-            if [ -n "$removed" ]; then printf 'Removed:\n%s\n' "$removed"; fi
-          } | git commit -F -
+            printf '%s\n' "$subject"
+            for status in A M D; do
+              list=$(files "$status")
+              [ -z "$list" ] && continue
+              case "$status" in A) label=Added ;; M) label=Updated ;; D) label=Removed ;; esac
+              printf '\n%s:\n%s\n' "$label" "$list"
+            done
+          } | git commit --quiet -F -
 
-          git push
+          # Another push can land while the refresh runs; rebase and retry.
+          for attempt in 1 2 3; do
+            if git push --quiet; then
+              exit 0
+            fi
+            echo "Push rejected on attempt ${attempt}; rebasing onto the latest main."
+            if ! git pull --rebase --quiet; then
+              git rebase --abort || true
+              echo "Rebase conflicted; the next run will retry from a fresh checkout." >&2
+              exit 1
+            fi
+          done
+          echo "Could not push after 3 attempts." >&2
+          exit 1
 
-      - name: Close resolved failure issues
-        if: success() && github.event_name == 'schedule'
-        uses: actions/github-script@v9
+  report:
+    name: Report scheduled failures
+    needs: [test, update-docs]
+    if: always() && github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: write
+    steps:
+      - name: Open, update, or close the failure issue
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          RESULTS: ${{ needs.test.result }} ${{ needs.update-docs.result }}
         with:
           script: |
-            const title = 'Claude Code documentation update failures';
-            const open = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              creator: 'app/github-actions',
-              per_page: 100,
-            });
+            const title = 'Docs mirror update failures';
+            const failed = process.env.RESULTS.split(' ').some((result) => ['failure', 'cancelled'].includes(result));
+            const run = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
 
-            for (const issue of open.data.filter((item) => item.title === title)) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                body: `Resolved by a successful run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
-              });
-              await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: issue.number,
-                state: 'closed',
-              });
-            }
-
-      - name: Open or update failure issue
-        if: failure() && github.event_name == 'schedule'
-        uses: actions/github-script@v9
-        with:
-          script: |
-            const title = 'Claude Code documentation update failures';
-            const date = new Date().toISOString().split('T')[0];
-            const body = `Scheduled Claude Code docs fetch failed on ${date}. See the [workflow run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}) for details.`;
-
-            // Deduplicate on the issue title so alerting never depends on a
-            // label that may not exist in the repository.
-            const open = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
+            // Match on title and author so alerting never depends on a label.
+            const open = await github.paginate(github.rest.issues.listForRepo, {
+              ...context.repo,
               state: 'open',
               per_page: 100,
             });
-            const existing = open.data.find((item) => item.title === title);
+            const existing = open.filter(
+              (issue) => !issue.pull_request && issue.title === title && issue.user?.login === 'github-actions[bot]',
+            );
 
-            if (existing) {
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: existing.number,
-                body,
-              });
+            if (failed) {
+              const body = `The scheduled refresh failed on ${new Date().toISOString().slice(0, 10)}: ${run}`;
+              if (existing.length > 0) {
+                await github.rest.issues.createComment({ ...context.repo, issue_number: existing[0].number, body });
+              } else {
+                await github.rest.issues.create({ ...context.repo, title, body });
+              }
               return;
             }
 
-            await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title,
-              body,
-            });
+            for (const issue of existing) {
+              await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number: issue.number,
+                body: `Resolved by a successful run: ${run}`,
+              });
+              await github.rest.issues.update({ ...context.repo, issue_number: issue.number, state: 'closed' });
+            }

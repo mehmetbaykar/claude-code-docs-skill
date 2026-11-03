@@ -19,6 +19,7 @@ The `/design` skill brings Claude Design's artboard workflow into the CLI and Cl
 Video: https://mintcdn.com/claude-code/2SnAdpL4dJ18nKb3/images/whats-new/design-skill.mp4?fit=max&auto=format&n=2SnAdpL4dJ18nKb3&q=85&s=0b376a94227c14a4204af89c4c9fd7ac
 
 Describe what you want designed and let Claude draft the options:
+
 ```text Claude Code
 > /design redesign the composer based on what people actually use it for
 ```
@@ -35,6 +36,7 @@ Concise is a new built-in output style. Claude leads with the result and skips p
 Video: https://mintcdn.com/claude-code/2SnAdpL4dJ18nKb3/images/whats-new/concise-output-style.mp4?fit=max&auto=format&n=2SnAdpL4dJ18nKb3&q=85&s=dfb40ec8921ed1bc82eb629042a8ec17
 
 Turn it on under **Output style** in `/config`, or set it in your settings file:
+
 ```json ~/.claude/settings.json {2}
 {
   "outputStyle": "Concise"
@@ -53,6 +55,7 @@ Any machine running `claude remote-control` now shows up as a device card at the
 ![The Code tab in the Claude mobile app with a Devices section showing a connected MacBook as a device card above the sessions list](https://mintcdn.com/claude-code/2SnAdpL4dJ18nKb3/images/whats-new/remote-control-phone-start.jpg?fit=max\&auto=format\&n=2SnAdpL4dJ18nKb3\&q=85\&s=9f0ebedab23aa0e1732cc37782573907)
 
 Start Remote Control on the machine you want to reach, then open the Code tab on your phone:
+
 ```bash
 claude remote-control
 ```

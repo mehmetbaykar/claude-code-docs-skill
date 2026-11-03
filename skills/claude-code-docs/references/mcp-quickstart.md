@@ -34,6 +34,7 @@ The steps are the same for any server: add it, check the connection status, then
 **1. Add the MCP server**
 
 Register the server with Claude Code. Run this in your terminal, not inside a `claude` session: you're configuring the server before starting a conversation.
+
 ```bash
 claude mcp add --transport http claude-code-docs https://code.claude.com/docs/mcp
 ```
@@ -50,6 +51,7 @@ The command prints a confirmation like `Added HTTP MCP server claude-code-docs w
 **2. Check the connection status**
 
 Confirm the server appears in your server list and check its status:
+
 ```bash
 claude mcp list
 ```
@@ -72,9 +74,11 @@ Some legacy Windows consoles, such as the default console on Windows 10, don't s
 **3. Use the server**
 
 Start a session and ask Claude to use the new server by name:
+
 ```bash
 claude
 ```
+
 ```text wrap
 Use the claude-code-docs server to look up what MCP_TIMEOUT does
 ```
@@ -88,6 +92,7 @@ If Claude Code asks for permission the first time Claude calls the server, appro
 **4. Remove the server**
 
 This step is optional. When you're done experimenting, you can remove the server:
+
 ```bash
 claude mcp remove claude-code-docs
 ```
@@ -129,6 +134,7 @@ Run `claude mcp get claude-code-docs` to see which scope holds a server's defini
 ## Change server scope
 
 A server's scope is fixed when you add it, so changing scope means removing the entry and re-adding it at the new one. Both cases below start by removing the local entry from the first walkthrough, so the server has only one definition. If you already removed it at the end of that walkthrough, skip this command:
+
 ```bash
 claude mcp remove claude-code-docs --scope local
 ```
@@ -136,6 +142,7 @@ claude mcp remove claude-code-docs --scope local
 ### Use a server in all your projects
 
 Re-add the server at `user` scope to make it active in every project you open, still private to you:
+
 ```bash
 claude mcp add --scope user --transport http claude-code-docs https://code.claude.com/docs/mcp
 ```
@@ -143,6 +150,7 @@ claude mcp add --scope user --transport http claude-code-docs https://code.claud
 ### Share a server with your team
 
 Re-add the server at `project` scope, which writes to `.mcp.json` in the project root:
+
 ```bash
 claude mcp add --scope project --transport http claude-code-docs https://code.claude.com/docs/mcp
 ```
@@ -162,6 +170,7 @@ The [Playwright MCP server](https://github.com/microsoft/playwright-mcp) is a go
 **1. Add the Playwright server**
 
 Register the server with the command Claude Code should run to start it:
+
 ```bash
 claude mcp add playwright -- npx -y @playwright/mcp@latest
 ```
@@ -179,6 +188,7 @@ Playwright drives whichever Chrome is already installed on your machine. To use 
 **2. Check the connection**
 
 The `Added` confirmation means the entry was saved, not that the command runs. Check the connection:
+
 ```bash
 claude mcp list
 ```
@@ -188,6 +198,7 @@ The first check can show `✘ Failed to connect` while `npx` downloads the packa
 **3. Use the browser**
 
 Give Claude a task that needs the browser:
+
 ```text wrap
 Use playwright to open https://example.com and tell me the page title
 ```
@@ -205,6 +216,7 @@ The steps below use Sentry as the example. To connect a different service, subst
 **1. Add the server**
 
 The `add` command is the same as for the docs server, with Sentry's URL:
+
 ```bash
 claude mcp add --transport http sentry https://mcp.sentry.dev/mcp
 ```
@@ -214,6 +226,7 @@ After adding, `claude mcp list` shows the server with `! Needs authentication`. 
 **2. Authenticate in your browser**
 
 Start a Claude Code session and open the MCP panel:
+
 ```text wrap
 /mcp
 ```
@@ -233,6 +246,7 @@ Servers that authenticate with a static token instead of OAuth take the token at
 Every file in the [scope table](#find-your-configuration-on-disk) uses the same JSON format for server entries. This section edits `.mcp.json`, the project-scope file. It's the one most worth writing by hand because it's checked into the repository, where it doubles as configuration-as-code for your team.
 
 Create `.mcp.json` in your project root. The example below defines both servers from this guide, the hosted docs server reached over HTTP and the Playwright server as a local `stdio` process:
+
 ```json
 {
   "mcpServers": {

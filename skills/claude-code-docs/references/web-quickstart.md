@@ -101,6 +101,7 @@ If you already connected GitHub in the browser, `/web-setup` warns you that cont
 **1. Authenticate with the GitHub CLI**
 
 In your shell, authenticate the GitHub CLI if you haven't already:
+
 ```bash
 gh auth login
 ```
@@ -112,6 +113,7 @@ In the Claude Code CLI, run `/login` to sign in with your claude.ai account. Ski
 **3. Run /web-setup**
 
 In the Claude Code CLI, run:
+
 ```text
 /web-setup
 ```
@@ -166,6 +168,7 @@ You can prefill the prompt, repositories, and environment for a new session by a
 | `environment` | Name or ID of the [environment](#connect-github) to preselect. |
 
 URL-encode each value. The example below opens the form with a prompt and a repository already selected:
+
 ```text
 https://claude.ai/code?prompt=Fix%20the%20login%20bug&repositories=acme/webapp
 ```

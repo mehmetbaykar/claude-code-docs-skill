@@ -89,6 +89,7 @@ The main advantage is simplicity: no Docker configuration, container images, or 
 * **Configuration**: JSON-based allowlists for domains and filesystem paths
 
 **Setup:**
+
 ```bash
 npm install @anthropic-ai/sandbox-runtime
 ```
@@ -108,6 +109,7 @@ For many single-developer and CI/CD use cases, sandbox-runtime raises the bar si
 Containers provide isolation through Linux namespaces. Each container has its own view of the filesystem, process tree, and network stack, while sharing the host kernel.
 
 A security-hardened container configuration might look like this:
+
 ```bash
 docker run \
   --cap-drop ALL \
@@ -162,6 +164,7 @@ Standard containers share the host kernel: when code inside a container makes a 
 If an agent runs malicious code (perhaps due to prompt injection), that code runs in the container and could attempt kernel exploits. With gVisor, the attack surface is much smaller: the malicious code would need to exploit gVisor's userspace implementation first and would have limited access to the real kernel.
 
 To use gVisor with Docker, install the `runsc` runtime and configure the daemon:
+
 ```json /etc/docker/daemon.json
 {
   "runtimes": {
@@ -173,6 +176,7 @@ To use gVisor with Docker, install the `runsc` runtime and configure the daemon:
 ```
 
 Then run containers with:
+
 ```bash
 docker run --runtime=runsc agent-image
 ```
@@ -225,6 +229,7 @@ This pattern has several benefits:
 Claude Code supports two methods for routing sampling requests through a proxy:
 
 **Option 1: ANTHROPIC\_BASE\_URL (simple but only for sampling API requests)**
+
 ```bash
 export ANTHROPIC_BASE_URL="http://localhost:8080"
 ```
@@ -232,6 +237,7 @@ export ANTHROPIC_BASE_URL="http://localhost:8080"
 This tells Claude Code and the Agent SDK to send sampling requests to your proxy instead of the Claude API directly. Your proxy receives plaintext HTTP requests, can inspect and modify them (including injecting credentials), then forwards to the real API.
 
 **Option 2: HTTP\_PROXY / HTTPS\_PROXY (system-wide)**
+
 ```bash
 export HTTP_PROXY="http://localhost:8080"
 export HTTPS_PROXY="http://localhost:8080"
@@ -290,6 +296,7 @@ Filesystem controls determine what files the agent can read and write.
 ### Read-only code mounting
 
 When the agent needs to analyze code but not modify it, mount the directory read-only:
+
 ```bash
 docker run -v /path/to/code:/workspace:ro agent-image
 ```
@@ -318,6 +325,7 @@ docker run -v /path/to/code:/workspace:ro agent-image
 If the agent needs to write files, you have a few options depending on whether you want changes to persist:
 
 For ephemeral workspaces in containers, use `tmpfs` mounts that exist only in memory and are cleared when the container stops:
+
 ```bash
 docker run \
   --read-only \

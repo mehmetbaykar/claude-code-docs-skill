@@ -28,6 +28,7 @@ v2.1.232
 Fork mode is now on by default in interactive sessions. Claude can request the `fork` subagent type, which inherits the full conversation and prompt cache instead of starting fresh, so you don't have to re-explain the context for a side task. Subagents Claude spawns in interactive sessions, apart from the ones an agent-team teammate spawns, also run in the background by default.
 
 Start a fork yourself with a task that needs everything you've discussed so far:
+
 ```text Claude Code
 > /subtask draft unit tests for the parser changes so far
 ```
@@ -42,6 +43,7 @@ v2.1.232
 Plugin marketplaces clone bare `gitlab.com` URLs, including nested subgroups. On v2.1.233 or later, pass a GitLab merge request URL to `--worktree` to branch from it, and the `claude agents` view labels sessions linked to a merge request as `!N`. Claude Code also redacts GitLab token families such as `glpat-` and `glrt-`, and protects the `glab` CLI's config store the same way it protects `gh`.
 
 Start a session in a worktree branched from a merge request:
+
 ```bash
 claude --worktree https://gitlab.com/group/project/-/merge_requests/42
 ```

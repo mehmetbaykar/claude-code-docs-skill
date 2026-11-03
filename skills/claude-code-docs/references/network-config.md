@@ -21,6 +21,7 @@ Set these environment variables before you launch Claude Code. Variables exporte
 ### Environment variables
 
 Claude Code respects standard proxy environment variables. In Claude Desktop sessions where the app manages the provider connection, Claude Code reads them only from managed settings and `~/.claude/settings.json`; see [mTLS authentication](#mtls-authentication) for the scope rules.
+
 ```bash
 # HTTPS proxy (recommended)
 export HTTPS_PROXY=https://proxy.example.com:8080
@@ -47,6 +48,7 @@ Claude Code never sends its WebSocket connections to `localhost`, `::1`, or `127
 ### Basic authentication
 
 If your proxy requires basic authentication, include credentials in the proxy URL:
+
 ```bash
 export HTTPS_PROXY=http://username:password@proxy.example.com:8080
 ```
@@ -66,11 +68,13 @@ By default, Claude Code trusts both its bundled Mozilla CA certificates and your
 `CLAUDE_CODE_CERT_STORE` accepts a comma-separated list of sources. Recognized values are `bundled` for the Mozilla CA set shipped with Claude Code and `system` for the operating system trust store. The default is `bundled,system`.
 
 To trust only the bundled Mozilla CA set:
+
 ```bash
 export CLAUDE_CODE_CERT_STORE=bundled
 ```
 
 To trust only the OS certificate store:
+
 ```bash
 export CLAUDE_CODE_CERT_STORE=system
 ```
@@ -82,6 +86,7 @@ export CLAUDE_CODE_CERT_STORE=system
 ## Custom CA certificates
 
 If your enterprise environment uses a custom CA, configure Claude Code to trust it directly:
+
 ```bash
 export NODE_EXTRA_CA_CERTS=/path/to/ca-cert.pem
 ```
@@ -89,6 +94,7 @@ export NODE_EXTRA_CA_CERTS=/path/to/ca-cert.pem
 ## mTLS authentication
 
 For enterprise environments requiring client certificate authentication:
+
 ```bash
 # Client certificate for authentication
 export CLAUDE_CODE_CLIENT_CERT=/path/to/client-cert.pem
@@ -138,11 +144,13 @@ When the session's launch environment already sets a variable, Claude Code [igno
 You usually find out about a wrong proxy address or a bad certificate path from a [connection or certificate error](https://code.claude.com/docs/en/errors.md#network-and-connection-errors) on a later request, since Claude Code doesn't validate most of these settings when it reads them. The one setting it checks at startup is the proxy URL: when it can't parse the value, such as one missing the `http://` scheme, Claude Code stops launch with an error naming the variable to fix.
 
 To confirm your configuration loaded before you send a request, start Claude Code with debug logging:
+
 ```bash
 claude --debug
 ```
 
 Debug output goes to `~/.claude/debug/<session-id>.txt` rather than the terminal, or to a path you set with `--debug-file <path>`. In the log, look for the lines that confirm each file loaded:
+
 ```text
 CA certs: Appended extra certificates from NODE_EXTRA_CA_CERTS (/etc/ssl/certs/corp-ca.pem)
 mTLS: Loaded client certificate from CLAUDE_CODE_CLIENT_CERT

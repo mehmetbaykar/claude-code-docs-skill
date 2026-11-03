@@ -190,11 +190,13 @@ Built-in commands also guide you through setup:
 ### It's a conversation
 
 Claude Code is conversational. You don't need perfect prompts. Start with what you want, then refine:
+
 ```text
 Fix the login bug
 ```
 
 \[Claude investigates, tries something]
+
 ```text
 That's not quite right. The issue is in the session handling.
 ```
@@ -213,6 +215,7 @@ You can redirect Claude at any point without starting over. Do either of these:
 ### Delegate, don't dictate
 
 Think of delegating to a capable colleague. Give context and direction, then trust Claude to figure out the details:
+
 ```text
 The checkout flow is broken for users with expired cards.
 The relevant code is in src/payments/. Can you investigate and fix it?

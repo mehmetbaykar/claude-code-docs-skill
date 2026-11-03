@@ -29,6 +29,7 @@ Symptoms tied to a feature, such as a hook not firing or a skill not being used,
 ### CLINotFoundError: Claude Code not found
 
 The Python SDK launches the Claude Code CLI as a subprocess. When it can't find a `claude` executable, connecting fails with a `CLINotFoundError`:
+
 ```
 Claude Code not found at: /your/configured/path
 ```
@@ -49,6 +50,7 @@ The TypeScript SDK looks for the CLI in its bundled platform package and the pat
 ### CLIConnectionError: Refusing to execute batch script
 
 On Windows, connecting fails with a `CLIConnectionError` when the CLI path the Python SDK uses is a `.bat` or `.cmd` batch script, including the `claude.cmd` shim that an npm install creates:
+
 ```
 Refusing to execute batch script 'C:\\Users\\you\\AppData\\Roaming\\npm\\claude.cmd': Windows runs .bat/.cmd files via cmd.exe, which can execute commands injected through CLI arguments, and no reliable escaping for cmd.exe exists. Use a native claude executable instead: install Claude Code natively (irm https://claude.ai/install.ps1 | iex), point ClaudeAgentOptions(cli_path=...) at a claude.exe, or install the claude-agent-sdk wheel for a platform that bundles claude.exe (e.g. Windows x64).
 ```
@@ -90,6 +92,7 @@ To fix it in either SDK:
 ### CLIConnectionError: Not connected
 
 Calling a `ClaudeSDKClient` method in Python before the client has connected, or after it has disconnected, raises a `CLIConnectionError` with this message:
+
 ```
 Not connected. Call connect() first.
 ```
@@ -103,6 +106,7 @@ The entries in this section mean the Claude Code process ended while your applic
 ### ProcessError: Command failed with exit code
 
 The Python SDK raises a `ProcessError` when the Claude Code process exits with a nonzero code:
+
 ```
 Command failed with exit code 1 (exit code: 1)
 Error output: Check stderr output for details
@@ -117,6 +121,7 @@ Before `claude-agent-sdk` 0.2.140, the Python SDK raised error-result exits as a
 ### Claude Code process exited with code N
 
 IDE wrappers print this message too, and the [error reference](https://code.claude.com/docs/en/errors.md#claude-code-process-exited-with-code-n) covers it for VS Code and other launchers. This entry covers what your TypeScript SDK code receives. The SDK surfaces a nonzero CLI exit as a plain `Error` that rejects the `for await` loop over `query()`'s messages. There's no SDK error class to catch, so wrap the loop in `try`/`catch` and match on the message:
+
 ```
 Claude Code process exited with code 1. stderr: <tail of the CLI's stderr>
 ```
@@ -126,6 +131,7 @@ When the CLI wrote to stderr, the message ends with the tail of it. To capture t
 ### Claude Code returned an error result
 
 Both SDKs replace the process-exit error with this message when the CLI reported an error result before exiting:
+
 ```
 Claude Code returned an error result: <the CLI's own error report>
 ```

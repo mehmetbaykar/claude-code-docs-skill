@@ -34,9 +34,9 @@ Claude Code uses GitLab CI/CD to run AI tasks in isolated jobs and commit result
 1. **Event-driven orchestration**: GitLab listens for your chosen triggers (for example, a comment that mentions `@claude` in an issue, MR, or review thread). The job collects context from the thread and repository, builds prompts from that input, and runs Claude Code.
 
 2. **Provider abstraction**: Use the provider that fits your environment:
-* Claude API (SaaS)
-* Amazon Bedrock (IAM-based access, cross-region options)
-* Google Cloud's Agent Platform (GCP-native, Workload Identity Federation)
+   * Claude API (SaaS)
+   * Amazon Bedrock (IAM-based access, cross-region options)
+   * Google Cloud's Agent Platform (GCP-native, Workload Identity Federation)
 
 3. **Sandboxed execution**: Each interaction runs in a container with strict network and filesystem rules. Claude Code enforces workspace-scoped permissions to constrain writes. Every change flows through an MR so reviewers see the diff and approvals still apply.
 
@@ -59,10 +59,11 @@ In a GitLab pipeline, Claude Code can:
 The fastest way to get started is to add a minimal job to your `.gitlab-ci.yml` and set your API key as a masked variable.
 
 1. **Add a masked CI/CD variable**
-* Go to **Settings** → **CI/CD** → **Variables**
-* Add `ANTHROPIC_API_KEY` (masked, protected as needed)
+   * Go to **Settings** → **CI/CD** → **Variables**
+   * Add `ANTHROPIC_API_KEY` (masked, protected as needed)
 
 2. **Add a Claude job to `.gitlab-ci.yml`**
+
 ```yaml
 stages:
   - ai
@@ -109,25 +110,26 @@ After adding the job and your `ANTHROPIC_API_KEY` variable, test by running the 
 If you prefer a more controlled setup or need enterprise providers:
 
 1. **Configure provider access**:
-* **Claude API**: Create and store `ANTHROPIC_API_KEY` as a masked CI/CD variable
-* **Amazon Bedrock**: **Configure GitLab** → **AWS OIDC** and create an IAM role for Amazon Bedrock
-* **Google Cloud's Agent Platform**: **Configure Workload Identity Federation for GitLab** → **GCP**
+   * **Claude API**: Create and store `ANTHROPIC_API_KEY` as a masked CI/CD variable
+   * **Amazon Bedrock**: **Configure GitLab** → **AWS OIDC** and create an IAM role for Amazon Bedrock
+   * **Google Cloud's Agent Platform**: **Configure Workload Identity Federation for GitLab** → **GCP**
 
 2. **Add project credentials for GitLab API operations**:
-* Use `CI_JOB_TOKEN` by default, or create a Project Access Token with `api` scope
-* Store as `GITLAB_ACCESS_TOKEN` (masked) if using a PAT
+   * Use `CI_JOB_TOKEN` by default, or create a Project Access Token with `api` scope
+   * Store as `GITLAB_ACCESS_TOKEN` (masked) if using a PAT
 
 3. **Add the Claude job to `.gitlab-ci.yml`**: use the [Quick setup](#quick-setup) job for the Claude API, or a provider job from [Configuration examples](#configuration-examples)
 
 4. **(Optional) Enable mention-driven triggers**:
-* Add a project webhook for "Comments (notes)" to your event listener (if you use one)
-* Have the listener call the pipeline trigger API with variables like `AI_FLOW_INPUT` and `AI_FLOW_CONTEXT` when a comment contains `@claude`
+   * Add a project webhook for "Comments (notes)" to your event listener (if you use one)
+   * Have the listener call the pipeline trigger API with variables like `AI_FLOW_INPUT` and `AI_FLOW_CONTEXT` when a comment contains `@claude`
 
 ## Example use cases
 
 ### Turn issues into MRs
 
 In an issue comment:
+
 ```text wrap
 @claude implement this feature based on the issue description
 ```
@@ -137,6 +139,7 @@ Claude analyzes the issue and codebase, writes changes in a branch, and opens an
 ### Get implementation help
 
 In an MR discussion:
+
 ```text wrap
 @claude suggest a concrete approach to cache the results of this API call
 ```
@@ -146,6 +149,7 @@ Claude proposes changes, adds code with appropriate caching, and updates the MR.
 ### Fix bugs quickly
 
 In an issue or MR comment:
+
 ```text wrap
 @claude fix the TypeError in the user dashboard component
 ```
@@ -228,6 +232,7 @@ Below are ready-to-use snippets you can adapt to your pipeline.
 * `AWS_REGION`: Amazon Bedrock region (for example, `us-west-2`)
 
 GitLab mints the job's OIDC token from the `id_tokens:` block and exposes it as `GITLAB_OIDC_TOKEN`. Set `aud` to the audience value you configured on the IAM OIDC identity provider in AWS, for example your GitLab instance URL.
+
 ```yaml
 stages:
   - ai
@@ -290,6 +295,7 @@ claude-bedrock:
 * `CLOUD_ML_REGION`: Google Cloud's Agent Platform region (for example, `us-east5`)
 
 GitLab mints the job's OIDC token from the `id_tokens:` block and exposes it as `GITLAB_OIDC_TOKEN`. Set `aud` to the audience value you configured on the Workload Identity Pool provider, for example your GitLab instance URL. The job writes the token to a file, and the credential configuration's `credential_source` entry tells Google's auth libraries to read it from there. Setting `GOOGLE_APPLICATION_CREDENTIALS` to the credential configuration file makes it available to Claude Code through [Application Default Credentials](https://code.claude.com/docs/en/google-vertex-ai.md#3-configure-gcp-credentials).
+
 ```yaml
 stages:
   - ai
@@ -373,18 +379,18 @@ Create a `CLAUDE.md` file at the repository root to define coding standards, rev
 When using Claude Code with GitLab CI/CD, be aware of associated costs:
 
 * **GitLab Runner time**:
-* Claude runs on your GitLab runners and consumes compute minutes
-* See your GitLab plan's runner billing for details
+  * Claude runs on your GitLab runners and consumes compute minutes
+  * See your GitLab plan's runner billing for details
 
 * **API costs**:
-* Each Claude interaction consumes tokens based on prompt and response size
-* Token usage varies by task complexity and codebase size
-* See [Anthropic pricing](https://platform.claude.com/docs/en/about-claude/pricing) for details
+  * Each Claude interaction consumes tokens based on prompt and response size
+  * Token usage varies by task complexity and codebase size
+  * See [Anthropic pricing](https://platform.claude.com/docs/en/about-claude/pricing) for details
 
 * **Cost optimization tips**:
-* Use specific `@claude` commands to reduce unnecessary turns
-* Set appropriate `--max-turns` and job `timeout` values
-* Limit concurrency to control parallel runs
+  * Use specific `@claude` commands to reduce unnecessary turns
+  * Set appropriate `--max-turns` and job `timeout` values
+  * Limit concurrency to control parallel runs
 
 ## Troubleshooting
 

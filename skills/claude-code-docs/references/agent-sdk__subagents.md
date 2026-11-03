@@ -39,6 +39,7 @@ Define subagents directly in your code using the `agents` parameter. Claude invo
 Most examples on this page print only the final result. To confirm that Claude delegated to a subagent rather than answering directly, see [Detect subagent invocation](#detect-subagent-invocation).
 
 This example creates two subagents: a code reviewer with read-only access and a test runner that can execute commands.
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
@@ -88,6 +89,7 @@ Focus on:
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -216,6 +218,7 @@ Write clear, specific descriptions so Claude can match tasks to the right subage
 ### Explicit invocation
 
 To guarantee Claude uses a specific subagent, mention it by name in your prompt:
+
 ```text
 "Use the code-reviewer agent to check the authentication module"
 ```
@@ -227,12 +230,14 @@ This bypasses automatic matching and directly invokes the named subagent.
 A [fork](https://code.claude.com/docs/en/sub-agents.md#fork-the-current-conversation) is a subagent that copies the conversation so far instead of starting fresh. From Claude Code v2.1.302, Claude can start forks in your application with nothing configured, by calling the Agent tool with `subagent_type: "fork"`.
 
 To stop Claude from starting forks, add an [`Agent(fork)` deny rule](https://code.claude.com/docs/en/agent-sdk/permissions#allow-and-deny-rules):
+
 ```python Python
 options = ClaudeAgentOptions(
     # Deny only the fork subagent type; other subagents still run
     disallowed_tools=["Agent(fork)"],
 )
 ```
+
 ```typescript TypeScript
 const options = {
   // Deny only the fork subagent type; other subagents still run
@@ -243,6 +248,7 @@ const options = {
 ### Dynamic agent configuration
 
 You can create agent definitions dynamically based on runtime conditions. This example creates a security reviewer with different strictness levels, using a more capable model for strict reviews.
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
@@ -277,6 +283,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query, type AgentDefinition } from "@anthropic-ai/claude-agent-sdk";
 
@@ -322,6 +329,7 @@ Messages from within a subagent's context include a `parent_tool_use_id` field. 
 The message structure differs between SDKs. In Python, you access content blocks directly via `message.content`. In TypeScript, `SDKAssistantMessage` wraps the Claude API message, so you access content via `message.message.content`.
 
 This example iterates through streamed messages, logging when a subagent is invoked and when subsequent messages originate from within that subagent's execution context. The TypeScript version also logs the `agent_id` of each subagent message that carries one.
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition, ToolUseBlock
@@ -359,6 +367,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -418,6 +427,7 @@ When a subagent completes, the Agent tool result includes a text block containin
 > When using a custom agent, pass the same agent definition in the `agents` parameter for both queries.
 
 The example below defines a custom `endpoint-finder` agent. The first query runs it and captures the session ID and agent ID from the Agent tool result, then the second query resumes the session to ask a follow-up question that requires context from the first analysis.
+
 ```python Python
 import asyncio
 import re
@@ -479,6 +489,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query, type SDKMessage } from "@anthropic-ai/claude-agent-sdk";
 
@@ -546,6 +557,7 @@ Use the `tools` field to limit what a subagent can do:
 A tool you leave out isn't in the subagent's session at all: Claude works without it, with no permission prompt or error.
 
 This example creates a read-only analysis agent that can examine code but can't modify files or run commands.
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, AgentDefinition
@@ -571,6 +583,7 @@ identify patterns, and suggest improvements without making changes.""",
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -619,6 +632,7 @@ You can cap that growth in three ways: how deeply subagents nest, how many run a
 | Spend | `maxBudgetUsd` in TypeScript, `max_budget_usd` in Python | No limit. Counts the call's own spend, subagent requests included | Enforces the cap in three ways: refuses to spawn more subagents, returning `Budget limit reached`, stops background subagents that are still running, and ends the query with the `error_max_budget_usd` result subtype. For how the caps behave across a session, see [turns and budget](https://code.claude.com/docs/en/agent-sdk/agent-loop.md#turns-and-budget) |
 
 The two SDKs treat the `env` option differently: the TypeScript SDK replaces the subprocess environment with it, so spread `process.env` into it to keep variables like `PATH`, while the Python SDK merges it into the inherited environment. This example turns nesting off, allows at most five subagents at a time, and stops the query once the estimated spend reaches \$5:
+
 ```python Python
 import asyncio
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
@@ -646,6 +660,7 @@ async def main():
 
 asyncio.run(main())
 ```
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 

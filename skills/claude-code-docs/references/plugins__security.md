@@ -121,6 +121,7 @@ The details pane you open from the **Discover** or **Marketplaces** tab in `/plu
 ### Trust warning before you install
 
 The warning reads the same whatever marketplace the plugin comes from:
+
 ```text
 Make sure you trust a plugin before installing, updating, or using it. Anthropic does not control what MCP servers, files, or other software are included in plugins and cannot verify that they will work as intended or that they won't change. See each plugin's homepage for more information.
 ```

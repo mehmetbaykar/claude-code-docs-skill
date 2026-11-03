@@ -23,7 +23,7 @@ The simulator pane uses Apple's simulator tooling, which the desktop app doesn't
 * Claude Desktop v1.24012.0 or later
 * A Mac, since Apple's iOS Simulator runs only on macOS
 * [Xcode](https://developer.apple.com/xcode/) with the iOS platform installed, which provides the simulator devices. If Xcode lists no simulators yet, see [The simulator pane says no simulators were found](#the-simulator-pane-says-no-simulators-were-found)
-* Xcode 26.x or Xcode 27 is recommended, and the pane works with either. If you have more than one Xcode installed, see [Choose which Xcode the simulator pane uses](#choose-which-xcode-the-simulator-pane-uses)
+  * Xcode 26.x or Xcode 27 is recommended, and the pane works with either. If you have more than one Xcode installed, see [Choose which Xcode the simulator pane uses](#choose-which-xcode-the-simulator-pane-uses)
 
 > [!NOTE]
 >
@@ -36,6 +36,7 @@ The simulator pane is available in local sessions only. In [cloud](https://code.
 If you have more than one Xcode installed, such as Xcode 26.x alongside Xcode 27, the pane uses whichever one `xcode-select` points at. To use a different install, select it by its path.
 
 For example, if the Xcode you want is installed as `/Applications/Xcode-26.4.app`, run this in Terminal:
+
 ```bash
 sudo xcode-select -s /Applications/Xcode-26.4.app
 ```
@@ -55,6 +56,7 @@ In Claude Code Desktop, open the **Code** tab and start a session with your app'
 **2. Ask Claude to run or test the app**
 
 Phrase the task around running or verifying the app. For example:
+
 ```text
 Build the app and run it in the simulator to check the onboarding flow.
 ```

@@ -67,6 +67,7 @@ If a computer uses a connection that isn't eligible for the HIPAA configuration,
 The HIPAA configuration requires Claude Code v2.1.285 or later and Claude Desktop v2.19675.0 or later. If your organization uses both the terminal and the [Claude Desktop app](https://code.claude.com/docs/en/desktop.md), update both.
 
 To read the installed Claude Code version, run this command in a terminal. It's the same in Bash, Zsh, and PowerShell:
+
 ```bash
 claude --version
 ```
@@ -117,6 +118,7 @@ You can use [managed settings](https://code.claude.com/docs/en/managed-settings.
 The settings in this section are a sample that we recommend as a starting point. Your organization is responsible for deciding what its own environment needs and for confirming that its configuration meets those needs.
 
 The following sample sets four keys that you could add to the [managed settings](https://code.claude.com/docs/en/managed-settings.md#choose-a-delivery-mechanism) your organization deploys:
+
 ```json
 {
   "forceLoginMethod": "claudeai",
@@ -235,8 +237,8 @@ The Code tab stores data in these places:
 
 * **Transcripts**: in `~/.claude/projects/`, alongside terminal transcripts. [Cleaned up automatically](https://code.claude.com/docs/en/claude-directory.md#cleaned-up-automatically) states when the retention sweep deletes them.
 * **The Claude Desktop data folder**: `~/Library/Application Support/Claude` on macOS. On Windows, `%APPDATA%\Claude`, or `%LOCALAPPDATA%\Packages\Claude_pzs8sxrjxfjjc\LocalCache\Roaming\Claude` for the installer downloaded from Anthropic, so check both. With the HIPAA configuration applied, Claude Desktop deletes local Code tab sessions that have been inactive for longer than `cleanupPeriodDays`, including starred ones. It deletes them only while it's running. Claude Desktop handles a deleted session's worktree in one of these ways:
-* **No uncommitted changes, the session isn't starred or pinned, and no other session is using the worktree**: Claude Desktop removes the worktree
-* **Any other case**: the worktree stays on the computer
+  * **No uncommitted changes, the session isn't starred or pinned, and no other session is using the worktree**: Claude Desktop removes the worktree
+  * **Any other case**: the worktree stays on the computer
 
 On Windows, `~` means `%USERPROFILE%`.
 
@@ -249,11 +251,13 @@ On Windows, `~` means `%USERPROFILE%`.
 If your organization needs a developer's session data removed before the retention sweep deletes it, you can remove most of it with one command. Sign in to the computer as that developer, open any shell, and run the command for the installed Claude Code version.
 
 On Claude Code v2.1.288 or later, run `claude purge`:
+
 ```bash
 claude purge --all --yes
 ```
 
 On v2.1.126 through v2.1.287, run `claude project purge`, which takes the same flags:
+
 ```bash
 claude project purge --all --yes
 ```

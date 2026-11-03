@@ -88,6 +88,7 @@ These workflows require the [Claude Code CLI](https://code.claude.com/docs/en/qu
 ### Start a cloud session from your terminal
 
 Start a cloud session from the command line with the `--cloud` flag:
+
 ```bash
 claude --cloud "Fix the authentication bug in src/auth/login.ts"
 ```
@@ -109,16 +110,19 @@ If Claude asks a question and the session sits idle, you can still answer when y
 #### Tips for cloud tasks
 
 **Plan locally, execute in the cloud**: for complex tasks, start Claude in plan mode to collaborate on the approach, then send work to the cloud:
+
 ```bash
 claude --permission-mode plan
 ```
 
 In plan mode, Claude reads files, runs commands to explore, and proposes a plan without editing source code. Once you're satisfied, save the plan to the repo, commit, and push so the cloud VM can clone it. Then start a cloud session for autonomous execution:
+
 ```bash
 claude --cloud "Execute the migration plan in docs/migration-plan.md"
 ```
 
 **Run tasks in parallel**: each `--cloud` command creates its own cloud session that runs independently. You can start multiple tasks and they'll all run simultaneously in separate sessions:
+
 ```bash
 claude --cloud "Fix the flaky test in auth.spec.ts"
 claude --cloud "Update the API documentation"
@@ -139,6 +143,7 @@ What happens to uncommitted changes in sensitive files depends on your platform:
 * **Native Windows**: uncommitted changes to tracked files upload as they are, whatever the file's name. Stash or revert an edit you don't want in the cloud session before you start it.
 
 To upload a bundle even when Claude Code would otherwise clone from the remote, set `CCR_FORCE_BUNDLE=1`:
+
 ```bash
 CCR_FORCE_BUNDLE=1 claude --cloud "Run the test suite and fix any failures"
 ```
@@ -167,6 +172,7 @@ For `claude --cloud`, if the repository is on GitHub, you can avoid the upload a
 Once a cloud session is running, wherever it executes, send it a follow-up message from the `claude` CLI on any machine where you're logged in with `claude auth login`. The CLI authenticates with your Anthropic account credentials and sends no local session state, so the command doesn't need to run from the machine that started the session.
 
 The command posts one message and exits:
+
 ```bash
 claude -p "your message" --cloud <session-id>
 ```
@@ -182,6 +188,7 @@ For `<session-id>`, pass the bare ID, such as `session_...` or `cse_...`, or the
 #### Output
 
 On success, the command prints the session ID and a link to view the session:
+
 ```
 Sent to cloud session.
 Session ID: session_01DiUkqY2kzbUbDmW1w96rfi
@@ -307,6 +314,7 @@ Select **Add** on a plugin to turn it on for your claude.ai account, where it st
 #### Turn off plugin suggestions
 
 To stop Claude from suggesting plugins, deny the `SearchPlugins` and `SuggestPluginInstall` tools with [permission rules](https://code.claude.com/docs/en/permissions.md#manage-permissions). In a session with one repository outside a [project](https://code.claude.com/docs/en/claude-projects.md), commit the rules to that repository's `.claude/settings.json`, listing both tool names under `permissions.deny`:
+
 ```json
 {
   "permissions": {
@@ -480,9 +488,9 @@ Reopen the session from [claude.ai/code](https://claude.ai/code) to provision a 
 
 * **Restored**: your conversation history
 * **Not restored**: background work that was still running or pending when the VM was reclaimed, including:
-* **Shell commands**: Claude Code tells Claude which commands stopped. Ask Claude to rerun the ones you still need.
-* **Subagents**: Claude Code tells Claude which subagents stopped, and which of those can be [resumed](https://code.claude.com/docs/en/sub-agents.md#resume-subagents) instead of started over. Ask Claude to continue their work.
-* **Session-scoped scheduled tasks**: tasks you [scheduled in the session](https://code.claude.com/docs/en/scheduled-tasks.md) and a `/loop` waiting for its next iteration don't carry over to the reopened session. Ask Claude to schedule the tasks again, or run `/loop` again to restart the loop.
+  * **Shell commands**: Claude Code tells Claude which commands stopped. Ask Claude to rerun the ones you still need.
+  * **Subagents**: Claude Code tells Claude which subagents stopped, and which of those can be [resumed](https://code.claude.com/docs/en/sub-agents.md#resume-subagents) instead of started over. Ask Claude to continue their work.
+  * **Session-scoped scheduled tasks**: tasks you [scheduled in the session](https://code.claude.com/docs/en/scheduled-tasks.md) and a `/loop` waiting for its next iteration don't carry over to the reopened session. Ask Claude to schedule the tasks again, or run `/loop` again to restart the loop.
 
 ## Limitations
 
@@ -492,10 +500,10 @@ Before relying on cloud sessions for a workflow, account for these constraints:
 * **Time limits**: commands Claude runs and SessionStart hooks have default timeouts you can change, and a setup script is cached only when it finishes in roughly five minutes. See [Time limits](https://code.claude.com/docs/en/cloud-environments.md#time-limits)
 * **Repository authentication**: you can only pull a cloud session into your terminal when you are authenticated to the same account
 * **Platform restrictions**: repository cloning in Anthropic-hosted environments and pull request creation require GitHub. Self-hosted [GitHub Enterprise Server](https://code.claude.com/docs/en/github-enterprise-server.md) instances are supported for Team and Enterprise plans. You can send a GitLab, Bitbucket, or other non-GitHub repository to a cloud session as a [local bundle](#send-local-repositories-without-github) by setting `CCR_FORCE_BUNDLE=1`, but the session can't push results back to that remote
-* **Self-hosted environments**: for a repository on another git host, see the [requirements for starting a session with `--environment`](https://code.claude.com/docs/en/self-hosted-environments-deploy#start-a-session-on-a-repository-outside-github).
+  * **Self-hosted environments**: for a repository on another git host, see the [requirements for starting a session with `--environment`](https://code.claude.com/docs/en/self-hosted-environments-deploy#start-a-session-on-a-repository-outside-github).
 * **Organization IP allowlist**: cloud sessions call the Anthropic API from Anthropic-managed infrastructure, not your network, while sessions in a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments) call it from your own network. If your organization has [IP allowlisting](https://support.claude.com/en/articles/13200993-restrict-access-to-claude-with-ip-allowlisting) enabled, every Anthropic-hosted cloud session fails with an authentication error.
-* **Code Review and scheduled tasks**: the same applies to [Code Review](https://code.claude.com/docs/en/code-review.md) and to [cloud scheduled tasks](https://code.claude.com/docs/en/routines.md) that run on Anthropic-hosted environments. A scheduled task routed to a self-hosted environment calls the API from your own network.
-* **Getting an exemption**: contact [Anthropic support](https://support.claude.com/) to exempt Anthropic-hosted services from your organization's IP allowlist.
+  * **Code Review and scheduled tasks**: the same applies to [Code Review](https://code.claude.com/docs/en/code-review.md) and to [cloud scheduled tasks](https://code.claude.com/docs/en/routines.md) that run on Anthropic-hosted environments. A scheduled task routed to a self-hosted environment calls the API from your own network.
+  * **Getting an exemption**: contact [Anthropic support](https://support.claude.com/) to exempt Anthropic-hosted services from your organization's IP allowlist.
 
 ## Related resources
 

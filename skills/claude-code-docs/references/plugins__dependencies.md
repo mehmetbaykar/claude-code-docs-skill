@@ -31,6 +31,7 @@ With a constraint such as `~2.1.0` on a dependency from a git-backed source, use
 ### Declare a dependency with a version constraint
 
 List dependencies in the `dependencies` array of your plugin's `.claude-plugin/plugin.json`. The following manifest declares one unversioned dependency and one constrained dependency:
+
 ```json .claude-plugin/plugin.json
 {
   "name": "deploy-kit",
@@ -59,6 +60,7 @@ A range doesn't match pre-release versions such as `2.0.0-beta.1` unless you opt
 To let engineers install a curated set of plugins with one command, publish a plugin whose manifest contains a `name` and a `dependencies` array. A plugin manifest needs only `name`, so this is a valid plugin, and installing it installs every dependency.
 
 For example, a platform team can publish role-specific bundles in an internal marketplace so engineers run one `claude plugin install` instead of installing each plugin separately:
+
 ```json .claude-plugin/plugin.json
 {
   "name": "backend-standard",
@@ -89,6 +91,7 @@ By default, Claude Code doesn't install a dependency from a different marketplac
 To allow the install, add the target marketplace's name to `allowCrossMarketplaceDependenciesOn` in the root marketplace's `marketplace.json`. The root marketplace is the one that hosts the plugin the user is installing. Only the root marketplace's allowlist applies.
 
 The following `marketplace.json` allows `deploy-kit` to depend on a plugin from `your-shared-marketplace`:
+
 ```json .claude-plugin/marketplace.json
 {
   "name": "your-marketplace",
@@ -113,6 +116,7 @@ The allowlist check doesn't apply to a dependency that is already enabled. If a 
 ### Test a plugin and its dependency locally
 
 If you're developing a plugin and the plugin it depends on at the same time, start Claude Code from your shell and load both with [`--plugin-dir`](https://code.claude.com/docs/en/plugins/cli-reference#flags-that-load-a-plugin-for-one-session):
+
 ```bash
 claude --plugin-dir ./my-dependency --plugin-dir ./my-plugin
 ```
@@ -141,6 +145,7 @@ If you maintain a plugin that other plugins depend on with a version constraint,
 Tag each release as `<plugin-name>--v<version>`, where `<version>` matches the `version` field in that commit's `plugin.json`. The plugin-name prefix lets one marketplace repository host several plugins with independent version histories.
 
 Create the tag from the plugin directory, with an `origin` remote configured to receive the pushed tag, using [`claude plugin tag`](https://code.claude.com/docs/en/plugins/cli-reference#plugin-tag):
+
 ```bash
 claude plugin tag --push
 ```

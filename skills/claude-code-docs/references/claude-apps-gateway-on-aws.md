@@ -50,12 +50,14 @@ Every command on this page reads four values from your shell: `AWS_REGION`, `ACC
 Pick a US region where Bedrock serves the Claude models you need. The walkthrough relies on the gateway's built-in model catalog, which resolves to `us.anthropic.*` inference profiles, and the IAM policy grants those ARNs. In a non-US region, add a [`models:` block](https://code.claude.com/docs/en/claude-apps-gateway-config#models) with that geo's inference-profile IDs and change the IAM policy's ARN prefix to match.
 
 If you don't have the VPC ID at hand, list your VPCs with `aws ec2 describe-vpcs`, then list that VPC's subnets to find two private ones in different Availability Zones:
+
 ```bash
 aws ec2 describe-subnets --filters "Name=vpc-id,Values=<your-vpc-id>" \
   --query 'Subnets[].{ID:SubnetId,AZ:AvailabilityZone,CIDR:CidrBlock}' --output table
 ```
 
 Export all four before continuing:
+
 ```bash
 export AWS_REGION=us-east-1   # a US region where Bedrock serves the Claude models you need
 export ACCOUNT_ID="$(aws sts get-caller-identity --query Account --output text)"
@@ -73,6 +75,7 @@ Three security groups chain the traffic path: your corporate network reaches the
 
 * On ECS Fargate, the deploy step attaches `$ALB_SG` to the load balancer and `$GW_SG` to the service.
 * On EKS, the AWS Load Balancer Controller creates its own frontend security group for the ALB, so `$ALB_SG` and `$GW_SG` go unused: the deploy step's `inbound-cidrs` annotation restricts the listener to your corporate network, and the database security group admits the cluster's security group instead.
+
 ```bash
 ALB_SG="$(aws ec2 create-security-group --group-name claude-gateway-alb \
   --description "Claude gateway ALB" --vpc-id "$VPC_ID" \
@@ -95,6 +98,7 @@ aws ec2 authorize-security-group-ingress --group-id "$DB_SG" \
 **2. Create the IAM roles and submit the use case form**
 
 The gateway runs with a dedicated task role whose only permission is invoking Claude models on Bedrock. Per the [Bedrock upstream reference](https://code.claude.com/docs/en/claude-apps-gateway-config.md#amazon-bedrock), the policy must cover both the cross-region inference-profile ARNs and the underlying foundation-model ARNs:
+
 ```bash
 cat > bedrock-invoke.json <<EOF
 {
@@ -127,6 +131,7 @@ aws iam put-role-policy --role-name claude-gateway-task \
 ```
 
 ECS also needs an execution role, which the ECS agent itself uses to pull the image from ECR and inject the Secrets Manager values created later. It is separate from the task role the gateway's AWS SDK uses at runtime:
+
 ```bash
 aws iam create-role --role-name claude-gateway-execution \
   --assume-role-policy-document file://ecs-trust.json
@@ -161,6 +166,7 @@ The EKS track reuses both policy documents on an IRSA role instead of the two EC
 The instance runs Postgres 16 in the private subnets, with no public address and storage encryption on.
 
 First, create the subnet group that places the database in the private subnets, and a parameter group with `rds.force_ssl=1` so the server rejects plaintext connections. The engine version is pinned once because the parameter group's family must match the engine major version the instance runs:
+
 ```bash
 aws rds create-db-subnet-group --db-subnet-group-name claude-gateway-db \
   --db-subnet-group-description "Claude gateway" --subnet-ids $PRIVATE_SUBNETS
@@ -175,6 +181,7 @@ aws rds modify-db-parameter-group --db-parameter-group-name claude-gateway-db \
 ```
 
 Then create the instance with a generated master password:
+
 ```bash
 PGPASS="$(openssl rand -hex 24)"
 aws rds create-db-instance --db-instance-identifier claude-gateway-db \
@@ -191,6 +198,7 @@ aws rds create-db-instance --db-instance-identifier claude-gateway-db \
 The literal `--master-user-password` argument is visible in the process table and in audit/EDR logs while the command runs, the same exposure the secrets step's note covers. On a shared or monitored host, pass the password via `--cli-input-json` from a `0600` file instead, the way the bundle's `setup.sh` does.
 
 Wait for the instance to come up, which can take several minutes, then read its private endpoint and assemble the connection string the gateway will use:
+
 ```bash
 aws rds wait db-instance-available --db-instance-identifier claude-gateway-db
 DB_HOST="$(aws rds describe-db-instances --db-instance-identifier claude-gateway-db \
@@ -214,6 +222,7 @@ Two `listen` fields describe what fronts the gateway:
 On both tracks the front end is an internal ALB, whether created directly or by the AWS Load Balancer Controller, and an ALB's nodes take addresses from the subnets it is attached to, so set `trusted_proxies` to those subnets' CIDRs. This trusts every host in those subnets as a proxy. Keep the ALB's ingress source, your corporate CIDR, from overlapping them, and don't share the subnets with untrusted workloads that could spoof client IPs via `X-Forwarded-For`.
 
 The ALB's client port preservation attribute, `routing.http.xff_client_port.enabled`, can stay at either setting: with it on, the ALB writes the client as `203.0.113.7:54321` or `[2001:db8::1]:54321`, and the gateway reads both with the port dropped.
+
 ```yaml gateway.yaml
 listen:
   host: 0.0.0.0
@@ -258,6 +267,7 @@ upstreams:
 **5. Store secrets in AWS Secrets Manager**
 
 Create three secrets; the execution role from the IAM step can already read them:
+
 ```bash
 aws secretsmanager create-secret --name gateway-jwt-secret \
   --secret-string "$(openssl rand -base64 32)"
@@ -283,18 +293,21 @@ Unlike the secrets, `gateway.yaml` itself contains no secret values, because eve
 Build the image per the [container image requirements](https://code.claude.com/docs/en/claude-apps-gateway-deploy.md#container-image), placing the `linux-x64` glibc binary at `./claude` in the build context. Write your own Dockerfile per those requirements or start from the bundle's [`Dockerfile`](https://github.com/anthropics/claude-code/blob/main/examples/gateway/aws/Dockerfile), which copies the filled-in `gateway.yaml` from the previous steps into the image at `/etc/claude/gateway.yaml`. On ECS that embedded copy is how the configuration reaches the container, which is why the build comes after the file is written. The EKS track instead mounts `gateway.yaml` from a ConfigMap at deploy, so the embedded copy is unused there.
 
 The image also carries the AWS RDS certificate bundle as the trust anchor for the connection string's `sslmode=verify-full`, so download it into the build context first. AWS rotates the bundle (new regional CAs get appended), so download it per build rather than pinning a checksum or committing it:
+
 ```bash
 curl -fL --proto '=https' -o rds-global-bundle.pem \
   https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
 ```
 
 The container image requirements don't cover the bundle, so if you write your own Dockerfile, add the two lines that copy and trust it; the bundle's `Dockerfile` already includes both:
+
 ```dockerfile
 COPY rds-global-bundle.pem /etc/claude/rds-global-bundle.pem
 ENV NODE_EXTRA_CA_CERTS=/etc/claude/rds-global-bundle.pem
 ```
 
 Create the ECR repository and sign Docker in to it. Immutable tags mean the `<version>` tag the deploy step pins cannot later be silently re-pointed at a different image:
+
 ```bash
 aws ecr create-repository --repository-name claude-gateway \
   --image-tag-mutability IMMUTABLE \
@@ -305,6 +318,7 @@ aws ecr get-login-password --region "$AWS_REGION" \
 ```
 
 Build and push the image. The task definition below runs `linux/amd64`, so the platform must match here; for Fargate on ARM64 (Graviton), build `linux/arm64` with the `linux-arm64` binary and set `cpuArchitecture` to `ARM64` instead:
+
 ```bash
 docker build --platform=linux/amd64 \
   -t "${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/claude-gateway:<version>" .
@@ -517,6 +531,7 @@ The gateway signs every Bedrock request with its own principal, the ECS task rol
 ### Per developer with `assume_role`
 
 Create a second IAM role that holds the Bedrock permissions and trusts the gateway's principal, grant that principal `sts:AssumeRole` on it, and set [`assume_role`](https://code.claude.com/docs/en/claude-apps-gateway-config#per-developer-aws-cost-attribution) with `session_name: email` on the Bedrock upstream. The gateway then assumes that role once per developer per hour with the session name set to their email and signs their requests with the result. Requires a gateway running Claude Code v2.1.281 or later. The role can also be in another AWS account: see [Bedrock in another AWS account](https://code.claude.com/docs/en/claude-apps-gateway-config.md#bedrock-in-another-aws-account). In Terraform, next to the task role in the [Terraform bundle](#terraform-reference):
+
 ```hcl
 resource "aws_iam_role" "bedrock_user" {
   name = "claude-gateway-bedrock-user"
@@ -547,6 +562,7 @@ Each developer's requests reach AWS as the principal `arn:aws:sts::<account>:ass
 ### Per team with application inference profiles
 
 This route uses only the [`models`](https://code.claude.com/docs/en/claude-apps-gateway-config#models) and [`managed`](https://code.claude.com/docs/en/claude-apps-gateway-config#managed) sections. Create one Bedrock [application inference profile](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-create.html) per team and model, tag each profile with the team, and activate that tag as a cost allocation tag. Then give each team its own model id in `gateway.yaml` and pin each IdP group to its team's ids:
+
 ```yaml
 models:
   # Include the served model's id, such as claude-opus-4-8, in each id so the gateway's spend meter can price it.
@@ -588,6 +604,7 @@ In your IdP, add the developer to a new group, such as `team-platform-and-data`.
 **2. List its policy first**
 
 Put the group's policy above the single-team policies and allow both teams' ids in it. Copy in any other settings the two team policies set.
+
 ```yaml
 managed:
   policies:

@@ -9,6 +9,7 @@ path: /docs/en/auto-mode-classifier-billing
 > Resolve the Claude Code notice saying this session isn't eligible for auto mode's no-charge classifier requests: what it means, why it appears, and what to do.
 
 In [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode), a classifier checks actions such as shell commands and network requests before they run. Wherever [server-side checks are on](https://code.claude.com/docs/en/permission-modes.md#server-side-classifier-review), the server performs those checks as part of the session's own model requests, at no charge. This notice means the server's checks aren't reaching your session, so Claude Code is making its own classifier requests instead, and on your account those requests count toward your token usage:
+
 ```text
 We're changing auto mode to no longer charge for classifier requests in Claude Code. However, this session isn't eligible.
 ```
@@ -33,6 +34,7 @@ Where the notice can't wait for an answer, Claude Code reports the same text and
 If a gateway is the cause, ask your company's admin or your gateway provider to pass requests and replies through unchanged. That means forwarding request headers and body fields as they are, including ones the gateway doesn't recognize such as the `safeguards` request field, and returning responses and streaming events without dropping keys such as the `safeguard_results` field or rewriting tool-use IDs, as the [gateway compatibility guide](https://code.claude.com/docs/en/llm-gateway-protocol.md#feature-pass-through) describes. A gateway that passes traffic through this way keeps working with this feature and with future ones. New sessions then use the server's checks again.
 
 If you already know that your gateway can't provide the server's checks, tell Claude Code not to ask for them there by setting `CLAUDE_CODE_AUTO_MODE_SERVER` to `0` before you start the session, in your shell or in the [`env` settings key](https://code.claude.com/docs/en/settings-reference#env):
+
 ```bash
 export CLAUDE_CODE_AUTO_MODE_SERVER=0
 ```

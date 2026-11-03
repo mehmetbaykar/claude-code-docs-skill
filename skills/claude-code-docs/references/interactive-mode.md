@@ -160,6 +160,7 @@ Claude Code keeps your vim mode and cursor position when you toggle the [transcr
 The [`vimInsertModeRemaps`](https://code.claude.com/docs/en/settings-reference#viminsertmoderemaps) setting maps a two-key INSERT-mode sequence to Escape, so a mapping like `jj` returns you to NORMAL mode.
 
 The following `~/.claude/settings.json` example turns on vim mode and maps `jj` to Escape:
+
 ```json
 {
   "editorMode": "vim",
@@ -167,7 +168,7 @@ The following `~/.claude/settings.json` example turns on vim mode and maps `jj` 
 }
 ```
 
-Each key is exactly two printable characters typed in sequence, and `""` is the only supported target. Entries with a different length or target are ignored.
+Each key is exactly two printable characters typed in sequence, and `"<Esc>"` is the only supported target. Entries with a different length or target are ignored.
 
 Typing the first character of a sequence inserts it normally. Pressing the second character within one second removes that pending character and switches to NORMAL mode, leaving neither character in your input. After the one-second window, or if a different key follows, both characters stay as literal text, so you can still type a word containing the sequence by pausing between the two keys.
 
@@ -295,11 +296,11 @@ Press `Ctrl+R` to interactively search through your command history. In [fullscr
 3. **Navigate matches**: press `Ctrl+R` again to cycle through older matches
 4. **Search scope**: the inline search always searches prompts from all projects
 5. **Accept match**:
-* Press `Tab` or `Esc` to accept the current match and continue editing
-* Press `Enter` to accept and execute the command immediately
+   * Press `Tab` or `Esc` to accept the current match and continue editing
+   * Press `Enter` to accept and execute the command immediately
 6. **Cancel search**:
-* Press `Ctrl+C` to cancel and restore your original input
-* Press `Backspace` on empty search to cancel
+   * Press `Ctrl+C` to cancel and restore your original input
+   * Press `Backspace` on empty search to cancel
 
 The inline search scans your full prompt history, newest first, with duplicates collapsed to the newest occurrence. The fullscreen dialog searches your whole prompt history in the selected scope, newest first, with duplicates collapsed to the newest occurrence: the most recent prompts appear immediately, and matches from older prompts fill in as Claude Code loads the rest. Matching prompts display with the search term highlighted, so you can find and reuse previous inputs.
 
@@ -328,8 +329,8 @@ When a command reaches its timeout before it finishes, Claude Code automatically
 * If you background the session instead of exiting it, your background tasks keep running in the background session. See [background a running session](https://code.claude.com/docs/en/agent-view.md#from-inside-a-session)
 * Background tasks are automatically terminated if output exceeds 5GB, with a note in stderr explaining why
 * On macOS and Linux, Claude Code stops your running background tasks when the operating system reports critical memory pressure, provided the session has been idle for at least 30 minutes and no turn or subagent is running
-* The [debug log](https://code.claude.com/docs/en/debug-your-config.md) says why tasks were stopped, or why a pressure event left them running
-* Set [`CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP`](https://code.claude.com/docs/en/env-vars) to `1` to turn off memory-pressure stops
+  * The [debug log](https://code.claude.com/docs/en/debug-your-config.md) says why tasks were stopped, or why a pressure event left them running
+  * Set [`CLAUDE_CODE_DISABLE_BG_SHELL_PRESSURE_REAP`](https://code.claude.com/docs/en/env-vars) to `1` to turn off memory-pressure stops
 * Background commands in a local session you work in from a terminal, the desktop app, or the VS Code extension have no time limit. In a session that runs unattended, such as a `-p` run or a cloud session, Claude Code stops a background command at its [time limit](https://code.claude.com/docs/en/tools-reference.md#time-limit-for-background-commands)
 * A background command that a foreground [subagent](https://code.claude.com/docs/en/sub-agents.md#run-subagents-in-foreground-or-background) started ends when that subagent's run ends, whether it finished, failed, or was interrupted; see [When a background command stops](https://code.claude.com/docs/en/tools-reference.md#when-a-background-command-stops) in the tools reference
 
@@ -346,6 +347,7 @@ To turn off background commands, set the [`CLAUDE_CODE_DISABLE_BACKGROUND_TASKS`
 ### Shell mode with `!` prefix
 
 Run shell commands directly without going through Claude by prefixing your input with `!`:
+
 ```bash
 ! npm test
 ! git status
@@ -451,15 +453,16 @@ To disable prompt suggestions entirely, use any of the following:
 * Turn off **Prompt suggestions** in `/config`
 * Set [`promptSuggestionEnabled`](https://code.claude.com/docs/en/settings-reference#promptsuggestionenabled) to `false` in your settings file
 * Set the [`CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION`](https://code.claude.com/docs/en/env-vars) environment variable to `false`, which takes precedence over the setting:
-```bash
+  ```bash
   export CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION=false
-```
+  ```
 
 To turn prompt suggestions off across an organization, set `promptSuggestionEnabled` to `false` in [managed settings](https://code.claude.com/docs/en/managed-settings.md). Also set `CLAUDE_CODE_ENABLE_PROMPT_SUGGESTION` to `false` under the managed [`env`](https://code.claude.com/docs/en/settings-reference#env) key so that users can't re-enable them with their own environment variable.
 
 ## You should know suggestions
 
 "You should know" looks for one thing you should know but might have missed, such as a tradeoff Claude chose without calling it out or a result that may be off. When it finds one, it shows a short note above the prompt input:
+
 ```text
 ✦ Heads up · There was a change to how folder sharing starts in June, which may have bumped usage metrics artificially.
   1: Learn more   2: Knew this already   0: Dismiss
@@ -475,6 +478,7 @@ If the mod is available for your organization, `/plugin` lists it when you conne
 * A [first session after an install or upgrade](https://code.claude.com/docs/en/env-vars.md#first-session-after-an-install-or-upgrade) whose flags haven't arrived yet
 
 To turn it on, run this at the Claude Code prompt:
+
 ```text
 /plugin enable cc-plugin-you-should-know@builtin
 ```
@@ -492,9 +496,9 @@ To watch the checks happen, set [`CLAUDE_CODE_YOU_SHOULD_KNOW_DEBUG=1`](https://
 Type the choice's digit on its own into an empty prompt input. A note offers these choices:
 
 * **Learn more**: opens a short explanation under the note, with its own choices:
-* **Understood**: closes it and marks the topic as known
-* **Chat in main session**: quotes the note into your prompt input so you can add a question and send it to Claude
-* **Dismiss**: closes it without marking the topic as known
+  * **Understood**: closes it and marks the topic as known
+  * **Chat in main session**: quotes the note into your prompt input so you can add a question and send it to Claude
+  * **Dismiss**: closes it without marking the topic as known
 * **Knew this already**: closes the note and marks the topic as known.
 * **Dismiss**: closes the note.
 
@@ -580,6 +584,7 @@ To choose which of the three programs Claude Code runs, which dictionary it uses
 * `color`: a color name such as `yellow`, or a `#rrggbb`, `#rgb`, `rgb(r,g,b)`, `ansi256(n)`, or `ansi:<name>` value. Claude Code uses your theme's error color by default and for any value it doesn't recognize.
 
 For example, this `spellcheck` setting runs hunspell with its `en_GB` dictionary and underlines words in yellow. It works the same in `~/.claude/settings.json`, in the file you pass to `--settings`, and in managed settings:
+
 ```json
 {
   "spellcheck": {
@@ -674,6 +679,7 @@ Use these keys in the dialog:
 ## Side questions with /btw
 
 Use `/btw` to ask a question about your current work without adding to the conversation history.
+
 ```
 /btw what was the name of that config file again?
 ```
@@ -737,6 +743,7 @@ Session recap is on by default for every plan and provider. To turn automatic re
 When a claude.ai [usage limit](https://code.claude.com/docs/en/errors.md#youve-hit-your-session-limit) stops Claude mid-task, Claude Code waits in the open session and continues the task on its own after the limit resets. Automatic continue is on by default in interactive sessions signed in with a claude.ai subscription. Requires Claude Code v2.1.234 or later.
 
 While Claude Code waits, the lines at the bottom of the session show when your limit resets and when Claude will continue:
+
 ```text
 Usage limit reached · limit resets 3:45pm
 Continuing automatically at 3:45pm · Esc to cancel

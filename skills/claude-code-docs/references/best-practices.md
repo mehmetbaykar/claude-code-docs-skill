@@ -111,6 +111,7 @@ If you already have the thing Claude needs, hand it over instead of describing i
 Phrases like `think step by step` or `be thorough` are ordinary prompt text rather than keywords. The main control for how hard Claude thinks is the [effort level](https://code.claude.com/docs/en/model-config.md#adjust-effort-level), which [Change the model and effort](#change-the-model-and-effort) covers. Wording like that can still nudge Claude within its effort setting, but it won't lift it past it.
 
 One phrase that does still help is `be ambitious`. Claude tends to read a request conservatively and build the smallest thing that satisfies it, since it can't see how much you were hoping for. When you want the fuller version, with the edge cases handled and the natural follow-on included, say so:
+
 ```text
 build the settings page from the mockup. be ambitious: empty and error states, the save flow wired up, keyboard navigation, not just the layout
 ```
@@ -122,6 +123,7 @@ And when you're exploring rather than fixing something specific, a vague prompt 
 ### Brainstorm with Claude first
 
 When you don't know exactly what you want yet, you don't have to work it all out before you prompt. Ask Claude to interview you instead:
+
 ```text
 I want to add rate limiting to the public API but haven't thought it through yet. Interview me until you could write the spec, then write it to SPEC.md.
 ```
@@ -140,6 +142,7 @@ Claude Code loads [`CLAUDE.md`](https://code.claude.com/docs/en/memory) into eve
 * Anything you've had to correct twice already
 
 A `CLAUDE.md` that passes that test stays short:
+
 ```markdown CLAUDE.md
 # Commands
 - Install: pnpm install
@@ -173,6 +176,7 @@ Your personal preferences go in `CLAUDE.local.md` instead of `CLAUDE.md`, and yo
 ### Scope rules to one part of the codebase
 
 If a rule only matters in one part of the codebase, put it in [`.claude/rules/`](https://code.claude.com/docs/en/memory#path-specific-rules) with a `paths:` filter so it only loads when Claude is actually working there. For example, this `.claude/rules/api.md` loads for TypeScript files under `src/api/`:
+
 ```markdown .claude/rules/api.md
 ---
 paths:
@@ -193,6 +197,7 @@ Skills are also lighter on context than `CLAUDE.md` for this kind of thing. For 
 > The `CLAUDE.md` rule applies to skills too: only write down what Claude can't find on its own.
 
 For a workflow with side effects, like actually cutting that release, add `disable-model-invocation: true`. Claude then [can't start the skill on its own](https://code.claude.com/docs/en/skills.md#control-who-invokes-a-skill), and it only runs when you type `/release` yourself. Saved as `.claude/skills/release/SKILL.md`, it could look like this:
+
 ```markdown .claude/skills/release/SKILL.md
 ---
 name: release
@@ -210,6 +215,7 @@ disable-model-invocation: true
 Some of what Claude can't see lives in another system entirely, like your issue tracker or your error dashboard. If that system has a CLI, that's usually the easiest way in. With `gh` installed and signed in, for example, Claude will open pull requests and read review comments without any explanation from you. For a CLI it hasn't seen before, pointing it at `--help` is enough.
 
 For systems without a CLI, there's [MCP](https://code.claude.com/docs/en/mcp.md). You add a server from your shell:
+
 ```bash
 claude mcp add --transport http notion https://mcp.notion.com/mcp
 ```
@@ -254,6 +260,7 @@ Whichever option you use, ask Claude for *evidence*: the command it ran and its 
 ### Review against your spec
 
 If you'd rather have the review check the work against your plan than hunt for bugs in general, write the review prompt yourself:
+
 ```text
 use a subagent to review the rate limiter diff against SPEC.md, check every requirement is implemented and the listed edge cases have tests, report gaps that affect correctness and skip style
 ```
@@ -265,6 +272,7 @@ use a subagent to review the rate limiter diff against SPEC.md, check every requ
 ### Enforce the check with a Stop hook
 
 The `Stop` hook version of the typecheck rule is a few lines in `.claude/settings.json`. Exit code 2 is what blocks the stop. Whatever the command prints to stderr goes back to Claude as the reason it can't finish yet, which is why the compiler output is redirected there:
+
 ```json .claude/settings.json
 {
   "hooks": {
@@ -301,6 +309,7 @@ Take three rules you might have in `CLAUDE.md` today: `Never read .env`, `Always
 A `prompt` or `agent` hook asks *another model* to decide, so it isn't deterministic either. For real enforcement, use a `command` or `http` hook, and add [`onFailure: "block"`](https://code.claude.com/docs/en/hooks#block-the-action-when-a-hook-fails) if the action should also be stopped when the hook itself crashes or times out. For a hook that scans commits for secrets, say, you'd rather block the commit than let it through unscanned while the scanner is down.
 
 Here's the formatter rule as a `PostToolUse` hook. It runs after every `Edit` or `Write`, and whether Claude remembers the rule no longer matters, because Claude isn't the one running it:
+
 ```json .claude/settings.json
 {
   "hooks": {
@@ -323,6 +332,7 @@ The migrations rule becomes a [`PreToolUse` hook](https://code.claude.com/docs/e
 ### Limit access with permission rules and the sandbox
 
 [Permission rules](https://code.claude.com/docs/en/permissions.md) decide what Claude is allowed to run, read, and fetch. `deny` rules hold in every permission mode, including auto and `bypassPermissions`, which is exactly why the `.env` rule belongs there:
+
 ```json .claude/settings.json
 {
   "permissions": {
@@ -398,6 +408,7 @@ None of this replaces your deterministic controls, because it runs *after* them.
 > You can also say `don't push until I've reviewed` in the conversation, and the classifier [treats that as a block signal](https://code.claude.com/docs/en/permission-modes.md#boundaries-you-state-in-conversation). It's still a model reading the transcript, and the sentence can get lost when the conversation compacts, so anything that matters belongs in a deny rule.
 
 The opposite problem is the classifier repeatedly stopping something that's routine in your setup. Rather than approving it manually every time, add it to `autoMode.allow` or describe your trusted infrastructure in the [auto mode configuration](https://code.claude.com/docs/en/auto-mode-config.md). It's plain English rather than patterns, and [`/auto-mode-setup`](https://code.claude.com/docs/en/auto-mode-config#generate-environment-entries) can draft the `environment` part for you from your project and recent sessions:
+
 ```json ~/.claude/settings.json
 {
   "autoMode": {
@@ -462,6 +473,7 @@ To spend less on them:
 * Give a custom subagent in `.claude/agents/` only `tools: Read, Grep, Glob`. Now it's a reviewer that can't edit anything, and that limit is enforced by Claude Code rather than requested in a prompt.
 
 That reviewer is one short file, `.claude/agents/reviewer.md`:
+
 ```markdown .claude/agents/reviewer.md
 ---
 name: reviewer
@@ -539,6 +551,7 @@ In a script you'll almost always want a few more flags:
 * `--output-format json` gives you a single result object to parse, and `stream-json` with `--verbose` streams events as they happen.
 
 Put together, that looks like this:
+
 ```bash
 for file in $(cat files.txt); do
   claude --bare -p "Migrate $file to the new logger API and commit. Reply OK or FAIL." \
@@ -557,6 +570,7 @@ Auto mode works with `-p` too if you pass `--permission-mode auto`. In a non-int
 Once a run is going, Claude can handle the rest by itself. The one thing it can't do is decide to *start*, so something has to: you, a timer, or an event like a failed CI check or a new PR.
 
 Inside an open session that's [`/loop`](https://code.claude.com/docs/en/scheduled-tasks#run-a-prompt-repeatedly-with-%2Floop), which repeats a prompt on an interval:
+
 ```text
 /loop 15m check CI on this branch, and if it's red pull the failing job's log, fix it and push
 ```
@@ -572,6 +586,7 @@ Each run is another turn in the same session, so don't leave one going in a long
 When you have separate pieces of work going at once, give each its own checkout so the edits can't collide. [`claude -w feature-auth`](https://code.claude.com/docs/en/worktrees#start-claude-in-a-worktree) starts a session in a new worktree, the [desktop app](https://code.claude.com/docs/en/desktop.md#work-in-parallel-with-sessions) runs several of these side by side, and [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web.md) run them in the cloud instead of on your machine.
 
 A worktree is a fresh checkout, which means gitignored files like `.env` aren't there and dependencies aren't installed. For the first, list the gitignored files you need in a [`.worktreeinclude`](https://code.claude.com/docs/en/worktrees#copy-gitignored-files-into-worktrees) at the repo root (same syntax as `.gitignore`) and Claude Code copies them into every worktree it creates:
+
 ```text .worktreeinclude
 .env
 .env.local

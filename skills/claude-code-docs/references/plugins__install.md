@@ -174,6 +174,7 @@ Run `claude plugin install` in your shell to install a plugin without starting a
 * **Scope**: user scope by default. Pass `--scope project` or `--scope local` to change it.
 * **When the plugins load**: plugins it installs load the next time you start Claude Code, or when you run `/reload-plugins` in a session that's already open.
 * **The marketplace on a new machine**: on a machine where no one has opened an interactive Claude Code session yet, the official marketplace isn't registered, so a script that installs from it runs `claude plugin marketplace add anthropics/claude-plugins-official` before the install. See [Add and install from your shell](#add-and-install-from-your-shell).
+
 ```bash
 claude plugin install formatter@your-org --scope project
 ```
@@ -216,6 +217,7 @@ To install a plugin from a marketplace you haven't added yet, name the marketpla
 #### Add and install in a session
 
 Run `/plugin install` in a Claude Code session with the plugin and the source. Requires Claude Code v2.1.275 or later. In a session, the source can't contain spaces.
+
 ```text
 /plugin install deploy-helper --marketplace your-org/plugins
 ```
@@ -225,6 +227,7 @@ If you haven't added that marketplace yet, Claude Code shows the source it resol
 #### Add and install from your shell
 
 In your shell, without starting a session, run `claude plugin install` with the plugin and the source. Requires Claude Code v2.1.292 or later.
+
 ```bash
 claude plugin install deploy-helper --marketplace your-org/plugins
 ```
@@ -257,6 +260,7 @@ Add a claude.ai marketplace from the `/plugin` panel or from your shell:
 * **From your shell**: run `claude plugin marketplace list`, which prints them in a `From claude.ai:` section. Then run `claude plugin marketplace add` with the `--claudeai` flag and the name shown in the list.
 
 For example, this command adds a marketplace named `claudeai-organization-library`:
+
 ```bash
 claude plugin marketplace add --claudeai claudeai-organization-library
 ```
@@ -329,6 +333,7 @@ You can also manage plugins without starting a Claude Code session. In your shel
 * `install` and `uninstall` act on user scope.
 
 For example, these commands disable and re-enable a plugin, then uninstall it at project scope:
+
 ```bash
 claude plugin disable formatter@your-org
 claude plugin enable formatter@your-org

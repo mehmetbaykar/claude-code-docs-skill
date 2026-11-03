@@ -195,7 +195,7 @@ Telemetry events fire for the usage records Claude Code logs:
 
 ### Settings hook events
 
-Each [settings hook event](https://code.claude.com/docs/en/hooks.md#hook-events) is an event named `classic.`, such as `classic.Stop` or `classic.PostToolUse`. `e` is the hook's stdin JSON.
+Each [settings hook event](https://code.claude.com/docs/en/hooks.md#hook-events) is an event named `classic.<Event>`, such as `classic.Stop` or `classic.PostToolUse`. `e` is the hook's stdin JSON.
 
 ### Mods API calls
 

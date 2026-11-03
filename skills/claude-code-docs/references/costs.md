@@ -25,6 +25,7 @@ This page covers Claude Code usage only: how to [track your costs](#track-your-c
 The Session block at the top of `/usage` shows detailed token usage statistics for your current session.
 
 Claude Code computes the dollar figure locally from token counts at list price, unless a [`modelPricing`](https://code.claude.com/docs/en/settings-reference#modelpricing) table is in effect. An administrator sets one in your organization's managed settings so the figure uses your contracted rates, and while a table is in effect the `Total cost` line carries the note `at your organization's configured rates`. The figure is an estimate, so for authoritative billing see [Manage costs for your organization](#manage-costs-for-your-organization).
+
 ```text
 Total cost:            $0.55
 Total duration (API):  6m 20s
@@ -41,6 +42,7 @@ For a response from the Claude API billed at the 1.1× [data residency rate](htt
 #### Prompt cache statistics
 
 After the main conversation's first API response, Claude Code also adds a `Prompt cache (main)` line to the Session block, summarizing the session's [prompt cache](https://code.claude.com/docs/en/prompt-caching.md) use: the request count, the share of input tokens served from cache, cache misses, and whether the cache is warm right now. Requires Claude Code v2.1.251 or later.
+
 ```text
 Prompt cache (main):   14 requests · 91% of input tokens from cache · 2 misses (last 6m 10s ago, 310.2k tokens re-cached) · 1 expected rebuild (compaction or tool-result clearing) · warm (1h TTL, last activity 40s ago)
 ```
@@ -61,11 +63,11 @@ On a Pro, Max, Ultra, Team, or Enterprise plan, `/usage` also shows a breakdown 
 
 * **Attribution**: recent usage attributed to skills, subagents, plugins, and individual MCP servers, each shown as a percentage of the total. An MCP server's share counts only the requests that consumed one of its tool results. Before v2.1.222, after one call to an MCP server, Claude Code attributed every subsequent request to that server, overstating its share.
 * **Recommendations**: suggested changes, one per row. Each row starts with a share of your recent usage, at least 10%, as in `25%  Trim ~/code/api/CLAUDE.md · 49k tokens per request`.
-* **How to read the share**: it tells you how much of your usage the row applies to, not how much the change saves. One request can count toward several rows, so the shares can add up to more than 100%.
-* **How to apply recommendations**: to have Claude Code apply the ones it can, see [Apply recommendations with the fix shortcut](#apply-recommendations-with-the-fix-shortcut)
+  * **How to read the share**: it tells you how much of your usage the row applies to, not how much the change saves. One request can count toward several rows, so the shares can add up to more than 100%.
+  * **How to apply recommendations**: to have Claude Code apply the ones it can, see [Apply recommendations with the fix shortcut](#apply-recommendations-with-the-fix-shortcut)
 * **Loops**: a row for each of the heaviest [`/loop` or other session-scoped scheduled tasks](https://code.claude.com/docs/en/scheduled-tasks) that ran recently, ordered by total tokens, with a count of the rest. Requires Claude Code v2.1.242 or later.
-* **What each row reports**: how often the task fires, how many times it ran, its total and per-run tokens, and when it last ran
-* **Stopped and re-created loops**: Claude Code keys a row by the task's prompt, so a loop you stop and re-create stays one row
+  * **What each row reports**: how often the task fires, how many times it ran, its total and per-run tokens, and when it last ran
+  * **Stopped and re-created loops**: Claude Code keys a row by the task's prompt, so a loop you stop and re-create stays one row
 
 Press `d` or `w` to switch between the last 24 hours and the last 7 days. The figures are approximate and computed from local session history on this machine, so usage from other devices or claude.ai is not included.
 
@@ -233,8 +235,8 @@ For per-user cost attribution, you have three options:
 Developers usually bring limit questions to their admin, so it helps to know which ceiling they hit. These situations mean different things:
 
 * **"You've hit your session limit" or "You've hit your weekly limit"**: a seat-based usage window on a subscription plan, shared across all models, so the developer can't restore access by switching models with `/model`. The message shows when the window resets. After the model-specific "You've hit your Opus limit" or "You've hit your Sonnet limit" message, switching to a model outside that family with `/model` does keep the developer working. See [usage limit errors](https://code.claude.com/docs/en/errors.md#youve-hit-your-session-limit). What the developer can do in the meantime:
-* Run `/usage-credits` to request usage beyond the allowance, if you have [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) turned on.
-* On Claude Code v2.1.234 or later, [wait and continue the interrupted task automatically after the reset](https://code.claude.com/docs/en/interactive-mode.md#wait-for-a-usage-limit-to-reset); that section lists when Claude Code starts the wait on its own and when the developer picks it from `/rate-limit-options`. To control for your fleet whether Claude Code starts that wait on its own, set [`autoContinueAtUsageLimit`](https://code.claude.com/docs/en/settings-reference#autocontinueatusagelimit) in [managed settings](https://code.claude.com/docs/en/settings.md#settings-precedence).
+  * Run `/usage-credits` to request usage beyond the allowance, if you have [usage credits](https://support.claude.com/en/articles/12429409-extra-usage-for-paid-claude-plans) turned on.
+  * On Claude Code v2.1.234 or later, [wait and continue the interrupted task automatically after the reset](https://code.claude.com/docs/en/interactive-mode.md#wait-for-a-usage-limit-to-reset); that section lists when Claude Code starts the wait on its own and when the developer picks it from `/rate-limit-options`. To control for your fleet whether Claude Code starts that wait on its own, set [`autoContinueAtUsageLimit`](https://code.claude.com/docs/en/settings-reference#autocontinueatusagelimit) in [managed settings](https://code.claude.com/docs/en/settings.md#settings-precedence).
 * **"You've hit your individual spend limit", "org's monthly spend limit", or "team's shared budget"**: the developer's request would be billed to usage credits, and those credits have reached a spend limit you set. To let the developer continue, go to [**Organization settings > Usage**](https://claude.ai/admin-settings/usage) and increase the limit the message names. When the message also names a plan reset time, the developer can instead wait until then. See [the error reference](https://code.claude.com/docs/en/errors.md#youve-hit-your-monthly-spend-limit) for each variant.
 * **A spend limit message from a [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway)**: the developer passed a spend cap you set on your self-hosted gateway, and the gateway blocks their requests until the period resets or you raise the cap. See [gateway spend limits](https://code.claude.com/docs/en/claude-apps-gateway-spend-limits.md) for caps, reset schedules, and the message the developer sees.
 * **A context or auto-compact warning**: not a usage limit. The conversation has grown close to the session's [auto-compact window](https://code.claude.com/docs/en/model-config.md#set-the-auto-compact-window), the threshold where Claude Code summarizes older history to free space. Point the developer at [reduce token usage](#reduce-token-usage).
@@ -266,6 +268,7 @@ Use `/usage` to check your current token usage, or [configure your status line](
 * **Add custom compaction instructions**: `/compact Focus on code samples and API usage` tells Claude what to preserve during summarization.
 
 You can also customize compaction behavior in your CLAUDE.md file at the root of your project:
+
 ```markdown
 # Compact instructions
 

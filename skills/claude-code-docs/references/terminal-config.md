@@ -81,6 +81,7 @@ By default, Claude Code sends a desktop notification in some terminals, and a be
 * **Other terminals**: nothing.
 
 To make Claude Code send the bell character whatever the terminal or profile, set [`preferredNotifChannel`](https://code.claude.com/docs/en/settings-reference#preferrednotifchannel) to `"terminal_bell"`. In Apple Terminal, also turn on **Audible bell** under **Settings > Profiles > Advanced** to hear it. The following settings entry sets the channel:
+
 ```json ~/.claude/settings.json
 {
   "preferredNotifChannel": "terminal_bell"
@@ -104,6 +105,7 @@ If notifications still do not appear, confirm that your terminal application has
 In any terminal you can configure a [Notification hook](https://code.claude.com/docs/en/hooks-guide.md#get-notified-when-claude-needs-input) to play a sound or run a custom command when Claude needs your attention. Hooks run alongside the built-in notification rather than replacing it, so terminals that do not receive a desktop notification, such as Warp or the VS Code integrated terminal, can use a hook or set `preferredNotifChannel` to `"terminal_bell"` instead.
 
 The example below plays a system sound on macOS. The linked guide has desktop notification commands for macOS, Linux, and Windows.
+
 ```json ~/.claude/settings.json
 {
   "hooks": {
@@ -132,6 +134,7 @@ The tab title doesn't start with a status glyph in a terminal that reports suppo
 ## Configure tmux
 
 When Claude Code runs inside tmux, by default Shift+Enter submits instead of inserting a newline, and desktop notifications and the [progress bar](https://code.claude.com/docs/en/settings-reference.md#terminalprogressbarenabled) never reach the outer terminal. Add these lines to `~/.tmux.conf`, then run `tmux source-file ~/.tmux.conf` to apply them to the running server:
+
 ```bash ~/.tmux.conf
 set -g allow-passthrough on
 set -g focus-events on
@@ -170,6 +173,7 @@ Each custom theme is a JSON file in `~/.claude/themes/`. The filename without th
 Color values accept `#rrggbb`, `#rgb`, `rgb(r,g,b)`, `ansi256(n)`, or `ansi:<name>` where `<name>` is one of the 16 standard ANSI color names such as `red` or `cyanBright`. Unknown tokens and invalid color values are ignored, so a typo cannot break rendering.
 
 The following example defines a theme that keeps the dark preset but recolors the prompt accent, error text, and success text:
+
 ```json ~/.claude/themes/dracula.json
 {
   "name": "Dracula",
@@ -305,12 +309,15 @@ If the display flickers or the scroll position jumps while Claude is working, sw
 If flicker is the only problem and your terminal supports synchronized output but isn't auto-detected, such as Emacs `eat`, set [`CLAUDE_CODE_FORCE_SYNC_OUTPUT=1`](https://code.claude.com/docs/en/env-vars) to stop the flicker without changing renderers.
 
 Run `/tui fullscreen` to switch and save the preference. Your conversation relaunches intact and future sessions start in fullscreen unless a [fullscreen start fails](https://code.claude.com/docs/en/fullscreen.md#fullscreen-renderer-didnt-finish-starting). You can also set the `CLAUDE_CODE_NO_FLICKER` environment variable before starting Claude Code:
+
 ```bash Bash and Zsh
 CLAUDE_CODE_NO_FLICKER=1 claude
 ```
+
 ```powershell PowerShell
 $env:CLAUDE_CODE_NO_FLICKER = "1"; claude
 ```
+
 ```json ~/.claude/settings.json
 {
   "env": {

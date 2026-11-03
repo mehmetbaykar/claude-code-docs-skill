@@ -25,6 +25,7 @@ The keybindings configuration file is an object with a `bindings` array. Each bl
 | `bindings` | Array of binding blocks by context |
 
 This example binds `Ctrl+E` to open an external editor in the chat context, and unbinds `Ctrl+S`:
+
 ```json
 {
   "$schema": "https://www.schemastore.org/claude-code-keybindings.json",
@@ -164,6 +165,7 @@ Dialogs use `confirm:yes` and `confirm:no` to accept and cancel even when they d
 In most dialogs, pressing `Ctrl+C` or `Ctrl+D` twice closes the dialog instead of exiting Claude Code. The hint after the first press says whether the second press closes the dialog or exits. Both keys are [reserved](#reserved-shortcuts) and can't be rebound.
 
 This example binds `y` to `confirm:yes` and `n` to `confirm:no`:
+
 ```json
 {
   "bindings": [
@@ -287,6 +289,7 @@ While a footer item is selected, such as a row in the agent panel below the prom
 In the message list of the [rewind menu](https://code.claude.com/docs/en/checkpointing.md), you move through messages and pick one with the [Select actions](#select-actions) and their default keys. Your `Select` bindings for those actions apply there too. The `MessageSelector` context has no actions or default bindings of its own. Use it to change a key for this list alone, by binding a Select action such as `select:accept` in a `MessageSelector` block.
 
 This example binds `o` to pick the highlighted message in the rewind menu, without changing any other list:
+
 ```json
 {
   "bindings": [
@@ -516,6 +519,7 @@ Use modifier keys with the `+` separator:
 The `cmd` group is only detected in terminals that report the Super modifier, such as those supporting the Kitty keyboard protocol or xterm's `modifyOtherKeys` mode. Most terminals do not send it, so use `ctrl` or `meta` for bindings you want to work everywhere.
 
 For example:
+
 ```text
 ctrl+k          Ctrl + K
 shift+tab       Shift + Tab
@@ -539,6 +543,7 @@ How Claude Code matches the key you press to a binding depends on the kind of la
 ### Chords
 
 Chords are sequences of keystrokes separated by spaces:
+
 ```text
 ctrl+k ctrl+s   Press Ctrl+K, release, then Ctrl+S
 ```
@@ -560,6 +565,7 @@ Press each keystroke within 3 seconds of the one before it. If you wait longer, 
 ## Unbind default shortcuts
 
 Set an action to `null` to unbind a default shortcut:
+
 ```json
 {
   "bindings": [
@@ -586,6 +592,7 @@ Claude Code binds these default chords on the `ctrl+x` prefix, by context:
 The `ctrl+x enter` chord requires v2.1.247 or later, `ctrl+x b`, `ctrl+x ctrl+a`, and `ctrl+x tab` require v2.1.260 or later, and `ctrl+x ctrl+s` requires v2.1.275 or later.
 
 To reclaim `ctrl+x` itself as a single-key binding, unbind all of them:
+
 ```json
 {
   "bindings": [
@@ -690,6 +697,7 @@ In the `Other` row of a question Claude asks, Escape doesn't cancel the question
 To cancel a question with one key press in vim mode, bind another key to `select:cancel` in the `Select` context. You can cancel this way from the `Other` row of a question where you select one option. In [screen reader mode](https://code.claude.com/docs/en/accessibility.md) or in a question where you can select several options, the bound key doesn't cancel, so cancel with Escape instead.
 
 Pick a key that you press with Ctrl or Alt. A bare letter or digit [goes to the `Other` row](#text-fields) instead and doesn't reach your bindings. For example, to bind `Ctrl+Q`, add this to `~/.claude/keybindings.json`:
+
 ```json
 {
   "bindings": [

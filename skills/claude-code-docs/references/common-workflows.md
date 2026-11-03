@@ -32,6 +32,7 @@ For configuring Claude Code in a monorepo or large codebase, see [Monorepos and 
 Suppose you've just joined a new project and need to understand its structure quickly.
 
 **1. Navigate to the project root directory**
+
 ```bash
 cd /path/to/project
 ```
@@ -39,22 +40,27 @@ cd /path/to/project
 Replace `/path/to/project` with the path to your project.
 
 **2. Start Claude Code**
+
 ```bash
 claude
 ```
 
 **3. Ask for a high-level overview**
+
 ```text wrap
 give me an overview of this codebase
 ```
 
 **4. Dive deeper into specific components**
+
 ```text wrap
 explain the main architecture patterns used here
 ```
+
 ```text wrap
 what are the key data models?
 ```
+
 ```text wrap
 how is authentication handled?
 ```
@@ -72,16 +78,19 @@ how is authentication handled?
 Suppose you need to locate code related to a specific feature or functionality.
 
 **1. Ask Claude to find relevant files**
+
 ```text wrap
 find the files that handle user authentication
 ```
 
 **2. Get context on how components interact**
+
 ```text wrap
 how do these authentication files work together?
 ```
 
 **3. Understand the execution flow**
+
 ```text wrap
 trace the login process from front-end to database
 ```
@@ -101,16 +110,19 @@ trace the login process from front-end to database
 Suppose you've encountered an error message and need to find and fix its source.
 
 **1. Share the error with Claude**
+
 ```text wrap
 I'm seeing an error when I run npm test
 ```
 
 **2. Ask for fix recommendations**
+
 ```text wrap
 suggest a few ways to fix the @ts-ignore in user.ts
 ```
 
 **3. Apply the fix**
+
 ```text wrap
 update user.ts to add the null check you suggested
 ```
@@ -132,21 +144,25 @@ Suppose you need to update old code to use modern patterns and practices.
 For porting an entire codebase to a new language, see [how Anthropic runs large-scale code migrations with Claude Code](https://claude.com/blog/ai-code-migration) on the blog.
 
 **1. Identify legacy code for refactoring**
+
 ```text wrap
 find deprecated API usage in our codebase
 ```
 
 **2. Get refactoring recommendations**
+
 ```text wrap
 suggest how to refactor utils.js to use modern JavaScript features
 ```
 
 **3. Apply the changes safely**
+
 ```text wrap
 refactor utils.js to use ES2024 features while maintaining the same behavior
 ```
 
 **4. Verify the refactoring**
+
 ```text wrap
 run tests for the refactored code
 ```
@@ -166,21 +182,25 @@ run tests for the refactored code
 Suppose you need to add tests for uncovered code.
 
 **1. Identify untested code**
+
 ```text wrap
 find functions in NotificationsService.swift that are not covered by tests
 ```
 
 **2. Generate test scaffolding**
+
 ```text wrap
 add tests for the notification service
 ```
 
 **3. Add meaningful test cases**
+
 ```text wrap
 add test cases for edge conditions in the notification service
 ```
 
 **4. Run and verify tests**
+
 ```text wrap
 run the new tests and fix any failures
 ```
@@ -196,16 +216,19 @@ To improve coverage, ask Claude to identify edge cases you might have missed. Cl
 You can create pull requests by asking Claude directly ("create a pr for my changes"), or guide Claude through it step-by-step:
 
 **1. Summarize your changes**
+
 ```text wrap
 summarize the changes I've made to the authentication module
 ```
 
 **2. Generate a pull request**
+
 ```text wrap
 create a pr
 ```
 
 **3. Review and refine**
+
 ```text wrap
 enhance the PR description with more context about the security improvements
 ```
@@ -221,21 +244,25 @@ To find the session later, run `claude --from-pr 1234` with your own PR number, 
 Suppose you need to add or update documentation for your code.
 
 **1. Identify undocumented code**
+
 ```text wrap
 find functions without proper JSDoc comments in the auth module
 ```
 
 **2. Generate documentation**
+
 ```text wrap
 add JSDoc comments to the undocumented functions in auth.js
 ```
 
 **3. Review and enhance**
+
 ```text wrap
 improve the generated documentation with more context and examples
 ```
 
 **4. Verify documentation**
+
 ```text wrap
 check if the documentation follows our project standards
 ```
@@ -271,28 +298,35 @@ You can use any of these methods:
 3. Provide an image path to Claude, for example "Analyze this image: /path/to/your/image.png"
 
 **2. Ask Claude to analyze the image**
+
 ```text wrap
 What does this image show?
 ```
+
 ```text wrap
 Describe the UI elements in this screenshot
 ```
+
 ```text wrap
 Are there any problematic elements in this diagram?
 ```
 
 **3. Use images for context**
+
 ```text wrap
 Here's a screenshot of the error. What's causing it?
 ```
+
 ```text wrap
 This is our current database schema. How should we modify it for the new feature?
 ```
 
 **4. Get code suggestions from visual content**
+
 ```text wrap
 Generate CSS to match this design mockup
 ```
+
 ```text wrap
 What HTML structure would recreate this component?
 ```
@@ -314,6 +348,7 @@ What HTML structure would recreate this component?
 Use @ to quickly include files or directories without waiting for Claude to read them.
 
 **1. Reference a single file**
+
 ```text wrap
 Explain the logic in @src/utils/auth.js
 ```
@@ -321,11 +356,13 @@ Explain the logic in @src/utils/auth.js
 This includes the content of the file in the conversation when it fits the [Read tool](https://code.claude.com/docs/en/tools-reference.md#read-tool-behavior)'s token limit, 25,000 tokens by default. A text file larger than 256KB isn't included.
 
 **2. Reference a directory**
+
 ```text wrap
 What's the structure of @src/components?
 ```
 
 **3. Reference MCP resources**
+
 ```text wrap
 Show me the data from @github:repos/owner/repo/issues
 ```
@@ -375,21 +412,27 @@ Pick a scheduling option based on where you want the task to run:
 Claude can answer questions about its own features and limitations. It looks up the answers in the current Claude Code documentation, so they aren't limited to the version you're running.
 
 #### Example questions
+
 ```text wrap
 can Claude Code create pull requests?
 ```
+
 ```text wrap
 how does Claude Code handle permissions?
 ```
+
 ```text wrap
 what skills are available?
 ```
+
 ```text wrap
 how do I use MCP with Claude Code?
 ```
+
 ```text wrap
 how do I configure Claude Code for Amazon Bedrock?
 ```
+
 ```text wrap
 what are the limitations of Claude Code?
 ```
@@ -410,6 +453,7 @@ what are the limitations of Claude Code?
 ## Resume previous conversations
 
 When a task spans multiple sittings, pick up where you left off instead of re-explaining context. Claude Code saves every conversation locally.
+
 ```bash
 claude --continue
 ```
@@ -419,6 +463,7 @@ This resumes the most recent session in the current directory; if there isn't on
 ## Run parallel sessions with worktrees
 
 Work on a feature in one terminal while Claude fixes a bug in another, without the edits colliding. Each [git worktree](https://git-scm.com/docs/git-worktree) is a separate checkout on its own branch, created from an existing commit, so the repository needs at least one commit first.
+
 ```bash
 claude --worktree feature-auth
 ```
@@ -428,6 +473,7 @@ Run the same command with a different name in a second terminal to start an isol
 ## Plan before editing
 
 For changes you want to review before they touch disk, switch to plan mode. Claude reads files and proposes a plan but makes no edits until you approve. The status bar shows `⏸ plan mode on` while plan mode is active.
+
 ```bash
 claude --permission-mode plan
 ```
@@ -437,6 +483,7 @@ You can also press `Shift+Tab` mid-session until the status bar shows `⏸ plan 
 ## Delegate research to subagents
 
 Exploring a large codebase fills your context with file reads. Delegate the exploration so only the findings come back.
+
 ```text wrap
 use a subagent to investigate how our auth system handles token refresh
 ```
@@ -446,6 +493,7 @@ The subagent reads files in its own context window and reports a summary. See [S
 ## Pipe Claude into scripts
 
 Run Claude non-interactively for CI, pre-commit hooks, or batch processing. Stdin and stdout work like any Unix tool.
+
 ```bash
 git log --oneline -20 | claude -p "summarize these recent commits"
 ```

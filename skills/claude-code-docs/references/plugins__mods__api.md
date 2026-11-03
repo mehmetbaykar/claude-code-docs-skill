@@ -19,6 +19,7 @@ A mod can add a command for the user to run and a tool for Claude to call. Regis
 ### Add a command
 
 A command is for the user. Register it, then handle [`command.run`](https://code.claude.com/docs/en/plugins/mods/reference#commands-and-configuration) for its name. This example adds a `/standup` command that takes an optional number of days:
+
 ```javascript
 on('session.start', async ($, e, next) => {
   // Add /standup to the command list, with the description the user sees there
@@ -42,6 +43,7 @@ Pick a name that no built-in command uses. Type `/` in a session to see them. `$
 ### Add a tool
 
 A tool is for Claude. Register it with a name, a description Claude reads, and a JSON Schema for its input. Claude sees it under a longer name made of `mcp__`, your plugin's name, two underscores, and the name you registered. You handle its calls in a [`tool.call`](https://code.claude.com/docs/en/plugins/mods/events#guard-or-change-a-tool-call) hook filtered to that full name. This example, from a plugin named `my-mod`, registers `ticket`, so the full name is `mcp__my-mod__ticket`. It gives Claude a tool that looks up a ticket in an issue tracker:
+
 ```javascript
 on('session.start', async ($, e, next) => {
   await $.tool.register({
@@ -92,6 +94,7 @@ Both calls use the session's credentials, so they bill to the user's plan, API k
 Pass `model` and `prompt` to `$.model.complete`. `prompt` becomes the user message. To give the model instructions, such as a role or an output format, also pass `system`, which becomes the system prompt.
 
 This hook answers a `/triage` command, [registered as a command](#add-a-command), by asking a small model to label the text typed after it:
+
 ```javascript
 on('command.run', { command: 'triage' }, async ($, e) => {
   const r = await $.model.complete({
@@ -126,6 +129,7 @@ To set a breakpoint, pass `prompt` as an array of `{ text }` blocks instead of a
 > Arrays of blocks require Claude Code v2.1.292 or later. Earlier versions reject an array in `prompt` with an error that ends with `takes { model, prompt } (host check)`, and they leave an array in `system` out of the request.
 
 This version of the [`/triage` hook](#send-one-prompt) sends a long set of labeling rules before the text to label, with a breakpoint after the rules. `RULES` is a string of your own:
+
 ```javascript
 on('command.run', { command: 'triage' }, async ($, e) => {
   const r = await $.model.complete({
@@ -184,6 +188,7 @@ Claude Code sends the strings your hook passes to `next` and uses the arrays you
 Work that outlives one event, such as checking on something once a minute, runs on a timer you start from `session.start`. A hook itself runs for one event and has a [time limit](https://code.claude.com/docs/en/plugins/mods/reference.md#limits) on its own execution time. Time spent waiting on `next` or on a mods API call doesn't count, except a `$.clock.sleep`. `$.clock.every` and `$.clock.after` take the place of `setInterval` and `setTimeout`, with the delay in milliseconds first: `$.clock.after(5000, fn)` calls `fn` once, five seconds from now. Each returns a timer with a `cancel()` method, and `await $.clock.now()` gives the time in milliseconds.
 
 This hook looks up a pull request's checks once a minute and shows the result under the prompt. `summarize` is a function of your own that turns the command's JSON output into a few words:
+
 ```javascript
 on('session.start', async ($, e, next) => {
   // Call the function every 60,000 milliseconds, starting one minute from now
@@ -230,6 +235,7 @@ When the call reaches a running session, the user's [`Notification` hooks](https
 A terminal doesn't report whether it showed the notification, so `isSent: true` means it was sent, not that the user saw it.
 
 This example notifies when the main conversation's turn ends without an interruption, and falls back to a toast when no notification with text went out. It doesn't wait for the notification before passing the event on, because the user's `Notification` hooks run first and can take a while:
+
 ```javascript
 on('turn.complete', ($, e, next) => {
   const isMainTurn = e.agentId === undefined && !e.isAborted
@@ -270,6 +276,7 @@ When a call's result or error contains one of these strings, keep its arguments 
 * **`was removed from the queue before it ran`**: the prompt or command left the queue without running and was dropped, for example when the user stopped the turn
 
 In this example, call `submitPrompt` from your background job in place of [`$.prompt.submit`](#start-a-turn-from-a-background-job). Put the `pendingText` variable and the `submitPrompt` function above [`register`](https://code.claude.com/docs/en/plugins/mods/reference#files), and the `turn.complete` hook inside it, because [validation](https://code.claude.com/docs/en/plugins/mods/create.md#check-what-claude-code-reads-from-your-mod) refuses `$` passed to a function declared inside `register`. When the result or the error carries one of those strings, `submitPrompt` keeps the text in `pendingText` for the `turn.complete` hook to submit again:
+
 ```javascript
 // The text of the last refused or dropped prompt, or null
 let pendingText = null
@@ -353,6 +360,7 @@ A refused `$.prompt.submit` resolves with `{ drop: '<reason>' }`. Other refused 
 If your mod submits a prompt at the end of every turn, each prompt starts another turn. Without [`--max-turns`](https://code.claude.com/docs/en/cli-reference#cli-flags) or `--max-budget-usd`, a `claude -p` run that loads the mod goes on until you stop it yourself.
 
 To make the run end on its own, add either flag to the command in your shell. If other people start the run, have your mod stop submitting prompts once its work is done. This command adds `--max-turns`:
+
 ```bash
 claude -p "find the TODOs" --max-turns 5
 ```
@@ -374,6 +382,7 @@ To send one, call `$.session.send({ to, text })`, which makes the same delivery 
 The call resolves once the message is queued, with `{ isDelivered: true }`. When nothing was delivered, it resolves with `{ isDelivered: false, reason }`, and `reason` says why.
 
 This hook answers a `/ping` command, [registered as a command](#add-a-command), by asking the session whose id you type after it for a status:
+
 ```javascript
 on('command.run', { command: 'ping' }, async ($, e) => {
   // e.args is the session id typed after /ping

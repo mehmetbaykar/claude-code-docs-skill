@@ -1,57 +1,53 @@
 ---
 name: claude-code-docs
 description: >-
-  Local mirror of Anthropic Claude Code product documentation
-  (code.claude.com/docs): CLI, hooks, skills, plugins, MCP, subagents,
-  AGENTS.md, slash commands, output styles, sandboxing, permissions, Agent SDK
-  (TypeScript and Python), Claude Desktop, Slack, Chrome, Web, monitoring and
-  usage, the Claude Code changelog, and weekly "What's New" digests. Use
-  whenever the user asks how Claude Code behaves, how to install or configure
-  Claude Code, or what a Claude Code flag, hook, slash command, environment
-  variable, or feature does. Read this skill's references/ before generic web
-  search for Claude Code product questions. Do NOT use for OpenAI Codex,
-  Cursor, general Anthropic API, Claude.ai consumer, or other coding agents.
+  Answers questions about Anthropic's Claude Code from a local mirror of its
+  official documentation (code.claude.com/docs). Use when someone asks how
+  Claude Code behaves or how to set it up: CLI flags, settings, hooks, skills,
+  plugins, MCP servers, subagents, slash commands, permissions, sandboxing,
+  memory and CLAUDE.md, output styles, the Agent SDK, the IDE, desktop, web,
+  and Slack surfaces, monitoring, or release notes. Read the mirror before
+  searching the web. Not for OpenAI Codex, Cursor, the Claude API, or
+  claude.ai chat.
+license: MIT for the mirroring tooling; the mirrored documentation belongs to Anthropic.
+compatibility: Any agent that reads Agent Skills, such as Claude Code, Codex, or Cursor. Needs read access to this skill's files and no network access.
+allowed-tools: Read Grep Glob
+metadata:
+  upstream: https://code.claude.com/docs/en/
+  repository: https://github.com/mehmetbaykar/claude-code-docs-skill
 ---
 
 # Claude Code Docs
 
-Local mirror of Anthropic Claude Code documentation, kept fresh by a 3-hour GitHub Action. The cleaned Markdown lives in `references/`; the auto-generated topic list lives in `references/INDEX.md`; the per-file manifest with upstream URLs lives in `references/docs_manifest.json`.
+A local mirror of the Claude Code documentation, refreshed from code.claude.com every 3 hours. Start at `references/INDEX.md`. Each page is a file `references/<topic>.md` whose frontmatter holds its `title`, `source` URL, and `path`; `references/docs_manifest.json` records every page's upstream URL and status.
 
-## Scope
+## Find the page
 
-Use this skill for Claude Code-specific product and configuration questions, including CLI behavior, settings, slash commands, hooks, skills, plugins, MCP, subagents, AGENTS.md, output styles, sandboxing, permissions, environment variables, monitoring and usage, Claude Desktop, Slack, Chrome, Web, Agent SDK, and release notes. If the question is about OpenAI Codex, Cursor, Claude.ai consumer features, the general Anthropic API, or another non-Claude-Code product, this skill does not apply.
+1. Turn the topic into a slug: lowercase, drop a leading `/docs/en/`, and join nested segments with `__` (for example `agent sdk hooks` becomes `agent-sdk__hooks`).
+2. If `references/<slug>.md` exists, read it.
+3. Otherwise read `references/INDEX.md`, pick the closest topics, and read those files. Search the `references/` tree only when the index has no match; the index is faster and keeps context small.
+4. With no topic, show the topic groups in `references/INDEX.md`.
 
-## Workflow
+## Answer
 
-1. If the user supplied a topic, normalize it to a slug:
-   - lowercase, strip leading `/docs/en/`, strip surrounding slashes
-   - join nested segments with `__` (e.g. `agent sdk hooks` -> `agent-sdk__hooks`, `whats new 2026 w19` -> `whats-new__2026-w19`)
-2. If `references/<slug>.md` exists, read that file directly. Do NOT grep the whole `references/` tree first - the index plus targeted reads is faster and uses less context.
-3. If no exact match, read `references/INDEX.md` and pick the closest topic. If still ambiguous, list the candidates and ask.
-4. If the user supplied no topic, read `references/INDEX.md` and present the available topics.
+- Lead with a direct answer grounded in the files you read.
+- Quote commands, flags, and settings keys exactly as the page writes them.
+- End with `Source: <url>`, using the `source` value from the page's frontmatter.
 
-## Answer format
+## When the mirror looks stale or wrong
 
-- Lead with a direct answer to the user's question grounded in the file you read.
-- Quote short snippets (commands, config keys) when they appear verbatim in the doc.
-- End with `Source: <upstream URL>` using the `original_url` from the file frontmatter or `references/docs_manifest.json`.
-
-## Freshness and fallback
-
-The mirror is refreshed every 3 hours by upstream CI, which fails rather than committing frozen content. If the local content looks stale, contradicted by the user, or empty:
-
-1. Suggest the user run `npx skills update claude-code-docs`.
-2. Check the file's entry in `references/docs_manifest.json`: a `status` of `stale` means upstream could not be reached on the last run.
-3. Cross-check the canonical URL via `original_url` in `references/docs_manifest.json` and offer it as a follow-up source.
-4. If a specific page failed MDX cleaning, the unmodified source is preserved at `references/_raw/<slug>.md` -- read that as a fallback.
+1. Check the page's `status` in `references/docs_manifest.json`: `stale` means the last refresh could not reach upstream, so the previous copy is still served.
+2. Suggest updating the skill with `npx skills update claude-code-docs`, or the `cc-docs` plugin from the agent's plugin manager.
+3. Offer the page's `source` URL so the user can check the live page.
+4. A page whose cleaning failed keeps its raw upstream source in `references/_raw/<slug>.md`.
 
 ## Examples
 
-| Invocation | Reads |
+| Request | Read |
 | --- | --- |
-| `$claude-code-docs hooks` / `/claude-code-docs hooks` | `references/hooks.md` |
-| `$claude-code-docs mcp` | `references/mcp.md` |
-| `$claude-code-docs agent sdk hooks` | `references/agent-sdk__hooks.md` |
-| `$claude-code-docs cli reference` | `references/cli-reference.md` |
-| `$claude-code-docs changelog` | `references/changelog.md` |
-| `$claude-code-docs` (no argument) | `references/INDEX.md` |
+| `/claude-code-docs hooks` in Claude Code or Cursor, `$claude-code-docs hooks` in Codex | `references/hooks.md` |
+| "How do I add an MCP server?" | `references/mcp.md` |
+| "How do hooks work in the Agent SDK?" | `references/agent-sdk__hooks.md` |
+| "What can go in settings.json?" | `references/settings.md` |
+| "What changed in the latest release?" | `references/changelog.md` |
+| No topic, or no matching file | `references/INDEX.md` |

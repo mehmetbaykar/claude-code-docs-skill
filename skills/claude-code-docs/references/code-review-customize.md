@@ -32,6 +32,7 @@ A review reads the `CLAUDE.md` at your repository root and the `CLAUDE.md` files
 The agents that find issues and the agents that verify them receive its contents as your repository's review instructions, alongside Code Review's default review guidance. The step that writes the final review consults it before settling severity and writing the summary.
 
 This example layout has a root file and one subdirectory file:
+
 ```text
 your-repo/
 ├── REVIEW.md            # Root file
@@ -50,6 +51,7 @@ Before you rely on a subdirectory file, protect your default branch and check [w
 ### Example REVIEW\.md
 
 This `REVIEW.md` recalibrates severity for a backend service, caps nits, skips generated files, and adds repo-specific checks.
+
 ```markdown
 # Review instructions
 
@@ -97,6 +99,7 @@ Keep `REVIEW.md` to instructions that change review behavior, and leave general 
 You can split review instructions across several files and pull them into your root `REVIEW.md`. Use this when `REVIEW.md` grows long or when you already keep review rules in another file.
 
 To include a file, add a line to the root `REVIEW.md` with only `@` and the file name on it. Code Review puts the file's contents in place of that line, so they apply as part of `REVIEW.md`. In this example, the root file gives one instruction of its own and then includes two rule files:
+
 ```markdown
 # Review instructions
 
@@ -107,6 +110,7 @@ Report at most five Nits per review.
 ```
 
 Save the included files at the repository root, beside `REVIEW.md`:
+
 ```text
 your-repo/
 ├── REVIEW.md
@@ -133,6 +137,7 @@ When a review doesn't apply an included file, check each of these:
 To have reviews follow guidance you keep in a [skill](https://code.claude.com/docs/en/skills.md), include the skill's `SKILL.md` in your root `REVIEW.md`. Code Review doesn't run skills.
 
 Add `@` and the path to `SKILL.md`, in the form `.claude/skills/<folder>/SKILL.md`, on a line of its own:
+
 ```markdown
 # Review instructions
 
@@ -176,6 +181,7 @@ If you edit the skill's `!` commands, `$ARGUMENTS`, or links, you also change ho
 #### Characters that Code Review changes in skill text
 
 Code Review changes some characters in the skill's text, so your code samples reach a review in the form below.
+
 ```text
 In SKILL.md:       Use `items[0]`, never `List<String>`.
 The review reads:  Use ˋitems(0)ˋ, never ˋList< String>ˋ.

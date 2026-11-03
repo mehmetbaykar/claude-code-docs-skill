@@ -41,6 +41,7 @@ Claude Code supports two authentication methods for Claude Platform on AWS. Choo
 Claude Code signs requests with SigV4 using the standard AWS credential chain: environment variables, shared credentials in `~/.aws/credentials`, IAM roles, AWS SSO sessions, and any other sources the AWS SDK supports.
 
 For local use, log in with the AWS CLI before starting Claude Code. The example below uses an SSO profile, but any method that produces credentials in the standard locations works.
+
 ```bash
 aws sso login --profile my-profile
 export AWS_PROFILE=my-profile
@@ -49,6 +50,7 @@ export AWS_PROFILE=my-profile
 For CI and automation, give the runner an IAM role with permission to invoke the Anthropic service and set `AWS_REGION`. The credential chain picks the role up automatically.
 
 If your SSO credentials expire mid-session, configure [`awsAuthRefresh`](https://code.claude.com/docs/en/amazon-bedrock#advanced-credential-configuration) so Claude Code re-runs your login command and retries instead of failing. Add the command to your [settings file](https://code.claude.com/docs/en/settings.md), such as `~/.claude/settings.json`:
+
 ```json
 {
   "awsAuthRefresh": "aws sso login --profile my-profile"
@@ -62,6 +64,7 @@ With `awsAuthRefresh` configured, run `/login`, select **3rd-party platform**, t
 #### Use a workspace API key
 
 A workspace API key is a long-lived secret, useful when you don't want to manage federated AWS credentials. Generate one in the AWS Console under **Claude Platform on AWS → API keys** and set it as `ANTHROPIC_AWS_API_KEY`:
+
 ```bash
 export ANTHROPIC_AWS_API_KEY=sk-ant-xxxxx
 ```
@@ -77,6 +80,7 @@ Treat workspace API keys like any other production credential. The [user setting
 ### 2. Configure Claude Code
 
 Set the environment variables that route Claude Code through Claude Platform on AWS instead of the default Anthropic API.
+
 ```bash
 export CLAUDE_CODE_USE_ANTHROPIC_AWS=1
 export ANTHROPIC_AWS_WORKSPACE_ID=wrkspc_01ABCDEFGHIJKLMN
@@ -96,6 +100,7 @@ Claude Platform on AWS uses the same model IDs as the direct Claude API.
 The default aliases `fable`, `opus`, `sonnet`, and `haiku` resolve to Claude Code's built-in defaults for Claude Platform on AWS, which can lag the newest release. Without `ANTHROPIC_DEFAULT_OPUS_MODEL`, the `opus` alias resolves to Opus 5.5. Before v2.1.280, it resolved to Opus 5 from v2.1.219.
 
 If you deploy Claude Code to a team, pin the model IDs explicitly so a new release doesn't move everyone at once:
+
 ```bash
 export ANTHROPIC_DEFAULT_FABLE_MODEL=claude-fable-5
 export ANTHROPIC_DEFAULT_OPUS_MODEL=claude-opus-4-8
@@ -112,6 +117,7 @@ To set different TTLs for your main conversation and for the requests Claude Cod
 ### 4. Launch and verify
 
 Start Claude Code and confirm the routing:
+
 ```bash
 claude
 ```
@@ -121,6 +127,7 @@ The startup banner shows `Claude Platform on AWS` when the provider is active. R
 ## Use the Agent SDK
 
 The [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview.md) reads the same environment variables as the CLI, so any program that spawns the Claude Code subprocess can target Claude Platform on AWS by exporting `CLAUDE_CODE_USE_ANTHROPIC_AWS`, `ANTHROPIC_AWS_WORKSPACE_ID`, and either `ANTHROPIC_AWS_API_KEY` or AWS credentials before the call.
+
 ```typescript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -138,6 +145,7 @@ This example relies on the ambient AWS credential chain for SigV4. To authentica
 ## Route through a corporate proxy
 
 To route traffic through a proxy or [LLM gateway](https://code.claude.com/docs/en/llm-gateway), set `ANTHROPIC_AWS_BASE_URL` to the proxy's address. Claude Code sends requests to that URL with the same workspace and authentication headers, so any gateway that forwards them unchanged works.
+
 ```bash
 export CLAUDE_CODE_USE_ANTHROPIC_AWS=1
 export ANTHROPIC_AWS_WORKSPACE_ID=wrkspc_01ABCDEFGHIJKLMN
@@ -145,6 +153,7 @@ export ANTHROPIC_AWS_BASE_URL=https://anthropic-proxy.example.com
 ```
 
 If your gateway signs requests itself, set `CLAUDE_CODE_SKIP_ANTHROPIC_AWS_AUTH=1` so Claude Code sends unsigned requests and lets the gateway add SigV4 headers before forwarding to AWS. If the gateway requires its own token, set it in `ANTHROPIC_AUTH_TOKEN`.
+
 ```bash
 export CLAUDE_CODE_USE_ANTHROPIC_AWS=1
 export CLAUDE_CODE_SKIP_ANTHROPIC_AWS_AUTH=1

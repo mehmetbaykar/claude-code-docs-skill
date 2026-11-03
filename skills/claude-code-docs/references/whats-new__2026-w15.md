@@ -19,6 +19,7 @@ Kick off plan mode in the cloud from your terminal, then review the result in yo
 Video: https://mintcdn.com/claude-code/aFXPQxiBOW99MHS3/images/whats-new/ultraplan.mp4?fit=max&auto=format&n=aFXPQxiBOW99MHS3&q=85&s=e8f2f23730c6a5c289dbf3e7b13eadf6
 
 Run the command, or just include the keyword in any prompt:
+
 ```text title="Claude Code" wrap
 /ultraplan migrate the auth service from sessions to JWTs
 ```
@@ -33,11 +34,13 @@ A new built-in tool that spawns a background watcher and streams its events into
 Video: https://mintcdn.com/claude-code/aFXPQxiBOW99MHS3/images/whats-new/monitor-tool.mp4?fit=max&auto=format&n=aFXPQxiBOW99MHS3&q=85&s=f4156c15a0999de5c5157f54a3117c89
 
 Ask Claude to watch something while you keep working:
+
 ```text title="Claude Code" wrap
 Tail server.log in the background and tell me the moment a 5xx shows up
 ```
 
 This pairs with `/loop`, which now self-paces: omit the interval and Claude schedules the next tick based on the task, or reaches for the Monitor tool to skip polling altogether.
+
 ```text title="Claude Code" wrap
 /loop check CI on my PR
 ```
@@ -52,6 +55,7 @@ PR auto-fix landed on the web in Week 13. Now you can turn it on without leaving
 Video: https://mintcdn.com/claude-code/aFXPQxiBOW99MHS3/images/whats-new/autofix-pr.mp4?fit=max&auto=format&n=aFXPQxiBOW99MHS3&q=85&s=95f191eb4711130a128aec3f6b720527
 
 Run it from the PR's branch:
+
 ```text title="Claude Code" wrap
 /autofix-pr
 ```
@@ -64,6 +68,7 @@ v2.1.101
 Generates a teammate ramp-up guide from your local Claude Code usage. Run it in a project you know well and hand the output to a new teammate so they can replay your setup instead of starting from defaults.
 
 Run it from a project you've spent real time in:
+
 ```text title="Claude Code" wrap
 /team-onboarding
 ```

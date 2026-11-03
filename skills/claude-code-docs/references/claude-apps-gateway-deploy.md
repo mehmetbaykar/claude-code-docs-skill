@@ -139,6 +139,7 @@ Sign-in is rate limited per client IP address, and the defaults suit a small tea
 To size `max`, divide the developers by the egress addresses they share. Estimate how many of those sign in within one `window_seconds` period, which is 10 minutes by default. Then double it to cover retries and developers who sign in to both Claude Code and Claude Desktop.
 
 For example, 10,000 developers behind 4 egress addresses sign in evenly over an hour. That is 2,500 developers per address and about 420 of them in each 10 minutes, which you double and round up to 1,000. The example below sets both limits to 1,000:
+
 ```yaml
 rate_limits:
   device_authorization: { max: 1000, window_seconds: 600 }
@@ -161,17 +162,17 @@ The gateway writes two streams to stderr, both JSON-friendly:
 
 * **Audit events**: single-line JSON per security-relevant event. Pipe stderr to your log aggregator.
 
-The events emitted include `config.load`, `session.mint`, `session.refresh`, `device.authorize`, `device.verify`, `device.callback`, `auth.denied`, `access.denied`, `access.public_client`, `inference`, `managed.serve`, `desktop_bootstrap.serve`, `desktop_bootstrap.denied`, `spend.blocked`, `admin.denied`, `admin.limit.upsert`, and `admin.limit.delete`. Fields vary by event:
+  The events emitted include `config.load`, `session.mint`, `session.refresh`, `device.authorize`, `device.verify`, `device.callback`, `auth.denied`, `access.denied`, `access.public_client`, `inference`, `managed.serve`, `desktop_bootstrap.serve`, `desktop_bootstrap.denied`, `spend.blocked`, `admin.denied`, `admin.limit.upsert`, and `admin.limit.delete`. Fields vary by event:
 
-* Successful mint and refresh events carry `sub`, `email`, `client_ip`, and the result
-* `auth.denied` and `access.denied` carry the reason and client IP, plus the request path for `auth.denied`, since no user identity exists at those denials. Two `access.denied` reasons change what the event carries:
-* `xff_unparseable`: the event also carries the `X-Forwarded-For` entry that couldn't be read
-* `client_ip_unknown`: the event carries no client IP, because the connection had no peer address while an `access_control` list was set
-* `access.public_client` carries the client IP of the first request per process to arrive from a public address while `access_control.allow_cidrs` is empty. The gateway serves the request as usual; the event signals that the gateway may be reachable from the public internet. See the [`access_control` reference](https://code.claude.com/docs/en/claude-apps-gateway-config#http-tuning) for what counts as public and for the recommended allow list.
-* `inference` records which upstream served the request and the response status
-* `desktop_bootstrap.denied` records a rejected Claude Desktop bootstrap fetch with the reason (`not_configured`, `policy_not_opted_in`, or `no_policy_matched`) and the user's identity
-* `guardrail.trace` records [which filter fired](https://code.claude.com/docs/en/claude-apps-gateway-config.md#log-which-guardrail-filter-fired), without the matched text
-* `admin.denied` records a rejected admin-API auth attempt with the client IP, method, path, and a reason, without the presented key material: `invalid_key` when an `x-api-key` was presented but matched no configured key, `bearer_rejected` when only an `Authorization` header was presented and it didn't verify as a gateway session in `admin.admin_groups`, or `no_credentials` when neither header was presented
+  * Successful mint and refresh events carry `sub`, `email`, `client_ip`, and the result
+  * `auth.denied` and `access.denied` carry the reason and client IP, plus the request path for `auth.denied`, since no user identity exists at those denials. Two `access.denied` reasons change what the event carries:
+    * `xff_unparseable`: the event also carries the `X-Forwarded-For` entry that couldn't be read
+    * `client_ip_unknown`: the event carries no client IP, because the connection had no peer address while an `access_control` list was set
+  * `access.public_client` carries the client IP of the first request per process to arrive from a public address while `access_control.allow_cidrs` is empty. The gateway serves the request as usual; the event signals that the gateway may be reachable from the public internet. See the [`access_control` reference](https://code.claude.com/docs/en/claude-apps-gateway-config#http-tuning) for what counts as public and for the recommended allow list.
+  * `inference` records which upstream served the request and the response status
+  * `desktop_bootstrap.denied` records a rejected Claude Desktop bootstrap fetch with the reason (`not_configured`, `policy_not_opted_in`, or `no_policy_matched`) and the user's identity
+  * `guardrail.trace` records [which filter fired](https://code.claude.com/docs/en/claude-apps-gateway-config.md#log-which-guardrail-filter-fired), without the matched text
+  * `admin.denied` records a rejected admin-API auth attempt with the client IP, method, path, and a reason, without the presented key material: `invalid_key` when an `x-api-key` was presented but matched no configured key, `bearer_rejected` when only an `Authorization` header was presented and it didn't verify as a gateway session in `admin.admin_groups`, or `no_credentials` when neither header was presented
 * **Operational logs**: human-readable `[gateway]`-prefixed lines for boot, warnings, and upstream errors. The `CLAUDE_GATEWAY_LOG_LEVEL` environment variable controls verbosity and accepts `debug`, `info`, `warn`, or `error`, with `info` as the default. At `debug`, each sign-in and refresh also logs the names, not the values, of the claims in the id\_token, plus the names of the userinfo claims when `userinfo_fallback` supplied any, so you can diagnose `email_claim` and `groups_claim` settings without logging PII. It doesn't affect audit events, which are always emitted.
 
 ### Health
@@ -217,6 +218,7 @@ On top of that time, allow for any [wait for a free slot](#concurrent-upstream-r
 To make Claude Code retry an unanswered streaming request sooner, give it a first-byte deadline by setting [`CLAUDE_STREAM_FIRST_BYTE_TIMEOUT_MS`](https://code.claude.com/docs/en/env-vars) on your developers' machines. The deadline limits how long the first attempt waits for response headers. Without it, that attempt can wait 5 to 6 minutes. Requires Claude Code v2.1.307 or later on the developer's machine.
 
 Set the variable to a positive whole number of milliseconds, in a [gateway policy's `env` block](#deliver-the-value-in-a-policy) or a developer's shell. Keep the value above your gateway's longest [time to first byte](#keep-api_timeout_ms-above-the-gateways-time-to-first-byte), or Claude Code can abort and re-send healthy requests whose headers take longer. This example sets 60 seconds in a developer's shell:
+
 ```bash
 export CLAUDE_STREAM_FIRST_BYTE_TIMEOUT_MS=60000
 ```
@@ -340,9 +342,9 @@ The gateway sits inside your network perimeter, but individual developer laptops
 * The device-verification page enforces same-origin POST and a per-IP rate limit per RFC 8628 §5.1. See [User-code brute-force resistance](#user-code-brute-force-resistance).
 * The gateway's requests to your IdP, your OTLP collectors, and `provider: anthropic` upstreams go through a server-side request forgery (SSRF) guard that resolves DNS, blocks link-local and cloud-metadata addresses plus loopback by default, and pins the connection to the resolved IP, so those operator-influenced URLs can't be redirected to cloud metadata endpoints. RFC 1918 private ranges are deliberately allowed, because IdPs and OTLP collectors commonly live on private IPs. For the other providers, the gateway refuses a `base_url` that names one of those addresses or a metadata hostname when it loads the config, and the provider's SDK then connects without the DNS check.
 
-If you turn on [proxy-only egress](https://code.claude.com/docs/en/claude-apps-gateway-config.md#proxy-only-egress), that address check moves to your forward proxy: the gateway hands it hostnames and the proxy's allowlist must refuse those destinations.
+  If you turn on [proxy-only egress](https://code.claude.com/docs/en/claude-apps-gateway-config.md#proxy-only-egress), that address check moves to your forward proxy: the gateway hands it hostnames and the proxy's allowlist must refuse those destinations.
 
-Set `CLAUDE_GATEWAY_ALLOW_LOOPBACK=1` in the gateway's environment only when something the gateway must reach legitimately lives on loopback, such as a local-development IdP or a sidecar OTLP collector on `localhost`. The variable relaxes the loopback block for every operator-configured URL and also skips the boot-time warning that checks whether the pod can reach the cloud metadata endpoint, so prefer giving the collector its own internal address.
+  Set `CLAUDE_GATEWAY_ALLOW_LOOPBACK=1` in the gateway's environment only when something the gateway must reach legitimately lives on loopback, such as a local-development IdP or a sidecar OTLP collector on `localhost`. The variable relaxes the loopback block for every operator-configured URL and also skips the boot-time warning that checks whether the pod can reach the cloud metadata endpoint, so prefer giving the collector its own internal address.
 
 If you add your own egress controls, the gateway must reach the metadata server whenever it uses instance-metadata credentials such as workload identity.
 
@@ -477,6 +479,7 @@ You don't need a longer proxy timeout for this fix. If you raise only the proxy'
 #### Confirm the cause
 
 Have a developer reproduce the failure with `claude --debug-file ./claude-debug.txt`, then search that file for this line:
+
 ```text
 Error streaming, falling back to non-streaming mode: Stream idle timeout - no chunks received
 ```
@@ -498,6 +501,7 @@ If an upstream hangs while the gateway keeps sending pings, your developers also
 #### Deliver the value in a policy
 
 Add the `env` entry to each policy in `gateway.yaml` that already delivers Claude Code settings to the developers you want to cover. Put it under the `code`, `cli`, or `settings` key that policy already has. To try the value first, start with a policy that matches one group. See [`managed`](https://code.claude.com/docs/en/claude-apps-gateway-config#managed) for how policies match and inherit. This example adds the entry to a `match: {}` policy keyed `cli`:
+
 ```yaml
 managed:
   policies:

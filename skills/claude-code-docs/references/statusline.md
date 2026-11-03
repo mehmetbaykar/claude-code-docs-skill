@@ -32,6 +32,7 @@ Use the [`/statusline` command](#use-the-%2Fstatusline-command) to have Claude C
 ### Use the /statusline command
 
 The `/statusline` command accepts natural language instructions describing what you want displayed. Claude Code generates a script file in `~/.claude/` and updates your settings automatically:
+
 ```text
 /statusline show model name and context percentage with a progress bar
 ```
@@ -41,6 +42,7 @@ Approve the file edit prompts if Claude Code asks for permission during setup.
 ### Manually configure a status line
 
 Add a `statusLine` field to your user settings (`~/.claude/settings.json`, where `~` is your home directory) or [project settings](https://code.claude.com/docs/en/settings.md#where-settings-live). Set `type` to `"command"` and point `command` to a script path or an inline shell command. For a full walkthrough of creating a script, see [Build a status line step by step](#build-a-status-line-step-by-step).
+
 ```json
 {
   "statusLine": {
@@ -52,6 +54,7 @@ Add a `statusLine` field to your user settings (`~/.claude/settings.json`, where
 ```
 
 The `command` field runs in a shell, so you can also use inline commands instead of a script file. This example uses `jq` to parse the JSON input and display the model name and context percentage:
+
 ```json
 {
   "statusLine": {
@@ -88,6 +91,7 @@ These examples use Bash scripts, which work on macOS and Linux. On Windows, see 
 Claude Code sends JSON data to your script via stdin. This script uses [`jq`](https://jqlang.org/), a command-line JSON parser you may need to install, to extract the model name, directory, and context percentage, then prints a formatted line.
 
 Save this to `~/.claude/statusline.sh` (where `~` is your home directory, such as `/Users/username` on macOS or `/home/username` on Linux):
+
 ```bash
 #!/bin/bash
 # Read JSON data that Claude Code sends to stdin
@@ -106,6 +110,7 @@ echo "[$MODEL] 📁 ${DIR##*/} | ${PCT}% context"
 **2. Make it executable**
 
 Mark the script as executable so your shell can run it:
+
 ```bash
 chmod +x ~/.claude/statusline.sh
 ```
@@ -113,6 +118,7 @@ chmod +x ~/.claude/statusline.sh
 **3. Add to settings**
 
 Tell Claude Code to run your script as the status line. Add this configuration to `~/.claude/settings.json`, which sets `type` to `"command"` (meaning "run this shell command") and points `command` to your script:
+
 ```json
 {
   "statusLine": {
@@ -429,6 +435,7 @@ The Bash examples use [`jq`](https://jqlang.org/) to parse JSON. Python and Node
 Display the current model and context window usage with a visual progress bar. Each script reads JSON from stdin, extracts the `used_percentage` field, and builds a 10-character bar where filled blocks (▓) represent usage:
 
 ![A status line showing model name and a progress bar with percentage](https://mintcdn.com/claude-code/HDAmBwgbrZVk0pOt/images/statusline-context-window-usage.png?fit=max\&auto=format\&n=HDAmBwgbrZVk0pOt\&q=85\&s=f3918a549912dc47e90f2b69e68bc847)
+
 ```bash Bash
 #!/bin/bash
 # Read all of stdin into a variable
@@ -449,6 +456,7 @@ BAR=""
 
 echo "[$MODEL] $BAR $PCT%"
 ```
+
 ```python Python
 #!/usr/bin/env python3
 import json, sys
@@ -465,6 +473,7 @@ bar = '▓' * filled + '░' * (10 - filled)
 
 print(f"[{model}] {bar} {pct}%")
 ```
+
 ```javascript Node.js
 #!/usr/bin/env node
 // Node.js reads stdin asynchronously with events
@@ -491,6 +500,7 @@ Show git branch with color-coded indicators for staged and modified files. This 
 ![A status line showing model, directory, git branch, and colored indicators for staged and modified files](https://mintcdn.com/claude-code/HDAmBwgbrZVk0pOt/images/statusline-git-context.png?fit=max\&auto=format\&n=HDAmBwgbrZVk0pOt\&q=85\&s=f13c190724d9ec7188c17cd2f98b7bf4)
 
 Each script checks if the current directory is a git repository, counts staged and modified files, and displays color-coded indicators:
+
 ```bash Bash
 #!/bin/bash
 input=$(cat)
@@ -516,6 +526,7 @@ else
     echo "[$MODEL] 📁 ${DIR##*/}"
 fi
 ```
+
 ```python Python
 #!/usr/bin/env python3
 import json, sys, subprocess, os
@@ -541,6 +552,7 @@ try:
 except:
     print(f"[{model}] 📁 {directory}")
 ```
+
 ```javascript Node.js
 #!/usr/bin/env node
 const { execSync } = require('child_process');
@@ -578,6 +590,7 @@ Track your session's API costs and elapsed time. The `cost.total_cost_usd` field
 Each script formats cost as currency and converts milliseconds to minutes and seconds:
 
 ![A status line showing model name, session cost, and duration](https://mintcdn.com/claude-code/HDAmBwgbrZVk0pOt/images/statusline-cost-tracking.png?fit=max\&auto=format\&n=HDAmBwgbrZVk0pOt\&q=85\&s=925f7024c3b38be0f0eca63564bfb52f)
+
 ```bash Bash
 #!/bin/bash
 input=$(cat)
@@ -593,6 +606,7 @@ SECS=$((DURATION_SEC % 60))
 
 echo "[$MODEL] 💰 $COST_FMT | ⏱️ ${MINS}m ${SECS}s"
 ```
+
 ```python Python
 #!/usr/bin/env python3
 import json, sys
@@ -607,6 +621,7 @@ mins, secs = duration_sec // 60, duration_sec % 60
 
 print(f"[{model}] 💰 ${cost:.2f} | ⏱️ {mins}m {secs}s")
 ```
+
 ```javascript Node.js
 #!/usr/bin/env node
 let input = '';
@@ -632,6 +647,7 @@ Your script can output multiple lines to create a richer display.
 ![A multi-line status line showing model name, directory, git branch on the first line, and a context usage progress bar with cost and duration on the second line](https://mintcdn.com/claude-code/HDAmBwgbrZVk0pOt/images/statusline-multiline.png?fit=max\&auto=format\&n=HDAmBwgbrZVk0pOt\&q=85\&s=a9d0a2fe8e446d80b1abc46da3f93270)
 
 This example combines several techniques: threshold-based colors (green under 70%, yellow 70-89%, red 90%+), a progress bar, and git branch info. Each `print` or `echo` statement creates a separate row:
+
 ```bash Bash
 #!/bin/bash
 input=$(cat)
@@ -662,6 +678,7 @@ echo -e "${CYAN}[$MODEL]${RESET} 📁 ${DIR##*/}$BRANCH"
 COST_FMT=$(printf '$%.2f' "$COST")
 echo -e "${BAR_COLOR}${BAR}${RESET} ${PCT}% | ${YELLOW}${COST_FMT}${RESET} | ⏱️ ${MINS}m ${SECS}s"
 ```
+
 ```python Python
 #!/usr/bin/env python3
 import json, sys, subprocess, os
@@ -690,6 +707,7 @@ except:
 print(f"{CYAN}[{model}]{RESET} 📁 {directory}{branch}")
 print(f"{bar_color}{bar}{RESET} {pct}% | {YELLOW}${cost:.2f}{RESET} | ⏱️ {mins}m {secs}s")
 ```
+
 ```javascript Node.js
 #!/usr/bin/env node
 const { execSync } = require('child_process');
@@ -732,6 +750,7 @@ This example creates a clickable link to your GitHub repository. Hold Cmd (macOS
 ![A status line showing a clickable link to a GitHub repository](https://mintcdn.com/claude-code/HDAmBwgbrZVk0pOt/images/statusline-links.png?fit=max\&auto=format\&n=HDAmBwgbrZVk0pOt\&q=85\&s=4778a144a28cb498c99d5fa018bb374a)
 
 Each script gets the git remote URL, converts SSH format to HTTPS, and wraps the repo name in OSC 8 escape codes. The Bash version uses `printf '%b'` which interprets backslash escapes more reliably than `echo -e` across different shells:
+
 ```bash Bash
 #!/bin/bash
 input=$(cat)
@@ -750,6 +769,7 @@ else
     echo "[$MODEL]"
 fi
 ```
+
 ```python Python
 #!/usr/bin/env python3
 import json, sys, subprocess, re, os
@@ -773,6 +793,7 @@ try:
 except:
     print(f"[{model}]")
 ```
+
 ```javascript Node.js
 #!/usr/bin/env node
 const { execSync } = require('child_process');
@@ -803,6 +824,7 @@ process.stdin.on('end', () => {
 Display claude.ai subscription rate limit usage, or your spend against a Claude apps gateway spend limit, in the status line. For subscribers, the `rate_limits` object can contain a rolling `five_hour` window and a weekly `seven_day` window. Each window provides `used_percentage`, from 0 to 100, and `resets_at`, the Unix epoch seconds when the window resets. Behind a gateway, read the `spend_limit` object, described under [spend limit fields](#spend-limit-fields).
 
 The `rate_limits` object is only present for claude.ai Pro, Max, and Ultra subscribers, or behind a Claude apps gateway with spend limits, and only after the first API response. Each script handles the absent fields gracefully, and behind a gateway prints `spend: $314.12 / $500`, or `spend: 63%` while the dollar fields are absent:
+
 ```bash Bash
 #!/bin/bash
 input=$(cat)
@@ -823,6 +845,7 @@ SPEND_USD=$(echo "$input" | jq -r '.rate_limits.spend_limit | select(.used_usd !
 
 [ -n "$LIMITS" ] && echo "[$MODEL] | $LIMITS" || echo "[$MODEL]"
 ```
+
 ```python Python
 #!/usr/bin/env python3
 import json, sys
@@ -853,6 +876,7 @@ if parts:
 else:
     print(f"[{model}]")
 ```
+
 ```javascript Node.js
 #!/usr/bin/env node
 let input = '';
@@ -887,6 +911,7 @@ Your status line script runs frequently during active sessions. Commands like `g
 The cache filename needs to be stable across status line invocations within a session, but unique across sessions so concurrent sessions in different repositories don't read each other's cached git state. Process-based identifiers like `$$`, `os.getpid()`, or `process.pid` change on every invocation and defeat the cache. Use the `session_id` from the JSON input instead: it's stable for the lifetime of a session and unique per session.
 
 Each script checks if the cache file is missing or older than 5 seconds before running git commands:
+
 ```bash Bash
 #!/bin/bash
 input=$(cat)
@@ -926,6 +951,7 @@ else
     echo "[$MODEL] 📁 ${DIR##*/}"
 fi
 ```
+
 ```python Python
 #!/usr/bin/env python3
 import json, sys, subprocess, os, time
@@ -965,6 +991,7 @@ if branch:
 else:
     print(f"[{model}] 📁 {directory}")
 ```
+
 ```javascript Node.js
 #!/usr/bin/env node
 const { execSync } = require('child_process');
@@ -1016,6 +1043,7 @@ On Windows, Claude Code runs status line commands through Git Bash when Git Bash
 Git Bash treats unquoted backslashes as escape characters, so a Windows-style path such as `C:\Users\username\script.mjs` reaches the script runner with its separators removed and the command fails without a visible error. Write file paths in the `command` string with forward slashes, as shown in the examples below. The `~` shorthand also works and expands to your Windows home directory.
 
 To run a PowerShell script as your status line, invoke it via `powershell`. This works whether Claude Code routes the command through Git Bash or PowerShell:
+
 ```json settings.json
 {
   "statusLine": {
@@ -1024,6 +1052,7 @@ To run a PowerShell script as your status line, invoke it via `powershell`. This
   }
 }
 ```
+
 ```powershell statusline.ps1
 $input_json = $input | Out-String | ConvertFrom-Json
 $cwd = $input_json.cwd
@@ -1039,6 +1068,7 @@ if ($used) {
 ```
 
 Or, when Git Bash is installed, run a Bash script directly:
+
 ```json settings.json
 {
   "statusLine": {
@@ -1047,6 +1077,7 @@ Or, when Git Bash is installed, run a Bash script directly:
   }
 }
 ```
+
 ```bash statusline.sh
 #!/usr/bin/env bash
 input=$(cat)
@@ -1059,6 +1090,7 @@ echo "$dirname [$model]"
 ## Subagent status lines
 
 The `subagentStatusLine` setting renders a custom row body for each [subagent](https://code.claude.com/docs/en/sub-agents.md) shown in the agent panel below the prompt. Use it to replace the default `name · description · token count` row with your own formatting.
+
 ```json
 {
   "subagentStatusLine": {
@@ -1137,14 +1169,16 @@ Whether a link is clickable depends on your terminal, on whether Claude Code det
 * Terminal.app does not support clickable links
 
 * If link text appears but isn't clickable, Claude Code may not have detected hyperlink support in your terminal. Set the `FORCE_HYPERLINK` environment variable to override detection before launching Claude Code:
-```bash
-  FORCE_HYPERLINK=1 claude
-```
 
-In PowerShell, set the variable in the current session first:
-```powershell
+  ```bash
+  FORCE_HYPERLINK=1 claude
+  ```
+
+  In PowerShell, set the variable in the current session first:
+
+  ```powershell
   $env:FORCE_HYPERLINK = "1"; claude
-```
+  ```
 
 * SSH and tmux sessions may strip OSC sequences depending on configuration
 

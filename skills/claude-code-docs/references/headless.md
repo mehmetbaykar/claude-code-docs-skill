@@ -11,6 +11,7 @@ path: /docs/en/headless
 The [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview.md) gives you the same tools, agent loop, and context management that power Claude Code. It's available as a CLI for scripts and CI/CD, or as [Python](https://code.claude.com/docs/en/agent-sdk/python.md) and [TypeScript](https://code.claude.com/docs/en/agent-sdk/typescript.md) packages for full programmatic control.
 
 To run Claude Code in non-interactive mode, pass `-p` with your prompt and the [CLI options](https://code.claude.com/docs/en/cli-reference.md) you need:
+
 ```bash
 claude -p "Find and fix the bug in auth.py" --allowedTools "Read,Edit,Bash"
 ```
@@ -26,6 +27,7 @@ Add the `-p` (or `--print`) flag to any `claude` command to run it non-interacti
 * `--output-format` for [structured output](#get-structured-output)
 
 This example asks Claude a question about your codebase and prints the response:
+
 ```bash
 claude -p "What does the auth module do?"
 ```
@@ -41,6 +43,7 @@ Bare mode is useful for CI and scripts where you need the same result on every m
 Without `--bare`, a `-p` session runs the hooks in a project's `.claude/settings.json` and connects the servers in its `.mcp.json`, even in a folder you've never trusted. A `-p` session shows no workspace trust dialog and no per-server approval prompt. [What runs before you trust a folder](https://code.claude.com/docs/en/permissions.md#what-runs-before-you-trust-a-folder) covers each kind of repository content under `-p` and how to keep it out.
 
 This example runs a one-off summarize task in bare mode and pre-approves the Read tool so the call completes without a permission prompt. Set `ANTHROPIC_API_KEY` before running it, because bare mode doesn't use your subscription login:
+
 ```bash
 claude --bare -p "Summarize README.md" --allowedTools "Read"
 ```
@@ -119,6 +122,7 @@ These examples highlight common CLI patterns. Where a command names a file such 
 Non-interactive mode reads stdin, so you can pipe data in and redirect the response out like any other command-line tool.
 
 This example pipes a build log into Claude and writes the explanation to a file:
+
 ```bash
 cat build-error.txt | claude -p 'concisely explain the root cause of this build error' > output.txt
 ```
@@ -136,6 +140,7 @@ If Claude Code can't read stdin, for example because the process that started it
 You can wrap a non-interactive call in a script to use Claude as a project-specific linter or reviewer.
 
 This `package.json` script pipes the diff against `main` into Claude and asks it to report typos. Piping the diff means Claude doesn't need Bash permission to read it, and the escaped double quotes keep the script portable to Windows:
+
 ```json
 {
   "scripts": {
@@ -155,6 +160,7 @@ Use `--output-format` to control how responses are returned:
 * `stream-json`: newline-delimited JSON for real-time streaming
 
 This example returns a project summary as JSON with session metadata, with the text result in the `result` field:
+
 ```bash
 claude -p "Summarize this project" --output-format json
 ```
@@ -162,6 +168,7 @@ claude -p "Summarize this project" --output-format json
 To get output conforming to a specific schema, use `--output-format json` with `--json-schema` and a [JSON Schema](https://json-schema.org/) definition. The response includes metadata about the request (session ID, usage, etc.) with the structured output in the `structured_output` field.
 
 This example extracts function names and returns them as an array of strings:
+
 ```bash
 claude -p "Extract the main function names from auth.py" \
   --output-format json \
@@ -190,6 +197,7 @@ If a run ends without valid structured output, for example because Claude declin
 ### Stream responses
 
 Use `--output-format stream-json` with `--verbose` and `--include-partial-messages` to receive tokens as they're generated. Each line is a JSON object representing an event:
+
 ```bash
 claude -p "Explain recursion" --output-format stream-json --verbose --include-partial-messages
 ```
@@ -199,6 +207,7 @@ The last line of the stream is a `result` message with the final response text, 
 If your consumer reads the stream slowly, Claude Code waits for the queued output to drain before exiting, scaling the wait with how much is still queued, capped at 30 seconds.
 
 The following example uses [jq](https://jqlang.org/) to filter for text deltas and display only the streaming text. The `-r` flag outputs raw strings (no quotes) and `-j` joins without newlines so tokens stream continuously:
+
 ```bash
 claude -p "Write a poem" --output-format stream-json --verbose --include-partial-messages | \
   jq -rj 'select(.type == "stream_event" and .event.delta.type? == "text_delta") | .event.delta.text'
@@ -300,6 +309,7 @@ When [`CLAUDE_CODE_SYNC_PLUGIN_INSTALL`](https://code.claude.com/docs/en/env-var
 ### Auto-approve tools
 
 Use `--allowedTools` to let Claude use certain tools without prompting. Listing `Read` and `Edit` lets Claude read and edit files without asking for permission, apart from reads from [network paths](https://code.claude.com/docs/en/permissions.md#network-paths). Listing `Bash` does the same for shell commands, except in a run that starts in [auto mode](https://code.claude.com/docs/en/permission-modes.md#how-auto-mode-evaluates-actions), where Claude Code drops a bare `Bash` entry as a broad allow rule and auto mode evaluates each command instead. This example runs a test suite and fixes failures with those three tools listed:
+
 ```bash
 claude -p "Run the test suite and fix any failures" \
   --allowedTools "Bash,Read,Edit"
@@ -312,10 +322,11 @@ To set a baseline for the whole session instead of listing individual tools, pas
 * **`auto`**: pass `--permission-mode auto` to have a classifier review most actions instead of you
 * **`dontAsk`**: Claude Code denies every call that would otherwise prompt, which is useful for locked-down CI runs, though a [mod](https://code.claude.com/docs/en/plugins/mods/overview.md) you installed can still approve some of those calls. To check which calls a mod can approve, see [Extend permissions with hooks](https://code.claude.com/docs/en/permissions.md#precedence-among-rules-hooks-and-mods).
 
-Actions that need no approval in Manual mode still run, such as file reads in your working directories and the [read-only command set](https://code.claude.com/docs/en/permissions.md#read-only-commands). Actions covered by your `--allowedTools` entries or `permissions.allow` rules also run. `AskUserQuestion`, connector tools [your organization set to `ask`](https://code.claude.com/docs/en/mcp#organization-controls-on-connector-tools), MCP tools marked [`requiresUserInteraction`](https://code.claude.com/docs/en/mcp#require-approval-for-a-specific-tool), and [reads from network paths](https://code.claude.com/docs/en/permissions.md#network-paths) are denied even when an allow rule matches
+  Actions that need no approval in Manual mode still run, such as file reads in your working directories and the [read-only command set](https://code.claude.com/docs/en/permissions.md#read-only-commands). Actions covered by your `--allowedTools` entries or `permissions.allow` rules also run. `AskUserQuestion`, connector tools [your organization set to `ask`](https://code.claude.com/docs/en/mcp#organization-controls-on-connector-tools), MCP tools marked [`requiresUserInteraction`](https://code.claude.com/docs/en/mcp#require-approval-for-a-specific-tool), and [reads from network paths](https://code.claude.com/docs/en/permissions.md#network-paths) are denied even when an allow rule matches
 * **`acceptEdits`**: Claude writes files without prompting, and Claude Code auto-approves common filesystem commands such as `mkdir`, `touch`, `mv`, and `cp`. The [actions no mode auto-approves](https://code.claude.com/docs/en/permission-modes.md#actions-no-mode-auto-approves) still apply. Apart from the read-only command set, other shell commands and network requests still need an `--allowedTools` entry or a `permissions.allow` rule. See [what `acceptEdits` auto-approves](https://code.claude.com/docs/en/permission-modes#auto-approve-file-edits-with-acceptedits-mode) for the full list
 
 This example applies lint fixes with `acceptEdits` as the baseline:
+
 ```bash
 claude -p "Apply the lint fixes" --permission-mode acceptEdits
 ```
@@ -327,6 +338,7 @@ Pass `--permission-prompts none` when nobody is available to answer permission p
 With the flag, your run doesn't consult the host or wait on it. Anything that would prompt is denied unless a `PermissionRequest` hook allows it, Claude is told that nobody can approve the request and not to retry it, and the run continues. In a `-p` run with no host, these requests are denied either way, and the flag also tells Claude not to retry them. Permission rules, [`PermissionRequest` hooks](https://code.claude.com/docs/en/hooks#permissionrequest), and the permission mode you set still decide every call first; Claude Code denies only the requests that nothing else resolves.
 
 This example runs an unattended task in [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode). The classifier reviews each action as usual, and Claude Code denies anything that would have fallen back to a prompt:
+
 ```bash
 claude -p "Update the dependency pins and run the tests" --permission-mode auto --permission-prompts none
 ```
@@ -342,6 +354,7 @@ With `--output-format stream-json`, denials appear as `permission_denied` system
 ### Create a commit
 
 This example reviews staged changes and creates a commit with an appropriate message:
+
 ```bash
 claude -p "Look at my staged changes and create an appropriate commit" \
   --allowedTools "Bash(git diff *),Bash(git log *),Bash(git status *),Bash(git commit *)"
@@ -362,6 +375,7 @@ The `--allowedTools` flag uses [permission rule syntax](https://code.claude.com/
 ### Customize the system prompt
 
 Use `--append-system-prompt` to add instructions while keeping Claude Code's default behavior. This example pipes a PR diff to Claude and instructs it to review for security vulnerabilities. Save it as a shell script, for example `review.sh`:
+
 ```bash
 gh pr diff "$1" | claude -p \
   --append-system-prompt "You are a security engineer. Review for vulnerabilities." \
@@ -375,6 +389,7 @@ See [system prompt flags](https://code.claude.com/docs/en/cli-reference.md#syste
 ### Continue conversations
 
 Use `--continue` to continue the most recent conversation, or `--resume` with a session ID to continue a specific conversation. On Claude Code v2.1.257 or later, when you pass `--continue`, Claude Code opens a [background session](https://code.claude.com/docs/en/sessions.md#where-the-session-picker-looks) that has finished, but not one that is still running. This example runs a review, then sends follow-up prompts:
+
 ```bash
 # First request
 claude -p "Review this codebase for performance issues"
@@ -385,6 +400,7 @@ claude -p "Generate a summary of all issues found" --continue
 ```
 
 If you're running multiple conversations, capture the session ID to resume a specific one:
+
 ```bash
 session_id=$(claude -p "Start a review" --output-format json | jq -r '.session_id')
 claude -p "Continue that review" --resume "$session_id"

@@ -17,6 +17,7 @@ new model
 Sonnet 5 is the new default model for Pro, Team Standard, and Enterprise subscription seats: top-tier coding and tool use at Sonnet pricing, with a native 1M-token context window and adaptive thinking on by default. API pricing is promotional at \$2/\$10 per MTok through August 31. Requires v2.1.197 or later.
 
 Switch to Sonnet 5 by name, or pick it from the model picker:
+
 ```text Claude Code
 > /model claude-sonnet-5
 ```
@@ -52,6 +53,7 @@ Claude FM is on the air. `/radio` opens the lo-fi radio stream in your browser f
 Video: https://mintcdn.com/claude-code/x358isu_VzLnyTEN/images/whats-new/radio.mp4?fit=max&auto=format&n=x358isu_VzLnyTEN&q=85&s=36a0c33859cef119c7192dceea8bcbd3
 
 Tune in from any session:
+
 ```text Claude Code
 > /radio
 ```

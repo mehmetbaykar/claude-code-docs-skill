@@ -152,6 +152,7 @@ A `*` in a Bash rule matches any text, including spaces, so one rule covers a fa
 > Put the `*` after the subcommand. In `git log --oneline main`, `git` is the program and `log` is the subcommand, the word that determines what the program does. Claude Code matches everything before the first `*` as written, so those words are what limit the rule: `Bash(git log *)` allows only `git log` commands, and `Bash(git *)` allows every git command. Claude Code [warns at startup](https://code.claude.com/docs/en/errors.md#has-a-wildcard-before-the-rest-of-the-command) about an allow rule with a `*` before the subcommand, such as `Bash(git * main)`.
 
 Write the command you want Claude to run without asking, and replace the parts that vary with `*`. With this configuration, Claude Code runs npm scripts and git commits without asking and refuses commands that begin with `git push`. A push written another way, such as `git -C . push`, isn't matched; see [what a Bash rule doesn't match](#bash-rule-limits).
+
 ```json
 {
   "permissions": {
@@ -192,6 +193,7 @@ The permission dialog writes the space-separated form when you select "Yes, and 
 ### Tool name wildcards
 
 Deny and ask rules also accept glob patterns in the tool-name position. The pattern must match the full tool name: `"*"` matches every tool, and `"mcp__*"` matches every MCP tool across all servers. A tool matched by a bare-name glob deny rule is removed from Claude's context, the same as a bare tool name, including the [`EndConversation`](https://code.claude.com/docs/en/tools-reference#endconversation-tool-behavior) exception: a glob deny can't remove it while any other tool remains, and a glob ask never prompts for it. This configuration denies every MCP tool:
+
 ```json
 {
   "permissions": {
@@ -313,6 +315,7 @@ Claude Code also checks the files a `tee` command writes, including in a pipelin
 ### PowerShell
 
 PowerShell permission rules use the same shape as [Bash rules](#wildcard-patterns), and a bare `PowerShell` or `PowerShell(*)` matches every command. This configuration allows `Get-ChildItem` and `git commit` commands while blocking `Remove-Item`:
+
 ```json
 {
   "permissions": {
@@ -417,6 +420,7 @@ A relative pattern with a single directory segment, such as `src/**`, matches at
 Every other pattern shape matches at the same depth in every rule type: `Edit(/src/**)` and `Edit(src/components/**)` match only at their anchored location, while `Edit(**/src/**)` matches at any depth.
 
 The following example shows each pattern shape against a project with a top-level `src/` directory and a nested copy under `vendor/`:
+
 ```text
 <current-directory>/
 ├── src/
@@ -482,6 +486,7 @@ A `Read` deny rule also covers these attachments, matching each one on either th
 With [`permissions.blockReadsOutsideWorkingDirectories`](https://code.claude.com/docs/en/settings-reference#permissions-blockreadsoutsideworkingdirectories) on, or in a [`--restricted`](https://code.claude.com/docs/en/cli-reference#cli-flags) session, these attachments are also left out when they come from a path where that setting or flag refuses Claude's file reads.
 
 This line in place of a file you `@`-mentioned means Claude Code couldn't work out where the path leads, for example because its symlinks form a loop:
+
 ```text
 Referenced <path> (not read: could not be examined)
 ```
@@ -550,6 +555,7 @@ The two forms also differ on reads of [artifacts](https://code.claude.com/docs/e
 When a rule blocks a read, the denial names the rule. Before v2.1.268, a bare `WebFetch` deny rule blocked every artifact read, and a bare ask rule prompted before each one.
 
 To let Claude fetch freely while keeping the sandbox allowlist as it is, use the bare form. This `settings.json` does that:
+
 ```json
 {
   "permissions": {
@@ -576,7 +582,7 @@ For `<server>`, write the server's name the way it appears in that server's tool
 * **Servers that a plugin provides**: `<server>` takes the [plugin-scoped form](https://code.claude.com/docs/en/mcp.md#plugin-provided-mcp-servers), so for the `database-tools` server in a plugin named `my-plugin`, write `mcp__plugin_my-plugin_database-tools__*`
 * **A `<server>` that contains `__` or ends in `_`**: write the wildcard form, `mcp__<server>__*`, with the whole name. For a server named `reports__v2`, write `mcp__reports__v2__*`. The bare `mcp__reports__v2` and the shorter `mcp__reports` don't match its tools as allow rules, because Claude Code reads both as rules for a server named `reports`.
 
-As a deny or ask rule, though, each of those two names also covers every tool of the `reports__v2` server. To cover a server named `reports` alone, write one rule per tool in the `mcp__reports__<tool>` form, or rename one of the servers.
+  As a deny or ask rule, though, each of those two names also covers every tool of the `reports__v2` server. To cover a server named `reports` alone, write one rule per tool in the `mcp__reports__<tool>` form, or rename one of the servers.
 
 If your organization has set a [claude.ai connector](https://code.claude.com/docs/en/mcp.md#organization-controls-on-connector-tools) tool to `ask` and that setting reaches Claude Code in your session, allow rules for that tool don't take effect: Claude Code prompts on every call, even in `auto` and `bypassPermissions` modes. In `dontAsk` mode, which never prompts, Claude Code denies the call instead. Tools from connectors Claude Code fetches itself appear as `mcp__claude_ai_<server>__<tool>`.
 
@@ -591,6 +597,7 @@ Use `Agent(AgentName)` rules to control which [subagents](https://code.claude.co
 * `Agent(my-custom-agent)` matches a custom subagent named `my-custom-agent`
 
 Add these rules to the `deny` array in your settings or use the `--disallowedTools` CLI flag to disable specific agents. To disable the Explore agent:
+
 ```json
 {
   "permissions": {

@@ -92,6 +92,7 @@ Use PostgreSQL 11 or later. The smallest managed tier is enough. The gateway run
 **3. Write gateway.yaml**
 
 Secrets are read via `${ENV_VAR}` expansion so the file itself can live in version control. Use a `public_url` hostname that resolves to a private IP on your network, because `/login` rejects public addresses. The minimal config has five sections, and every other field has a default:
+
 ```yaml gateway.yaml
 listen:
   host: 0.0.0.0
@@ -138,6 +139,7 @@ This config is enough for a working sign-in loop with the default Amazon Bedrock
 **4. Run it**
 
 Build a container image around the `claude` binary that meets the [image requirements](https://code.claude.com/docs/en/claude-apps-gateway-deploy.md#container-image), then run it alongside Postgres. The Compose file references the image as `registry.example.com/claude-gateway:2.1.198`; substitute your own registry and image tag:
+
 ```yaml docker-compose.yaml
 services:
   gateway:
@@ -173,6 +175,7 @@ Boot is fail-closed for the config, the Postgres connection, OIDC discovery, and
 A successful boot doesn't validate the inference path, because Amazon Bedrock and Google Cloud's Agent Platform instance credentials resolve on the first request, not at boot.
 
 Watch stderr for the boot sequence. Log lines use the format `[gateway] <timestamp> <level> <message>`, audit events are single-line JSON with an `evt` field, and a startup banner, omitted below, prints between the migration and listening lines. A fresh database prints one `migration N applied` line per schema migration; an already-migrated database prints none. You should see, in order:
+
 ```text
 {"ts":"2026-06-10T17:03:21.114Z","evt":"config.load","path":"/etc/claude/gateway.yaml","sha256":"…"}
 [gateway] 2026-06-10T17:03:21.395Z info waiting for migration lock (another replica may be migrating; check pg_locks for key 6775156 if this persists)
@@ -204,9 +207,11 @@ The examples use the gateway's public URL; for the local Compose setup without a
 In Windows PowerShell, run `curl.exe`; the bare `curl` is an alias for `Invoke-WebRequest` and rejects these flags.
 
 First, fetch the discovery document, which confirms the gateway is up, the config is valid, and all boot checks passed:
+
 ```bash
 curl -s https://claude-gateway.internal.example.com/.well-known/oauth-authorization-server | jq
 ```
+
 ```json
 {
   "issuer": "https://claude-gateway.internal.example.com",
@@ -219,9 +224,11 @@ curl -s https://claude-gateway.internal.example.com/.well-known/oauth-authorizat
 The response includes additional fields, such as `response_types_supported` and `scopes_supported`.
 
 Second, request a device authorization, which confirms the device sign-in flow works and Postgres is reachable and writable:
+
 ```bash
 curl -s -X POST https://claude-gateway.internal.example.com/oauth/device_authorization | jq
 ```
+
 ```json
 {
   "device_code": "…",
@@ -253,6 +260,7 @@ Developers connect from their own laptops with one browser sign-in, using their 
 The CLI fingerprints the gateway's TLS leaf certificate on first connect and pins it per hostname. It checks that pin again during sign-in, on silent session refreshes, and on managed-settings fetches, while inference requests use standard TLS validation without the pin. Requests routed through an HTTPS proxy skip the pin check, so add the gateway host to `NO_PROXY` to keep them direct.
 
 Publish the expected SHA-256 fingerprint alongside the gateway URL so developers have something to compare against. The `/login` prompt shows the first 16 characters of the fingerprint as lowercase hexadecimal with no colons. To print the full fingerprint in that form from the certificate file, run:
+
 ```bash
 openssl x509 -noout -fingerprint -sha256 -in cert.pem | cut -d= -f2 | tr -d : | tr 'A-F' 'a-f'
 ```
@@ -270,6 +278,7 @@ Sessions refresh silently before `ttl_hours` expiry. When a refresh fails after 
 ### Set the gateway URL
 
 Three keys go in the per-OS [managed settings file](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms) you deploy via MDM or directly on disk. For a machine with no managed settings, see [Set the gateway URL in user settings](#set-the-gateway-url-in-user-settings) instead. `forceLoginMethod` and `forceLoginGatewayUrl` open `/login` directly on the **Cloud gateway** screen with the URL filled in, and `parentSettingsBehavior: "merge"` lets Claude Desktop deliver the gateway's egress allowlist to the Claude Code sessions it launches, explained in [Deliver policy to Claude Desktop sessions](#deliver-policy-to-claude-desktop-sessions):
+
 ```json
 {
   "forceLoginMethod": "gateway",
@@ -285,6 +294,7 @@ The login picker has no gateway option, and in managed settings `forceLoginMetho
 #### Set the gateway URL in user settings
 
 On machines with no managed settings, have each developer add `forceLoginMethod` and `forceLoginGatewayUrl` to their own user settings file, `~/.claude/settings.json`. This requires Claude Code v2.1.295 or later on the developer machine. This example names a gateway at `claude-gateway.internal.example.com`:
+
 ```json
 {
   "forceLoginMethod": "gateway",
@@ -310,6 +320,7 @@ Some organizations number their internal network from a public IPv4 block they o
 Add the key to the same managed settings source as the login keys: the managed settings file, MDM profile, or registry policy. Claude Code ignores it in user, project, and server-managed settings.
 
 This example declares one block. Replace `203.0.113.0/24` with your own block. It is a documentation range, and Claude Code refuses those.
+
 ```json
 {
   "gatewayInternalNetworks": ["203.0.113.0/24"]
@@ -393,6 +404,7 @@ Claude Code forwards parent-supplied [`sandbox.credentials`](https://code.claude
 #### Deploy the locks
 
 To keep parent settings as close to restriction-only as the filter supports, add all five `allowManaged*Only` locks, and the allowlists they govern, to the same sources as the merge opt-in:
+
 ```json
 {
   "forceLoginMethod": "gateway",
@@ -486,17 +498,17 @@ These guarantees apply to every session signed in through `/login`. The embedded
 
 * **Model access**: requests for models the policy doesn't grant return 400, and the `/model` picker is filtered to the policy's `availableModels` allowlist. This includes the model a session starts on before the developer picks one; see [Start sessions on a model the policy allows](https://code.claude.com/docs/en/claude-apps-gateway-config.md#start-sessions-on-a-model-the-policy-allows).
 * **Telemetry destination**: in sessions signed in through `/login`, the CLI sends its OTLP/HTTP exports to the gateway rather than to a locally set `OTEL_EXPORTER_OTLP_ENDPOINT`, unless a policy [names your collector as the endpoint](https://code.claude.com/docs/en/claude-apps-gateway-config.md#export-directly-to-your-collector). The gateway relays the exports it receives to the destinations in [`telemetry.forward_to`](https://code.claude.com/docs/en/claude-apps-gateway-config#telemetry).
-* In the embedded sessions [Claude Desktop launches](#connect-claude-desktop), the CLI sends its exports to the configured `OTEL_EXPORTER_OTLP_ENDPOINT`. The CLI attaches the gateway session token to those exports only when that endpoint points at the gateway itself.
-* With no destination configured for a signal, the gateway accepts and discards it.
-* If you already collect Claude Code telemetry directly, add your collector as a `forward_to` destination, or name it in a policy to skip the relay.
+  * In the embedded sessions [Claude Desktop launches](#connect-claude-desktop), the CLI sends its exports to the configured `OTEL_EXPORTER_OTLP_ENDPOINT`. The CLI attaches the gateway session token to those exports only when that endpoint points at the gateway itself.
+  * With no destination configured for a signal, the gateway accepts and discards it.
+  * If you already collect Claude Code telemetry directly, add your collector as a `forward_to` destination, or name it in a policy to skip the relay.
 * **Credentials**: the gateway token is the session's only credential. [Anthropic profiles](https://code.claude.com/docs/en/authentication.md#anthropic-profiles-and-federation-credentials) and any earlier claude.ai login are ignored while signed in, so developers don't need to log out of claude.ai first. For a configured `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, or `apiKeyHelper` credential, or an API key saved by an earlier Claude Console login, see [Administrator policy requires a Cloud gateway sign-in](https://code.claude.com/docs/en/errors.md#administrator-policy-requires-a-cloud-gateway-sign-in).
 * **Managed settings**: locked keys can't be overridden locally. The CLI applies the policy at startup and applies changes on each hourly poll, apart from the [changes that apply only at the next launch](https://code.claude.com/docs/en/server-managed-settings.md#fetch-and-caching-behavior).
 * **Startup with the gateway unreachable**: signed-in sessions exit at startup with an error after about 10 seconds rather than starting without their settings.
 * **Startup after the gateway ends the session**: see [Enforce fail-closed startup](https://code.claude.com/docs/en/server-managed-settings.md#enforce-fail-closed-startup) for the launches that open signed out of the gateway and the ones that exit when the gateway answers with a `401`.
 * **Deprovisioning**: a session whose user is disabled in the IdP expires within `ttl_hours` when the next refresh fails.
 * **Sign-out**: `/logout` deletes the gateway credential from the developer's machine.
-* When the gateway's discovery document advertises a `revocation_endpoint` on the gateway URL's own scheme, host, and port, `/logout` also sends the stored tokens to that endpoint so the gateway can end the session on its side. The request is best effort, so sign-out completes on the developer's machine whether or not the endpoint answers. The revocation requires Claude Code v2.1.275 or later on the developer's machine.
-* The gateway server in the `claude` binary advertises none, so a sign-out from it ends the session on the developer's machine only. To force sessions out server-side, see [JWT secret rotation](https://code.claude.com/docs/en/claude-apps-gateway-deploy.md#jwt-secret-rotation).
+  * When the gateway's discovery document advertises a `revocation_endpoint` on the gateway URL's own scheme, host, and port, `/logout` also sends the stored tokens to that endpoint so the gateway can end the session on its side. The request is best effort, so sign-out completes on the developer's machine whether or not the endpoint answers. The revocation requires Claude Code v2.1.275 or later on the developer's machine.
+  * The gateway server in the `claude` binary advertises none, so a sign-out from it ends the session on the developer's machine only. To force sessions out server-side, see [JWT secret rotation](https://code.claude.com/docs/en/claude-apps-gateway-deploy.md#jwt-secret-rotation).
 
 ### What the organization can see
 

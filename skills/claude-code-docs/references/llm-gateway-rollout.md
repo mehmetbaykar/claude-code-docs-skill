@@ -21,10 +21,10 @@ To complete the rollout, you'll need:
 
 * A gateway deployed on your infrastructure, serving HTTPS at the exact address you'll distribute to developers, not an address that redirects to it, and configured to route Claude model names to your provider
 * A provider credential for the gateway to forward with:
-* For the Anthropic API: an API key from the [Claude Console](https://platform.claude.com/settings/keys)
-* For a cloud provider: cloud credentials with model access. See the prerequisites on the [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md#prerequisites), [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md#prerequisites), or [Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry.md#prerequisites) page
+  * For the Anthropic API: an API key from the [Claude Console](https://platform.claude.com/settings/keys)
+  * For a cloud provider: cloud credentials with model access. See the prerequisites on the [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md#prerequisites), [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md#prerequisites), or [Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry.md#prerequisites) page
 * A way to deliver settings files to developer machines, such as MDM or configuration management
-* If you don't have one yet, [how settings reach devices](https://code.claude.com/docs/en/admin-setup.md#decide-how-settings-reach-devices) compares the options
+  * If you don't have one yet, [how settings reach devices](https://code.claude.com/docs/en/admin-setup.md#decide-how-settings-reach-devices) compares the options
 
 ### Gateway requirements
 
@@ -139,6 +139,7 @@ Run Claude Code through the gateway yourself before distributing anything, using
 > ```
 
 Then send a one-shot prompt through the gateway:
+
 ```bash
 claude -p "Reply with one word: connected"
 ```
@@ -173,6 +174,7 @@ The same set of variables applies whichever path you choose. Most rollouts only 
 #### Distribute through managed settings
 
 Deliver the variables through the `env` block of a [managed settings file](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms), pushed by MDM, registry policy, or configuration management:
+
 ```json
 {
   "env": {

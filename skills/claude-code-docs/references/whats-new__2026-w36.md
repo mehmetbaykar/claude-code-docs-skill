@@ -17,6 +17,7 @@ new model
 Claude Fable 5.1 is available in Claude Code with a 1M-token context window, and the `fable` alias now selects it. In Claude apps gateway sessions, `fable` still selects Fable 5. If your gateway serves Fable 5.1, run `/model claude-fable-5-1`. Requires v2.1.257 or later.
 
 Switch the current session to Fable 5.1 and save it as your default:
+
 ```text Claude Code
 > /model fable
 ```
@@ -42,6 +43,7 @@ In fullscreen rendering, `/diff` now opens a panel beside the conversation inste
 Video: https://mintcdn.com/claude-code/f9HTZGyMtxIFOUgt/images/whats-new/diff-panel.mp4?fit=max&auto=format&n=f9HTZGyMtxIFOUgt&q=85&s=9d7553c19e7f227891cd95f1f59d796d
 
 With fullscreen rendering on, inside a git repository, and in a terminal at least 110 columns wide, toggle the panel:
+
 ```text Claude Code
 > /diff
 ```
@@ -56,6 +58,7 @@ CLI
 `/skill-doctor` shows what each of your skills costs in context and how often it gets used, so you can decide which ones to turn off. Every skill in the [skill listing](https://code.claude.com/docs/en/skills.md#skill-descriptions-are-cut-short) adds to your context on every turn, whether or not Claude ever uses it. Requires v2.1.252 or later and isn't available in sessions that skip [feature-flag fetching](https://code.claude.com/docs/en/env-vars.md#features-that-need-feature-flag-fetching).
 
 Run it in an interactive session to open the report in the `/plugin` manager's **Stats** tab:
+
 ```text Claude Code
 > /skill-doctor
 ```

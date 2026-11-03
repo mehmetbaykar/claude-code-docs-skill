@@ -58,6 +58,7 @@ To configure Google Cloud's Agent Platform through environment variables instead
 ### 1. Enable Agent Platform API
 
 Enable Google Cloud's Agent Platform API in your GCP project. Replace `YOUR-PROJECT-ID` with your GCP project ID here and in the configuration step below:
+
 ```bash
 # Set your project ID
 gcloud config set project YOUR-PROJECT-ID
@@ -90,6 +91,7 @@ Claude Code supports [X.509 certificate-based Workload Identity Federation](http
 #### Advanced credential configuration
 
 Claude Code supports automatic credential refresh for GCP through the `gcpAuthRefresh` setting. Add it to your Claude Code [settings file](https://code.claude.com/docs/en/settings.md), for example `~/.claude/settings.json`. When Claude Code detects that your GCP credentials are expired or cannot be loaded, it runs the configured command to obtain new credentials before retrying the request.
+
 ```json
 {
   "gcpAuthRefresh": "gcloud auth application-default login",
@@ -108,6 +110,7 @@ Claude Code shows you the command's output, but can't send the command interacti
 ### 4. Configure Claude Code
 
 Set the following environment variables:
+
 ```bash
 # Enable Agent Platform integration
 export CLAUDE_CODE_USE_VERTEX=1
@@ -149,6 +152,7 @@ Set `ENABLE_TOOL_SEARCH=false` to disable tool search on every model. Before v2.
 Set these environment variables to specific Google Cloud's Agent Platform model IDs.
 
 Without `ANTHROPIC_DEFAULT_OPUS_MODEL`, the `opus` alias on Google Cloud's Agent Platform resolves to Opus 5.5, and without `ANTHROPIC_DEFAULT_SONNET_MODEL`, the `sonnet` alias resolves to Sonnet 4.5. This example pins each alias to a specific version:
+
 ```bash
 export ANTHROPIC_DEFAULT_OPUS_MODEL='claude-opus-4-8'
 export ANTHROPIC_DEFAULT_SONNET_MODEL='claude-sonnet-5'
@@ -176,6 +180,7 @@ Background tasks such as session title generation use the small/fast model, norm
 > Opus models have a higher per-token price than Sonnet models, so if you don't pin a primary model, you're billed at the Opus rate. To use Sonnet 4.5 as the primary model, set `ANTHROPIC_MODEL` to its full model ID. A deployment that steers the default with `ANTHROPIC_DEFAULT_SONNET_MODEL` and doesn't set `ANTHROPIC_DEFAULT_OPUS_MODEL` keeps its steered Sonnet model as the default.
 
 To customize models further:
+
 ```bash
 export ANTHROPIC_MODEL='claude-opus-4-8'
 export ANTHROPIC_DEFAULT_HAIKU_MODEL='claude-haiku-4-5@20251001'
@@ -213,6 +218,7 @@ When the startup model checks find a model your project can't invoke, Claude Cod
 If you set [`enforceAvailableModels`](https://code.claude.com/docs/en/model-config#enforce-the-allowlist-for-the-default-model) in managed settings, the startup model checks use only models your `availableModels` list permits. This requires Claude Code v2.1.287 or later. A list without `enforceAvailableModels` doesn't restrict these checks.
 
 The checks compare each entry with the model ID they would send to Agent Platform, so write the list in those IDs. This example permits Opus 4.8 and Sonnet 4.5:
+
 ```json
 {
   "availableModels": ["claude-opus-4-8", "claude-sonnet-4-5@20250929"],
@@ -269,8 +275,8 @@ If you encounter "model not found" 404 errors:
 * Confirm model is Enabled in [Model Garden](https://console.cloud.google.com/vertex-ai/model-garden)
 * Verify the model is available in the location you specified. Some models are offered only on `global` or multi-region locations such as `eu` and `us`, not in specific regions
 * If using `CLOUD_ML_REGION=global`, check that your models support global endpoints in [Model Garden](https://console.cloud.google.com/vertex-ai/model-garden) under "Supported features". For models that don't support global endpoints, either:
-* Specify a supported model via `ANTHROPIC_MODEL` or `ANTHROPIC_DEFAULT_HAIKU_MODEL`, or
-* Set a region or multi-region location using the model's `VERTEX_REGION_CLAUDE_*` variable, listed in the [environment variables reference](https://code.claude.com/docs/en/env-vars.md#variables)
+  * Specify a supported model via `ANTHROPIC_MODEL` or `ANTHROPIC_DEFAULT_HAIKU_MODEL`, or
+  * Set a region or multi-region location using the model's `VERTEX_REGION_CLAUDE_*` variable, listed in the [environment variables reference](https://code.claude.com/docs/en/env-vars.md#variables)
 
 If you encounter 429 errors:
 

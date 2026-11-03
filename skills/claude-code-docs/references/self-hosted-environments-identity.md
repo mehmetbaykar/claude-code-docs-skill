@@ -35,6 +35,7 @@ Two consequences for your services:
 ### Token format
 
 The value of `CLAUDE_CODE_SESSION_ACCESS_TOKEN` has an `sk-ant-cc-` prefix followed by a standard three-part JWT:
+
 ```text
 sk-ant-cc-<base64url header>.<base64url payload>.<base64url signature>
 ```
@@ -50,6 +51,7 @@ Verification runs in one of two places. Services on your network verify the toke
 ### Verify the token from your service
 
 Anthropic publishes the verification keys at a public, unauthenticated endpoint:
+
 ```text
 https://api.anthropic.com/v1/code/.well-known/jwks.json
 ```
@@ -174,6 +176,7 @@ The checks map directly onto standard JWT libraries. The examples below implemen
 [Wrapper scripts](https://code.claude.com/docs/en/self-hosted-environments-configuration.md#wrapper-scripts) run inside the session, before Claude starts. Instead of calling a JWT library, they can run the runner binary's `self-hosted-runner decode-token` subcommand. The subcommand reads the token from a positional argument, from `CLAUDE_CODE_SESSION_ACCESS_TOKEN`, or from piped stdin, in that order, then strips the prefix, verifies the signature against the JWKS endpoint, checks expiry, and prints the claims as JSON. The subcommand performs the signature and expiry checks only; it doesn't check `iss`, `aud`, or `ccr:role`. When your wrapper's auth decision depends on those claims, read them from the printed JSON and compare them explicitly.
 
 This command extracts the creator identity, preferring the email address, then the creator's `act.sub` subject, `user:<id>` or `agent:<id>`:
+
 ```bash
 "$CLAUDE_RUNNER_CLAUDE_BIN" self-hosted-runner decode-token | jq -re '.act.email // .act.sub'
 ```

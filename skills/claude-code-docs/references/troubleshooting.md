@@ -100,6 +100,7 @@ If characters render as boxes, smears, or the wrong glyphs when running Claude C
 These characters, printed by terminals built on a VTE library older than 0.53, are the ends of two Claude Code control sequences. To stop the text, [update Claude Code](https://code.claude.com/docs/en/setup.md#update-claude-code) to v2.1.301 or later, which skips both sequences when it identifies such a terminal.
 
 If the text remains, print the VTE version from the terminal's shell:
+
 ```bash
 echo $VTE_VERSION
 ```
@@ -168,6 +169,7 @@ If the Search tool, `@file` mentions, custom agents, or custom skills aren't fin
 > ```
 
 Then set `USE_BUILTIN_RIPGREP` to `0`, either in your shell [environment](https://code.claude.com/docs/en/env-vars.md) or in the `env` block of your [`settings.json`](https://code.claude.com/docs/en/settings-reference#all-settings):
+
 ```json
 {
   "env": {

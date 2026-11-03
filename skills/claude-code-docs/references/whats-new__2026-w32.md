@@ -19,6 +19,7 @@ Your Claude Code sessions can now message each other. Claude discovers your othe
 Video: https://mintcdn.com/claude-code/N3yEaTYPXMXFrF6k/images/whats-new/cross-session-messaging.mp4?fit=max&auto=format&n=N3yEaTYPXMXFrF6k&q=85&s=8f33c3390f78660a4a26dc980f46159f
 
 With two sessions open on the same machine, ask one of them to pass something along:
+
 ```text title="Claude Code" wrap
 Tell the session working on the payments API that users.name is now users.display_name
 ```
@@ -35,6 +36,7 @@ Self-hosted environments run Claude Code cloud sessions on your organization's o
 ![The self-hosted environments admin page listing environments such as linux-dev and macos-prod with their status and active session counts](https://mintcdn.com/claude-code/N3yEaTYPXMXFrF6k/images/whats-new/self-hosted-environments.jpg?fit=max\&auto=format\&n=N3yEaTYPXMXFrF6k\&q=85\&s=ae9152cb1670c8af517d1aee57689b14)
 
 Signed in as an Owner, run the guided setup, which walks you through creating the environment and starts a runner:
+
 ```bash
 claude self-hosted-runner setup
 ```
@@ -49,6 +51,7 @@ CLI
 Starting August 14, auto mode is the default permission mode for new sessions on Pro, Max, and Team plans. If you set a default mode yourself, it stays in place unless you accept the one-time switch prompt, and a default your organization manages doesn't change. You can still switch modes at any time. Already in effect on those plans: the classifier calls auto mode makes no longer count toward your usage limits.
 
 To start every session in auto mode before the switch, set it as your default in your user settings:
+
 ```json ~/.claude/settings.json {3}
 {
   "permissions": {

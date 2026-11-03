@@ -17,6 +17,7 @@ v2.1.186
 New `claude mcp login <name>` and `claude mcp logout <name>` commands authenticate a configured MCP server from your shell instead of the interactive `/mcp` menu. `claude mcp login` runs the server's OAuth flow directly, and `claude mcp logout` clears the stored credentials.
 
 Run the OAuth flow for a configured server without opening a session:
+
 ```bash
 claude mcp login sentry
 ```
@@ -29,6 +30,7 @@ v2.1.186
 Commands you run with the `!` prefix now get a response from Claude once the output lands in the transcript, so you can run `! npm test` and get an explanation of the failures without a second prompt. The response costs the same as sending a normal prompt. To keep the earlier behavior, where the output is added to context without a response, set `respondToBashCommands` to `false` in `settings.json`.
 
 Run a command and get a response to its output:
+
 ```text Claude Code
 > ! npm test
 ```

@@ -31,9 +31,9 @@ An `enabledPlugins` entry becomes a plugin you can use in stages: your settings 
 
 * **Declared, in settings**: `enabledPlugins` says which plugins should be on, and `extraKnownMarketplaces` says which marketplaces should exist. When you run `claude plugin marketplace add`, Claude Code writes the marketplace to `extraKnownMarketplaces` in your user settings as well as to disk
 * **Fetched, on disk under `~/.claude/plugins/`**: the records of what Claude Code has fetched, and the fetched files themselves:
-* `known_marketplaces.json` records each marketplace Claude Code has fetched, with its `source`, `installLocation`, `lastUpdated`, and `autoUpdate`. There is one `known_marketplaces.json` per user, so a marketplace you add in one project is available in every project
-* `installed_plugins.json` records each install with its `scope`, `installPath`, and `version`
-* `cache/` holds the plugin files
+  * `known_marketplaces.json` records each marketplace Claude Code has fetched, with its `source`, `installLocation`, `lastUpdated`, and `autoUpdate`. There is one `known_marketplaces.json` per user, so a marketplace you add in one project is available in every project
+  * `installed_plugins.json` records each install with its `scope`, `installPath`, and `version`
+  * `cache/` holds the plugin files
 * **Loaded, in the running session**: the plugin set Claude Code loaded at startup or at the last `/reload-plugins`. Changes to settings or to disk don't reach this layer until you run `/reload-plugins` or start a new session. That is why `claude plugin update` ends with `Restart to apply changes.` and background updates prompt you with `Run /reload-plugins to apply`
 
 ### Plugins and marketplaces that aren't on disk at session start
@@ -389,8 +389,8 @@ When enabled plugins from different origins share a manifest name, this order de
 
 1. A plugin whose id appears in managed settings `enabledPlugins`, as `true` or `false`. A `--plugin-dir` copy whose manifest name matches the id's name part isn't loaded, and you see `--plugin-dir copy of "<name>" ignored: plugin is locked by managed settings`
 2. An enabled `--plugin-dir`, `--plugin-url`, or `CLAUDE_CODE_PLUGIN_DIRS` plugin. It replaces a same-named installed marketplace plugin or skills-directory plugin:
-* **An installed marketplace plugin**: replaced silently. `claude plugin list` still shows the marketplace row as enabled, because that row reflects your settings. Only the log Claude Code writes under `~/.claude/debug/` when you start with `--debug` records `Plugin "<name>" from --plugin-dir overrides installed version`
-* **A skills-directory plugin**: replaced with a `/plugin` **Errors** tab row that reads `Not loaded — the name "<name>" is already taken by a session-only plugin (--plugin-dir / --plugin-url), which takes precedence`
+   * **An installed marketplace plugin**: replaced silently. `claude plugin list` still shows the marketplace row as enabled, because that row reflects your settings. Only the log Claude Code writes under `~/.claude/debug/` when you start with `--debug` records `Plugin "<name>" from --plugin-dir overrides installed version`
+   * **A skills-directory plugin**: replaced with a `/plugin` **Errors** tab row that reads `Not loaded — the name "<name>" is already taken by a session-only plugin (--plugin-dir / --plugin-url), which takes precedence`
 3. An installed marketplace plugin. A skills-directory plugin of the same name gets the same `Not loaded` row, naming the installed plugin
 4. A skills-directory plugin. Between two of these, the copy under `~/.claude/skills/` loads and the project's `.claude/skills/` copy is dropped, with a row that says which path shadowed it
 5. A plugin [synced from claude.ai](#synced-plugins). When an enabled plugin from any other origin matches its name, Claude Code loads that plugin and reports the synced copy as not loaded. To use the claude.ai copy instead, disable your own copy

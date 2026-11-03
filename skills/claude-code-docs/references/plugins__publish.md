@@ -87,6 +87,7 @@ Your own marketplace is a `.claude-plugin/marketplace.json` file that lists your
 ### Add the marketplace file to your repository
 
 To publish from the plugin's own repository, save the marketplace file beside `plugin.json` in `.claude-plugin/`, with one entry whose `source` is `"./"`, the repository root. Give the entry the same `name` as `plugin.json`, per [Keep the entry name and the manifest name the same](https://code.claude.com/docs/en/plugins/create-marketplace.md#keep-the-entry-name-and-the-manifest-name-the-same):
+
 ```json .claude-plugin/marketplace.json
 {
   "name": "your-marketplace",

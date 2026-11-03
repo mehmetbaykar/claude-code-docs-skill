@@ -26,6 +26,7 @@ v2.1.205
 `/doctor` now diagnoses issues and can fix them, instead of printing a read-only report. It checks installation health, finds unused skills, MCP servers, and plugins versus their context cost, deduplicates local `CLAUDE.md` files against checked-in ones, proposes trimming `CLAUDE.md` content Claude could derive from the codebase, and flags slow hooks. It reports findings first and asks for confirmation before changing anything. `/checkup` is its alias.
 
 Run a checkup from any session:
+
 ```text Claude Code
 > /doctor
 ```

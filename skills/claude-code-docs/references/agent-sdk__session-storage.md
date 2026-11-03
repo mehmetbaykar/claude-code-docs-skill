@@ -19,6 +19,7 @@ Common reasons to use a session store:
 ## The `SessionStore` interface
 
 A `SessionStore` is an object with two required methods, `append` and `load`, and four optional methods. The SDK calls `append` to write transcript entries during a query and `load` to read them back for resume.
+
 ```typescript TypeScript
 // Exported from @anthropic-ai/claude-agent-sdk as
 // SessionStore, SessionKey, SessionStoreEntry, SessionSummaryEntry.
@@ -52,6 +53,7 @@ type SessionSummaryEntry = {
   data: Record<string, unknown>;
 };
 ```
+
 ```python Python
 # Exported from claude_agent_sdk as
 # SessionStore, SessionKey, SessionStoreEntry, SessionSummaryEntry.
@@ -108,6 +110,7 @@ For what the SDK does with the transcript `load` returns, see [Resume from the s
 ## Quick start
 
 The SDK ships an `InMemorySessionStore` for development and testing. The example below runs a query with the store attached, captures the session ID from the result message, then resumes from the store in a second `query()` call. The second call passes the same store instance plus `resume`, so the SDK loads the transcript from the store instead of the local filesystem:
+
 ```typescript TypeScript
 import { query, InMemorySessionStore } from "@anthropic-ai/claude-agent-sdk";
 
@@ -140,6 +143,7 @@ for await (const message of query({
   }
 }
 ```
+
 ```python Python
 import asyncio
 from claude_agent_sdk import (
@@ -196,6 +200,7 @@ Both SDK repositories include runnable reference adapters under [`examples/sessi
 | Relational database or document store | One row or document per entry, stored as JSON and ordered by a key assigned on insert. | Postgres ([TypeScript](https://github.com/anthropics/claude-agent-sdk-typescript/tree/main/examples/session-stores/postgres), [Python](https://github.com/anthropics/claude-agent-sdk-python/blob/main/examples/session_stores/postgres_session_store.py)) |
 
 Each adapter takes a pre-configured client instance, so you control credentials, TLS, region, and pooling. The following example wires the object-store adapter into `query()` and then resumes from it on another host:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 import { S3Client } from "@aws-sdk/client-s3";
@@ -230,11 +235,13 @@ for await (const message of query({
 Both SDKs ship a conformance suite that asserts the behavioral contract `append`, `load`, and the optional methods must satisfy. Tests for optional methods skip automatically when those methods are not implemented.
 
 In TypeScript, copy [`shared/conformance.ts`](https://github.com/anthropics/claude-agent-sdk-typescript/blob/main/examples/session-stores/shared/conformance.ts) from the example directory into your test suite. In Python, the suite ships in the package. To run it with pytest, which isn't an SDK dependency, install pytest first:
+
 ```bash
 pip install pytest
 ```
 
 Then pass your adapter to the suite in a test file as a zero-argument factory, which `run_session_store_conformance` calls once per contract to build a fresh store:
+
 ```python Python
 import pytest
 from claude_agent_sdk.testing import run_session_store_conformance

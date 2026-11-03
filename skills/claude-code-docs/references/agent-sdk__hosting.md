@@ -21,6 +21,7 @@ Every hosting decision on this page follows from how the SDK runs the agent. Whe
 ![Request flow: client to your app, which spawns a claude CLI subprocess over stdio inside the container; the subprocess writes to local disk and calls api.anthropic.com over HTTPS](https://mintcdn.com/claude-code/ikqp3_70mqIahteV/images/agent-sdk/hosting-subprocess.svg?fit=max\&auto=format\&n=ikqp3_70mqIahteV\&q=85\&s=9dac857ca9d3b1410c3734900c386004)
 
 One agent session maps to one subprocess. Running N concurrent sessions means N subprocesses, each with its own process tree and transcript file. By default they all inherit your application's working directory. When sessions need separate filesystems, pass a distinct `cwd` in the options of each session's `query()` call:
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -31,6 +32,7 @@ for await (const message of query({
   console.log(message);
 }
 ```
+
 ```python Python
 import asyncio
 
@@ -73,6 +75,7 @@ Create a container for each user task and destroy it when the task completes. Be
 Example workloads include bug investigation and fix, invoice and receipt extraction, document translation, and media transformation.
 
 The container runs a one-shot entrypoint that reads the task from the `TASK_PROMPT` environment variable, calls the SDK, and exits.
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -81,6 +84,7 @@ for await (const message of query({ prompt, options: { maxTurns: 20 } })) {
   console.log(message);
 }
 ```
+
 ```python Python
 import asyncio
 import os
@@ -121,6 +125,7 @@ Example workloads include a personal project manager with intermittent check-ins
 Tune your provider's idle timeout to how frequently you expect users to return. Shutting a container down without a `SessionStore` configured loses the transcript with it, so the store is required for this pattern, not optional.
 
 The pattern hinges on resuming a session by ID with a shared store attached:
+
 ```typescript TypeScript
 import { query, type SessionStore } from "@anthropic-ai/claude-agent-sdk";
 
@@ -135,6 +140,7 @@ for await (const message of query({
   // ...
 }
 ```
+
 ```python Python
 from claude_agent_sdk import query, ClaudeAgentOptions, SessionStore
 import asyncio
@@ -216,6 +222,7 @@ Three things to know about how `SessionStore` behaves:
 Agent SDK agents are long-lived processes that spawn tool calls across many API round-trips. Without telemetry you cannot see which tools ran, how long they took, or where a session stalled.
 
 The SDK inherits OpenTelemetry configuration from the environment. Set the OTEL environment variables at the container or orchestrator level so every `query()` call exports spans, metrics, and log events to your collector. The example below enables OTLP export for all three signals. `CLAUDE_CODE_ENHANCED_TELEMETRY_BETA` is required only for traces; omit it if you export metrics and logs alone.
+
 ```bash title=".env"
 CLAUDE_CODE_ENABLE_TELEMETRY=1
 CLAUDE_CODE_ENHANCED_TELEMETRY_BETA=1
@@ -241,6 +248,7 @@ Three auth concerns matter at hosting time:
 Each session runs in its own subprocess, so concurrency on a host is bounded by how many subprocesses its RAM can hold.
 
 Size each host with this formula:
+
 ```text
 agents per host = (host RAM - overhead) / (per-session RAM ceiling)
 ```
@@ -266,6 +274,7 @@ To isolate tenants inside a shared container:
 * Apply per-tenant egress rules at your proxy, such as distinct outbound IPs, credentials, or domain allowlists, so a compromised tenant cannot exfiltrate data via another tenant's outbound policy.
 
 The example below applies the settings, auto memory, config directory, and working directory options together. Construct `tenantDir` and `configDir` so each tenant gets a path no other tenant can read. In TypeScript, `env` replaces the subprocess environment, so spread `...process.env` to keep inherited variables like `PATH` and `ANTHROPIC_API_KEY`. In Python, `env` is merged on top of the inherited environment.
+
 ```typescript TypeScript
 import { query } from "@anthropic-ai/claude-agent-sdk";
 
@@ -288,6 +297,7 @@ for await (const message of query({
   // ...
 }
 ```
+
 ```python Python
 from claude_agent_sdk import query, ClaudeAgentOptions
 import asyncio

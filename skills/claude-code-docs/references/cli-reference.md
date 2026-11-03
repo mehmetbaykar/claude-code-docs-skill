@@ -157,6 +157,7 @@ Claude Code provides five flags for customizing the system prompt. Four set its 
 You can combine these flags. To replace the default prompt and still append your own text, pass `--append-system-prompt` or `--append-system-prompt-file` together with `--system-prompt` or `--system-prompt-file`. With Claude Code v2.1.283 or later, you can also pass a flag together with its own file form, such as `--append-system-prompt` with `--append-system-prompt-file`, and Claude Code uses both.
 
 For example, run the following in your shell to append both a style guide from a file and one extra instruction:
+
 ```bash
 claude -p --append-system-prompt-file ./style.md --append-system-prompt "Always reply in French" "Summarize README.md"
 ```

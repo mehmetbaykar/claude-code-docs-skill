@@ -18,6 +18,7 @@ An artifact is a live, interactive page that Claude Code publishes from your ses
 Video: https://mintcdn.com/claude-code/1ylKDoQynT1UgfEK/images/whats-new/artifacts.mp4?fit=max&auto=format&n=1ylKDoQynT1UgfEK&q=85&s=7f5391559d2bc69989621b36322fcff1
 
 Ask Claude for a page, then approve the publish prompt:
+
 ```text title="Claude Code" wrap
 Make an artifact that walks through this PR with the diff annotated inline.
 ```
@@ -30,6 +31,7 @@ v2.1.178
 Deny and ask permission rules can now match a tool's input parameters with the `Tool(param:value)` syntax. For example, `Agent(model:opus)` matches subagent spawns that request the Opus model tier. The value accepts `*` as a wildcard, so `Agent(isolation:*)` matches any explicit isolation value.
 
 Add a parameter rule to the deny list in `settings.json`:
+
 ```json .claude/settings.json {3}
 {
   "permissions": {
@@ -46,6 +48,7 @@ v2.1.181
 Pass `key=value` to `/config` to change a setting directly without opening the Settings interface. The syntax also works in non-interactive mode with the `-p` flag and from Remote Control.
 
 Set the `thinking` setting from the prompt:
+
 ```text title="Claude Code" wrap
 /config thinking=false
 ```
