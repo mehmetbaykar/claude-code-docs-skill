@@ -1687,8 +1687,8 @@
       "title": "Settings files and precedence"
     },
     "setup.md": {
-      "hash": "03f65a81c6f92dcc6f49d7b1080b5edadd78bea2b6c12a290ac0e6e2bf8b59ce",
-      "last_updated": "2026-11-01T18:26:53+00:00",
+      "hash": "fd2621804c86a823a652932f800622858f39d658eb7fe7ecffce274338cba56b",
+      "last_updated": "2026-11-03T18:27:30+00:00",
       "original_url": "https://code.claude.com/docs/en/setup",
       "path": "/docs/en/setup",
       "source_url": "https://code.claude.com/docs/en/setup.md",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-03T06:34:20+00:00",
+  "last_updated": "2026-11-03T18:27:41+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
