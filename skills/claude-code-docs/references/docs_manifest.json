@@ -455,8 +455,8 @@
       "title": "Configure auto mode"
     },
     "best-practices.md": {
-      "hash": "9f283b65cd691f0664e021418875464f06f71d24300c123b6c0cab476214770a",
-      "last_updated": "2026-11-04T00:39:54+00:00",
+      "hash": "8916d8d5cb381cc11e737af3b716c3c6e94279f02897607513e33f14385e8a35",
+      "last_updated": "2026-11-04T03:23:44+00:00",
       "original_url": "https://code.claude.com/docs/en/best-practices",
       "path": "/docs/en/best-practices",
       "section": "docs",
@@ -525,8 +525,8 @@
       "title": "Use Claude Code with Chrome"
     },
     "claude-apps-gateway-config.md": {
-      "hash": "2549ad9929747c5617be27b1d20e9eb0b9964bd25808a31ef8d0d13a007525f2",
-      "last_updated": "2026-11-03T18:07:42+00:00",
+      "hash": "caa6798610e62546b5a2eedff5896f2634c0878fd691d4811cf01b7f334e39a1",
+      "last_updated": "2026-11-04T03:23:46+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-config",
       "path": "/docs/en/claude-apps-gateway-config",
       "section": "docs",
@@ -825,8 +825,8 @@
       "title": "Data usage"
     },
     "debug-your-config.md": {
-      "hash": "6abf2bad64966a0f648f3dccd9fcb56a95a45312b1b2bc5b0cb6901747fc79bd",
-      "last_updated": "2026-10-30T18:27:27+00:00",
+      "hash": "6c3fcdb53ece0d635cf4fa622d48e57391cd4b9dca04eef60e562bc6ba087685",
+      "last_updated": "2026-11-04T03:23:54+00:00",
       "original_url": "https://code.claude.com/docs/en/debug-your-config",
       "path": "/docs/en/debug-your-config",
       "section": "docs",
@@ -1135,8 +1135,8 @@
       "title": "Customize keyboard shortcuts"
     },
     "large-codebases.md": {
-      "hash": "c9707e6b1fed19470388297f812dd4f0df057a6c6103d3acab5b4738acea739e",
-      "last_updated": "2026-11-03T18:07:59+00:00",
+      "hash": "b7970da366340a59be6c3cca0c71d0abb62530f67b3f57bfe21b72862ea85a5d",
+      "last_updated": "2026-11-04T03:24:02+00:00",
       "original_url": "https://code.claude.com/docs/en/large-codebases",
       "path": "/docs/en/large-codebases",
       "section": "docs",
@@ -1235,8 +1235,8 @@
       "title": "Connect Claude Code to tools via MCP"
     },
     "memory.md": {
-      "hash": "68e260873ad2676356fb851e18409d3abb5c9318329b0a8f49c1487b1897acb6",
-      "last_updated": "2026-11-03T18:08:01+00:00",
+      "hash": "ab79c81076bf22cdf3d3c8916b79060018bdeab9210ef5ef0047ba523f5225b8",
+      "last_updated": "2026-11-04T03:24:04+00:00",
       "original_url": "https://code.claude.com/docs/en/memory",
       "path": "/docs/en/memory",
       "section": "docs",
@@ -1465,8 +1465,8 @@
       "title": "Plugin loading reference"
     },
     "plugins__manifest-reference.md": {
-      "hash": "ff6ba03a6502e33a6a63e373668f6f2d808f05d2600694b67c8354f1a8a60138",
-      "last_updated": "2026-11-03T18:08:07+00:00",
+      "hash": "da55b0208b1db220c097d43cabe7aba3a8aadd30d461fc6abd000fcc8aed9b36",
+      "last_updated": "2026-11-04T03:24:10+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/manifest-reference",
       "path": "/docs/en/plugins/manifest-reference",
       "section": "docs",
@@ -2309,7 +2309,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-04T00:40:48+00:00",
+  "last_updated": "2026-11-04T03:24:29+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
