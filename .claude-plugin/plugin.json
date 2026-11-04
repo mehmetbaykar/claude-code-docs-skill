@@ -1,7 +1,7 @@
 {
   "name": "cc-docs",
   "displayName": "Claude Code Docs",
-  "version": "2026.1103.1808",
+  "version": "2026.1104.40",
   "description": "Unofficial: answers Claude Code questions from a local mirror of its documentation, refreshed every 3 hours.",
   "author": {
     "name": "Community contributors"
