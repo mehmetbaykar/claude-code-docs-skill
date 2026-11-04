@@ -45,8 +45,8 @@
       "title": "Escalate hard decisions with the advisor tool"
     },
     "agent-sdk__agent-loop.md": {
-      "hash": "71b2aba6e124409d5ec6c8a1730b0853c72d61aec8dfbf72043f844e5ddd2f41",
-      "last_updated": "2026-11-04T00:39:43+00:00",
+      "hash": "43a5639172715feb1235fd042be6c6813ebc7228ab6146b10cc241c4927404f9",
+      "last_updated": "2026-11-04T18:23:45+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
       "path": "/docs/en/agent-sdk/agent-loop",
       "section": "docs",
@@ -185,8 +185,8 @@
       "title": "Agent SDK overview"
     },
     "agent-sdk__permissions.md": {
-      "hash": "70fc099d0350a2edf21d0a35eb1f0e0bb74a0abb4e63084af5ff43708d4b4915",
-      "last_updated": "2026-11-03T18:07:29+00:00",
+      "hash": "0538d305f78ca37bc0f02cb8950a95ccdb757e753bd2151a617b2ce715bce2a5",
+      "last_updated": "2026-11-04T18:23:49+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/permissions",
       "path": "/docs/en/agent-sdk/permissions",
       "section": "docs",
@@ -205,8 +205,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "3eb7e592ab3e16433683fe2b2616923893f4aa9e4904de4a376fce8d026df4e0",
-      "last_updated": "2026-11-04T00:39:47+00:00",
+      "hash": "693062b6a9fff062512720c21d63e91b86e59424bd118d19d1862a856cb22f95",
+      "last_updated": "2026-11-04T18:23:49+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "section": "docs",
@@ -225,8 +225,8 @@
       "title": "Quickstart"
     },
     "agent-sdk__secure-deployment.md": {
-      "hash": "df30f0002acc3c0dee99ec80ec388e19b86961bd4c1172d8291d648ae88236f9",
-      "last_updated": "2026-11-03T18:07:31+00:00",
+      "hash": "03019adee44631e18f62424b37ff352c72e577fbbf1bc895dd253cd86e0d1e16",
+      "last_updated": "2026-11-04T18:23:50+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/secure-deployment",
       "path": "/docs/en/agent-sdk/secure-deployment",
       "section": "docs",
@@ -345,8 +345,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "b0d6947258437496b982d1aecbd8652d2a599224e2d9965ac957fb98ab7bfa62",
-      "last_updated": "2026-11-04T00:39:51+00:00",
+      "hash": "eb496ee61221a291d67bc825590d425627c259da5425da03ae86cbd4d9f01d0f",
+      "last_updated": "2026-11-04T18:23:53+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "section": "docs",
@@ -355,8 +355,8 @@
       "title": "Agent SDK reference - TypeScript"
     },
     "agent-sdk__user-input.md": {
-      "hash": "20a474db50d306b6d136b9aa849670a094f79216d14934bd4ea44a2dd0efd9c0",
-      "last_updated": "2026-11-03T18:07:34+00:00",
+      "hash": "1945701f93aacde9847477acd9961fc60825b2de2b61d03b178d3579997e8ffa",
+      "last_updated": "2026-11-04T18:23:54+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/user-input",
       "path": "/docs/en/agent-sdk/user-input",
       "section": "docs",
@@ -375,8 +375,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "65045290b5e6d364d2e264f74c3de7b1fa8670d5d1283b00f4087f8958e774d3",
-      "last_updated": "2026-11-04T00:39:52+00:00",
+      "hash": "3b254d278183a52bfe24f7b59409fed61bbb7598181101ad4f6544c74a903fd6",
+      "last_updated": "2026-11-04T18:23:55+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "section": "docs",
@@ -915,8 +915,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "b3b5a54c1ab0c826f399e91d027875ff6bbcd97b665064d2aaefa6b7a1aae945",
-      "last_updated": "2026-11-04T00:40:08+00:00",
+      "hash": "bf490b6b5651a17017f6dd79a98bdb06f2cd7675f5f6a213512c3a41670f2fcd",
+      "last_updated": "2026-11-04T18:24:09+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "section": "docs",
@@ -2309,7 +2309,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-04T03:24:29+00:00",
+  "last_updated": "2026-11-04T18:24:48+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
