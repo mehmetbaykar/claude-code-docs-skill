@@ -45,8 +45,8 @@
       "title": "Escalate hard decisions with the advisor tool"
     },
     "agent-sdk__agent-loop.md": {
-      "hash": "43a5639172715feb1235fd042be6c6813ebc7228ab6146b10cc241c4927404f9",
-      "last_updated": "2026-11-04T18:23:45+00:00",
+      "hash": "517e6d4490de2dff3233bf3a527beb8335e8ccef0068000357393c1b98fdf3bb",
+      "last_updated": "2026-11-06T03:23:38+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
       "path": "/docs/en/agent-sdk/agent-loop",
       "section": "docs",
@@ -75,8 +75,8 @@
       "title": "Configure your agent"
     },
     "agent-sdk__cost-tracking.md": {
-      "hash": "2327b620ea92fe26d1a577d6503746c9ea6d14e12cdefaf46f94125b7e3516f0",
-      "last_updated": "2026-11-03T18:07:27+00:00",
+      "hash": "43aafc8976347d9ea60ef73a42918531ed0926e197c3ec5180b8b2ca09600540",
+      "last_updated": "2026-11-06T03:23:39+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/cost-tracking",
       "path": "/docs/en/agent-sdk/cost-tracking",
       "section": "docs",
@@ -655,8 +655,8 @@
       "title": "CLI reference"
     },
     "cloud-environments.md": {
-      "hash": "14518b3c5c3936e5ef87e3477d8c667e7913d0e5916343b89515aa1505d0bce5",
-      "last_updated": "2026-11-06T00:40:36+00:00",
+      "hash": "8cd8b0cf034d0e2f3f19afb42dc05c16a37bc2155550e24f1bcd450d307b03c9",
+      "last_updated": "2026-11-06T03:23:58+00:00",
       "original_url": "https://code.claude.com/docs/en/cloud-environments",
       "path": "/docs/en/cloud-environments",
       "section": "docs",
@@ -835,8 +835,8 @@
       "title": "Debug your configuration"
     },
     "deep-links.md": {
-      "hash": "dc1ac4cad1972a7ef1d20ab13b713f9382a2b647b9e2defc7ea90a7b20b82e56",
-      "last_updated": "2026-11-03T18:07:51+00:00",
+      "hash": "5b407f77dd5a01da774be9ddda4ee4a76c20f2679bd450d8c0a484869e0a558c",
+      "last_updated": "2026-11-06T03:24:04+00:00",
       "original_url": "https://code.claude.com/docs/en/deep-links",
       "path": "/docs/en/deep-links",
       "section": "docs",
@@ -1315,8 +1315,8 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "cc00904a98e14d0a5b9b83c3b0e4ea487275f82686da35de9173c5adb8caaab3",
-      "last_updated": "2026-11-04T21:22:34+00:00",
+      "hash": "b9cf130b5fad02a60801b25afb1565f5e5dcad35d9770da6a7b791185a58767c",
+      "last_updated": "2026-11-06T03:24:19+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "section": "docs",
@@ -1325,8 +1325,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "4fae5f57bd672d81959eb7d0f52dcb1937b95802cc424c415bb8a49da95217da",
-      "last_updated": "2026-11-04T21:22:35+00:00",
+      "hash": "c9671a70b57db06aea47bbab264b32edc458a2bde5dd70e8590fece2a2141e7d",
+      "last_updated": "2026-11-06T03:24:20+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "section": "docs",
@@ -2005,8 +2005,8 @@
       "title": "Use Claude Code in VS Code"
     },
     "web-quickstart.md": {
-      "hash": "ea43d8e1b1c6c1988bbf587e1bbd1657c94a1cdf0758e0b8f3858b65a519840d",
-      "last_updated": "2026-11-06T00:41:13+00:00",
+      "hash": "6faca5c8c60d50ab14b5a3713fa0aff9e1ed4e0c367f817bc7018ce9d20a65a1",
+      "last_updated": "2026-11-06T03:24:41+00:00",
       "original_url": "https://code.claude.com/docs/en/web-quickstart",
       "path": "/docs/en/web-quickstart",
       "section": "docs",
@@ -2309,7 +2309,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-06T00:41:20+00:00",
+  "last_updated": "2026-11-06T03:24:50+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
