@@ -437,13 +437,13 @@ From your shell, start an auto mode session with [`--debug-file`](https://code.c
 claude --permission-mode auto --debug-file classifier-debug.log
 ```
 
-Have Claude run a shell command that isn't read-only, then search the log for `classifier_request_started`:
+To give the classifier a command to review, have Claude run `curl https://example.com`, then search the log for `classifier_request_started`:
 
 * **Your model after `model=`**: the variable took effect
 * **A different model after `model=`**: search the log for `ignoring CLAUDE_CODE_AUTO_MODE_MODEL`, which gives the reason and any step to take
 * **No such line**: read `Auto mode server` in `/status` at the Claude Code prompt:
   * **`Enabled`**: the [server](#server-side-classifier-review) is set to review this session's calls.
-  * **`Disabled`**: make sure the [permission mode](#switch-permission-modes) is auto, then have Claude run another command that isn't read-only.
+  * **`Disabled`**: this check hasn't tested your model yet. Make sure the [permission mode](#switch-permission-modes) is auto and no [permission rule](https://code.claude.com/docs/en/permissions.md#manage-permissions) matches `curl`, then run the check again with the [sandbox](https://code.claude.com/docs/en/sandboxing.md) off.
 
 ### What the classifier blocks by default
 
