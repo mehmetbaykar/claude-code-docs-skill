@@ -1715,8 +1715,8 @@
       "title": "Choose a sandbox environment"
     },
     "sandboxing.md": {
-      "hash": "b1bf7c3243dfc619a4b0e2716b654800720843a99e87dd5776f7b2d3c6b99106",
-      "last_updated": "2026-11-04T00:40:31+00:00",
+      "hash": "69f288949bc40578aeff4ce20fb8129183b8e8bba4874f7901171e41d900e5b6",
+      "last_updated": "2026-11-07T06:27:41+00:00",
       "original_url": "https://code.claude.com/docs/en/sandboxing",
       "path": "/docs/en/sandboxing",
       "section": "docs",
@@ -2309,7 +2309,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-07T00:40:09+00:00",
+  "last_updated": "2026-11-07T06:27:55+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
