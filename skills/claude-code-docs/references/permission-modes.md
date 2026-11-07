@@ -156,7 +156,7 @@ The next session you start shows `⏸ manual mode on` in the status bar.
 
 ### Permission modes with the HIPAA configuration
 
-In an organization with the [HIPAA configuration](https://code.claude.com/docs/en/hipaa-setup.md) applied, the built-in `auto` default doesn't apply. A terminal or VS Code session starts in Manual mode when nothing else chooses its starting permission mode. A terminal session also shows `Auto mode isn't the default for your organization · Shift+Tab to switch`, and the VS Code extension shows no notice. [Check how developers sign in and connect](https://code.claude.com/docs/en/hipaa-setup.md#check-how-developers-sign-in-and-connect) lists the sessions this applies to.
+In an organization with the [HIPAA configuration](https://code.claude.com/docs/en/hipaa-setup.md) applied, the [built-in `auto` default](#which-mode-a-session-starts-in) doesn't apply. A terminal or VS Code session starts in Manual mode when nothing else chooses its starting permission mode. A terminal session also shows `Auto mode isn't the default for your organization · Shift+Tab to switch`, and the VS Code extension shows no notice. [Check how developers sign in and connect](https://code.claude.com/docs/en/hipaa-setup.md#check-how-developers-sign-in-and-connect) lists the sessions this applies to.
 
 Auto mode and `bypassPermissions` stay available:
 
@@ -164,8 +164,6 @@ Auto mode and `bypassPermissions` stay available:
 * **Start in auto mode**: pass `--permission-mode auto`, or set `permissions.defaultMode` to `auto` in your user settings, or in managed settings for your whole organization. See [Start in a different permission mode](#start-in-a-different-mode)
 * **Remove auto mode**: set [`permissions.disableAutoMode`](https://code.claude.com/docs/en/settings-reference#disableautomode) to `"disable"` in managed settings
 * **Block `bypassPermissions`**: set [`permissions.disableBypassPermissionsMode`](https://code.claude.com/docs/en/settings-reference#permissions-disablebypasspermissionsmode) to `"disable"` in managed settings
-
-Requires Claude Code v2.1.285 or later, the [minimum version for the HIPAA configuration](https://code.claude.com/docs/en/hipaa-setup.md#update-claude-code-and-claude-desktop).
 
 ## Switch permission modes
 

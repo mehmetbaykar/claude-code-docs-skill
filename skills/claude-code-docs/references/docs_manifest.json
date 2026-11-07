@@ -895,8 +895,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "b8806661a20efde327416bc57422999078cb00c5fe23b9d092790cfaf6d8bde6",
-      "last_updated": "2026-11-05T03:24:04+00:00",
+      "hash": "d31d875e339e82f86db060c591f71733fc3dbb1ea60ee7117e0f15e1488738a2",
+      "last_updated": "2026-11-07T00:39:31+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "section": "docs",
@@ -1315,8 +1315,8 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "b654a4772a17f71e6812c0caaf07e909e1d06e1a6a5700b1b9c2e3f5c3ea8700",
-      "last_updated": "2026-11-06T21:22:29+00:00",
+      "hash": "a766c927ef38498d276b3ae6fbcda1e5d52551002b9391114556f54cdc74d127",
+      "last_updated": "2026-11-07T00:39:44+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "section": "docs",
@@ -1875,8 +1875,8 @@
       "title": "Settings files and precedence"
     },
     "setup.md": {
-      "hash": "6adbb471a90fb7607904ab07b9db0cdee86396f9e15c17b0eae763d81966b56d",
-      "last_updated": "2026-11-06T21:22:42+00:00",
+      "hash": "6342fb16caea60e24fc2490f05a66364457ca893387f45add6cf1218f7dfa0da",
+      "last_updated": "2026-11-07T00:39:58+00:00",
       "original_url": "https://code.claude.com/docs/en/setup",
       "path": "/docs/en/setup",
       "section": "docs",
@@ -2309,7 +2309,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-06T21:22:52+00:00",
+  "last_updated": "2026-11-07T00:40:09+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
