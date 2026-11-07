@@ -1075,8 +1075,8 @@
       "title": "Set up Claude Code (local mode) for a HIPAA-ready organization"
     },
     "hooks-guide.md": {
-      "hash": "aea2d38df5e5028af10b96f301316a13aae2090b3889e80da7c9f54048e414d7",
-      "last_updated": "2026-11-06T06:31:33+00:00",
+      "hash": "5f9ade6a85bf8886c62909b499811344f9113d1e84de739db70827df682eda30",
+      "last_updated": "2026-11-07T21:21:55+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks-guide",
       "path": "/docs/en/hooks-guide",
       "section": "docs",
@@ -1085,8 +1085,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "af31370673abdfe43f7ebe770ac226e06cf12be7a5d834d11cc3860b59bc7902",
-      "last_updated": "2026-11-06T21:22:23+00:00",
+      "hash": "dd47aedff2a55fdad7b2731c436efdcb4595fb3d96cb8b2fe1dea950a8753edf",
+      "last_updated": "2026-11-07T21:21:55+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "section": "docs",
@@ -1225,8 +1225,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "6830f8b22d14f4cf2ff5ce9bad3e42ff0c8fe98a0a70958124801653b46e794b",
-      "last_updated": "2026-11-06T21:22:26+00:00",
+      "hash": "8b3a039ec73709d591d361dd6c10165ba754d518be46cbbfd87e0ad0d7e48d8d",
+      "last_updated": "2026-11-07T21:21:58+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "section": "docs",
@@ -2309,7 +2309,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-07T06:27:55+00:00",
+  "last_updated": "2026-11-07T21:22:27+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
