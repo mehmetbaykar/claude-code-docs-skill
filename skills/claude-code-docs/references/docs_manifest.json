@@ -85,8 +85,8 @@
       "title": "Track cost and usage"
     },
     "agent-sdk__custom-tools.md": {
-      "hash": "a4aa3bb35fbb9e07a34dfaf5dff5bfab33148db66776887b91d27ee181173825",
-      "last_updated": "2026-11-03T18:07:27+00:00",
+      "hash": "7d6b51577edfa2ded438017b1c2321055aded95552907ffd390a6306cfea5f07",
+      "last_updated": "2026-11-09T15:22:00+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/custom-tools",
       "path": "/docs/en/agent-sdk/custom-tools",
       "section": "docs",
@@ -135,8 +135,8 @@
       "title": "Hosting the Agent SDK"
     },
     "agent-sdk__mcp.md": {
-      "hash": "feef34b5b1550ba2fd0204f4f11aa48a66694afa7988fa20ecd11f90b5ac7c41",
-      "last_updated": "2026-11-03T18:07:28+00:00",
+      "hash": "57941b5304e98ba00130d39436ae0e3495c75815944febb31f758916a4acd1f3",
+      "last_updated": "2026-11-09T15:22:01+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/mcp",
       "path": "/docs/en/agent-sdk/mcp",
       "section": "docs",
@@ -185,8 +185,8 @@
       "title": "Agent SDK overview"
     },
     "agent-sdk__permissions.md": {
-      "hash": "0538d305f78ca37bc0f02cb8950a95ccdb757e753bd2151a617b2ce715bce2a5",
-      "last_updated": "2026-11-04T18:23:49+00:00",
+      "hash": "ef70fb9f6c936ae341a3e3c794f4779ce28831f638317b67984a3cd11bc495a1",
+      "last_updated": "2026-11-09T15:22:03+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/permissions",
       "path": "/docs/en/agent-sdk/permissions",
       "section": "docs",
@@ -2309,7 +2309,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-08T21:22:31+00:00",
+  "last_updated": "2026-11-09T15:23:00+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
