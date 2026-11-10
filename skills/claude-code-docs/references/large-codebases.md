@@ -199,7 +199,7 @@ If the install fails, match the message Claude Code reports:
 * `Marketplace "claude-plugins-official" not found`: add the marketplace with `/plugin marketplace add anthropics/claude-plugins-official`, then retry the install.
 * `Plugin "<name>" not found in marketplace "claude-plugins-official"`: your local copy of the marketplace catalog may be out of date. Refresh it with `/plugin marketplace update claude-plugins-official`, then retry the install. If the retry prints the same message, see [Plugin not found in marketplace](https://code.claude.com/docs/en/plugins/troubleshooting.md#plugin-not-found-in-marketplace).
 
-To enable a plugin for everyone in the repository rather than installing it yourself, add it to the [`enabledPlugins` project setting](https://code.claude.com/docs/en/settings-reference#plugin-settings).
+To turn a plugin on for everyone in the repository, add it to the [`enabledPlugins` project setting](https://code.claude.com/docs/en/settings-reference#plugin-settings). Each person still [installs it](https://code.claude.com/docs/en/plugins/loading.md#enabled-in-project-settings-but-not-installed).
 
 Code intelligence plugins require the language's language server binary on each developer's machine. See [which binary each language requires](https://code.claude.com/docs/en/plugins/code-intelligence.md). Installing from the official marketplace requires network access to GitHub, where the marketplace is hosted. On a restricted network, [add the marketplace from an internal Git host or local path](https://code.claude.com/docs/en/plugins/install.md#add-a-marketplace) instead.
 

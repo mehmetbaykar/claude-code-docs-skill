@@ -96,7 +96,7 @@ Pass `-y` from your own terminal to accept the displayed command without the pro
 * **stdin or stdout isn't a TTY, and you pass neither `-y` nor `--accept-command`**: the install is refused. The output says the command was only displayed, and the exit code is `1`
 * **Claude runs the command through its Bash tool**: `-y` is ignored. Run the command from your own terminal instead
 
-Install a plugin for everyone who clones the project:
+Use `--scope project` to record the plugin in `.claude/settings.json` for everyone who clones the project. Each person [also runs this command](https://code.claude.com/docs/en/plugins/loading.md#enabled-in-project-settings-but-not-installed) in their own clone:
 
 ```bash
 claude plugin install formatter@my-marketplace --scope project
