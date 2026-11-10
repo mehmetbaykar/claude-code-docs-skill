@@ -2285,8 +2285,8 @@
       "title": "Run parallel sessions with worktrees"
     },
     "zero-data-retention.md": {
-      "hash": "5053cdf879acb87fdb234de047a664835161e7e3aea3b61814600494bb93557c",
-      "last_updated": "2026-11-09T21:22:36+00:00",
+      "hash": "edd8b30b85f27220b55950fa53467eaf19a50c18dde4fe64edf971eee7e9b562",
+      "last_updated": "2026-11-10T15:22:57+00:00",
       "original_url": "https://code.claude.com/docs/en/zero-data-retention",
       "path": "/docs/en/zero-data-retention",
       "section": "docs",
@@ -2309,7 +2309,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-10T06:30:23+00:00",
+  "last_updated": "2026-11-10T15:22:57+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
