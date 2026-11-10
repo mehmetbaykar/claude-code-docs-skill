@@ -6,12 +6,12 @@
     "fetch_tool_version": "3.0",
     "pages_excluded": 0,
     "pages_failed": 0,
-    "pages_fetched_successfully": 228,
+    "pages_fetched_successfully": 203,
     "pages_skipped": 0,
     "pages_stale": 0,
     "raw_fallback_pages": 0,
     "stale_pages": [],
-    "total_pages_discovered": 228
+    "total_pages_discovered": 203
   },
   "files": {
     "accessibility.md": {
@@ -25,8 +25,8 @@
       "title": "Use Claude Code with a screen reader"
     },
     "admin-setup.md": {
-      "hash": "4d9c6f5d5bdc9fa44a514a55fe780463edcab57d15a104ff4df0bcc834793969",
-      "last_updated": "2026-11-04T00:39:42+00:00",
+      "hash": "793a32f7474dba00e082b5dce84268ea30f28b234cd9a32039dba5d8400e799f",
+      "last_updated": "2026-11-10T21:21:25+00:00",
       "original_url": "https://code.claude.com/docs/en/admin-setup",
       "path": "/docs/en/admin-setup",
       "section": "docs",
@@ -345,8 +345,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "1120824e69203d27e186909a00ac25868ec659344352d24757744275b7b8e90c",
-      "last_updated": "2026-11-10T18:23:08+00:00",
+      "hash": "011a38e7351cbf860d4efea4ef4092dd9f96e0f9dc9a4110e7f09f40f0203101",
+      "last_updated": "2026-11-10T21:21:34+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "section": "docs",
@@ -375,8 +375,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "6fc9dc46f381c0b87c8c028287e1131b95bb9b16724e218e0e9f21c5b4c36a0e",
-      "last_updated": "2026-11-10T03:23:24+00:00",
+      "hash": "d9826d9a396ab38752b4e179d3e3d0b3dcee2d8fbb485985cee2822c2805fb68",
+      "last_updated": "2026-11-10T21:21:35+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "section": "docs",
@@ -525,8 +525,8 @@
       "title": "Use Claude Code with Chrome"
     },
     "claude-apps-gateway-config.md": {
-      "hash": "65fd7a60083d9b4a97965c4787d52879c08a171659655deb7d74525b7d078aa4",
-      "last_updated": "2026-11-09T21:21:50+00:00",
+      "hash": "b4cb7bdee6b9d9bea10bd9720d5a3457e9deffff5ee74c12b96691713665fad5",
+      "last_updated": "2026-11-10T21:21:40+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-config",
       "path": "/docs/en/claude-apps-gateway-config",
       "section": "docs",
@@ -535,8 +535,8 @@
       "title": "Claude apps gateway configuration"
     },
     "claude-apps-gateway-deploy.md": {
-      "hash": "d91b0040a09632d3b2bd27a95f426f5ba4f7ba59cbb8e8e22705765a42399dc8",
-      "last_updated": "2026-11-09T21:21:50+00:00",
+      "hash": "b7aea110fe0b4b9c1e09a351025246cb118b42e99ff0bdc6e199170bb3be4fcb",
+      "last_updated": "2026-11-10T21:21:41+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway-deploy",
       "path": "/docs/en/claude-apps-gateway-deploy",
       "section": "docs",
@@ -575,8 +575,8 @@
       "title": "Claude apps gateway spend limits"
     },
     "claude-apps-gateway.md": {
-      "hash": "457ecc87d6e939663edea02afaff528de5b7ce6f17daaa0e0e331b2069bd5070",
-      "last_updated": "2026-11-09T21:21:50+00:00",
+      "hash": "abd302caf163712a897117a29c55de417480d1d0ff60ca3d43722f1d1f2dcb92",
+      "last_updated": "2026-11-10T21:21:40+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-apps-gateway",
       "path": "/docs/en/claude-apps-gateway",
       "section": "docs",
@@ -655,8 +655,8 @@
       "title": "CLI reference"
     },
     "cloud-environments.md": {
-      "hash": "8cd8b0cf034d0e2f3f19afb42dc05c16a37bc2155550e24f1bcd450d307b03c9",
-      "last_updated": "2026-11-06T03:23:58+00:00",
+      "hash": "124d6b1e9e62ecce3a6d5e74f318d2f2839b7f4cbac5e743dcc6c288e0807c87",
+      "last_updated": "2026-11-10T21:21:44+00:00",
       "original_url": "https://code.claude.com/docs/en/cloud-environments",
       "path": "/docs/en/cloud-environments",
       "section": "docs",
@@ -915,8 +915,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "bc2ce506f9891eff6bd94c1999114ea6efccbb31ff9c09abca5420974484f064",
-      "last_updated": "2026-11-10T18:23:25+00:00",
+      "hash": "1031c50b06422ef77af95104211a28e5f8253a2bba893d81daf090fdcc042399",
+      "last_updated": "2026-11-10T21:21:51+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "section": "docs",
@@ -925,8 +925,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "aa31d9df5f676ad8c0989cd9a79810ed4ff9fc915de09c3d070ce4a0efcd6203",
-      "last_updated": "2026-11-10T18:23:26+00:00",
+      "hash": "d07422dae31e4c01a451ee138262131f0b02f83256559496194048de6d84f66e",
+      "last_updated": "2026-11-10T21:21:51+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "section": "docs",
@@ -935,8 +935,8 @@
       "title": "Error reference"
     },
     "fast-mode.md": {
-      "hash": "98a03d003649e474ca4755e3d078a1c1f26cf3956401d7be94b4a58e5ab62a28",
-      "last_updated": "2026-11-10T18:23:26+00:00",
+      "hash": "ce0c49999ac678b6c2a8bbffa96d6ce2ad6c997b53fe50ed551da7399e29f30a",
+      "last_updated": "2026-11-10T21:21:52+00:00",
       "original_url": "https://code.claude.com/docs/en/fast-mode",
       "path": "/docs/en/fast-mode",
       "section": "docs",
@@ -945,8 +945,8 @@
       "title": "Speed up responses with fast mode"
     },
     "feature-availability.md": {
-      "hash": "4a20a6f2db3ec10698b16701f377e38f25c4bc3175b19b061b4ae68e1da1a360",
-      "last_updated": "2026-11-03T18:07:54+00:00",
+      "hash": "e1945887cb41c78712b118445bab898b979140c75c7ae87c96417c50b8b0fd3b",
+      "last_updated": "2026-11-10T21:21:52+00:00",
       "original_url": "https://code.claude.com/docs/en/feature-availability",
       "path": "/docs/en/feature-availability",
       "section": "docs",
@@ -1035,8 +1035,8 @@
       "title": "Glossary"
     },
     "goal.md": {
-      "hash": "53d4827b731fd0cfa09d29db8a7c9a53ac29ba88ba415a31c8ca10db0bca01d7",
-      "last_updated": "2026-11-10T03:23:47+00:00",
+      "hash": "f0a83ac43b9c3240d47af9e674a09f95316d39a68d63f727a149efda72a6fda7",
+      "last_updated": "2026-11-10T21:21:55+00:00",
       "original_url": "https://code.claude.com/docs/en/goal",
       "path": "/docs/en/goal",
       "section": "docs",
@@ -1155,8 +1155,8 @@
       "title": "Legal and compliance"
     },
     "llm-gateway-connect.md": {
-      "hash": "591e58fbbc8cb72ebb29776c76f3257c4198aeaf09fb9372db393e951068abff",
-      "last_updated": "2026-11-10T18:23:33+00:00",
+      "hash": "bdff9b62b5a346ff82b874ba23d8d5eb63f461cd6efb621327423c6131af41cb",
+      "last_updated": "2026-11-10T21:21:58+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-connect",
       "path": "/docs/en/llm-gateway-connect",
       "section": "docs",
@@ -1165,8 +1165,8 @@
       "title": "Connect Claude Code to an LLM gateway"
     },
     "llm-gateway-protocol.md": {
-      "hash": "ed7150c64de6a6311b5f8114771207f6e0413019021c54a01d5bc61f15fe8902",
-      "last_updated": "2026-11-09T21:22:07+00:00",
+      "hash": "6db0cac3133612e7269bc688216893ad3a847059b3ba6d6052e0c81d2fc56c1d",
+      "last_updated": "2026-11-10T21:21:59+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-protocol",
       "path": "/docs/en/llm-gateway-protocol",
       "section": "docs",
@@ -1185,8 +1185,8 @@
       "title": "Roll out an LLM gateway for your organization"
     },
     "llm-gateway.md": {
-      "hash": "40165e5d47cca33a37cbb2e50605f6861aa89136c6ff4e87ec12456a0ba740a5",
-      "last_updated": "2026-10-22T18:38:10+00:00",
+      "hash": "3857e3993fed9cc87cd6ed246700b0348bf702a48beb3719c16537681f993c0c",
+      "last_updated": "2026-11-10T21:21:58+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway",
       "path": "/docs/en/llm-gateway",
       "section": "docs",
@@ -1235,8 +1235,8 @@
       "title": "Connect Claude Code to tools via MCP"
     },
     "memory.md": {
-      "hash": "ab79c81076bf22cdf3d3c8916b79060018bdeab9210ef5ef0047ba523f5225b8",
-      "last_updated": "2026-11-04T03:24:04+00:00",
+      "hash": "3b441f01b9298f3a5bad484fed46c234489a18defd53e8f2ce7c4e5f266bc6ed",
+      "last_updated": "2026-11-10T21:22:00+00:00",
       "original_url": "https://code.claude.com/docs/en/memory",
       "path": "/docs/en/memory",
       "section": "docs",
@@ -1315,8 +1315,8 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "a988697a0c1321673e9bf90579e824f9138a9bd59715127d36b8f2c154b16da0",
-      "last_updated": "2026-11-10T18:23:37+00:00",
+      "hash": "111e1aa7b615ac0340c31f7e6c73884457f5efbf26c78bda810f80351cc8825e",
+      "last_updated": "2026-11-10T21:22:03+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "section": "docs",
@@ -1375,8 +1375,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugins__cli-reference.md": {
-      "hash": "4899e71adef141b345cb98418a482ab29a4293ef50a3d9a4e94e2926051e17bc",
-      "last_updated": "2026-11-10T06:29:56+00:00",
+      "hash": "429629db8187f550d0a14962072e0558278b5a708ebcc7f3fbe5894448215e98",
+      "last_updated": "2026-11-10T21:22:05+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/cli-reference",
       "path": "/docs/en/plugins/cli-reference",
       "section": "docs",
@@ -1565,8 +1565,8 @@
       "title": "Mods overview"
     },
     "plugins__mods__reference.md": {
-      "hash": "446de073b6f2c1fe3f8ddb9b064f476e96d62f997855f36fd38e9f32b58be01a",
-      "last_updated": "2026-11-10T03:24:03+00:00",
+      "hash": "8f540f17a26fffcfcc5ff25bbcd55927b72e712559069f88f840f627c4c2bbf5",
+      "last_updated": "2026-11-10T21:22:10+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/reference",
       "path": "/docs/en/plugins/mods/reference",
       "section": "docs",
@@ -1595,8 +1595,8 @@
       "title": "Troubleshoot a mod"
     },
     "plugins__org.md": {
-      "hash": "9065d11b67f6c41ec86340656bb47312d099aa10192d1f211556720f78307706",
-      "last_updated": "2026-11-10T06:30:03+00:00",
+      "hash": "92724a984a78d4a24008327a00ec8db2db707e222e84726e793a1c15b77b80aa",
+      "last_updated": "2026-11-10T21:22:11+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/org",
       "path": "/docs/en/plugins/org",
       "section": "docs",
@@ -1655,8 +1655,8 @@
       "title": "Troubleshoot plugins"
     },
     "prompt-caching.md": {
-      "hash": "d6c619b4e05daa541938502565c127e3faca9dd4e047b15b4eb91f9238b24a39",
-      "last_updated": "2026-11-09T21:22:20+00:00",
+      "hash": "94a88db4e89094bdeef04e9447af5f6e86bbeee75baee4db1f85c568d05fddd4",
+      "last_updated": "2026-11-10T21:22:12+00:00",
       "original_url": "https://code.claude.com/docs/en/prompt-caching",
       "path": "/docs/en/prompt-caching",
       "section": "docs",
@@ -1685,8 +1685,8 @@
       "title": "Quickstart"
     },
     "remote-control.md": {
-      "hash": "767b32ae01aab064e36dd6548a8e4df162a20f479193a39fce9a5bf9ca38cc88",
-      "last_updated": "2026-11-10T03:24:07+00:00",
+      "hash": "332e57a667fe9a0afa3a4b2b8871de70bd1923a1b75c1dd63ec72fb94aa33cf3",
+      "last_updated": "2026-11-10T21:22:13+00:00",
       "original_url": "https://code.claude.com/docs/en/remote-control",
       "path": "/docs/en/remote-control",
       "section": "docs",
@@ -1795,8 +1795,8 @@
       "title": "Self-hosted environments quickstart"
     },
     "self-hosted-environments-reference.md": {
-      "hash": "c662057f2f02b79690ec90fddc94b775750994de15b2cc23ed32fa476c6f7529",
-      "last_updated": "2026-11-10T18:23:50+00:00",
+      "hash": "ec5b9b5a4172c849ec33f8619b925ecbade77d6d89c8a85efb4842a2f00cfaf0",
+      "last_updated": "2026-11-10T21:22:16+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-reference",
       "path": "/docs/en/self-hosted-environments-reference",
       "section": "docs",
@@ -1855,8 +1855,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "306b33efdc8918ec2f565dee6b37d18ab6ef790085894185629991c0ae258e45",
-      "last_updated": "2026-11-10T18:23:52+00:00",
+      "hash": "564beef45bc28b46b9de68b4d7ea05fe8559db3c69d45499bec9c146464cc495",
+      "last_updated": "2026-11-10T21:22:18+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "section": "docs",
@@ -1865,8 +1865,8 @@
       "title": "All settings"
     },
     "settings.md": {
-      "hash": "04f5e4315181d09db5de6821cc723f20fc12025793a1258ff3e2131284b8b7e7",
-      "last_updated": "2026-11-10T06:30:10+00:00",
+      "hash": "a2a5a573f751bacf90f2da9e6d382a76a8bd7f1abb77a2414a2fd918aa21e95a",
+      "last_updated": "2026-11-10T21:22:18+00:00",
       "original_url": "https://code.claude.com/docs/en/settings",
       "path": "/docs/en/settings",
       "section": "docs",
@@ -2014,256 +2014,6 @@
       "status": "live",
       "title": "Get started with Claude Code in the cloud"
     },
-    "whats-new.md": {
-      "hash": "98b5fe59aa281d84cd52bd515c647be105f405feb9d65e42ab542821b0eb23a8",
-      "last_updated": "2026-10-22T18:38:44+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new",
-      "path": "/docs/en/whats-new",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new.md",
-      "status": "live",
-      "title": "What's new"
-    },
-    "whats-new__2026-w13.md": {
-      "hash": "2faf08154436cba522f1be16b214fab30d521b41403c1c0ee89b79e8d1e964db",
-      "last_updated": "2026-11-03T18:08:22+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w13",
-      "path": "/docs/en/whats-new/2026-w13",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w13.md",
-      "status": "live",
-      "title": "Week 13 \u00b7 March 23\u201327, 2026"
-    },
-    "whats-new__2026-w14.md": {
-      "hash": "2bb29cad43b3f342573fa5136a97c5eeef90e310a3ece273bba1c6c5aea55630",
-      "last_updated": "2026-11-03T18:08:23+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w14",
-      "path": "/docs/en/whats-new/2026-w14",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w14.md",
-      "status": "live",
-      "title": "Week 14 \u00b7 March 30 \u2013 April 3, 2026"
-    },
-    "whats-new__2026-w15.md": {
-      "hash": "c605b7e703d2328748f6635e679cb5467de1a055e028c4c824b294449f1bd35a",
-      "last_updated": "2026-11-03T18:08:23+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w15",
-      "path": "/docs/en/whats-new/2026-w15",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w15.md",
-      "status": "live",
-      "title": "Week 15 \u00b7 April 6\u201310, 2026"
-    },
-    "whats-new__2026-w16.md": {
-      "hash": "b11bff40a72582864b76da8ad1ce1e33d9bcbadc749bfbedf7ce35ccc712e37d",
-      "last_updated": "2026-11-03T18:08:23+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w16",
-      "path": "/docs/en/whats-new/2026-w16",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w16.md",
-      "status": "live",
-      "title": "Week 16 \u00b7 April 13\u201317, 2026"
-    },
-    "whats-new__2026-w17.md": {
-      "hash": "80ad8ff8656ce58da581fce7ed463bb12ee66f1cc6fd1ab247ddfe30d74e9314",
-      "last_updated": "2026-11-03T18:08:23+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w17",
-      "path": "/docs/en/whats-new/2026-w17",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w17.md",
-      "status": "live",
-      "title": "Week 17 \u00b7 April 20\u201324, 2026"
-    },
-    "whats-new__2026-w18.md": {
-      "hash": "13e44eddeb8815f58946c7411d220d858a232d769b1990c07f3c779118744501",
-      "last_updated": "2026-11-03T18:08:24+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w18",
-      "path": "/docs/en/whats-new/2026-w18",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w18.md",
-      "status": "live",
-      "title": "Week 18 \u00b7 April 27 \u2013 May 1, 2026"
-    },
-    "whats-new__2026-w19.md": {
-      "hash": "7d3e8736e32de6d563febaeabf05ec06ccb9f85ebc9a66668d50ce240ecee70c",
-      "last_updated": "2026-11-03T18:08:24+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w19",
-      "path": "/docs/en/whats-new/2026-w19",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w19.md",
-      "status": "live",
-      "title": "Week 19 \u00b7 May 4\u20138, 2026"
-    },
-    "whats-new__2026-w20.md": {
-      "hash": "a0076e5d84d2a81a793afadf7ce41f8e7ffc0981467181011e4577ab6dca40d5",
-      "last_updated": "2026-11-03T18:08:24+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w20",
-      "path": "/docs/en/whats-new/2026-w20",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w20.md",
-      "status": "live",
-      "title": "Week 20 \u00b7 May 11\u201315, 2026"
-    },
-    "whats-new__2026-w21.md": {
-      "hash": "f55f4362412c7738a321be9a4dade184fc33a5fd8b47b18b6ee3751e6f3fdab1",
-      "last_updated": "2026-11-03T18:08:24+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w21",
-      "path": "/docs/en/whats-new/2026-w21",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w21.md",
-      "status": "live",
-      "title": "Week 21 \u00b7 May 18\u201322, 2026"
-    },
-    "whats-new__2026-w22.md": {
-      "hash": "c377a2b739f30400af677aeca85c2d5092891ce4cdb0065ef2ba403a18b95a47",
-      "last_updated": "2026-11-03T18:08:25+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w22",
-      "path": "/docs/en/whats-new/2026-w22",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w22.md",
-      "status": "live",
-      "title": "Week 22 \u00b7 May 25\u201329, 2026"
-    },
-    "whats-new__2026-w23.md": {
-      "hash": "68b7d6f349d389c5529d9ac39e17c80285bfc0e9e4822e70a9a1d2b140031200",
-      "last_updated": "2026-11-03T18:08:25+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w23",
-      "path": "/docs/en/whats-new/2026-w23",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w23.md",
-      "status": "live",
-      "title": "Week 23 \u00b7 June 1\u20135, 2026"
-    },
-    "whats-new__2026-w24.md": {
-      "hash": "8d5df24d451c535e84d696e9581b3f8c51878106d1a30568625aba71facc6a7e",
-      "last_updated": "2026-11-03T18:08:25+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w24",
-      "path": "/docs/en/whats-new/2026-w24",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w24.md",
-      "status": "live",
-      "title": "Week 24 \u00b7 June 8\u201312, 2026"
-    },
-    "whats-new__2026-w25.md": {
-      "hash": "507088be249ff09f1589a5ea5c287ea12c9dde79e4dcfed62d51ac5d08403bf3",
-      "last_updated": "2026-11-03T18:08:25+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w25",
-      "path": "/docs/en/whats-new/2026-w25",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w25.md",
-      "status": "live",
-      "title": "Week 25 \u00b7 June 15\u201319, 2026"
-    },
-    "whats-new__2026-w26.md": {
-      "hash": "06370524a18a20d89b93f364cb806fb23fef81c42d51659f95198acdb9ef12e3",
-      "last_updated": "2026-11-03T18:08:26+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w26",
-      "path": "/docs/en/whats-new/2026-w26",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w26.md",
-      "status": "live",
-      "title": "Week 26 \u00b7 June 22\u201326, 2026"
-    },
-    "whats-new__2026-w27.md": {
-      "hash": "0ebdfa7fcee7470450719cee24898c2f162aa22b8066876ec0c599992675cfbe",
-      "last_updated": "2026-11-03T18:08:26+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w27",
-      "path": "/docs/en/whats-new/2026-w27",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w27.md",
-      "status": "live",
-      "title": "Week 27 \u00b7 June 29 \u2013 July 3, 2026"
-    },
-    "whats-new__2026-w28.md": {
-      "hash": "2146dc6c5bd6526eb8808fa44b5db31ccb6bd6369cd05ebf5b8ac199eb824524",
-      "last_updated": "2026-11-03T18:08:26+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w28",
-      "path": "/docs/en/whats-new/2026-w28",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w28.md",
-      "status": "live",
-      "title": "Week 28 \u00b7 July 6\u201310, 2026"
-    },
-    "whats-new__2026-w29.md": {
-      "hash": "bfcfcf5832109e6087e7bdb5884b73a2adc8bac459ee02ed16d232ffffb24864",
-      "last_updated": "2026-11-03T18:08:27+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w29",
-      "path": "/docs/en/whats-new/2026-w29",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w29.md",
-      "status": "live",
-      "title": "Week 29 \u00b7 July 13\u201317, 2026"
-    },
-    "whats-new__2026-w30.md": {
-      "hash": "714c231bf557c47c1418c3d85c98280003a338092a930dc9c4e7c277679206f9",
-      "last_updated": "2026-11-03T18:08:27+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w30",
-      "path": "/docs/en/whats-new/2026-w30",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w30.md",
-      "status": "live",
-      "title": "Week 30 \u00b7 July 20\u201324, 2026"
-    },
-    "whats-new__2026-w32.md": {
-      "hash": "5175ca38544a92e1c54638d1cfaa63bb5323a3b34fed7c9be47b44a259dc9f1a",
-      "last_updated": "2026-11-03T18:08:27+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w32",
-      "path": "/docs/en/whats-new/2026-w32",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w32.md",
-      "status": "live",
-      "title": "Week 32 \u00b7 August 3\u20137, 2026"
-    },
-    "whats-new__2026-w33.md": {
-      "hash": "0ff9af02ea156a0cd5c815e9616e9dc97a93b42af5e535a3d63310681659f830",
-      "last_updated": "2026-11-03T18:08:27+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w33",
-      "path": "/docs/en/whats-new/2026-w33",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w33.md",
-      "status": "live",
-      "title": "Week 33 \u00b7 August 10\u201314, 2026"
-    },
-    "whats-new__2026-w34.md": {
-      "hash": "583729693171772debcd36db81fb8797fe301eefd7a91b330f4e9aefc7c59432",
-      "last_updated": "2026-11-03T18:08:28+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w34",
-      "path": "/docs/en/whats-new/2026-w34",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w34.md",
-      "status": "live",
-      "title": "Week 34 \u00b7 August 17\u201321, 2026"
-    },
-    "whats-new__2026-w35.md": {
-      "hash": "f0149ec867bf1fab604d1d0c3baf3fc9de37970031b4007dc4a774f4f12b760f",
-      "last_updated": "2026-11-03T18:08:28+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w35",
-      "path": "/docs/en/whats-new/2026-w35",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w35.md",
-      "status": "live",
-      "title": "Week 35 \u00b7 August 24\u201328, 2026"
-    },
-    "whats-new__2026-w36.md": {
-      "hash": "e15a0800c6e13a1c70fbbd6d889bb2bcba49f3439dcec93aba379e7808afc09a",
-      "last_updated": "2026-11-03T18:08:28+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w36",
-      "path": "/docs/en/whats-new/2026-w36",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w36.md",
-      "status": "live",
-      "title": "Week 36 \u00b7 August 31 \u2013 September 4, 2026"
-    },
-    "whats-new__2026-w37.md": {
-      "hash": "949b3a61602d5da0d1f005b4a1b3c069399f72ab5fbdcb8c3f6a282836ad34f1",
-      "last_updated": "2026-11-03T18:08:28+00:00",
-      "original_url": "https://code.claude.com/docs/en/whats-new/2026-w37",
-      "path": "/docs/en/whats-new/2026-w37",
-      "section": "docs",
-      "source_url": "https://code.claude.com/docs/en/whats-new/2026-w37.md",
-      "status": "live",
-      "title": "Week 37 \u00b7 September 7\u201311, 2026"
-    },
     "workflows.md": {
       "hash": "94b6e06e54ea2d933d29a9853c3fc5e9ded194e72e28dfa26fbd6688da8cacf0",
       "last_updated": "2026-11-10T06:30:22+00:00",
@@ -2309,7 +2059,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-10T18:24:04+00:00",
+  "last_updated": "2026-11-10T21:22:23+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
