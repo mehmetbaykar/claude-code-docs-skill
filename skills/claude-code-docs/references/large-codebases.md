@@ -237,7 +237,9 @@ This is particularly useful for [subagent worktree isolation](https://code.claud
 
 List directories in `sparsePaths`, not individual files. Root-level files like `package.json`, `tsconfig.base.json`, and lock files are always checked out alongside the directories you list. Root-level directories are not, so include `.claude` in the list if you want the repository root's `.claude/settings.json` or `.claude/rules/` available inside the worktree. For project skills, agents, and commands, see [What worktrees share with the main checkout](https://code.claude.com/docs/en/worktrees.md#what-worktrees-share-with-the-main-checkout).
 
-Sparse checkout requires git to enable `extensions.worktreeConfig` in the repository's shared `.git/config` while a sparse worktree exists. Claude Code removes that entry after the last worktree is removed, but only if Claude Code added it. It never removes a value you set yourself.
+> [!NOTE]
+>
+> Sparse checkout requires git to enable `extensions.worktreeConfig` in the repository's shared `.git/config` while a sparse worktree exists. Claude Code removes that entry after the last worktree is removed, but only if Claude Code added it.
 
 To avoid duplicating large directories like `node_modules` across worktrees, pair `sparsePaths` with `symlinkDirectories` in the same `.claude/settings.json`:
 

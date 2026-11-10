@@ -4675,7 +4675,7 @@ A plugin's own `settings.json` can also supply this key; see [Ship default setti
 
 ### `crossSessionInbound`
 
-Choose what this session does with [messages arriving from your other Claude Code sessions](https://code.claude.com/docs/en/cross-session-messaging.md#control-inbound-messages). When no value applies, Claude Code decides per message from the two sessions' permission-mode classes. Requires Claude Code v2.1.224 or later.
+Choose what this session does with [messages arriving from your other Claude Code sessions](https://code.claude.com/docs/en/cross-session-messaging.md#control-inbound-messages). When no value applies, Claude Code decides per message from the two sessions' permission-mode classes.
 
 * **Scope**: [`Any file`](#scopes). A project or local value applies only when it's stricter than the value managed settings, the `--settings` flag, or user settings give.
 * **Type**: string, one of:
