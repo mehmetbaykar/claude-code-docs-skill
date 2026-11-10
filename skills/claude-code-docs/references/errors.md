@@ -338,6 +338,7 @@ Match the message you see to a section below.
 | `MCP server "<name>" connection closed before the tool call was answered` | [Tool errors](#connection-closed-before-the-tool-call-was-answered) |
 | `MCP server "<name>" is disabled — re-enable it via /mcp to use its tools` | [Tool errors](#mcp-server-is-disabled) |
 | `MCP server "<name>" tool "<tool>" timed out after <N>s. The server asked the user a question, and no answer came before the time limit.` | [Tool errors](#mcp-tool-call-timed-out-with-the-servers-question-unanswered) |
+| `Permission prompt tool returned an invalid result` | [Tool errors](#permission-prompt-tool-returned-an-invalid-result) |
 | `would be spawned with zero tools — refusing` | [Tool errors](#agent-would-be-spawned-with-zero-tools) |
 | `File is covered by a Read deny rule in your permission settings` | [Tool errors](#file-is-covered-by-a-read-deny-rule) |
 | `<path> is outside <dirs>; the permissions.blockWritesOutsideWorkingDirectories setting blocks writes outside the working directories` | [Tool errors](#setting-blocks-writes-outside-the-working-directories) |
@@ -4679,6 +4680,23 @@ Before v2.1.310, the result ended at `timed out after <N>s` and said nothing abo
 * In a TypeScript Agent SDK application, make your [`onElicitation`](https://code.claude.com/docs/en/agent-sdk/typescript#options) callback return its answer before the limit runs out
 * To give an answer more time, set a longer [`timeout`](https://code.claude.com/docs/en/mcp#time-limits-on-mcp-tool-calls) in milliseconds in the server's configuration entry, such as `"timeout": 600000` for 10 minutes
 * Run the task in an interactive session instead and answer the server's [dialog](https://code.claude.com/docs/en/mcp.md#respond-to-mcp-elicitation-requests) yourself
+
+### Permission prompt tool returned an invalid result
+
+The tool you passed to [`--permission-prompt-tool`](https://code.claude.com/docs/en/cli-reference#cli-flags) returned an answer Claude Code couldn't read, so the tool call waiting on it didn't run, even if the answer allowed the call:
+
+```text wrap
+Permission prompt tool returned an invalid result. Expected a single text block param with type="text" and a string text value.
+```
+
+**What to do:**
+
+* Return one text block whose text is `{"behavior": "allow"}` or `{"behavior": "deny", "message": "<reason>"}`. To change the input, add `updatedInput` to the `allow` object. From v2.1.86 through v2.1.206, an `allow` needed `"updatedInput": {}` to keep the input.
+* Return no [`structuredContent`](https://code.claude.com/docs/en/agent-sdk/custom-tools#return-structured-data), which your MCP SDK may add on its own. For example, register the tool:
+  * **`FastMCP` or `MCPServer` from `mcp.server`**: with `structured_output=False`
+  * **`FastMCP` from `fastmcp`**: with `output_schema=None`, and return a string
+  * **MCP TypeScript SDK**: without `outputSchema`
+* If the error comes only with inputs of about 40 KB or more, don't copy the input into `updatedInput` or a deny's `message`. To change an input that large, [raise your prompt tool's output limit](https://code.claude.com/docs/en/mcp.md#raise-the-limit-for-a-specific-tool).
 
 ### Agent would be spawned with zero tools
 
