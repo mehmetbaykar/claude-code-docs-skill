@@ -595,8 +595,8 @@
       "title": "Use Claude Code in the cloud"
     },
     "claude-directory.md": {
-      "hash": "ce332a589f3ee8365b9805374e0be1082bf922a8c2722906a5ece967eeec3c5d",
-      "last_updated": "2026-11-11T00:40:35+00:00",
+      "hash": "b332a7e9ae98139ffc58b28ab15bb251fcdc68b8df89a90a50223d5dd31565ac",
+      "last_updated": "2026-11-11T18:22:55+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-directory",
       "path": "/docs/en/claude-directory",
       "section": "docs",
@@ -745,8 +745,8 @@
       "title": "Commands"
     },
     "common-workflows.md": {
-      "hash": "e274386bb5ea42c4e8cf8e32ca4ad29ebdb9a3768fd7565cb63616d570db4a0e",
-      "last_updated": "2026-11-03T18:07:48+00:00",
+      "hash": "c908adeea82c489e9595d600f734e9caecda7e5a4db68957b62454a176eefc80",
+      "last_updated": "2026-11-11T18:22:59+00:00",
       "original_url": "https://code.claude.com/docs/en/common-workflows",
       "path": "/docs/en/common-workflows",
       "section": "docs",
@@ -915,8 +915,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "b65c3b00019b5116bdc097f10f0ef77ce8ae2d75391ba916f237dc80857b3aef",
-      "last_updated": "2026-11-11T00:40:43+00:00",
+      "hash": "8abd722a87b9efdb85a86eafc184ebcc0fe8625930c42e9796b87e91c625cc85",
+      "last_updated": "2026-11-11T18:23:03+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "section": "docs",
@@ -1025,8 +1025,8 @@
       "title": "Claude Code GitLab CI/CD"
     },
     "glossary.md": {
-      "hash": "af18e36267c88bac63334c31a00785285ef6936fe319e69bfb89fcc98ee4a211",
-      "last_updated": "2026-10-30T18:27:33+00:00",
+      "hash": "734968b6b5239e2d64db85bee812b9e5a482284f8cb7692102ae49f2de00d5ac",
+      "last_updated": "2026-11-11T18:23:06+00:00",
       "original_url": "https://code.claude.com/docs/en/glossary",
       "path": "/docs/en/glossary",
       "section": "docs",
@@ -1085,8 +1085,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "3e2573ad1a76563d5dd5747a61e8a7c738bce448957199160249ebdd6d59fc7d",
-      "last_updated": "2026-11-10T18:23:30+00:00",
+      "hash": "0b567603be9cd1d9742d428dc664d10da7f8ff9f2e4b40865cae69cc9c3850ab",
+      "last_updated": "2026-11-11T18:23:08+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "section": "docs",
@@ -1315,8 +1315,8 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "111e1aa7b615ac0340c31f7e6c73884457f5efbf26c78bda810f80351cc8825e",
-      "last_updated": "2026-11-10T21:22:03+00:00",
+      "hash": "774e82a1dfaf81ef68019146b462267e34d06e45c666537cb445e271e6a856ec",
+      "last_updated": "2026-11-11T18:23:14+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "section": "docs",
@@ -1725,8 +1725,8 @@
       "title": "Configure the sandboxed Bash tool"
     },
     "scheduled-tasks.md": {
-      "hash": "00aa1fb2fb5f03975db2c0288b9830dc6bfb35b2dd53a181437be028fff8aaa9",
-      "last_updated": "2026-11-11T00:41:03+00:00",
+      "hash": "013de48d62e76205c26a95ca68b83d9ec48c71a92e6be18fa3629f2464d26c63",
+      "last_updated": "2026-11-11T18:23:25+00:00",
       "original_url": "https://code.claude.com/docs/en/scheduled-tasks",
       "path": "/docs/en/scheduled-tasks",
       "section": "docs",
@@ -1755,8 +1755,8 @@
       "title": "Security"
     },
     "self-hosted-environments-configuration.md": {
-      "hash": "788617e6695a9ec81530bfdcdac2c6428f27a72cc3d54849321fe15d62aea31e",
-      "last_updated": "2026-11-11T00:41:04+00:00",
+      "hash": "408f175b33835cc58b4ef6cd889fb3b31a627e31e80e103b02447f60268ee04c",
+      "last_updated": "2026-11-11T18:23:26+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-configuration",
       "path": "/docs/en/self-hosted-environments-configuration",
       "section": "docs",
@@ -1765,8 +1765,8 @@
       "title": "Customize sessions in self-hosted environments"
     },
     "self-hosted-environments-deploy.md": {
-      "hash": "d4a6073995493ad70409df7d03893805bca94db2e6dbb98db14baea299a70a21",
-      "last_updated": "2026-11-10T18:23:49+00:00",
+      "hash": "87831bb2a92d015ac6eaabe949cdd9c002a1a1db6e6b95a6f175253f0a0d6149",
+      "last_updated": "2026-11-11T18:23:26+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-deploy",
       "path": "/docs/en/self-hosted-environments-deploy",
       "section": "docs",
@@ -1945,8 +1945,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "248ac022f61ba68d9e1f511da926004f8551cec722e3a049fb8a539f3809cfe3",
-      "last_updated": "2026-11-10T00:40:03+00:00",
+      "hash": "cc7c28a4cdf19992de8c9e7a407052a6042f2011c76d21cd1803ca76e0f0d3bd",
+      "last_updated": "2026-11-11T18:23:31+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "section": "docs",
@@ -2059,7 +2059,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-11T15:22:31+00:00",
+  "last_updated": "2026-11-11T18:23:33+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
