@@ -45,8 +45,8 @@
       "title": "Escalate hard decisions with the advisor tool"
     },
     "agent-sdk__agent-loop.md": {
-      "hash": "517e6d4490de2dff3233bf3a527beb8335e8ccef0068000357393c1b98fdf3bb",
-      "last_updated": "2026-11-06T03:23:38+00:00",
+      "hash": "2b035cbdf7d78f68595f82f2aa0dd80d81e68375ab040b500525578fbb0f351f",
+      "last_updated": "2026-11-11T15:21:33+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/agent-loop",
       "path": "/docs/en/agent-sdk/agent-loop",
       "section": "docs",
@@ -205,8 +205,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "0047efeb26d9fe48caa5680b62e37a05491280b23805bb40c4098b95a4faf42c",
-      "last_updated": "2026-11-10T18:23:05+00:00",
+      "hash": "3f1982684434edcc24cdaeba54044945f134446e33163f6385fc65faa4c9aa99",
+      "last_updated": "2026-11-11T15:21:38+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "section": "docs",
@@ -345,8 +345,8 @@
       "title": "TypeScript SDK V2 session API (removed)"
     },
     "agent-sdk__typescript.md": {
-      "hash": "011a38e7351cbf860d4efea4ef4092dd9f96e0f9dc9a4110e7f09f40f0203101",
-      "last_updated": "2026-11-10T21:21:34+00:00",
+      "hash": "e5a563d7ad9f4f1626126f14b4c2d61bfbd9da4fc2dcef6d4a6b200eeb6a1893",
+      "last_updated": "2026-11-11T15:21:42+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/typescript",
       "path": "/docs/en/agent-sdk/typescript",
       "section": "docs",
@@ -775,8 +775,8 @@
       "title": "Let Claude use your computer from the CLI"
     },
     "context-window.md": {
-      "hash": "9ccf1f2ac6ee20783eed2aa6b0ac645806ee35be695795c07a0633e96f2b2d7c",
-      "last_updated": "2026-10-27T03:39:50+00:00",
+      "hash": "90fc40e9fbe09f01dbbf9121db0fc23236d6115e36401b8f0c9cf8098f245aae",
+      "last_updated": "2026-11-11T15:21:55+00:00",
       "original_url": "https://code.claude.com/docs/en/context-window",
       "path": "/docs/en/context-window",
       "section": "docs",
@@ -1265,8 +1265,8 @@
       "title": "Claude Code on mobile"
     },
     "model-config.md": {
-      "hash": "434b9acdf1baca2975b9fb4d2febb0bc87241fc506186aaded70d0bb05076473",
-      "last_updated": "2026-11-10T18:23:35+00:00",
+      "hash": "30cb4e8c4ad1b57b612a2c00c7ce402e116203ef044d7675b227b41522ec4b84",
+      "last_updated": "2026-11-11T15:22:08+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "section": "docs",
@@ -2059,7 +2059,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-11T00:41:11+00:00",
+  "last_updated": "2026-11-11T15:22:31+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
