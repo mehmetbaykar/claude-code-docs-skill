@@ -515,8 +515,8 @@
       "title": "Checkpointing"
     },
     "chrome.md": {
-      "hash": "2856e554ebb9f125de169ce3a80d2ea476e6bc3633d971c03fb14b809522533e",
-      "last_updated": "2026-11-03T18:07:39+00:00",
+      "hash": "f7e2616bda8f7f0e167c31ec0da55f89991432440149c4f2d68f69895baba15b",
+      "last_updated": "2026-11-11T21:23:38+00:00",
       "original_url": "https://code.claude.com/docs/en/chrome",
       "path": "/docs/en/chrome",
       "section": "docs",
@@ -735,8 +735,8 @@
       "title": "Code Review"
     },
     "commands.md": {
-      "hash": "1b88e1ce085919611164c26522ba9adcf9366d244ef2febd693a4d9f8367f466",
-      "last_updated": "2026-11-10T03:23:37+00:00",
+      "hash": "5ed32532a7036a9551d70d34dfca9df91ee193e5846d171d939081b13fbd887c",
+      "last_updated": "2026-11-11T21:23:44+00:00",
       "original_url": "https://code.claude.com/docs/en/commands",
       "path": "/docs/en/commands",
       "section": "docs",
@@ -925,8 +925,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "38155f52e05772fb0d2377a5fdb320ee2d96c2c17a834728847e55f4780b3e6c",
-      "last_updated": "2026-11-11T00:40:43+00:00",
+      "hash": "0e40e4e6057f1b023316f43a4eb6b561e76df01185278f230495da5dfa26bc71",
+      "last_updated": "2026-11-11T21:23:49+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "section": "docs",
@@ -1265,8 +1265,8 @@
       "title": "Claude Code on mobile"
     },
     "model-config.md": {
-      "hash": "30cb4e8c4ad1b57b612a2c00c7ce402e116203ef044d7675b227b41522ec4b84",
-      "last_updated": "2026-11-11T15:22:08+00:00",
+      "hash": "5668372fbda381f2d3749c8dae6f8bbc4c90dcf3464ace822b701b544548b2b8",
+      "last_updated": "2026-11-11T21:23:58+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "section": "docs",
@@ -1795,8 +1795,8 @@
       "title": "Self-hosted environments quickstart"
     },
     "self-hosted-environments-reference.md": {
-      "hash": "ec5b9b5a4172c849ec33f8619b925ecbade77d6d89c8a85efb4842a2f00cfaf0",
-      "last_updated": "2026-11-10T21:22:16+00:00",
+      "hash": "ae1c3d91a2804a96829aa72728d9fb13ddd4a47523faa0fd8231ac82912bde1b",
+      "last_updated": "2026-11-11T21:24:13+00:00",
       "original_url": "https://code.claude.com/docs/en/self-hosted-environments-reference",
       "path": "/docs/en/self-hosted-environments-reference",
       "section": "docs",
@@ -1885,8 +1885,8 @@
       "title": "Advanced setup"
     },
     "skills.md": {
-      "hash": "476a44e071feb404bd2a4d057a7b1a3a2850eb3f0724bb4546ac1583ffa2432f",
-      "last_updated": "2026-11-10T03:24:14+00:00",
+      "hash": "14c2851364ee5743dd5d10be63f0df96ff5c86ce1fae801b2a37a7d85f70a186",
+      "last_updated": "2026-11-11T21:24:15+00:00",
       "original_url": "https://code.claude.com/docs/en/skills",
       "path": "/docs/en/skills",
       "section": "docs",
@@ -1995,8 +1995,8 @@
       "title": "Voice dictation"
     },
     "vs-code.md": {
-      "hash": "a2703b61855d704a3d875c0d77f4ae7935c1bd114ee820a391241a24514f3222",
-      "last_updated": "2026-11-06T06:31:54+00:00",
+      "hash": "773138d250a03b8c2f9e2be0ea9a459d38fa4e2ed5b6bcb037b0a4472fc75afe",
+      "last_updated": "2026-11-11T21:24:18+00:00",
       "original_url": "https://code.claude.com/docs/en/vs-code",
       "path": "/docs/en/vs-code",
       "section": "docs",
@@ -2059,7 +2059,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-11T18:23:33+00:00",
+  "last_updated": "2026-11-11T21:24:19+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
