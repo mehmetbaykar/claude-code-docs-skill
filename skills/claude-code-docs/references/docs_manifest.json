@@ -235,8 +235,8 @@
       "title": "Securely deploying AI agents"
     },
     "agent-sdk__session-storage.md": {
-      "hash": "71c17b84371687147aa576641413aaeeb568b9d6897dbf096b15a43005c11f2c",
-      "last_updated": "2026-11-03T18:07:31+00:00",
+      "hash": "94a897430247991947ee1edfd31c6946993989ad3a0beb220e8f3d12df3012b7",
+      "last_updated": "2026-11-12T21:21:43+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/session-storage",
       "path": "/docs/en/agent-sdk/session-storage",
       "section": "docs",
@@ -925,8 +925,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "0e40e4e6057f1b023316f43a4eb6b561e76df01185278f230495da5dfa26bc71",
-      "last_updated": "2026-11-11T21:23:49+00:00",
+      "hash": "2f6e11bba70e0b211eaf4b80c4913a9526df7bf3e63b7e9d3c5cc12f8cbe31b1",
+      "last_updated": "2026-11-12T21:22:02+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "section": "docs",
@@ -2059,7 +2059,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-12T18:24:47+00:00",
+  "last_updated": "2026-11-12T21:22:30+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
