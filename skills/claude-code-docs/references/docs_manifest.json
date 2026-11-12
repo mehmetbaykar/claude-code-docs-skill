@@ -1575,8 +1575,8 @@
       "title": "Mods reference"
     },
     "plugins__mods__test.md": {
-      "hash": "005672ee4320e65d461ebcf7554dd59f9f2a98bab8f0e02ffcd01b76de325fad",
-      "last_updated": "2026-11-03T18:08:10+00:00",
+      "hash": "0b4d919bae6d54562b7307a59bc4d542380de910293335494b8f3f0dd8d8b3d8",
+      "last_updated": "2026-11-12T06:31:14+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/test",
       "path": "/docs/en/plugins/mods/test",
       "section": "docs",
@@ -1855,8 +1855,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "48626e6dfe92e303c397a0199c91bd68e56654a57c0f20474d868f22ecf974b9",
-      "last_updated": "2026-11-12T03:24:28+00:00",
+      "hash": "f0b5f346830cd8b2e33bc2f3f9988a4d899f9c14354bed771523274a94b04f03",
+      "last_updated": "2026-11-12T06:31:21+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "section": "docs",
@@ -2059,7 +2059,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-12T03:24:32+00:00",
+  "last_updated": "2026-11-12T06:31:25+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
