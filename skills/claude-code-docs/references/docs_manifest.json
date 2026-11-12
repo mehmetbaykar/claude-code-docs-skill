@@ -895,8 +895,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "8be3e7533465bc4945d94abc9eaaebb11fa4dbd35ebdb332e40723ffd9abb5eb",
-      "last_updated": "2026-11-10T18:23:24+00:00",
+      "hash": "7cb514cc380d582b32feecf831b1b1115831ba83efd0928814f81c54138e3d5b",
+      "last_updated": "2026-11-12T03:24:03+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "section": "docs",
@@ -1855,8 +1855,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "9adc474b4877902a8a90903135c73c4594816d35ef0938190dcc66036ab5b00d",
-      "last_updated": "2026-11-11T00:41:07+00:00",
+      "hash": "48626e6dfe92e303c397a0199c91bd68e56654a57c0f20474d868f22ecf974b9",
+      "last_updated": "2026-11-12T03:24:28+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "section": "docs",
@@ -2059,7 +2059,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-11T21:24:19+00:00",
+  "last_updated": "2026-11-12T03:24:32+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
