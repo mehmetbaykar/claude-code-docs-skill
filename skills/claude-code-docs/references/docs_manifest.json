@@ -1555,8 +1555,8 @@
       "title": "Draw in the interface with a mod"
     },
     "plugins__mods__overview.md": {
-      "hash": "1d3c848eb3759ec6d53e808bdc7f10afbc8a81270c3dacbd82fd1a80675f201f",
-      "last_updated": "2026-11-10T00:39:53+00:00",
+      "hash": "308626f4dad175ce4005d362ccbe9cdc6461dbf032c58b1d26c770bf783993c1",
+      "last_updated": "2026-11-12T18:24:35+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/overview",
       "path": "/docs/en/plugins/mods/overview",
       "section": "docs",
@@ -2059,7 +2059,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-12T06:31:25+00:00",
+  "last_updated": "2026-11-12T18:24:47+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
