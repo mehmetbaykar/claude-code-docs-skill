@@ -925,8 +925,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "0a17f29902aa830b05aa9f7b99145a96558b6e5821d76b896c783c4c5ed883ff",
-      "last_updated": "2026-11-13T03:24:30+00:00",
+      "hash": "b54a29b0575c145e1d317fe6e470946c7b8df93cc35ffe35fde41e1b2ec9b856",
+      "last_updated": "2026-11-13T06:31:07+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "section": "docs",
@@ -1085,8 +1085,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "8b89c5878c472f7677f3282094b6fccfb9c6aca2461022f845300406c4c3e2a1",
-      "last_updated": "2026-11-13T00:42:01+00:00",
+      "hash": "9f668618ce923125cc706f42e1e724a5827f1082f6acdcb76f0eec4683ea76ab",
+      "last_updated": "2026-11-13T06:31:11+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "section": "docs",
@@ -1395,8 +1395,8 @@
       "title": "Code intelligence plugins"
     },
     "plugins__components.md": {
-      "hash": "2ebcdded962f14a4dc2237035d479d6b755ca43c546331ac63d8b59dd7df8448",
-      "last_updated": "2026-11-03T18:08:06+00:00",
+      "hash": "153d810c5104516ac6aac620673f4ed6612da374d571f7cd3bb4e02b70426774",
+      "last_updated": "2026-11-13T06:31:19+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/components",
       "path": "/docs/en/plugins/components",
       "section": "docs",
@@ -1415,8 +1415,8 @@
       "title": "Create a marketplace"
     },
     "plugins__create.md": {
-      "hash": "708224d41d0ab0fc56c32bd0fdea2f1f0af0ca5863eb653361050f39eed70bc0",
-      "last_updated": "2026-11-13T00:42:09+00:00",
+      "hash": "8998b2f9d7949227d67f9e962f91ea2134ebd60785214045a8140d67c964c9c8",
+      "last_updated": "2026-11-13T06:31:19+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/create",
       "path": "/docs/en/plugins/create",
       "section": "docs",
@@ -1465,8 +1465,8 @@
       "title": "Plugin loading reference"
     },
     "plugins__manifest-reference.md": {
-      "hash": "2543dcb6d4666932d2c9a741948cdd5bebb0e474284242cfd1d61df04f3889c9",
-      "last_updated": "2026-11-10T18:23:41+00:00",
+      "hash": "97bd1e32f05d0c588c870a3f56a11bcde49f5ac84f2571a96c6e24acdd87b01e",
+      "last_updated": "2026-11-13T06:31:21+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/manifest-reference",
       "path": "/docs/en/plugins/manifest-reference",
       "section": "docs",
@@ -1605,8 +1605,8 @@
       "title": "Manage Claude Code plugins for your organization"
     },
     "plugins__overview.md": {
-      "hash": "249637b54b2bc70d7be9a4d72e6935298a9529982473455bdd7253b1c0163d00",
-      "last_updated": "2026-10-28T21:28:16+00:00",
+      "hash": "53a48f3e90dd27ce2b26ffd23c296c641d497ce7679b8f3dd67666d98c95d067",
+      "last_updated": "2026-11-13T06:31:24+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/overview",
       "path": "/docs/en/plugins/overview",
       "section": "docs",
@@ -1615,8 +1615,8 @@
       "title": "Plugins overview"
     },
     "plugins__publish.md": {
-      "hash": "23500a447658a48e958a5e155e26fac127963d5778cd4ac971b3d117533c65f1",
-      "last_updated": "2026-11-03T18:08:11+00:00",
+      "hash": "c716981385e4cc9e59b421375149e81cec1ad94d72cfb59a901ba15986f51ac1",
+      "last_updated": "2026-11-13T06:31:24+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/publish",
       "path": "/docs/en/plugins/publish",
       "section": "docs",
@@ -1855,8 +1855,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "e515eaf0d4c4e54e42faddc7d3e490e9e4d591ce645d4ca1b719975dda27db89",
-      "last_updated": "2026-11-13T00:42:21+00:00",
+      "hash": "ff19953a2d8f7f1e894b131bb045d92251ec02038edd575d3d3ff0fe650b02b0",
+      "last_updated": "2026-11-13T06:31:30+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "section": "docs",
@@ -1905,8 +1905,8 @@
       "title": "Claude Code in Slack"
     },
     "statusline.md": {
-      "hash": "6c66bfc46052db86e1279444eb0aeb0ceb84f5b61d70415466345b1030ae6677",
-      "last_updated": "2026-11-03T18:08:19+00:00",
+      "hash": "f1110e3760abb6a9493f898872983613f4602566304e415ff49a6b38a6fa163f",
+      "last_updated": "2026-11-13T06:31:31+00:00",
       "original_url": "https://code.claude.com/docs/en/statusline",
       "path": "/docs/en/statusline",
       "section": "docs",
@@ -2059,7 +2059,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-13T03:24:59+00:00",
+  "last_updated": "2026-11-13T06:31:35+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
