@@ -925,8 +925,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "4bb72b97a9f01366807e9469ff061e9497e8db7f0b62a8eeb531b4c02854032b",
-      "last_updated": "2026-11-13T00:41:57+00:00",
+      "hash": "0a17f29902aa830b05aa9f7b99145a96558b6e5821d76b896c783c4c5ed883ff",
+      "last_updated": "2026-11-13T03:24:30+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "section": "docs",
@@ -1265,8 +1265,8 @@
       "title": "Claude Code on mobile"
     },
     "model-config.md": {
-      "hash": "7bc8130035938a3a4bb65ee940a148e05e8189e2a5a5fb412a5d17ba526073c1",
-      "last_updated": "2026-11-13T00:42:06+00:00",
+      "hash": "3b6997b21f0918927410a81274956864e5e81361841935b33e870c8a0592347b",
+      "last_updated": "2026-11-13T03:24:39+00:00",
       "original_url": "https://code.claude.com/docs/en/model-config",
       "path": "/docs/en/model-config",
       "section": "docs",
@@ -2059,7 +2059,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-13T00:42:25+00:00",
+  "last_updated": "2026-11-13T03:24:59+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
