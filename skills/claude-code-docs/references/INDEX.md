@@ -71,6 +71,7 @@ Invoke this skill with a topic: `/claude-code-docs hooks` in Claude Code or Curs
 - `claude-tag` - [Work with Claude Tag](https://code.claude.com/docs/en/claude-tag)
 - `cli-reference` - [CLI reference](https://code.claude.com/docs/en/cli-reference)
 - `cloud-environments` - [Configure cloud environments](https://code.claude.com/docs/en/cloud-environments)
+- `code-mode` - [Run tool calls from code with Code Mode](https://code.claude.com/docs/en/code-mode)
 - `code-review-costs` - [Code Review costs and usage](https://code.claude.com/docs/en/code-review-costs)
 - `code-review-customize` - [Customize Code Review](https://code.claude.com/docs/en/code-review-customize)
 - `code-review-local` - [Review locally with /code-review](https://code.claude.com/docs/en/code-review-local)

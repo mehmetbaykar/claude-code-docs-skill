@@ -71,6 +71,7 @@ These features work in the local CLI but depend on a server-side capability that
 | [Fast mode](https://code.claude.com/docs/en/fast-mode.md) | ✓ ([Owner-enabled](https://code.claude.com/docs/en/fast-mode.md#enable-fast-mode-for-your-organization) on Team and Enterprise) | ✓ (Opus 5 and 4.8 need provisioning) | ✗ | ✗ | ✓ ([Fable 5.2, with conditions](https://code.claude.com/docs/en/fast-mode.md#use-fast-mode-on-agent-platform)) | ✗ |
 | [Auto mode](https://code.claude.com/docs/en/auto-mode-config.md) | ✓ | ✓ | See note [2](#fn2) | ✓ | See note [2](#fn2) | See note [2](#fn2) |
 | [Advisor](https://code.claude.com/docs/en/advisor.md) | ✓ | ✓ | ✗ | ✓ (Claude Code v2.1.300 or later) | ✗ | ✗ |
+| [Code Mode](https://code.claude.com/docs/en/code-mode.md) | ✓ (experimental, [requirements apply](https://code.claude.com/docs/en/code-mode.md#requirements)) | ✓ (experimental, [requirements apply](https://code.claude.com/docs/en/code-mode.md#requirements)) | ✗ | ✗ | ✗ | ✗ |
 | [Cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging.md) | ✓ [5](#fn5) | ✓ (same machine) [5](#fn5) | ✓ (same machine) [5](#fn5) | ✓ (same machine) [5](#fn5) | ✓ (same machine) [5](#fn5) | ✓ (same machine) [5](#fn5) |
 | [Channels](https://code.claude.com/docs/en/channels.md) | ✓ | ✓ | ✗ | ✗ | ✗ | ✗ |
 | [GitHub Actions](https://code.claude.com/docs/en/github-actions.md) | ✓ | ✓ | ✓ | ✗ | ✓ | ✓ |
@@ -108,7 +109,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 
 > [tab] Amazon Bedrock
 >
-> **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [web search](https://code.claude.com/docs/en/tools-reference.md#websearch-tool-behavior), [fast mode](https://code.claude.com/docs/en/fast-mode.md), [Advisor](https://code.claude.com/docs/en/advisor.md), [Channels](https://code.claude.com/docs/en/channels.md), the [analytics dashboard](https://code.claude.com/docs/en/analytics.md), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md), and the [`/design-sync` and `/import` commands](https://code.claude.com/docs/en/commands#all-commands).
+> **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [web search](https://code.claude.com/docs/en/tools-reference.md#websearch-tool-behavior), [fast mode](https://code.claude.com/docs/en/fast-mode.md), [Advisor](https://code.claude.com/docs/en/advisor.md), [Channels](https://code.claude.com/docs/en/channels.md), [Code Mode](https://code.claude.com/docs/en/code-mode.md), the [analytics dashboard](https://code.claude.com/docs/en/analytics.md), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md), and the [`/design-sync` and `/import` commands](https://code.claude.com/docs/en/commands#all-commands).
 >
 > **Partial support:**
 >
@@ -121,7 +122,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 
 > [tab] Claude Platform on AWS
 >
-> **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [fast mode](https://code.claude.com/docs/en/fast-mode.md), [Channels](https://code.claude.com/docs/en/channels.md), [GitHub Actions](https://code.claude.com/docs/en/github-actions.md), the [analytics dashboard](https://code.claude.com/docs/en/analytics.md), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md), and the [`/design-sync` and `/import` commands](https://code.claude.com/docs/en/commands#all-commands).
+> **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [fast mode](https://code.claude.com/docs/en/fast-mode.md), [Channels](https://code.claude.com/docs/en/channels.md), [GitHub Actions](https://code.claude.com/docs/en/github-actions.md), [Code Mode](https://code.claude.com/docs/en/code-mode.md), the [analytics dashboard](https://code.claude.com/docs/en/analytics.md), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md), and the [`/design-sync` and `/import` commands](https://code.claude.com/docs/en/commands#all-commands).
 >
 > **Available here, not on Amazon Bedrock:** [web search](https://code.claude.com/docs/en/tools-reference.md#websearch-tool-behavior), plus the [Advisor](https://code.claude.com/docs/en/advisor.md) in Claude Code v2.1.300 or later.
 >
@@ -133,7 +134,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 
 > [tab] Google Cloud's Agent Platform
 >
-> **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [Advisor](https://code.claude.com/docs/en/advisor.md), [Channels](https://code.claude.com/docs/en/channels.md), the [analytics dashboard](https://code.claude.com/docs/en/analytics.md), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md), and the [`/design-sync` and `/import` commands](https://code.claude.com/docs/en/commands#all-commands).
+> **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [Advisor](https://code.claude.com/docs/en/advisor.md), [Channels](https://code.claude.com/docs/en/channels.md), [Code Mode](https://code.claude.com/docs/en/code-mode.md), the [analytics dashboard](https://code.claude.com/docs/en/analytics.md), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md), and the [`/design-sync` and `/import` commands](https://code.claude.com/docs/en/commands#all-commands).
 >
 > **Partial support:**
 >
@@ -148,7 +149,7 @@ Each tab lists what is unavailable or partially supported on that provider, with
 
 > [tab] Microsoft Foundry
 >
-> **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [fast mode](https://code.claude.com/docs/en/fast-mode.md), [Advisor](https://code.claude.com/docs/en/advisor.md), [Channels](https://code.claude.com/docs/en/channels.md), [GitLab CI/CD](https://code.claude.com/docs/en/gitlab-ci-cd.md), the [analytics dashboard](https://code.claude.com/docs/en/analytics.md), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md), and the [`/design-sync` and `/import` commands](https://code.claude.com/docs/en/commands#all-commands).
+> **Not available:** all [features that require a Claude subscription](#features-that-require-a-claude-subscription), plus [fast mode](https://code.claude.com/docs/en/fast-mode.md), [Advisor](https://code.claude.com/docs/en/advisor.md), [Channels](https://code.claude.com/docs/en/channels.md), [GitLab CI/CD](https://code.claude.com/docs/en/gitlab-ci-cd.md), [Code Mode](https://code.claude.com/docs/en/code-mode.md), the [analytics dashboard](https://code.claude.com/docs/en/analytics.md), [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md), and the [`/design-sync` and `/import` commands](https://code.claude.com/docs/en/commands#all-commands).
 >
 > **Partial support:**
 >
