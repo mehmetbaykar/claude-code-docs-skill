@@ -65,6 +65,7 @@ Invoke this skill with a topic: `/claude-code-docs hooks` in Claude Code or Curs
 - `claude-apps-gateway` - [Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry](https://code.claude.com/docs/en/claude-apps-gateway)
 - `claude-code-on-the-web` - [Use Claude Code in the cloud](https://code.claude.com/docs/en/claude-code-on-the-web)
 - `claude-directory` - [Explore the .claude directory](https://code.claude.com/docs/en/claude-directory)
+- `claude-models-on-google-cloud-anthropic-managed` - [Claude Code with Claude Models on Google Cloud (Anthropic managed)](https://code.claude.com/docs/en/claude-models-on-google-cloud-anthropic-managed)
 - `claude-platform-on-aws` - [Claude Code on Claude Platform on AWS](https://code.claude.com/docs/en/claude-platform-on-aws)
 - `claude-projects` - [Let Claude coordinate ongoing work with Projects](https://code.claude.com/docs/en/claude-projects)
 - `claude-security` - [Scan your codebase for vulnerabilities](https://code.claude.com/docs/en/claude-security)

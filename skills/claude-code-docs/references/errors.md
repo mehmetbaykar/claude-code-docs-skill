@@ -346,6 +346,8 @@ Match the message you see to a section below.
 | `Plugin "<plugin>" was not uninstalled: installed_plugins.json` | [Plugin troubleshooting](https://code.claude.com/docs/en/plugins/troubleshooting.md#installed-plugins-json-holds-a-record-this-version-cannot-read) |
 | `Plugin directory does not exist: <path>` | [Plugin troubleshooting](https://code.claude.com/docs/en/plugins/troubleshooting.md#plugin-directory-does-not-exist) |
 | `Skipping connection (recent failure cached; retries automatically in 15 min, or edit the plugin config to retry now)` | [Plugin errors](#skipping-connection-recent-failure-cached) |
+| `is not added on this machine, so your organization's marketplace policy keeps its plugins off` | [Add a marketplace](https://code.claude.com/docs/en/plugins/install.md#add-a-marketplace) |
+| `A mod's http.fetch hook stopped this request` | [Turn mods on or off](https://code.claude.com/docs/en/plugins/mods/overview.md#turn-mods-on-or-off) |
 | `Error: No such tool available: <tool name>` | [Tool errors](#no-such-tool-available) |
 | `MCP server "<name>" connection closed before the tool call was answered` | [Tool errors](#connection-closed-before-the-tool-call-was-answered) |
 | `MCP server "<name>" is disabled — re-enable it via /mcp to use its tools` | [Tool errors](#mcp-server-is-disabled) |
@@ -1924,6 +1926,7 @@ Google Cloud credentials expired or invalid · refresh your Google Cloud credent
 **What to do:**
 
 * If the hint says credentials are managed by this environment, the app that launched Claude Code owns the credential and the other steps here don't apply: retry, or contact your administrator
+* If you set `CLAUDE_CODE_USE_ANTHROPIC_GOOGLE_CLOUD`, follow the steps for [Claude Models on Google Cloud (Anthropic managed)](https://code.claude.com/docs/en/claude-models-on-google-cloud-anthropic-managed.md#google-cloud-credentials-expired-or-invalid) instead
 * If you authenticate with application default credentials, run the [`gcpAuthRefresh`](https://code.claude.com/docs/en/google-vertex-ai#advanced-credential-configuration) command named in the message, or `gcloud auth application-default login`, and complete the sign-in, then retry
 * If you route through an [LLM gateway](https://code.claude.com/docs/en/llm-gateway) with `CLAUDE_CODE_SKIP_VERTEX_AUTH` set, refresh the gateway token in `ANTHROPIC_AUTH_TOKEN` or `ANTHROPIC_CUSTOM_HEADERS`, then retry
 * If you authenticate with a service account key file, confirm `GOOGLE_APPLICATION_CREDENTIALS` points at a valid key. See [Configure GCP credentials](https://code.claude.com/docs/en/google-vertex-ai.md#3-configure-gcp-credentials)
@@ -1944,6 +1947,7 @@ Google Cloud authentication failed · refresh your Google Cloud credentials (app
 **What to do:**
 
 * If the hint says credentials are managed by this environment, the app that launched Claude Code owns the credential and the other steps here don't apply: retry, or contact your administrator
+* If you set `CLAUDE_CODE_USE_ANTHROPIC_GOOGLE_CLOUD`, follow the steps for [Claude Models on Google Cloud (Anthropic managed)](https://code.claude.com/docs/en/claude-models-on-google-cloud-anthropic-managed.md#google-cloud-authentication-failed) instead
 * Confirm the roles in [IAM configuration](https://code.claude.com/docs/en/google-vertex-ai.md#iam-configuration) are granted to the identity you authenticate with
 * Confirm the model is enabled for your project. See [Request model access](https://code.claude.com/docs/en/google-vertex-ai.md#2-request-model-access)
 
