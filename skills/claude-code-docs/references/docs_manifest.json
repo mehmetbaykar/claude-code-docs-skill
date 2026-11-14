@@ -365,8 +365,8 @@
       "title": "Handle approvals and user input"
     },
     "agent-teams.md": {
-      "hash": "25ca3b93492214870ff2e0e08230c77b48a71961b9bc28ff1ed395be9a3cd353",
-      "last_updated": "2026-11-10T03:23:24+00:00",
+      "hash": "bdfb3e61eaa2e21721caf4c32122a67958bfb73dfc625fbe4af0df3427d9676f",
+      "last_updated": "2026-11-14T03:22:51+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-teams",
       "path": "/docs/en/agent-teams",
       "section": "docs",
@@ -375,8 +375,8 @@
       "title": "Orchestrate teams of Claude Code sessions"
     },
     "agent-view.md": {
-      "hash": "c8e8d8662f5d173e8e13b22da30a2cea680efcf895a1c8f8ced6c4ee40b47f26",
-      "last_updated": "2026-11-14T00:39:10+00:00",
+      "hash": "0feb83c3e6011b7723bda35dcb552348c22fb8bec4378cf2d078219689137e93",
+      "last_updated": "2026-11-14T03:22:51+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-view",
       "path": "/docs/en/agent-view",
       "section": "docs",
@@ -645,8 +645,8 @@
       "title": "Work with Claude Tag"
     },
     "cli-reference.md": {
-      "hash": "c64dea1fc3daf5d955a54e393b2bb320274b7488e042882cd0f1c7dbfeef4cf3",
-      "last_updated": "2026-11-14T00:39:17+00:00",
+      "hash": "1dea23cb212bd846e74c6684ab763f386d1748f3c5d0da42fe4abfea5a0c13d9",
+      "last_updated": "2026-11-14T03:22:59+00:00",
       "original_url": "https://code.claude.com/docs/en/cli-reference",
       "path": "/docs/en/cli-reference",
       "section": "docs",
@@ -905,8 +905,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "3e5cf7c2ccd4d7b80763bc66818b83bff9f421f6c482909bbd7263f31d9cdb86",
-      "last_updated": "2026-11-14T00:39:22+00:00",
+      "hash": "f588356e6e2d5cbbc46b958089fba656188046f145f53ef4512cf634986cd574",
+      "last_updated": "2026-11-14T03:23:04+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "section": "docs",
@@ -935,8 +935,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "6a9c3ceee4d4c1097ab84c332ca6fc1eb176dc715c5b01f577de9570e9c4a297",
-      "last_updated": "2026-11-14T00:39:25+00:00",
+      "hash": "2c459a7b32e5499f6814d0f9fa399e000228b61de13bad2e3b79431de46aa846",
+      "last_updated": "2026-11-14T03:23:06+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "section": "docs",
@@ -1085,8 +1085,8 @@
       "title": "Set up Claude Code (local mode) for a HIPAA-ready organization"
     },
     "hooks-guide.md": {
-      "hash": "180eafb2b8d60c5d2f700294ac902e10db0f63729b7e6eae7b19aa10cf5e09d0",
-      "last_updated": "2026-11-13T18:22:51+00:00",
+      "hash": "4125e53c1dbf229c4f0f99d852eb8f07b2528b7b03ee0d5e851f40454b643cc9",
+      "last_updated": "2026-11-14T03:23:10+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks-guide",
       "path": "/docs/en/hooks-guide",
       "section": "docs",
@@ -1175,8 +1175,8 @@
       "title": "Connect Claude Code to an LLM gateway"
     },
     "llm-gateway-protocol.md": {
-      "hash": "6db0cac3133612e7269bc688216893ad3a847059b3ba6d6052e0c81d2fc56c1d",
-      "last_updated": "2026-11-10T21:21:59+00:00",
+      "hash": "5bb69a3618cf769fc203ee26d4b3ef9b42d2320ea2d4bb44eef238d7501e7461",
+      "last_updated": "2026-11-14T03:23:12+00:00",
       "original_url": "https://code.claude.com/docs/en/llm-gateway-protocol",
       "path": "/docs/en/llm-gateway-protocol",
       "section": "docs",
@@ -1555,8 +1555,8 @@
       "title": "Interface gallery for mods"
     },
     "plugins__mods__interface.md": {
-      "hash": "1b9064e38bee9709a01edb45307af52f6aca11a72b641649ad9ace4eda560d80",
-      "last_updated": "2026-11-14T00:39:40+00:00",
+      "hash": "b2cb0b29d7b3012fe382fe9a7a22e6c10c78a82cfce7531eb108a75eedd9dbab",
+      "last_updated": "2026-11-14T03:23:21+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/interface",
       "path": "/docs/en/plugins/mods/interface",
       "section": "docs",
@@ -2069,7 +2069,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-14T00:39:53+00:00",
+  "last_updated": "2026-11-14T03:23:34+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
