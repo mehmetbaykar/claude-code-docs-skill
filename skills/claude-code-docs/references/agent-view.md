@@ -776,7 +776,7 @@ Agent view accepts the same configuration flags as `claude` for loading settings
 | [`--add-dir <path>`](https://code.claude.com/docs/en/permissions#additional-directories-grant-file-access-not-configuration) | Grant file access to an additional directory |
 | [`--plugin-dir <path>`](https://code.claude.com/docs/en/plugins/create#load-a-directory-or-archive-for-one-session) | Load a plugin from a local directory |
 | [`--mcp-config <file-or-json>`](https://code.claude.com/docs/en/mcp) | Load MCP servers from a config file or JSON string |
-| `--strict-mcp-config` | Use only the MCP servers from `--mcp-config`, ignoring other MCP configuration. See [Exclusive control with managed-mcp.json](https://code.claude.com/docs/en/managed-mcp.md#exclusive-control-with-managed-mcp-json) for what the flag does under a managed MCP file |
+| `--strict-mcp-config` | Skip the MCP servers configured in places such as `.mcp.json`, and load the ones you pass with `--mcp-config`. See [Exclusive control with managed-mcp.json](https://code.claude.com/docs/en/managed-mcp.md#exclusive-control-with-managed-mcp-json) for what the flag does under a managed MCP file |
 
 Repeat `--add-dir`, `--plugin-dir`, or `--mcp-config` once per value. `claude agents` doesn't support the space-separated form, such as `--add-dir a b c`.
 
