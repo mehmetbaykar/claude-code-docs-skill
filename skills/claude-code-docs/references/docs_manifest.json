@@ -1105,8 +1105,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "832f1a91653fc5af66cd59e254ba5eebd8d03e19e21bc078e2193ae04e55a708",
-      "last_updated": "2026-11-14T18:22:16+00:00",
+      "hash": "61cee679e427dbd25d36ddd157fb77b5a4778eb4f0c363678cf8d48d46b9fcb9",
+      "last_updated": "2026-11-16T15:30:46+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "section": "docs",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-14T18:22:39+00:00",
+  "last_updated": "2026-11-16T15:31:11+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
