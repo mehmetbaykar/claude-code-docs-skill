@@ -32,7 +32,7 @@ Invoke this skill with a topic: `/claude-code-docs hooks` in Claude Code or Curs
 - `agent-sdk__sessions` - [Work with sessions](https://code.claude.com/docs/en/agent-sdk/sessions)
 - `agent-sdk__skills` - [Extend agents with skills](https://code.claude.com/docs/en/agent-sdk/skills)
 - `agent-sdk__streaming-output` - [Stream responses in real-time](https://code.claude.com/docs/en/agent-sdk/streaming-output)
-- `agent-sdk__streaming-vs-single-mode` - [Streaming Input](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode)
+- `agent-sdk__streaming-vs-single-mode` - [Send messages to a running agent](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode)
 - `agent-sdk__structured-outputs` - [Get structured output from agents](https://code.claude.com/docs/en/agent-sdk/structured-outputs)
 - `agent-sdk__subagents` - [Subagents in the SDK](https://code.claude.com/docs/en/agent-sdk/subagents)
 - `agent-sdk__todo-tracking` - [Track todos](https://code.claude.com/docs/en/agent-sdk/todo-tracking)
