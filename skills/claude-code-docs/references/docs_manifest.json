@@ -365,8 +365,8 @@
       "title": "Handle approvals and user input"
     },
     "agent-teams.md": {
-      "hash": "bdfb3e61eaa2e21721caf4c32122a67958bfb73dfc625fbe4af0df3427d9676f",
-      "last_updated": "2026-11-14T03:22:51+00:00",
+      "hash": "2383dad73b536401c51e9a505779e677b77ebf959aafce9e0c36b16972623727",
+      "last_updated": "2026-11-17T21:21:41+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-teams",
       "path": "/docs/en/agent-teams",
       "section": "docs",
@@ -445,8 +445,8 @@
       "title": "Auto mode classifier request charges"
     },
     "auto-mode-config.md": {
-      "hash": "2fd497898c12d5a1bd47cc7496feca5cd4d56780dc6c229c2e620aa99e4c3a3b",
-      "last_updated": "2026-11-17T00:41:38+00:00",
+      "hash": "669d24f379c31c11f0278a0e1552f89edea834dc21b3ed54c8bfff3cf8ec587f",
+      "last_updated": "2026-11-17T21:21:43+00:00",
       "original_url": "https://code.claude.com/docs/en/auto-mode-config",
       "path": "/docs/en/auto-mode-config",
       "section": "docs",
@@ -455,8 +455,8 @@
       "title": "Configure auto mode"
     },
     "best-practices.md": {
-      "hash": "875960d9d2ef59054f16052190013803bbc03bf000ba903e385d702b33cc15b0",
-      "last_updated": "2026-11-14T18:22:00+00:00",
+      "hash": "d0102a13971bf227101ba72e257d7ed425cd512f534200caefea6b7a4f15fc6b",
+      "last_updated": "2026-11-17T21:21:43+00:00",
       "original_url": "https://code.claude.com/docs/en/best-practices",
       "path": "/docs/en/best-practices",
       "section": "docs",
@@ -655,8 +655,8 @@
       "title": "Work with Claude Tag"
     },
     "cli-reference.md": {
-      "hash": "9f63752d2f4b2c1e78d9780b2a15bc4b43818f13234949a175b2044df8b39dbc",
-      "last_updated": "2026-11-16T21:21:50+00:00",
+      "hash": "4d00de7714b7f0abb22e01d421308182a3f5c049a73d834d7cb76af9af232c15",
+      "last_updated": "2026-11-17T21:21:49+00:00",
       "original_url": "https://code.claude.com/docs/en/cli-reference",
       "path": "/docs/en/cli-reference",
       "section": "docs",
@@ -935,8 +935,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "8419a41648a0b142e88132fbb3514afd7cd2afb957eaafd10bd3c7f0a6244775",
-      "last_updated": "2026-11-17T03:24:29+00:00",
+      "hash": "8f82e6873b72a9a8f64f25eee3e1a7a24364aec5c0541708fc6a2774b11cc94e",
+      "last_updated": "2026-11-17T21:21:56+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "section": "docs",
@@ -945,8 +945,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "c10c51f66fa7e98cee5b6c90419998224cdbaf19b737230b96a82d20e5679d84",
-      "last_updated": "2026-11-17T18:25:12+00:00",
+      "hash": "adf414665ddb970eb7fb92204af4051f46f1a3cb23b9bf33fd31956687f2f5dd",
+      "last_updated": "2026-11-17T21:21:56+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "section": "docs",
@@ -1105,8 +1105,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "3d923de0216817d882194fc09dcbf36ff739b9634e708cdb7ac67fc555b208fd",
-      "last_updated": "2026-11-17T00:41:57+00:00",
+      "hash": "aa7d1a623fc94308d0b42dbd40a749c0cd0e40026db625ecaad49552f3d10b0e",
+      "last_updated": "2026-11-17T21:22:00+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "section": "docs",
@@ -1215,8 +1215,8 @@
       "title": "Other LLM gateways"
     },
     "managed-mcp.md": {
-      "hash": "117c4ad5e3230e7859b073f5a1a22661c059f4f98251073ee066560e4ea822da",
-      "last_updated": "2026-11-14T00:39:31+00:00",
+      "hash": "152de988d36004ecc20ff3b61115c3e2c5a34a93ed3b26b17948f803736b5eb3",
+      "last_updated": "2026-11-17T21:22:03+00:00",
       "original_url": "https://code.claude.com/docs/en/managed-mcp",
       "path": "/docs/en/managed-mcp",
       "section": "docs",
@@ -1295,8 +1295,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "ec83f32794e9da05b3ace7868dc563cc8276f69770e6ab298941b3faacbab10a",
-      "last_updated": "2026-11-16T21:22:07+00:00",
+      "hash": "c91eb033bc9e775c0bdf1601e1d4473388b220ce108e1cc7eba8099e2b9908c2",
+      "last_updated": "2026-11-17T21:22:05+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "section": "docs",
@@ -1335,8 +1335,8 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "c48efb033839c29d7c6f83bbbab3dd995d2a9c3651eb0043f827ffa279ef1e86",
-      "last_updated": "2026-11-17T00:42:04+00:00",
+      "hash": "ace93a678efc15738e9575306a7e47e27134a54378eb4da719e07ee7b94b3afb",
+      "last_updated": "2026-11-17T21:22:06+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "section": "docs",
@@ -1875,8 +1875,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "efac4568a77d9105965247227a9ce3e2fcc8ac8cdd2021454104f1f4cf86c4b3",
-      "last_updated": "2026-11-17T00:42:20+00:00",
+      "hash": "acaf51f4080969302c2261a9d6c3539dd4cdc777e9d593d5a1ce41171321721b",
+      "last_updated": "2026-11-17T21:22:19+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "section": "docs",
@@ -1985,8 +1985,8 @@
       "title": "Troubleshoot installation and login"
     },
     "troubleshooting.md": {
-      "hash": "7a62d74e1d79a025c7e681b9d5f03dc69ed54bec98289a3b67a79fde586a8b88",
-      "last_updated": "2026-11-17T00:42:22+00:00",
+      "hash": "3d92c1b6be68872ce4b95ad88ec0772a50bda3b9bad5f70eda48a1abd6e8f4fb",
+      "last_updated": "2026-11-17T21:22:22+00:00",
       "original_url": "https://code.claude.com/docs/en/troubleshooting",
       "path": "/docs/en/troubleshooting",
       "section": "docs",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-17T18:25:42+00:00",
+  "last_updated": "2026-11-17T21:22:24+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
