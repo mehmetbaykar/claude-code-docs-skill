@@ -445,8 +445,8 @@
       "title": "Auto mode classifier request charges"
     },
     "auto-mode-config.md": {
-      "hash": "669d24f379c31c11f0278a0e1552f89edea834dc21b3ed54c8bfff3cf8ec587f",
-      "last_updated": "2026-11-17T21:21:43+00:00",
+      "hash": "0766a9191a29d27065ddb99c4ac949496c7cb869ac9a67dd42dccbedf10458f3",
+      "last_updated": "2026-11-18T00:41:58+00:00",
       "original_url": "https://code.claude.com/docs/en/auto-mode-config",
       "path": "/docs/en/auto-mode-config",
       "section": "docs",
@@ -475,8 +475,8 @@
       "title": "Champion kit"
     },
     "changelog.md": {
-      "hash": "d84682ffbd99356f0c305d25f3e015184477b71f42a54aef794de706ca20533e",
-      "last_updated": "2026-11-17T00:41:39+00:00",
+      "hash": "988eafe4f1b4d4831bb747f001dcec419ef1ce2be1caacac8d831c5680ad29bf",
+      "last_updated": "2026-11-18T00:41:59+00:00",
       "original_url": "https://code.claude.com/docs/en/changelog",
       "path": "/docs/en/changelog",
       "section": "docs",
@@ -1105,8 +1105,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "aa7d1a623fc94308d0b42dbd40a749c0cd0e40026db625ecaad49552f3d10b0e",
-      "last_updated": "2026-11-17T21:22:00+00:00",
+      "hash": "bee769b86436a01e7f840ec8d80bd71ee4d909c7bc46459cca911ba4be02faf9",
+      "last_updated": "2026-11-18T00:42:14+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "section": "docs",
@@ -1295,8 +1295,8 @@
       "title": "Model configuration"
     },
     "monitoring-usage.md": {
-      "hash": "c91eb033bc9e775c0bdf1601e1d4473388b220ce108e1cc7eba8099e2b9908c2",
-      "last_updated": "2026-11-17T21:22:05+00:00",
+      "hash": "4c97fbd0a4a0bfb43e60f1a0e285fe97da0c6e4dffb96ec661b548598f19f00a",
+      "last_updated": "2026-11-18T00:42:19+00:00",
       "original_url": "https://code.claude.com/docs/en/monitoring-usage",
       "path": "/docs/en/monitoring-usage",
       "section": "docs",
@@ -1335,8 +1335,8 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "ace93a678efc15738e9575306a7e47e27134a54378eb4da719e07ee7b94b3afb",
-      "last_updated": "2026-11-17T21:22:06+00:00",
+      "hash": "cf8121a6a40780df2e0ec1de2e24292611a56a612d1e5ec0848d397e4cf84b5e",
+      "last_updated": "2026-11-18T00:42:20+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "section": "docs",
@@ -1395,8 +1395,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugins__cli-reference.md": {
-      "hash": "0909035049affdea8d90e9dcb6442fe72d5fbc19e102ec054fce525363d647fc",
-      "last_updated": "2026-11-17T03:24:41+00:00",
+      "hash": "76992a36bb4a4c7a8e2bd5385cc73147c2d68dbdf0dec9c5642983c98629a292",
+      "last_updated": "2026-11-18T00:42:22+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/cli-reference",
       "path": "/docs/en/plugins/cli-reference",
       "section": "docs",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-17T21:22:24+00:00",
+  "last_updated": "2026-11-18T00:42:38+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
