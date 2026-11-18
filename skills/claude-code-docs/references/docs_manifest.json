@@ -25,8 +25,8 @@
       "title": "Use Claude Code with a screen reader"
     },
     "admin-setup.md": {
-      "hash": "0f9ed7c946702f063deb61cd352e270bf8a236524c1d56aa1a501f5f13c2194c",
-      "last_updated": "2026-11-17T03:24:03+00:00",
+      "hash": "96aef1d7fb66f47757da74612dd5f9841c1d02731c19e65260dec3e80209d3ba",
+      "last_updated": "2026-11-18T03:24:36+00:00",
       "original_url": "https://code.claude.com/docs/en/admin-setup",
       "path": "/docs/en/admin-setup",
       "section": "docs",
@@ -495,8 +495,8 @@
       "title": "Channels reference"
     },
     "channels.md": {
-      "hash": "548a6c1016e2b5c2824a307d508f27821438b9be2a0a155448bbaa9a78a32ea1",
-      "last_updated": "2026-11-06T00:40:31+00:00",
+      "hash": "093db9766ab5dda39bb6eca975c0470300d992e5024b3c9ded8bf4e70287adc2",
+      "last_updated": "2026-11-18T03:24:50+00:00",
       "original_url": "https://code.claude.com/docs/en/channels",
       "path": "/docs/en/channels",
       "section": "docs",
@@ -915,8 +915,8 @@
       "title": "Claude Code Desktop in WSL"
     },
     "desktop.md": {
-      "hash": "32e3b1a132e379145ec75a4e5cd38b65941d308ecef8b0f11822474a2f4580b1",
-      "last_updated": "2026-11-17T00:41:50+00:00",
+      "hash": "8acb6fe844988ebe786c73de75417f45a9880d7e517b38ccf490436b50cbe044",
+      "last_updated": "2026-11-18T03:25:00+00:00",
       "original_url": "https://code.claude.com/docs/en/desktop",
       "path": "/docs/en/desktop",
       "section": "docs",
@@ -1875,8 +1875,8 @@
       "title": "Example settings files"
     },
     "settings-reference.md": {
-      "hash": "acaf51f4080969302c2261a9d6c3539dd4cdc777e9d593d5a1ce41171321721b",
-      "last_updated": "2026-11-17T21:22:19+00:00",
+      "hash": "c655e33dd63425a4640b0a7882f46e76b73b20e40b585efbfde93bcb3670dbea",
+      "last_updated": "2026-11-18T03:25:28+00:00",
       "original_url": "https://code.claude.com/docs/en/settings-reference",
       "path": "/docs/en/settings-reference",
       "section": "docs",
@@ -1895,8 +1895,8 @@
       "title": "Settings files and precedence"
     },
     "setup.md": {
-      "hash": "00a5e87a74f95e79ed7765da26f71df45d9aa70338b14bcf1116dc708ce8b6e7",
-      "last_updated": "2026-11-17T00:42:20+00:00",
+      "hash": "ea3f9678c6f5e5b07218b530a7835118e1f1d56154d2426b098fd0f5d892fec5",
+      "last_updated": "2026-11-18T03:25:29+00:00",
       "original_url": "https://code.claude.com/docs/en/setup",
       "path": "/docs/en/setup",
       "section": "docs",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-18T00:42:38+00:00",
+  "last_updated": "2026-11-18T03:25:33+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
