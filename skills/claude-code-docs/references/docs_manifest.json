@@ -445,8 +445,8 @@
       "title": "Auto mode classifier request charges"
     },
     "auto-mode-config.md": {
-      "hash": "0766a9191a29d27065ddb99c4ac949496c7cb869ac9a67dd42dccbedf10458f3",
-      "last_updated": "2026-11-18T00:41:58+00:00",
+      "hash": "410da5389debf7a16b956c207aa0626890996ccd1c6eaf305a7439696a53f0d1",
+      "last_updated": "2026-11-18T15:21:44+00:00",
       "original_url": "https://code.claude.com/docs/en/auto-mode-config",
       "path": "/docs/en/auto-mode-config",
       "section": "docs",
@@ -825,8 +825,8 @@
       "title": "Manage costs effectively"
     },
     "cross-session-messaging.md": {
-      "hash": "1cd15bf48b964cd9105059b1f6a504ed0ddd67750ae0e04b2307db890c737b51",
-      "last_updated": "2026-11-10T03:23:39+00:00",
+      "hash": "e98742b3534c4236826109cbef785b427cc736461caefb71483f32b08c8f94e6",
+      "last_updated": "2026-11-18T15:21:55+00:00",
       "original_url": "https://code.claude.com/docs/en/cross-session-messaging",
       "path": "/docs/en/cross-session-messaging",
       "section": "docs",
@@ -1245,8 +1245,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "22163b14aab48b62791f7f13ec25da7d94ab6c7e6b09fe11ebad79a691c7c1c1",
-      "last_updated": "2026-11-17T18:25:20+00:00",
+      "hash": "27c04b1df1a1da2e4a6ee019e088a6bc16ee7bcc9ae0a8b042483e77b961da6c",
+      "last_updated": "2026-11-18T15:22:06+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "section": "docs",
@@ -1345,8 +1345,8 @@
       "title": "Choose a permission mode"
     },
     "permissions.md": {
-      "hash": "8de54b3f48aec9c3bc4114d90e6dd67b1b5b829a51429d5d06aa1287721b53a9",
-      "last_updated": "2026-11-17T18:25:23+00:00",
+      "hash": "c7f926e41806cc3b4c236c16b4c4c0398c4e99bb3668a1e306599669d7d1973e",
+      "last_updated": "2026-11-18T15:22:09+00:00",
       "original_url": "https://code.claude.com/docs/en/permissions",
       "path": "/docs/en/permissions",
       "section": "docs",
@@ -1515,8 +1515,8 @@
       "title": "Measure plugin cost and usage"
     },
     "plugins__mods__admin.md": {
-      "hash": "230242c437935078fa29646fd65be87e5b3d6b7186d91719e41fcbe450606c2a",
-      "last_updated": "2026-11-17T00:42:09+00:00",
+      "hash": "517cf845e6d0c09acf640bfb07214a9a568b7fbb6db8408dc7b3568229f4caf7",
+      "last_updated": "2026-11-18T15:22:13+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/admin",
       "path": "/docs/en/plugins/mods/admin",
       "section": "docs",
@@ -1525,8 +1525,8 @@
       "title": "Manage mods for your organization"
     },
     "plugins__mods__api.md": {
-      "hash": "019b10de65fe2f7b68ae80f68a1ab4431fd44995c85c640e1f0bfe81d8e3621e",
-      "last_updated": "2026-11-17T18:25:27+00:00",
+      "hash": "ae9fdb2d422fcc9903c6e65a11143dd06d6b0a3aa74ebad462ab6302b711be21",
+      "last_updated": "2026-11-18T15:22:14+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/api",
       "path": "/docs/en/plugins/mods/api",
       "section": "docs",
@@ -1585,8 +1585,8 @@
       "title": "Mods overview"
     },
     "plugins__mods__reference.md": {
-      "hash": "378b62907d24f32a1705ccd89c04b5c1e63d9c16bc8996231dae621276e5a21f",
-      "last_updated": "2026-11-14T00:39:41+00:00",
+      "hash": "df84baa55c8bf354079f7220df6016f034245ffcc925232756d0021d311b1ebf",
+      "last_updated": "2026-11-18T15:22:15+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/mods/reference",
       "path": "/docs/en/plugins/mods/reference",
       "section": "docs",
@@ -1945,8 +1945,8 @@
       "title": "Create custom subagents"
     },
     "terminal-config.md": {
-      "hash": "f31433e9d8a5ac38a3f127e0a03ef5f2ac203f9774d1c2b54d0e1360cee09bed",
-      "last_updated": "2026-11-17T00:42:21+00:00",
+      "hash": "376e10275d45df7b537453548acdc7a0150ee1cd2e06657adca5034d4b5243b3",
+      "last_updated": "2026-11-18T15:22:26+00:00",
       "original_url": "https://code.claude.com/docs/en/terminal-config",
       "path": "/docs/en/terminal-config",
       "section": "docs",
@@ -2025,8 +2025,8 @@
       "title": "Use Claude Code in VS Code"
     },
     "web-quickstart.md": {
-      "hash": "a4509f80b1fd04d59ade11c0ab24a012a8fcbe42a1e64e9870ec24d07e3cd401",
-      "last_updated": "2026-11-11T00:41:11+00:00",
+      "hash": "84a07f3eb1092f33e15499df137a1a6e9ac631e0b093c724f54ba7f422a35e03",
+      "last_updated": "2026-11-18T15:22:28+00:00",
       "original_url": "https://code.claude.com/docs/en/web-quickstart",
       "path": "/docs/en/web-quickstart",
       "section": "docs",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-18T03:25:33+00:00",
+  "last_updated": "2026-11-18T15:22:28+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
