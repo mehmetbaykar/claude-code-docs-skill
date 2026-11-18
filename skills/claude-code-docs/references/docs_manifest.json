@@ -425,8 +425,8 @@
       "title": "Share session output as artifacts"
     },
     "authentication.md": {
-      "hash": "4aa457a5b46ef6d4ddd26f9ff06090e50b39d89c4843bd0d06895ff00b24f1ce",
-      "last_updated": "2026-11-17T18:24:56+00:00",
+      "hash": "52526543569e97b70a8e1b416ab912cf1641dc5419e492102898b189f534c3eb",
+      "last_updated": "2026-11-18T21:22:00+00:00",
       "original_url": "https://code.claude.com/docs/en/authentication",
       "path": "/docs/en/authentication",
       "section": "docs",
@@ -715,8 +715,8 @@
       "title": "Review locally with /code-review"
     },
     "code-review-pull-requests.md": {
-      "hash": "8e39bc75de59333e10b7b6eb8abcc72a275fd074bcaa8c8862fb65423d202e90",
-      "last_updated": "2026-11-03T18:07:47+00:00",
+      "hash": "dcfc4c80fe341f30144f8f963f59d01623b8cceb0c7735475e9f5453dbfc70f5",
+      "last_updated": "2026-11-18T21:22:09+00:00",
       "original_url": "https://code.claude.com/docs/en/code-review-pull-requests",
       "path": "/docs/en/code-review-pull-requests",
       "section": "docs",
@@ -735,8 +735,8 @@
       "title": "Set up Code Review"
     },
     "code-review-troubleshooting.md": {
-      "hash": "d064ddc60b6a343c19f3714f509a99c2c586973225cf960c528bf8c02700ebbc",
-      "last_updated": "2026-11-03T18:07:48+00:00",
+      "hash": "5e3f9ce14c2166e99ecd79ccca90442e4fb2b85436e909a5c3ccafbd842f1a8d",
+      "last_updated": "2026-11-18T21:22:09+00:00",
       "original_url": "https://code.claude.com/docs/en/code-review-troubleshooting",
       "path": "/docs/en/code-review-troubleshooting",
       "section": "docs",
@@ -935,8 +935,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "8f82e6873b72a9a8f64f25eee3e1a7a24364aec5c0541708fc6a2774b11cc94e",
-      "last_updated": "2026-11-17T21:21:56+00:00",
+      "hash": "b25054f4c679ee42200a1f71ff629e87fc9351338359c83996882f4d89e0bead",
+      "last_updated": "2026-11-18T21:22:14+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "section": "docs",
@@ -1245,8 +1245,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "27c04b1df1a1da2e4a6ee019e088a6bc16ee7bcc9ae0a8b042483e77b961da6c",
-      "last_updated": "2026-11-18T15:22:06+00:00",
+      "hash": "c71a5915ee233c18bbf2112499cd79a2ff5d82f6f6151873a2eabcf470b2f623",
+      "last_updated": "2026-11-18T21:22:22+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "section": "docs",
@@ -1305,8 +1305,8 @@
       "title": "Monitoring"
     },
     "network-config.md": {
-      "hash": "441bfddb3ee3bb6680e57f636a7c2fd61aac37d1e0b420f3c60300f15c9ce09d",
-      "last_updated": "2026-11-14T06:28:50+00:00",
+      "hash": "b30debbba46a0d7de74efe921bbfcf504bc09aaafe37caee466eab28b8844a8e",
+      "last_updated": "2026-11-18T21:22:24+00:00",
       "original_url": "https://code.claude.com/docs/en/network-config",
       "path": "/docs/en/network-config",
       "section": "docs",
@@ -1365,8 +1365,8 @@
       "title": "Platforms and integrations"
     },
     "plugin-evals.md": {
-      "hash": "8021caa4a496ef7b935e3ca7874d4b73e5519334b242155962f73313a63452ee",
-      "last_updated": "2026-11-17T03:24:40+00:00",
+      "hash": "5751809dd070beec4a99bbf2d7ac2bc8e099956757a4b592b36754ce8c8eb2a0",
+      "last_updated": "2026-11-18T21:22:25+00:00",
       "original_url": "https://code.claude.com/docs/en/plugin-evals",
       "path": "/docs/en/plugin-evals",
       "section": "docs",
@@ -1705,8 +1705,8 @@
       "title": "Quickstart"
     },
     "remote-control.md": {
-      "hash": "8ef4dd84d83cab71b69c2b87ceead43684c8c3aa6272ccace0775f67e0f16c98",
-      "last_updated": "2026-11-14T18:22:30+00:00",
+      "hash": "19429d61d3e885f65fb3e2ec463b85efa3594121c1eb7f1e69bea7caf702c917",
+      "last_updated": "2026-11-18T21:22:40+00:00",
       "original_url": "https://code.claude.com/docs/en/remote-control",
       "path": "/docs/en/remote-control",
       "section": "docs",
@@ -1755,8 +1755,8 @@
       "title": "Run prompts on a schedule"
     },
     "security-guidance.md": {
-      "hash": "6de0b5ebcf10ed62190dd3f997ecd8f723afef27d85a30cd20e3276ca75cf71b",
-      "last_updated": "2026-11-10T06:30:07+00:00",
+      "hash": "59671e9ae16ba689de8b1cf8bf981ab0517245c44b7cbd8857540da7f27f6fcb",
+      "last_updated": "2026-11-18T21:22:43+00:00",
       "original_url": "https://code.claude.com/docs/en/security-guidance",
       "path": "/docs/en/security-guidance",
       "section": "docs",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-18T15:22:28+00:00",
+  "last_updated": "2026-11-18T21:22:57+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
