@@ -65,7 +65,7 @@ Pick the tab for where you run Claude Code.
 >
 > [Choose an install scope](#choose-an-install-scope) says which settings file each one writes to and which applies when the same plugin is set at more than one.
 >
-> After you select a scope, Claude Code installs the plugin along with any dependencies it declares, then prints an install summary.
+> After you select a scope, Claude Code installs the plugin, then prints an install summary.
 >
 > **4. Read the install summary**
 >
@@ -344,7 +344,7 @@ claude plugin uninstall formatter@your-org --scope project
 
 Plugins update automatically when the marketplace they came from has auto-update turned on. After a session starts, Claude Code refreshes those marketplaces and updates the on-disk copies of the plugins you installed from them.
 
-The running session keeps the versions it already loaded. After an update, you see `Plugin updated: <name> · Run /reload-plugins to apply`, and the next session loads the new versions automatically.
+When you see `Plugin updated: <name> · Run /reload-plugins to apply`, run [`/reload-plugins`](https://code.claude.com/docs/en/plugins/cli-reference#reload-plugins) in that session. Whether or not you reload, the new versions load on your next launch.
 
 These are the auto-update defaults for each kind of marketplace:
 

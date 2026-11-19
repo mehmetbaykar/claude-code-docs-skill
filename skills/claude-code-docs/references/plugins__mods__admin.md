@@ -119,6 +119,7 @@ Where the [built-in guard](#know-what-happens-by-default) loads, a hook that a u
 | `prompt.attachment` | A message Claude Code adds for Claude, such as a reminder |
 | `skill.prompt` | A skill's text as it's expanded for Claude |
 | `attribution.text` | Commit or pull request attribution text |
+| [`telemetry.log`](https://code.claude.com/docs/en/plugins/mods/reference#telemetry) | A record bound for an OpenTelemetry collector. Passed over in v2.1.328 or later |
 | [`session.compact`](https://code.claude.com/docs/en/plugins/mods/reference#session) | A compaction of the conversation |
 | `settings.read` | A read of settings, such as a mod's `$.settings.read` call |
 | `session.append{door=attachment}` | The stored row for a message Claude Code adds for Claude |

@@ -597,7 +597,7 @@ To fix the install:
 
 ### Dependency errors
 
-A plugin that declares dependencies can fail to install, or install and stay disabled, when a dependency can't be satisfied. The message reaches you at install time or at load time:
+A plugin that declares dependencies can fail to install, or install and stay disabled, when a dependency can't be satisfied. Most messages reach you at install time or at load time:
 
 * **During install**: the refusal comes back as the install's error message
 * **When the plugin loads**: the `/plugin` **Errors** tab shows the problem, and Claude Code keeps the affected plugin disabled until you resolve it
@@ -606,7 +606,7 @@ The table lists common messages and their fixes. It quotes load-time messages as
 
 | Message | Meaning | How to resolve |
 | :- | :- | :- |
-| `Dependency "<dep>" is not installed` | A declared dependency isn't installed. | Install it in your shell with `claude plugin install <dep>@<marketplace>`, or uninstall the plugin. If the dependency's marketplace isn't registered yet, add it and run `/reload-plugins` in your session, which installs the missing dependencies it can resolve. |
+| `Dependency "<dep>" is not installed` | A declared dependency isn't installed. | Install it in your shell with `claude plugin install <dep>@<marketplace>`, or uninstall the plugin. If the dependency's marketplace isn't registered yet, add it and run `/reload-plugins` in your session, which installs that dependency if it can be resolved. |
 | `"<name>@synced" is loaded from your claude.ai account but meets a marketplace dependency only for other claude.ai plugins`, inside the `is not installed` message | The dependency names a marketplace, and a plugin of that name is loaded from your claude.ai account. The plugin that declares the dependency doesn't load from claude.ai, so the claude.ai plugin doesn't meet it. | In your shell, run `claude plugin install <dep>@<marketplace>` to install the dependency from its marketplace. The marketplace copy then loads instead of the claude.ai one. |
 | `Dependency "<dep>" is disabled` | The dependency is installed but turned off. | Enable the dependency, or uninstall the plugin that needs it. |
 | `Requires "<dep>" <range>, installed <version>` | The installed dependency's version is outside the plugin's declared range. | Update the dependency to a version in the range, or uninstall the plugin. |
@@ -614,6 +614,8 @@ The table lists common messages and their fixes. It quotes load-time messages as
 | `... has version requirements too complex to intersect` or `has an invalid version requirement` | A range isn't valid semver, or the combined ranges can't be intersected. | Fix the invalid range or simplify long `\|\|` chains. |
 | `... has no git tag satisfying <range>` | The dependency's repository has no `<name>--v*` tag in the range. | Check that the upstream tags releases with that convention, or relax the range. |
 | `Dependency "<dep>" (required by <plugin>) is in marketplace "<marketplace>", which is not in the allowlist` | The dependency is in a different marketplace, and cross-marketplace resolution is off by default. | Install the dependency yourself at the same scope, in your shell with `claude plugin install <dep>@<marketplace>` plus the `--scope` you're installing the plugin at, then retry. |
+| `... still unresolved: <names>` | The named dependencies aren't met. | Run `claude plugin list` in your shell and match each error to a row in this table. |
+| `Dependencies are not installed while non-essential traffic is turned off.`, after the `still unresolved` list | [`CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC`](https://code.claude.com/docs/en/env-vars#variables) is set, so the plugin update installed no dependencies. | In your shell, install each listed dependency with `claude plugin install <dep>@<marketplace>`. |
 
 To see these programmatically, run `claude plugin list --json` in your shell. Plugins with problems carry an `errors` field with the messages and an `errorDetails` field with a `type` for each: the first three rows are `dependency-unsatisfied` and the fourth is `dependency-version-unsatisfied`.
 

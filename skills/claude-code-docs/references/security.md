@@ -45,7 +45,7 @@ Prompt injection is a technique where an attacker attempts to override or manipu
 ### Core protections
 
 * **Permission system**: In Manual mode, sensitive operations require explicit approval
-* **Network command approval**: Commands that fetch content from the web such as `curl` and `wget` are not auto-approved by default. In Manual mode they prompt like any other non-read-only Bash command, so you can still approve once or add an explicit allow rule like `Bash(curl *)`. To stop Claude from running them, add them to [`permissions.deny`](https://code.claude.com/docs/en/permissions#tool-specific-permission-rules). A deny rule matches the command [as written](https://code.claude.com/docs/en/permissions.md#bash-rule-limits); for network enforcement that doesn't depend on the command text, see [sandbox network isolation](https://code.claude.com/docs/en/sandboxing.md#network-isolation)
+* **Network command approval**: In Manual mode, commands such as `curl` and `wget` prompt you by default, so you can approve once or add an allow rule like `Bash(curl *)`. To stop Claude from running them, add them to [`permissions.deny`](https://code.claude.com/docs/en/permissions#tool-specific-permission-rules). A deny rule matches the command [as written](https://code.claude.com/docs/en/permissions.md#bash-rule-limits); for network enforcement that doesn't depend on the command text, see [sandbox network isolation](https://code.claude.com/docs/en/sandboxing.md#network-isolation)
 
 ### Privacy safeguards
 
@@ -98,9 +98,8 @@ See [The built-in IDE MCP server](https://code.claude.com/docs/en/vs-code.md#the
 
 ## Cloud execution security
 
-When you use [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web.md), additional security controls are in place. Sessions your organization routes to a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments) run on your own infrastructure, where isolation, network egress, and git credentials are your deployment's responsibility. In Anthropic-hosted environments:
+When you use [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web.md), additional security controls are in place. By default, a session runs its shell commands and file edits in an isolated, Anthropic-managed VM. Sessions your organization routes to a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments) run on your own infrastructure, where isolation, network egress, and git credentials are your deployment's responsibility. In Anthropic-hosted environments:
 
-* **Isolated virtual machines**: Each cloud session runs in an isolated, Anthropic-managed VM
 * **Network access controls**: Network access is limited by default and can be configured to be disabled or allow only specific domains
 * **Credential protection**: GitHub credentials are stored encrypted on Anthropic's servers and never enter the session VM. The VM holds a short-lived credential scoped to that session, and GitHub traffic goes through an [Anthropic proxy](https://code.claude.com/docs/en/cloud-environments.md#github-proxy) that attaches the GitHub credential on the server side. See [GitHub authentication options](https://code.claude.com/docs/en/claude-code-on-the-web.md#github-authentication-options) for how you grant access
 * **Push restrictions**: The [GitHub proxy](https://code.claude.com/docs/en/cloud-environments.md#github-proxy) rejects branch deletions and pushes of anything other than a branch, such as a tag. GitHub decides which branches a session can update by applying your repository's branch protection rules and rulesets to the GitHub access you connected. A rule that access can bypass doesn't block a session's push

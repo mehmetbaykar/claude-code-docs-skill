@@ -44,7 +44,7 @@ Before you turn on Code Mode, check that you can accept these limits:
 * **Resuming**: you can resume a Code Mode session only in the terminal, with Code Mode on
 * **Auto mode**: auto mode's classifier [reviews the code, not each tool call](#permission-checks)
 * **Long-running code**: unless [code can run in the background](#long-running-code), you wait for it to finish, and it stops after ten minutes
-* **Hooks**: you can see [tool calls refused](#tool-call-refused-by-a-hook) when a `PreToolUse` hook can't run or times out, and [code output blocked](#code-output-withheld-by-a-hook) by a `UserPromptSubmit` hook
+* **Hooks**: you can see [tool calls refused](#tool-call-refused-by-a-hook) when a `PreToolUse` hook can't run or times out
 * **Unavailable features**: you can't use [Remote Control](https://code.claude.com/docs/en/remote-control.md), [Claude in Chrome](https://code.claude.com/docs/en/chrome.md), or [computer use](https://code.claude.com/docs/en/computer-use.md)
 * **Moving the session**: you can't move the session to the Desktop app or turn it into a [background session](https://code.claude.com/docs/en/agent-view.md), and `/fork` can't start a background copy
 
@@ -150,31 +150,124 @@ Your permission mode decides how the code that Claude writes is checked and whet
 
 ### Permission checks
 
-When Claude runs code, each tool call in it goes through your `deny` and `ask` [permission rules](https://code.claude.com/docs/en/permissions.md) and your [`PreToolUse` hooks](https://code.claude.com/docs/en/hooks#pretooluse) under the tool's usual name, such as `Bash`. Beyond rules and hooks, a classifier reviews the code in auto mode, and you answer prompts in the modes that ask:
+In auto and `bypassPermissions` modes, code can run from start to finish without a permission prompt. Some calls still prompt you, such as the [actions no mode auto-approves](https://code.claude.com/docs/en/permission-modes.md#actions-no-mode-auto-approves).
+
+Each tool call in the code goes through your `deny` and `ask` [permission rules](https://code.claude.com/docs/en/permissions.md) and [`PreToolUse` hooks](https://code.claude.com/docs/en/hooks#pretooluse) under the tool's usual name, such as `Bash` or an [MCP tool's name](https://code.claude.com/docs/en/permissions.md#mcp). Beyond rules and hooks, a classifier reviews the code in auto mode, and you answer prompts in the modes that ask:
 
 * **[Auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode)**: the classifier reviews each piece of code before it runs, not each tool call. It doesn't see values computed at run time, such as a path taken from search output, so keep rules or hooks for calls you must control. You can still be [prompted when new code starts while earlier code runs](#permission-prompt-with-a-countdown)
-* **Other [permission modes](https://code.claude.com/docs/en/permission-modes.md)**: the code starts without a review, and you're prompted for each tool call that would prompt you in that mode
+* **Other [permission modes](https://code.claude.com/docs/en/permission-modes.md)**: you're prompted for each tool call that would prompt you in that mode
 
 If you have a `PreToolUse` hook that allows or blocks shell commands, make it check each part of a command, as [Bash rules do](https://code.claude.com/docs/en/permissions.md#compound-commands). In Code Mode, a `git push` in a folder named `app` can reach your hook as `cd 'app' && git push`.
 
-To check the code itself, write a `PreToolUse` hook that matches `REPL`, the tool that runs the code, and read the JavaScript from `tool_input.code`.
+To check the code itself, write a `PreToolUse` hook that matches `REPL`, the tool that runs the code, and read the JavaScript from `tool_input.code`. To check what the code returns, see [Check code output with a hook](#check-code-output-with-a-hook).
 
 > [!WARNING]
 >
 > Bash rules match command text, so Claude can run a denied command [in a form the rule doesn't match](https://code.claude.com/docs/en/permissions.md#bash-rule-limits), with or without Code Mode. For limits that don't depend on command text, see [sandboxing](https://code.claude.com/docs/en/sandboxing.md).
 
+#### Require approval for a command
+
+To see a prompt for a specific command in auto or `bypassPermissions` mode, add an `ask` rule for it. You're prompted for the [forms of the command that the rule matches](https://code.claude.com/docs/en/permissions.md#bash-rule-limits). To be prompted for commands that start with `git push`, save this rule in `~/.claude/settings.json`:
+
+```json
+{
+  "permissions": {
+    "ask": ["Bash(git push *)"]
+  }
+}
+```
+
+To test the rule, start a new session in auto mode in a repository with no remote, and ask Claude to run `git push origin main`. You see a prompt for that command.
+
+#### Approve each piece of code first
+
+To read and approve code before it starts, add an `ask` rule for `REPL`, the tool that runs the code. Save this rule in `~/.claude/settings.json`:
+
+```json
+{
+  "permissions": {
+    "ask": ["REPL"]
+  }
+}
+```
+
+To test the rule, start a new session and give Claude a task. You see a prompt that doesn't include the code. To read the code before you answer, press `Ctrl+O`, expand the **Code** row, and press `Ctrl+O` again to return. From the main conversation, you don't see a [subagent](https://code.claude.com/docs/en/sub-agents.md)'s code in that view.
+
+If you approve in auto mode, the code starts even when the classifier would have blocked it, and its project edits and read-only commands run without a prompt. If Claude reports that the code can't start a subagent, remove the rule.
+
+#### Answer a permission prompt while code runs
+
+To stop the code at a prompt for one of its tool calls, answer **No** without a comment. These results apply to prompts that aren't labeled as coming from a subagent:
+
+* **No, or `Esc`**: the code stops, and changes from calls that already finished stay in place
+* **No, with a [comment](https://code.claude.com/docs/en/permissions.md#add-a-comment-when-you-answer-a-permission-prompt)**: the call is refused, and the code can continue with its other calls
+
 ### Long-running code
 
 While code runs a long build or test, Claude either waits for it or lets it continue in the background:
 
-* **Waiting**: Claude answers after the code finishes, and the code stops after ten minutes, including time you spend at permission prompts
+* **Waiting**: Claude answers after the code finishes, and the code stops after ten minutes. In Manual and `acceptEdits` [modes](https://code.claude.com/docs/en/permission-modes.md#available-modes), time you spend at a tool's permission prompt doesn't count toward the ten minutes. Before v2.1.328, that time counted.
 * **Background**: you can keep talking to Claude, and the code can run for up to two hours
 
 For background code, start your session in auto or `bypassPermissions` mode. If Claude still waits, check your current mode and how you started the session:
 
 * **You switched to another mode**: press `Shift+Tab` until you're back in the mode you started in
-* **You started in another mode, or picked the session from the `claude --resume` list**: if [auto mode is available](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode) to you, exit, then run `claude --continue --permission-mode auto` with Code Mode on
+* **You started in another mode**: if [auto mode is available](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode) to you, exit, then run `claude --continue --permission-mode auto` with Code Mode on
+* **You're on a version before v2.1.328 and picked the session from the `claude --resume` list**: exit, [update Claude Code](https://code.claude.com/docs/en/setup.md#update-claude-code), then run the same `claude --resume` command with Code Mode on. To stay on your version, replace `--resume` with `--continue`
 * **You passed tool names to `--tools`**: start again in auto mode without that flag
+
+### Stop code in progress
+
+To stop code while Claude is responding or waiting for the code, press `Esc`. To stop background code after Claude finishes responding, run [`/tasks`](https://code.claude.com/docs/en/commands) in the session, select the running task, and press `x`.
+
+After you stop the code, check `/tasks` for [subagents](https://code.claude.com/docs/en/sub-agents.md), [shell commands](https://code.claude.com/docs/en/interactive-mode.md#background-bash-commands), and [MCP calls](https://code.claude.com/docs/en/mcp.md#automatic-backgrounding-of-long-tool-calls) that the code started and that are still running. To stop one, select it and press `x`.
+
+### Check code output with a hook
+
+To check or redact what the code returns before Claude reads it, write a [`PostToolUse` hook](https://code.claude.com/docs/en/hooks#posttooluse) that matches `REPL`, the tool that runs the code. Read the output from `tool_response`, which has fields such as these:
+
+```json
+{
+  "code": "(await $`cat notes.txt`.text())",
+  "result": "deploy token: abc123",
+  "stdout": "",
+  "stderr": "",
+  "toolsUsed": ["Bash"]
+}
+```
+
+To hide part of the output, return a changed copy of `tool_response` as [`updatedToolOutput`](https://code.claude.com/docs/en/hooks#posttooluse-decision-control), and build the copy this way:
+
+* **Change the text**: redact `result`, `stdout`, `stderr`, and `error`. Handle a `result` that's missing or `null`, and expect `error` only when the code failed or was stopped
+* **Keep the shape**: return `code`, `stdout`, and `stderr` as strings, and return `error` as a string or leave it out. If you break this shape, Claude gets the original output
+* **Remove images and PDFs**: if the copy has `images` or `documents` to hide, set that field to `[]`
+
+To hide the deploy token in the `notes.txt` result, print this JSON:
+
+```json
+{
+  "hookSpecificOutput": {
+    "hookEventName": "PostToolUse",
+    "updatedToolOutput": {
+      "code": "(await $`cat notes.txt`.text())",
+      "result": "deploy token: REDACTED",
+      "stdout": "",
+      "stderr": "",
+      "toolsUsed": ["Bash"]
+    }
+  }
+}
+```
+
+To test the hook, put a value that it should hide into a file, and ask Claude to read and quote the file. Type the path without `@`, and check that Claude's reply shows your replacement text.
+
+Before you rely on the hook, plan for these cases:
+
+* **Background and failed code**: use the same `PostToolUse` hook for both. It runs when [background code](#long-running-code) finishes and when code throws an error
+* **Blocking**: return `updatedToolOutput` even when your hook blocks. Without it, Claude still reads the output
+* **Hook failures**: when your check hits an error, return a copy with placeholder text in the fields that you redact. If the hook crashes, times out, or prints invalid JSON, Claude gets the original output
+* **Refused calls**: don't rely on this hook to hide a value in a refused tool call's input, such as a Bash command. The `refusedCalls` field can repeat that input, and Claude reads it unchanged
+* **`UserPromptSubmit` checks**: if you check code output in a [`UserPromptSubmit` hook](https://code.claude.com/docs/en/hooks#userpromptsubmit), move that check to your `PostToolUse` hook. On v2.1.328 or later, `UserPromptSubmit` hooks don't receive code output, even when an administrator sets them in [managed settings](https://code.claude.com/docs/en/managed-settings.md)
 
 ## Troubleshooting
 
@@ -221,10 +314,15 @@ To let calls go ahead when a `command` or `http` hook fails or times out, set `"
 
 ### Code output withheld by a hook
 
-If Claude reports a hook's block reason where you expected output from code, check your [`UserPromptSubmit`](https://code.claude.com/docs/en/hooks#userpromptsubmit) hooks. When [code can run in the background](#long-running-code), `command`, `http`, and `mcp_tool` hooks on that event also run on code output. To let the output through, change the hook so that it doesn't block when `source` in its input is `poll_event`.
+`UserPromptSubmit operation blocked by hook` in place of output from code means that your [`UserPromptSubmit`](https://code.claude.com/docs/en/hooks#userpromptsubmit) hook received the output as a prompt and blocked it. If Claude reports only the hook's reason, ask it to quote the message it received.
+
+On v2.1.328 or later, `UserPromptSubmit` hooks don't receive code output. To let the output through on an earlier version, update Claude Code or change the hook:
+
+* **Update**: if you rely on the hook to check code output, first [move the check to a `PostToolUse` hook](#check-code-output-with-a-hook). Then [update Claude Code](https://code.claude.com/docs/en/setup.md#update-claude-code) to v2.1.328 or later
+* **Stay on your version**: change the hook so that it doesn't block when `source` in its input is `poll_event`
 
 ## Related resources
 
 * [Permission modes](https://code.claude.com/docs/en/permission-modes.md): compare auto mode with the modes that prompt you
-* [Hooks reference](https://code.claude.com/docs/en/hooks.md): write `PreToolUse` and `UserPromptSubmit` hooks
+* [Hooks reference](https://code.claude.com/docs/en/hooks.md): write `PreToolUse` and `PostToolUse` hooks
 * [Managed settings](https://code.claude.com/docs/en/managed-settings.md): apply one configuration across an organization
