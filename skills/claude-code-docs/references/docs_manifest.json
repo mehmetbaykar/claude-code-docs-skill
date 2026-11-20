@@ -595,8 +595,8 @@
       "title": "Use Claude Code in the cloud"
     },
     "claude-directory.md": {
-      "hash": "e6c37c4f4b5c476d6d232e837f8c676d78058a34d31d84c28e6d917aa5412336",
-      "last_updated": "2026-11-20T00:39:46+00:00",
+      "hash": "87256a0822228532a28e7c5b2adb943b79bcefe27f95c45aca6023c9545d9be5",
+      "last_updated": "2026-11-20T18:25:20+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-directory",
       "path": "/docs/en/claude-directory",
       "section": "docs",
@@ -615,8 +615,8 @@
       "title": "Claude Code with Claude Models on Google Cloud (Anthropic managed)"
     },
     "claude-platform-on-aws.md": {
-      "hash": "8b74881d9a3da0b16fe271c7079515ea64fc6f271940ad70cc9acea234e028ba",
-      "last_updated": "2026-11-11T00:40:35+00:00",
+      "hash": "9a6d3842643514c392cfa7ce16d7d28feb877630edb4216b14b5bbc724e98245",
+      "last_updated": "2026-11-20T18:25:21+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-platform-on-aws",
       "path": "/docs/en/claude-platform-on-aws",
       "section": "docs",
@@ -935,8 +935,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "eb06b2c5b5f0ff661283fb35c15ed8c0a4f4780ca90e5274a52489e1a5e88084",
-      "last_updated": "2026-11-20T00:39:55+00:00",
+      "hash": "a2333056b6f8986dd86c9132727b84eb2a51067bcd710f2ab73fda41a395fda1",
+      "last_updated": "2026-11-20T18:25:30+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "section": "docs",
@@ -945,8 +945,8 @@
       "title": "Environment variables"
     },
     "errors.md": {
-      "hash": "dde11a673fdcdcbc032bbdce6b99a6203eab54af5b422545279abde941487048",
-      "last_updated": "2026-11-20T00:39:56+00:00",
+      "hash": "969a08b4ff0cc440b1c6a20f4d871f75d2eae897e0d5a1c3a224fbd83e1f273f",
+      "last_updated": "2026-11-20T18:25:30+00:00",
       "original_url": "https://code.claude.com/docs/en/errors",
       "path": "/docs/en/errors",
       "section": "docs",
@@ -1215,8 +1215,8 @@
       "title": "Other LLM gateways"
     },
     "managed-mcp.md": {
-      "hash": "78cfd3d557b6a2f5a9d6676303c580bccbd1b4e35dbe1a2277b83d3d6e970713",
-      "last_updated": "2026-11-20T00:40:03+00:00",
+      "hash": "9a5fdeac61d6ee77b502ce98ae10e42827bdc8c220dd1c834ba45533705fef8a",
+      "last_updated": "2026-11-20T18:25:38+00:00",
       "original_url": "https://code.claude.com/docs/en/managed-mcp",
       "path": "/docs/en/managed-mcp",
       "section": "docs",
@@ -1245,8 +1245,8 @@
       "title": "Connect to MCP servers"
     },
     "mcp.md": {
-      "hash": "e6a456d8ab046280ebbf497e5d42683f62a89b02da4389b2bccd7d5bb1fc3c99",
-      "last_updated": "2026-11-20T00:40:04+00:00",
+      "hash": "e02fb8c672a127848a467d9b7879f1004f60937913e7c18c7a030dab8f667044",
+      "last_updated": "2026-11-20T18:25:38+00:00",
       "original_url": "https://code.claude.com/docs/en/mcp",
       "path": "/docs/en/mcp",
       "section": "docs",
@@ -1395,8 +1395,8 @@
       "title": "Recommend your plugin from your CLI"
     },
     "plugins__cli-reference.md": {
-      "hash": "2251d4591f1d079fb97543b549d6d0504dc7dd787c8682e826ef1bd040a6b4cd",
-      "last_updated": "2026-11-20T00:40:08+00:00",
+      "hash": "33c41929be72c71cfee642f77aee00545958b3623d51909bffb383b00ff9d3e2",
+      "last_updated": "2026-11-20T18:25:43+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/cli-reference",
       "path": "/docs/en/plugins/cli-reference",
       "section": "docs",
@@ -1465,8 +1465,8 @@
       "title": "Host and maintain a marketplace"
     },
     "plugins__install.md": {
-      "hash": "1d38cea972fa85029fb9e03977e6d8224d92ee7187bf4f8c71c6da7143d7f63e",
-      "last_updated": "2026-11-20T00:40:10+00:00",
+      "hash": "fd318cf1ab03ac762d1c9e8edb0d46bf3c5a4cd2a521f79727ba1dea5ed0b52f",
+      "last_updated": "2026-11-20T18:25:44+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/install",
       "path": "/docs/en/plugins/install",
       "section": "docs",
@@ -1475,8 +1475,8 @@
       "title": "Install and manage plugins"
     },
     "plugins__loading.md": {
-      "hash": "7ba3bcf567ba947c68f2c8dd3e367cfd278f68597efd477a75052be2b026fee9",
-      "last_updated": "2026-11-19T21:21:48+00:00",
+      "hash": "49e2a16b9eca63c604cbce0824470a69a5700c0913cfb8892c918dcbd9b73fdd",
+      "last_updated": "2026-11-20T18:25:45+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/loading",
       "path": "/docs/en/plugins/loading",
       "section": "docs",
@@ -1485,8 +1485,8 @@
       "title": "Plugin loading reference"
     },
     "plugins__manifest-reference.md": {
-      "hash": "eb94ba861889918ceeb7844a64078563b140e702a94a51716820554a02fd5583",
-      "last_updated": "2026-11-19T21:21:48+00:00",
+      "hash": "21474b5146703a973edb218f56b82743687caccd982ef3295d81936f44c4e874",
+      "last_updated": "2026-11-20T18:25:45+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/manifest-reference",
       "path": "/docs/en/plugins/manifest-reference",
       "section": "docs",
@@ -1665,8 +1665,8 @@
       "title": "Plugin security and trust"
     },
     "plugins__troubleshooting.md": {
-      "hash": "720023ab4510d1ce8154fc19e970f34fc1424e112b7df6c5eba738ee3da68ce7",
-      "last_updated": "2026-11-20T00:40:15+00:00",
+      "hash": "8613dfb88abaa4433cbcd595ffab3e184ab9f1f6a5259967ea272105fe85d7f4",
+      "last_updated": "2026-11-20T18:25:50+00:00",
       "original_url": "https://code.claude.com/docs/en/plugins/troubleshooting",
       "path": "/docs/en/plugins/troubleshooting",
       "section": "docs",
@@ -1675,8 +1675,8 @@
       "title": "Troubleshoot plugins"
     },
     "prompt-caching.md": {
-      "hash": "7e60aa5565ff7d573763398412251aa0d1d2f01981cccf04f02262c5219bdd42",
-      "last_updated": "2026-11-19T21:21:54+00:00",
+      "hash": "a1affac5c669a480de23bb49a8f6b5428dba15b19f21ec734e3ae5e7b09f953a",
+      "last_updated": "2026-11-20T18:25:50+00:00",
       "original_url": "https://code.claude.com/docs/en/prompt-caching",
       "path": "/docs/en/prompt-caching",
       "section": "docs",
@@ -1735,8 +1735,8 @@
       "title": "Choose a sandbox environment"
     },
     "sandboxing.md": {
-      "hash": "aa34f2d1e0b8aa3126a752a5e6577a0cbfce7f29f1f104bd706c9406e098acb0",
-      "last_updated": "2026-11-20T00:40:17+00:00",
+      "hash": "b9e1eab94a288fe2fb350259177de768f7a1b36c96f1fcab62b6590281df810f",
+      "last_updated": "2026-11-20T18:25:52+00:00",
       "original_url": "https://code.claude.com/docs/en/sandboxing",
       "path": "/docs/en/sandboxing",
       "section": "docs",
@@ -2045,8 +2045,8 @@
       "title": "Orchestrate subagents at scale with dynamic workflows"
     },
     "worktrees.md": {
-      "hash": "6ced13f48659a8faa1e93c8a9c18d0ba843326bb6a5c6526af966d2d0b0f60fd",
-      "last_updated": "2026-11-19T03:25:02+00:00",
+      "hash": "922ca42539c1b4dbac10188493736476369627057c156977675b3d75268bcb64",
+      "last_updated": "2026-11-20T18:26:00+00:00",
       "original_url": "https://code.claude.com/docs/en/worktrees",
       "path": "/docs/en/worktrees",
       "section": "docs",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-20T00:40:26+00:00",
+  "last_updated": "2026-11-20T18:26:00+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
