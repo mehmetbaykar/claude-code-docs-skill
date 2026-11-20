@@ -60,7 +60,7 @@ For full details, please review our [Commercial Terms of Service](https://www.an
 ### Additional safeguards
 
 * **Network request approval**: In Manual mode, most tools that make network requests require user approval by default
-* **Web page summaries**: For most fetches, WebFetch runs a separate model call over the page, and Claude receives that call's answer instead of the raw page. See [WebFetch tool behavior](https://code.claude.com/docs/en/tools-reference.md#webfetch-tool-behavior)
+* **Web page summaries**: For most WebFetch fetches, a separate model call reads the page, and Claude receives that call's answer instead of the raw page. See [WebFetch tool behavior](https://code.claude.com/docs/en/tools-reference.md#webfetch-tool-behavior)
 * **Trust verification**: In an interactive session, Claude Code shows the workspace trust dialog when you start it in a folder you haven't trusted. Servers in a project's `.mcp.json` have their own approval prompt, and [Project scope](https://code.claude.com/docs/en/mcp.md#project-scope) lists the sessions that skip it
   * Note: A `-p` session shows neither prompt. [What runs before you trust a folder](https://code.claude.com/docs/en/permissions.md#what-runs-before-you-trust-a-folder) lists what a repository's files can run there
   * Note: When you start Claude Code directly in your home directory, trust acceptance is held for the current session only and is not written to disk, so the prompt reappears on each launch. There is no setting to persist it. Start Claude Code from a project subdirectory instead, where trust acceptance is saved per directory

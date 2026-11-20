@@ -43,7 +43,7 @@ Install the plugin from the surface you're on instead:
 * **Claude Code on the web, or a desktop cloud session**: a cloud session has no plugin browser. See the **Cloud session** tab under [Install a plugin](https://code.claude.com/docs/en/plugins/install.md#install-a-plugin) for what a cloud session loads
 * **A terminal you have access to**: run `claude` and type `/plugin` there, or run `claude plugin install <plugin>@<marketplace>` in your shell without starting a session
 
-When a terminal install works, `/plugin` prints an install summary that starts with `✓ Installed <plugin>.` and `claude plugin install` prints `Successfully installed plugin: <plugin>@<marketplace>`.
+When a terminal install works, `/plugin` prints an install summary that starts with `✓ Installed <plugin>.` and `claude plugin install` prints `Installed plugin: <plugin>@<marketplace>`.
 
 ### `zsh: no such file or directory: /plugin`
 
@@ -373,7 +373,7 @@ The hint reads `Your local copy may be out of date — try claude plugin marketp
 /plugin marketplace update <marketplace>
 ```
 
-`claude plugin marketplace update` prints `Successfully updated marketplace: <name>`, and `/plugin marketplace update` shows `✔ Updated 1 marketplace`. If the retried install prints the same message, check the name as [`not found in marketplace` with no hint](#the-message-has-no-hint) describes. [When Claude Code refreshes a marketplace before an install](https://code.claude.com/docs/en/plugins/loading.md#when-claude-code-refreshes-a-marketplace-before-an-install) lists the other cases where the refresh doesn't run.
+In a terminal, `claude plugin marketplace update` prints `Updated marketplace: <name>`, and `/plugin marketplace update` shows `✔ Updated 1 marketplace`. If the retried install prints the same message, check the name as [`not found in marketplace` with no hint](#the-message-has-no-hint) describes. [When Claude Code refreshes a marketplace before an install](https://code.claude.com/docs/en/plugins/loading.md#when-claude-code-refreshes-a-marketplace-before-an-install) lists the other cases where the refresh doesn't run.
 
 #### `not found in marketplace` with no hint
 
@@ -391,7 +391,7 @@ Without a marketplace name, `claude plugin install` searches the catalogs it alr
 /plugin install <name>@<marketplace>
 ```
 
-When the install works, you see `✓ Installed <plugin>.` in a session, or `Successfully installed plugin: <plugin>@<marketplace>` from `claude plugin install`.
+When the install works, you see `✓ Installed <plugin>.` in a session.
 
 If you don't know which marketplace lists the plugin, run `/plugin marketplace list` for the marketplaces you have, and browse **Discover** in `/plugin` for the plugin name.
 
@@ -424,7 +424,13 @@ Update Claude Code, then retry the install. Source types are on the [marketplace
 
 ### `Plugin archive integrity check failed`
 
-You installed a plugin that's distributed as a zip archive, and Claude Code refused it with this line and `The archive was not installed.` The plugin's marketplace entry uses an [`archive` source](https://code.claude.com/docs/en/plugins/marketplace-reference) with a `sha256` pin, and the downloaded file's digest doesn't match the pin.
+You installed a plugin that's distributed as a zip archive, and Claude Code refused it with this line and `The archive was not installed.`
+
+The plugin's marketplace entry uses an [`archive` source](https://code.claude.com/docs/en/plugins/marketplace-reference#archive-plugin-source) with a `sha256` pin, and the digest of the downloaded file doesn't match the pin. Claude Code refuses the install, so nothing changes in the plugin cache. The mismatch has three possible causes:
+
+* The file at the URL changed after the author computed the pin
+* The author entered the wrong digest in the marketplace entry
+* The URL serves a different file than the author pinned
 
 The full message looks like this:
 
@@ -452,9 +458,9 @@ The marketplace's owner has to change the entry:
 
 ### `Marketplace "<name>" is registered from an untrusted source`
 
-A marketplace you added earlier stopped loading, and so did its plugins. This line appears in the `/plugin` **Errors** tab or on the next refresh.
+A marketplace you added earlier stopped loading, and so did its plugins. Running `claude plugin marketplace update <name>` in your shell prints this line.
 
-The marketplace is registered under a name that is [reserved for official Anthropic marketplaces](https://code.claude.com/docs/en/plugins/marketplace-reference.md), but its registered source isn't an `anthropics` GitHub repository. Reserved names are re-checked every time a marketplace loads or refreshes, so the marketplace and the plugins installed from it stop loading.
+The marketplace is registered under a name that is [reserved for official Anthropic marketplaces](https://code.claude.com/docs/en/plugins/marketplace-reference.md#reserved-names), but its registered source isn't an `anthropics` GitHub repository. Reserved names are re-checked every time a marketplace loads or refreshes, so the marketplace and the plugins installed from it stop loading.
 
 The full message names the reserved name and the fix:
 
@@ -462,10 +468,14 @@ The full message names the reserved name and the fix:
 Marketplace "claude-community" is registered from an untrusted source: The name 'claude-community' is reserved for official Anthropic marketplaces. Only repositories from 'github.com/anthropics/' can use this name. To fix it, remove the marketplace and re-add it from the official source.
 ```
 
+For a source other than GitHub or Git, such as a local directory, the reserved-name sentence ends with `can only be used with GitHub sources from the 'anthropics' organization`.
+
 The fix differs for users and publishers:
 
 * **You use the marketplace**: in your shell, run `claude plugin marketplace remove <name>`, then add the marketplace again from the official `github.com/anthropics` repository
 * **You publish a third-party marketplace that used the name before it became reserved**: rename it and ask users to re-add it from your source
+
+`claude plugin marketplace add` runs the same check, and refuses a reserved name with `Failed to add marketplace:` followed by the same reserved-name sentence.
 
 Before v2.1.205, Claude Code checked the name only when you added the marketplace, so an entry registered before its name became reserved kept loading.
 
@@ -516,7 +526,7 @@ The **Errors** tab in `/plugin` shows this for an enabled plugin that its market
 
 `Marketplace directory not found at path: <path>` means the marketplace's own directory is missing instead. For a marketplace you added from a local path, that directory moved or was deleted. Restore it, or remove the marketplace and add it again from its new location.
 
-### `No plugins available` or `No marketplaces configured`
+### `No plugins yet` or `No marketplaces configured`
 
 You opened `/plugin` and the **Discover** tab is empty, or `claude plugin marketplace list` printed `No marketplaces configured`.
 
@@ -881,7 +891,7 @@ Open the [debug log](https://code.claude.com/docs/en/hooks.md#debug-hooks). A ho
 
 ### `Plugin directory does not exist: <path>`
 
-Run `/reload-plugins` at the Claude Code prompt first, even though the message says to reinstall. A plugin's hook fails with `Failed to run: Plugin directory does not exist: <path> (<plugin> — run /plugin to reinstall)`, and the hook doesn't run, when the directory your session loaded the plugin's hooks from is gone from disk. [`Plugin directory not found at path: <path>`](#plugin-directory-not-found-at-path) is a different message, about a marketplace entry.
+Run `/reload-plugins` at the Claude Code prompt first, even if the message says to reinstall. A plugin's hook fails with `Failed to run: Plugin directory does not exist`, and the hook doesn't run, when the directory your session loaded the plugin's hooks from is gone from disk. [`Plugin directory not found at path: <path>`](#plugin-directory-not-found-at-path) is a different message, about a marketplace entry.
 
 The reload loads the plugin's hooks from its current directory. The failure is shown once per session for each hook event and command, so the hook going quiet doesn't confirm the fix. Read the reload's output instead:
 

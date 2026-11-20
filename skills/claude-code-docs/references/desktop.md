@@ -437,7 +437,7 @@ The prompt also shows what level of control Claude gets for that app. These tier
 | :- | :- | :- |
 | View only | See the app in screenshots | Browsers, trading platforms |
 | Click only | Click and scroll, but not type or use keyboard shortcuts | Terminals, IDEs |
-| Full control | Click, type, drag, and use keyboard shortcuts | Everything else |
+| Full access | Click, type, drag, and use keyboard shortcuts | Most other apps |
 
 Apps with broad reach, like terminals, Finder or File Explorer, and System Settings or Settings, show an extra warning in the prompt so you know what approving them grants.
 
