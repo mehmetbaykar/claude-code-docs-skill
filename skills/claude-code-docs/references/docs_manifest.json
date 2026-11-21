@@ -115,8 +115,8 @@
       "title": "Rewind file changes with checkpointing"
     },
     "agent-sdk__hooks.md": {
-      "hash": "51613b2c5d7967ec40d9231e55f6597bbfa54bd993bea6d6dad0b40bfd2bedb6",
-      "last_updated": "2026-11-20T00:39:33+00:00",
+      "hash": "eb4372207358575a2a66834044874ef4c1c5b17fdacde3efe4aaaafad163b2a0",
+      "last_updated": "2026-11-21T18:22:35+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/hooks",
       "path": "/docs/en/agent-sdk/hooks",
       "section": "docs",
@@ -205,8 +205,8 @@
       "title": "Plugins in the SDK"
     },
     "agent-sdk__python.md": {
-      "hash": "bed1d8c03573228f3fdebac325b7a5c5f827561203723d5289eb74801dca4339",
-      "last_updated": "2026-11-20T00:39:35+00:00",
+      "hash": "06e49bd15aefb862b547cd25f643a769729b2dae3187503630b1f9f964e19bfa",
+      "last_updated": "2026-11-21T18:22:37+00:00",
       "original_url": "https://code.claude.com/docs/en/agent-sdk/python",
       "path": "/docs/en/agent-sdk/python",
       "section": "docs",
@@ -935,8 +935,8 @@
       "title": "Development containers"
     },
     "env-vars.md": {
-      "hash": "cbf133ad01d86dc9da185af6e19e7eafb677149417eafd1fdae127b62476a04e",
-      "last_updated": "2026-11-21T00:40:47+00:00",
+      "hash": "3699a01aecdd2d0151ae5f2c91a461769cee7325580d29f583f513585306e930",
+      "last_updated": "2026-11-21T18:22:54+00:00",
       "original_url": "https://code.claude.com/docs/en/env-vars",
       "path": "/docs/en/env-vars",
       "section": "docs",
@@ -1105,8 +1105,8 @@
       "title": "Automate actions with hooks"
     },
     "hooks.md": {
-      "hash": "6f147b39a8ab684429e58f0f85fa4d77b676ff40a1a793bd3bd0919a798b08f9",
-      "last_updated": "2026-11-21T00:40:51+00:00",
+      "hash": "3b51678d8f0dcbf19bff4e7d0d3aa9605f55b98e5093cf21e41b981f0aa83dff",
+      "last_updated": "2026-11-21T18:22:58+00:00",
       "original_url": "https://code.claude.com/docs/en/hooks",
       "path": "/docs/en/hooks",
       "section": "docs",
@@ -1335,8 +1335,8 @@
       "title": "Overview"
     },
     "permission-modes.md": {
-      "hash": "850c7eb744a6a2dde3ea29fe8ff9584bfd43b7228df5609ce3af8cbbc4f2ed27",
-      "last_updated": "2026-11-20T00:40:06+00:00",
+      "hash": "8d849bfe59538a37588e6464cab8c8ae0182b7efac78c26c8df2dc0723e0aaf4",
+      "last_updated": "2026-11-21T18:23:04+00:00",
       "original_url": "https://code.claude.com/docs/en/permission-modes",
       "path": "/docs/en/permission-modes",
       "section": "docs",
@@ -1935,8 +1935,8 @@
       "title": "Customize your status line"
     },
     "sub-agents.md": {
-      "hash": "d95580fa8e89c45049c8340f818ae29622623cfbb7c03ad1f72ee4fe676d6f74",
-      "last_updated": "2026-11-21T00:41:11+00:00",
+      "hash": "fa02ff4d06959de486d5dfcf4c0baa0cd21e87c3af422b6c893b568827ee87a2",
+      "last_updated": "2026-11-21T18:23:18+00:00",
       "original_url": "https://code.claude.com/docs/en/sub-agents",
       "path": "/docs/en/sub-agents",
       "section": "docs",
@@ -1965,8 +1965,8 @@
       "title": "Enterprise deployment overview"
     },
     "tools-reference.md": {
-      "hash": "d8f8f545a4f888861bb76b821d6bac500744f77501d124c1cc41b68b66c9164b",
-      "last_updated": "2026-11-20T00:40:23+00:00",
+      "hash": "1168f54378eeef29c03b8aa767ae15982b491e387e14e6a2bbe38cad9b26e954",
+      "last_updated": "2026-11-21T18:23:18+00:00",
       "original_url": "https://code.claude.com/docs/en/tools-reference",
       "path": "/docs/en/tools-reference",
       "section": "docs",
@@ -2015,8 +2015,8 @@
       "title": "Voice dictation"
     },
     "vs-code.md": {
-      "hash": "862177461217bd77e2a068cdecadd8298dbb1e78687732e330a2bc3dff8efc86",
-      "last_updated": "2026-11-21T00:41:13+00:00",
+      "hash": "a8c06a808eab7a666150d473d4062e79432525a9ec08f45df9a3b3cbbfde87da",
+      "last_updated": "2026-11-21T18:23:20+00:00",
       "original_url": "https://code.claude.com/docs/en/vs-code",
       "path": "/docs/en/vs-code",
       "section": "docs",
@@ -2079,7 +2079,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-21T00:41:14+00:00",
+  "last_updated": "2026-11-21T18:23:20+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
