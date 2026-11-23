@@ -6,7 +6,7 @@ path: /docs/en/cli-reference
 
 # CLI reference
 
-> Complete reference for Claude Code command-line interface, including commands and flags.
+> Reference for the Claude Code command-line interface, including commands and flags.
 
 ## CLI commands
 
