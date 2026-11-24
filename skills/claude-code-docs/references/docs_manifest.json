@@ -755,8 +755,8 @@
       "title": "Configure cloud environments"
     },
     "code-mode.md": {
-      "hash": "48c096417569c1f9d10685e417d3137d02919e9eeecef4e034a4ccd4544f76d1",
-      "last_updated": "2026-11-23T21:22:44+00:00",
+      "hash": "3b857c38586277f785575d1e12ce23b69f1631b7a378c5b8b6ccc0eba5b6391a",
+      "last_updated": "2026-11-24T12:28:27+00:00",
       "original_url": "https://code.claude.com/docs/en/code-mode",
       "path": "/docs/en/code-mode",
       "section": "docs",
@@ -2239,7 +2239,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-24T00:39:14+00:00",
+  "last_updated": "2026-11-24T12:29:03+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
