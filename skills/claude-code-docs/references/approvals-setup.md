@@ -31,6 +31,10 @@ Both policies start in observe mode, where the **Claude Approvals** check shows 
 
 Both also name `claude/code_review`. Keep it in your policy file. Once the file is on the default branch, in observe mode or enforced, automatic Code Reviews normally stop where no matching rule names it.
 
+> [!TIP]
+>
+> To have Claude write or change a policy file for you, type [`/claude-approvals`](https://code.claude.com/docs/en/commands) at the Claude Code prompt in your repository, followed by what you want. Requires Claude Code v2.1.331 or later and [feature-flag fetching](https://code.claude.com/docs/en/env-vars.md#features-that-need-feature-flag-fetching).
+
 ### Let Claude approve when Code Review passes
 
 Once this starter policy is enforced, a pull request that passes Claude's review usually needs no approval from another person, except for changes under `.claude/`. Other pull requests usually need one person [besides the author](https://code.claude.com/docs/en/approvals-policy.md#whether-a-pull-request’s-author-counts).

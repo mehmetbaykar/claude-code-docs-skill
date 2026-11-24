@@ -159,9 +159,7 @@ When you [background](https://code.claude.com/docs/en/agent-view.md#send-the-ses
 * A checked-out submodule in the worktree holds changed or untracked files, or Claude Code can't inspect the worktree's submodules. This check requires Claude Code v2.1.274 or later.
 * One of the [four cases that also block worktree creation](#git-lfs-content-is-missing-from-a-worktree-claude-code-created) applies: Claude Code can't determine which filter drivers the repository config defines, or finds a setting there it can't switch off.
 * The worktree belongs to a `--worktree` session you haven't backgrounded, whatever its age.
-* You created the worktree yourself with `git worktree add`, even if you then ran a `--worktree <name>` session in it and backgrounded that session.
-
-Claude Code writes a marker into the git metadata of every worktree it creates with git, and the sweep keeps any worktree without one, including a worktree a [`WorktreeCreate` hook](#non-git-version-control) created.
+* You created the worktree with `git worktree add` outside `.claude/worktrees/`.
 
 #### Worktree locks and manual removal
 
