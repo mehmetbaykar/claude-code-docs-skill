@@ -87,7 +87,7 @@ export CLAUDE_CODE_CERT_STORE=system
 
 ## Custom CA certificates
 
-If your enterprise environment uses a custom CA, configure Claude Code to trust it directly:
+If your environment uses a custom CA, configure Claude Code to trust it directly:
 
 ```bash
 export NODE_EXTRA_CA_CERTS=/path/to/ca-cert.pem

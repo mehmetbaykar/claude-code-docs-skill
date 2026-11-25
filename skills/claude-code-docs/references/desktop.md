@@ -1903,7 +1903,7 @@ An entry that you can't select is gray. Hover over it to see the reason:
 * **A broken settings file**: while your own settings file is broken, your administrator's entries may be gray, with a message that names the file. [Fix the file](https://code.claude.com/docs/en/settings.md#fix-a-broken-settings-file).
 * **A new host**: [**Create another**](#create-another-machine) is gray for one minute after Desktop saves a host. Select it after that minute. Before Claude Desktop v4.4212.0, **Replace Dev box's host** is gray for 10 minutes.
 * **Hooks are off or restricted**: your own entries work only where your own hooks can run. Remove `disableAllHooks` from your settings, or ask your administrator.
-* **Settings are still loading**: every entry is gray until Desktop has loaded your organization's [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md), usually a few seconds after launch. If the entries stay gray, check your connection to claude.ai.
+* **Settings are still loading**: every entry is gray until Desktop has loaded any [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md), usually a few seconds after launch. If the entries stay gray, check your connection to claude.ai.
 
 #### Pre-configure SSH connections for your team
 
@@ -2322,6 +2322,7 @@ The following features aren't available in Desktop, except where noted:
 * **Linux (beta)**: Computer Use isn't yet available in the Linux desktop app. See [Claude Desktop on Linux](https://code.claude.com/docs/en/desktop-linux.md).
 * **Inline code suggestions**: Desktop doesn't offer autocomplete-style code completions. It works through conversational prompts and explicit code changes, and can [suggest your next prompt](#accept-a-suggested-prompt) after Claude replies.
 * **Agent teams**: coordinated teams, where Claude as the team lead assigns tasks to teammates from a shared task list, are available in the [CLI](https://code.claude.com/docs/en/agent-teams.md), not in Desktop. For multi-agent work inside one session, use [dynamic workflows](https://code.claude.com/docs/en/workflows.md), which run in Desktop; Claude can also [message and manage your other sessions](#work-across-sessions) directly.
+* **Code Mode**: Desktop sessions start without the experimental [Code Mode](https://code.claude.com/docs/en/code-mode.md), even if you turn it on in your settings. To use it, run the CLI in a terminal.
 * **Terminal-dialog commands**: built-in commands that open an interactive panel in the terminal behave differently in the Code tab. Edit [settings files](https://code.claude.com/docs/en/settings.md) directly to manage permission rules and configuration, or run the commands from the standalone CLI.
   * Commands with no argument form, such as `/permissions`, reply with `isn't available in this environment`.
   * `/config` opens **Settings > Code** or **Settings > Claude Code**.

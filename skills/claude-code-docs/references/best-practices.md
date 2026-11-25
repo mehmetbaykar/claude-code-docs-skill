@@ -598,8 +598,7 @@ Keep it to small files: it copies rather than links, so `node_modules` in there 
 You rarely have to clean any of this up yourself:
 
 * When you exit an unnamed worktree session, Claude Code [removes a worktree it created with git](https://code.claude.com/docs/en/worktrees.md#clean-up-worktrees) if there's nothing in it. For a named session, or one with changes, it asks what to do.
-* Subagent worktrees disappear when the subagent finishes without changes.
-* Subagent and background-session worktrees that do get left behind are swept once they're older than `cleanupPeriodDays` and hold no work.
+* Subagent and background-session worktrees that get left behind [can be removed automatically](https://code.claude.com/docs/en/worktrees.md#clean-up-subagent-and-background-session-worktrees) once they're older than `cleanupPeriodDays` and hold no work.
 
 > [!NOTE]
 >

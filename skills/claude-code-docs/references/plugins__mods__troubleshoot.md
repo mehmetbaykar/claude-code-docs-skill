@@ -14,7 +14,7 @@ When a mod's module or one of its hooks fails, Claude Code skips it and the sess
 
 When a mod does nothing, check what Claude Code reads from the mod's files, and the line it writes when it skips something. For the first, in your shell run [`claude plugin validate`](https://code.claude.com/docs/en/plugins/mods/create#check-what-claude-code-reads-from-your-mod) with the mod's directory, as in `claude plugin validate ./first-mod`. It catches a misspelled event, a bad manifest, and a module Claude Code can't read, without starting a session.
 
-When a module doesn't load, a hook is skipped, or another mod refuses yours, Claude Code writes one line that names your mod. Where you read that line depends on the session:
+Claude Code writes one line naming your mod in cases such as a code error that stops it from loading, a skipped hook, or a refusal by another mod. Look for that line in the transcript, the debug log, or stderr, by session type:
 
 * **A session that hot-reloads a plugin directory**: a dim line in the transcript. That's an interactive session you started with `--plugin-dir`, or one where [hot reloading is on](https://code.claude.com/docs/en/plugins/mods/create.md#ask-claude-for-a-mod) for mods Claude wrote.
 * **Any other interactive session, such as one that runs a mod you installed from a marketplace**: the [debug log](#read-the-debug-log). To get one, start the session with `claude --debug`.
@@ -371,10 +371,10 @@ For another key, check [which mods get `settings.read` and from which version](h
 | `settings.read bypassed by cc-plugin-sec-default`, on a line that names your mod ahead of it | The [built-in guard](https://code.claude.com/docs/en/plugins/mods/admin.md#know-what-happens-by-default) skipped your hook. Ask your organization's administrator to [install the mod as one of the organization's mods](https://code.claude.com/docs/en/plugins/mods/admin.md#install-your-organizations-mods). |
 | `settings.read: the answer for <key> is no value the key can hold` | Claude Code refused the value a hook returned for that key. The hook may be yours or another mod's. Follow [the step for your case](#settings-read-key-refused). |
 | `settings.read: the merge never settles for <key>` | The keys the line names keep the settings sources' values. Set them in a settings file. |
-| `answered settings.read without next()`, after a mod's name | Your hook is affected if the named mod [runs before yours](https://code.claude.com/docs/en/plugins/mods/events.md#the-order-mods-run-in). Then your hook didn't run on that read. [Turn that mod off](https://code.claude.com/docs/en/plugins/mods/overview.md#turn-mods-on-or-off), or if your organization deployed it, ask its administrator to. |
+| `answered settings.read without next()`, after a mod's name | Your hook is affected if the named mod [runs before yours](https://code.claude.com/docs/en/plugins/mods/events.md#the-order-mods-run-in). Then your hook didn't run on that read. [Turn that mod off](https://code.claude.com/docs/en/plugins/mods/overview.md#turn-mods-on-or-off), or if you're in an organization that deployed it, ask your administrator to. |
 | `settings.read: refused to the engine` | Your value didn't apply because Claude Code's own read was refused. [Find what refused it](#settings-read-refused). |
 
-If no line explains the key, check the mods that run before yours for a `settings.read` hook that [changes the key](https://code.claude.com/docs/en/plugins/mods/events.md#settings-read-example). Turn that mod off, or ask your organization's administrator to. If no hook does, set the key in a settings file.
+If no line explains the key, check the mods that run before yours for a `settings.read` hook that [changes the key](https://code.claude.com/docs/en/plugins/mods/events.md#settings-read-example). Turn that mod off, or if you're in an organization that deployed it, ask your administrator to. If no hook does, set the key in a settings file.
 
 ### `the answer for <key> is no value the key can hold`
 
@@ -402,7 +402,7 @@ settings.read: refused to the engine (engine: $.settings.read: <reason>); the se
 Search your code for the reason in the parentheses:
 
 * **Your code has it**: your hook refused the read. Make it return `{ value }` when [`next.origin`](https://code.claude.com/docs/en/plugins/mods/events#settings-read-origin) shows Claude Code's own read.
-* **Your code doesn't have it**: [turn off](https://code.claude.com/docs/en/plugins/mods/overview.md#turn-mods-on-or-off) your other mods one at a time. If your organization deployed a mod, ask its administrator to turn it off. After each:
+* **Your code doesn't have it**: [turn off](https://code.claude.com/docs/en/plugins/mods/overview.md#turn-mods-on-or-off) your other mods one at a time, or if you're in an organization that deployed one, ask your administrator to. After each:
   1. Start the session from your shell with `claude --debug-file ./settings-read-2.log`, followed by the flags it started with. Use a new path each time.
   2. Search that file for `refused to the engine`. If the line is there, turn off the next mod. If not, the last mod you turned off refused the read, so keep it off.
 

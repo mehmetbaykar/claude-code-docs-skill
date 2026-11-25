@@ -330,7 +330,7 @@ The [artifact templates](https://support.claude.com/en/articles/17153992-what-ar
 To use a template from Claude Code, you need:
 
 * A session where [artifacts are available](#availability)
-* On Team and Enterprise plans, the template turned on for your organization. If it's off, ask an Owner to [turn the template on](https://support.claude.com/en/articles/16994751-artifacts-admin-guide-for-team-and-enterprise-plans#h_6e06d8f1a8) under **Organization settings > Artifacts** on claude.ai.
+* On Team and Enterprise plans, the template turned on for your organization. If it's off, ask an Owner to [turn the template on](https://support.claude.com/en/articles/16994751-artifacts-admin-guide-for-team-and-enterprise-plans#h_6e06d8f1a8) under [**Organization settings > Artifacts**](https://claude.ai/admin-settings/artifacts) on claude.ai.
 * On Enterprise plans with custom roles, a role that [includes the template](https://support.claude.com/en/articles/16994751-artifacts-admin-guide-for-team-and-enterprise-plans#h_d830917488)
 * For the Docs and Sheets templates, the [Claude Docs connector](#write-a-document-with-claude-docs), which Claude uses to write the content of both. If you [turned the connector off](https://code.claude.com/docs/en/mcp.md#disable-claude-ai-connectors), turn it back on first.
 * Claude Code v2.1.265 or later, if you start the Design template with its [`/design` command](#draft-a-design-canvas)
@@ -388,7 +388,7 @@ Artifacts require every condition below. When one is not met, Claude writes a lo
 
 Whether artifacts are allowed for your organization comes from your organization's policy, which Claude Code loads from `api.anthropic.com`. When Claude Code can't load the policy, artifacts are unavailable. When you ask for one, Claude says why.
 
-If a proxy, VPN, or web filter is involved, ask your IT admin to let `api.anthropic.com` through. Claude Code keeps retrying in the background, and artifacts become available once the policy loads and allows them.
+If a proxy, VPN, or web filter is involved, ask whoever runs it to let `api.anthropic.com` through. Claude Code keeps retrying in the background, and artifacts become available once the policy loads and allows them.
 
 ## Disable artifacts
 

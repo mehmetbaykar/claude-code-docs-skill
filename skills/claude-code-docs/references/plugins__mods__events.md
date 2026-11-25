@@ -152,7 +152,7 @@ Your hook can also change a call, retry it, answer it itself, or withhold its re
 * **Answer the call yourself**: return an object with a `result` field, without calling `next`, and for a built-in tool, give `result` the shape that tool's own result has in [the types for your build](https://code.claude.com/docs/en/plugins/mods/create.md#get-the-types-for-your-build). No permission prompt appears and the tool doesn't run, so the result you return is all Claude learns about what happened.
 * **Withhold the result from Claude**: return `{ deny: reason }` after `await next(e)`. Claude reads your reason in place of what `next` returned. When the tool ran, the deny keeps its result from Claude and undoes nothing the tool did. When the tool ran and succeeded, the reason follows a note such as `Bash ran, and a plugin withheld its result:`.
 
-Hooks in your organization's [managed settings](https://code.claude.com/docs/en/server-managed-settings.md) run before any mod's `tool.call` hook. When a managed hook blocks the call, no mod's `tool.call` hook runs for that call.
+Hooks in [managed settings](https://code.claude.com/docs/en/server-managed-settings.md) run before any mod's `tool.call` hook. When a managed hook blocks the call, no mod's `tool.call` hook runs for that call.
 
 #### Hold a tool call until the user decides
 
