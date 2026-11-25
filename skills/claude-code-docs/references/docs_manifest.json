@@ -1305,8 +1305,8 @@
       "title": "Control MCP server access for your organization"
     },
     "managed-settings.md": {
-      "hash": "0dba5d502308a21f7aab2f4037716752c3eacb41fd261b6181d051008cd8db56",
-      "last_updated": "2026-11-25T00:43:10+00:00",
+      "hash": "f5372778faf32e19835a3afb18c117a7cd521291e242ccc2518af00271fae654",
+      "last_updated": "2026-11-25T18:24:04+00:00",
       "original_url": "https://code.claude.com/docs/en/managed-settings",
       "path": "/docs/en/managed-settings",
       "section": "docs",
@@ -2239,7 +2239,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-25T06:33:29+00:00",
+  "last_updated": "2026-11-25T18:24:28+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
