@@ -2101,6 +2101,23 @@ To keep users from overriding `permissions.disableBypassPermissionsMode` or `dis
 
 For the permission, plugin, and delivery keys only a managed source can set, see [Keys only managed settings can set](https://code.claude.com/docs/en/managed-settings.md#managed-only-settings).
 
+#### Deploy skills for all users
+
+To give every user the same skills in local and SSH sessions, deploy them as [enterprise skills](https://code.claude.com/docs/en/skills.md#where-skills-live), which you install once on a machine for all of its users. Install them on the machine where the session runs:
+
+* **Local sessions**: each user's computer
+* **SSH sessions**: each remote host
+
+Install each skill at the path for that machine's platform:
+
+| Platform | Path |
+| :- | :- |
+| macOS | `/Library/Application Support/ClaudeCode/.claude/skills/<skill-name>/SKILL.md` |
+| Linux | `/etc/claude-code/.claude/skills/<skill-name>/SKILL.md` |
+| Windows | `C:\Program Files\ClaudeCode\.claude\skills\<skill-name>\SKILL.md` |
+
+To confirm that your skills load, test with a skill whose [frontmatter](https://code.claude.com/docs/en/skills.md#frontmatter-reference) sets only `name` and `description`. Start a new session and send a message, then type `/` and the first letters of the skill's name in the prompt box. The skill appears in the list.
+
 #### Claude Code settings that behave differently in the Code tab
 
 In a local session, these keys, among others, have a different effect or no visible one, because the Code tab replaces the terminal interface. They still apply in the terminal, so you can leave them set.
@@ -2361,6 +2378,8 @@ If a new session shows the [environment](#start-a-session) above the prompt box 
 In the earlier layout, choose the environment and any project folder or repository above the prompt box, and the permission mode and model in the row under it. The earlier layout lacks the [session details panel](#see-session-details) and [saved local and SSH environments](#create-a-saved-environment).
 
 ### 403 or authentication errors in the Code tab
+
+For a card that says `For security, Claude Code needs a recent sign-in.`, see [Claude Code needs a recent sign-in](https://code.claude.com/docs/en/errors.md#claude-code-needs-a-recent-sign-in).
 
 If you see `Error 403: Forbidden` or other authentication failures when using the Code tab:
 

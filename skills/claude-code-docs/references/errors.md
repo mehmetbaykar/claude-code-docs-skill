@@ -62,6 +62,8 @@ Match the message you see to a section below.
 | `Sign in again to take your previous account or API key off the config file.` | [Authentication](#sign-in-again-to-take-your-previous-account-or-api-key-off-the-config-file) |
 | `Your account or API key may still be in the config file. Run claude auth logout.` | [Authentication](#your-account-or-api-key-may-still-be-in-the-config-file) |
 | `Authentication required · Sign in again to continue` | [Authentication](#not-logged-in) |
+| `Sign in again to continue` followed by `For security, Claude Code needs a recent sign-in.` | [Wrapper and IDE errors](#claude-code-needs-a-recent-sign-in) |
+| `Claude Code needs a recent sign-in. Signing in won’t stop sessions.` | [Wrapper and IDE errors](#claude-code-needs-a-recent-sign-in) |
 | `Could not resolve authentication method` | [Authentication](#could-not-resolve-authentication-method) |
 | `Invalid API key` | [Authentication](#invalid-api-key) |
 | `Your apiKeyHelper script is failing` | [Authentication](#your-apikeyhelper-script-is-failing) |
@@ -396,6 +398,11 @@ Match the message you see to a section below.
 | `Skipping connection (recent failure cached; retries automatically in 15 min, or edit the plugin config to retry now)` | [Plugin errors](#skipping-connection-recent-failure-cached) |
 | `is not added on this machine, so your organization's marketplace policy keeps its plugins off` | [Add a marketplace](https://code.claude.com/docs/en/plugins/install.md#add-a-marketplace) |
 | `A mod's http.fetch hook stopped this request` | [Turn mods on or off](https://code.claude.com/docs/en/plugins/mods/overview.md#turn-mods-on-or-off) |
+| `hook was skipped. "<mod>" runs first and sent the event on past it.` | If you listed the quoted mod in [`prependPlugins`](https://code.claude.com/docs/en/settings-reference#prependplugins) in your user settings, change that mod. Otherwise, ask your administrator. |
+| `<file>: changed while it was read` | If `claude plugin validate` printed this, rerun it. Otherwise, restart the session. |
+| `installed mods are off for now` | [Check whether mods can load](https://code.claude.com/docs/en/plugins/mods/troubleshoot.md#check-whether-mods-can-load) |
+| `the hooks worker was lost with <mod>'s <event> hook in flight` | Fix the named mod. For one cause, see [`it crashed the hooks worker`](https://code.claude.com/docs/en/plugins/mods/troubleshoot#it-crashed-the-hooks-worker). |
+| `dispatches in a row for fills by <mods>` | Change the named mods so they fill the prompt box at most eight times in a row. |
 | `Error: No such tool available: <tool name>` | [Tool errors](#no-such-tool-available) |
 | `MCP server "<name>" connection closed before the tool call was answered` | [Tool errors](#connection-closed-before-the-tool-call-was-answered) |
 | `MCP server "<name>" is disabled — re-enable it via /mcp to use its tools` | [Tool errors](#mcp-server-is-disabled) |
@@ -5990,6 +5997,31 @@ The connection to Claude Code ended before this message completed — it may not
 
 * Send the message again. The next message starts a fresh `claude` process that resumes the conversation.
 * If it repeats, run `claude` in a terminal in the same project. A failure that keeps ending the process usually reproduces there with its real error message.
+
+### Claude Code needs a recent sign-in
+
+When a local, WSL, or SSH session in the Code tab needs a new saved sign-in and you haven't signed in recently, the [Claude Desktop app](https://code.claude.com/docs/en/desktop.md) shows this message:
+
+```text
+For security, Claude Code needs a recent sign-in.
+```
+
+For these sessions, being asked up to about once a month for each account and organization on each computer is routine, with or without single sign-on (SSO).
+
+**What to do:**
+
+* Click **Sign in again** on the card, then sign in
+* If a banner at the top of the Code tab says `Claude Code needs a recent sign-in. Signing in won’t stop sessions.`, click **Sign in again** on the banner
+* If you're asked again within three weeks for these sessions, with the same account and organization on the same computer, [check your version](https://code.claude.com/docs/en/desktop.md#check-your-version) of Claude Desktop. If it's older than v5.11492.0, update it:
+  * **macOS**: select **Claude > Check for Updates…**
+  * **Windows**: select **Help > Check for Updates…**, or update through the Microsoft Store if you installed the app from there
+  * **Linux**: [update through apt](https://code.claude.com/docs/en/desktop-linux.md#update)
+  * **Managed updates**: if your organization [turns off auto-updates](https://code.claude.com/docs/en/desktop.md#device-management-policies), ask your administrator for v5.11492.0 or later
+* If that continues on v5.11492.0 or later, [contact support](https://code.claude.com/docs/en/desktop.md#still-stuck)
+
+If you see the card in a Remote Control session, see [Trusted Devices](https://code.claude.com/docs/en/remote-control.md#trusted-devices), which can ask for a more recent sign-in.
+
+Before Claude Desktop v5.11492.0, the Code tab could lose its saved sign-in when a company proxy or gateway answered its background renewal with a JSON error.
 
 ## Rewind warnings and errors
 

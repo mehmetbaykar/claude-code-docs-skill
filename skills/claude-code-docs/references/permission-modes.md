@@ -683,7 +683,7 @@ claude --permission-mode dontAsk
 
 `bypassPermissions` mode disables permission prompts and safety checks so tool calls execute immediately, including writes to [protected paths](#protected-paths).
 
-Even in `bypassPermissions` mode, each of the [actions no mode auto-approves](#actions-no-mode-auto-approves) gets a prompt or a denial, though you can [turn off the prompt for dangerous `rm` commands](#turn-off-the-critical-path-removal-prompt-in-bypasspermissions-mode). Reading [another organization's public artifact](https://code.claude.com/docs/en/artifacts.md#read-an-artifact-shared-with-you) needs your approval, and this mode doesn't ask for it, so Claude can't read one. The [Remove-Item in PowerShell](#remove-item-in-powershell) denies also apply in this mode.
+Even in `bypassPermissions` mode, each of the [actions no mode auto-approves](#actions-no-mode-auto-approves) ends in a prompt or a denial, though you can [turn off the prompt for dangerous `rm` commands](#turn-off-the-critical-path-removal-prompt-in-bypasspermissions-mode). The Artifact tool can't read [another organization's public artifact](https://code.claude.com/docs/en/artifacts.md#read-an-artifact-shared-with-you) that you haven't approved in this conversation. The [Remove-Item in PowerShell](#remove-item-in-powershell) denies also apply in this mode.
 
 Two [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging.md) safeguards still apply in this mode, and in interactive terminal plan-mode sessions where bypass permissions are available:
 

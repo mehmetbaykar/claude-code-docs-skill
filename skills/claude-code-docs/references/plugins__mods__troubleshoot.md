@@ -12,7 +12,7 @@ When a mod's module or one of its hooks fails, Claude Code skips it and the sess
 
 ## Find out why a mod does nothing
 
-When a mod does nothing, check what Claude Code reads from the mod's files, and the line it writes when it skips something. For the first, in your shell run [`claude plugin validate`](https://code.claude.com/docs/en/plugins/mods/create#check-what-claude-code-reads-from-your-mod) with the mod's directory, as in `claude plugin validate ./first-mod`. It catches a misspelled event, a bad manifest, and a module Claude Code can't read, without starting a session.
+When a mod does nothing, check what Claude Code reads from the mod's files, and the line it writes when it skips something. To check the files, in your shell run [`claude plugin validate`](https://code.claude.com/docs/en/plugins/mods/create#check-what-claude-code-reads-from-your-mod) with the mod's directory, as in `claude plugin validate ./first-mod`. It catches a bad manifest and a module Claude Code can't read, without starting a session.
 
 Claude Code writes one line naming your mod in cases such as a code error that stops it from loading, a skipped hook, or a refusal by another mod. Look for that line in the transcript, the debug log, or stderr, by session type:
 
@@ -63,6 +63,7 @@ Each of these follows `hooks module`, the mod's name, and `not loaded:` in the d
 | :- | :- |
 | `hooks modules are turned off for installed plugins in this process: the rollout switch served off` | Anthropic has turned installed mods off remotely. |
 | `hooks modules are turned off for installed plugins in this process: the rollout switch was saved off by an earlier session` | The session used a value an earlier session saved, which may be out of date. Start Claude Code again to refresh it. |
+| `hooks modules a person installed wait for the rollout switch in this process` | In a [cloud session](https://code.claude.com/docs/en/claude-code-on-the-web.md), your mods are waiting to load, so send another message. If the line includes `could not be read`, or you see `Mods you installed aren't running in this session`, start a new session instead. |
 | `disableAllHooks in managed settings` | Your organization turned off hooks from installed plugins |
 | `only managed plugins and built-in plugins run` | `allowManagedHooksOnly` is set, or `disableAllHooks` is set in a settings file other than managed settings |
 | `installed plugins that are not managed load no hooks module in this mode (--bare)` | You started Claude Code with `--bare` |
@@ -146,6 +147,17 @@ To run the mod, [copy its directory out of the mods folder](https://code.claude.
 The line names the mod and the event, then says `hook skipped:` and a reason, as in `first-mod: tool.call hook skipped: threw Error: boom`. A hook threw, exceeded its [time limit](https://code.claude.com/docs/en/plugins/mods/reference.md#limits), or returned a result of the wrong shape. The line appears once for each event and kind of failure until the mod reloads.
 
 Fix the error. The debug log has a line for every occurrence.
+
+### `call refused` or `result withheld`
+
+Either line means Claude Code couldn't copy a value to or from a hook that checks an action, such as a `tool.call` hook. Match the [transcript or debug log line](#find-out-why-a-mod-does-nothing) to see whether the action ran:
+
+* `call refused`: Claude Code refused the action in your hook's place
+* `result withheld`: what the tool did stays done, and Claude reads a note in place of its result
+
+What Claude gets back can include `could not be given to a hook that checks it` or `a hook that checks this result could not hand back its answer`.
+
+If the line includes `could not be given its argument`, your hook didn't run, so leave it as it is. If it includes `is not plain data: nesting deeper than 28000 levels`, reduce the nesting in the values your hook returns or passes on.
 
 ### `no command.run hook answered it`
 
@@ -298,9 +310,10 @@ Before v2.1.289, the line showed `Error` as the reason instead.
 
 ### `$.ui.open` runs and no pane appears
 
-The call didn't come from something the user did, and the terminal is narrower than [the width that pane needs](https://code.claude.com/docs/en/plugins/mods/interface.md#when-a-pane-waits-for-a-wider-terminal).
+Check the call's result. When `isPlaced` is `false`, the start of `reason` says why, as in these cases:
 
-Open the pane from a command or a button, or check the call's `isPlaced` result. See [Open a pane at the right time](https://code.claude.com/docs/en/plugins/mods/interface.md#open-a-pane-at-the-right-time).
+* **`unasked below`**: open the pane from a command or a button, or use [a wider terminal](https://code.claude.com/docs/en/plugins/mods/interface.md#when-a-pane-waits-for-a-wider-terminal).
+* **`no-surface`**: nothing is attached to draw on, as in a `claude -p` or Agent SDK run. From a `command.run` hook, return `{ text }` instead.
 
 ### A toast doesn't appear
 
@@ -343,7 +356,7 @@ The mod runs, and a change you made or a value it kept isn't there.
 
 ### Your edits don't take effect
 
-You're editing a plugin you installed. Claude Code runs the cached copy for the installed version.
+If your plugin was [copied at install](https://code.claude.com/docs/en/plugins/loading.md#in-place-and-copied-plugins), Claude Code runs that copy.
 
 Develop with `--plugin-dir` pointed at your working copy, as in `claude --plugin-dir ./first-mod`, which reloads when you save.
 
