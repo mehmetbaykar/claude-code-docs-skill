@@ -705,8 +705,8 @@
       "title": "Let Claude coordinate ongoing work with Projects"
     },
     "claude-security.md": {
-      "hash": "f6bbdf9df253bd997f541d6b6ab2eb90f9ba07ceacaaadb66dd407efd361375d",
-      "last_updated": "2026-11-24T21:22:07+00:00",
+      "hash": "71f4229e650c85d53e8f93c43466ba01a33eeabedb6911f3b069448e18d536f2",
+      "last_updated": "2026-11-26T06:33:10+00:00",
       "original_url": "https://code.claude.com/docs/en/claude-security",
       "path": "/docs/en/claude-security",
       "section": "docs",
@@ -2239,7 +2239,7 @@
       "/docs/en/*"
     ]
   },
-  "last_updated": "2026-11-25T18:24:28+00:00",
+  "last_updated": "2026-11-26T06:33:48+00:00",
   "skipped": [],
   "source": {
     "base_url": "https://code.claude.com",
